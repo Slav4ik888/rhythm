@@ -1,0 +1,17 @@
+@import "./css/normalize.scss";
+@import "./variables/global";
+/* // @import "./themes/light";
+// @import "./themes/dark"; */
+
+@font-face {
+  font-family: "Manropelight";
+  src: url("./fonts/Manropelight.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+p {
+  margin: 0;
+  padding: 0;
+}
