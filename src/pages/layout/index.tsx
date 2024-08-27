@@ -56,7 +56,7 @@ export const Layout: FC = memo(() => {
         {/* <Navbar /> */}
         <MessageBar />
         <PageLoader loading={pageLoading} />
-
+        
         <Box component="main" sx={sx.main}>
           <Outlet />
         </Box>

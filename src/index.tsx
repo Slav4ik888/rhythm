@@ -2,7 +2,7 @@ import * as ReactDOM from 'react-dom/client';
 import "regenerator-runtime/runtime";
 import { BrowserRouter } from 'react-router-dom';
 import { StoreProvider } from 'app/providers/store';
-import { ThemeProvider } from 'app/providers/theme';
+import { MaterialUIControllerProvider } from 'app/providers/theme'; // ThemeProvider
 import { ErrorBoundary } from 'app/providers/error-boundary';
 import { App } from './app';
 
@@ -19,9 +19,9 @@ root.render(
     <BrowserRouter>
       <StoreProvider>
         <ErrorBoundary>
-          <ThemeProvider>
+          <MaterialUIControllerProvider>
             <App />
-          </ThemeProvider>
+          </MaterialUIControllerProvider>
         </ErrorBoundary>
       </StoreProvider>
     </BrowserRouter>
@@ -29,4 +29,5 @@ root.render(
 );
 
 
-// git add . && git commit -m "07.04.2024" && git push -u origin main
+// git add . && git commit -m "27.08.2024" && git push -u origin main
+// rgb(240, 242, 245);

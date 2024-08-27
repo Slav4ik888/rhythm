@@ -1,11 +1,13 @@
 
 export enum AppRoutes {
-  ROOT        = 'ROOT',
-  NOT_FOUND   = 'NOT_FOUND'
+  ROOT       = 'ROOT',
+  DASHBOARD  = 'DASHBOARD',
+  NOT_FOUND  = 'NOT_FOUND'
 }
 
 
 export const RoutePath: Record<AppRoutes, string> = {
-  [AppRoutes.ROOT]        : '/',
-  [AppRoutes.NOT_FOUND]   : '*'
+  [AppRoutes.ROOT]      : '/',
+  [AppRoutes.DASHBOARD] : '/dashboard',
+  [AppRoutes.NOT_FOUND] : '*'
 };
