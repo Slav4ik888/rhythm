@@ -26,9 +26,15 @@ interface Props {
   opacity?: number
   borderRadius?: RadiusName
   shadow?: any
+  mb?: { xs?: number, md?: number }
+  mr?: { xs?: number, xl?: number }
+  pr?: number
+  py?: number
+  display?: "flex" | "inline" | "none"
+  alignItems?: "center"
   coloredShadow?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark" | "none"
   children: React.ReactNode;
-  sx: any;
+  sx?: any;
 }
 
 

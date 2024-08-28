@@ -13,11 +13,11 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import MDBox from "components/MDBox";
+import MDBox from "shared/ui/mui-design-components/md-box";
 
 // Material Dashboard 2 React example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+import { DashboardLayout } from 'shared/ui/layouts/dashboard-layout';
+import DashboardNavbar from '../navbar';
 import Footer from "examples/Footer";
 
 // Data
