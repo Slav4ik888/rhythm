@@ -11,5 +11,6 @@ export {
   setFixedNavbar,
   setOpenConfigurator,
   setLayout,
-  setDarkMode
+  setDarkMode,
+  theme, themeDark, CustomMUITheme, GradientsBgColorName, RadiusName
 } from './model';

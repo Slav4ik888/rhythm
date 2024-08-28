@@ -15,6 +15,7 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import { createTheme } from "@mui/material/styles";
+// import Fade from "@mui/material/Fade";
 
 // Material Dashboard 2 React base styles
 import colors from "./base/colors";
@@ -83,9 +84,10 @@ import dialogContent from "./components/dialog/dialogContent";
 import dialogContentText from "./components/dialog/dialogContentText";
 import dialogActions from "./components/dialog/dialogActions";
 
-export default createTheme({
+export const themeDark = createTheme({
   breakpoints: { ...breakpoints },
   palette: { ...colors },
+  // @ts-ignore
   typography: { ...typography },
   boxShadows: { ...boxShadows },
   borders: { ...borders },
@@ -108,15 +110,18 @@ export default createTheme({
     MuiList: { ...list },
     MuiListItem: { ...listItem },
     MuiListItemText: { ...listItemText },
+  // @ts-ignore
     MuiCard: { ...card },
     MuiCardMedia: { ...cardMedia },
     MuiCardContent: { ...cardContent },
+  // @ts-ignore
     MuiButton: { ...button },
     MuiIconButton: { ...iconButton },
     MuiInput: { ...input },
     MuiInputLabel: { ...inputLabel },
     MuiOutlinedInput: { ...inputOutlined },
     MuiTextField: { ...textField },
+  // @ts-ignore
     MuiMenu: { ...menu },
     MuiMenuItem: { ...menuItem },
     MuiSwitch: { ...switchButton },
@@ -124,17 +129,24 @@ export default createTheme({
     MuiTableContainer: { ...tableContainer },
     MuiTableHead: { ...tableHead },
     MuiTableCell: { ...tableCell },
+  // @ts-ignore
     MuiLinearProgress: { ...linearProgress },
     MuiBreadcrumbs: { ...breadcrumbs },
+  // @ts-ignore
     MuiSlider: { ...slider },
     MuiAvatar: { ...avatar },
+  // @ts-ignore
     MuiTooltip: { ...tooltip },
+  // @ts-ignore
     MuiAppBar: { ...appBar },
+  // @ts-ignore
     MuiTabs: { ...tabs },
+  // @ts-ignore
     MuiTab: { ...tab },
     MuiStepper: { ...stepper },
     MuiStep: { ...step },
     MuiStepConnector: { ...stepConnector },
+  // @ts-ignore
     MuiStepLabel: { ...stepLabel },
     MuiStepIcon: { ...stepIcon },
     MuiSelect: { ...select },
@@ -142,11 +154,15 @@ export default createTheme({
     MuiFormLabel: { ...formLabel },
     MuiCheckbox: { ...checkbox },
     MuiRadio: { ...radio },
+  // @ts-ignore
     MuiAutocomplete: { ...autocomplete },
     MuiPopover: { ...popover },
     MuiButtonBase: { ...buttonBase },
+  // @ts-ignore
     MuiIcon: { ...icon },
+  // @ts-ignore
     MuiSvgIcon: { ...svgIcon },
+  // @ts-ignore
     MuiLink: { ...link },
     MuiDialog: { ...dialog },
     MuiDialogTitle: { ...dialogTitle },

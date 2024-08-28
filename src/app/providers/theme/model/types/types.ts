@@ -1,4 +1,4 @@
-import { theme } from './themes/standart-light';
+import { theme } from '../themes/standart-light';
 
 export type CustomTheme = typeof theme;
 

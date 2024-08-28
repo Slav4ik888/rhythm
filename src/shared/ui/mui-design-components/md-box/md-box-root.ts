@@ -16,10 +16,23 @@ Coded by www.creative-tim.com
 // @mui material components
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
+import { CustomMUITheme, GradientsBgColorName, RadiusName } from 'app/providers/theme';
 
+
+interface OwnerState {
+  variant: string
+  bgColor: string
+  color: string
+  opacity: number
+  borderRadius: RadiusName
+  shadow: any
+  coloredShadow: string
+}
+
+// @ts-ignore
 export default styled(Box)(({ theme, ownerState }) => {
-  const { palette, functions, borders, boxShadows } = theme;
-  const { variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow } = ownerState;
+  const { palette, functions, borders, boxShadows } = theme as unknown as CustomMUITheme;
+  const { variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow } = ownerState as OwnerState;
 
   const { gradients, grey, white } = palette;
   const { linearGradient } = functions;
@@ -38,7 +51,7 @@ export default styled(Box)(({ theme, ownerState }) => {
     "grey-900": grey[900],
   };
 
-  const validGradients = [
+  const validGradients: GradientsBgColorName[] = [
     "primary",
     "secondary",
     "info",
@@ -77,13 +90,14 @@ export default styled(Box)(({ theme, ownerState }) => {
   const validBoxShadows = ["xs", "sm", "md", "lg", "xl", "xxl", "inset"];
 
   // background value
-  let backgroundValue = bgColor;
+  let backgroundValue = bgColor as string;
 
   if (variant === "gradient") {
     backgroundValue = validGradients.find((el) => el === bgColor)
-      ? linearGradient(gradients[bgColor].main, gradients[bgColor].state)
+      ? linearGradient(gradients[bgColor as GradientsBgColorName].main, gradients[bgColor as GradientsBgColorName].state)
       : white.main;
   } else if (validColors.find((el) => el === bgColor)) {
+    // @ts-ignore
     backgroundValue = palette[bgColor] ? palette[bgColor].main : greyColors[bgColor];
   } else {
     backgroundValue = bgColor;
@@ -93,11 +107,12 @@ export default styled(Box)(({ theme, ownerState }) => {
   let colorValue = color;
 
   if (validColors.find((el) => el === color)) {
+    // @ts-ignore
     colorValue = palette[color] ? palette[color].main : greyColors[color];
   }
 
   // borderRadius value
-  let borderRadiusValue = borderRadius;
+  let borderRadiusValue = borderRadius as string;
 
   if (validBorderRadius.find((el) => el === borderRadius)) {
     borderRadiusValue = radius[borderRadius];
@@ -107,8 +122,10 @@ export default styled(Box)(({ theme, ownerState }) => {
   let boxShadowValue = "none";
 
   if (validBoxShadows.find((el) => el === shadow)) {
+// @ts-ignore
     boxShadowValue = boxShadows[shadow];
   } else if (coloredShadow) {
+// @ts-ignore
     boxShadowValue = colored[coloredShadow] ? colored[coloredShadow] : "none";
   }
 

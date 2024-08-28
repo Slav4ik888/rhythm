@@ -16,6 +16,7 @@ Coded by www.creative-tim.com
 import { useEffect, FC } from "react";
 import { useLocation } from "react-router-dom";
 import { setLayout, useMaterialUIController } from 'app/providers/theme';
+import MDBox from 'shared/ui/mui-design-components/md-box';
 
 
 
@@ -34,6 +35,7 @@ export const DashboardLayout: FC<Props> = ({ children }) => {
 
   return (
     <MDBox
+      // @ts-ignore
       sx={({ breakpoints, transitions, functions: { pxToRem } }) => ({
         p: 3,
         position: "relative",

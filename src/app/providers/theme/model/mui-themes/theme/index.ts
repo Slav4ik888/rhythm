@@ -15,7 +15,6 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import { createTheme } from "@mui/material/styles";
-// import Fade from "@mui/material/Fade";
 
 // Material Dashboard 2 React base styles
 import colors from "./base/colors";
@@ -84,7 +83,7 @@ import dialogContent from "./components/dialog/dialogContent";
 import dialogContentText from "./components/dialog/dialogContentText";
 import dialogActions from "./components/dialog/dialogActions";
 
-export default createTheme({
+export const themeData = {
   breakpoints: { ...breakpoints },
   palette: { ...colors },
   typography: { ...typography },
@@ -155,4 +154,7 @@ export default createTheme({
     MuiDialogContentText: { ...dialogContentText },
     MuiDialogActions: { ...dialogActions },
   },
-});
+};
+
+// @ts-ignore
+export const theme = createTheme(themeData);

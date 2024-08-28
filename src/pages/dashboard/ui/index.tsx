@@ -1,22 +1,26 @@
 import { FC } from 'react';
+import { DashboardContainer } from 'entities/dashboard';
 import { WrapperDynamicReducers } from 'shared/ui/pages';
 
 
 
 const DashboardPage: FC = () => {
+  console.log('DashboardPage ');
 
   return (
     <WrapperDynamicReducers>
-      <Sidenav
+      {/* <Sidenav
         color={sidenavColor}
         brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-        brandName="Material Dashboard 2"
+        brandName="Rhythm Dashboard"
         routes={routes}
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
-      />
+      /> */}
       {/* <Configurator /> */}
       {/* {configsButton} */}
+
+      <DashboardContainer />
     </WrapperDynamicReducers>
   );
 };
