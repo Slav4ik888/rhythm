@@ -24,21 +24,31 @@ import MDBox from "shared/ui/mui-design-components/md-box";
 import MDTypography from "shared/ui/mui-design-components/md-typography";
 
 // Material Dashboard 2 React base styles
-import typography from "assets/theme/base/typography";
+import { typography } from "app/providers/theme";
+
 
 
 interface Props {
-  company: {
+  company?: {
     href: string;
     name: string;
   };
-  links: {
+  links?: {
     href: string;
     name: string;
   }[];
-
 }
-const Footer: FC<Props> = ({ company, links }) => {
+
+
+export const Footer: FC<Props> = ({
+  company = { href: "https://rhythm.thm.su/", name: "Учебный центр Основа" },
+  links = [
+    { href: "https://rhythm.thm.su/", name: "UPDIVISION" },
+    { href: "https://rhythm.thm.su/", name: "Creative Rhythm" },
+    { href: "https://rhythm.thm.su/", name: "About Us" },
+    { href: "https://rhythm.thm.su/", name: "Blog" },
+    { href: "https://rhythm.thm.su/", name: "License" },
+  ] }) => {
   const { href, name } = company;
   const { size } = typography;
 
@@ -93,6 +103,7 @@ const Footer: FC<Props> = ({ company, links }) => {
       </MDBox>
       <MDBox
         component="ul"
+        // @ts-ignore
         sx={({ breakpoints }) => ({
           display: "flex",
           flexWrap: "wrap",
@@ -113,23 +124,3 @@ const Footer: FC<Props> = ({ company, links }) => {
     </MDBox>
   );
 }
-
-// Setting default values for the props of Footer
-Footer.defaultProps = {
-  company: { href: "https://www.creative-tim.com/", name: "Creative Tim" },
-  links: [
-    { href: "https://updivision.com/", name: "UPDIVISION" },
-    { href: "https://www.creative-tim.com/", name: "Creative Tim" },
-    { href: "https://www.creative-tim.com/presentation", name: "About Us" },
-    { href: "https://www.creative-tim.com/blog", name: "Blog" },
-    { href: "https://www.creative-tim.com/license", name: "License" },
-  ],
-};
-
-// Typechecking props for the Footer
-Footer.propTypes = {
-  company: PropTypes.objectOf(PropTypes.string),
-  links: PropTypes.arrayOf(PropTypes.object),
-};
-
-export default Footer;

@@ -12,5 +12,5 @@ export {
   setOpenConfigurator,
   setLayout,
   setDarkMode,
-  theme, themeDark, CustomMUITheme, GradientsBgColorName, RadiusName
+  typography, theme, themeDark, CustomMUITheme, GradientsBgColorName, RadiusName
 } from './model';

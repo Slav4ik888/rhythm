@@ -25,7 +25,7 @@ import { TypographyOwnProps } from '@mui/material';
 
 
 interface Props extends TypographyOwnProps {
-  color?: "white" | "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark"
+  color?: "white" | "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark" | "text"
   textTransform?: "none" | "capitalize" | "uppercase" | "lowercase"
   verticalAlign?: "unset" | "baseline" | "sub" | "super" | "text-top" | "text-bottom" | "middle" | "top" | "bottom"
   textGradient?: boolean

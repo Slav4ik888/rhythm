@@ -1,4 +1,4 @@
-import { ColorMode } from '../types';
+import { ColorMode } from '../types/types';
 
 
 export const theme = {

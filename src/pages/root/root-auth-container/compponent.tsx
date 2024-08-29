@@ -12,9 +12,9 @@ export const RootAuthComponent: FC = memo(() => {
   // if (isDisplaySubscribeOffer(company, isVerified, isSuper)) return <SubscribeOffer />
 
   return (<>
-    <div>Main text...</div>
+    <div>RootAuthComponent ...</div>
     {
-      [...new Array].map(_ => <p>Any some text...</p>)
+      [...new Array(10)].map(_ => <p>Any some text...</p>)
     }
   </>)
 });

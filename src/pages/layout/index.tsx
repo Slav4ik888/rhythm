@@ -36,7 +36,7 @@ const useStyles = (theme: CustomTheme) => ({
 
 export const Layout: FC = memo(() => {
   const
-    sx = useStyles(useTheme()),
+    // sx = useStyles(useTheme()),
     { pageLoading, errors, setWarningMessage } = useUI(),
     dispatch = useAppDispatch(),
     state = useSelector(state => state);
@@ -52,17 +52,17 @@ export const Layout: FC = memo(() => {
     <>
       <CssBaseline />
       <ScrollToTop />
-      <Box sx={sx.wrapper}>
+      {/* <Box sx={sx.wrapper}> */}
         {/* <Navbar /> */}
         <MessageBar />
         <PageLoader loading={pageLoading} />
         
-        <Box component="main" sx={sx.main}>
+        {/* <Box component="main" sx={sx.main}> */}
           <Outlet />
-        </Box>
+        {/* </Box> */}
 
         {/* <Footer /> */}
-      </Box>
+      {/* </Box> */}
     </>
   )
 });

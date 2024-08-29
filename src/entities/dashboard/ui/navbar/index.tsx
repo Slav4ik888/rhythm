@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 
 // react-router components
 import { useLocation, Link } from "react-router-dom";
@@ -63,7 +63,8 @@ interface Props {
   light?: boolean;
   isMini?: boolean;
 }
-function DashboardNavbar({ absolute = false, light = false, isMini = false }) {
+
+export const DashboardNavbar: FC<Props> = ({ absolute = false, light = false, isMini = false }) => {
   const [navbarType, setNavbarType] = useState<"sticky" | "static">();
   const [controller, dispatch] = useMaterialUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
@@ -220,6 +221,3 @@ function DashboardNavbar({ absolute = false, light = false, isMini = false }) {
     </AppBar>
   );
 }
-
-
-export default DashboardNavbar;

@@ -18,21 +18,31 @@ import { forwardRef, FC } from "react";
 import MDBoxRoot from "./md-box-root";
 
 
+type Flex = "column" | "row" | "row-reverse" | "column-reverse"
 
 interface Props {
   variant?: "contained" | "gradient"
   bgColor?: string
   color?: string
+  width?: string
   opacity?: number
   borderRadius?: RadiusName
   shadow?: any
-  mb?: { xs?: number, md?: number }
+  mb?: number | { xs?: number, md?: number }
   mr?: { xs?: number, xl?: number }
+  mx?: number
   pr?: number
   py?: number
+  px?: number
+  fontSize?: string
+  lineHeight?: number
   display?: "flex" | "inline" | "none"
+  flexDirection?: { xs: Flex, lg: Flex }
   alignItems?: "center"
+  justifyContent?: "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly"
+  flexWrap?: "wrap" | "flex-start"
   coloredShadow?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark" | "none"
+  component?: React.ElementType
   children: React.ReactNode;
   sx?: any;
 }

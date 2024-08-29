@@ -17,21 +17,21 @@ import MDBox from "shared/ui/mui-design-components/md-box";
 
 // Material Dashboard 2 React example components
 import { DashboardLayout } from 'shared/ui/layouts/dashboard-layout';
-import DashboardNavbar from '../navbar';
-import Footer from "examples/Footer";
+import { DashboardNavbar } from '../navbar';
+import { Footer } from "../footer";
 
 // Data
-import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
-import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
+// import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
+// import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
 // Dashboard components
-import Projects from "layouts/dashboard/components/Projects";
-import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
+// import Projects from "layouts/dashboard/components/Projects";
+// import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 
 
 
 export const DashboardContainer = () => {
-  const { sales, tasks } = reportsLineChartData;
+  // const { sales, tasks } = reportsLineChartData;
 
   return (
     <DashboardLayout>
@@ -155,5 +155,3 @@ export const DashboardContainer = () => {
     </DashboardLayout>
   );
 }
-
-export default Dashboard;
