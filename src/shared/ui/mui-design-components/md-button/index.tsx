@@ -20,20 +20,24 @@ import { forwardRef, FC } from "react";
 import MDButtonRoot from "./md-button-root";
 
 // Material Dashboard 2 React contexts
-import { useMaterialUIController } from "app/providers/theme";
+import { ColorName, useMaterialUIController } from "app/providers/theme";
 
 
 interface Props {
-  color?: "white" | "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark"
+  color?: ColorName
   variant?: "text" | "contained" | "outlined" | "gradient"
   size?: "small" | "medium" | "large"
   type?: "button" | "reset" | "submit" | "link" | "default"
   circular?: boolean
   iconOnly?: boolean
   fullWidth?: boolean
-  children: React.ReactNode;
-  sx?: any;
-  onClick: () => void;
+  target?: string
+  rel?: string
+  href?: string
+  component?: React.ElementType
+  children: React.ReactNode
+  sx?: any
+  onClick?: () => void
 }
 
 

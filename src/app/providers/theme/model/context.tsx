@@ -26,6 +26,7 @@ Coded by www.creative-tim.com
 */
 
 import { createContext, useContext, useReducer, useMemo, useState, FC } from "react";
+import { ColorName } from '.';
 
 
 // Material Dashboard 2 React main context
@@ -80,13 +81,26 @@ function reducer(state: any, action: Action) {
   }
 }
 
+
+export interface MaterialUIControllerProviderState {
+  miniSidenav        : boolean
+  transparentSidenav : boolean
+  whiteSidenav       : boolean
+  sidenavColor       : ColorName
+  transparentNavbar  : boolean
+  fixedNavbar        : boolean
+  openConfigurator   : boolean
+  layout             : "dashboard"
+  darkMode           : boolean
+}
+
 // Material Dashboard 2 React context provider
 interface Props {
   children: React.ReactNode;
 }
 
 const MaterialUIControllerProvider: FC<Props> = ({ children }) => {
-  const initialState = {
+  const initialState: MaterialUIControllerProviderState = {
     miniSidenav        : false,
     transparentSidenav : false,
     whiteSidenav       : false,

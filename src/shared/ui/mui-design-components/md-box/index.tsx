@@ -24,27 +24,39 @@ interface Props {
   variant?: "contained" | "gradient"
   bgColor?: string
   color?: string
-  width?: string
+  width?: string | boolean
   opacity?: number
   borderRadius?: RadiusName
   shadow?: any
   mb?: number | { xs?: number, md?: number }
   mr?: { xs?: number, xl?: number }
+  mt?: "auto"
   mx?: number
   pr?: number
   py?: number
   px?: number
+  pt?: number
+  pb?: number
+  p?: number
+  position?: "static" | "relative" | "absolute" | "sticky"
+  top?: number
+  right?: number
   fontSize?: string
   lineHeight?: number
-  display?: "flex" | "inline" | "none"
+  textAlign?: "center" | "left" | "right"
+  display?: "flex" | "flex flex-col" | "inline" | "none" | { xs: "block", xl: "none" }
   flexDirection?: { xs: Flex, lg: Flex }
   alignItems?: "center"
   justifyContent?: "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly"
   flexWrap?: "wrap" | "flex-start"
   coloredShadow?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark" | "none"
   component?: React.ElementType
-  children: React.ReactNode;
+  to?: string
+  src?: string
+  alt?: string
+  children?: React.ReactNode;
   sx?: any;
+  onClick?: () => void
 }
 
 

@@ -12,3 +12,4 @@ export type CustomMUITheme = Theme & typeof themeData;
 
 export type GradientsBgColorName = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'light' | 'dark';
 export type RadiusName = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'section'
+export type ColorName = "inherit" | "white" | "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark" | "text";

@@ -19,13 +19,13 @@ import { forwardRef, FC } from "react";
 import MDTypographyRoot from "./md-typography-root";
 
 // Material Dashboard 2 React contexts
-import { useMaterialUIController } from "app/providers/theme";
+import { ColorName, useMaterialUIController } from "app/providers/theme";
 import { TypographyOwnProps } from '@mui/material';
 
 
 
 interface Props extends TypographyOwnProps {
-  color?: "white" | "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark" | "text"
+  color?: ColorName
   textTransform?: "none" | "capitalize" | "uppercase" | "lowercase"
   verticalAlign?: "unset" | "baseline" | "sub" | "super" | "text-top" | "text-bottom" | "middle" | "top" | "bottom"
   textGradient?: boolean
