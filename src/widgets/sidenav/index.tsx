@@ -22,7 +22,8 @@ import { useLocation, NavLink } from "react-router-dom";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import Link from "@mui/material/Link";
-import Icon from "@mui/material/Icon";
+import ArrowBack from '@mui/icons-material/ArrowBackIos';
+import IconButton from '@mui/material/IconButton';
 
 // Material Dashboard 2 React components
 import MDBox from "shared/ui/mui-design-components/md-box";
@@ -64,6 +65,7 @@ export const Sidenav: FC<Props> = ({ color = "info", brand = "", brandName, rout
   const { miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = controller as MaterialUIControllerProviderState;
   const location = useLocation();
   const collapseName = location.pathname.replace("/", "");
+  const handleMiniSidenav = () => setMiniSidenav(dispatch, ! miniSidenav);
 
   let textColor = "white" as ColorName;
 
@@ -192,15 +194,19 @@ export const Sidenav: FC<Props> = ({ color = "info", brand = "", brandName, rout
         <MDBox
           display={{ xs: "block", xl: "none" }}
           position="absolute"
-          top={0}
-          right={0}
+          top={8}
+          right={-4}
           p={1.625}
           onClick={closeSidenav}
           sx={{ cursor: "pointer" }}
         >
-          <MDTypography variant="h6" color="secondary">
-            <Icon sx={{ fontWeight: "bold" }}>close</Icon>
-          </MDTypography>
+          <IconButton
+            size="small"
+            color="inherit"
+            onClick={handleMiniSidenav}
+          >
+            <ArrowBack fontSize="small" color="secondary" />
+          </IconButton>
         </MDBox>
         <MDBox component={NavLink} to="/" display="flex" alignItems="center">
           {brand && <MDBox component="img" src={brand} alt="Brand" width="2rem" />}

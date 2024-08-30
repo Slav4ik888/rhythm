@@ -25,11 +25,17 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
 import { SxProps } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SettingsIcon from '@mui/icons-material/Settings';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import MenuIcon from '@mui/icons-material/Menu';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import ArrowBack from '@mui/icons-material/ArrowBackIos';
+import ArrowForward from '@mui/icons-material/ArrowForwardIos';
+import FormatIndentIncreaseIcon from '@mui/icons-material/FormatIndentIncrease';
 
 // Material Dashboard 2 React components
-import MDButton from "shared/ui/mui-design-components/md-button";
 import MDBox from "shared/ui/mui-design-components/md-box";
-import MDInput from "shared/ui/mui-design-components/md-input";
 
 // Material Dashboard 2 React example components
 import Breadcrumbs from 'shared/ui/breadcrumbs';
@@ -149,73 +155,87 @@ export const DashboardNavbar: FC<Props> = ({ absolute = false, light = false, is
       sx={(theme) => navbar(theme, { transparentNavbar, absolute, light, darkMode })}
     >
       <Toolbar sx={(theme) => navbarContainer(theme)}>
-        <MDBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme: CustomMUITheme) => navbarRow(theme, { isMini })}>
-          <Breadcrumbs icon="home" title={route[route.length - 1]} route={route} light={light} />
+        <MDBox
+          color="inherit"
+          mb={{ xs: 1, md: 0 }}
+          sx={(theme: CustomMUITheme) => navbarRow(theme, { isMini })}
+        >
+          <Breadcrumbs
+            title={route[route.length - 1]}
+            route={route}
+            light={light}
+          />
+          <IconButton
+            color="inherit"
+            onClick={handleMiniSidenav}
+          >
+            {
+              // @ts-ignore
+              miniSidenav ? <FormatIndentIncreaseIcon sx={iconsStyle} fontSize="small" /> : <MenuIcon sx={iconsStyle} fontSize="small" />
+            }
+          </IconButton>
         </MDBox>
-        {isMini ? null : (
-          <MDBox sx={(theme: CustomMUITheme) => navbarRow(theme, { isMini })}>
-            <MDBox pr={1}>
-              <MDInput label="Search here" />
-            </MDBox>
-            <MDBox display="flex" alignItems="center" color={light ? "white" : "inherit"}>
-              <Link to="/authentication/sign-in/basic">
-                {/* @ts-ignore */}
-                <IconButton sx={navbarIconButton} size="small" disableRipple>
-                {/* @ts-ignore */}
-                  <Icon sx={iconsStyle}>account_circle</Icon>
-                </IconButton>
-              </Link>
-              <IconButton
-                size="small"
-                disableRipple
-                color="inherit"
-                sx={navbarMobileMenu}
-                onClick={handleMiniSidenav}
-              >
-                {/* @ts-ignore */}
-                <Icon sx={iconsStyle} fontSize="medium">
-                  {miniSidenav ? "menu_open" : "menu"}
-                </Icon>
-              </IconButton>
-              <IconButton
-                size="small"
-                disableRipple
-                color="inherit"
-                /* @ts-ignore */
-                sx={navbarIconButton}
-                onClick={handleConfiguratorOpen}
-              >
-                {/* @ts-ignore */}
-                <Icon sx={iconsStyle}>settings</Icon>
-              </IconButton>
-              <IconButton
-                size="small"
-                disableRipple
-                color="inherit"
-                /* @ts-ignore */
-                sx={navbarIconButton}
-                aria-controls="notification-menu"
-                aria-haspopup="true"
-                variant="contained"
-                onClick={handleOpenMenu}
-              >
-                {/* @ts-ignore */}
-                <Icon sx={iconsStyle}>notifications</Icon>
-              </IconButton>
-              {renderMenu()}
-              <MDBox>
-                <MDButton
-                  variant="gradient"
-                  color="info"
-                  fullWidth
-                  type="button"
-                  onClick={handleLogOut}
-                >
-                  Log Out
-                </MDButton>
-              </MDBox>
-            </MDBox>
-          </MDBox>
+
+        {
+          isMini
+            ? null
+            : (
+                <MDBox sx={(theme: CustomMUITheme) => navbarRow(theme, { isMini })}>
+                  <MDBox display="flex" alignItems="center" color={light ? "white" : "inherit"}>
+                    <IconButton
+                      disableRipple
+                      color="inherit"
+                      sx={navbarMobileMenu}
+                      onClick={handleMiniSidenav}
+                    >
+                      {/* @ts-ignore */}
+                      <MenuIcon sx={iconsStyle} fontSize="small" />
+                    </IconButton>
+                    
+                    <IconButton
+                      disableRipple
+                      color="inherit"
+                      /* @ts-ignore */
+                      sx={navbarIconButton}
+                      aria-controls="notification-menu"
+                      aria-haspopup="true"
+                      variant="contained"
+                      onClick={handleOpenMenu}
+                    >
+                      {/* @ts-ignore */}
+                      <NotificationsIcon sx={iconsStyle} fontSize="small" />
+                    </IconButton>
+                    {renderMenu()}
+                    {/* <MDBox>
+                      <MDButton
+                        variant="gradient"
+                        color="info"
+                        fullWidth
+                        type="button"
+                        onClick={handleLogOut}
+                      >
+                        Log Out
+                      </MDButton>
+                    </MDBox> */}
+                    <IconButton
+                      disableRipple
+                      color="inherit"
+                      /* @ts-ignore */
+                      sx={navbarIconButton}
+                      onClick={handleConfiguratorOpen}
+                    >
+                      {/* @ts-ignore */}
+                      <SettingsIcon sx={iconsStyle} fontSize="small" />
+                    </IconButton>
+                    <Link to="/authentication/sign-in/basic">
+                      {/* @ts-ignore */}
+                      <IconButton sx={navbarIconButton} disableRipple>
+                      {/* @ts-ignore */}
+                        <AccountCircleIcon sx={iconsStyle} fontSize='small' />
+                      </IconButton>
+                    </Link>
+                  </MDBox>
+                </MDBox>
         )}
       </Toolbar>
     </AppBar>

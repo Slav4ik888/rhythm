@@ -106,7 +106,7 @@ const MaterialUIControllerProvider: FC<Props> = ({ children }) => {
     whiteSidenav       : false,
     sidenavColor       : "info",
     transparentNavbar  : true,
-    fixedNavbar        : true,
+    fixedNavbar        : false, // Закрепляем при прокручивании или нет 
     openConfigurator   : false,
     layout             : "dashboard",
     darkMode           : false,

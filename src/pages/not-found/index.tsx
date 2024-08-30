@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
 import { Button, Box } from '@mui/material';
 import { f_c_c } from 'app/styles';
+import MDButton from 'shared/ui/mui-design-components/md-button';
 
 
 
@@ -11,6 +12,7 @@ const useStyles = () => ({
   root: {
     display         : 'flex',
     flexDirection   : 'column',
+    alignItems      : 'center',
     margin          : '0 auto',
     height          : '100%'
   },
@@ -21,7 +23,7 @@ const useStyles = () => ({
     fontStyle : 'italic'
   },
   btn: {
-    my: 2
+    width : '25%'
   }
 });
 
@@ -37,9 +39,15 @@ export const NotFoundPage: FC = memo(() => {
       <Box sx={sx.text}>
         Извините, запрошенная страница не найдена...
       </Box>
-      <Button sx={sx.btn} variant="contained" onClick={handleClick}>
+      <MDButton
+        variant = "gradient"
+        color   = "info"
+        type    = "button"
+        sx      = {sx.btn}
+        onClick = {handleClick}
+      >
         Перейти на главную
-      </Button>
+      </MDButton>
     </Box>
   );
 });

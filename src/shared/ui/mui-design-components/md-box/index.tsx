@@ -25,6 +25,8 @@ interface Props {
   bgColor?: string
   color?: string
   width?: string | boolean
+  height?: string
+  minHeight?: string
   opacity?: number
   borderRadius?: RadiusName
   shadow?: any

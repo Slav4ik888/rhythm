@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 
 // @mui material components
 import { Breadcrumbs as MuiBreadcrumbs } from "@mui/material";
-import Icon from "@mui/material/Icon";
+import Home from '@mui/icons-material/Home';
 
 // Material Dashboard 2 React components
 import MDBox from "shared/ui/mui-design-components/md-box";
@@ -29,13 +29,12 @@ import MDTypography from "shared/ui/mui-design-components/md-typography";
 
 
 interface Props {
-  icon: React.ReactNode,
   title: string,
   route: string[],
   light: boolean,
 }
 
-const Breadcrumbs: FC<Props> = ({ icon, title, route, light }) => {
+const Breadcrumbs: FC<Props> = ({ title, route, light }) => {
   const routes = route.slice(0, -1);
 
   return (
@@ -56,7 +55,7 @@ const Breadcrumbs: FC<Props> = ({ icon, title, route, light }) => {
             opacity={light ? 0.8 : 0.5}
             sx={{ lineHeight: 0 }}
           >
-            <Icon>{icon}</Icon>
+            <Home fontSize='small' />
           </MDTypography>
         </Link>
         {routes.map((el) => (

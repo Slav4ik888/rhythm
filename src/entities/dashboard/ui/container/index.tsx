@@ -36,8 +36,7 @@ export const DashboardContainer = () => {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox py={3}>
-        Hello its dashboard, nuh!!!
+      <MDBox py={3} height='100%' minHeight='calc(100vh - 300px)'>
         {/* <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
