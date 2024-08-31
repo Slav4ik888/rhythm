@@ -13,7 +13,6 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-// @mui material components
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import { CustomMUITheme, GradientsBgColorName, RadiusName } from 'app/providers/theme';
@@ -21,7 +20,7 @@ import { CustomMUITheme, GradientsBgColorName, RadiusName } from 'app/providers/
 
 interface OwnerState {
   variant: string
-  bgColor: string
+  bgColor: GradientsBgColorName
   color: string
   opacity: number
   borderRadius: RadiusName
@@ -122,10 +121,10 @@ export default styled(Box)(({ theme, ownerState }) => {
   let boxShadowValue = "none";
 
   if (validBoxShadows.find((el) => el === shadow)) {
-// @ts-ignore
+    // @ts-ignore
     boxShadowValue = boxShadows[shadow];
   } else if (coloredShadow) {
-// @ts-ignore
+    // @ts-ignore
     boxShadowValue = colored[coloredShadow] ? colored[coloredShadow] : "none";
   }
 

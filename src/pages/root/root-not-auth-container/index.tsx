@@ -43,7 +43,7 @@ const useStyles = (theme: CustomTheme) => ({
 /** Главная страница неавторизованного пользователя */
 const RootNotAuthContainer: FC = memo(() => {
   const
-    sx = useStyles(useTheme());
+    sx = useStyles(useTheme() as unknown as CustomTheme);
     // { loading } = useUser();
 
   // if (loading) return <CircularProgress loading={loading} center size={50} />;

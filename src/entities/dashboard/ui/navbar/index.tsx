@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState, useEffect, FC } from "react";
+import { useState, useEffect, FC, memo } from "react";
 
 // react-router components
 import { useLocation, Link } from "react-router-dom";
@@ -73,7 +73,7 @@ interface Props {
   isMini?: boolean;
 }
 
-export const DashboardNavbar: FC<Props> = ({ absolute = false, light = false, isMini = false }) => {
+export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = false, isMini = false }) => {
   const [navbarType, setNavbarType] = useState<"sticky" | "static">();
   const [controller, dispatch] = useMaterialUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
@@ -122,11 +122,12 @@ export const DashboardNavbar: FC<Props> = ({ absolute = false, light = false, is
       .catch(error => console.error('Error:', error));
   };
 
-  console.log(LS.getGSData());
-  // @ts-ignore
-  const transformedGSData = transformGSData(LS.getGSData()?.data1);
-  console.log('transformedGSData: ', transformedGSData);
-
+  useEffect(() => {
+    console.log(LS.getGSData());
+    // @ts-ignore
+    const transformedGSData = transformGSData(LS.getGSData()?.data1);
+    console.log('transformedGSData: ', transformedGSData);
+  }, []);
 
   const handleOpenMenu = (event: any) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(null);
@@ -263,4 +264,4 @@ export const DashboardNavbar: FC<Props> = ({ absolute = false, light = false, is
       </Toolbar>
     </AppBar>
   );
-}
+})

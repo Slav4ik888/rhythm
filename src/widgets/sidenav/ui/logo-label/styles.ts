@@ -19,7 +19,7 @@ interface OwnerState {
   miniSidenav: boolean;
 }
 
-export const sidenavLogoLabel = (theme: CustomMUITheme, ownerState: OwnerState) => {
+export const styles = (theme: CustomMUITheme, ownerState: OwnerState) => {
   const { functions, transitions, typography, breakpoints } = theme;
   const { miniSidenav } = ownerState;
 

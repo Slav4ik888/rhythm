@@ -34,6 +34,7 @@ interface Props {
   mr?: { xs?: number, xl?: number }
   mt?: number | "auto"
   mx?: number
+  my?: number
   pr?: number
   py?: number
   px?: number
@@ -65,13 +66,15 @@ interface Props {
 
 const MDBox: FC<Props> = forwardRef(
   ({
-    variant = "contained",
-    bgColor = "transparent",
-    color = "dark",
-    opacity = 1,
-    borderRadius = "none",
-    shadow = "none",
-    coloredShadow = "none", ...rest }, ref) => (
+    variant       = "contained",
+    bgColor       = "transparent",
+    color         = "dark",
+    opacity       = 1,
+    borderRadius  = "none",
+    shadow        = "none",
+    coloredShadow = "none",
+    ...rest
+  }, ref) => (
     <MDBoxRoot
       {...rest}
       ref={ref}

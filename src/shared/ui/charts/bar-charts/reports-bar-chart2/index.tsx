@@ -45,7 +45,7 @@ interface Props {
   }
 }
 
-export const ReportsBarChart: FC<Props> = ({ color = "dark", title, description = "", date, chart }) => {
+export const ReportsBarChart2: FC<Props> = ({ color = "dark", title, description = "", date, chart }) => {
   const { data, options } = configs(chart.labels || [], chart.datasets || {});
 
   return (
@@ -55,13 +55,13 @@ export const ReportsBarChart: FC<Props> = ({ color = "dark", title, description 
           () => (
             <MDBox
               variant       = "gradient"
-              bgColor       = {color}
+              bgColor       = {"secondary"}
               borderRadius  = "lg"
               coloredShadow = {color}
               height        = "12.5rem"
               py            = {2}
               pr            = {0.5}
-              mt            = {-5}
+              // mt            = {-5}
             >
               {/* @ts-ignore */}
               <Chart type="bar" data={data} options={options} />

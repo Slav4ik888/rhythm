@@ -13,5 +13,8 @@ export {
   setOpenConfigurator,
   setLayout,
   setDarkMode,
-  typography, theme, themeDark, CustomMUITheme, GradientsBgColorName, RadiusName, ColorName
+  typography, theme, themeDark, CustomMUITheme, GradientsBgColorName, RadiusName, ColorName,
 } from './model';
+  
+export { default as linearGradient } from './model/mui-themes/theme/functions/linearGradient';
+export { default as pxToRem } from './model/mui-themes/theme/functions/pxToRem';

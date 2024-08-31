@@ -1,6 +1,5 @@
 import { FC, memo } from 'react';
 import { Box } from '@mui/material';
-import { CustomTheme, useTheme } from 'app/providers/theme';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Button, ButtonType } from 'shared/ui/buttons';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +7,7 @@ import { RoutePath } from 'app/providers/routes';
 
 
 
-const useStyles = (theme: CustomTheme) => ({
+const useStyles = () => ({
   root: {
     display    : 'flex',
     alignItems : 'center',
@@ -27,7 +26,7 @@ interface Props {}
 
 export const PageHeader: FC<Props> = memo(({}) => {
   const
-    sx = useStyles(useTheme()),
+    sx = useStyles(),
     navigate = useNavigate();
   
 

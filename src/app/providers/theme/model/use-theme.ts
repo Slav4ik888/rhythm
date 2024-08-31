@@ -1,4 +1,4 @@
 import { useTheme as muiUseTheme } from '@mui/material/styles';
-import { CustomTheme } from './types/types';
+import { CustomMUITheme } from './types';
 
-export const useTheme = () => muiUseTheme() as CustomTheme
+export const useTheme = () => muiUseTheme() as CustomMUITheme

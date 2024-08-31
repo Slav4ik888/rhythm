@@ -138,6 +138,36 @@ const colors = {
       main: "#42424a",
       state: "#191919",
     },
+
+    // My
+    department_7: {
+      main: "#a5d2f8",
+      state: "#508dde",
+    },
+    department_1: {
+      main: "#f9d6b0",
+      state: "#f2b65e",
+    },
+    department_2: {
+      main: "#d2bae9",
+      state: "#8d61b7",
+    },
+    department_3: {
+      main: "#f2bcbc",
+      state: "#eb8181",
+    },
+    department_4: {
+      main: "#9dee8f",
+      state: "#4d9142",
+    },
+    department_5: {
+      main: "#bebebe",
+      state: "#848484",
+    },
+    department_6: {
+      main: "#f7f498",
+      state: "#adab47",
+    },
   },
 
   socialMediaColors: {

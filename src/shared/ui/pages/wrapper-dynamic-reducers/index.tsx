@@ -1,6 +1,5 @@
 import { FC, ReactNode } from 'react';
 import { Box } from '@mui/material';
-import { CustomTheme, useTheme } from 'app/providers/theme';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 
 
@@ -10,7 +9,7 @@ const reducers: ReducersList = {
 };
 
 
-const useStyles = (theme: CustomTheme) => ({
+const useStyles = () => ({
   root: {
     display       : 'flex',
     flexDirection : 'column',
@@ -26,7 +25,7 @@ interface Props {
 }
 
 export const WrapperDynamicReducers: FC<Props> = ({ children }) => {
-  const sx = useStyles(useTheme());
+  const sx = useStyles();
 
   return (
     // <RequireAuth>

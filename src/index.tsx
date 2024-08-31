@@ -29,4 +29,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "31.08.2024 add loadData from google sheet" && git push -u origin main
+// git add . && git commit -m "31.08.2024" && git push -u origin main

@@ -30,7 +30,7 @@ type Props = {
 
 /** v.2024-02-08 */
 export const ErrorBox: FC<Props> = memo(({ field = '', sx: styles = {}, errors }) => {
-  const { root, content } = useStyles(useTheme(), styles);
+  const { root, content } = useStyles(useTheme() as unknown as CustomTheme, styles);
 
   if (! errors?.[field]) return null;
 

@@ -2,7 +2,7 @@ import { FC, memo, ReactNode } from 'react';
 import { Button as MuiButton } from '@mui/material';
 import { CircularProgress } from 'shared/ui/circular-progress';
 import { SxCard } from 'app/styles';
-import { useTheme } from 'app/providers/theme';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
 import { ButtonType, Variant } from './types';
 import { useStyles } from './use-styles';
@@ -38,7 +38,7 @@ export const Button: FC<Props> = memo(({
   endIcon,
   onClick
 }) => {
-  const { root } = useStyles(useTheme(), sx, type, variant, disabled);
+  const { root } = useStyles(useTheme() as unknown as CustomTheme, sx, type, variant, disabled);
   
 
   return (

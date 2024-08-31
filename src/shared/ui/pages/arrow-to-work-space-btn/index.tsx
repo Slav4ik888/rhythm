@@ -1,12 +1,10 @@
 import { FC } from 'react';
-import { RoutePath } from 'app/providers/routes';
-import { CustomTheme, useTheme } from 'app/providers/theme';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 
-const useStyles = (theme: CustomTheme) => ({
+const useStyles = () => ({
   back: {
     cursor: 'pointer'
   }
@@ -20,7 +18,7 @@ interface Props {
 
 export const ArrowToWorkSpaceBtn: FC<Props> = ({ document }) => {
   const
-    sx = useStyles(useTheme()),
+    sx = useStyles(),
     navigate = useNavigate();
   
 

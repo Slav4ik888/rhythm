@@ -14,30 +14,23 @@ Coded by www.creative-tim.com
 */
 
 import { FC } from 'react';
-
-// @mui material components
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Icon from "@mui/material/Icon";
-
-// Material Dashboard 2 React components
 import MDBox from "shared/ui/mui-design-components/md-box";
-
-// Custom styles for the SidenavCollapse
 import {
   collapseItem,
   collapseIconBox,
   collapseIcon,
   collapseText,
-} from "./styles/sidenav-collapse";
-
-// Material Dashboard 2 React context
+} from "./styles";
 import { CustomMUITheme, useMaterialUIController } from "app/providers/theme";
 
 
+
 interface Props {
-  icon: React.ReactNode
+  icon: React.ReactNode | string
   name: string
   active: boolean
   noCollapse?: boolean
@@ -62,11 +55,7 @@ export const SidenavCollapse: FC<Props> = ({ icon, name, active, ...rest }) => {
           })
         }
       >
-        <ListItemIcon
-          sx={(theme) =>
-            collapseIconBox(theme as CustomMUITheme, { transparentSidenav, whiteSidenav, darkMode, active })
-          }
-        >
+        <ListItemIcon sx={(theme) => collapseIconBox(theme as CustomMUITheme, { transparentSidenav, whiteSidenav, darkMode, active })}>
           {typeof icon === "string" ? (
             <Icon sx={(theme) => collapseIcon(theme as CustomMUITheme, { active })}>{icon}</Icon>
           ) : (

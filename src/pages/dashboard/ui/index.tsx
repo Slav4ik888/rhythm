@@ -1,21 +1,13 @@
-import { FC, useState } from 'react';
+import { FC, memo, useState } from 'react';
 import { DashboardContainer } from 'entities/dashboard';
 import { WrapperDynamicReducers } from 'shared/ui/pages';
 import { Sidenav } from 'widgets/sidenav';
 import { useMaterialUIController, setMiniSidenav } from 'app/providers/theme';
-import brandDark from 'shared/assets/logo_small.png';
-import { routesList } from 'app/providers/routes';
 
 
-const DashboardPage: FC = () => {
+const DashboardPage: FC = memo(() => {
   const [controller, dispatch] = useMaterialUIController();
-  const {
-    miniSidenav,
-    sidenavColor,
-    transparentSidenav,
-    whiteSidenav,
-    darkMode,
-  } = controller;
+  const { miniSidenav } = controller;
   
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   
@@ -40,10 +32,6 @@ const DashboardPage: FC = () => {
   return (
     <WrapperDynamicReducers>
       <Sidenav
-        color={sidenavColor}
-        brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandDark} //brandWhite
-        brandName="Rhythm Dashboard"
-        routes={routesList}
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
       />
@@ -53,6 +41,6 @@ const DashboardPage: FC = () => {
       <DashboardContainer />
     </WrapperDynamicReducers>
   );
-};
+});
 
 export default DashboardPage;

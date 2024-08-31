@@ -10,6 +10,11 @@ export type Radius = [number?, number?]; // blur, spread
 
 export type CustomMUITheme = Theme & typeof themeData;
 
-export type GradientsBgColorName = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'light' | 'dark';
 export type RadiusName = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'section'
-export type ColorName = "none" | "inherit" | "white" | "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark" | "text";
+
+export type GradientsBgColorName = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'light' | 'dark' |
+  "department_7" | "department_6" | "department_5" | "department_4" | "department_3" | "department_2" | "department_1";
+  
+export type ColorName = "inherit" | "text" | "transparent" | "white" | "grey" |
+  "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark" |
+  "department_7" | "department_6" | "department_5" | "department_4" | "department_3" | "department_2" | "department_1";

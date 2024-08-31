@@ -35,19 +35,29 @@ Coded by www.creative-tim.com
   10. The `component` key is used to store the component of its route.
 */
 
-// Material Dashboard 2 React layouts
-
-
-// @mui icons
 import Icon from "@mui/material/Icon";
 import { DashboardPage } from 'pages/dashboard';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import BadgeIcon from '@mui/icons-material/Badge';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
+import BackupTableIcon from '@mui/icons-material/BackupTable';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import PasswordIcon from '@mui/icons-material/Password';
+import SyncLockIcon from '@mui/icons-material/SyncLock';
+import LoginIcon from '@mui/icons-material/Login';
+
 
 
 export interface RouteListItem {
   type: "collapse" | "title" | "divider" | "examples" | "auth"
   name: string
   key: string
-  icon: React.ReactNode
+  icon: React.ReactNode | string
   title?: string
   noCollapse: boolean
   href?: string
@@ -61,7 +71,7 @@ export const routesList: RouteListItem[] = [
     type: "collapse",
     name: "Dashboard",
     key: "dashboard",
-    icon: <Icon fontSize="small">dashboard</Icon>,
+    icon: <EqualizerIcon fontSize="small" />,
     noCollapse: false,
     route: "/dashboard",
     component: <DashboardPage />
@@ -70,7 +80,7 @@ export const routesList: RouteListItem[] = [
     type: "collapse",
     name: "Tables",
     key: "tables",
-    icon: <Icon fontSize="small">table_view</Icon>,
+    icon: <BackupTableIcon fontSize="small" />,
     noCollapse: false,
     route: "/tables",
     component: <></>
@@ -79,25 +89,16 @@ export const routesList: RouteListItem[] = [
     type: "collapse",
     name: "Billing",
     key: "billing",
-    icon: <Icon fontSize="small">receipt_long</Icon>,
+    icon: <AccountBalanceIcon fontSize="small" />,
     noCollapse: false,
     route: "/billing",
     component: <></>
   },
   {
     type: "collapse",
-    name: "RTL",
-    key: "rtl",
-    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    noCollapse: false,
-    route: "/rtl",
-    component: <></>
-  },
-  {
-    type: "collapse",
     name: "Notifications",
     key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
+    icon: <MarkEmailUnreadIcon fontSize="small" />,
     noCollapse: false,
     route: "/notifications",
     component: <></>
@@ -106,7 +107,7 @@ export const routesList: RouteListItem[] = [
     type: "collapse",
     name: "Profile",
     key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
+    icon: <AccountCircleIcon fontSize="small" />,
     noCollapse: false,
     route: "/profile",
     component: <></>
@@ -115,7 +116,7 @@ export const routesList: RouteListItem[] = [
     type: "collapse",
     name: "Sign In",
     key: "sign-in",
-    icon: <Icon fontSize="small">login</Icon>,
+    icon: <LoginIcon fontSize="small" />,
     noCollapse: false,
     route: "/authentication/sign-in",
     component: <></>
@@ -124,7 +125,7 @@ export const routesList: RouteListItem[] = [
     type: "examples",
     name: "User Profile",
     key: "user-profile",
-    icon: <Icon fontSize="small">person</Icon>,
+    icon: <AccountBoxIcon fontSize="small" />,
     noCollapse: false,
     route: "/user-profile",
     component: <></>
@@ -133,7 +134,7 @@ export const routesList: RouteListItem[] = [
     type: "examples",
     name: "User Management",
     key: "user-management",
-    icon: <Icon fontSize="small">list</Icon>,
+    icon: <BadgeIcon fontSize="small" />,
     noCollapse: false,
     route: "/user-management",
     component: <></>
@@ -142,7 +143,7 @@ export const routesList: RouteListItem[] = [
     type: "collapse",
     name: "Sign Up",
     key: "sign-up",
-    icon: <Icon fontSize="small">assignment</Icon>,
+    icon: <ExitToAppIcon fontSize="small" />,
     noCollapse: false,
     route: "/authentication/sign-up",
     component: <></>
@@ -151,7 +152,7 @@ export const routesList: RouteListItem[] = [
     type: "auth",
     name: "Login",
     key: "login",
-    icon: <Icon fontSize="small">login</Icon>,
+    icon: <LockOpenIcon fontSize="small" />,
     noCollapse: false,
     route: "/auth/login",
     component: <></>
@@ -160,7 +161,7 @@ export const routesList: RouteListItem[] = [
     type: "auth",
     name: "Register",
     key: "register",
-    icon: <Icon fontSize="small">reigster</Icon>,
+    icon: <AppRegistrationIcon fontSize="small" />,
     noCollapse: false,
     route: "/auth/register",
     component: <></>
@@ -169,7 +170,7 @@ export const routesList: RouteListItem[] = [
     type: "auth",
     name: "Forgot Password",
     key: "forgot-password",
-    icon: <Icon fontSize="small">assignment</Icon>,
+    icon: <SyncLockIcon fontSize="small" />,
     noCollapse: false,
     route: "/auth/forgot-password",
     component: <></>
@@ -178,7 +179,7 @@ export const routesList: RouteListItem[] = [
     type: "auth",
     name: "Reset Password",
     key: "reset-password",
-    icon: <Icon fontSize="small">assignment</Icon>,
+    icon: <PasswordIcon fontSize="small" />,
     noCollapse: false,
     route: "/auth/reset-password",
     component: <></>

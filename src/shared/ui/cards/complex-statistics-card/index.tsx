@@ -52,17 +52,17 @@ export const ComplexStatisticsCard: FC<Props> = ({
     <Card>
       <MDBox display="flex" justifyContent="space-between" pt={1} px={2}>
         <MDBox
-          variant="gradient"
-          bgColor={color}
-          color={color === "light" ? "dark" : "white"}
-          coloredShadow={color}
-          borderRadius="xl"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          width="4rem"
-          height="4rem"
-          mt={-3}
+          variant        = "gradient"
+          color          = {color === "light" ? "dark" : "white"}
+          coloredShadow  = {color}
+          bgColor        = {color}
+          borderRadius   = "xl"
+          display        = "flex"
+          justifyContent = "center"
+          alignItems     = "center"
+          width          = "4rem"
+          height         = "4rem"
+          mt             = {-3}
         >
           <Icon fontSize="medium" color="inherit">
             {icon}

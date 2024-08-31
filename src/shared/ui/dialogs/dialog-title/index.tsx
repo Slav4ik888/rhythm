@@ -52,7 +52,7 @@ type Props = {
 export const DialogTitle: React.FC<Props> = (props: Props) => {
   const { children, question, questionIconType, onClose, ...other } = props;
 
-  const sx = useStyles(useTheme());
+  const sx = useStyles(useTheme() as unknown as CustomTheme);
 
   let helpIcon: JSX.Element;
   switch (questionIconType) {

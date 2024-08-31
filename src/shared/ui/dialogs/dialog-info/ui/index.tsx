@@ -54,7 +54,7 @@ export const DialogInfo: React.FC<Props> = ({
   onClose
 }) => {
   const
-    sx    = useStyles(useTheme(), styles),
+    sx    = useStyles(useTheme() as unknown as CustomTheme, styles),
     theme = useMuiTheme(),
     greaterSmScreen = useMediaQuery(theme.breakpoints.up('sm'));
   

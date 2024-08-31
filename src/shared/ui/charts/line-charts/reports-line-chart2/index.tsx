@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { FC, useMemo } from "react";
+import { useMemo, FC } from "react";
 
 // react-chartjs-2 components
 import "chart.js/auto";
@@ -28,10 +28,11 @@ import Icon from "@mui/material/Icon";
 import MDBox from "shared/ui/mui-design-components/md-box";
 import MDTypography from "shared/ui/mui-design-components/md-typography";
 
-// ReportsBarChart configurations
+// ReportsLineChart configurations
 import { configs } from "./configs";
 import { ColorName } from 'app/providers/theme';
-import { ChartConfigDataSets } from 'shared/ui/charts';
+import { ChartConfigDataSets } from '../../types';
+
 
 
 interface Props {
@@ -45,7 +46,8 @@ interface Props {
   }
 }
 
-export const ReportsBarChart: FC<Props> = ({ color = "dark", title, description = "", date, chart }) => {
+
+export const ReportsLineChart2: FC<Props> = ({ color = "dark", title, description = "", date, chart }) => {
   const { data, options } = configs(chart.labels || [], chart.datasets || {});
 
   return (
@@ -54,17 +56,17 @@ export const ReportsBarChart: FC<Props> = ({ color = "dark", title, description 
         {useMemo(
           () => (
             <MDBox
-              variant       = "gradient"
-              bgColor       = {color}
-              borderRadius  = "lg"
-              coloredShadow = {color}
-              height        = "12.5rem"
-              py            = {2}
-              pr            = {0.5}
-              mt            = {-5}
+              variant="gradient"
+              bgColor={"secondary"}
+              borderRadius="lg"
+              coloredShadow={"secondary"}
+              py={2}
+              pr={0.5}
+              // mt={-5}
+              height="12.5rem"
             >
               {/* @ts-ignore */}
-              <Chart type="bar" data={data} options={options} />
+              <Chart type="line" data={data} options={options} />
             </MDBox>
           ),
           [chart, color]
