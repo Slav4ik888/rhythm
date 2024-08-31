@@ -251,7 +251,7 @@ export const Sidenav: FC<Props> = ({ color = "info", brand = "", brandName, rout
           color={sidenavColor}
           fullWidth
         >
-          upgrade to pro
+          {miniSidenav ? 'pro' : 'upgrade to pro'}
         </MDButton>
       </MDBox>
     </SidenavRoot>

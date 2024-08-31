@@ -1,10 +1,8 @@
 const cfg = {
-  ASSEMBLY_DATE           : '2024-08-28',
+  ASSEMBLY_DATE           : '2024-08-30',
   
-  COOKIE_NAME             : 'company-rules',
+  COOKIE_NAME             : 'Rhythm',
   DEFAULT_MESSAGE_TIMEOUT : 6000,
-
-  SITE_TITLE_FULL         : 'Company Rules',
   
   UPLOAD: {
     MAX_FILE_SIZE       : 3  * 1024 * 1024, // 3Mb

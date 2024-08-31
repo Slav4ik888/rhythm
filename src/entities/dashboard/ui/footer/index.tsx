@@ -43,10 +43,8 @@ interface Props {
 export const Footer: FC<Props> = ({
   company = { href: "https://rhythm.thm.su/", name: "Учебный центр Основа" },
   links = [
-    { href: "https://rhythm.thm.su/", name: "UPDIVISION" },
     { href: "https://rhythm.thm.su/", name: "Creative Rhythm" },
     { href: "https://rhythm.thm.su/", name: "About Us" },
-    { href: "https://rhythm.thm.su/", name: "Blog" },
     { href: "https://rhythm.thm.su/", name: "License" },
   ] }) => {
   const { href, name } = company;
@@ -81,25 +79,12 @@ export const Footer: FC<Props> = ({
         fontSize={size.sm}
         px={1.5}
       >
-        &copy; {new Date().getFullYear()}, made with
-        <MDBox fontSize={size.md} color="text" mb={-0.5} mx={0.25}>
-          <Icon color="inherit" fontSize="inherit">
-            favorite
-          </Icon>
-        </MDBox>
-        by
+        &copy; {new Date().getFullYear()}, 
         <Link href={href} target="_blank">
           <MDTypography variant="button" fontWeight="medium">
             &nbsp;{name}&nbsp;
           </MDTypography>
         </Link>
-        &amp;
-        <Link href="https://updivision.com" target="_blank">
-          <MDTypography variant="button" fontWeight="medium">
-            &nbsp;UPDIVISION&nbsp;
-          </MDTypography>
-        </Link>
-        for a better web.
       </MDBox>
       <MDBox
         component="ul"

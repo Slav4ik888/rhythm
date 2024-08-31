@@ -13,16 +13,20 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+import { Grid } from '@mui/material';
 import MDBox from "shared/ui/mui-design-components/md-box";
 
 // Material Dashboard 2 React example components
 import { DashboardLayout } from 'shared/ui/layouts/dashboard-layout';
 import { DashboardNavbar } from '../navbar';
 import { Footer } from "../footer";
+import { ComplexStatisticsCard } from 'shared/ui/cards/complex-statistics-card';
+import { ReportsBarChart } from 'shared/ui/charts';
+import { ReportsLineChart } from 'shared/ui/charts/line-charts/reports-line-chart';
 
 // Data
-// import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
-// import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
+import reportsBarChartData from "../../model/example-data/reportsBarChartData";
+import reportsLineChartData from "../../model/example-data/reportsLineChartData";
 
 // Dashboard components
 // import Projects from "layouts/dashboard/components/Projects";
@@ -31,13 +35,13 @@ import { Footer } from "../footer";
 
 
 export const DashboardContainer = () => {
-  // const { sales, tasks } = reportsLineChartData;
+  const { sales, tasks } = reportsLineChartData;
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox py={3} height='100%' minHeight='calc(100vh - 300px)'>
-        {/* <Grid container spacing={3}>
+        <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
@@ -139,7 +143,7 @@ export const DashboardContainer = () => {
             </Grid>
           </Grid>
         </MDBox>
-        <MDBox>
+        {/* <MDBox>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={8}>
               <Projects />

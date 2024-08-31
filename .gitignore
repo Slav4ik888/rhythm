@@ -1,4 +1,4 @@
 node_modules
 material-dashboard-react-nodejs
-build
-.env
+/build
+keys.ts

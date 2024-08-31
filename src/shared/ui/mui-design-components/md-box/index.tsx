@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { RadiusName } from 'app/providers/theme';
+import { ColorName, RadiusName } from 'app/providers/theme';
 import { forwardRef, FC } from "react";
 import MDBoxRoot from "./md-box-root";
 
@@ -32,7 +32,7 @@ interface Props {
   shadow?: any
   mb?: number | { xs?: number, md?: number }
   mr?: { xs?: number, xl?: number }
-  mt?: "auto"
+  mt?: number | "auto"
   mx?: number
   pr?: number
   py?: number
@@ -40,6 +40,7 @@ interface Props {
   pt?: number
   pb?: number
   p?: number
+  padding?: string
   position?: "static" | "relative" | "absolute" | "sticky"
   top?: number
   right?: number
@@ -51,7 +52,7 @@ interface Props {
   alignItems?: "center"
   justifyContent?: "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly"
   flexWrap?: "wrap" | "flex-start"
-  coloredShadow?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark" | "none"
+  coloredShadow?: ColorName
   component?: React.ElementType
   to?: string
   src?: string

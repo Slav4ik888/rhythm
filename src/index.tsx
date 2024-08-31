@@ -6,9 +6,9 @@ import { MaterialUIControllerProvider } from 'app/providers/theme'; // ThemeProv
 import { ErrorBoundary } from 'app/providers/error-boundary';
 import { App } from './app';
 
-
 import cfg from 'app/config';
 console.log(`Version: ${cfg.ASSEMBLY_DATE}`);
+
 
 
 // @ts-ignore
@@ -29,5 +29,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "30.08.2024 fix sidenav & navbar icons" && git push -u origin main
-// rgb(240, 242, 245);
+// git add . && git commit -m "31.08.2024 add loadData from google sheet" && git push -u origin main

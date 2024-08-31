@@ -62,6 +62,9 @@ import {
 } from "app/providers/theme";
 
 // import { AuthContext } from "context";
+import cfg from 'shared/api/keys';
+import { LS } from 'shared/lib/local-storage';
+import { transformGSData } from 'shared/api/utils';
 
 
 interface Props {
@@ -105,9 +108,29 @@ export const DashboardNavbar: FC<Props> = ({ absolute = false, light = false, is
   }, [dispatch, fixedNavbar]);
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
-  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
+  const handleConfiguratorOpen = () => {
+    setOpenConfigurator(dispatch, !openConfigurator);
+
+    console.log('URL_OSNOVA: ', cfg.URL_OSNOVA);
+
+    fetch(cfg.URL_OSNOVA)
+      .then(response => response.json())
+      .then(data => {
+        LS.setGSData(data.data);
+        console.log(data.data); // Здесь вы получите данные
+      })
+      .catch(error => console.error('Error:', error));
+  };
+
+  console.log(LS.getGSData());
+  // @ts-ignore
+  const transformedGSData = transformGSData(LS.getGSData()?.data1);
+  console.log('transformedGSData: ', transformedGSData);
+
+
   const handleOpenMenu = (event: any) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(null);
+
 
   // Render the notifications menu
   const renderMenu = () => (

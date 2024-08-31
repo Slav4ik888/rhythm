@@ -5,8 +5,8 @@ import { AppRouter } from './providers/routes';
 import { ThemeProvider } from "@mui/material/styles";
 import { useMaterialUIController, theme, themeDark } from './providers/theme';
 
-import 'app/styles/index.scss';
 
+import 'app/styles/index.scss';
 
 
 export const App: FC = () => {
@@ -26,6 +26,7 @@ export const App: FC = () => {
     { replacePath, setReplacePath } = useUI(),
     navigate = useNavigate(),
     { pathname } = useLocation();
+  
   
   
     
