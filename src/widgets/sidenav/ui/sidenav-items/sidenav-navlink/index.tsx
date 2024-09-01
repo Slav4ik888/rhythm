@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const SidenavNavLink: FC<Props> = memo(({ k: key, collapseName, icon, name, route }) => (
-  <NavLink key={key} to={route}>
+  <NavLink to={route}>
     <SidenavCollapse name={name} icon={icon} active={key === collapseName} />
   </NavLink>
 ));

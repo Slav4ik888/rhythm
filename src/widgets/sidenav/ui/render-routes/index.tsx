@@ -1,5 +1,6 @@
 import { routesList } from 'app/providers/routes';
 import { ColorName } from 'app/providers/theme';
+import React from 'react';
 import { SidenavDivider } from '../sidenav-items/sidenav-divider';
 import { SidenavLink } from '../sidenav-items/sidenav-link';
 import { SidenavNavLink } from '../sidenav-items/sidenav-navlink';
@@ -14,7 +15,7 @@ export const renderRoutes = (collapseName: string, textColor: ColorName) => rout
     if (type === "collapse") {
       returnValue = href ? (
         <SidenavLink
-          key          = {key}
+          k            = {key}
           href         = {href}
           name         = {name}
           icon         = {icon}
@@ -34,15 +35,14 @@ export const renderRoutes = (collapseName: string, textColor: ColorName) => rout
     else if (type === "title") {
       returnValue = (
         <SidenavTitle
-          key       = {key}
           textColor = {textColor}
           title     = {title as string}
         />
       );
     }
     else if (type === "divider") {
-      returnValue = <SidenavDivider key={key} />;
+      returnValue = <SidenavDivider />;
     }
   
-    return returnValue;
-  });
+  return <React.Fragment key={key}>{returnValue}</React.Fragment>;
+});

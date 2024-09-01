@@ -51,44 +51,38 @@ export const ReportsLineChart2: FC<Props> = ({ color = "dark", title, descriptio
   const { data, options } = configs(chart.labels || [], chart.datasets || {});
 
   return (
-    <Card sx={{ height: "100%" }}>
-      <MDBox padding="1rem">
-        {useMemo(
-          () => (
-            <MDBox
-              variant="gradient"
-              bgColor={"secondary"}
-              borderRadius="lg"
-              coloredShadow={"secondary"}
-              py={2}
-              pr={0.5}
-              // mt={-5}
-              height="12.5rem"
-            >
-              {/* @ts-ignore */}
-              <Chart type="line" data={data} options={options} />
-            </MDBox>
-          ),
-          [chart, color]
-        )}
-        <MDBox pt={3} pb={1} px={1}>
-          <MDTypography variant="h6" textTransform="capitalize">
-            {title}
+    <>
+      <MDBox
+        variant="gradient"
+        bgColor={"secondary"}
+        borderRadius="lg"
+        coloredShadow={"secondary"}
+        py={2}
+        pr={0.5}
+        // mt={-5}
+        height="12.5rem"
+      >
+        {/* @ts-ignore */}
+        <Chart type="line" data={data} options={options} />
+      </MDBox>
+
+      <MDBox pt={3} pb={1} px={1}>
+        <MDTypography variant="h6" textTransform="capitalize">
+          {title}
+        </MDTypography>
+        <MDTypography component="div" variant="button" color="text" fontWeight="light">
+          {description}
+        </MDTypography>
+        <Divider />
+        <MDBox display="flex" alignItems="center">
+          <MDTypography variant="button" color="text" lineHeight={1} sx={{ mt: 0.15, mr: 0.5 }}>
+            <Icon>schedule</Icon>
           </MDTypography>
-          <MDTypography component="div" variant="button" color="text" fontWeight="light">
-            {description}
+          <MDTypography variant="button" color="text" fontWeight="light">
+            {date}
           </MDTypography>
-          <Divider />
-          <MDBox display="flex" alignItems="center">
-            <MDTypography variant="button" color="text" lineHeight={1} sx={{ mt: 0.15, mr: 0.5 }}>
-              <Icon>schedule</Icon>
-            </MDTypography>
-            <MDTypography variant="button" color="text" fontWeight="light">
-              {date}
-            </MDTypography>
-          </MDBox>
         </MDBox>
       </MDBox>
-    </Card>
+    </>
   );
 }

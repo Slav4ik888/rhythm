@@ -101,7 +101,7 @@ interface Props {
 
 const MaterialUIControllerProvider: FC<Props> = ({ children }) => {
   const initialState: MaterialUIControllerProviderState = {
-    miniSidenav        : false,
+    miniSidenav        : true,
     transparentSidenav : false,
     whiteSidenav       : false,
     sidenavColor       : "secondary",

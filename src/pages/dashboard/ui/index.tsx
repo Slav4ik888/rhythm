@@ -1,5 +1,5 @@
 import { FC, memo, useState } from 'react';
-import { DashboardContainer } from 'entities/dashboard';
+import { Dashboard } from 'entities/dashboard';
 import { WrapperDynamicReducers } from 'shared/ui/pages';
 import { Sidenav } from 'widgets/sidenav';
 import { useMaterialUIController, setMiniSidenav } from 'app/providers/theme';
@@ -38,7 +38,7 @@ const DashboardPage: FC = memo(() => {
       {/* <Configurator /> */}
       {/* {configsButton} */}
 
-      <DashboardContainer />
+      <Dashboard />
     </WrapperDynamicReducers>
   );
 });

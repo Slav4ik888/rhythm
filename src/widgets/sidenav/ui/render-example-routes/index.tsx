@@ -1,4 +1,5 @@
 import { routesList } from 'app/providers/routes';
+import { Fragment } from 'react';
 import { SidenavLink } from '../sidenav-items/sidenav-link';
 import { SidenavNavLink } from '../sidenav-items/sidenav-navlink';
 
@@ -11,7 +12,7 @@ export const renderExampleRoutes = (collapseName: string) => routesList.map(
     if (type === "examples") {
       returnValue = href ? (
         <SidenavLink
-          key          = {key}
+          k            = {key}
           href         = {href}
           name         = {name}
           icon         = {icon}
@@ -28,6 +29,6 @@ export const renderExampleRoutes = (collapseName: string) => routesList.map(
         />
       );
     }
-    return returnValue;
+    return <Fragment key={key}>{returnValue}</Fragment>;
   }
 );

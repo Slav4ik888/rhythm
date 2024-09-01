@@ -1,1 +1,1 @@
-export { DashboardContainer } from './ui'
+export { Dashboard } from './ui'

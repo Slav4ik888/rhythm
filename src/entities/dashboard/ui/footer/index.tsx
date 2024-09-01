@@ -24,7 +24,7 @@ import MDBox from "shared/ui/mui-design-components/md-box";
 import MDTypography from "shared/ui/mui-design-components/md-typography";
 
 // Material Dashboard 2 React base styles
-import { typography } from "app/providers/theme";
+import { pxToRem, typography } from "app/providers/theme";
 
 
 
@@ -40,7 +40,7 @@ interface Props {
 }
 
 
-export const Footer: FC<Props> = ({
+export const DashboardFooter: FC<Props> = ({
   company = { href: "https://rhythm.thm.su/", name: "Учебный центр Основа" },
   links = [
     { href: "https://rhythm.thm.su/", name: "Creative Rhythm" },
@@ -64,6 +64,7 @@ export const Footer: FC<Props> = ({
   return (
     <MDBox
       width="100%"
+      height={pxToRem(85)}
       display="flex"
       flexDirection={{ xs: "column", lg: "row" }}
       justifyContent="space-between"

@@ -62,9 +62,9 @@ import {
 } from "app/providers/theme";
 
 // import { AuthContext } from "context";
-import cfg from 'shared/api/keys';
 import { LS } from 'shared/lib/local-storage';
-import { transformGSData } from 'shared/api/utils';
+import { transformGSData } from 'features/dashboard/update-data/model/utils';
+import { DashboardDatebar } from 'widgets/dashboard-datebar';
 
 
 interface Props {
@@ -81,54 +81,34 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
   const route = useLocation().pathname.split("/").slice(1);
 
 
-  useEffect(() => {
-    // Setting the navbar type
-    if (fixedNavbar) {
-      setNavbarType("sticky");
-    } else {
-      setNavbarType("static");
-    }
+  // useEffect(() => {
+  //   // Setting the navbar type
+  //   if (fixedNavbar) {
+  //     setNavbarType("sticky");
+  //   } else {
+  //     setNavbarType("static");
+  //   }
 
-    // A function that sets the transparent state of the navbar.
-    function handleTransparentNavbar() {
-      setTransparentNavbar(dispatch, (fixedNavbar && window.scrollY === 0) || !fixedNavbar);
-    }
+  //   // A function that sets the transparent state of the navbar.
+  //   function handleTransparentNavbar() {
+  //     setTransparentNavbar(dispatch, (fixedNavbar && window.scrollY === 0) || !fixedNavbar);
+  //   }
 
-    /** 
-     The event listener that's calling the handleTransparentNavbar function when 
-     scrolling the window.
-    */
-    window.addEventListener("scroll", handleTransparentNavbar);
+  //   /** 
+  //    The event listener that's calling the handleTransparentNavbar function when 
+  //    scrolling the window.
+  //   */
+  //   window.addEventListener("scroll", handleTransparentNavbar);
 
-    // Call the handleTransparentNavbar function to set the state with the initial value.
-    handleTransparentNavbar();
+  //   // Call the handleTransparentNavbar function to set the state with the initial value.
+  //   handleTransparentNavbar();
 
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("scroll", handleTransparentNavbar);
-  }, [dispatch, fixedNavbar]);
+  //   // Remove event listener on cleanup
+  //   return () => window.removeEventListener("scroll", handleTransparentNavbar);
+  // }, [dispatch, fixedNavbar]);
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
-  const handleConfiguratorOpen = () => {
-    setOpenConfigurator(dispatch, !openConfigurator);
-
-    console.log('URL_OSNOVA: ', cfg.URL_OSNOVA);
-
-    fetch(cfg.URL_OSNOVA)
-      .then(response => response.json())
-      .then(data => {
-        LS.setGSData(data.data);
-        console.log(data.data); // Здесь вы получите данные
-      })
-      .catch(error => console.error('Error:', error));
-  };
-
-  useEffect(() => {
-    console.log(LS.getGSData());
-    // @ts-ignore
-    const transformedGSData = transformGSData(LS.getGSData()?.data1);
-    console.log('transformedGSData: ', transformedGSData);
-  }, []);
-
+  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event: any) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(null);
 
@@ -154,7 +134,7 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
 
   // Styles for the navbar icons
   // @ts-ignore
-  const iconsStyle = ({ palette: { dark, white, text }, functions: { rgba } }): SxProps => ({
+  const iconsStyle = ({ palette: { dark, white, text }, functions: { rgba } }) => ({
     color: () => {
       let colorValue = light || darkMode ? white.main : dark.main;
 
@@ -184,12 +164,13 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
           mb={{ xs: 1, md: 0 }}
           sx={(theme: CustomMUITheme) => navbarRow(theme, { isMini })}
         >
-          <Breadcrumbs
+          {/* <Breadcrumbs
             title={route[route.length - 1]}
             route={route}
             light={light}
-          />
-          <IconButton
+          /> */}
+
+          {/* <IconButton
             color="inherit"
             onClick={handleMiniSidenav}
           >
@@ -197,7 +178,9 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
               // @ts-ignore
               miniSidenav ? <FormatIndentIncreaseIcon sx={iconsStyle} fontSize="small" /> : <MenuIcon sx={iconsStyle} fontSize="small" />
             }
-          </IconButton>
+          </IconButton> */}
+
+          <DashboardDatebar />
         </MDBox>
 
         {
@@ -219,11 +202,11 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
                     <IconButton
                       disableRipple
                       color="inherit"
-                      /* @ts-ignore */
-                      sx={navbarIconButton}
                       aria-controls="notification-menu"
                       aria-haspopup="true"
                       variant="contained"
+                      /* @ts-ignore */
+                      sx={navbarIconButton}
                       onClick={handleOpenMenu}
                     >
                       {/* @ts-ignore */}
@@ -254,7 +237,7 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
                     <Link to="/authentication/sign-in/basic">
                       {/* @ts-ignore */}
                       <IconButton sx={navbarIconButton} disableRipple>
-                      {/* @ts-ignore */}
+                        {/* @ts-ignore */}
                         <AccountCircleIcon sx={iconsStyle} fontSize='small' />
                       </IconButton>
                     </Link>
