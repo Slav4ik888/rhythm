@@ -1,3 +1,4 @@
+import { DashboardData } from 'entities/dashboard';
 
 const ROW_PREFIX = 'col_';
 const START_DATA_ROW = 13; // № строки с которой в таблице начинаются значения
@@ -8,7 +9,7 @@ const START_DATA_ROW = 13; // № строки с которой в таблиц
  * Transform Google Sheets row data into column data
  * @param data Google Sheets data
  */
-export const transformGSData = (data: any): TransformedGSData => {
+export const transformGSData = (data: any): DashboardData => {
   const obj = transformToObject(data);
   const res = transformToArray(obj);
 
@@ -41,10 +42,9 @@ function transformToObject(data: any): ObjGSData {
 
 
 
-type TransformedGSData = Array<Array<string | number>>;
 
-function transformToArray(obj: ObjGSData): TransformedGSData {
-  const res: TransformedGSData = [];
+function transformToArray(obj: ObjGSData): DashboardData {
+  const res: DashboardData = [];
 
 
   for (const key in obj) {

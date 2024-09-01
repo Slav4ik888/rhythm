@@ -2,16 +2,18 @@ import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
 import { Action, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { StateSchemaUI } from 'entities/ui';
+import { StateSchemaDashboard } from 'entities/dashboard';
 
 
 
 export interface StateSchema {
   // Entities
-  ui              : StateSchemaUI
+  ui         : StateSchemaUI
 
   // Features
 
   // Async reducer
+  dashboard? : StateSchemaDashboard
 };
 
 

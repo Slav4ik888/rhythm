@@ -1,5 +1,3 @@
-import { FixDate } from 'entities/ui';
-
 
 export enum DashboardPeriod {
   CUSTOM       = 'Произвольный', // Автосброс Даты "С"
@@ -17,7 +15,4 @@ export enum DashboardPeriod {
 }
 
 
-
-export interface DashboardData {
-  
-}
+export type DashboardData = Array<Array<string | number>>

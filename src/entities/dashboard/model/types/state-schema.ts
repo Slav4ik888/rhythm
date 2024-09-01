@@ -3,14 +3,14 @@ import { DashboardData, DashboardPeriod } from './dashboard';
 
 
 
-export interface DashboardDataEntities {
-  [43: string]: DashboardData
-}
+// export interface DashboardDataEntities {
+//   [x: string]: DashboardData
+// }
 
 
 export interface StateSchemaDashboard {
-  entities       : DashboardDataEntities
-  ids            : string[]
+  weekData       : DashboardData
+  monthData      : DashboardData
   
   selectedPeriod : DashboardPeriod
   dateStart      : number
