@@ -1,3 +1,4 @@
+import { DashboardRefreshButton } from 'features/dashboard';
 import { FC, memo } from 'react';
 
 
@@ -11,9 +12,9 @@ export const DashboardDatebar: FC<Props> = memo(({  }) => {
 
   return (
     <>
-      <DashboardPeriodButton />
-      <DashboardPeriodDates />
-      <DashboardUpdateButton />
+      {/* <DashboardPeriodButton />
+      <DashboardPeriodDates /> */}
+      <DashboardRefreshButton />
     </>
   )
 });

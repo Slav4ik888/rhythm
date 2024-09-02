@@ -1,8 +1,14 @@
 import { FC, memo, useState } from 'react';
-import { Dashboard } from 'entities/dashboard';
-import { WrapperDynamicReducers } from 'shared/ui/pages';
+import { Dashboard, reducerDashboard } from 'entities/dashboard';
 import { Sidenav } from 'widgets/sidenav';
 import { useMaterialUIController, setMiniSidenav } from 'app/providers/theme';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
+
+
+
+const initialReducers: ReducersList = {
+  dashboard: reducerDashboard
+};
 
 
 const DashboardPage: FC = memo(() => {
@@ -30,7 +36,7 @@ const DashboardPage: FC = memo(() => {
   console.log('DashboardPage ');
 
   return (
-    <WrapperDynamicReducers>
+    <DynamicModuleLoader reducers={initialReducers}>
       <Sidenav
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
@@ -39,7 +45,7 @@ const DashboardPage: FC = memo(() => {
       {/* {configsButton} */}
 
       <Dashboard />
-    </WrapperDynamicReducers>
+    </DynamicModuleLoader>
   );
 });
 

@@ -2,22 +2,14 @@ import { DashboardLayout } from 'shared/ui/layouts/dashboard-layout';
 import { DashboardNavbar } from '../navbar';
 import { DashboardFooter } from "../footer";
 import { DashboardBody } from '../body';
-import { memo, useEffect } from 'react';
-import { LS } from 'shared/lib/local-storage';
-
+import { memo } from 'react';
 
 
 
 export const Dashboard = memo(() => {
   console.log('Dashboard ');
 
-  useEffect(() => {
-    console.log(LS.getGSData());
-    // Сохранить в store
-    const transformedGSData = transformGSData(LS.getGSData()?.data1);
-    console.log('transformedGSData: ', transformedGSData);
-  }, []);
-
+  
   return (
     <DashboardLayout>
       <DashboardNavbar />

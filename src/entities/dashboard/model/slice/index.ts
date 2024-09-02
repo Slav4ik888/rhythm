@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
-import { DashboardPeriod, StateSchemaDashboard } from '../types';
+import { DashboardData, DashboardPeriod, StateSchemaDashboard } from '../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
+import { getData } from 'features/dashboard';
 
 
 
@@ -50,42 +51,38 @@ export const slice = createSlice({
   },
 
   extraReducers: builder => {
-    // ADD-DOCUMENT
-    // builder
-    //   .addCase(addDocument.pending, (state) => {
-    //     state.loading = true;
-    //     state.errors  = {};
-    //   })
-    //   .addCase(addDocument.fulfilled, (state, { payload }) => {
-    //     state.entities[payload.id] = payload;
-    //     state.ids     = Object.keys(state.entities);
-    //     state.loading = false;
-    //     state.errors  = {};
-    //   })
-    //   .addCase(addDocument.rejected, (state, { payload }) => {
-    //     state.errors  = getError(payload);
-    //     state.loading = false;
-    //   }),
+    // GET-DATA-FROM-GOOGLE
+    builder
+      .addCase(getData.pending, (state) => {
+        state.loading = true;
+        state.errors  = {};
+      })
+      .addCase(getData.fulfilled, (state, { payload }: PayloadAction<DashboardData>) => {
+        const { weekData = [], monthData = [], selectedPeriod, dateStart, dateEnd, lastUpdated } = payload;
 
-    // GET-DOCUMENT-BY-ID
-    // builder
-    //   .addCase(getDocumentById.pending, (state) => {
-    //     state.loading = true;
-    //     state.errors  = {};
-    //   })
-    //   .addCase(getDocumentById.fulfilled, (state, { payload }) => {
-    //     state.activeDocumentId     = payload.id;
-    //     state.entities[payload.id] = payload;
-    //     state.ids                  = Object.keys(state.entities);
-    //     state.loading              = false;
-    //     state.errors               = {};
-    //   })
-    //   .addCase(getDocumentById.rejected, (state, { payload }) => {
-    //     state.errors  = getError(payload);
-    //     state.loading = false;
-    //   })
+        state.weekData       = weekData;
+        state.monthData      = monthData;
+        state.selectedPeriod = selectedPeriod;
+        state.dateStart      = dateStart;
+        state.dateEnd        = dateEnd;
+        state.lastUpdated    = lastUpdated;
 
-    
+        state.loading        = false;
+        state.errors         = {};
+
+        LS.setDashboardData({
+          weekData,
+          monthData,
+          selectedPeriod,
+          dateStart,
+          dateEnd,
+          lastUpdated
+        });
+      })
+      .addCase(getData.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
+        state.loading = false;
+      })
   }
 })
 

@@ -1,4 +1,5 @@
 
+
 export enum DashboardPeriod {
   CUSTOM       = 'Произвольный', // Автосброс Даты "С"
   ONE_WEEK     = '1 неделя',
@@ -15,4 +16,17 @@ export enum DashboardPeriod {
 }
 
 
-export type DashboardData = Array<Array<string | number>>
+export type DashboardDataSegment = Array<Array<string | number>>
+
+export interface DashboardData {
+  weekData       : DashboardDataSegment
+  monthData      : DashboardDataSegment
+  
+  selectedPeriod : DashboardPeriod
+  dateStart      : number
+  dateEnd        : number
+
+  lastUpdated    : number // Дата последнего обновления
+}
+
+// export type GetDashboardData = Omit<DashboardData, 'lastUpdated'>

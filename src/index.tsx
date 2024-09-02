@@ -29,4 +29,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "01.09.2024 start dashboard store+" && git push -u origin main
+// git add . && git commit -m "02.09.2024 end getData" && git push -u origin main

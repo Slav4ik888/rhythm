@@ -60,7 +60,7 @@ export const Sidenav: FC<Props> = ({ ...rest }) => {
   useEffect(() => {
     // A function that sets the mini state of the sidenav.
     function handleMiniSidenav() {
-      setMiniSidenav(dispatch, window.innerWidth < 1200);
+      setMiniSidenav(dispatch, window.innerWidth < 1200 || miniSidenav); // Если изначально мини, то нужно его оставить если экран > 1200
       setTransparentSidenav(dispatch, window.innerWidth < 1200 ? false : transparentSidenav);
       setWhiteSidenav(dispatch, window.innerWidth < 1200 ? false : whiteSidenav);
     }

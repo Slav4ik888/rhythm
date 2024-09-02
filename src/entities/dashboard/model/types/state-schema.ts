@@ -1,5 +1,5 @@
 import { Errors } from 'shared/lib/validators';
-import { DashboardData, DashboardPeriod } from './dashboard';
+import { DashboardData } from './dashboard';
 
 
 
@@ -8,16 +8,7 @@ import { DashboardData, DashboardPeriod } from './dashboard';
 // }
 
 
-export interface StateSchemaDashboard {
-  weekData       : DashboardData
-  monthData      : DashboardData
-  
-  selectedPeriod : DashboardPeriod
-  dateStart      : number
-  dateEnd        : number
-
-  lastUpdated    : number // Дата последнего обновления
-
+export interface StateSchemaDashboard extends DashboardData {
   loading        : boolean
   errors         : Errors
 }

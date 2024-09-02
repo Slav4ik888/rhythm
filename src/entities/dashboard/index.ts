@@ -1,2 +1,3 @@
 export { Dashboard } from './ui'
-export { DashboardData, StateSchemaDashboard } from './model/types'
+export { DashboardDataSegment, StateSchemaDashboard, DashboardData, DashboardPeriod } from './model/types'
+export { actions as actionsDashboard, reducer as reducerDashboard } from './model/slice'

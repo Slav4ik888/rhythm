@@ -62,8 +62,6 @@ import {
 } from "app/providers/theme";
 
 // import { AuthContext } from "context";
-import { LS } from 'shared/lib/local-storage';
-import { transformGSData } from 'features/dashboard/update-data/model/utils';
 import { DashboardDatebar } from 'widgets/dashboard-datebar';
 
 
@@ -81,13 +79,13 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
   const route = useLocation().pathname.split("/").slice(1);
 
 
-  // useEffect(() => {
-  //   // Setting the navbar type
-  //   if (fixedNavbar) {
-  //     setNavbarType("sticky");
-  //   } else {
-  //     setNavbarType("static");
-  //   }
+  useEffect(() => {
+    // Setting the navbar type
+    if (fixedNavbar) {
+      setNavbarType("sticky");
+    } else {
+      setNavbarType("static");
+    }
 
   //   // A function that sets the transparent state of the navbar.
   //   function handleTransparentNavbar() {
@@ -105,7 +103,7 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
 
   //   // Remove event listener on cleanup
   //   return () => window.removeEventListener("scroll", handleTransparentNavbar);
-  // }, [dispatch, fixedNavbar]);
+  }, [dispatch, fixedNavbar]);
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
