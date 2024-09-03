@@ -32,7 +32,18 @@ export const slice = createSlice({
     clearErrors: (state) => {
       state.errors = {};
     },
+    setDatePeriod: (state, { payload }: { payload: { selectedPeriod: DashboardPeriod, dateStart: number | undefined, dateEnd: number | undefined } }) => {
+      state.selectedPeriod = payload.selectedPeriod;
+      state.dateStart = payload.dateStart;
+      state.dateEnd = payload.dateStart;
 
+      LS.setDashboardData({
+        ...state,
+        selectedPeriod: payload.selectedPeriod,
+        dateStart: payload.dateStart,
+        dateEnd: payload.dateStart
+      });
+    }
     // For getStartResourseData
     // addDocuments: (state, { payload }: { payload: Document[] }) => {
     //   state.entities = addDocumentsEntities(state.entities, payload);

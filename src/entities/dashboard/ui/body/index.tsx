@@ -38,12 +38,16 @@ export const DashboardBody = memo(() => {
 
       <DashboardBlockContainer bgColor='department_7' my={5} p={3} pr={0}>
         <DashboardReportContainer>
-          <ReportsBarChart2
-            color="info"
-            title="website views"
-            description="Last Campaign Performance"
-            date="campaign sent 2 days ago"
-            chart={reportsBarChartData}
+          <ReportsLineChart2
+            color="success"
+            title="daily sales"
+            description={
+              <>
+                (<strong>+15%</strong>) increase in today sales.
+              </>
+            }
+            date="updated 4 min ago"
+            chart={tasks}
           />
         </DashboardReportContainer>
         <DashboardReportContainer>
@@ -63,12 +67,16 @@ export const DashboardBody = memo(() => {
 
       <DashboardBlockContainer width="max-content" bgColor='department_1' my={5} p={3} pr={0}>
         <DashboardReportContainer>
-          <ReportsBarChart2
-            color="info"
-            title="website views"
-            description="Last Campaign Performance"
-            date="campaign sent 2 days ago"
-            chart={reportsBarChartData}
+          <ReportsLineChart2
+            color="success"
+            title="daily sales"
+            description={
+              <>
+                (<strong>+15%</strong>) increase in today sales.
+              </>
+            }
+            date="updated 4 min ago"
+            chart={tasks}
           />
         </DashboardReportContainer>
         <DashboardReportContainer>
@@ -82,6 +90,15 @@ export const DashboardBody = memo(() => {
             }
             date="updated 4 min ago"
             chart={sales}
+          />
+        </DashboardReportContainer>
+        <DashboardReportContainer>
+          <ReportsBarChart2
+            color="info"
+            title="website views"
+            description="Last Campaign Performance"
+            date="campaign sent 2 days ago"
+            chart={reportsBarChartData}
           />
         </DashboardReportContainer>
       </DashboardBlockContainer>

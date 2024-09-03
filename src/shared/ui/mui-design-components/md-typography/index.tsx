@@ -14,22 +14,21 @@ Coded by www.creative-tim.com
 */
 
 import { forwardRef, FC } from "react";
-
-// Custom styles for MDTypography
 import MDTypographyRoot from "./md-typography-root";
-
-// Material Dashboard 2 React contexts
 import { ColorName, useMaterialUIController } from "app/providers/theme";
 import { TypographyOwnProps } from '@mui/material';
 
 
 
 interface Props extends TypographyOwnProps {
+  display?: 'block' | "flex"
   color?: ColorName
   textTransform?: "none" | "capitalize" | "uppercase" | "lowercase"
   verticalAlign?: "unset" | "baseline" | "sub" | "super" | "text-top" | "text-bottom" | "middle" | "top" | "bottom"
   textGradient?: boolean
+  fontSize?: string
   opacity?: number
+  cursor?: string
   component?: React.ElementType
   children: React.ReactNode
   sx?: any

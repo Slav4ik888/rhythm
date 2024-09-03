@@ -23,8 +23,8 @@ export interface DashboardData {
   monthData      : DashboardDataSegment
   
   selectedPeriod : DashboardPeriod
-  dateStart      : number
-  dateEnd        : number
+  dateStart      : number | undefined
+  dateEnd        : number | undefined
 
   lastUpdated    : number // Дата последнего обновления
 }

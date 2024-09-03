@@ -39,6 +39,7 @@ export const DashboardLayout: FC<Props> = ({ children }) => {
       sx={({ breakpoints, transitions, functions: { pxToRem } }) => ({
         p: 3,
         position: "relative",
+        overflowX: "scroll",
 
         [breakpoints.up("xl")]: {
           marginLeft: miniSidenav ? pxToRem(120) : pxToRem(274),

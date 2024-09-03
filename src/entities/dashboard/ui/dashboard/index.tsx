@@ -1,8 +1,8 @@
-import { DashboardLayout } from 'shared/ui/layouts/dashboard-layout';
-import { DashboardNavbar } from '../navbar';
-import { DashboardFooter } from "../footer";
-import { DashboardBody } from '../body';
 import { memo } from 'react';
+import { DashboardLayout } from 'shared/ui/layouts/dashboard-layout';
+import { DashboardNavbar } from 'widgets/navbar';
+import { DashboardFooter } from "widgets/footer";
+import { DashboardBody } from '../body';
 
 
 

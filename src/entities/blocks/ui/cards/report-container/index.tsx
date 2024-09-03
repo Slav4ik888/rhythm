@@ -13,7 +13,7 @@ interface Props {
 export const DashboardReportContainer: FC<Props> = memo(({ children }) => {
 
   return (
-    <Card sx={{ height: "100%", maxWidth: pxToRem(300), mr: 3 }}>
+    <Card sx={{ height: "100%", width: pxToRem(400), maxWidth: pxToRem(400), mr: 3 }}>
       <MDBox padding="1rem">
         {children}
       </MDBox>

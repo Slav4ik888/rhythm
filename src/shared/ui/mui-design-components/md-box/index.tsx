@@ -32,6 +32,7 @@ interface Props {
   shadow?: any
   mb?: number | { xs?: number, md?: number }
   mr?: { xs?: number, xl?: number }
+  ml?: string | number
   mt?: number | "auto"
   mx?: number
   my?: number
@@ -49,7 +50,7 @@ interface Props {
   lineHeight?: number
   textAlign?: "center" | "left" | "right"
   display?: "flex" | "flex flex-col" | "inline" | "none" | { xs: "block", xl: "none" }
-  flexDirection?: { xs: Flex, lg: Flex }
+  flexDirection?: { xs: Flex, lg: Flex } | 'column' | 'row' | 'row-reverse' | 'column-reverse'
   alignItems?: "center"
   justifyContent?: "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly"
   flexWrap?: "wrap" | "flex-start"

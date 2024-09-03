@@ -14,16 +14,8 @@ Coded by www.creative-tim.com
 */
 
 import { FC } from 'react';
-
-// @mui material components
 import Link from "@mui/material/Link";
-import Icon from "@mui/material/Icon";
-
-// Material Dashboard 2 React components
-import MDBox from "shared/ui/mui-design-components/md-box";
-import MDTypography from "shared/ui/mui-design-components/md-typography";
-
-// Material Dashboard 2 React base styles
+import { MDBox, MDTypography } from "shared/ui/mui-design-components";
 import { pxToRem, typography } from "app/providers/theme";
 
 

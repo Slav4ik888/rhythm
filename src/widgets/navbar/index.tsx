@@ -14,17 +14,12 @@ Coded by www.creative-tim.com
 */
 
 import { useState, useEffect, FC, memo } from "react";
-
-// react-router components
 import { useLocation, Link } from "react-router-dom";
-
-// @material-ui core components
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
-import { SxProps } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -33,36 +28,15 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import ArrowBack from '@mui/icons-material/ArrowBackIos';
 import ArrowForward from '@mui/icons-material/ArrowForwardIos';
 import FormatIndentIncreaseIcon from '@mui/icons-material/FormatIndentIncrease';
-
-// Material Dashboard 2 React components
-import MDBox from "shared/ui/mui-design-components/md-box";
-
-// Material Dashboard 2 React example components
+import { MDBox } from "shared/ui/mui-design-components";
 import Breadcrumbs from 'shared/ui/breadcrumbs';
 import NotificationItem from "shared/ui/items/notification-item";
-
 // import AuthService from "services/auth-service";
-
-// Custom styles for DashboardNavbar
-import {
-  navbar,
-  navbarContainer,
-  navbarRow,
-  navbarIconButton,
-  navbarMobileMenu,
-} from "./styles";
-
-// Material Dashboard 2 React context
-import {
-  useMaterialUIController,
-  setTransparentNavbar,
-  setMiniSidenav,
-  setOpenConfigurator,
-  CustomMUITheme
-} from "app/providers/theme";
-
 // import { AuthContext } from "context";
+import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu } from "./styles";
+import { useMaterialUIController, setMiniSidenav, setOpenConfigurator, CustomMUITheme } from "app/providers/theme";
 import { DashboardDatebar } from 'widgets/dashboard-datebar';
+
 
 
 interface Props {
