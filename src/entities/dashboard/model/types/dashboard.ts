@@ -15,6 +15,7 @@ export enum DashboardPeriod {
   TEN_YEARS    = '10 лет'
 }
 
+export const arrayDashboardPeriod = Array.from(Object.values(DashboardPeriod));
 
 export type DashboardDataSegment = Array<Array<string | number>>
 

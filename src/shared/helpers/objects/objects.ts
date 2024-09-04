@@ -40,6 +40,7 @@ export function objectLength<O extends object>(obj: O | undefined): number {
 export function isEmpty<O extends object>(obj: O | undefined): boolean {
   return ! objectLength(obj)
 }
+
 /**
  * 2024-04-07
  * True если не пустой объект

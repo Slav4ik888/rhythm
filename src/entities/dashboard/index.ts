@@ -1,5 +1,5 @@
 export { Dashboard } from './ui'
-export { DashboardDataSegment, StateSchemaDashboard, DashboardData, DashboardPeriod } from './model/types'
+export { DashboardDataSegment, StateSchemaDashboard, DashboardData, DashboardPeriod, arrayDashboardPeriod } from './model/types'
 export { actions as actionsDashboard, reducer as reducerDashboard } from './model/slice'
 export {
   selectLoading, selectErrors, selectDateEnd, selectDateStart, selectLastUpdated,

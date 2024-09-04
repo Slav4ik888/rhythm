@@ -1,3 +1,4 @@
+import { isUndefined } from 'shared/lib/validators';
 import { FORMAT, getMonth, getMonthDDсYYYY, getMonthYYYY, SUB, getDDMonthYYYY,
 getDMonthYYYY, getDMonthYYYYHHMM, getYYYYMMDDt, getYYYYMMDD, getDDMMYYYYt, getDDMMYYYYd,
 getDDMMYYdHHMM, getHHMM } from '..';
@@ -13,14 +14,15 @@ const isNoCorrect = (ms: number) => ! ms || ms < 0 || typeof ms !== 'number';
  * @return {string} - дата в нужном формате
  */
 export function formatDate(
-  _ms    : number | string, // таймстамп
+  _ms    : number | string | undefined, // таймстамп
   format : string,          // формат, в котором нужно вернуть ms
   sub    : SUB = SUB.EN,    // если нужно в на русском или нужно склонение 'Февраля'
 ): string {                 // дата в нужном формате
+  if (isUndefined(_ms)) return '';
 
   let date;
   
-  if (Date.parse(_ms as string)) date = new Date(_ms)
+  if (Date.parse(_ms as string)) date = new Date(_ms as string)
   else {
     const ms = parseInt(_ms as string);
     if (isNoCorrect(ms)) return 'Указана некорректная дата';

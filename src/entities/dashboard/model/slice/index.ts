@@ -34,14 +34,14 @@ export const slice = createSlice({
     },
     setDatePeriod: (state, { payload }: { payload: { selectedPeriod: DashboardPeriod, dateStart: number | undefined, dateEnd: number | undefined } }) => {
       state.selectedPeriod = payload.selectedPeriod;
-      state.dateStart = payload.dateStart;
-      state.dateEnd = payload.dateStart;
+      state.dateStart      = payload.dateStart;
+      state.dateEnd        = payload.dateEnd;
 
       LS.setDashboardData({
         ...state,
-        selectedPeriod: payload.selectedPeriod,
-        dateStart: payload.dateStart,
-        dateEnd: payload.dateStart
+        selectedPeriod : payload.selectedPeriod,
+        dateStart      : payload.dateStart,
+        dateEnd        : payload.dateEnd
       });
     }
     // For getStartResourseData
