@@ -1,143 +1,116 @@
-import { ChangeEvent, FC, memo, ReactNode, useEffect, useRef, useState } from 'react';
-import { MDBox, MDButton, MDTypography } from 'shared/ui/mui-design-components';
+import { FC, memo, useEffect, useRef, useState } from 'react';
+import { MDBox } from 'shared/ui/mui-design-components';
 import { pxToRem } from 'app/providers/theme';
 import { useSelector } from 'react-redux';
-import { actionsDashboard, arrayDashboardPeriod, DashboardPeriod, selectDateEnd, selectDateStart, selectSelectedPeriod } from 'entities/dashboard';
+import { actionsDashboard, DashboardPeriodType, selectDateEnd, selectDateStart, selectPeriodType } from 'entities/dashboard';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { formatDate } from 'shared/helpers/dates';
-import { FormControl, MenuItem, TextField } from '@mui/material';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { isNotUndefined } from 'shared/lib/validators';
+import { PeriodType } from './period-type';
+import { getMsFromRef } from './utils';
+import { PeriodDate } from './period-dates';
+import { SetChangesBtn } from './set-changes-btn';
 
 
 
-const useStyles = () => ({
-  textField: {
-    width: pxToRem(120),
-    mr: 1
-  }
-});
-
-
-interface Props {
+export interface CheckIsChanged {
+  period? : DashboardPeriodType
+  start?  : number | undefined
+  end?    : number | undefined
 }
 
 
-export const SettingDatePeriod: FC<Props> = memo(({ }) => {
+const useStyles = () => ({
+  root: {
+    display: 'flex'
+  },
+  textField: {
+    width: pxToRem(120),
+    mr: 1
+  },
+});
+
+
+export const SettingDatePeriod: FC = memo(() => {
   const sx = useStyles();
   const dispatch = useAppDispatch();
-  const selectedPeriod = useSelector(selectSelectedPeriod); 
-  const dateStart = useSelector(selectDateStart); 
-  const dateEnd = useSelector(selectDateEnd);
+  const storeDateStart  = useSelector(selectDateStart);
+  const storeDateEnd    = useSelector(selectDateEnd);
+  const storePeriodType = useSelector(selectPeriodType);
 
-  // Для установки начальных значений
-  const valueStartRef = useRef(null);
-  const valueEndRef = useRef(null);
+  const valueStartRef   = useRef(null);
+  const valueEndRef     = useRef(null);
 
   const [isChanged, setIsChanged] = useState<boolean>(false);
-  const [dashboardPeriod, setDashboardPeriod] = useState<DashboardPeriod>('' as DashboardPeriod);
+  const [selectedPeriodType, setSelectedPeriodType] = useState<DashboardPeriodType>('' as DashboardPeriodType);
 
-  const checkIsChangedDate = (start: number | undefined, end: number | undefined) => {
-    if (start === dateStart && end === dateEnd) setIsChanged(false);
-    else setIsChanged(true);
+  /** Проверяет произошло ли изменение и устанавливает isChanged */
+  const checkIsChanged = ({ start, end, period }: CheckIsChanged) => {
+    const checkPeriod = isNotUndefined(period) ? period : DashboardPeriodType;
+    const checkStart  = isNotUndefined(start)  ? start  : getMsFromRef(valueStartRef);
+    const checkEnd    = isNotUndefined(end)    ? end    : getMsFromRef(valueEndRef);
+    
+    if (checkPeriod !== storePeriodType) setIsChanged(true)
+    else if (checkStart != storeDateStart) setIsChanged(true)
+    else if (checkEnd != storeDateEnd) setIsChanged(true)
+
+    else setIsChanged(false)
   };
 
 
   // Устанавливаем начальные значения
   useEffect(() => {
-    if (selectedPeriod) {
-      console.log('selectedPeriod: ', selectedPeriod);
-      setDashboardPeriod(selectedPeriod);
-    }
+    if (storePeriodType) setSelectedPeriodType(storePeriodType);
 
-    if (dateStart && valueStartRef.current) {
+    if (storeDateStart && valueStartRef.current) {
       // @ts-ignore
-      valueStartRef.current.value = formatDate(dateStart, "YYYY-MM-DD");
+      valueStartRef.current.value = formatDate(storeDateStart, "YYYY-MM-DD");
     }
-    if (dateEnd && valueEndRef.current) {
+    if (storeDateEnd && valueEndRef.current) {
       // @ts-ignore
-      valueEndRef.current.value = formatDate(dateEnd, "YYYY-MM-DD");
+      valueEndRef.current.value = formatDate(storeDateEnd, "YYYY-MM-DD");
     }
-    
-  }, [dateStart, dateEnd, selectedPeriod]);
+  }, [storeDateStart, storeDateEnd, storePeriodType]);
 
 
-  
-  const handleChangeStart = (e: ChangeEvent<HTMLInputElement>) => checkIsChangedDate(new Date(e.target.value).getTime(), dateEnd);
-  const handleChangeEnd   = (e: ChangeEvent<HTMLInputElement>) => checkIsChangedDate(dateStart, new Date(e.target.value).getTime());
-
-  const handleClick = () => {
-    console.log('dashboardPeriod: ', dashboardPeriod);
-
+  /** Сохраняем все изменения в store */
+  const handleSaveChanges = () => {
     dispatch(actionsDashboard.setDatePeriod({
-      selectedPeriod : dashboardPeriod,
-      // @ts-ignore
-      dateStart      : new Date(valueStartRef?.current?.value).getTime(),
-      // @ts-ignore
-      dateEnd        : new Date(valueEndRef?.current?.value).getTime()
+      period: {
+        type     : selectedPeriodType,
+        prevType : storePeriodType,
+        start    : getMsFromRef(valueStartRef),
+        end      : getMsFromRef(valueEndRef)
+      }
     }));
 
     setIsChanged(false);
   };
 
 
-  const handleChangePeriod = (e: SelectChangeEvent) => {
-    console.log('e.target.value: ', e.target.value);
-    setDashboardPeriod(e.target.value as DashboardPeriod);
-  };
-
-
   return (
-    <>
-      <MDBox>
-        <FormControl sx={{ mr: 1, width: 120 }}>
-          <Select
-            value={dashboardPeriod}
-            variant='outlined'
-            sx={{ height: pxToRem(38) }}
-            onChange={handleChangePeriod}
-          >
-            {
-              arrayDashboardPeriod.map((item) => <MenuItem
-                key={item}
-                value={item as unknown as string}
-              >
-                {item as unknown as string}
-              </MenuItem>)
-            }
-          </Select>
-        </FormControl>
+    <MDBox sx={sx.root}>
+      <PeriodType
+        selectedPeriodType      = {selectedPeriodType}
+        onSetSelectedPeriodType = {setSelectedPeriodType}
+        onCheckIsChanged        = {checkIsChanged}
+      />
 
-        <TextField
-          inputRef = {valueStartRef}
-          variant  = "outlined"
-          type     = "date"
-          size     = "small"
-          sx       = {sx.textField}
-          onChange = {handleChangeStart}
-        />
-        <TextField
-          inputRef = {valueEndRef}
-          variant  = "outlined"
-          type     = "date"
-          size     = "small"
-          sx       = {sx.textField}
-          onChange = {handleChangeEnd}
-        />
-      </MDBox>
+      <PeriodDate
+        type             = "start"
+        ref              = {valueStartRef}
+        onCheckIsChanged = {checkIsChanged}
+      />
+      <PeriodDate
+        type             = "end"
+        ref              = {valueEndRef}
+        onCheckIsChanged = {checkIsChanged}
+      />
 
-      {
-        isChanged &&
-          <MDBox>
-            <MDButton
-              variant = "gradient"
-              color   = "secondary"
-              type    = "button"
-              onClick = {handleClick}
-            >
-              Применить
-            </MDButton>
-          </MDBox>
-      }
-    </>
+      <SetChangesBtn
+        isChanged     = {isChanged}
+        onSaveChanges = {handleSaveChanges}
+      />
+    </MDBox>
   )
 });

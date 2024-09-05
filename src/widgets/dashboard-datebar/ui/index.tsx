@@ -14,7 +14,6 @@ export const DashboardDatebar: FC<Props> = memo(({  }) => {
 
   return (
     <MDBox display="flex" alignItems='center'>
-      {/* <DashboardPeriodButton />*/}
       <SettingDatePeriod /> 
       <DashboardRefresh />
     </MDBox>

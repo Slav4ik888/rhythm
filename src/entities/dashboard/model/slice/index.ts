@@ -1,24 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
-import { DashboardData, DashboardPeriod, StateSchemaDashboard } from '../types';
+import { DashboardData, DashboardPeriod, DashboardPeriodType, StateSchemaDashboard } from '../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
-import { getData } from 'features/dashboard';
+import { getData, ResGetData } from 'features/dashboard';
 
 
 
 const initialState: StateSchemaDashboard = {
-  weekData       : LS.getDashboardData()?.weekData       || [],
-  monthData      : LS.getDashboardData()?.monthData      || [],
+  weekData    : LS.getDashboardData()?.weekData    || [],
+  monthData   : LS.getDashboardData()?.monthData   || [],
   
-  selectedPeriod : LS.getDashboardData()?.selectedPeriod || DashboardPeriod.ONE_YEAR,
-  dateStart      : LS.getDashboardData()?.dateStart      || 0,
-  dateEnd        : LS.getDashboardData()?.dateEnd        || 0,
+  period: LS.getDashboardData()?.period || {
+    type     : DashboardPeriodType.NINE_MONTHS,
+    prevType : DashboardPeriodType.NINE_MONTHS,
+    start    : 0,
+    end      : 0
+  },
+  lastUpdated : LS.getDashboardData()?.lastUpdated || 0, // Дата последнего обновления
 
-  lastUpdated    : LS.getDashboardData()?.lastUpdated    || 0, // Дата последнего обновления
-
-  loading        : false,
-  errors         : {}
+  loading     : false,
+  errors      : {}
 };
 
 
@@ -32,16 +34,12 @@ export const slice = createSlice({
     clearErrors: (state) => {
       state.errors = {};
     },
-    setDatePeriod: (state, { payload }: { payload: { selectedPeriod: DashboardPeriod, dateStart: number | undefined, dateEnd: number | undefined } }) => {
-      state.selectedPeriod = payload.selectedPeriod;
-      state.dateStart      = payload.dateStart;
-      state.dateEnd        = payload.dateEnd;
+    setDatePeriod: (state, { payload }: { payload: { period: DashboardPeriod } }) => {
+      state.period  = payload.period;
 
       LS.setDashboardData({
         ...state,
-        selectedPeriod : payload.selectedPeriod,
-        dateStart      : payload.dateStart,
-        dateEnd        : payload.dateEnd
+        period: payload.period
       });
     }
     // For getStartResourseData
@@ -68,26 +66,20 @@ export const slice = createSlice({
         state.loading = true;
         state.errors  = {};
       })
-      .addCase(getData.fulfilled, (state, { payload }: PayloadAction<DashboardData>) => {
-        const { weekData = [], monthData = [], selectedPeriod, dateStart, dateEnd, lastUpdated } = payload;
+      .addCase(getData.fulfilled, (state, { payload }: PayloadAction<ResGetData>) => {
+        const { weekData = [], monthData = [] } = payload;
 
-        state.weekData       = weekData;
-        state.monthData      = monthData;
-        state.selectedPeriod = selectedPeriod;
-        state.dateStart      = dateStart;
-        state.dateEnd        = dateEnd;
-        state.lastUpdated    = lastUpdated;
+        state.weekData    = weekData;
+        state.monthData   = monthData;
+        state.lastUpdated = new Date().getTime();
 
-        state.loading        = false;
-        state.errors         = {};
+        state.loading     = false;
+        state.errors      = {};
 
         LS.setDashboardData({
+          ...state,
           weekData,
-          monthData,
-          selectedPeriod,
-          dateStart,
-          dateEnd,
-          lastUpdated
+          monthData
         });
       })
       .addCase(getData.rejected, (state, { payload }) => {

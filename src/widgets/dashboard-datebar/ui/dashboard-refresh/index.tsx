@@ -16,7 +16,7 @@ interface Props {
 
 export const DashboardRefresh: FC<Props> = memo(({  }) => {
   const lastUpdated = useSelector(selectLastUpdated);
-  const date = formatDate(lastUpdated, "D Month YYYY HH:MM"); //  "DD.MM.YY HH:MM"
+  const date = formatDate(lastUpdated, "DD.MM.YY HH:MM"); //  "D Month YYYY HH:MM"
 
   return (
     <MDBox ml={1} display="flex" alignItems='center'>
