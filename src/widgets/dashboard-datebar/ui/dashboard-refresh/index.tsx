@@ -1,34 +1,13 @@
 import { FC, memo } from 'react';
 import { DashboardRefreshButton } from 'features/dashboard';
-import { MDBox, MDTypography } from 'shared/ui/mui-design-components';
-import { useSelector } from 'react-redux';
-import { selectLastUpdated } from 'entities/dashboard';
-import { pxToRem } from 'app/providers/theme';
-import { Tooltip } from 'shared/ui/tooltip';
-import { formatDate } from 'shared/helpers/dates';
+import { MDBox } from 'shared/ui/mui-design-components';
+import { DashboardLastUpdatedText } from './last-updated-text';
 
 
 
-interface Props {
-
-}
-
-
-export const DashboardRefresh: FC<Props> = memo(({  }) => {
-  const lastUpdated = useSelector(selectLastUpdated);
-  const date = formatDate(lastUpdated, "DD.MM.YY HH:MM"); //  "D Month YYYY HH:MM"
-
-  return (
-    <MDBox ml={1} display="flex" alignItems='center'>
-      <DashboardRefreshButton />
-        
-      <Tooltip
-        title      = {`Последнее обновление было в ${date}`}
-        enterDelay = {500}
-        sxSpan     = {{ cursor: "default" }}
-      >
-        <MDTypography fontSize={pxToRem(10)}>{date}</MDTypography>
-      </Tooltip>
-    </MDBox>
-  )
-});
+export const DashboardRefresh: FC = memo(() => (
+  <MDBox ml={1} display="flex" alignItems='center'>
+    <DashboardRefreshButton />
+    <DashboardLastUpdatedText />
+  </MDBox>
+));

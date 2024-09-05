@@ -75,14 +75,14 @@ export const SettingDatePeriod: FC = memo(() => {
 
   /** Сохраняем все изменения в store */
   const handleSaveChanges = () => {
-    dispatch(actionsDashboard.setDatePeriod({
-      period: {
-        type     : selectedPeriodType,
-        prevType : storePeriodType,
-        start    : getMsFromRef(valueStartRef),
-        end      : getMsFromRef(valueEndRef)
-      }
-    }));
+    // dispatch(actionsDashboard.setDatePeriod({
+    //   period: {
+    //     type     : selectedPeriodType,
+    //     prevType : storePeriodType,
+    //     start    : getMsFromRef(valueStartRef),
+    //     end      : getMsFromRef(valueEndRef)
+    //   }
+    // }));
 
     setIsChanged(false);
   };

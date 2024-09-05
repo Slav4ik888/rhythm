@@ -1,2 +1,3 @@
 export { getData, DashboardRefreshButton, ResGetData } from './get-data'
-export { SettingDatePeriod } from './setting-date-period'
+export { PeriodType } from './period-type'
+export { SetPeriodDate } from './set-period-date'

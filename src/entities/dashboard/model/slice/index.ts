@@ -34,29 +34,22 @@ export const slice = createSlice({
     clearErrors: (state) => {
       state.errors = {};
     },
-    setDatePeriod: (state, { payload }: { payload: { period: DashboardPeriod } }) => {
-      state.period  = payload.period;
+    setDatePeriod: (state, { payload }: { payload: Partial<DashboardPeriod> }) => {
+      if (payload.type) state.period.prevType = state.period.type
+      
+      state.period = {
+        ...state.period,
+        ...payload
+      };
 
       LS.setDashboardData({
         ...state,
-        period: payload.period
+        period: {
+          ...state.period,
+          ...payload
+        }
       });
     }
-    // For getStartResourseData
-    // addDocuments: (state, { payload }: { payload: Document[] }) => {
-    //   state.entities = addDocumentsEntities(state.entities, payload);
-    //   state.ids      = Object.keys(state.entities);
-    //   state.loading  = false;
-    //   state.errors   = {};
-    // },
-    // updateDocument: (state, { payload }: { payload: PartialDocument }) => {
-    //   state.entities[payload.id] = {
-    //     ...state.entities[payload.id],
-    //     ...payload
-    //   };
-    //   state.loading = false;
-    //   state.errors  = {};
-    // }
   },
 
   extraReducers: builder => {
