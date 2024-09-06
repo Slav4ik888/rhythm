@@ -1,38 +1,23 @@
+import { DashboardPeriodType } from '../config/period';
 
-
-export enum DashboardPeriodType {
-  CUSTOM       = 'Произвольный', // Автосброс Даты "С"
-  ONE_WEEK     = '1 неделя',
-  ONE_MONTH    = '1 месяц',
-  THREE_MONTHS = '3 месяца',
-  SIX_MONTHS   = '6 месяцев',
-  NINE_MONTHS  = '9 месяцев',
-  ONE_YEAR     = '1 год',
-  TWO_YEARS    = '2 года',
-  THREE_YEARS  = '3 года',
-  FIVE_YEARS   = '5 лет',
-  SEVEN_YEARS  = '7 лет',
-  TEN_YEARS    = '10 лет'
-}
 
 export type DashboardDataSegment = Array<Array<string | number>>
-export const arrayDashboardPeriodType = Array.from(Object.values(DashboardPeriodType));
 
 export interface DashboardPeriod {
   type     : DashboardPeriodType // Выбранный тип
   prevType : DashboardPeriodType // Предыдущий тип
-  start    : number
-  end      : number
+  start    : number | undefined
+  end      : number | undefined
 }
 
 
 export interface DashboardData {
   weekData    : DashboardDataSegment
   monthData   : DashboardDataSegment
+  lastUpdated : number | undefined // Дата последнего обновления
   
-  period      : DashboardPeriod
-
-  lastUpdated : number // Дата последнего обновления
+  activePeriod: DashboardPeriod // Текущий период, по которому отрисованы графики
+  selectedPeriod: DashboardPeriod // Выбранный на панели, но не активированный период дат
 }
 
 // export type GetDashboardData = Omit<DashboardData, 'lastUpdated'>

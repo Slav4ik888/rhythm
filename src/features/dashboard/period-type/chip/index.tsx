@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { pxToRem } from 'app/providers/theme';
-import { DashboardPeriodType, selectPeriodType } from 'entities/dashboard';
+import { DASHBOARD_PERIOD_TEXT, selectSelectedPeriod } from 'entities/dashboard';
 import { Chip } from '@mui/material';
 import { useSelector } from 'react-redux';
 
@@ -17,18 +17,18 @@ const useStyles = () => ({
 
 
 interface Props {
-  storePeriodType : DashboardPeriodType
-  onClick         : () => void
+  onClick: () => void
 }
 
-export const PeriodTypeChip: FC<Props> = memo(({ storePeriodType, onClick }) => {
+export const PeriodTypeChip: FC<Props> = memo(({ onClick }) => {
   const sx = useStyles();
-  // const storePeriodType = useSelector(selectPeriodType);
+  const storeSelectPeriod = useSelector(selectSelectedPeriod);
+  const storePeriodType = storeSelectPeriod?.type;
 
 
   return (
     <Chip
-      label   = {storePeriodType}
+      label   = {DASHBOARD_PERIOD_TEXT[storePeriodType]}
       sx      = {sx.root}
       onClick = {onClick}
     />

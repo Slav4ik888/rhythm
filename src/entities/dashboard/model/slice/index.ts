@@ -1,26 +1,31 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
-import { DashboardData, DashboardPeriod, DashboardPeriodType, StateSchemaDashboard } from '../types';
+import { DashboardPeriod, StateSchemaDashboard } from '../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { getData, ResGetData } from 'features/dashboard';
+import { DashboardPeriodType } from '../config';
 
 
 
-const initialState: StateSchemaDashboard = {
-  weekData    : LS.getDashboardData()?.weekData    || [],
-  monthData   : LS.getDashboardData()?.monthData   || [],
+const emptyPeriod: DashboardPeriod = {
+  type     : DashboardPeriodType.NINE_MONTHS,
+  prevType : DashboardPeriodType.NINE_MONTHS,
+  start    : undefined,
+  end      : undefined
+};
+
   
-  period: LS.getDashboardData()?.period || {
-    type     : DashboardPeriodType.NINE_MONTHS,
-    prevType : DashboardPeriodType.NINE_MONTHS,
-    start    : 0,
-    end      : 0
-  },
-  lastUpdated : LS.getDashboardData()?.lastUpdated || 0, // Дата последнего обновления
+const initialState: StateSchemaDashboard = {
+  weekData       : LS.getDashboardData()?.weekData    || [],
+  monthData      : LS.getDashboardData()?.monthData   || [],
+  lastUpdated    : LS.getDashboardData()?.lastUpdated || undefined, // Дата последнего обновления
+  
+  activePeriod   : LS.getDashboardData()?.activePeriod || { ...emptyPeriod },
+  selectedPeriod : LS.getDashboardData()?.activePeriod || { ...emptyPeriod },
 
-  loading     : false,
-  errors      : {}
+  loading        : false,
+  errors         : {}
 };
 
 
@@ -34,18 +39,33 @@ export const slice = createSlice({
     clearErrors: (state) => {
       state.errors = {};
     },
-    setDatePeriod: (state, { payload }: { payload: Partial<DashboardPeriod> }) => {
-      if (payload.type) state.period.prevType = state.period.type
+    setActivePeriod: (state, { payload }: { payload: DashboardPeriod }) => {
+      if (payload.type) state.activePeriod.prevType = state.activePeriod.type
       
-      state.period = {
-        ...state.period,
+      state.activePeriod = {
+        ...state.activePeriod,
         ...payload
       };
 
       LS.setDashboardData({
         ...state,
-        period: {
-          ...state.period,
+        activePeriod: {
+          ...payload
+        }
+      });
+    },
+    setSelectedPeriod: (state, { payload }: { payload: Partial<DashboardPeriod> }) => {
+      if (payload.type) state.selectedPeriod.prevType = state.selectedPeriod.type
+      
+      state.selectedPeriod = {
+        ...state.selectedPeriod,
+        ...payload
+      };
+
+      LS.setDashboardData({
+        ...state,
+        selectedPeriod: {
+          ...state.selectedPeriod,
           ...payload
         }
       });
