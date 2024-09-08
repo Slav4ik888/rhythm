@@ -3,9 +3,13 @@ import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
 import { DashboardPeriod, StateSchemaDashboard } from '../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
-import { getData, ResGetData } from 'features/dashboard';
+import { getData, PayloadGetData } from 'features/dashboard';
 import { DashboardPeriodType } from '../config';
+import { getFilteredDataByPeriod, getFilteredDatesByPeriod } from '../utils';
+import {  } from 'features/dashboard/get-data/model/types';
 
+
+// TODO: validate dates data (проверить даты на упорядоченность и на то, что дата, является датой)
 
 
 const emptyPeriod: DashboardPeriod = {
@@ -15,17 +19,27 @@ const emptyPeriod: DashboardPeriod = {
   end      : undefined
 };
 
-  
-const initialState: StateSchemaDashboard = {
-  weekData       : LS.getDashboardData()?.weekData    || [],
-  monthData      : LS.getDashboardData()?.monthData   || [],
-  lastUpdated    : LS.getDashboardData()?.lastUpdated || undefined, // Дата последнего обновления
-  
-  activePeriod   : LS.getDashboardData()?.activePeriod || { ...emptyPeriod },
-  selectedPeriod : LS.getDashboardData()?.activePeriod || { ...emptyPeriod },
 
-  loading        : false,
-  errors         : {}
+const weekData     = LS.getDashboardData()?.weekData     || [];
+const monthData    = LS.getDashboardData()?.weekData     || [];
+const activePeriod = LS.getDashboardData()?.activePeriod || { ...emptyPeriod };
+  
+
+const initialState: StateSchemaDashboard = {
+  weekData,
+  monthData,
+  lastUpdated              : LS.getDashboardData()?.lastUpdated || undefined, // Дата последнего обновления
+  
+  selectedPeriod           : activePeriod,
+  activePeriod,
+
+  filteredWeekDatesColumn  : getFilteredDatesByPeriod(weekData, activePeriod),
+  filteredWeekData         : getFilteredDataByPeriod(weekData, activePeriod),
+  filteredMonthDatesColumn : getFilteredDatesByPeriod(monthData, activePeriod),
+  filteredMonthData        : getFilteredDataByPeriod(monthData, activePeriod),
+
+  loading                  : false,
+  errors                   : {}
 };
 
 
@@ -47,6 +61,11 @@ export const slice = createSlice({
         ...payload
       };
 
+      state.filteredWeekDatesColumn  = getFilteredDatesByPeriod(state.weekData, payload),
+      state.filteredWeekData         = getFilteredDataByPeriod(state.weekData, payload),
+      state.filteredMonthDatesColumn = getFilteredDatesByPeriod(state.monthData, payload),
+      state.filteredMonthData        = getFilteredDataByPeriod(state.monthData, payload),
+    
       LS.setDashboardData({
         ...state,
         activePeriod: {
@@ -79,13 +98,18 @@ export const slice = createSlice({
         state.loading = true;
         state.errors  = {};
       })
-      .addCase(getData.fulfilled, (state, { payload }: PayloadAction<ResGetData>) => {
-        const { weekData = [], monthData = [] } = payload;
+      .addCase(getData.fulfilled, (state, { payload }: PayloadAction<PayloadGetData>) => {
+        const { startEntities = {}, startDates = {} } = payload;
 
-        state.weekData    = weekData;
-        state.monthData   = monthData;
+        state.startEntities = startEntities;
+        state.startDates    = startDates;
         state.lastUpdated = new Date().getTime();
 
+        state.filteredWeekDatesColumn  = getFilteredDatesByPeriod(weekData, state.activePeriod),
+        state.filteredWeekData         = getFilteredDataByPeriod(weekData, state.activePeriod),
+        state.filteredMonthDatesColumn = getFilteredDatesByPeriod(monthData, state.activePeriod),
+        state.filteredMonthData        = getFilteredDataByPeriod(monthData, state.activePeriod),
+          
         state.loading     = false;
         state.errors      = {};
 

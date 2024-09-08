@@ -13,22 +13,13 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useMemo, FC } from "react";
-
-// react-chartjs-2 components
+import { FC, ReactNode } from "react";
 import "chart.js/auto";
 import { Chart } from "react-chartjs-2";
-
-// @mui material components
-import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
 import Icon from "@mui/material/Icon";
-
-// Material Dashboard 2 React components
 import MDBox from "shared/ui/mui-design-components/md-box";
 import MDTypography from "shared/ui/mui-design-components/md-typography";
-
-// ReportsLineChart configurations
 import { configs } from "./configs";
 import { ColorName } from 'app/providers/theme';
 import { ChartConfigDataSets } from '../../types';
@@ -38,7 +29,7 @@ import { ChartConfigDataSets } from '../../types';
 interface Props {
   color?: ColorName
   title: string
-  description: string | React.ReactNode
+  description: string | ReactNode
   date: string
   chart: {
     labels: any[],

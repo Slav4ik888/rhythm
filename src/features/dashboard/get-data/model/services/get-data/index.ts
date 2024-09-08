@@ -3,13 +3,13 @@ import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/stor
 import { actionsUI } from 'entities/ui';
 import { Errors } from 'shared/lib/validators';
 import cfg from 'shared/api/keys';
-import { transformGSData } from './utils';
-import { ResGetData } from '../../types';
+import { getEntities } from './utils';
+import { ResGetData, PayloadGetData } from '../../types';
 
 
 
 export const getData = createAsyncThunk<
-  ResGetData,
+  PayloadGetData,
   undefined,
   ThunkConfig<Errors>
 >(
@@ -19,14 +19,12 @@ export const getData = createAsyncThunk<
     const { extra, dispatch, rejectWithValue } = thunkApi;
     
     try {
-      const { data: { monthData, weekData } } = await extra.api.get<ResGetData>(cfg.URL_OSNOVA);
+      const { data } = await extra.api.get<ResGetData>(cfg.URL_OSNOVA);
 
+      const gsData = getEntities(data);
       dispatch(actionsUI.setSuccessMessage("Данные с гугл-таблицы загружены"));
     
-      return {
-        weekData  : transformGSData(weekData),
-        monthData : transformGSData(monthData)
-      };
+      return gsData;
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);

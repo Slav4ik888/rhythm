@@ -1,22 +1,19 @@
-import { FC, memo } from "react";
+import { FC, memo, ReactNode } from "react";
 import Card from "@mui/material/Card";
-import MDBox from "shared/ui/mui-design-components/md-box";
 import { pxToRem } from 'app/providers/theme';
 
 
 
 interface Props {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 
 export const DashboardReportContainer: FC<Props> = memo(({ children }) => {
 
   return (
-    <Card sx={{ height: "100%", width: pxToRem(400), maxWidth: pxToRem(400), mr: 3 }}>
-      <MDBox padding="1rem">
-        {children}
-      </MDBox>
+    <Card sx={{ height: "100%", width: pxToRem(400), maxWidth: pxToRem(400), mr: 3, p: "1rem" }}>
+      {children}
     </Card>
   );
 });

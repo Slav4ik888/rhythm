@@ -24,7 +24,8 @@ const calcStartDate = (dateMs: number | undefined, shiftYear: number, shiftMonth
 
   const { year, month, day } = splitDate(dateMs);
 
-  const startDate = new Date(year + shiftYear, month + shiftMonth, day + 1 + shiftDay, 23, 59, 59, 999);
+  // const startDate = new Date(year + shiftYear, month + shiftMonth, day + 1 + shiftDay, 23, 59, 59, 999);
+  const startDate = new Date(year + shiftYear, month + shiftMonth, day + 1 + shiftDay, 0, 0, 0, 1);
   // console.log('startDate: ', startDate);
 
   return startDate.getTime()

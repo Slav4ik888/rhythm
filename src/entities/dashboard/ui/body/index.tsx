@@ -21,7 +21,9 @@ import reportsBarChartData from "../../model/example-data/reportsBarChartData";
 import reportsLineChartData from "../../model/example-data/reportsLineChartData";
 import { DashboardBlockContainer, DashboardReportContainer } from 'entities/blocks';
 import { DashboardBodyWrapper } from './body-wrapper';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import { selectFilteredMonthData, selectFilteredMonthDatesColumn, selectFilteredWeekData, selectFilteredWeekDatesColumn } from 'entities/dashboard';
 
 // Dashboard components
 // import Projects from "layouts/dashboard/components/Projects";
@@ -30,8 +32,15 @@ import { memo } from 'react';
 
 
 export const DashboardBody = memo(() => {
-  const { sales, tasks } = reportsLineChartData;
   console.log('DashboardBody ');
+  const weekDates = useSelector(selectFilteredWeekDatesColumn);
+  const filteredWeekData = useSelector(selectFilteredWeekData);
+  const monthDates = useSelector(selectFilteredMonthDatesColumn);
+  const filteredMonthData = useSelector(selectFilteredMonthData);
+
+  const data7_1 = useMemo(() => getDataByKod(filteredWeekData, "7-1"), [filteredWeekData]);
+  
+  // const { sales, tasks } = reportsLineChartData;
 
   return (
     <DashboardBodyWrapper>
@@ -47,7 +56,13 @@ export const DashboardBody = memo(() => {
               </>
             }
             date="updated 4 min ago"
-            chart={tasks}
+            chart={{
+              labels   : weekDates,
+              datasets : {
+                label : "Сумма кредиторской задолженности",
+                data  : data7_1
+              },
+            }}
           />
         </DashboardReportContainer>
         <DashboardReportContainer>

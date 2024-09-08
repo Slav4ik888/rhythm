@@ -1,14 +1,34 @@
 import { Errors } from 'shared/lib/validators';
-import { DashboardData } from './dashboard';
+import { DashboardPeriod, DashboardStatisticItem } from './dashboard';
 
 
 
-// export interface DashboardDataEntities {
-//   [x: string]: DashboardData
-// }
+export interface DashboardEntities {
+  [kod: string]: DashboardStatisticItem
+}
 
+export interface DashboardDates {
+  [statistic_type: string]: string[]
+}
 
-export interface StateSchemaDashboard extends DashboardData {
+export interface StateSchemaDashboard {
+  // Загруженные данные из гугл-таблицы
+  startEntities  : DashboardEntities
+  startDates     : DashboardDates
+  lastUpdated    : number | undefined   // Дата последнего обновления (загрузки из гугл)
+
+  // Отфильтрованные по периоду дат activePeriod
+  
+  selectedPeriod : DashboardPeriod // Выбранный на панели, но не активированный период дат
+  activePeriod   : DashboardPeriod // Текущий период, по которому отрисованы графики
+  entities       : DashboardEntities
+  dates          : DashboardDates
+
+  // filteredMonthDatesColumn : DashboardDataSegmentColumnDates
+  // filteredMonthData        : DashboardDataSegment 
+  // filteredWeekDatesColumn  : DashboardDataSegmentColumnDates
+  // filteredWeekData         : DashboardDataSegment
+
   loading        : boolean
   errors         : Errors
 }

@@ -1,8 +1,13 @@
+import { DashboardEntities, DashboardDates } from 'entities/dashboard';
 
+
+export type GoogleSheetData = Array<Array<string | number>>
 
 export interface ResGetData {
-  weekData  : GoogleSheetData
-  monthData : GoogleSheetData
+  [k: string]: GoogleSheetData
 }
 
-export type GoogleSheetData = Array<Array<string | number>>;
+export interface PayloadGetData {
+  startEntities : DashboardEntities
+  startDates    : DashboardDates
+}

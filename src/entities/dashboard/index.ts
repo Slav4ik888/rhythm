@@ -1,10 +1,11 @@
 export { Dashboard } from './ui'
 export {
-  DashboardDataSegment, StateSchemaDashboard, DashboardData, DashboardPeriod
+  DashboardEntities, DashboardDates, StateSchemaDashboard, DashboardData, DashboardPeriod
 } from './model/types'
 export { DASHBOARD_PERIOD_TEXT, DashboardPeriodType, arrayDashboardPeriodType } from './model/config'
 export { actions as actionsDashboard, reducer as reducerDashboard } from './model/slice'
 export {
   selectLoading, selectErrors, selectActivePeriod, selectSelectedPeriod, selectLastUpdated,
-  selectMonthData, selectWeekData
+  selectMonthData, selectWeekData,
+  selectFilteredWeekDatesColumn, selectFilteredWeekData, selectFilteredMonthDatesColumn, selectFilteredMonthData
 } from './model/selectors'
