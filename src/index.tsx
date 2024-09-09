@@ -29,4 +29,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "08.09.2024 start refact entities" && git push -u origin main
+// git add . && git commit -m "09.09.2024 create getEntities" && git push -u origin main
