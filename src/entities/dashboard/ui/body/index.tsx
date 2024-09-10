@@ -23,7 +23,8 @@ import { DashboardBlockContainer, DashboardReportContainer } from 'entities/bloc
 import { DashboardBodyWrapper } from './body-wrapper';
 import { memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { selectFilteredMonthData, selectFilteredMonthDatesColumn, selectFilteredWeekData, selectFilteredWeekDatesColumn } from 'entities/dashboard';
+import {  } from 'entities/dashboard';
+import { selectActiveDates, selectActiveEntities } from '../../model/selectors';
 
 // Dashboard components
 // import Projects from "layouts/dashboard/components/Projects";
@@ -33,14 +34,17 @@ import { selectFilteredMonthData, selectFilteredMonthDatesColumn, selectFiltered
 
 export const DashboardBody = memo(() => {
   console.log('DashboardBody ');
-  const weekDates = useSelector(selectFilteredWeekDatesColumn);
-  const filteredWeekData = useSelector(selectFilteredWeekData);
-  const monthDates = useSelector(selectFilteredMonthDatesColumn);
-  const filteredMonthData = useSelector(selectFilteredMonthData);
+  const activeEntities = useSelector(selectActiveEntities);
+  const activeDates    = useSelector(selectActiveDates);
 
-  const data7_1 = useMemo(() => getDataByKod(filteredWeekData, "7-1"), [filteredWeekData]);
+  const data7_1 = useMemo(() => {
+    console.log('activeEntities: ', activeEntities);
+    return activeEntities["7-1"]?.data as number[]
+  }, [activeEntities]);
+
+  console.log('data7_1: ', data7_1);
   
-  // const { sales, tasks } = reportsLineChartData;
+  const { sales, tasks } = reportsLineChartData;
 
   return (
     <DashboardBodyWrapper>
@@ -57,7 +61,7 @@ export const DashboardBody = memo(() => {
             }
             date="updated 4 min ago"
             chart={{
-              labels   : weekDates,
+              labels   : activeDates['Нед'],
               datasets : {
                 label : "Сумма кредиторской задолженности",
                 data  : data7_1

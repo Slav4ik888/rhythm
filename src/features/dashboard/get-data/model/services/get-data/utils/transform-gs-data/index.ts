@@ -3,9 +3,7 @@ import { DashboardItemData, DashboardStatisticItem } from 'entities/dashboard';
 import { GoogleSheetData, ResGetData, PayloadGetData } from '../../../../types';
 
 
-
-
-
+/** Returns startEntities & startDates  */
 export const getEntities = (data: ResGetData): PayloadGetData => {
   const startEntities: DashboardEntities = {};
   const startDates: DashboardDates = {};
@@ -30,13 +28,13 @@ export const getEntities = (data: ResGetData): PayloadGetData => {
 
         // Проверить есть ли код, соответствует ли statisticType данной вкладке и idx !== 0 (это колонка с датой)
         if (kod && idx && validStatisticType) {
-          startEntities[kod] = {} as DashboardStatisticItem;
-          startEntities[kod].kod            = kod;
+          startEntities[kod]               = {} as DashboardStatisticItem;
+          startEntities[kod].kod           = kod;
           startEntities[kod].statisticType = currentStatisticType;
           startEntities[kod].companyType   = columnData[companyTypeIdx] as string;
           startEntities[kod].productType   = columnData[productTypeIdx] as string;
-          startEntities[kod].title          = columnData[titleIdx] as string;
-          startEntities[kod].data           = columnData.slice(dataRow - 1);
+          startEntities[kod].title         = columnData[titleIdx] as string;
+          startEntities[kod].data          = columnData.slice(dataRow - 1);
         }
       });
 

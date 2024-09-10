@@ -5,8 +5,8 @@ import { DashboardPeriod, StateSchemaDashboard } from '../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { getData, PayloadGetData } from 'features/dashboard';
 import { DashboardPeriodType } from '../config';
-import { getFilteredDataByPeriod, getFilteredDatesByPeriod } from '../utils';
-import {  } from 'features/dashboard/get-data/model/types';
+import { getEntitiesByPeriod } from '../utils';
+
 
 
 // TODO: validate dates data (проверить даты на упорядоченность и на то, что дата, является датой)
@@ -14,29 +14,33 @@ import {  } from 'features/dashboard/get-data/model/types';
 
 const emptyPeriod: DashboardPeriod = {
   type     : DashboardPeriodType.NINE_MONTHS,
-  prevType : DashboardPeriodType.NINE_MONTHS,
+  // prevType : DashboardPeriodType.NINE_MONTHS,
   start    : undefined,
   end      : undefined
 };
 
 
-const weekData     = LS.getDashboardData()?.weekData     || [];
-const monthData    = LS.getDashboardData()?.weekData     || [];
-const activePeriod = LS.getDashboardData()?.activePeriod || { ...emptyPeriod };
-  
+const startEntities  = LS.getDashboardState()?.startEntities  || {};
+const startDates     = LS.getDashboardState()?.startDates     || {};
+const activePeriod   = LS.getDashboardState()?.activePeriod   || { ...emptyPeriod };
+const activeEntities = LS.getDashboardState()?.activeEntities || {};
+const activeDates    = LS.getDashboardState()?.activeDates    || {};
+
 
 const initialState: StateSchemaDashboard = {
-  weekData,
-  monthData,
-  lastUpdated              : LS.getDashboardData()?.lastUpdated || undefined, // Дата последнего обновления
+  startEntities,
+  startDates,
+  lastUpdated              : LS.getDashboardState()?.lastUpdated || undefined, // Дата последнего обновления
   
   selectedPeriod           : activePeriod,
   activePeriod,
+  activeEntities,
+  activeDates,
 
-  filteredWeekDatesColumn  : getFilteredDatesByPeriod(weekData, activePeriod),
-  filteredWeekData         : getFilteredDataByPeriod(weekData, activePeriod),
-  filteredMonthDatesColumn : getFilteredDatesByPeriod(monthData, activePeriod),
-  filteredMonthData        : getFilteredDataByPeriod(monthData, activePeriod),
+  // filteredWeekDatesColumn  : getFilteredDatesByPeriod(weekData, activePeriod),
+  // filteredWeekData         : getFilteredDataByPeriod(weekData, activePeriod),
+  // filteredMonthDatesColumn : getFilteredDatesByPeriod(monthData, activePeriod),
+  // filteredMonthData        : getFilteredDataByPeriod(monthData, activePeriod),
 
   loading                  : false,
   errors                   : {}
@@ -54,34 +58,40 @@ export const slice = createSlice({
       state.errors = {};
     },
     setActivePeriod: (state, { payload }: { payload: DashboardPeriod }) => {
-      if (payload.type) state.activePeriod.prevType = state.activePeriod.type
+      // if (payload.type) state.activePeriod.prevType = state.activePeriod.type
       
       state.activePeriod = {
         ...state.activePeriod,
         ...payload
       };
 
-      state.filteredWeekDatesColumn  = getFilteredDatesByPeriod(state.weekData, payload),
-      state.filteredWeekData         = getFilteredDataByPeriod(state.weekData, payload),
-      state.filteredMonthDatesColumn = getFilteredDatesByPeriod(state.monthData, payload),
-      state.filteredMonthData        = getFilteredDataByPeriod(state.monthData, payload),
+      const { activeDates, activeEntities } = getEntitiesByPeriod(state.startEntities, state.startDates, state.activePeriod);
+      state.activeEntities = activeEntities;
+      state.activeDates    = activeDates;
+
+      // state.filteredWeekDatesColumn  = getFilteredDatesByPeriod(state.weekData, payload),
+      // state.filteredWeekData         = getFilteredDataByPeriod(state.weekData, payload),
+      // state.filteredMonthDatesColumn = getFilteredDatesByPeriod(state.monthData, payload),
+      // state.filteredMonthData        = getFilteredDataByPeriod(state.monthData, payload),
     
-      LS.setDashboardData({
+      LS.setDashboardState({
         ...state,
+        activeEntities,
+        activeDates,
         activePeriod: {
           ...payload
         }
       });
     },
     setSelectedPeriod: (state, { payload }: { payload: Partial<DashboardPeriod> }) => {
-      if (payload.type) state.selectedPeriod.prevType = state.selectedPeriod.type
+      // if (payload.type) state.selectedPeriod.prevType = state.selectedPeriod.type
       
       state.selectedPeriod = {
         ...state.selectedPeriod,
         ...payload
       };
 
-      LS.setDashboardData({
+      LS.setDashboardState({
         ...state,
         selectedPeriod: {
           ...state.selectedPeriod,
@@ -100,23 +110,28 @@ export const slice = createSlice({
       })
       .addCase(getData.fulfilled, (state, { payload }: PayloadAction<PayloadGetData>) => {
         const { startEntities = {}, startDates = {} } = payload;
-
         state.startEntities = startEntities;
         state.startDates    = startDates;
-        state.lastUpdated = new Date().getTime();
+        state.lastUpdated   = new Date().getTime();
 
-        state.filteredWeekDatesColumn  = getFilteredDatesByPeriod(weekData, state.activePeriod),
-        state.filteredWeekData         = getFilteredDataByPeriod(weekData, state.activePeriod),
-        state.filteredMonthDatesColumn = getFilteredDatesByPeriod(monthData, state.activePeriod),
-        state.filteredMonthData        = getFilteredDataByPeriod(monthData, state.activePeriod),
+        const { activeDates, activeEntities } = getEntitiesByPeriod(startEntities, startDates, state.activePeriod);
+        state.activeEntities = activeEntities;
+        state.activeDates    = activeDates;
+
+        // state.filteredWeekDatesColumn  = getFilteredDatesByPeriod(weekData, state.activePeriod),
+        // state.filteredWeekData         = getFilteredDataByPeriod(weekData, state.activePeriod),
+        // state.filteredMonthDatesColumn = getFilteredDatesByPeriod(monthData, state.activePeriod),
+        // state.filteredMonthData        = getFilteredDataByPeriod(monthData, state.activePeriod),
           
         state.loading     = false;
         state.errors      = {};
 
-        LS.setDashboardData({
+        LS.setDashboardState({
           ...state,
-          weekData,
-          monthData
+          startEntities,
+          startDates,
+          activeEntities,
+          activeDates,
         });
       })
       .addCase(getData.rejected, (state, { payload }) => {

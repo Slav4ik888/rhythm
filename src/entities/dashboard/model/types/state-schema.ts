@@ -8,7 +8,7 @@ export interface DashboardEntities {
 }
 
 export interface DashboardDates {
-  [statistic_type: string]: string[]
+  [statisticType: string]: string[]
 }
 
 export interface StateSchemaDashboard {
@@ -21,8 +21,8 @@ export interface StateSchemaDashboard {
   
   selectedPeriod : DashboardPeriod // Выбранный на панели, но не активированный период дат
   activePeriod   : DashboardPeriod // Текущий период, по которому отрисованы графики
-  entities       : DashboardEntities
-  dates          : DashboardDates
+  activeEntities : DashboardEntities
+  activeDates    : DashboardDates
 
   // filteredMonthDatesColumn : DashboardDataSegmentColumnDates
   // filteredMonthData        : DashboardDataSegment 

@@ -29,4 +29,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "09.09.2024 create getEntities" && git push -u origin main
+// git add . && git commit -m "10.09.2024 finished getEntities" && git push -u origin main
