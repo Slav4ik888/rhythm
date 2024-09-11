@@ -37,11 +37,6 @@ const initialState: StateSchemaDashboard = {
   activeEntities,
   activeDates,
 
-  // filteredWeekDatesColumn  : getFilteredDatesByPeriod(weekData, activePeriod),
-  // filteredWeekData         : getFilteredDataByPeriod(weekData, activePeriod),
-  // filteredMonthDatesColumn : getFilteredDatesByPeriod(monthData, activePeriod),
-  // filteredMonthData        : getFilteredDataByPeriod(monthData, activePeriod),
-
   loading                  : false,
   errors                   : {}
 };
@@ -69,11 +64,6 @@ export const slice = createSlice({
       state.activeEntities = activeEntities;
       state.activeDates    = activeDates;
 
-      // state.filteredWeekDatesColumn  = getFilteredDatesByPeriod(state.weekData, payload),
-      // state.filteredWeekData         = getFilteredDataByPeriod(state.weekData, payload),
-      // state.filteredMonthDatesColumn = getFilteredDatesByPeriod(state.monthData, payload),
-      // state.filteredMonthData        = getFilteredDataByPeriod(state.monthData, payload),
-    
       LS.setDashboardState({
         ...state,
         activeEntities,
@@ -118,11 +108,6 @@ export const slice = createSlice({
         state.activeEntities = activeEntities;
         state.activeDates    = activeDates;
 
-        // state.filteredWeekDatesColumn  = getFilteredDatesByPeriod(weekData, state.activePeriod),
-        // state.filteredWeekData         = getFilteredDataByPeriod(weekData, state.activePeriod),
-        // state.filteredMonthDatesColumn = getFilteredDatesByPeriod(monthData, state.activePeriod),
-        // state.filteredMonthData        = getFilteredDataByPeriod(monthData, state.activePeriod),
-          
         state.loading     = false;
         state.errors      = {};
 

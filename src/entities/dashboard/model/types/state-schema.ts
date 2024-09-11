@@ -24,11 +24,6 @@ export interface StateSchemaDashboard {
   activeEntities : DashboardEntities
   activeDates    : DashboardDates
 
-  // filteredMonthDatesColumn : DashboardDataSegmentColumnDates
-  // filteredMonthData        : DashboardDataSegment 
-  // filteredWeekDatesColumn  : DashboardDataSegmentColumnDates
-  // filteredWeekData         : DashboardDataSegment
-
   loading        : boolean
   errors         : Errors
 }

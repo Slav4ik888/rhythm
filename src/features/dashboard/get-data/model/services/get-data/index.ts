@@ -5,6 +5,7 @@ import { Errors } from 'shared/lib/validators';
 import cfg from 'shared/api/keys';
 import { getEntities } from './utils';
 import { ResGetData, PayloadGetData } from '../../types';
+import { LS } from 'shared/lib/local-storage';
 
 
 
@@ -20,6 +21,11 @@ export const getData = createAsyncThunk<
     
     try {
       const { data } = await extra.api.get<ResGetData>(cfg.URL_OSNOVA);
+      // **
+      // For development - сохраняем входящие данные в localStorage
+      // const data = LS.devGetGSData();
+      // console.log('GS data: ', data);
+      LS.devSetGSData(data);
 
       const gsData = getEntities(data);
       dispatch(actionsUI.setSuccessMessage("Данные с гугл-таблицы загружены"));

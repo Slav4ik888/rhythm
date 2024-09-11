@@ -1,5 +1,6 @@
 import { ColorMode } from 'app/providers/theme';
 import { StateSchemaDashboard } from 'entities/dashboard';
+import { ResGetData } from 'features/dashboard/get-data/model/types';
 import { setStorageData, getStorageData, removeStorageData } from './main';
 import { Names } from './names';
 
@@ -10,6 +11,10 @@ export const getColorMode = () => getStorageData<ColorMode>('ColorMode');
 
 export const setDashboardState = (state: StateSchemaDashboard) => setStorageData('DashboardState', state);
 export const getDashboardState = () => getStorageData<object>('DashboardState') as StateSchemaDashboard;
+
+export const devSetGSData = (data: ResGetData) => setStorageData('Dashboard-GSData', data);
+export const devGetGSData = () => getStorageData<object>('Dashboard-GSData') as ResGetData;
+
 
 // export const setDashboardData = (data: DashboardData) => setStorageData('DashboardData', data);
 // export const getDashboardData = () => getStorageData<object>('DashboardData') as DashboardData;

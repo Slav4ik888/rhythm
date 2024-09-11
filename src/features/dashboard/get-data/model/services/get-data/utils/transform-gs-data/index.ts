@@ -55,17 +55,14 @@ function getIdxAnchors(allSheetData: DashboardItemData[]) {
   const getIdxByKod = (label: string): number => allSheetData[0].findIndex(value => value === label);
 
   return {
-    kodIdx           : getIdxByKod('kod'),
-    statisticTypeIdx : getIdxByKod('statisticType'),
-    companyTypeIdx   : getIdxByKod('companyType'),
-    productTypeIdx   : getIdxByKod('productType'),
-    titleIdx         : getIdxByKod('title')
+    kodIdx           : getIdxByKod('#kod'),
+    statisticTypeIdx : getIdxByKod('#statisticType'),
+    companyTypeIdx   : getIdxByKod('#companyType'),
+    productTypeIdx   : getIdxByKod('#productType'),
+    titleIdx         : getIdxByKod('#title')
   }
 }
 
-
-
-const ROW_PREFIX = 'col_';
 
 
 /**
@@ -92,11 +89,11 @@ function transformToObject(data: GoogleSheetData): ObjGSData {
 
   for (let rowIdx = 0; rowIdx < data.length; rowIdx++) {
     for (let colIdx = 0; colIdx < data[rowIdx]?.length; colIdx++) {
-      if (!obj[`${ROW_PREFIX}${colIdx}`]) {
-        obj[`${ROW_PREFIX}${colIdx}`] = [];
+      if (!obj[`col_${colIdx}`]) {
+        obj[`col_${colIdx}`] = [];
       }
 
-      obj[`${ROW_PREFIX}${colIdx}`].push(data[rowIdx][colIdx]);
+      obj[`col_${colIdx}`].push(data[rowIdx][colIdx]);
     }
   }
 
@@ -108,7 +105,6 @@ function transformToObject(data: GoogleSheetData): ObjGSData {
 
 function transformToArray(obj: ObjGSData): DashboardItemData[] {
   const res: DashboardItemData[] = [];
-
 
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {

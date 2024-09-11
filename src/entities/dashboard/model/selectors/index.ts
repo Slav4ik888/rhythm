@@ -13,10 +13,5 @@ export const selectSelectedPeriod = (state: StateSchema) => selectModule(state).
 export const selectActiveEntities = (state: StateSchema) => selectModule(state).activeEntities || {};
 export const selectActiveDates    = (state: StateSchema) => selectModule(state).activeDates || {};
 
-// export const selectFilteredWeekDatesColumn  = (state: StateSchema) => selectModule(state).filteredWeekDatesColumn || [];
-// export const selectFilteredWeekData         = (state: StateSchema) => selectModule(state).filteredWeekData || [];
-// export const selectFilteredMonthDatesColumn = (state: StateSchema) => selectModule(state).filteredMonthDatesColumn || [];
-// export const selectFilteredMonthData        = (state: StateSchema) => selectModule(state).filteredMonthData || [];
-
 export const selectLoading        = (state: StateSchema) => selectModule(state).loading;
 export const selectErrors         = (state: StateSchema) => selectModule(state).errors;
