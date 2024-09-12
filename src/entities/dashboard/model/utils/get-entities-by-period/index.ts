@@ -23,9 +23,7 @@ export function getEntitiesByPeriod(
 
   // Обрабатываем каждую вкладку 
   for (const statisticType in startDates) {
-
     if (Object.prototype.hasOwnProperty.call(startDates, statisticType)) {
-      console.log(1);
       const startIdx = getStartIdx(startDates[statisticType], period);
       const endIdx   = getEndIdx(startDates[statisticType], period);
       activeDates[statisticType] = [...startDates[statisticType].slice(startIdx, endIdx + 1)];
@@ -42,9 +40,6 @@ export function getEntitiesByPeriod(
       }
     }
   }
-
-  console.log('activeEntities: ', activeEntities);
-  console.log('activeDates: ', activeDates);
 
   return {
     activeEntities,

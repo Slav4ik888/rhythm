@@ -59,6 +59,13 @@ export default styled(Box)(({ theme, ownerState }) => {
     "error",
     "dark",
     "light",
+    "department_7",
+    "department_1",
+    "department_2",
+    "department_3",
+    "department_4",
+    "department_5",
+    "department_6",
   ];
 
   const validColors = [

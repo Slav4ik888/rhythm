@@ -2,6 +2,7 @@ import { isUndefined } from 'shared/lib/validators';
 import { FORMAT, getMonth, getMonthDDсYYYY, getMonthYYYY, SUB, getDDMonthYYYY,
 getDMonthYYYY, getDMonthYYYYHHMM, getYYYYMMDDt, getYYYYMMDD, getDDMMYYYYt, getDDMMYYYYd,
 getDDMMYYdHHMM, getHHMM } from '..';
+import { getDDMMYYd } from '../utils/formats/get-dd-mm-yy-d';
 
 
 // Validate
@@ -9,16 +10,16 @@ const isNoCorrect = (ms: number) => ! ms || ms < 0 || typeof ms !== 'number';
 
 
 /**
- * v.2023-04-28
+ * v.2024-09-12
  * Возвращаем дату от time в нужном формате
  * @return {string} - дата в нужном формате
  */
 export function formatDate(
   _ms    : number | string | undefined, // таймстамп
-  format : string,          // формат, в котором нужно вернуть ms
+  format : FORMAT,          // формат, в котором нужно вернуть ms
   sub    : SUB = SUB.EN,    // если нужно в на русском или нужно склонение 'Февраля'
 ): string {                 // дата в нужном формате
-  if (isUndefined(_ms)) return '';
+  if (isUndefined(_ms)) return 'Указана некорректная дата';
 
   let date;
   
@@ -31,18 +32,19 @@ export function formatDate(
     
 
   switch (format) {
-    case FORMAT.Month:          return getMonth          (date, sub);
-    case FORMAT.MonthYYYY:      return getMonthYYYY      (date, sub);
-    case FORMAT.MonthDDсYYYY:   return getMonthDDсYYYY   (date, sub);
-    case FORMAT.DDMonthYYYY:    return getDDMonthYYYY    (date, sub);
-    case FORMAT.DMonthYYYY:     return getDMonthYYYY     (date, sub);
-    case FORMAT.DMonthYYYYHHMM: return getDMonthYYYYHHMM (date, sub);
-    case FORMAT.YYYYMMDDt:      return getYYYYMMDDt      (date);
-    case FORMAT.YYYYMMDD:       return getYYYYMMDD       (date);
-    case FORMAT.DDMMYYYYt:      return getDDMMYYYYt      (date);
-    case FORMAT.DDMMYYYYd:      return getDDMMYYYYd      (date);
-    case FORMAT.DDMMYYdHHMM:    return getDDMMYYdHHMM    (date);
-    case FORMAT.HHMM:           return getHHMM           (date);
+    case 'Month':              return getMonth          (date, sub);
+    case 'Month YYYY':         return getMonthYYYY      (date, sub);
+    case 'Month DD, YYYY':     return getMonthDDсYYYY   (date, sub);
+    case 'DD Month YYYY':      return getDDMonthYYYY    (date, sub);
+    case 'D Month YYYY':       return getDMonthYYYY     (date, sub);
+    case 'D Month YYYY HH:MM': return getDMonthYYYYHHMM (date, sub);
+    case 'YYYY-MM-DD':         return getYYYYMMDDt      (date);
+    case 'YYYYMMDD':           return getYYYYMMDD       (date);
+    case 'DD-MM-YYYY':         return getDDMMYYYYt      (date);
+    case 'DD.MM.YYYY':         return getDDMMYYYYd      (date);
+    case 'DD.MM.YY':           return getDDMMYYd        (date);
+    case 'DD.MM.YY HH:MM':     return getDDMMYYdHHMM    (date);
+    case 'HH:MM':              return getHHMM           (date);
 
     default: return String(date);
   }

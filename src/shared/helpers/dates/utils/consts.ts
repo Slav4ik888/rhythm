@@ -1,17 +1,33 @@
-export enum FORMAT {
-  Month          = 'Month',
-  MonthYYYY      = 'Month YYYY',
-  MonthDDсYYYY   = 'Month DD, YYYY',
-  DDMonthYYYY    = 'DD Month YYYY',
-  DMonthYYYY     = 'D Month YYYY',
-  DMonthYYYYHHMM = 'D Month YYYY HH:MM',
-  YYYYMMDDt      = 'YYYY-MM-DD',
-  YYYYMMDD       = 'YYYYMMDD',
-  DDMMYYYYt      = 'DD-MM-YYYY',
-  DDMMYYYYd      = 'DD.MM.YYYY',
-  DDMMYYdHHMM    = 'DD.MM.YY HH:MM',
-  HHMM           = 'HH:MM',
-}
+
+export type FORMAT = 'Month'
+  | 'Month YYYY'
+  | 'Month DD, YYYY'
+  | 'DD Month YYYY'
+  | 'D Month YYYY'
+  | 'D Month YYYY HH:MM'
+  | 'YYYY-MM-DD'
+  | 'YYYYMMDD'
+  | 'DD-MM-YYYY'
+  | 'DD.MM.YYYY'
+  | 'DD.MM.YY'
+  | 'DD.MM.YY HH:MM'
+  | 'HH:MM'
+
+// export enum FORMAT {
+//   Month          = 'Month',
+//   MonthYYYY      = 'Month YYYY',
+//   MonthDDсYYYY   = 'Month DD, YYYY',
+//   DDMonthYYYY    = 'DD Month YYYY',
+//   DMonthYYYY     = 'D Month YYYY',
+//   DMonthYYYYHHMM = 'D Month YYYY HH:MM',
+//   YYYYMMDDt      = 'YYYY-MM-DD',
+//   YYYYMMDD       = 'YYYYMMDD',
+//   DDMMYYYYt      = 'DD-MM-YYYY',
+//   DDMMYYYYd      = 'DD.MM.YYYY',
+//   DDMMYYd        = 'DD.MM.YY',
+//   DDMMYYdHHMM    = 'DD.MM.YY HH:MM',
+//   HHMM           = 'HH:MM',
+// }
 
 export enum SUB {
   EN      = 'en',

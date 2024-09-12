@@ -3,7 +3,7 @@ import { DashboardPeriodDates } from '../../../types';
 
 /** Возвращает индекс в массиве с датами, где заканчивается подходящий нам период */
 export const getEndIdx = (
-  dates: string[],
+  dates: number[],
   period: DashboardPeriodDates
 ): number => {
   if (! period?.end) return dates?.length ? dates.length - 1 : 0;

@@ -29,4 +29,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "11.09.2024 fix getEntities" && git push -u origin main
+// git add . && git commit -m "12.09.2024 refact formatDate" && git push -u origin main

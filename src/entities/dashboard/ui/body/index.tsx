@@ -25,6 +25,7 @@ import { memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import {  } from 'entities/dashboard';
 import { selectActiveDates, selectActiveEntities } from '../../model/selectors';
+import { formatDate } from 'shared/helpers/dates';
 
 // Dashboard components
 // import Projects from "layouts/dashboard/components/Projects";
@@ -37,12 +38,12 @@ export const DashboardBody = memo(() => {
   const activeEntities = useSelector(selectActiveEntities);
   const activeDates    = useSelector(selectActiveDates);
 
-  const data7_1 = useMemo(() => {
-    console.log('activeEntities: ', activeEntities);
-    return activeEntities["7-1"]?.data as number[]
-  }, [activeEntities]);
+  const formattedDates = useMemo(() => activeDates['Нед']?.map((item) => formatDate(item, 'DD.MM.YY')), [activeDates]);
+
+  const data7_1 = useMemo(() => activeEntities["7-1"]?.data as number[], [activeEntities]);
 
   console.log('data7_1: ', data7_1);
+  // TODO: Настройку выбора до скольки знаков после запятой округлить значения
   
   const { sales, tasks } = reportsLineChartData;
 
@@ -52,7 +53,7 @@ export const DashboardBody = memo(() => {
       <DashboardBlockContainer bgColor='department_7' my={5} p={3} pr={0}>
         <DashboardReportContainer>
           <ReportsLineChart2
-            color="success"
+            color="department_7"
             title="daily sales"
             description={
               <>
@@ -61,7 +62,7 @@ export const DashboardBody = memo(() => {
             }
             date="updated 4 min ago"
             chart={{
-              labels   : activeDates['Нед'],
+              labels   : formattedDates,
               datasets : {
                 label : "Сумма кредиторской задолженности",
                 data  : data7_1

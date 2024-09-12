@@ -2,9 +2,9 @@ import { formatDate } from './index';
 import mocks from './mocks';
 
 
-describe(`formatDate`, () => {
+describe('formatDate', () => {
   mocks.forEach((m) =>
-    it(`format = ${m[0].format} ${m[0].sub ? `, sub = ${m[0].sub}` : null}`,
+    it(`format = ${m[0].format} ${m[0].sub ? `, sub = ${m[0].sub}` : ''}`,
       () => expect(
         formatDate(m[0].ms, m[0].format, m[0].sub)
       )

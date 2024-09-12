@@ -3,6 +3,7 @@ import { DashboardItemData, DashboardStatisticItem } from 'entities/dashboard';
 import { GoogleSheetData, ResGetData, PayloadGetData } from '../../../../types';
 
 
+
 /** Returns startEntities & startDates  */
 export const getEntities = (data: ResGetData): PayloadGetData => {
   const startEntities: DashboardEntities = {};
@@ -39,7 +40,9 @@ export const getEntities = (data: ResGetData): PayloadGetData => {
       });
 
       // Добавляем в dates
-      startDates[sheetStatisticType] = allSheetData[0].slice(dataRow - 1) as string[];
+      startDates[sheetStatisticType] = allSheetData[0]
+        .slice(dataRow - 1)
+        .map(date => new Date(date).getTime());
     }
   }
 

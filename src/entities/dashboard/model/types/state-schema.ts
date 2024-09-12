@@ -8,7 +8,7 @@ export interface DashboardEntities {
 }
 
 export interface DashboardDates {
-  [statisticType: string]: string[]
+  [statisticType: string]: number[]
 }
 
 export interface StateSchemaDashboard {

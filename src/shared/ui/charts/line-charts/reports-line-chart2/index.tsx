@@ -38,14 +38,14 @@ interface Props {
 }
 
 
-export const ReportsLineChart2: FC<Props> = ({ color = "dark", title, description = "", date, chart }) => {
+export const ReportsLineChart2: FC<Props> = ({ color, title, description = "", date, chart }) => {
   const { data, options } = configs(chart.labels || [], chart.datasets || {});
 
   return (
     <>
       <MDBox
         variant="gradient"
-        bgColor={"secondary"}
+        bgColor={color}
         borderRadius="lg"
         coloredShadow={"secondary"}
         py={2}
