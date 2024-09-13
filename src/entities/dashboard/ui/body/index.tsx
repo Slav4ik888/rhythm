@@ -13,6 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+import { memo } from 'react';
 import { Grid } from '@mui/material';
 import MDBox from "shared/ui/mui-design-components/md-box";
 import { ComplexStatisticsCard } from 'shared/ui/cards/complex-statistics-card';
@@ -21,11 +22,7 @@ import reportsBarChartData from "../../model/example-data/reportsBarChartData";
 import reportsLineChartData from "../../model/example-data/reportsLineChartData";
 import { DashboardBlockContainer, DashboardReportContainer } from 'entities/blocks';
 import { DashboardBodyWrapper } from './body-wrapper';
-import { memo, useMemo } from 'react';
-import { useSelector } from 'react-redux';
-import {  } from 'entities/dashboard';
-import { selectActiveDates, selectActiveEntities } from '../../model/selectors';
-import { formatDate } from 'shared/helpers/dates';
+import { DashboardGroupDepartment7 } from 'widgets/dashboard/departments/department_7';
 
 // Dashboard components
 // import Projects from "layouts/dashboard/components/Projects";
@@ -35,60 +32,18 @@ import { formatDate } from 'shared/helpers/dates';
 
 export const DashboardBody = memo(() => {
   console.log('DashboardBody ');
-  const activeEntities = useSelector(selectActiveEntities);
-  const activeDates    = useSelector(selectActiveDates);
 
-  const formattedDates = useMemo(() => activeDates['Нед']?.map((item) => formatDate(item, 'DD.MM.YY')), [activeDates]);
-
-  const data7_1 = useMemo(() => activeEntities["7-1"]?.data as number[], [activeEntities]);
-
-  console.log('data7_1: ', data7_1);
-  // TODO: Настройку выбора до скольки знаков после запятой округлить значения
   
   const { sales, tasks } = reportsLineChartData;
 
   return (
     <DashboardBodyWrapper>
-
-      <DashboardBlockContainer bgColor='department_7' my={5} p={3} pr={0}>
-        <DashboardReportContainer>
-          <ReportsLineChart2
-            color="department_7"
-            title="daily sales"
-            description={
-              <>
-                (<strong>+15%</strong>) increase in today sales.
-              </>
-            }
-            date="updated 4 min ago"
-            chart={{
-              labels   : formattedDates,
-              datasets : {
-                label : "Сумма кредиторской задолженности",
-                data  : data7_1
-              },
-            }}
-          />
-        </DashboardReportContainer>
-        <DashboardReportContainer>
-          <ReportsLineChart2
-            color="success"
-            title="daily sales"
-            description={
-              <>
-                (<strong>+15%</strong>) increase in today sales.
-              </>
-            }
-            date="updated 4 min ago"
-            chart={sales}
-          />
-        </DashboardReportContainer>
-      </DashboardBlockContainer>
+      <DashboardGroupDepartment7 />
 
       <DashboardBlockContainer width="max-content" bgColor='department_1' my={5} p={3} pr={0}>
         <DashboardReportContainer>
           <ReportsLineChart2
-            color="success"
+            bgColor="success"
             title="daily sales"
             description={
               <>
@@ -101,7 +56,7 @@ export const DashboardBody = memo(() => {
         </DashboardReportContainer>
         <DashboardReportContainer>
           <ReportsLineChart2
-            color="success"
+            bgColor="success"
             title="daily sales"
             description={
               <>
@@ -243,7 +198,7 @@ export const DashboardBody = memo(() => {
         <Grid item xs={12} md={6} lg={3}>
           <MDBox mb={1.5}>
             <ComplexStatisticsCard
-              color="dark"
+              bgColor="dark"
               icon="weekend"
               title="Bookings"
               count={281}
@@ -272,7 +227,7 @@ export const DashboardBody = memo(() => {
         <Grid item xs={12} md={6} lg={3}>
           <MDBox mb={1.5}>
             <ComplexStatisticsCard
-              color="success"
+              bgColor="success"
               icon="store"
               title="Revenue"
               count="34k"
@@ -287,7 +242,7 @@ export const DashboardBody = memo(() => {
         <Grid item xs={12} md={6} lg={3}>
           <MDBox mb={1.5}>
             <ComplexStatisticsCard
-              color="primary"
+              bgColor="primary"
               icon="person_add"
               title="Followers"
               count="+91"
@@ -306,7 +261,7 @@ export const DashboardBody = memo(() => {
           <Grid item xs={12} md={6} lg={4}>
             <MDBox mb={3}>
               <ReportsBarChart
-                color="info"
+                bgColor="info"
                 title="website views"
                 description="Last Campaign Performance"
                 date="campaign sent 2 days ago"
@@ -317,7 +272,7 @@ export const DashboardBody = memo(() => {
           <Grid item xs={12} md={6} lg={4}>
             <MDBox mb={3}>
               <ReportsLineChart
-                color="success"
+                bgColor="success"
                 title="daily sales"
                 description={
                   <>
@@ -332,7 +287,7 @@ export const DashboardBody = memo(() => {
           <Grid item xs={12} md={6} lg={4}>
             <MDBox mb={3}>
               <ReportsLineChart
-                color="dark"
+                bgColor="dark"
                 title="completed tasks"
                 description="Last Campaign Performance"
                 date="just updated"

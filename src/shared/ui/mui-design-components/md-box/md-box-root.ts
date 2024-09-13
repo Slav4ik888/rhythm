@@ -15,12 +15,13 @@ Coded by www.creative-tim.com
 
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import { CustomMUITheme, GradientsBgColorName, RadiusName } from 'app/providers/theme';
+import { CustomMUITheme, GradientsBgColorName, RadiusName, GreyColor } from 'app/providers/theme';
+
 
 
 interface OwnerState {
   variant: string
-  bgColor: GradientsBgColorName
+  bgColor: GreyColor | GradientsBgColorName
   color: string
   opacity: number
   borderRadius: RadiusName
@@ -49,6 +50,7 @@ export default styled(Box)(({ theme, ownerState }) => {
     "grey-800": grey[800],
     "grey-900": grey[900],
   };
+  
 
   const validGradients: GradientsBgColorName[] = [
     "primary",

@@ -31,8 +31,10 @@ interface Props  {
   bgColor?   : GradientsBgColorName
   width?     : number | string
   my?        : number
+  mt?        : number
   p?         : number
   pr?        : number
+  pt?        : number
   children   : React.ReactNode
 }
 

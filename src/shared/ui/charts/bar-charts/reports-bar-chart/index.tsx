@@ -30,12 +30,12 @@ import MDTypography from "shared/ui/mui-design-components/md-typography";
 
 // ReportsBarChart configurations
 import { configs } from "./configs";
-import { ColorName } from 'app/providers/theme';
+import { GradientsBgColorName, GreyColor } from 'app/providers/theme';
 import { ChartConfigDataSets } from 'shared/ui/charts';
 
 
 interface Props {
-  color?: ColorName
+  bgColor?: GradientsBgColorName | GreyColor
   title: string
   description: string | React.ReactNode
   date: string
@@ -45,7 +45,7 @@ interface Props {
   }
 }
 
-export const ReportsBarChart: FC<Props> = ({ color = "dark", title, description = "", date, chart }) => {
+export const ReportsBarChart: FC<Props> = ({ bgColor = "dark", title, description = "", date, chart }) => {
   const { data, options } = configs(chart.labels || [], chart.datasets || {});
 
   return (
@@ -55,9 +55,9 @@ export const ReportsBarChart: FC<Props> = ({ color = "dark", title, description 
           () => (
             <MDBox
               variant       = "gradient"
-              bgColor       = {color}
+              bgColor       = {bgColor}
               borderRadius  = "lg"
-              coloredShadow = {color}
+              coloredShadow = {bgColor}
               height        = "12.5rem"
               py            = {2}
               pr            = {0.5}
@@ -67,7 +67,7 @@ export const ReportsBarChart: FC<Props> = ({ color = "dark", title, description 
               <Chart type="bar" data={data} options={options} />
             </MDBox>
           ),
-          [chart, color]
+          [chart, bgColor]
         )}
         <MDBox pt={3} pb={1} px={1}>
           <MDTypography variant="h6" textTransform="capitalize">

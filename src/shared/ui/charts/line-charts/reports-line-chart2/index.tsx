@@ -21,37 +21,60 @@ import Icon from "@mui/material/Icon";
 import MDBox from "shared/ui/mui-design-components/md-box";
 import MDTypography from "shared/ui/mui-design-components/md-typography";
 import { configs } from "./configs";
-import { ColorName } from 'app/providers/theme';
-import { ChartConfigDataSets } from '../../types';
-
+import { GradientsBgColorName, GreyColor, pxToRem, useMaterialUIController } from 'app/providers/theme';
+import { ChartConfigDataSets, ChartConfigOptions } from '../../types';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 
 interface Props {
-  color?: ColorName
+  bgColor?: GradientsBgColorName | GreyColor
   title: string
   description: string | ReactNode
   date: string
   chart: {
-    labels: any[],
-    datasets: ChartConfigDataSets
+    labels   : any[],
+    datasets : ChartConfigDataSets
+    config?  : ChartConfigOptions
   }
+  light?: boolean // Не понял для чего это, но в Navbar также
 }
 
 
-export const ReportsLineChart2: FC<Props> = ({ color, title, description = "", date, chart }) => {
-  const { data, options } = configs(chart.labels || [], chart.datasets || {});
+export const ReportsLineChart2: FC<Props> = ({ bgColor, title, description = "", light = false, date, chart }) => {
+  const { data, options } = configs(chart.labels, chart.datasets, chart.config);
+  const [controller] = useMaterialUIController();
+  const { transparentNavbar, darkMode } = controller;
+  
+  // For Icon style
+  // @ts-ignore
+  const iconsStyle = ({ palette: { dark, white, text }, functions: { rgba } }) => ({
+    width  : pxToRem(12),
+    height : pxToRem(12),
+    mt     : 0.15,
+    mr     : 0.5,
+    color  : () => {
+      let colorValue = light || darkMode ? white.main : dark.main;
+
+      if (transparentNavbar && !light) {
+        colorValue = darkMode ? rgba(text.main, 0.6) : text.main;
+      }
+
+      return colorValue;
+    },
+  });
+
 
   return (
     <>
       <MDBox
-        variant="gradient"
-        bgColor={color}
+        // variant="gradient"
+        bgColor={bgColor}
         borderRadius="lg"
         coloredShadow={"secondary"}
         py={2}
         pr={0.5}
-        // mt={-5}
-        height="12.5rem"
+        mt={-5}
+        height="13rem"
       >
         {/* @ts-ignore */}
         <Chart type="line" data={data} options={options} />
@@ -66,9 +89,8 @@ export const ReportsLineChart2: FC<Props> = ({ color, title, description = "", d
         </MDTypography>
         <Divider />
         <MDBox display="flex" alignItems="center">
-          <MDTypography variant="button" color="text" lineHeight={1} sx={{ mt: 0.15, mr: 0.5 }}>
-            <Icon>schedule</Icon>
-          </MDTypography>
+          {/* @ts-ignore */}
+          <AccessTimeIcon sx={iconsStyle} fontSize="small" />
           <MDTypography variant="button" color="text" fontWeight="light">
             {date}
           </MDTypography>

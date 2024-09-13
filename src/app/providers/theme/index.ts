@@ -13,7 +13,7 @@ export {
   setOpenConfigurator,
   setLayout,
   setDarkMode,
-  typography, theme, themeDark, CustomMUITheme, GradientsBgColorName, RadiusName, ColorName,
+  typography, theme, themeDark, CustomMUITheme, GradientsBgColorName, RadiusName, ColorName, GreyColor
 } from './model';
   
 export { default as linearGradient } from './model/mui-themes/theme/functions/linearGradient';

@@ -13,82 +13,100 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { ChartConfigDataSets } from 'shared/ui/charts';
+import { isNotUndefined } from 'shared/lib/validators';
+import { ChartConfigDataSets, ChartConfigOptions } from '../../../types';
 
 
-export function configs(labels: any[], datasets: ChartConfigDataSets) {
+
+function isConfig<T>(config: T, defaultValue: T) {
+  return isNotUndefined(config) ? config : defaultValue;
+}
+
+
+
+export function configs(
+  labels   : any[] = [],
+  datasets : ChartConfigDataSets = {},
+  config   : ChartConfigOptions = {}
+) {
+  const { scales } = config;
+  
   return {
     data: {
       labels,
       datasets: [
         {
-          label: datasets.label,
-          tension: 0,
-          pointRadius: 5,
-          pointBorderColor: "transparent",
-          pointBackgroundColor: "rgba(255, 255, 255, .8)",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderWidth: 4,
-          backgroundColor: "transparent",
-          fill: true,
-          data: datasets.data,
-          maxBarThickness: 6,
+          label                : datasets.label,
+          tension              : 0,
+          pointRadius          : isConfig(datasets.pointRadius, 5), // Толщика точки (круглешков)
+          pointBorderColor     : "transparent",
+          pointBackgroundColor : isConfig(datasets.pointBackgroundColor, "rgba(255, 255, 255, .8)"),
+          borderColor          : isConfig(datasets.borderColor, "rgba(255, 255, 255, .8)"),
+          borderWidth          : isConfig(datasets.borderWidth, 4), // Толщика линии
+          backgroundColor      : "transparent",
+          fill                 : isConfig(datasets.fill, true),
+          data                 : datasets.data,
+          maxBarThickness      : 6,
         },
       ],
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive          : true,
+      maintainAspectRatio : false,
       plugins: {
-        legend: {
+        legend: { // Легенда на графике
           display: false,
         },
       },
       interaction: {
-        intersect: false,
-        mode: "index",
+        intersect : false,
+        mode      : "index",
       },
       scales: {
         y: {
+          // Горизонтальные линии на оси
           grid: {
-            drawBorder: false,
-            display: true,
-            drawOnChartArea: true,
-            drawTicks: false,
-            borderDash: [5, 5],
-            color: "rgba(255, 255, 255, .2)",
+            display         : true,
+            drawBorder      : false,
+            drawOnChartArea : true,
+            drawTicks       : false,
+            borderDash      : [5, 5],
+            color           : isConfig(scales?.y?.grid?.color, "rgba(255, 255, 255, .2)"),
           },
+          // Подпись оси
           ticks: {
-            display: true,
-            color: "#f8f9fa",
-            padding: 10,
-            font: {
-              size: 14,
-              weight: 300,
-              family: "Roboto",
-              style: "normal",
-              lineHeight: 2,
+            display : true,
+            color   : isConfig(scales?.y?.ticks?.color, "#f8f9fa"),
+            padding : 10,
+            font    : {
+              size       : isConfig(scales?.y?.ticks?.font?.size, 14),
+              weight     : 300,
+              family     : "Roboto",
+              style      : "normal",
+              lineHeight : 2,
             },
           },
         },
         x: {
+          // Вертикальные линии на оси
           grid: {
-            drawBorder: false,
-            display: false,
-            drawOnChartArea: false,
-            drawTicks: false,
-            borderDash: [5, 5],
+            display         : isConfig(scales?.x?.grid?.display, false),
+            drawBorder      : false,
+            drawOnChartArea : false,
+            drawTicks       : false,
+            borderDash      : [5, 5],
           },
+          // Подпись оси
           ticks: {
-            display: true,
-            color: "#f8f9fa",
-            padding: 10,
-            font: {
-              size: 14,
-              weight: 300,
-              family: "Roboto",
-              style: "normal",
-              lineHeight: 2,
+            display : true,
+            color   : isConfig(scales?.x?.ticks?.color, "#f8f9fa"),
+            padding : 10,
+            font    : {
+              size       : isConfig(scales?.x?.ticks?.font?.size, 14),
+              weight     : 300,
+              family     : "Roboto",
+              style      : "normal",
+              lineHeight : 2,
             },
           },
         },

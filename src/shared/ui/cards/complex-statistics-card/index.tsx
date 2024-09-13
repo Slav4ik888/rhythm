@@ -17,7 +17,7 @@ Coded by www.creative-tim.com
 import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
 import Icon from "@mui/material/Icon";
-import { ColorName } from 'app/providers/theme';
+import { GradientsBgColorName, GreyColor, ColorName } from 'app/providers/theme';
 import { FC } from 'react';
 
 // Material Dashboard 2 React components
@@ -26,7 +26,7 @@ import MDTypography from "shared/ui/mui-design-components/md-typography";
 
 
 interface Props {
-  color?: ColorName
+  bgColor?: GradientsBgColorName | GreyColor
   title: string
   count: number | string
   percentage: {
@@ -38,7 +38,7 @@ interface Props {
 }
 
 export const ComplexStatisticsCard: FC<Props> = ({
-  color = "info",
+  bgColor = "info",
   title,
   count,
   percentage = {
@@ -53,9 +53,9 @@ export const ComplexStatisticsCard: FC<Props> = ({
       <MDBox display="flex" justifyContent="space-between" pt={1} px={2}>
         <MDBox
           variant        = "gradient"
-          color          = {color === "light" ? "dark" : "white"}
-          coloredShadow  = {color}
-          bgColor        = {color}
+          color          = {bgColor === "light" ? "dark" : "white"}
+          coloredShadow  = {bgColor}
+          bgColor        = {bgColor}
           borderRadius   = "xl"
           display        = "flex"
           justifyContent = "center"

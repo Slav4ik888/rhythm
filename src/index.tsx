@@ -29,4 +29,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "12.09.2024 refact formatDate" && git push -u origin main
+// git add . && git commit -m "13.09.2024 start config Chart" && git push -u origin main

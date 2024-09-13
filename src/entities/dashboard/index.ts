@@ -6,4 +6,5 @@ export { DASHBOARD_PERIOD_TEXT, DashboardPeriodType, arrayDashboardPeriodType } 
 export { actions as actionsDashboard, reducer as reducerDashboard } from './model/slice'
 export {
   selectLoading, selectErrors, selectActivePeriod, selectSelectedPeriod, selectLastUpdated,
+  selectActiveDates, selectActiveEntities
 } from './model/selectors'

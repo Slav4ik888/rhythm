@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { ColorName, RadiusName } from 'app/providers/theme';
+import { ColorName, RadiusName, GreyColor, GradientsBgColorName } from 'app/providers/theme';
 import { forwardRef, FC } from "react";
 import MDBoxRoot from "./md-box-root";
 
@@ -22,7 +22,7 @@ type Flex = "column" | "row" | "row-reverse" | "column-reverse"
 
 interface Props {
   variant?: "contained" | "gradient"
-  bgColor?: string
+  bgColor?: GreyColor | GradientsBgColorName
   color?: string
   width?: string | boolean
   height?: string
@@ -54,7 +54,7 @@ interface Props {
   alignItems?: "center"
   justifyContent?: "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly"
   flexWrap?: "wrap" | "flex-start"
-  coloredShadow?: ColorName
+  coloredShadow?: string
   component?: React.ElementType
   to?: string
   src?: string
