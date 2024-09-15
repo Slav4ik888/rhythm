@@ -43,7 +43,7 @@ export function configs(
           pointBackgroundColor : isConfig(datasets.pointBackgroundColor, "rgba(255, 255, 255, .8)"),
           borderColor          : isConfig(datasets.borderColor, "rgba(255, 255, 255, .8)"),
           borderWidth          : isConfig(datasets.borderWidth, 4), // Толщика линии
-          backgroundColor      : "transparent",
+          backgroundColor      : isConfig(datasets.backgroundColor, "transparent"),
           fill                 : isConfig(datasets.fill, true),
           data                 : datasets.data,
           maxBarThickness      : 6,
@@ -64,12 +64,12 @@ export function configs(
       },
       scales: {
         y: {
-          // Горизонтальные линии на оси
+          // Горизонтальные линии от оси Y
           grid: {
             display         : true,
             drawBorder      : false,
             drawOnChartArea : true,
-            drawTicks       : false,
+            drawTicks       : false, // Насечки на оси
             borderDash      : [5, 5],
             color           : isConfig(scales?.y?.grid?.color, "rgba(255, 255, 255, .2)"),
           },
@@ -88,13 +88,14 @@ export function configs(
           },
         },
         x: {
-          // Вертикальные линии на оси
+          // Вертикальные линии от оси X
           grid: {
-            display         : isConfig(scales?.x?.grid?.display, false),
-            drawBorder      : false,
+            display         : isConfig(scales?.x?.grid?.display, true),
+            drawBorder      : true,
             drawOnChartArea : false,
-            drawTicks       : false,
+            drawTicks       : false, // Насечки на оси
             borderDash      : [5, 5],
+            color           : isConfig(scales?.x?.grid?.color, "rgba(255, 255, 255, .2)"),
           },
           // Подпись оси
           ticks: {

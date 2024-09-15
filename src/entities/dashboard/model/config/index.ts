@@ -1,5 +1,2 @@
+export * from './statistic-type'
 export * from './period'
-
-// Автопоиском по полученным данным определяем индексы строк
-// export const START_DATA_ROW = 15; // № строки в таблице, с которой начинаются значения
-// export const KOD_ROW = 4;         // № строки в таблице, на которой коды статистик

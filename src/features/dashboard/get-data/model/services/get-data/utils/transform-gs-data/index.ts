@@ -1,5 +1,6 @@
 import { DashboardEntities, DashboardDates } from 'entities/dashboard';
 import { DashboardItemData, DashboardStatisticItem } from 'entities/dashboard';
+import { DashboardStatisticType } from 'entities/dashboard/model/config';
 import { GoogleSheetData, ResGetData, PayloadGetData } from '../../../../types';
 
 
@@ -24,7 +25,7 @@ export const getEntities = (data: ResGetData): PayloadGetData => {
       // Добавляем в entities
       allSheetData.forEach((columnData: DashboardItemData, idx) => {
         const kod = columnData[kodIdx] as string;
-        const currentStatisticType = columnData[statisticTypeIdx] as string;
+        const currentStatisticType = columnData[statisticTypeIdx] as DashboardStatisticType;
         const validStatisticType = currentStatisticType === sheetStatisticType;
 
         // Проверить есть ли код, соответствует ли statisticType данной вкладке и idx !== 0 (это колонка с датой)

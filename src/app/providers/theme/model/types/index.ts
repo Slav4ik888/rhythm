@@ -1,6 +1,6 @@
 import { Theme } from '@mui/material';
 import { themeData } from '../mui-themes/theme';
-import colors from '../mui-themes/theme/base/colors';
+import colors from '../mui-themes/theme/base/palette';
 
 export type Colors = typeof colors;
 

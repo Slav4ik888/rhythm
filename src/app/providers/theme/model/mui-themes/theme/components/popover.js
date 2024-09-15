@@ -17,7 +17,7 @@ Coded by www.creative-tim.com
 import pxToRem from "../functions/pxToRem";
 
 // Material Dashboard 2 React base styles
-import colors from "../base/colors";
+import colors from "../base/palette";
 import boxShadows from "../base/boxShadows";
 import borders from "../base/borders";
 

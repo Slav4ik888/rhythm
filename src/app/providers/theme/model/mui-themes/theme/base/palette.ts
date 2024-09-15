@@ -232,6 +232,26 @@ const colors = {
     },
   },
 
+  statisticTypeChip: {
+    // DashboardStatisticType.DAY
+    day: {
+      background : "braun",
+      text       : "#dadada"
+    },
+    week: {
+      background : "#afc8af",
+      text       : "#263426"
+    },
+    month: {
+      background : "#33635e",
+      text       : "#afc8af"
+    },
+    month_cal: {
+      background : "blue",
+      text       : "#dadada"
+    },
+  },
+
   badgeColors: {
     primary: {
       background: "#f8b3ca",

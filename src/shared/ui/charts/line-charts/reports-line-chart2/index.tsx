@@ -18,17 +18,17 @@ import "chart.js/auto";
 import { Chart } from "react-chartjs-2";
 import Divider from "@mui/material/Divider";
 import Icon from "@mui/material/Icon";
-import MDBox from "shared/ui/mui-design-components/md-box";
-import MDTypography from "shared/ui/mui-design-components/md-typography";
+import { MDBox, MDTypography } from "shared/ui/mui-design-components";
 import { configs } from "./configs";
 import { GradientsBgColorName, GreyColor, pxToRem, useMaterialUIController } from 'app/providers/theme';
 import { ChartConfigDataSets, ChartConfigOptions } from '../../types';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { DashboardStatisticItem, StatisticTypeChip } from 'entities/dashboard';
 
 
 interface Props {
   bgColor?: GradientsBgColorName | GreyColor
-  title: string
+  item: DashboardStatisticItem
   description: string | ReactNode
   date: string
   chart: {
@@ -40,10 +40,12 @@ interface Props {
 }
 
 
-export const ReportsLineChart2: FC<Props> = ({ bgColor, title, description = "", light = false, date, chart }) => {
+export const ReportsLineChart2: FC<Props> = ({ bgColor, item, description = "", light = false, date, chart }) => {
   const { data, options } = configs(chart.labels, chart.datasets, chart.config);
+  console.log('data: ', data);
   const [controller] = useMaterialUIController();
   const { transparentNavbar, darkMode } = controller;
+  const { title, statisticType } = item;
   
   // For Icon style
   // @ts-ignore
@@ -74,14 +76,15 @@ export const ReportsLineChart2: FC<Props> = ({ bgColor, title, description = "",
         py={2}
         pr={0.5}
         mt={-5}
-        height="13rem"
+        height="20rem"
       >
         {/* @ts-ignore */}
         <Chart type="line" data={data} options={options} />
       </MDBox>
 
       <MDBox pt={3} pb={1} px={1}>
-        <MDTypography variant="h6" textTransform="capitalize">
+        <StatisticTypeChip type={statisticType} />
+        <MDTypography variant="h6" textTransform="none">
           {title}
         </MDTypography>
         <MDTypography component="div" variant="button" color="text" fontWeight="light">

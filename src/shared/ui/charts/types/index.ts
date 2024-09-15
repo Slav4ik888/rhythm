@@ -8,7 +8,7 @@ export interface ChartConfigDataSets {
   pointBackgroundColor? : string
   borderColor?          : string
   borderWidth?          : number // Толщика линии
-  backgroundColor?      : "transparent"
+  backgroundColor?      : string
   fill?                 : boolean
   maxBarThickness?      : number
 }
@@ -62,6 +62,7 @@ export interface ChartConfigOptions {
         drawOnChartArea?: boolean
         drawTicks?: boolean
         borderDash?: [number, number]
+        color?: string
       }
       // Подпись оси
       ticks?: {

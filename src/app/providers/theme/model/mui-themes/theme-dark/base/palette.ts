@@ -234,6 +234,25 @@ const colors: Colors = {
     },
   },
 
+  statisticTypeChip: {
+    day: {
+      background : "green",
+      text       : "#000"
+    },
+    week: {
+      background : "green",
+      text       : "#000"
+    },
+    month: {
+      background : "red",
+      text       : "#000"
+    },
+    month_cal: {
+      background : "green",
+      text       : "#000"
+    },
+  },
+  
   badgeColors: {
     primary: {
       background: "#f8b3ca",

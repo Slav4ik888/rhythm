@@ -17,7 +17,7 @@ Coded by www.creative-tim.com
 import Fade from "@mui/material/Fade";
 
 // Material Dashboard 2 React base styles
-import colors from "../base/colors";
+import colors from "../base/palette";
 import typography from "../base/typography";
 import borders from "../base/borders";
 

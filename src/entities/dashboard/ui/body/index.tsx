@@ -17,12 +17,13 @@ import { memo } from 'react';
 import { Grid } from '@mui/material';
 import MDBox from "shared/ui/mui-design-components/md-box";
 import { ComplexStatisticsCard } from 'shared/ui/cards/complex-statistics-card';
-import { ReportsBarChart, ReportsBarChart2, ReportsLineChart, ReportsLineChart2 } from 'shared/ui/charts';
+import { ReportsBarChart, ReportsBarChart2, ReportsLineChart } from 'shared/ui/charts';
 import reportsBarChartData from "../../model/example-data/reportsBarChartData";
 import reportsLineChartData from "../../model/example-data/reportsLineChartData";
-import { DashboardBlockContainer, DashboardReportContainer } from 'entities/blocks';
+import { DashboardBlockContainer } from 'entities/blocks';
 import { DashboardBodyWrapper } from './body-wrapper';
 import { DashboardGroupDepartment7 } from 'widgets/dashboard/departments/department_7';
+import { DashboardGroupDepartment1 } from 'widgets/dashboard/departments/department_1';
 
 // Dashboard components
 // import Projects from "layouts/dashboard/components/Projects";
@@ -39,44 +40,7 @@ export const DashboardBody = memo(() => {
   return (
     <DashboardBodyWrapper>
       <DashboardGroupDepartment7 />
-
-      <DashboardBlockContainer width="max-content" bgColor='department_1' my={5} p={3} pr={0}>
-        <DashboardReportContainer>
-          <ReportsLineChart2
-            bgColor="success"
-            title="daily sales"
-            description={
-              <>
-                (<strong>+15%</strong>) increase in today sales.
-              </>
-            }
-            date="updated 4 min ago"
-            chart={tasks}
-          />
-        </DashboardReportContainer>
-        <DashboardReportContainer>
-          <ReportsLineChart2
-            bgColor="success"
-            title="daily sales"
-            description={
-              <>
-                (<strong>+15%</strong>) increase in today sales.
-              </>
-            }
-            date="updated 4 min ago"
-            chart={sales}
-          />
-        </DashboardReportContainer>
-        <DashboardReportContainer>
-          <ReportsBarChart2
-            color="info"
-            title="website views"
-            description="Last Campaign Performance"
-            date="campaign sent 2 days ago"
-            chart={reportsBarChartData}
-          />
-        </DashboardReportContainer>
-      </DashboardBlockContainer>
+      <DashboardGroupDepartment1 />
 
       <DashboardBlockContainer bgColor='department_2' my={5} p={3}>
         <Grid container spacing={3}>

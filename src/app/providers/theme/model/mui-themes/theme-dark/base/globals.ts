@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React Base Styles
-import colors from "./colors";
+import colors from "./palette";
 
 const { info, dark } = colors;
 

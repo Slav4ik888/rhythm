@@ -18,7 +18,7 @@ import { createTheme } from "@mui/material/styles";
 // import Fade from "@mui/material/Fade";
 
 // Material Dashboard 2 React base styles
-import colors from "./base/colors";
+import palette from "./base/palette";
 import breakpoints from "./base/breakpoints";
 import typography from "./base/typography";
 import boxShadows from "./base/boxShadows";
@@ -86,7 +86,7 @@ import dialogActions from "./components/dialog/dialogActions";
 
 const themeData = {
   breakpoints: { ...breakpoints },
-  palette: { ...colors },
+  palette: { ...palette },
   typography: { ...typography },
   boxShadows: { ...boxShadows },
   borders: { ...borders },

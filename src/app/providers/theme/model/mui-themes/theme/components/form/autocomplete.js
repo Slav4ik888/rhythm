@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 // Material Dashboard 2 React base styles
 import boxShadows from "../../base/boxShadows";
 import typography from "../../base/typography";
-import colors from "../../base/colors";
+import colors from "../../base/palette";
 import borders from "../../base/borders";
 
 // Material Dashboard 2 React helper functions
