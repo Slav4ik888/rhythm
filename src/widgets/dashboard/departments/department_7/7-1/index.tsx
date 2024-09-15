@@ -4,46 +4,23 @@ import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
 import { selectActiveDates, selectActiveEntities } from 'entities/dashboard';
 import { formatDate } from 'shared/helpers/dates';
+import { fixPointRadius } from 'entities/charts';
 
 
 
+/** Доп поля в конфиг данных для графика */
+const getDatasetConfig = (dates: any[]): ChartConfigDataSets => {
 
-const config: ChartConfigOptions = {
-  scales: {
-    y: {
-      grid: {
-        color: "#dadada",
-      },
-      ticks: {
-        color: "rgba(0, 0, 0, .8)",
-        font: {
-          size: 10,
-        }
-      }
-    },
-    x: {
-      grid: {
-        color: "#000",
-      },
-      ticks: {
-        color: "rgba(0, 0, 0, .8)",
-        font: {
-          size: 10,
-        }
-      }
-    }
+  const config: ChartConfigDataSets = {
+    pointBackgroundColor : "#508dde", // "rgba(0, 0, 0, .8)",
+    backgroundColor      : "#a5d2f8",
+    borderColor          : "#508dde",
   }
-};
 
+  fixPointRadius(config, dates);
 
-const datasetConfig: ChartConfigDataSets = {
-  pointRadius          : 4, // Толщика точки (круглешков)
-  pointBackgroundColor : "#508dde", // "rgba(0, 0, 0, .8)",
-  backgroundColor      : "#a5d2f8",
-  borderColor          : "#508dde",
-  borderWidth          : 4, // Толщика линии
+  return config;
 }
-
 
 
 
@@ -59,26 +36,26 @@ export const DashboardReportContainer7_1 = memo(() => {
 
   if (! itemData) return null;
 
+  const datasetConfig = getDatasetConfig(dates);
+
+  const chartData = {
+    labels: dates,
+    datasets: {
+      ...datasetConfig,
+      // label : "Сумма кредиторской задолженности",
+      data: itemData.data as number[]
+    }
+  };
+
+
   return (
     <DashboardReportContainer>
       <ReportsLineChart2
-        bgColor="grey-300" // "department_7"
-        item={itemData}
-        description={
-          <>
-            (<strong>+15%</strong>) increase in today sales.
-          </>
-        }
-        date="updated 4 min ago"
-        chart={{
-          labels   : dates,
-          datasets : {
-            ...datasetConfig,
-            // label : "Сумма кредиторской задолженности",
-            data  : itemData.data as number[]
-          },
-          config
-        }}
+        bgColor     = "grey-300" // "department_7"
+        item        = {itemData}
+        description = {<>(<strong>+15%</strong>) increase in today sales.</>}
+        date        = "updated 4 min ago"
+        chart       = {chartData}
       />
     </DashboardReportContainer>
   );

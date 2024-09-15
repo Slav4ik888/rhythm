@@ -73,17 +73,18 @@ const checkAndAddChanges = (newObj: object, prevObj: object, updObj: object, pre
 /**
  * v.2023-05-19
  * Возвращает новый объект prevObj с обновлёнными полями из updFields
+ * (который может содержать и другие поля, которых нет в prevObj)
  * Обновляет атомарно
  * Not deleted fields
  */
-export function updateObject<T extends object, O extends Partial<T>>(
+export function updateObject<T extends object, O extends Partial<T & any>>(
   prevObj   : T,
   updFields : O
-): T {
+): T & O | T {
 
   if (! prevObj && ! updFields) return {} as T;
-  if (prevObj && ! updFields) return prevObj;
-  if (! prevObj && updFields) return updFields as unknown as T;
+  if (  prevObj && ! updFields) return prevObj;
+  if (! prevObj &&   updFields) return updFields as unknown as T;
 
   const newObj = cloneObj(prevObj);
 

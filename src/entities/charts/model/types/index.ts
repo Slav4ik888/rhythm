@@ -1,4 +1,10 @@
 
+export interface ChartConfig {
+  labels   : any[]
+  datasets : ChartConfigDataSets
+  config?  : ChartConfigOptions
+}
+
 export interface ChartConfigDataSets {
   label?                : string
   data?                 : number[] // Данные

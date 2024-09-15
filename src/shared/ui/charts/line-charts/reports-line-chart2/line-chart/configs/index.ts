@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 import { isNotUndefined } from 'shared/lib/validators';
-import { ChartConfigDataSets, ChartConfigOptions } from '../../../types';
+import { ChartConfigDataSets, ChartConfigOptions } from '../../../../../../../entities/charts/model/types';
 
 
 
@@ -66,20 +66,20 @@ export function configs(
         y: {
           // Горизонтальные линии от оси Y
           grid: {
-            display         : true,
+            display         : isConfig(scales?.y?.grid?.display, true),
             drawBorder      : false,
             drawOnChartArea : true,
             drawTicks       : false, // Насечки на оси
             borderDash      : [5, 5],
-            color           : isConfig(scales?.y?.grid?.color, "rgba(255, 255, 255, .2)"),
+            color           : isConfig(scales?.y?.grid?.color, "#dadada"), // "rgba(255, 255, 255, .2)"),
           },
           // Подпись оси
           ticks: {
             display : true,
-            color   : isConfig(scales?.y?.ticks?.color, "#f8f9fa"),
+            color   : isConfig(scales?.y?.ticks?.color, "rgba(0, 0, 0, .8)"), // "#f8f9fa"),
             padding : 10,
             font    : {
-              size       : isConfig(scales?.y?.ticks?.font?.size, 14),
+              size       : isConfig(scales?.y?.ticks?.font?.size, 10),
               weight     : 300,
               family     : "Roboto",
               style      : "normal",
@@ -95,15 +95,15 @@ export function configs(
             drawOnChartArea : false,
             drawTicks       : false, // Насечки на оси
             borderDash      : [5, 5],
-            color           : isConfig(scales?.x?.grid?.color, "rgba(255, 255, 255, .2)"),
+            color           : isConfig(scales?.x?.grid?.color, "#dadada"), // "rgba(255, 255, 255, .2)"),
           },
           // Подпись оси
           ticks: {
             display : true,
-            color   : isConfig(scales?.x?.ticks?.color, "#f8f9fa"),
+            color   : isConfig(scales?.x?.ticks?.color, "rgba(0, 0, 0, .8)"), // "#f8f9fa"),
             padding : 10,
             font    : {
-              size       : isConfig(scales?.x?.ticks?.font?.size, 14),
+              size       : isConfig(scales?.x?.ticks?.font?.size, 10),
               weight     : 300,
               family     : "Roboto",
               style      : "normal",

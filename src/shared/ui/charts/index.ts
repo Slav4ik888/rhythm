@@ -1,5 +1,5 @@
 
-export { ChartConfigDataSets, ChartConfigOptions } from './types'
+export { ChartConfigDataSets, ChartConfigOptions, ChartConfig } from '../../../entities/charts/model/types'
 export { ReportsBarChart } from './bar-charts/reports-bar-chart'
 export { ReportsBarChart2 } from './bar-charts/reports-bar-chart2'
 export { ReportsLineChart } from './line-charts/reports-line-chart'

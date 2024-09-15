@@ -31,7 +31,7 @@ import MDTypography from "shared/ui/mui-design-components/md-typography";
 // ReportsLineChart configurations
 import { configs } from "./configs";
 import { GradientsBgColorName, GreyColor } from 'app/providers/theme';
-import { ChartConfigDataSets } from '../../types';
+import { ChartConfigDataSets } from '../../../../../entities/charts/model/types';
 
 
 

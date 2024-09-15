@@ -9,7 +9,7 @@ interface Props {
 export const DashboardBodyWrapper: FC<Props> = ({ children }) => {
 
   return (
-    <MDBox py={3} height='100%' minHeight='calc(100vh - 300px)' width='max-content'>
+    <MDBox py={3} height='100%' minHeight='calc(100vh - 300px)' width='max-content' minWidth="100%">
       {children}
     </MDBox>
   );

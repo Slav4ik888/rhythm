@@ -11,7 +11,7 @@ export const DashboardGroupDepartment1 = memo(() => {
   
 
   return (
-    <DashboardBlockContainer width="max-content" bgColor='department_1' my={5} p={3} pr={0}>
+    <DashboardBlockContainer bgColor='department_1'my={5} p={3} pt={6} pr={0}>
       <DashboardReportContainer1_1 />
     </DashboardBlockContainer>
   );

@@ -24,6 +24,7 @@ interface Props {
   variant?: "contained" | "gradient"
   bgColor?: GreyColor | GradientsBgColorName
   color?: string
+  minWidth?: string
   width?: string | boolean
   height?: string
   minHeight?: string

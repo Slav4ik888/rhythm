@@ -14,74 +14,34 @@ Coded by www.creative-tim.com
 */
 
 import { FC, ReactNode } from "react";
-import "chart.js/auto";
-import { Chart } from "react-chartjs-2";
 import Divider from "@mui/material/Divider";
-import Icon from "@mui/material/Icon";
 import { MDBox, MDTypography } from "shared/ui/mui-design-components";
-import { configs } from "./configs";
-import { GradientsBgColorName, GreyColor, pxToRem, useMaterialUIController } from 'app/providers/theme';
-import { ChartConfigDataSets, ChartConfigOptions } from '../../types';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { GradientsBgColorName, GreyColor } from 'app/providers/theme';
+import { ChartConfig } from '../../../../../entities/charts/model/types';
 import { DashboardStatisticItem, StatisticTypeChip } from 'entities/dashboard';
+import { TimeUpdated } from './time-updated';
+import { LineChartContainer } from './line-chart';
+
 
 
 interface Props {
-  bgColor?: GradientsBgColorName | GreyColor
-  item: DashboardStatisticItem
-  description: string | ReactNode
-  date: string
-  chart: {
-    labels   : any[],
-    datasets : ChartConfigDataSets
-    config?  : ChartConfigOptions
-  }
-  light?: boolean // Не понял для чего это, но в Navbar также
+  bgColor?    : GradientsBgColorName | GreyColor
+  item        : DashboardStatisticItem
+  description : string | ReactNode
+  date        : string
+  chart       : ChartConfig
+  light?      : boolean // Не понял для чего это, но в Navbar также
 }
 
 
 export const ReportsLineChart2: FC<Props> = ({ bgColor, item, description = "", light = false, date, chart }) => {
-  const { data, options } = configs(chart.labels, chart.datasets, chart.config);
-  console.log('data: ', data);
-  const [controller] = useMaterialUIController();
-  const { transparentNavbar, darkMode } = controller;
   const { title, statisticType } = item;
-  
-  // For Icon style
-  // @ts-ignore
-  const iconsStyle = ({ palette: { dark, white, text }, functions: { rgba } }) => ({
-    width  : pxToRem(12),
-    height : pxToRem(12),
-    mt     : 0.15,
-    mr     : 0.5,
-    color  : () => {
-      let colorValue = light || darkMode ? white.main : dark.main;
-
-      if (transparentNavbar && !light) {
-        colorValue = darkMode ? rgba(text.main, 0.6) : text.main;
-      }
-
-      return colorValue;
-    },
-  });
 
 
   return (
     <>
-      <MDBox
-        // variant="gradient"
-        bgColor={bgColor}
-        borderRadius="lg"
-        coloredShadow={"secondary"}
-        py={2}
-        pr={0.5}
-        mt={-5}
-        height="20rem"
-      >
-        {/* @ts-ignore */}
-        <Chart type="line" data={data} options={options} />
-      </MDBox>
-
+      <LineChartContainer bgColor={bgColor} chart={chart} />
+      
       <MDBox pt={3} pb={1} px={1}>
         <StatisticTypeChip type={statisticType} />
         <MDTypography variant="h6" textTransform="none">
@@ -91,13 +51,7 @@ export const ReportsLineChart2: FC<Props> = ({ bgColor, item, description = "", 
           {description}
         </MDTypography>
         <Divider />
-        <MDBox display="flex" alignItems="center">
-          {/* @ts-ignore */}
-          <AccessTimeIcon sx={iconsStyle} fontSize="small" />
-          <MDTypography variant="button" color="text" fontWeight="light">
-            {date}
-          </MDTypography>
-        </MDBox>
+        <TimeUpdated date={date} light={light} />
       </MDBox>
     </>
   );
