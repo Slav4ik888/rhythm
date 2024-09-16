@@ -1,8 +1,7 @@
 import { isUndefined } from 'shared/lib/validators';
 import { FORMAT, getMonth, getMonthDDсYYYY, getMonthYYYY, SUB, getDDMonthYYYY,
 getDMonthYYYY, getDMonthYYYYHHMM, getYYYYMMDDt, getYYYYMMDD, getDDMMYYYYt, getDDMMYYYYd,
-getDDMMYYdHHMM, getHHMM } from '..';
-import { getDDMMYYd } from '../utils/formats/get-dd-mm-yy-d';
+getDDMMYYdHHMM, getHHMM, getDDMonYY, getDDMMYYd, getDDmonYY } from '..';
 
 
 // Validate
@@ -38,6 +37,8 @@ export function formatDate(
     case 'DD Month YYYY':      return getDDMonthYYYY    (date, sub);
     case 'D Month YYYY':       return getDMonthYYYY     (date, sub);
     case 'D Month YYYY HH:MM': return getDMonthYYYYHHMM (date, sub);
+    case 'DD Mon YY':          return getDDMonYY        (date, sub);
+    case 'DD mon YY':          return getDDmonYY        (date, sub);
     case 'YYYY-MM-DD':         return getYYYYMMDDt      (date);
     case 'YYYYMMDD':           return getYYYYMMDD       (date);
     case 'DD-MM-YYYY':         return getDDMMYYYYt      (date);

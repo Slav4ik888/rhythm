@@ -29,4 +29,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "16.09.2024 add all department blocks" && git push -u origin main
+// git add . && git commit -m "16.09.2024 add format 'DD mon YY'" && git push -u origin main

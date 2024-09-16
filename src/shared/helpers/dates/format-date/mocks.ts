@@ -51,6 +51,14 @@ const arr: Array<ArrayItem> = [
   [{ ms: 1640995200000, format: 'D Month YYYY', sub: SUB.RU }, '1 Январь 2022'],
   [{ ms: 1640995200000, format: 'D Month YYYY', sub: SUB.RU_DECL }, '1 Января 2022'],
 
+  // 'DD Mon YY'
+  [{ ms: 1682974800001, format: 'DD Mon YY', sub: SUB.RU_ABBR }, '02 Май 23'],
+  [{ ms: 1682974800001, format: 'DD Mon YY', sub: SUB.RU_ABBR_DEC }, '02 Мая 23'],
+
+  // 'DD mon YY'
+  [{ ms: 1682974800001, format: 'DD mon YY', sub: SUB.RU_ABBR }, '02 май 23'],
+  [{ ms: 1682974800001, format: 'DD mon YY', sub: SUB.RU_ABBR_DEC }, '02 мая 23'],
+  
   // FORMAT.DMonthYYYYHHMM 'D Month YYYY HH:MM'
   // [{ ms: 1640995200000, format: FORMAT.DMonthYYYYHHMM }, '1 January 2022 08:00'],
   // [{ ms: 1640995200000, format: FORMAT.DMonthYYYYHHMM, sub: SUB.EN }, '1 January 2022 08:00'],
