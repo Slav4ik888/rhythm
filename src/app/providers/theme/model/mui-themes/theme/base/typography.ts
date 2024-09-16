@@ -28,20 +28,20 @@ import pxToRem from "../functions/pxToRem";
 const { dark } = colors;
 
 const baseProperties = {
-  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-  fontWeightLighter: 100,
-  fontWeightLight: 300,
-  fontWeightRegular: 400,
-  fontWeightMedium: 600,
-  fontWeightBold: 700,
-  fontSizeXXS: pxToRem(10.4),
-  fontSizeXS: pxToRem(12),
-  fontSizeSM: pxToRem(14),
-  fontSizeMD: pxToRem(16),
-  fontSizeLG: pxToRem(18),
-  fontSizeXL: pxToRem(20),
-  fontSize2XL: pxToRem(24),
-  fontSize3XL: pxToRem(30),
+  fontFamily        : '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontWeightLighter : 100,
+  fontWeightLight   : 300,
+  fontWeightRegular : 400,
+  fontWeightMedium  : 600,
+  fontWeightBold    : 700,
+  fontSizeXXS       : pxToRem(10.4),
+  fontSizeXS        : pxToRem(12),
+  fontSizeSM        : pxToRem(14),
+  fontSizeMD        : pxToRem(16),
+  fontSizeLG        : pxToRem(18),
+  fontSizeXL        : pxToRem(20),
+  fontSize2XL       : pxToRem(24),
+  fontSize3XL       : pxToRem(30),
 };
 
 const baseHeadingProperties = {
@@ -58,12 +58,12 @@ const baseDisplayProperties = {
 };
 
 const typography = {
-  fontFamily: baseProperties.fontFamily,
-  fontWeightLighter: baseProperties.fontWeightLighter,
-  fontWeightLight: baseProperties.fontWeightLight,
-  fontWeightRegular: baseProperties.fontWeightRegular,
-  fontWeightMedium: baseProperties.fontWeightMedium,
-  fontWeightBold: baseProperties.fontWeightBold,
+  fontFamily        : baseProperties.fontFamily,
+  fontWeightLighter : baseProperties.fontWeightLighter,
+  fontWeightLight   : baseProperties.fontWeightLight,
+  fontWeightRegular : baseProperties.fontWeightRegular,
+  fontWeightMedium  : baseProperties.fontWeightMedium,
+  fontWeightBold    : baseProperties.fontWeightBold,
 
   h1: {
     fontSize: pxToRem(48),

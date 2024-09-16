@@ -172,6 +172,29 @@ const colors: Colors = {
     },
   },
 
+  // My colors for departments
+  department_7_title: {
+    main: "#6f96d8", // Заголовок первого главного блока отделения
+  },
+  department_1_title: {
+    main: "#cda070",
+  },
+  department_2_title: {
+    main: "#d2bae9",
+  },
+  department_3_title: {
+    main: "#f2bcbc",
+  },
+  department_4_title: {
+    main: "#9dee8f",
+  },
+  department_5_title: {
+    main: "#bebebe",
+  },
+  department_6_title: {
+    main: "#f7f498",
+  },
+  
   socialMediaColors: {
     facebook: {
       main: "#3b5998",

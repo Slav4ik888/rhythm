@@ -1,7 +1,8 @@
 import { FC, memo } from 'react';
-import { Card } from '@mui/material';
-import { GradientsBgColorName, CustomMUITheme, linearGradient, useTheme, pxToRem } from 'app/providers/theme';
+import { Box, Card } from '@mui/material';
+import { GradientsBgColorName, CustomMUITheme, linearGradient, useTheme, pxToRem, ColorName } from 'app/providers/theme';
 import { isStr } from 'shared/lib/validators';
+import { MDTypography } from 'shared/ui/mui-design-components';
 
 
 
@@ -16,9 +17,9 @@ interface StyleConfig {
 const useStyles = (theme: CustomMUITheme, config: StyleConfig) => {
   const { bgColor = 'info', width, fullWidth, ...rest } = config;
 
-  const style = {
+  const rootStyle = {
     display       : 'flex',
-    flexDirection : 'row',
+    flexDirection : 'column',
     width         : ! width ? 'max-content' : isStr(width) ? width : pxToRem(width as number),
     background    : linearGradient(theme.palette.gradients[bgColor].main, theme.palette.gradients[bgColor].state),
     ...rest
@@ -26,37 +27,59 @@ const useStyles = (theme: CustomMUITheme, config: StyleConfig) => {
 
   if (fullWidth) {
     // @ts-ignore
-    style.minWidth = '100%';
-    style.width = '100%';
+    rootStyle.minWidth = '100%';
+    rootStyle.width = '100%';
   }
 
-  return style
+  return {
+    root: { ...rootStyle },
+    content: {
+      display       : 'flex',
+      flexDirection : 'row',
+      width         : '100%'
+    },
+    title: {
+      mb : 5,
+      pr : 4
+    }
+  }
 };
 
 
 
 interface Props  {
-  bgColor?   : GradientsBgColorName
-  fullWidth? : boolean
+  title?      : string
+  titleColor? : ColorName
+  bgColor?    : GradientsBgColorName
+  fullWidth?  : boolean
   // minWidth?  : string
-  width?     : number | string
-  my?        : number
-  mt?        : number
-  p?         : number
-  pr?        : number
-  pt?        : number
-  children   : React.ReactNode
+  width?      : number | string
+  my?         : number
+  mt?         : number
+  p?          : number
+  pr?         : number
+  pt?         : number
+  children    : React.ReactNode
 }
 
 /**
  * Пространство для ограничения (группировки) графиков по одному отделению (отделу, подразделению)
  */
-export const DashboardBlockContainer: FC<Props> = memo(({ children, ...rest }) => {
+export const DashboardBlockContainer: FC<Props> = memo(({ title, titleColor, children, ...rest }) => {
   const sx = useStyles(useTheme(), { ...rest })
 
   return (
-    <Card sx={sx}>
-      {children}
+    <Card sx={sx.root}>
+      {
+        title && <Box sx={sx.title}>
+          <MDTypography color={titleColor} variant="h3" textTransform="none">
+            {title}
+          </MDTypography>
+        </Box>
+      }
+      <Box sx={sx.content}>
+        {children}
+      </Box>
     </Card>
   );
 });

@@ -12,15 +12,15 @@ interface Props {
 
 export const SidenavTitle: FC<Props> = memo(({ textColor, title }) => (
   <MDTypography
-    color={textColor}
-    display="block"
-    variant="caption"
-    fontWeight="bold"
-    textTransform="uppercase"
-    pl={3}
-    mt={2}
-    mb={1}
-    ml={1}
+    color         = {textColor}
+    display       = "block"
+    variant       = "caption"
+    fontWeight    = "bold"
+    textTransform = "uppercase"
+    pl            = {3}
+    mt            = {2}
+    mb            = {1}
+    ml            = {1}
   >
     {title}
   </MDTypography>

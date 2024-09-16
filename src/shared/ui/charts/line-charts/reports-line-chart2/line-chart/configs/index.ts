@@ -42,7 +42,7 @@ export function configs(
           pointBorderColor     : "transparent",
           pointBackgroundColor : isConfig(datasets.pointBackgroundColor, "rgba(255, 255, 255, .8)"),
           borderColor          : isConfig(datasets.borderColor, "rgba(255, 255, 255, .8)"),
-          borderWidth          : isConfig(datasets.borderWidth, 4), // Толщика линии
+          borderWidth          : isConfig(datasets.borderWidth, 3), // Толщика линии
           backgroundColor      : isConfig(datasets.backgroundColor, "transparent"),
           fill                 : isConfig(datasets.fill, true),
           data                 : datasets.data,

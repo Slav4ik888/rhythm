@@ -27,6 +27,7 @@ interface Props extends TypographyOwnProps {
   verticalAlign?: "unset" | "baseline" | "sub" | "super" | "text-top" | "text-bottom" | "middle" | "top" | "bottom"
   textGradient?: boolean
   fontSize?: string
+  fontWeight?: "light" | "regular" | "medium" | "bold"
   opacity?: number
   cursor?: string
   component?: React.ElementType
@@ -38,13 +39,14 @@ interface Props extends TypographyOwnProps {
 const MDTypography: FC<Props> = forwardRef(
   (
     {
-      color = "dark",
-      fontWeight = false,
+      color         = "dark",
+      fontWeight    = false,
       textTransform = "none",
       verticalAlign = "unset",
-      textGradient = false,
-      opacity = 1,
-      children, ...rest
+      textGradient  = false,
+      opacity       = 1,
+      children,
+      ...rest
     },
     ref
   ) => {

@@ -139,35 +139,58 @@ const colors = {
       state: "#191919",
     },
 
-    // My
+    // My gradient for departments
     department_7: {
-      main: "#a5d2f8",
-      state: "#508dde",
+      main: "rgb(165 210 248)",
+      state: "rgb(80 141 222)",
     },
     department_1: {
-      main: "#f9d6b0",
-      state: "#f2b65e",
+      main: "rgb(249 214 176)",
+      state: "rgb(209 148 58)",
     },
     department_2: {
-      main: "#d2bae9",
-      state: "#8d61b7",
+      main: "rgb(210 186 233)",
+      state: "rgb(141 97 183)",
     },
     department_3: {
-      main: "#f2bcbc",
-      state: "#eb8181",
+      main: "rgb(242 188 188)",
+      state: "rgb(235 129 129)",
     },
     department_4: {
-      main: "#9dee8f",
-      state: "#4d9142",
+      main: "rgb(130 222 115)",
+      state: "rgb(63 122 53)",
     },
     department_5: {
-      main: "#bebebe",
-      state: "#848484",
+      main: "rgb(213 211 211)",
+      state: "rgb(132 132 132)",
     },
     department_6: {
-      main: "#f7f498",
-      state: "#adab47",
+      main: "rgb(239 236 129)",
+      state: "rgb(194 201 35)",
     },
+  },
+
+  // My colors for departments
+  department_7_title: {
+    main: "rgb(80 141 222 / 80%)", // Заголовок первого главного блока отделения
+  },
+  department_1_title: {
+    main: "rgb(209 148 58 / 80%)",
+  },
+  department_2_title: {
+    main: "rgb(141 97 183 / 80%)",
+  },
+  department_3_title: {
+    main: "rgb(235 129 129 / 80%)",
+  },
+  department_4_title: {
+    main: "rgb(63 122 53 / 80%)",
+  },
+  department_5_title: {
+    main: "rgb(132 132 132 / 80%)",
+  },
+  department_6_title: {
+    main: "rgb(194 201 35 / 80%)",
   },
 
   socialMediaColors: {

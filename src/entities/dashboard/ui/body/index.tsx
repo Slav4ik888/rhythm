@@ -17,13 +17,17 @@ import { memo } from 'react';
 import { Grid } from '@mui/material';
 import MDBox from "shared/ui/mui-design-components/md-box";
 import { ComplexStatisticsCard } from 'shared/ui/cards/complex-statistics-card';
-import { ReportsBarChart, ReportsBarChart2, ReportsLineChart } from 'shared/ui/charts';
+import { ReportsBarChart, ReportsLineChart } from 'shared/ui/charts';
 import reportsBarChartData from "../../model/example-data/reportsBarChartData";
 import reportsLineChartData from "../../model/example-data/reportsLineChartData";
-import { DashboardBlockContainer } from 'entities/blocks';
 import { DashboardBodyWrapper } from './body-wrapper';
 import { DashboardGroupDepartment7 } from 'widgets/dashboard/departments/department_7';
 import { DashboardGroupDepartment1 } from 'widgets/dashboard/departments/department_1';
+import { DashboardGroupDepartment2 } from 'widgets/dashboard/departments/department_2';
+import { DashboardGroupDepartment3 } from 'widgets/dashboard/departments/department_3';
+import { DashboardGroupDepartment4 } from 'widgets/dashboard/departments/department_4';
+import { DashboardGroupDepartment5 } from 'widgets/dashboard/departments/department_5';
+import { DashboardGroupDepartment6 } from 'widgets/dashboard/departments/department_6';
 
 // Dashboard components
 // import Projects from "layouts/dashboard/components/Projects";
@@ -41,122 +45,12 @@ export const DashboardBody = memo(() => {
     <DashboardBodyWrapper>
       <DashboardGroupDepartment7 />
       <DashboardGroupDepartment1 />
-
-      <DashboardBlockContainer bgColor='department_2' my={5} p={3}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={4}>
-            <ReportsBarChart2
-              color="info"
-              title="website views"
-              description="Last Campaign Performance"
-              date="campaign sent 2 days ago"
-              chart={reportsBarChartData}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <ReportsBarChart2
-              color="info"
-              title="website views"
-              description="Last Campaign Performance"
-              date="campaign sent 2 days ago"
-              chart={reportsBarChartData}
-            />
-          </Grid>
-        </Grid>
-      </DashboardBlockContainer>
+      <DashboardGroupDepartment2 />
+      <DashboardGroupDepartment3 />
+      <DashboardGroupDepartment4 />
+      <DashboardGroupDepartment5 />
+      <DashboardGroupDepartment6 />
       
-      <DashboardBlockContainer bgColor='department_3' my={5} p={3}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={4}>
-            <ReportsBarChart2
-              color="info"
-              title="website views"
-              description="Last Campaign Performance"
-              date="campaign sent 2 days ago"
-              chart={reportsBarChartData}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <ReportsBarChart2
-              color="info"
-              title="website views"
-              description="Last Campaign Performance"
-              date="campaign sent 2 days ago"
-              chart={reportsBarChartData}
-            />
-          </Grid>
-        </Grid>
-      </DashboardBlockContainer>
-
-      <DashboardBlockContainer bgColor='department_4' my={5} p={3}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={4}>
-            <ReportsBarChart2
-              color="info"
-              title="website views"
-              description="Last Campaign Performance"
-              date="campaign sent 2 days ago"
-              chart={reportsBarChartData}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <ReportsBarChart2
-              color="info"
-              title="website views"
-              description="Last Campaign Performance"
-              date="campaign sent 2 days ago"
-              chart={reportsBarChartData}
-            />
-          </Grid>
-        </Grid>
-      </DashboardBlockContainer>
-
-      <DashboardBlockContainer bgColor='department_5' my={5} p={3}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={4}>
-            <ReportsBarChart2
-              color="info"
-              title="website views"
-              description="Last Campaign Performance"
-              date="campaign sent 2 days ago"
-              chart={reportsBarChartData}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <ReportsBarChart2
-              color="info"
-              title="website views"
-              description="Last Campaign Performance"
-              date="campaign sent 2 days ago"
-              chart={reportsBarChartData}
-            />
-          </Grid>
-        </Grid>
-      </DashboardBlockContainer>
-
-      <DashboardBlockContainer bgColor='department_6' my={5} p={3}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={4}>
-            <ReportsBarChart2
-              color="info"
-              title="website views"
-              description="Last Campaign Performance"
-              date="campaign sent 2 days ago"
-              chart={reportsBarChartData}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <ReportsBarChart2
-              color="info"
-              title="website views"
-              description="Last Campaign Performance"
-              date="campaign sent 2 days ago"
-              chart={reportsBarChartData}
-            />
-          </Grid>
-        </Grid>
-      </DashboardBlockContainer>
-
 
       <Grid container spacing={3}>
         <Grid item xs={12} md={6} lg={3}>

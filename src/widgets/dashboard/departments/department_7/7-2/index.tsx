@@ -12,10 +12,10 @@ import { fixPointRadius } from 'entities/charts';
 const getDatasetConfig = (dates: any[]): ChartConfigDataSets => {
 
   const config: ChartConfigDataSets = {
-    pointBackgroundColor : "#508dde", // "rgba(0, 0, 0, .8)",
-    backgroundColor      : "#a5d2f8",
-    borderColor          : "#508dde",
-  }
+    pointBackgroundColor : "rgb(80 141 222 / 100%)",
+    backgroundColor      : "rgb(80 141 222 / 30%)",
+    borderColor          : "rgb(80 141 222 / 100%)"
+  };
 
   fixPointRadius(config, dates);
 

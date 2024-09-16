@@ -16,14 +16,25 @@ Coded by www.creative-tim.com
 // @mui material components
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
-import { CustomMUITheme } from 'app/providers/theme';
+import { CustomMUITheme, ColorName } from 'app/providers/theme';
+
+
+
+interface OwnerState {
+  color: ColorName
+  textTransform: "none" | "capitalize" | "uppercase" | "lowercase"
+  verticalAlign?: "unset" | "baseline" | "sub" | "super" | "text-top" | "text-bottom" | "middle" | "top" | "bottom"
+  textGradient?: boolean
+  opacity: number
+  fontWeight?: "light" | "regular" | "medium" | "bold"
+  darkMode: boolean
+}
 
 
 // @ts-ignore
 export default styled(Typography)(({ theme, ownerState }) => {
   const { palette, typography, functions } = theme as unknown as CustomMUITheme;
-  const { color, textTransform, verticalAlign, fontWeight, opacity, textGradient, darkMode } =
-    ownerState;
+  const { color, textTransform, verticalAlign, fontWeight, opacity, textGradient, darkMode } = ownerState as OwnerState;
 
   const { gradients, transparent, white } = palette;
   const { fontWeightLight, fontWeightRegular, fontWeightMedium, fontWeightBold } = typography;
@@ -31,10 +42,10 @@ export default styled(Typography)(({ theme, ownerState }) => {
 
   // fontWeight styles
   const fontWeights = {
-    light: fontWeightLight,
-    regular: fontWeightRegular,
-    medium: fontWeightMedium,
-    bold: fontWeightBold,
+    light   : fontWeightLight,
+    regular : fontWeightRegular,
+    medium  : fontWeightMedium,
+    bold    : fontWeightBold,
   };
 
   // styles for the typography with textGradient={true}
@@ -52,14 +63,16 @@ export default styled(Typography)(({ theme, ownerState }) => {
     zIndex: 1,
   });
 
-  // color value
+  // color value                          если нет цвета, то inherit
   // @ts-ignore
-  let colorValue = color === "inherit" || !palette[color] ? "inherit" : palette[color].main;
+  let colorValue = color === "inherit" || ! palette[color] ? "inherit" : palette[color].main;
 
   // @ts-ignore
-  if (darkMode && (color === "inherit" || !palette[color])) {
+  if (darkMode && (color === "inherit" || ! palette[color])) {
     colorValue = "inherit";
-  } else if (darkMode && color === "dark") colorValue = white.main;
+  }
+  else if (darkMode && color === "dark") colorValue = white.main;
+
 
   return {
     opacity,

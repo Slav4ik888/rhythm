@@ -12,9 +12,9 @@ import { fixPointRadius } from 'entities/charts';
 const getDatasetConfig = (dates: any[]): ChartConfigDataSets => {
 
   const config: ChartConfigDataSets = {
-    pointBackgroundColor : "rgb(209 148 58)",
-    backgroundColor      : "rgb(209 148 58 / 30%)",
-    borderColor          : "rgb(209 148 58)",
+    pointBackgroundColor : "rgb(235 129 129)",
+    backgroundColor      : "rgb(235 129 129 / 30%)",
+    borderColor          : "rgb(235 129 129)",
   }
 
   fixPointRadius(config, dates);
@@ -24,11 +24,11 @@ const getDatasetConfig = (dates: any[]): ChartConfigDataSets => {
 
 
 
-export const DashboardReportContainer1_1 = memo(() => {
+export const DashboardReportContainer3_1 = memo(() => {
   const activeEntities = useSelector(selectActiveEntities);
   const activeDates    = useSelector(selectActiveDates);
 
-  const itemData = useMemo(() => activeEntities["1-1"], [activeEntities]);
+  const itemData = useMemo(() => activeEntities["3-1"], [activeEntities]);
   const dates = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD.MM.YY')), [activeDates, itemData]);
 
 
@@ -40,7 +40,7 @@ export const DashboardReportContainer1_1 = memo(() => {
     labels: dates,
     datasets: {
       ...datasetConfig,
-      // label : "Общее кол-во персонала",
+      // label : "Общая сумма поступлений",
       data: itemData.data as number[]
     }
   };
