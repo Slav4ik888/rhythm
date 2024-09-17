@@ -81,7 +81,7 @@ export function configs(
             font    : {
               size       : isConfig(scales?.y?.ticks?.font?.size, 10),
               weight     : 300,
-              family     : "Roboto",
+              family     : "Arial", // "Roboto",
               style      : "normal",
               lineHeight : 2,
             },
@@ -105,7 +105,7 @@ export function configs(
             font    : {
               size       : isConfig(scales?.x?.ticks?.font?.size, 10),
               weight     : 300,
-              family     : "Roboto",
+              family     : "Arial", // "Roboto",
               style      : "normal",
               lineHeight : 2,
             },

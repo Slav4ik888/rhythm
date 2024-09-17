@@ -7,6 +7,7 @@ import { Tooltip } from 'shared/ui/tooltip';
 
 
 
+/** DEPRECATED */
 export const UpdateGraphicsBtn: FC = memo(() => {
   const dispatch = useAppDispatch();
   const storeActivePeriod   = useSelector(selectActivePeriod);

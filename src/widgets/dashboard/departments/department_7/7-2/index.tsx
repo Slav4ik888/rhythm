@@ -29,9 +29,7 @@ export const DashboardReportContainer7_2 = memo(() => {
   const activeDates    = useSelector(selectActiveDates);
 
   const itemData = useMemo(() => activeEntities["7-2"], [activeEntities]);
-
-  const dates = useMemo(() => activeDates[itemData?.statisticType]
-    ?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
+  const dates = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
 
   if (! itemData) return null;

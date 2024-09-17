@@ -2,7 +2,7 @@ import { memo, useMemo } from 'react';
 import { ReportsLineChart2, ChartConfigDataSets } from 'shared/ui/charts';
 import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
-import { selectActiveDates, selectActiveEntities } from 'entities/dashboard';
+import { invertData, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
 
@@ -29,9 +29,7 @@ export const DashboardReportContainer7_1 = memo(() => {
   const activeDates    = useSelector(selectActiveDates);
 
   const itemData = useMemo(() => activeEntities["7-1"], [activeEntities]);
-
-  const dates = useMemo(() => activeDates[itemData?.statisticType]
-    ?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
+  const dates = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
 
   if (! itemData) return null;
@@ -43,7 +41,7 @@ export const DashboardReportContainer7_1 = memo(() => {
     datasets: {
       ...datasetConfig,
       // label : "Сумма кредиторской задолженности",
-      data: itemData.data as number[]
+      data: invertData(itemData.data as number[])
     }
   };
 

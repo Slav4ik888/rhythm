@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { MDBox } from 'shared/ui/mui-design-components';
-import { PeriodType, SetPeriodDate, UpdateGraphicsBtn } from 'features/dashboard';
+import { PeriodType, SetPeriodDate } from 'features/dashboard';
 
 
 
@@ -11,6 +11,6 @@ export const SettingDatePeriod: FC = memo(() => (
     <SetPeriodDate type="start" />
     <SetPeriodDate type="end" />
 
-    <UpdateGraphicsBtn />
+    {/* <UpdateGraphicsBtn /> */}
   </MDBox>
 ));

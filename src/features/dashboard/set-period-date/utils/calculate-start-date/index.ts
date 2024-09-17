@@ -39,17 +39,17 @@ export const calculateStartDate = (endDate: number | undefined, type: DashboardP
   if (! type) return;
 
   switch (type) {
-    case DashboardPeriodType.ONE_WEEK: return calcStartDate(endDate, 0, 0, -7);
-    case DashboardPeriodType.ONE_MONTH: return calcStartDate(endDate, 0, -1);
+    case DashboardPeriodType.ONE_WEEK:     return calcStartDate(endDate, 0, 0, -7);
+    case DashboardPeriodType.ONE_MONTH:    return calcStartDate(endDate, 0, -1);
     case DashboardPeriodType.THREE_MONTHS: return calcStartDate(endDate, 0, -3);
-    case DashboardPeriodType.SIX_MONTHS: return calcStartDate(endDate, 0, -6);
-    case DashboardPeriodType.NINE_MONTHS: return calcStartDate(endDate, 0, -9);
-    case DashboardPeriodType.ONE_YEAR: return calcStartDate(endDate, -1);
-    case DashboardPeriodType.TWO_YEARS: return calcStartDate(endDate, -2);
-    case DashboardPeriodType.THREE_YEARS: return calcStartDate(endDate, -3);
-    case DashboardPeriodType.FIVE_YEARS: return calcStartDate(endDate, -5);
-    case DashboardPeriodType.SEVEN_YEARS: return calcStartDate(endDate, -7);
-    case DashboardPeriodType.TEN_YEARS: return calcStartDate(endDate, -10);
+    case DashboardPeriodType.SIX_MONTHS:   return calcStartDate(endDate, 0, -6);
+    case DashboardPeriodType.NINE_MONTHS:  return calcStartDate(endDate, 0, -9);
+    case DashboardPeriodType.ONE_YEAR:     return calcStartDate(endDate, -1);
+    case DashboardPeriodType.TWO_YEARS:    return calcStartDate(endDate, -2);
+    case DashboardPeriodType.THREE_YEARS:  return calcStartDate(endDate, -3);
+    case DashboardPeriodType.FIVE_YEARS:   return calcStartDate(endDate, -5);
+    case DashboardPeriodType.SEVEN_YEARS:  return calcStartDate(endDate, -7);
+    case DashboardPeriodType.TEN_YEARS:    return calcStartDate(endDate, -10);
   
     default: console.error('Unknown period type:', type)
   }

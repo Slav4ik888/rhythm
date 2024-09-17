@@ -3,7 +3,7 @@ import { ReportsLineChart2, ChartConfigDataSets } from 'shared/ui/charts';
 import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
 import { selectActiveDates, selectActiveEntities } from 'entities/dashboard';
-import { formatDate } from 'shared/helpers/dates';
+import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
 
 
@@ -29,7 +29,7 @@ export const DashboardReportContainer5_1 = memo(() => {
   const activeDates    = useSelector(selectActiveDates);
 
   const itemData = useMemo(() => activeEntities["5-1"], [activeEntities]);
-  const dates = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD.MM.YY')), [activeDates, itemData]);
+  const dates = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
 
   if (! itemData) return null;

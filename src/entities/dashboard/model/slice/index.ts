@@ -6,6 +6,7 @@ import { getPayloadError as getError } from 'shared/lib/errors';
 import { getData, PayloadGetData } from 'features/dashboard';
 import { DashboardPeriodType } from '../config';
 import { getEntitiesByPeriod } from '../utils';
+import { calculateStartDate } from 'features/dashboard/set-period-date/utils';
 
 
 
@@ -64,30 +65,30 @@ export const slice = createSlice({
       state.activeEntities = activeEntities;
       state.activeDates    = activeDates;
 
-      LS.setDashboardState({
-        ...state,
-        activeEntities,
-        activeDates,
-        activePeriod: {
-          ...payload
-        }
-      });
+      LS.setDashboardState(state);
     },
     setSelectedPeriod: (state, { payload }: { payload: Partial<DashboardPeriod> }) => {
       // if (payload.type) state.selectedPeriod.prevType = state.selectedPeriod.type
       
-      state.selectedPeriod = {
-        ...state.selectedPeriod,
-        ...payload
+      const calcedStartDate = calculateStartDate(state.selectedPeriod.end, payload.type || state.selectedPeriod.type || DashboardPeriodType.NINE_MONTHS);
+
+      state.activePeriod = {
+        ...state.activePeriod,
+        ...payload,
+        start: calcedStartDate
       };
 
-      LS.setDashboardState({
-        ...state,
-        selectedPeriod: {
-          ...state.selectedPeriod,
-          ...payload
-        }
-      });
+      state.selectedPeriod = {
+        ...state.selectedPeriod,
+        ...payload,
+        start: calcedStartDate
+      };
+
+      const { activeDates, activeEntities } = getEntitiesByPeriod(state.startEntities, state.startDates, state.activePeriod);
+      state.activeEntities = activeEntities;
+      state.activeDates = activeDates;
+      
+      LS.setDashboardState(state);
     }
   },
 
@@ -111,13 +112,7 @@ export const slice = createSlice({
         state.loading     = false;
         state.errors      = {};
 
-        LS.setDashboardState({
-          ...state,
-          startEntities,
-          startDates,
-          activeEntities,
-          activeDates,
-        });
+        LS.setDashboardState(state);
       })
       .addCase(getData.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
