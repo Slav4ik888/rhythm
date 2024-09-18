@@ -1,4 +1,4 @@
-export { Dashboard, StatisticTypeChip } from './ui'
+export { Dashboard, StatisticTypeChip, ProductTypeChip } from './ui'
 export {
   DashboardEntities, DashboardDates, StateSchemaDashboard, DashboardItemData,
   DashboardStatisticItem, DashboardPeriod

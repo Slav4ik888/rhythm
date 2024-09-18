@@ -29,4 +29,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "17.09.2024 remove changeBtn" && git push -u origin main
+// git add . && git commit -m "18.09.2024 add ProductTypeChip" && git push -u origin main

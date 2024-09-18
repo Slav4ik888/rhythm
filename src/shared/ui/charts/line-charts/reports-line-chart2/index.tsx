@@ -18,7 +18,7 @@ import Divider from "@mui/material/Divider";
 import { MDBox, MDTypography } from "shared/ui/mui-design-components";
 import { GradientsBgColorName, GreyColor } from 'app/providers/theme';
 import { ChartConfig } from '../../../../../entities/charts/model/types';
-import { DashboardStatisticItem, StatisticTypeChip } from 'entities/dashboard';
+import { DashboardStatisticItem, StatisticTypeChip, ProductTypeChip } from 'entities/dashboard';
 import { TimeUpdated } from './time-updated';
 import { LineChartContainer } from './line-chart';
 
@@ -43,7 +43,10 @@ export const ReportsLineChart2: FC<Props> = ({ bgColor, item, description = "", 
       <LineChartContainer bgColor={bgColor} chart={chart} />
       
       <MDBox pt={3} pb={1} px={1}>
-        <StatisticTypeChip type={statisticType} />
+        <MDBox display="flex" flexDirection="column">
+          <StatisticTypeChip type={statisticType} />
+          <ProductTypeChip productType={item.productType} />
+        </MDBox>
         <MDTypography variant="h6" textTransform="none">
           {title}
         </MDTypography>

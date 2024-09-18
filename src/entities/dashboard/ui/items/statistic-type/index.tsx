@@ -6,36 +6,44 @@ import { CustomMUITheme, pxToRem, useTheme } from 'app/providers/theme';
 
 
 
-const useStyle = ({ palette: { statisticTypeChip } }: CustomMUITheme, type: DashboardStatisticType) => {
-  console.log('type: ', type);
-  console.log('statisticTypeChip: ', statisticTypeChip);
-
-  return {
-    width      : pxToRem(60),
-    height     : pxToRem(18),
+const useStyle = ({ palette: { statisticTypeChip } }: CustomMUITheme, type: DashboardStatisticType) => ({
+  tooltip: {
+    display    : 'flex',
+    alignItems : 'center',
+    height     : pxToRem(20),
+    cursor     : 'default',
+  },
+  chip: {
+    width      : pxToRem(70),
+    height     : pxToRem(15),
+    fontSize   : pxToRem(12),
     color      : statisticTypeChip[type].text,
-    background : statisticTypeChip[type].background
-  };
-};
+    background : statisticTypeChip[type].background,
+  },
+});
+
 
 interface Props {
   type: DashboardStatisticType
 }
 
 
-/** Компонент типа статистики: День | Нед | Мес | */
+/** Chip для типа статистики: День | Нед | Мес | */
 export const StatisticTypeChip: FC<Props> = memo(({ type }) => {
-  console.log('type111: ', type);
   const sx = useStyle(useTheme(), type);
   const { label, description } = DASHBOARD_STATISTIC_TYPE[type] || {};
 
 
   return (
-    <Tooltip title={description}>
+    <Tooltip
+      title     = {description}
+      placement = 'top-start'
+      sxSpan    = {sx.tooltip}
+    >
       <Chip
         label = {label}
         size  = "small"
-        sx    = {sx}
+        sx    = {sx.chip}
       />
     </Tooltip>
   )
