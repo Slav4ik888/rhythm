@@ -1,3 +1,5 @@
+import { DashboardItemType } from '../types';
+
 
 export enum DashboardStatisticType {
   DAY       = 'day',
@@ -7,13 +9,7 @@ export enum DashboardStatisticType {
 }
 
 
-export interface DashboardStatisticTypeItem {
-  label       : string
-  description : string // Tooltip
-}
-
-
-export const DASHBOARD_STATISTIC_TYPE: Record<DashboardStatisticType, DashboardStatisticTypeItem> = {
+export const STATISTIC_TYPE: Record<DashboardStatisticType, DashboardItemType> = {
   [DashboardStatisticType.DAY]: {
     label       : 'Ден',
     description : 'Ежедневная статистика'

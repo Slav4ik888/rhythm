@@ -25,25 +25,25 @@ const useStyle = (productType: string) => ({
 
 interface Props {
   // colorConfig : CompanyColorsConfig
-  productType : string
+  type : string
 }
 
 
 /**
  * Chip для статистики типа компании: Общая | Сопровождение | Курс | Ритм | Разработка | Конструктор | Прочие	
  */
-export const ProductTypeChip: FC<Props> = memo(({ productType }) => {
-  const sx = useStyle(productType);
+export const ProductTypeChip: FC<Props> = memo(({ type }) => {
+  const sx = useStyle(type);
 
 
   return (
     <Tooltip
-      title     = {productType}
+      title     = {type}
       placement = 'top-start'
       sxSpan    = {sx.tooltip}
     >
       <Chip
-        label = {productType}
+        label = {type}
         size  = "small"
         sx    = {sx.chip}
       />

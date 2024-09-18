@@ -2,6 +2,11 @@ import { DashboardStatisticType } from '../config';
 import { DashboardPeriodType } from '../config/period';
 
 
+/** For chips: StatisticType | ConditionType */
+export interface DashboardItemType {
+  label       : string
+  description : string // Tooltip
+}
 
 export interface DashboardPeriodDates {
   start : number | undefined

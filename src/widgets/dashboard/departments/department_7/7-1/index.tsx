@@ -2,9 +2,11 @@ import { memo, useMemo } from 'react';
 import { ReportsLineChart2, ChartConfigDataSets } from 'shared/ui/charts';
 import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
-import { invertData, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
+import { DashboardConditionType, invertData, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
+import { getLastItem } from 'shared/helpers/arrays';
+import { getConditionType } from 'entities/dashboard/model/config';
 
 
 
@@ -29,6 +31,7 @@ export const DashboardReportContainer7_1 = memo(() => {
   const activeDates    = useSelector(selectActiveDates);
 
   const itemData = useMemo(() => activeEntities["7-1"], [activeEntities]);
+  const condition = useMemo(() => getConditionType(getLastItem(activeEntities["7-1-C"]?.data as string[])), [activeEntities]);
   const dates = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
 
@@ -54,6 +57,7 @@ export const DashboardReportContainer7_1 = memo(() => {
         description = {<>(<strong>+15%</strong>) increase in today sales.</>}
         date        = "updated 4 min ago"
         chart       = {chartData}
+        condition   = {condition} // DashboardConditionType
       />
     </DashboardReportContainer>
   );

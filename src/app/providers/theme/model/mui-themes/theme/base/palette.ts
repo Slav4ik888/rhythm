@@ -255,26 +255,58 @@ const colors = {
     },
   },
 
+  // DashboardStatisticType
   statisticTypeChip: {
-    // DashboardStatisticType.DAY
     day: {
+      color      : "#dadada",
       background : "braun",
-      text       : "#dadada"
     },
     week: {
+      color      : "#263426",
       background : "#afc8af",
-      text       : "#263426"
     },
     month: {
+      color      : "#afc8af",
       background : "#33635e",
-      text       : "#afc8af"
     },
     month_cal: {
+      color      : "#dadada",
       background : "blue",
-      text       : "#dadada"
     },
   },
 
+  // DashboardConditionType
+  conditionTypeChip: {
+    power: {
+      color      : "#d4edbb",
+      background : "#1B5E20",
+    },
+    abundance: {
+      color      : "#b8dcf5",
+      background : "#0a53a8",
+    },
+    normal: {
+      color      : "#1159ab",
+      background : "#bfe1f6",
+    },
+    emergency: {
+      color      : "#b00302",
+      background : "#fecfc8",
+    },
+    danger: {
+      color      : "#fecfc8",
+      background : "#b00302",
+    },
+    non_existence: {
+      color      : "#3d3d3d",
+      background : "#e6e6e6",
+    },
+    null: {
+      color      : "#fff",
+      background : "#000",
+    },
+  },
+  
   badgeColors: {
     primary: {
       background: "#f8b3ca",
