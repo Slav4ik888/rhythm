@@ -304,6 +304,10 @@ const colors: Colors = {
       background : "#e6e6e6",
     },
     null: {
+      color      : "#3d3d3d",
+      background : "#e6e6e6",
+    },
+    any: {
       color      : "#fff",
       background : "#000",
     },

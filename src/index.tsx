@@ -29,4 +29,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "18.09.2024 add ConditionTypeChip" && git push -u origin main
+// git add . && git commit -m "19.09.2024 add getConditionType & maxValue" && git push -u origin main

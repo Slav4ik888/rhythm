@@ -12,4 +12,4 @@ export {
   selectLoading, selectErrors, selectActivePeriod, selectSelectedPeriod, selectLastUpdated,
   selectActiveDates, selectActiveEntities
 } from './model/selectors'
-export { invertData } from './model/utils'
+export { invertData, getConditionType } from './model/utils'

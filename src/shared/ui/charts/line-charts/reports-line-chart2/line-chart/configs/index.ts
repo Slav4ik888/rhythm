@@ -86,6 +86,9 @@ export function configs(
               lineHeight : 2,
             },
           },
+          // Добавление  мин / макс значения оси Y
+          suggestedMin: isConfig(scales?.y?.suggestedMin, null),
+          suggestedMax: isConfig(scales?.y?.suggestedMax, null),
         },
         x: {
           // Вертикальные линии от оси X

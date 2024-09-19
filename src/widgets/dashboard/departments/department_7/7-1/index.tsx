@@ -2,11 +2,9 @@ import { memo, useMemo } from 'react';
 import { ReportsLineChart2, ChartConfigDataSets } from 'shared/ui/charts';
 import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
-import { DashboardConditionType, invertData, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
+import { getConditionType, invertData, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
-import { getLastItem } from 'shared/helpers/arrays';
-import { getConditionType } from 'entities/dashboard/model/config';
 
 
 
@@ -30,9 +28,9 @@ export const DashboardReportContainer7_1 = memo(() => {
   const activeEntities = useSelector(selectActiveEntities);
   const activeDates    = useSelector(selectActiveDates);
 
-  const itemData = useMemo(() => activeEntities["7-1"], [activeEntities]);
-  const condition = useMemo(() => getConditionType(getLastItem(activeEntities["7-1-C"]?.data as string[])), [activeEntities]);
-  const dates = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
+  const itemData  = useMemo(() => activeEntities["7-1"], [activeEntities]);
+  const condition = useMemo(() => getConditionType(activeEntities["7-1-C"]?.data), [activeEntities]);
+  const dates     = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
 
   if (! itemData) return null;

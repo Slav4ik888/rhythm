@@ -59,6 +59,8 @@ export interface ChartConfigOptions {
           lineHeight?: number
         }
       }
+      suggestedMin?: number | null
+      suggestedMax?: number | null
     }
     x?: {
       // Горизонтальные линии на оси
