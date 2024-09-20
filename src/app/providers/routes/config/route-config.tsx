@@ -18,6 +18,10 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     path    : RoutePath.DASHBOARD,
     element : <DashboardPage />
   },
+  [AppRoutes.DASHBOARD_ID]: {
+    path    : RoutePath.DASHBOARD,
+    element : <DashboardPage />
+  },
   [AppRoutes.NOT_FOUND]: {
     path    : RoutePath.NOT_FOUND,
     element : <NotFoundPage />

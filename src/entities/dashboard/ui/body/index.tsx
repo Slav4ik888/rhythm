@@ -1,171 +1,21 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { memo } from 'react';
-import { Grid } from '@mui/material';
-import MDBox from "shared/ui/mui-design-components/md-box";
-import { ComplexStatisticsCard } from 'shared/ui/cards/complex-statistics-card';
-import { ReportsBarChart, ReportsLineChart } from 'shared/ui/charts';
-import reportsBarChartData from "../../model/example-data/reportsBarChartData";
-import reportsLineChartData from "../../model/example-data/reportsLineChartData";
-import { DashboardBodyWrapper } from './body-wrapper';
-import { DashboardGroupDepartment7 } from 'widgets/dashboard/departments/department_7';
-import { DashboardGroupDepartment1 } from 'widgets/dashboard/departments/department_1';
-import { DashboardGroupDepartment2 } from 'widgets/dashboard/departments/department_2';
-import { DashboardGroupDepartment3 } from 'widgets/dashboard/departments/department_3';
-import { DashboardGroupDepartment4 } from 'widgets/dashboard/departments/department_4';
-import { DashboardGroupDepartment5 } from 'widgets/dashboard/departments/department_5';
-import { DashboardGroupDepartment6 } from 'widgets/dashboard/departments/department_6';
-
-// Dashboard components
-// import Projects from "layouts/dashboard/components/Projects";
-// import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
+import { useParams } from 'react-router-dom';
+import { DashboardBody_css_1d3r8 } from './companies/css';
+import { DashboardBody_demo_pecar } from './companies/demo-pecar';
+import { DashboardBody_osnova_g2d7 } from './companies/osnova';
 
 
 
 export const DashboardBody = memo(() => {
   console.log('DashboardBody ');
+  const { companyId } = useParams();
+  console.log('companyId: ', companyId);
 
-  
-  const { sales, tasks } = reportsLineChartData;
+  switch (companyId) {
+    case 'pecar'       : return <DashboardBody_demo_pecar />;
+    case 'osnova_g2d7' : return <DashboardBody_osnova_g2d7 />;
+    case 'css_1d3r8'   : return <DashboardBody_css_1d3r8 />;
 
-  return (
-    <DashboardBodyWrapper>
-      <DashboardGroupDepartment7 />
-      <DashboardGroupDepartment1 />
-      <DashboardGroupDepartment2 />
-      <DashboardGroupDepartment3 />
-      <DashboardGroupDepartment4 />
-      <DashboardGroupDepartment5 />
-      <DashboardGroupDepartment6 />
-      
-
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6} lg={3}>
-          <MDBox mb={1.5}>
-            <ComplexStatisticsCard
-              bgColor="dark"
-              icon="weekend"
-              title="Bookings"
-              count={281}
-              percentage={{
-                color: "success",
-                amount: "+55%",
-                label: "than lask week",
-              }}
-            />
-          </MDBox>
-        </Grid>
-        <Grid item xs={12} md={6} lg={3}>
-          <MDBox mb={1.5}>
-            <ComplexStatisticsCard
-              icon="leaderboard"
-              title="Today's Users"
-              count="2,300"
-              percentage={{
-                color: "success",
-                amount: "+3%",
-                label: "than last month",
-              }}
-            />
-          </MDBox>
-        </Grid>
-        <Grid item xs={12} md={6} lg={3}>
-          <MDBox mb={1.5}>
-            <ComplexStatisticsCard
-              bgColor="success"
-              icon="store"
-              title="Revenue"
-              count="34k"
-              percentage={{
-                color: "success",
-                amount: "+1%",
-                label: "than yesterday",
-              }}
-            />
-          </MDBox>
-        </Grid>
-        <Grid item xs={12} md={6} lg={3}>
-          <MDBox mb={1.5}>
-            <ComplexStatisticsCard
-              bgColor="primary"
-              icon="person_add"
-              title="Followers"
-              count="+91"
-              percentage={{
-                color: "success",
-                amount: "",
-                label: "Just updated",
-              }}
-            />
-          </MDBox>
-        </Grid>
-      </Grid>
-
-      <MDBox mt={4.5}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={4}>
-            <MDBox mb={3}>
-              <ReportsBarChart
-                bgColor="info"
-                title="website views"
-                description="Last Campaign Performance"
-                date="campaign sent 2 days ago"
-                chart={reportsBarChartData}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <MDBox mb={3}>
-              <ReportsLineChart
-                bgColor="success"
-                title="daily sales"
-                description={
-                  <>
-                    (<strong>+15%</strong>) increase in today sales.
-                  </>
-                }
-                date="updated 4 min ago"
-                chart={sales}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <MDBox mb={3}>
-              <ReportsLineChart
-                bgColor="dark"
-                title="completed tasks"
-                description="Last Campaign Performance"
-                date="just updated"
-                chart={tasks}
-              />
-            </MDBox>
-          </Grid>
-        </Grid>
-      </MDBox>
-
-      {/* <MDBox>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={8}>
-            <Projects />
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <OrdersOverview />
-          </Grid>
-        </Grid>
-      </MDBox> */}
-    </DashboardBodyWrapper>
-  );
+    default: return <>Empty companyId or unknown...</>
+  }
 });
