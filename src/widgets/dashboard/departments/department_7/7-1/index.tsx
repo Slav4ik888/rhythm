@@ -50,6 +50,7 @@ export const DashboardReportContainer7_1 = memo(() => {
   return (
     <DashboardReportContainer>
       <ReportsLineChart2
+        inverted
         bgColor     = "grey-300" // "department_7"
         item        = {itemData}
         description = {<>(<strong>+15%</strong>) increase in today sales.</>}

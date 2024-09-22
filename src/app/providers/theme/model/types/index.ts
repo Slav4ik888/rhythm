@@ -23,11 +23,15 @@ export type ColorsConfig = {
 }
 
 
-export type GreyColor = "grey-100" | "grey-200" | "grey-300" | "grey-400" | "grey-500" | "grey-600" | "grey-700" | "grey-800" | "grey-900"
-export type GradientsBgColorName = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'light' | 'dark' |
-  "department_7"       | "department_6"       | "department_5"       | "department_4"       | "department_3"       | "department_2"       | "department_1";
+export type GreyColor = 'grey-100' | 'grey-200' | 'grey-300' | 'grey-400' | 'grey-500' | 'grey-600' | 'grey-700' | 'grey-800' | 'grey-900'
+
+export type GradientsBgColorName =
+  | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'light' | 'dark'
+  | 'department_7' | 'department_6' | 'department_5' | 'department_4' | 'department_3' | 'department_2' | 'department_1';
   
-export type ColorName = "inherit" | "text" | "transparent" | "white" | "grey" |
-  "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark" |
-  "department_7"       | "department_6"       | "department_5"       | "department_4"       | "department_3"       | "department_2"       | "department_1" |
-  "department_7_title" | "department_6_title" | "department_5_title" | "department_4_title" | "department_3_title" | "department_2_title" | "department_1_title";
+export type ColorName =
+  | 'inherit' | 'text'      | 'transparent' | 'white'   | 'grey'
+  | 'primary' | 'secondary' | 'info'        | 'success' | 'warning' | 'error' | 'light' | 'dark'
+  | 'growth'  | 'fall'      | 'unchanged'
+  | 'department_7'       | 'department_6'       | 'department_5'       | 'department_4'       | 'department_3'       | 'department_2'       | 'department_1'
+  | 'department_7_title' | 'department_6_title' | 'department_5_title' | 'department_4_title' | 'department_3_title' | 'department_2_title' | 'department_1_title';

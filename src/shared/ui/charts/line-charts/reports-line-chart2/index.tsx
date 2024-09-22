@@ -13,14 +13,14 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { FC, ReactNode } from "react";
+import { FC, memo, ReactNode } from "react";
 import Divider from "@mui/material/Divider";
 import { MDBox, MDTypography } from "shared/ui/mui-design-components";
 import { GradientsBgColorName, GreyColor } from 'app/providers/theme';
 import { ChartConfig } from '../../../../../entities/charts/model/types';
 import {
   DashboardStatisticItem, StatisticTypeChip, ProductTypeChip, DashboardConditionType,
-  ConditionTypeChip
+  ConditionTypeChip, ResultChanges
  } from 'entities/dashboard';
 import { TimeUpdated } from './time-updated';
 import { LineChartContainer } from './line-chart';
@@ -35,10 +35,11 @@ interface Props {
   chart       : ChartConfig
   condition?  : DashboardConditionType
   light?      : boolean // Не понял для чего это, но в Navbar также
+  inverted?   : boolean // Если график перевёрнутый, то есть если задолженность уменьшается то это рост
 }
 
 
-export const ReportsLineChart2: FC<Props> = ({ bgColor, item, description = "", light = false, condition, date, chart }) => {
+export const ReportsLineChart2: FC<Props> = memo(({ bgColor, item, description = "", inverted, light = false, condition, date, chart }) => {
   const { title, statisticType } = item;
 
 
@@ -47,11 +48,15 @@ export const ReportsLineChart2: FC<Props> = ({ bgColor, item, description = "", 
       <LineChartContainer bgColor={bgColor} chart={chart} />
       
       <MDBox pt={3} pb={1} px={1}>
-        <MDBox display="flex" flexDirection="column">
-          <StatisticTypeChip type={statisticType} />
-          <ProductTypeChip   type={item.productType} />
-          <ConditionTypeChip type={condition} />
+        <MDBox sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
+          <MDBox display="flex" flexDirection="column">
+            <StatisticTypeChip type={statisticType} />
+            <ProductTypeChip   type={item.productType} />
+            <ConditionTypeChip type={condition} />
+          </MDBox>
+          <ResultChanges item={item} inverted={inverted} />
         </MDBox>
+
         <MDTypography variant="h6" textTransform="none">
           {title}
         </MDTypography>
@@ -63,4 +68,4 @@ export const ReportsLineChart2: FC<Props> = ({ bgColor, item, description = "", 
       </MDBox>
     </>
   );
-}
+});

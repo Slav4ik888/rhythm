@@ -172,6 +172,49 @@ const colors: Colors = {
     },
   },
 
+  // Рост | Падение | Без изменений - результатов
+  growth: {
+    main: '#02bf02',
+  },
+  fall: {
+    main: '#cc0000',
+  },
+  unchanged: {
+    main: '#434343',
+  },
+
+  // Цвета с фоном для: Рост | Падение | Без изменений - результатов
+  increasedBG: {
+    growth: {
+      color      : '#274e13',
+      background : '#02bf02',
+    },
+    fall: {
+      color      : '#660000',
+      background : '#cc0000',
+    },
+    unchanged: {
+      color      : '#b7b7b7',
+      background : '#434343',
+    },
+  },
+
+  // Цвета с фоном для прогресса: Красный | Жёлтый | Зелёный
+  progressBG: {
+    danger: {
+      color      : '#660000',
+      background : '#cc0000',
+    },
+    average: {
+      color      : '#783f04',
+      background : '#ffd966',
+    },
+    exellent: {
+      color      : '#274e13',
+      background : '#02bf02',
+    },
+  },
+  
   // My colors for departments
   department_7_title: {
     main: "#6f96d8", // Заголовок первого главного блока отделения

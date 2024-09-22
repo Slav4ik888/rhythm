@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import Chip from '@mui/material/Chip';
-import { DashboardStatisticType, STATISTIC_TYPE } from '../../../model/config';
+import { DashboardStatisticType, STATISTIC_TYPE } from '../../../../model/config';
 import { Tooltip } from 'shared/ui/tooltip';
 import { CustomMUITheme, pxToRem, useTheme } from 'app/providers/theme';
 

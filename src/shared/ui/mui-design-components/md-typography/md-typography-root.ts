@@ -21,13 +21,13 @@ import { CustomMUITheme, ColorName } from 'app/providers/theme';
 
 
 interface OwnerState {
-  color: ColorName
-  textTransform: "none" | "capitalize" | "uppercase" | "lowercase"
-  verticalAlign?: "unset" | "baseline" | "sub" | "super" | "text-top" | "text-bottom" | "middle" | "top" | "bottom"
-  textGradient?: boolean
-  opacity: number
-  fontWeight?: "light" | "regular" | "medium" | "bold"
-  darkMode: boolean
+  color          : ColorName
+  textTransform  : "none" | "capitalize" | "uppercase" | "lowercase"
+  verticalAlign? : "unset" | "baseline" | "sub" | "super" | "text-top" | "text-bottom" | "middle" | "top" | "bottom"
+  textGradient?  : boolean
+  opacity        : number
+  fontWeight?    : "light" | "regular" | "medium" | "bold"
+  darkMode       : boolean
 }
 
 

@@ -21,18 +21,18 @@ import { TypographyOwnProps } from '@mui/material';
 
 
 interface Props extends TypographyOwnProps {
-  display?: 'block' | "flex"
-  color?: ColorName
-  textTransform?: "none" | "capitalize" | "uppercase" | "lowercase"
-  verticalAlign?: "unset" | "baseline" | "sub" | "super" | "text-top" | "text-bottom" | "middle" | "top" | "bottom"
-  textGradient?: boolean
-  fontSize?: string
-  fontWeight?: "light" | "regular" | "medium" | "bold"
-  opacity?: number
-  cursor?: string
-  component?: React.ElementType
-  children: React.ReactNode
-  sx?: any
+  display?       : 'block' | "flex"
+  color?         : ColorName
+  textTransform? : "none" | "capitalize" | "uppercase" | "lowercase"
+  verticalAlign? : "unset" | "baseline" | "sub" | "super" | "text-top" | "text-bottom" | "middle" | "top" | "bottom"
+  textGradient?  : boolean
+  fontSize?      : string
+  fontWeight?    : "light" | "regular" | "medium" | "bold"
+  opacity?       : number
+  cursor?        : string
+  component?     : React.ElementType
+  children       : React.ReactNode
+  sx?            : any
 }
 
 

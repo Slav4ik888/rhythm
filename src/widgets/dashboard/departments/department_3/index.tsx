@@ -13,7 +13,6 @@ export const DashboardGroupDepartment3 = memo(() => {
       title      = 'Финансы'
       titleColor = 'department_3_title'
       bgColor    = 'department_3'
-      my={5} p={3} pr={0}
     >
       <DashboardReportContainer3_1 />
     </DashboardBlockContainer>

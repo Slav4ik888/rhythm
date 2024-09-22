@@ -2,6 +2,11 @@ import { DashboardStatisticType } from '../config';
 import { DashboardPeriodType } from '../config/period';
 
 
+
+/** Показывает положительные отрицательные или нулевые изменения */
+export type Increased = 1 | -1 | 0
+
+
 /** For chips: StatisticType | ConditionType */
 export interface DashboardItemType {
   label       : string
