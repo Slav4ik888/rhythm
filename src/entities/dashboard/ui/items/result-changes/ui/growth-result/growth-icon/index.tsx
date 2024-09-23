@@ -1,12 +1,12 @@
 import { FC, memo, useMemo } from "react";
 import { Box } from '@mui/material';
-import { Increased } from '../../../../../model/types';
+import { Increased } from '../../../../../../model/types';
 import GrowIcon from './assets/triangle-growth.svg';
 import FallIcon from './assets/triangle-fall.svg';
 import UnchangedLeftIcon from './assets/triangle-unchanged-left.svg';
 import UnchangedRightIcon from './assets/triangle-unchanged-right.svg';
 import { CustomMUITheme, useTheme } from 'app/providers/theme';
-import { getColorByIncreased } from '../../utils';
+import { getColorByIncreased } from '../../../model/utils';
 
 
 

@@ -1,8 +1,9 @@
-export { Dashboard, StatisticTypeChip, ProductTypeChip, ConditionTypeChip, ResultChanges } from './ui'
+export { Dashboard, StatisticTypeChip, ProductTypeChip, ConditionTypeChip } from './ui'
 export {
   DashboardEntities, DashboardDates, StateSchemaDashboard, DashboardItemData,
   DashboardStatisticItem, DashboardPeriod, Increased
 } from './model/types'
+export { ResultChangesConfig, ResultChanges } from './ui/items/result-changes'
 export {
   DASHBOARD_PERIOD_TEXT, DashboardPeriodType, arrayDashboardPeriodType, DashboardStatisticType,
   DashboardConditionType

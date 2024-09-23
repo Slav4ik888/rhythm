@@ -14,9 +14,9 @@ interface Props {
 /** Цифровое значение итогового изменения */
 export const GrowthChange: FC<Props> = memo(({ color, value }) => {
   
-  if (isUndefined(value)) return null
+  if (isUndefined(value) || isNaN(value as number)) return null
 
   return (
-    <MDTypography variant="h6" color={color}>{value}</MDTypography>
+    <MDTypography variant="h6" color={color} mr={0.1}>{value}</MDTypography>
   );
 });

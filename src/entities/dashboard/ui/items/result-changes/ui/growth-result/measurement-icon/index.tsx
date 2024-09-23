@@ -17,6 +17,6 @@ export const MeasurementIcon: FC<Props> = memo(({ color, value }) => {
   if (isUndefined(value)) return null;
 
   return (
-    <MDTypography variant="h6" color={color}>%</MDTypography>
+    <MDTypography variant="h6" color={color} mr={1}>%</MDTypography>
   );
 });

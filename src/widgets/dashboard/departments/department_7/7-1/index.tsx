@@ -57,6 +57,11 @@ export const DashboardReportContainer7_1 = memo(() => {
         date        = "updated 4 min ago"
         chart       = {chartData}
         condition   = {condition} // DashboardConditionType
+        config      = {{ resultChanges: {
+          growthResult: {
+            fractionDigits: 1,
+          },
+        }}}
       />
     </DashboardReportContainer>
   );

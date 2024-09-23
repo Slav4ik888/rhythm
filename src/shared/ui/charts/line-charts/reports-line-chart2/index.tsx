@@ -20,11 +20,16 @@ import { GradientsBgColorName, GreyColor } from 'app/providers/theme';
 import { ChartConfig } from '../../../../../entities/charts/model/types';
 import {
   DashboardStatisticItem, StatisticTypeChip, ProductTypeChip, DashboardConditionType,
-  ConditionTypeChip, ResultChanges
+  ConditionTypeChip, ResultChanges, ResultChangesConfig
  } from 'entities/dashboard';
 import { TimeUpdated } from './time-updated';
 import { LineChartContainer } from './line-chart';
 
+
+
+interface ReportsLineChartConfig {
+  resultChanges?: ResultChangesConfig
+}
 
 
 interface Props {
@@ -36,6 +41,7 @@ interface Props {
   condition?  : DashboardConditionType
   light?      : boolean // Не понял для чего это, но в Navbar также
   inverted?   : boolean // Если график перевёрнутый, то есть если задолженность уменьшается то это рост
+  config?     : ReportsLineChartConfig
 }
 
 
@@ -54,7 +60,7 @@ export const ReportsLineChart2: FC<Props> = memo(({ bgColor, item, description =
             <ProductTypeChip   type={item.productType} />
             <ConditionTypeChip type={condition} />
           </MDBox>
-          <ResultChanges item={item} inverted={inverted} />
+          <ResultChanges item={item} config={{ inverted }} />
         </MDBox>
 
         <MDTypography variant="h6" textTransform="none">

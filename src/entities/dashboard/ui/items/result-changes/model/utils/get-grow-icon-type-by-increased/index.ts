@@ -1,4 +1,4 @@
-import { Increased } from '../../../../../model/types';
+import { Increased } from '../../../../../../model/types';
 
 
 type GrowIconType = 'growth' | 'fall' | 'unchanged'
