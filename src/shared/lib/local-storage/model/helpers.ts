@@ -1,19 +1,20 @@
 import { ColorMode } from 'app/providers/theme';
+import { CompanyId } from 'entities/companies';
 import { StateSchemaDashboard } from 'entities/dashboard';
 import { ResGetData } from 'features/dashboard/get-data/model/types';
 import { setStorageData, getStorageData, removeStorageData } from './main';
 import { Names } from './names';
 
 
-export const setColorMode = (data: ColorMode) => setStorageData('ColorMode', data);
-export const getColorMode = () => getStorageData<ColorMode>('ColorMode');
+export const setColorMode = (companyId: CompanyId, data: ColorMode) => setStorageData(companyId + '-ColorMode', data);
+export const getColorMode = (companyId: CompanyId) => getStorageData<ColorMode>(companyId + '-ColorMode');
 
 
-export const setDashboardState = (state: StateSchemaDashboard) => setStorageData('DashboardState', state);
-export const getDashboardState = () => getStorageData<object>('DashboardState') as StateSchemaDashboard;
+export const setDashboardState = (companyId: CompanyId, state: StateSchemaDashboard) => setStorageData(companyId + '-DashboardState', state);
+export const getDashboardState = (companyId: CompanyId) => getStorageData<object>(companyId + '-DashboardState') as StateSchemaDashboard;
 
-export const devSetGSData = (data: ResGetData) => setStorageData('Dashboard-GSData', data);
-export const devGetGSData = () => getStorageData<object>('Dashboard-GSData') as ResGetData;
+export const devSetGSData = (companyId: CompanyId, data: ResGetData) => setStorageData(companyId + '-Dashboard-GSData', data);
+export const devGetGSData = (companyId: CompanyId) => getStorageData<object>(companyId + '-Dashboard-GSData') as ResGetData;
 
 
 // export const setDashboardData = (data: DashboardData) => setStorageData('DashboardData', data);

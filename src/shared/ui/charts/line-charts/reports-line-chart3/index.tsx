@@ -38,15 +38,17 @@ interface Props {
 }
 
 
-export const ReportsLineChart2: FC<Props> = memo(({ bgColor, item, description = "", config, light = false, condition, date, chart }) => {
+export const ReportsLineChart3: FC<Props> = memo(({ bgColor, item, description = "", config, light = false, condition, date, chart }) => {
   const { title, statisticType } = item;
 
 
   return (
     <>
-      <LineChartContainer bgColor={bgColor} chart={chart} />
+      <MDBox pb={1} px={1}>
+        <MDTypography variant="h6" textTransform="none" mb={2}>
+          {title}
+        </MDTypography>
       
-      <MDBox pt={3} pb={1} px={1}>
         <MDBox sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
           <MDBox display="flex" flexDirection="column">
             <StatisticTypeChip type={statisticType} />
@@ -55,13 +57,13 @@ export const ReportsLineChart2: FC<Props> = memo(({ bgColor, item, description =
           </MDBox>
           <ResultChanges item={item} config={config} />
         </MDBox>
-
-        <MDTypography variant="h6" textTransform="none">
-          {title}
-        </MDTypography>
+        
         <MDTypography component="div" variant="button" color="text" fontWeight="light">
           {description}
         </MDTypography>
+
+        <LineChartContainer bgColor={bgColor} chart={chart} />
+
         <Divider />
         <TimeUpdated date={date} light={light} />
       </MDBox>

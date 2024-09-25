@@ -7,39 +7,30 @@ import { getData, PayloadGetData } from 'features/dashboard';
 import { DashboardPeriodType } from '../config';
 import { getEntitiesByPeriod } from '../utils';
 import { calculateStartDate } from 'features/dashboard/set-period-date/utils';
+import { CompanyId } from 'entities/companies';
 
 
 
 // TODO: validate dates data (проверить даты на упорядоченность и на то, что дата, является датой)
 
-
 const emptyPeriod: DashboardPeriod = {
-  type     : DashboardPeriodType.NINE_MONTHS,
-  // prevType : DashboardPeriodType.NINE_MONTHS,
-  start    : undefined,
-  end      : undefined
+  type  : DashboardPeriodType.NINE_MONTHS,
+  start : undefined,
+  end   : undefined
 };
 
-
-const startEntities  = LS.getDashboardState()?.startEntities  || {};
-const startDates     = LS.getDashboardState()?.startDates     || {};
-const activePeriod   = LS.getDashboardState()?.activePeriod   || { ...emptyPeriod };
-const activeEntities = LS.getDashboardState()?.activeEntities || {};
-const activeDates    = LS.getDashboardState()?.activeDates    || {};
-
-
 const initialState: StateSchemaDashboard = {
-  startEntities,
-  startDates,
-  lastUpdated              : LS.getDashboardState()?.lastUpdated || undefined, // Дата последнего обновления
+  startEntities  : {},
+  startDates     : {},
+  lastUpdated    : undefined,
   
-  selectedPeriod           : activePeriod,
-  activePeriod,
-  activeEntities,
-  activeDates,
+  selectedPeriod : { ...emptyPeriod },
+  activePeriod   : { ...emptyPeriod },
+  activeEntities : {},
+  activeDates    : {},
 
-  loading                  : false,
-  errors                   : {}
+  loading        : false,
+  errors         : {}
 };
 
 
@@ -47,49 +38,48 @@ export const slice = createSlice({
   name: 'entities/dashboard',
   initialState,
   reducers: {
+    setInitial: (state, { payload }: PayloadAction<StateSchemaDashboard>) => {
+      state = { ...payload };
+    },
     setErrors: (state, { payload }: PayloadAction<Errors>) => {
       state.errors = getError(payload);
     },
     clearErrors: (state) => {
       state.errors = {};
     },
-    setActivePeriod: (state, { payload }: { payload: DashboardPeriod }) => {
-      // if (payload.type) state.activePeriod.prevType = state.activePeriod.type
-      
+    setActivePeriod: (state, { payload }: PayloadAction<{ period: DashboardPeriod, companyId: CompanyId }>) => {
       state.activePeriod = {
         ...state.activePeriod,
-        ...payload
+        ...payload.period
       };
 
       const { activeDates, activeEntities } = getEntitiesByPeriod(state.startEntities, state.startDates, state.activePeriod);
       state.activeEntities = activeEntities;
       state.activeDates    = activeDates;
 
-      LS.setDashboardState(state);
+      payload.companyId && LS.setDashboardState(payload.companyId, state);
     },
-    setSelectedPeriod: (state, { payload }: { payload: Partial<DashboardPeriod> }) => {
-      // if (payload.type) state.selectedPeriod.prevType = state.selectedPeriod.type
-      
-      const calcedStartDate = calculateStartDate(state.selectedPeriod.end, payload.type || state.selectedPeriod.type || DashboardPeriodType.NINE_MONTHS);
+    setSelectedPeriod: (state, { payload }: PayloadAction<{ period: Partial<DashboardPeriod>, companyId: CompanyId }>) => {
+      const calcedStartDate = calculateStartDate(state.selectedPeriod.end, payload.period.type || state.selectedPeriod.type || DashboardPeriodType.NINE_MONTHS);
 
       state.activePeriod = {
         ...state.activePeriod,
-        ...payload,
+        ...payload.period,
         start: calcedStartDate
       };
 
       state.selectedPeriod = {
         ...state.selectedPeriod,
-        ...payload,
+        ...payload.period,
         start: calcedStartDate
       };
 
       const { activeDates, activeEntities } = getEntitiesByPeriod(state.startEntities, state.startDates, state.activePeriod);
       state.activeEntities = activeEntities;
-      state.activeDates = activeDates;
+      state.activeDates    = activeDates;
       
-      LS.setDashboardState(state);
-    }
+      payload.companyId && LS.setDashboardState(payload.companyId, state);
+    },
   },
 
   extraReducers: builder => {
@@ -97,10 +87,10 @@ export const slice = createSlice({
     builder
       .addCase(getData.pending, (state) => {
         state.loading = true;
-        state.errors  = {};
+        state.errors = {};
       })
       .addCase(getData.fulfilled, (state, { payload }: PayloadAction<PayloadGetData>) => {
-        const { startEntities = {}, startDates = {} } = payload;
+        const { startEntities = {}, startDates = {} } = payload.data;
         state.startEntities = startEntities;
         state.startDates    = startDates;
         state.lastUpdated   = new Date().getTime();
@@ -112,7 +102,7 @@ export const slice = createSlice({
         state.loading     = false;
         state.errors      = {};
 
-        LS.setDashboardState(state);
+        LS.setDashboardState(payload.companyId, state);
       })
       .addCase(getData.rejected, (state, { payload }) => {
         state.errors  = getError(payload);

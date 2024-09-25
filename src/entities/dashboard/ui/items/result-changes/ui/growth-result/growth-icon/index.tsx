@@ -15,9 +15,10 @@ const useStyles = (theme: CustomMUITheme, increased: Increased, unchangedBlack?:
 
   return {
     root: {
-      display        : "flex",
-      justifyContent : "center",
-      alignItems     : "center",
+      display : "flex",
+      pt      : 1,
+      // justifyContent : "center",
+      // alignItems     : "center",
     },
     svg: {
       transform       : "scale(1.5)",

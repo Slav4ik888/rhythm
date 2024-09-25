@@ -42,7 +42,7 @@ const useStyles = (theme: CustomMUITheme, config: StyleConfig) => {
       width         : '100%'
     },
     title: {
-      mb : 5,
+      mb : 2,
       pr : 4
     }
   }

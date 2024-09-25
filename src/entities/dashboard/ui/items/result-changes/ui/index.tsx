@@ -4,7 +4,7 @@ import { DashboardStatisticItem } from '../../../../model/types';
 import { GrowthResult } from './growth-result';
 import { ComparisonIndicators } from './comparsion-indicators';
 import { getComparisonIndicators } from '../model/utils';
-import { ResultChangesConfig } from '../model/types';
+import { ReportsLineChartConfig } from 'shared/ui/charts/line-charts/reports-line-chart2/config-type';
 
 
 
@@ -18,17 +18,19 @@ const useStyles = () => ({
 
 
 interface Props {
-  item   : DashboardStatisticItem
-  config : ResultChangesConfig
+  item    : DashboardStatisticItem
+  config? : ReportsLineChartConfig
 }
 
 
 /** Показывает изменения между последними значениями */
 export const ResultChanges: FC<Props> = memo(({ item, config = {} }) => {
   const sx = useStyles();
-  const { unchangedBlack, inverted } = config;
 
-  const values = getComparisonIndicators(item.data as number[], config.comparisonIndicators?.valuesCount);
+  const values = getComparisonIndicators(
+    item.data as number[],
+    config.resultChanges?.comparisonIndicators?.valuesCount
+  );
 
 
   return (
@@ -39,7 +41,7 @@ export const ResultChanges: FC<Props> = memo(({ item, config = {} }) => {
 
       <GrowthResult
         values = {values}
-        config = {{ unchangedBlack, inverted }}
+        config = {config}
       />
     </Box>
   );

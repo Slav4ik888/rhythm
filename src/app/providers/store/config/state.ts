@@ -3,12 +3,14 @@ import { NavigateOptions, To } from 'react-router-dom';
 import { Action, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { StateSchemaUI } from 'entities/ui';
 import { StateSchemaDashboard } from 'entities/dashboard';
+import { StateSchemaCompany } from 'entities/companies';
 
 
 
 export interface StateSchema {
   // Entities
-  ui         : StateSchemaUI
+  ui      : StateSchemaUI
+  company : StateSchemaCompany
 
   // Features
 

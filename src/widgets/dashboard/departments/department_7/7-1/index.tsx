@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import { getConditionType, invertData, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
+import { ReportsLineChartConfig } from 'shared/ui/charts/line-charts/reports-line-chart2/config-type';
+import { ReportsLineChart3 } from 'shared/ui/charts/line-charts/reports-line-chart3';
 
 
 
@@ -35,6 +37,17 @@ export const DashboardReportContainer7_1 = memo(() => {
 
   if (! itemData) return null;
 
+  const reportConfig: ReportsLineChartConfig = {
+    inverted: true,
+
+    resultChanges: {
+      growthResult: {
+        fractionDigits: 1,
+      },
+    }
+  };
+
+
   const datasetConfig = getDatasetConfig(dates);
 
   const chartData = {
@@ -42,26 +55,22 @@ export const DashboardReportContainer7_1 = memo(() => {
     datasets: {
       ...datasetConfig,
       // label : "Сумма кредиторской задолженности",
-      data: invertData(itemData.data as number[])
+      data: reportConfig.inverted ? invertData(itemData.data as number[]) : itemData.data as number[]
     }
   };
 
+  
 
   return (
     <DashboardReportContainer>
-      <ReportsLineChart2
-        inverted
+      <ReportsLineChart3
         bgColor     = "grey-300" // "department_7"
         item        = {itemData}
         description = {<>(<strong>+15%</strong>) increase in today sales.</>}
         date        = "updated 4 min ago"
         chart       = {chartData}
         condition   = {condition} // DashboardConditionType
-        config      = {{ resultChanges: {
-          growthResult: {
-            fractionDigits: 1,
-          },
-        }}}
+        config      = {reportConfig}
       />
     </DashboardReportContainer>
   );

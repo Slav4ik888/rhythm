@@ -1,6 +1,5 @@
 import { FC, ReactNode, useMemo, useState } from 'react';
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
-import { LS } from 'shared/lib/local-storage';
 import { ColorModeContext } from '../model/context';
 import { theme as themeStandartLight } from '../model/themes/standart-light';
 import { theme as themeStandartDark } from '../model/themes/standart-dark';
@@ -8,7 +7,8 @@ import { ColorMode } from '../model';
 
 
 
-const defaultColorMode = LS.getColorMode() || ColorMode.LIGHT;
+const defaultColorMode = ColorMode.LIGHT;
+// const defaultColorMode = LS.getColorMode() || ColorMode.LIGHT;
 
 interface Props {
   initial? : ColorMode // For Story

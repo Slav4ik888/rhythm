@@ -6,6 +6,7 @@ import { calculateStartDate, getMsFromRef } from './utils';
 import { actionsDashboard, DashboardPeriodType, selectSelectedPeriod } from 'entities/dashboard';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { formatDate } from 'shared/helpers/dates';
+import { selectCompanyId } from 'entities/companies';
 
 
 
@@ -17,6 +18,7 @@ interface Props {
 export const SetPeriodDate: FC<Props> = memo(({ type }) => {
   const dispatch = useAppDispatch();
   const ref      = useRef<HTMLInputElement>(null);
+  const companyId         = useSelector(selectCompanyId);
   const storeSelectPeriod = useSelector(selectSelectedPeriod);
   const storePeriodType   = storeSelectPeriod?.type;
   const storeDate         = storeSelectPeriod?.[type];
@@ -33,7 +35,7 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
     }
     if (dateStart && periodNotCustom) {
       const calcedStartDate = calculateStartDate(storeSelectPeriod.end, storePeriodType);
-      dispatch(actionsDashboard.setSelectedPeriod({ start: calcedStartDate }));
+      dispatch(actionsDashboard.setSelectedPeriod({ period: { start: calcedStartDate }, companyId }));
     }
   }, [storeDate, storePeriodType, storeSelectPeriod.end]);
 
@@ -41,7 +43,7 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     // Validate correct date & > 01-01-1900
     if (new Date(e.target.value)?.getTime() > -2208997817000) {
-      dispatch(actionsDashboard.setSelectedPeriod({ [type]: getMsFromRef(ref as MutableRefObject<HTMLInputElement>) }));
+      dispatch(actionsDashboard.setSelectedPeriod({ period: { [type]: getMsFromRef(ref as MutableRefObject<HTMLInputElement>) }, companyId }));
     }
   };
 

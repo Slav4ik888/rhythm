@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { getConditionType, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
+import { ReportsLineChart3 } from 'shared/ui/charts/line-charts/reports-line-chart3';
 
 
 
@@ -49,7 +50,7 @@ export const DashboardReportContainer7_2 = memo(() => {
 
   return (
     <DashboardReportContainer>
-      <ReportsLineChart2
+      <ReportsLineChart3
         bgColor     = "grey-300" // "department_7"
         item        = {itemData}
         description = {<>(<strong>+15%</strong>) increase in today sales.</>}

@@ -3,6 +3,7 @@ import { reducerUI } from 'entities/ui';
 import { StateSchema } from './state';
 import { createReducerManager } from './reducer-manager';
 import { api } from 'shared/api';
+import { reducerCompany } from 'entities/companies';
 
 
 
@@ -15,8 +16,8 @@ export function createReduxStore(
       ...asyncReducers,
 
       // Entities
-      ui           : reducerUI,
-
+      ui      : reducerUI,
+      company : reducerCompany,
       // Features
     },
     reducerManager = createReducerManager(rootReducers),

@@ -1,12 +1,12 @@
 import { DashboardEntities, DashboardDates } from 'entities/dashboard';
 import { DashboardItemData, DashboardStatisticItem } from 'entities/dashboard';
 import { DashboardStatisticType } from 'entities/dashboard/model/config';
-import { GoogleSheetData, ResGetData, PayloadGetData } from '../../../../types';
+import { GoogleSheetData, ResGetData, StartEntitiesData } from '../../../../types';
 
 
 
 /** Returns startEntities & startDates  */
-export const getEntities = (data: ResGetData): PayloadGetData => {
+export const getEntities = (data: ResGetData): StartEntitiesData => {
   const startEntities: DashboardEntities = {};
   const startDates: DashboardDates = {};
 

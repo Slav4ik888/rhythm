@@ -1,3 +1,4 @@
+import { CompanyId } from 'entities/companies';
 import { DashboardEntities, DashboardDates } from 'entities/dashboard';
 
 
@@ -7,7 +8,12 @@ export interface ResGetData {
   [k: string]: GoogleSheetData
 }
 
-export interface PayloadGetData {
+export interface StartEntitiesData {
   startEntities : DashboardEntities
   startDates    : DashboardDates
+}
+
+export interface PayloadGetData {
+  data      : StartEntitiesData
+  companyId : CompanyId
 }
