@@ -15,4 +15,4 @@ describe(`getMsFromDate`, () => {
     .toEqual(m[1])))
 });
 
-// npm run test get-ms-from-date.test.ts
+// npm run test:unit get-ms-from-date.test.ts

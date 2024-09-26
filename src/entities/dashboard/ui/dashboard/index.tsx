@@ -8,8 +8,7 @@ import { DashboardBody } from '../body';
 
 export const Dashboard = memo(() => {
   console.log('Dashboard ');
-  
-  
+
   return (
     <DashboardLayout>
       <DashboardNavbar />

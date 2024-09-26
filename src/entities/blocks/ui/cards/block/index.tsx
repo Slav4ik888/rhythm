@@ -21,6 +21,8 @@ const useStyles = (theme: CustomMUITheme, config: StyleConfig) => {
     display       : 'flex',
     flexDirection : 'column',
     width         : ! width ? 'max-content' : isStr(width) ? width : pxToRem(width as number),
+    minWidth      : pxToRem(900),
+    minHeight     : pxToRem(400),
     background    : linearGradient(theme.palette.gradients[bgColor].main, theme.palette.gradients[bgColor].state),
     my            : 5,
     p             : 3,

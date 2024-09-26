@@ -34,8 +34,16 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
       ref.current.value = formatDate(storeDate, "YYYY-MM-DD");
     }
     if (dateStart && periodNotCustom) {
-      const calcedStartDate = calculateStartDate(storeSelectPeriod.end, storePeriodType);
-      dispatch(actionsDashboard.setSelectedPeriod({ period: { start: calcedStartDate }, companyId }));
+      const start = calculateStartDate(storeSelectPeriod.end, storePeriodType);
+      
+      // При монтировании, может быть не указана дата (storeSelectPeriod.end) и нельзя обнулять данные в сторадже
+      // которые подтянуться чуть позже, иначе они затираются
+      if (start) dispatch(actionsDashboard.setSelectedPeriod({
+        period: {
+          start
+        },
+        companyId,
+      }));
     }
   }, [storeDate, storePeriodType, storeSelectPeriod.end]);
 
@@ -43,7 +51,11 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     // Validate correct date & > 01-01-1900
     if (new Date(e.target.value)?.getTime() > -2208997817000) {
-      dispatch(actionsDashboard.setSelectedPeriod({ period: { [type]: getMsFromRef(ref as MutableRefObject<HTMLInputElement>) }, companyId }));
+
+      dispatch(actionsDashboard.setSelectedPeriod({
+        period: { [type]: getMsFromRef(ref as MutableRefObject<HTMLInputElement>) },
+        companyId,
+      }));
     }
   };
 

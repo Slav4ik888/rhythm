@@ -24,6 +24,7 @@ export interface StateSchemaDashboard {
   activeEntities : DashboardEntities
   activeDates    : DashboardDates
 
+  _isMounted?    : boolean
   loading        : boolean
   errors         : Errors
 }

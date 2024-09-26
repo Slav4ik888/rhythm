@@ -16,8 +16,9 @@ import { CompanyId } from 'entities/companies';
 const emptyPeriod: DashboardPeriod = {
   type  : DashboardPeriodType.NINE_MONTHS,
   start : undefined,
-  end   : undefined
+  end   : undefined, //new Date().getTime()
 };
+
 
 const initialState: StateSchemaDashboard = {
   startEntities  : {},
@@ -29,6 +30,7 @@ const initialState: StateSchemaDashboard = {
   activeEntities : {},
   activeDates    : {},
 
+  _isMounted     : true,
   loading        : false,
   errors         : {}
 };
@@ -39,7 +41,17 @@ export const slice = createSlice({
   initialState,
   reducers: {
     setInitial: (state, { payload }: PayloadAction<StateSchemaDashboard>) => {
-      state = { ...payload };
+      state.startEntities  = payload.startEntities;
+      state.startDates     = payload.startDates;
+      state.lastUpdated    = payload.lastUpdated;
+      
+      state.selectedPeriod = payload.selectedPeriod;
+      state.activePeriod   = payload.activePeriod;
+      state.activeEntities = payload.activeEntities;
+      state.activeDates    = payload.activeDates;
+
+      state.loading        = payload.loading;
+      state.errors         = payload.errors;
     },
     setErrors: (state, { payload }: PayloadAction<Errors>) => {
       state.errors = getError(payload);
@@ -57,6 +69,7 @@ export const slice = createSlice({
       state.activeEntities = activeEntities;
       state.activeDates    = activeDates;
 
+      // Save state to local storage
       payload.companyId && LS.setDashboardState(payload.companyId, state);
     },
     setSelectedPeriod: (state, { payload }: PayloadAction<{ period: Partial<DashboardPeriod>, companyId: CompanyId }>) => {
@@ -78,7 +91,16 @@ export const slice = createSlice({
       state.activeEntities = activeEntities;
       state.activeDates    = activeDates;
       
-      payload.companyId && LS.setDashboardState(payload.companyId, state);
+      // Save state to local storage
+      if (payload.companyId) {
+        // Тк при первом запуске setSelectedPeriod вызывается автоматически, поэтому нужно НЕ затереть имеющиеся данные
+        const oldData = LS.getDashboardState(payload.companyId);
+        LS.setDashboardState(payload.companyId, {
+          ...oldData,
+          activePeriod   : state.activePeriod,
+          selectedPeriod : state.selectedPeriod,
+        });
+      }
     },
   },
 
@@ -102,6 +124,7 @@ export const slice = createSlice({
         state.loading     = false;
         state.errors      = {};
 
+        // Save state to local storage
         LS.setDashboardState(payload.companyId, state);
       })
       .addCase(getData.rejected, (state, { payload }) => {

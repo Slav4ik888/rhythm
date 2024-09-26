@@ -21,11 +21,11 @@ export const getData = createAsyncThunk<
     const { extra, dispatch, rejectWithValue } = thunkApi;
     
     try {
-      // const { data } = await extra.api.get<ResGetData>(COMPANIES_CONFIG[companyId]);
+      const { data } = await extra.api.get<ResGetData>(COMPANIES_CONFIG[companyId]);
 
       // **
       // For development - сохраняем входящие данные в localStorage
-      const data = LS.devGetGSData(companyId);
+      // const data = LS.devGetGSData(companyId);
       // console.log('GS data: ', data);
       LS.devSetGSData(companyId, data);
 
