@@ -1,6 +1,5 @@
-import { DashboardEntities, DashboardDates } from 'entities/dashboard';
-import { DashboardItemData, DashboardStatisticItem } from 'entities/dashboard';
-import { DashboardStatisticType } from 'entities/dashboard/model/config';
+import { DashboardEntities, DashboardDates, DashboardItemData, DashboardStatisticItem } from 'entities/dashboard';
+import { DashboardStatisticType } from 'entities/statistic-type';
 import { GoogleSheetData, ResGetData, StartEntitiesData } from '../../../../types';
 
 

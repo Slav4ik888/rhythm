@@ -1,4 +1,4 @@
-import { DashboardStatisticType } from '../config';
+import { DashboardStatisticType } from 'entities/statistic-type';
 import { DashboardPeriodType } from '../config/period';
 
 

@@ -70,7 +70,7 @@ interface Props  {
 /**
  * Пространство для ограничения (группировки) графиков по одному отделению (отделу, подразделению)
  */
-export const DashboardBlockContainer: FC<Props> = memo(({ title, titleColor, children, ...rest }) => {
+export const DashboardBoxContainer: FC<Props> = memo(({ title, titleColor, children, ...rest }) => {
   const sx = useStyles(useTheme(), { ...rest })
 
   return (

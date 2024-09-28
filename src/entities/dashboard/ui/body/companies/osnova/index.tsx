@@ -6,13 +6,13 @@ import { ReportsBarChart, ReportsLineChart } from 'shared/ui/charts';
 import reportsBarChartData from "../../../../model/example-data/reportsBarChartData";
 import reportsLineChartData from "../../../../model/example-data/reportsLineChartData";
 import { DashboardBodyWrapper } from '../../body-wrapper';
-import { DashboardGroupDepartment7 } from 'widgets/dashboard/departments/department_7';
-import { DashboardGroupDepartment1 } from 'widgets/dashboard/departments/department_1';
-import { DashboardGroupDepartment2 } from 'widgets/dashboard/departments/department_2';
-import { DashboardGroupDepartment3 } from 'widgets/dashboard/departments/department_3';
-import { DashboardGroupDepartment4 } from 'widgets/dashboard/departments/department_4';
-import { DashboardGroupDepartment5 } from 'widgets/dashboard/departments/department_5';
-import { DashboardGroupDepartment6 } from 'widgets/dashboard/departments/department_6';
+import { DashboardGroupDepartment7 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_7';
+import { DashboardGroupDepartment1 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_1';
+import { DashboardGroupDepartment2 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_2';
+import { DashboardGroupDepartment3 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_3';
+import { DashboardGroupDepartment4 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_4';
+import { DashboardGroupDepartment5 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_5';
+import { DashboardGroupDepartment6 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_6';
 
 
 // Dashboard components

@@ -14,7 +14,7 @@ interface Props {
 /** Единица измерения для итогового изменения: в процентах | шт | ... */
 export const MeasurementIcon: FC<Props> = memo(({ color, value }) => {
   // TODO: когда будут выводится значения в штуках, нужно выводить полученную разницу, а если % то оставить это условие
-  if (isUndefined(value)) return null;
+  if (isUndefined(value) || isNaN(value as number)) return null;
 
   return (
     <MDTypography variant="h6" color={color} mr={1}>%</MDTypography>

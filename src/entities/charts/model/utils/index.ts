@@ -1,4 +1,4 @@
-import { ChartConfigDataSets } from 'shared/ui/charts'
+import { ChartConfigDataSets } from '../types';
 
 
 /** Уменьшает толщину круглешка на линии графика, если много значений */

@@ -31,7 +31,8 @@ import MDTypography from "shared/ui/mui-design-components/md-typography";
 // ReportsBarChart configurations
 import { configs } from "./configs";
 import { GradientsBgColorName, GreyColor } from 'app/providers/theme';
-import { ChartConfigDataSets } from 'shared/ui/charts';
+import { ChartConfigDataSets } from 'entities/charts';
+
 
 
 interface Props {

@@ -17,6 +17,6 @@ export const GrowthChange: FC<Props> = memo(({ color, value }) => {
   if (isUndefined(value) || isNaN(value as number)) return null
 
   return (
-    <MDTypography variant="h6" color={color} mr={0.1}>{value}</MDTypography>
+    <MDTypography variant="h6" color={color} mr={0.1}>{(value as number) > 0 ? "+" + value : value}</MDTypography>
   );
 });

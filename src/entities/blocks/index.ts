@@ -1,1 +1,1 @@
-export { DashboardBlockContainer, DashboardReportContainer } from './ui/cards'
+export { DashboardBoxContainer, DashboardReportContainer } from './ui/cards'

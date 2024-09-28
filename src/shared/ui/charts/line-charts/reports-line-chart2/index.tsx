@@ -18,11 +18,12 @@ import Divider from "@mui/material/Divider";
 import { MDBox, MDTypography } from "shared/ui/mui-design-components";
 import { GradientsBgColorName, GreyColor } from 'app/providers/theme';
 import { ChartConfig } from '../../../../../entities/charts/model/types';
-import { DashboardStatisticItem, StatisticTypeChip, ProductTypeChip, DashboardConditionType, ConditionTypeChip,
-  ResultChanges } from 'entities/dashboard';
+import { DashboardStatisticItem, ResultChanges } from 'entities/dashboard';
 import { TimeUpdated } from './time-updated';
 import { LineChartContainer } from './line-chart';
 import { ReportsLineChartConfig } from './config-type';
+import { DashboardConditionType } from 'entities/condition-type';
+import { ChipsContainer } from 'entities/dashboard/ui/items/chips/chips-container';
 
 
 
@@ -34,12 +35,12 @@ interface Props {
   chart       : ChartConfig
   condition?  : DashboardConditionType
   light?      : boolean // Не понял для чего это, но в Navbar также
-  config?     : ReportsLineChartConfig
+  config      : ReportsLineChartConfig
 }
 
 
 export const ReportsLineChart2: FC<Props> = memo(({ bgColor, item, description = "", config, light = false, condition, date, chart }) => {
-  const { title, statisticType } = item;
+  const { title } = item;
 
 
   return (
@@ -47,14 +48,10 @@ export const ReportsLineChart2: FC<Props> = memo(({ bgColor, item, description =
       <LineChartContainer bgColor={bgColor} chart={chart} />
       
       <MDBox pt={3} pb={1} px={1}>
-        <MDBox sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
-          <MDBox display="flex" flexDirection="column">
-            <StatisticTypeChip type={statisticType} />
-            <ProductTypeChip   type={item.productType} />
-            <ConditionTypeChip type={condition} />
-          </MDBox>
-          <ResultChanges item={item} config={config} />
-        </MDBox>
+        <MDBox sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
+        <ChipsContainer item={item} config={config} condition={condition} />
+        <ResultChanges item={item} config={config} />
+      </MDBox>
 
         <MDTypography variant="h6" textTransform="none">
           {title}

@@ -13,7 +13,8 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { ChartConfigDataSets } from 'shared/ui/charts';
+import { ChartConfig, ChartConfigDataSets } from 'entities/charts';
+
 
 
 export function configs(labels: any[], datasets: ChartConfigDataSets) {

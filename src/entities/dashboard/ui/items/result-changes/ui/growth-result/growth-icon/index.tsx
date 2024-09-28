@@ -7,6 +7,7 @@ import UnchangedLeftIcon from './assets/triangle-unchanged-left.svg';
 import UnchangedRightIcon from './assets/triangle-unchanged-right.svg';
 import { CustomMUITheme, useTheme } from 'app/providers/theme';
 import { getColorByIncreased } from '../../../model/utils';
+import { isUndefined } from 'shared/lib/validators';
 
 
 
@@ -34,13 +35,14 @@ const useStyles = (theme: CustomMUITheme, increased: Increased, unchangedBlack?:
 
 interface Props {
   increased       : Increased
-  unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
-  isLeft?         : boolean // При отсутствии изменений чёрный треугольник повернуть влево
+  unchangedBlack? : boolean  // При отсутствии изменений в результатах красить чёрным цветом
+  isLeft?         : boolean  // При отсутствии изменений чёрный треугольник повернуть влево
+  value           : number | undefined // undefined если нет предыдущего значение, то результат не выводим
 }
 
 
 /** Иконка вверх вниз на месте, показывает положительные или отрицательные изменения */
-export const GrowthIcon: FC<Props> = memo(({ increased, unchangedBlack, isLeft }) => {
+export const GrowthIcon: FC<Props> = memo(({ value, increased, unchangedBlack, isLeft }) => {
   const sx = useStyles(useTheme(), increased, unchangedBlack);
   
   const icon = useMemo(() => {
@@ -58,6 +60,8 @@ export const GrowthIcon: FC<Props> = memo(({ increased, unchangedBlack, isLeft }
     }
   }, [increased, unchangedBlack, isLeft]);
   
+
+  if (isUndefined(value) || isNaN(value as number)) return null;
   
   return (
     <Box sx={sx.root}>
