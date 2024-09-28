@@ -28,10 +28,12 @@ interface ResultChangesConfig {
 }
 
 interface ComparisonIndicatorsConfig {
-  valuesCount?    : number // Сколько значений показывать
-  fractionDigits? : number // Количество знаков после запятой
+  valuesCount?    : number  // Сколько значений показывать
+  fractionDigits? : number  // Количество знаков после запятой
+  addZero?        : boolean // Добавлять нули после запятой
 }
 
 interface GrowthResultConfig {
-  fractionDigits? : number // Количество знаков после запятой
+  fractionDigits? : number  // Количество знаков после запятой
+  addZero?        : boolean // Добавлять нули после запятой
 }

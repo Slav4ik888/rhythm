@@ -7,7 +7,7 @@ import { MeasurementIcon } from './measurement-icon';
 import { GrowthChange } from './growth-change';
 import { GrowthIcon } from './growth-icon';
 import { getFixedFraction } from 'shared/helpers/numbers';
-import { ReportsLineChartConfig } from 'shared/ui/charts/line-charts/reports-line-chart2/config-type';
+import { ReportsLineChartConfig } from 'entities/dashboard';
 
 
 
@@ -34,7 +34,10 @@ export const GrowthResult: FC<Props> = memo(({ config, values }) => {
 
   const growthChange = getFixedFraction(
     calcGrowthChange(lastValue, prevValue),
-    config.resultChanges?.growthResult?.fractionDigits
+    {
+      fractionDigits : config.resultChanges?.growthResult?.fractionDigits,
+      addZero        : config.resultChanges?.growthResult?.addZero,
+    }
   );
 
   const increased: Increased = calcIncreased(lastValue, prevValue, inverted);
@@ -44,8 +47,9 @@ export const GrowthResult: FC<Props> = memo(({ config, values }) => {
   return (
     <Box sx={sx.root}>
       <GrowthChange
-        value = {growthChange}
-        color = {resultColor}
+        value     = {growthChange}
+        color     = {resultColor}
+        increased = {increased}
       />
       <MeasurementIcon
         value = {growthChange}

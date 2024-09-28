@@ -3,7 +3,8 @@ import { Box } from '@mui/material';
 import { MDTypography } from 'shared/ui/mui-design-components';
 import { addSpaceBetweenNumbers, getFixedFraction } from 'shared/helpers/numbers';
 import { isNum } from 'shared/lib/validators';
-import { ReportsLineChartConfig } from 'shared/ui/charts/line-charts/reports-line-chart2/config-type';
+import { ReportsLineChartConfig } from 'entities/dashboard';
+
 
 
 
@@ -28,9 +29,13 @@ export const ComparisonIndicators: FC<Props> = memo(({ values: v, config = {} })
   const sx = useStyles();
 
   const values = v.map(item => {
-    let fraction = item;
+    let fraction = item as unknown as string;
+
     if (isNum(item)) {
-      fraction = getFixedFraction(item, config.resultChanges?.comparisonIndicators?.fractionDigits);
+      fraction = getFixedFraction(item, {
+        fractionDigits : config.resultChanges?.comparisonIndicators?.fractionDigits,
+        addZero        : config.resultChanges?.comparisonIndicators?.addZero
+      });
     }
     return addSpaceBetweenNumbers(fraction);
   });

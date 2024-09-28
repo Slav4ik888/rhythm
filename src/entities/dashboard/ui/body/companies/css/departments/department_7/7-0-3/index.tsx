@@ -45,7 +45,8 @@ export const DashboardReportContainer7_0_3 = memo(() => {
     },
     resultChanges: {
       growthResult: {
-        fractionDigits: 1,
+        fractionDigits : 1,
+        addZero        : true,
       },
     },
   };
@@ -62,10 +63,6 @@ export const DashboardReportContainer7_0_3 = memo(() => {
     }
   };
 
-  console.log('condition: ', condition);
-  console.log('itemData: ', itemData);
-  console.log('datasetConfig: ', datasetConfig);
-  
 
   return (
     <DashboardReportContainer>

@@ -2,25 +2,28 @@ import { FC, memo } from 'react';
 import Chip from '@mui/material/Chip';
 // import { Tooltip } from 'shared/ui/tooltip';
 import { pxToRem } from 'app/providers/theme';
-// import { CompanyColorsConfig } from './types';
-import { COMPANY_COLORS_CONFIG } from './color-config';
-import { ReportsLineChartConfig } from '../../../reports';
+import { COMPANY_COLORS_CONFIG } from '../../model/config';
+import { ReportsLineChartConfig } from '../../../dashboard/ui/reports';
+import { CompanyId } from 'entities/companies';
 
 
 
-const useStyle = (companyType : string) => {
+const useStyle = (companyId: CompanyId, companyType : string) => {
   return {
-    width      : pxToRem(60),
-    height     : pxToRem(18),
-    color      : COMPANY_COLORS_CONFIG[companyType]?.color,
-    background : COMPANY_COLORS_CONFIG[companyType]?.background,
+    cursor     : 'default',
+    width      : pxToRem(70),
+    height     : pxToRem(15),
+    fontSize   : pxToRem(12),
+    color      : COMPANY_COLORS_CONFIG[companyId][companyType]?.color,
+    background : COMPANY_COLORS_CONFIG[companyId][companyType]?.background,
   };
 };
 
 interface Props {
   // colorConfig : CompanyColorsConfig
-  companyType : string
-  config      : ReportsLineChartConfig
+  type      : string
+  companyId : CompanyId
+  config    : ReportsLineChartConfig
 }
 
 
@@ -28,8 +31,8 @@ interface Props {
  * TODO: сделать ярлыком влевом верхнем углу карточки статистики (поз: абсолют)
  * Chip для статистики типа компании: Общая | Да-Телеком | Бэдком |
  */
-export const CompanyTypeChip: FC<Props> = memo(({ companyType, config }) => {
-  const sx = useStyle(companyType);
+export const CompanyTypeChip: FC<Props> = memo(({ companyId, type, config }) => {
+  const sx = useStyle(companyId, type);
   // const { label, description } = DASHBOARD_STATISTIC_TYPE[type] || {};
 
   if (! config?.chips?.companyType) return null
@@ -37,7 +40,7 @@ export const CompanyTypeChip: FC<Props> = memo(({ companyType, config }) => {
   return (
     // <Tooltip title={description}>
       <Chip
-        label = {companyType}
+        label = {type}
         size  = "small"
         sx    = {sx}
       />

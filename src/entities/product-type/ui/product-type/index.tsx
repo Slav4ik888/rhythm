@@ -2,12 +2,13 @@ import { FC, memo } from 'react';
 import Chip from '@mui/material/Chip';
 import { Tooltip } from 'shared/ui/tooltip';
 import { pxToRem } from 'app/providers/theme';
-import { PRODUCT_COLORS_CONFIG } from './color-config';
-import { ReportsLineChartConfig } from '../../../reports';
+import { PRODUCT_COLORS_CONFIG } from '../../model/config';
+import { ReportsLineChartConfig } from '../../../dashboard/ui/reports';
+import { CompanyId } from 'entities/companies';
 
 
 
-const useStyle = (productType: string) => ({
+const useStyle = (companyId: CompanyId, productType: string) => ({
   tooltip: {
     display    : 'flex',
     alignItems : 'center',
@@ -18,23 +19,23 @@ const useStyle = (productType: string) => ({
     width      : pxToRem(70),
     height     : pxToRem(15),
     fontSize   : pxToRem(12),
-    color      : PRODUCT_COLORS_CONFIG[productType]?.color,
-    background : PRODUCT_COLORS_CONFIG[productType]?.background,
+    color      : PRODUCT_COLORS_CONFIG[companyId][productType]?.color,
+    background : PRODUCT_COLORS_CONFIG[companyId][productType]?.background,
   },
 });
 
 interface Props {
-  // colorConfig : CompanyColorsConfig
-  type   : string
-  config : ReportsLineChartConfig
+  type      : string
+  companyId : CompanyId
+  config    : ReportsLineChartConfig
 }
 
 
 /**
  * Chip для статистики типа компании: Общая | Сопровождение | Курс | Ритм | Разработка | Конструктор | Прочие	
  */
-export const ProductTypeChip: FC<Props> = memo(({ type, config }) => {
-  const sx = useStyle(type);
+export const ProductTypeChip: FC<Props> = memo(({ companyId, type, config }) => {
+  const sx = useStyle(companyId, type);
 
   if (! config?.chips?.productType) return null
 

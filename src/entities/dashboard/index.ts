@@ -1,6 +1,5 @@
 export {
-  Dashboard, ProductTypeChip,
-  DashboardBody_osnova_g2d7, DashboardBody_demo_pecar, DashboardBody_css_1d3r8
+  Dashboard, DashboardBody_osnova_g2d7, DashboardBody_demo_pecar, DashboardBody_css_1d3r8
  } from './ui'
 export { ReportsLineChart, ReportsLineChartConfig } from './ui/reports'
 export {

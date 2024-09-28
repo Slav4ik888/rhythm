@@ -23,7 +23,7 @@ import { TimeUpdated } from './time-updated';
 import { LineChartContainer } from './line-chart';
 import { ReportsLineChartConfig } from './config-type';
 import { DashboardConditionType } from 'entities/condition-type';
-import { ChipsContainer } from 'entities/dashboard/ui/items/chips/chips-container';
+import { ChipsContainer } from 'entities/dashboard/ui/items/chips-container';
 
 
 

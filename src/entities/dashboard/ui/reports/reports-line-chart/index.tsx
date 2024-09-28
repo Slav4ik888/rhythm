@@ -21,7 +21,7 @@ import { DashboardStatisticItem, ResultChanges } from 'entities/dashboard';
 // import { TimeUpdated } from './time-updated';
 import { LineChartContainer } from './line-chart';
 import { ReportsLineChartConfig } from './config-type';
-import { ChipsContainer } from '../../items/chips/chips-container';
+import { ChipsContainer } from '../../items/chips-container';
 import { DashboardConditionType } from 'entities/condition-type';
 
 
@@ -38,7 +38,7 @@ interface Props {
 }
 
 
-export const ReportsLineChart: FC<Props> = memo(({ bgColor = "grey-300", item, config, condition, chart }) => {
+export const ReportsLineChart: FC<Props> = memo(({ bgColor = "grey-200", item, config, condition, chart }) => {
 
   return (
     <MDBox pb={1} px={1}>

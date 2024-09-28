@@ -37,6 +37,7 @@ export const ResultChanges: FC<Props> = memo(({ item, config = {} }) => {
     <Box sx={sx.root}>
       <ComparisonIndicators
         values = {values}
+        config = {config}
       />
 
       <GrowthResult

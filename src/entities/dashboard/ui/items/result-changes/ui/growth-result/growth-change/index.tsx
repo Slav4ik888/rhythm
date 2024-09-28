@@ -1,22 +1,26 @@
 import { FC, memo } from "react";
 import { MDTypography } from 'shared/ui/mui-design-components';
 import { ColorName } from 'app/providers/theme';
-import { isUndefined } from 'shared/lib/validators';
+import { Increased } from 'entities/dashboard';
 
 
 
 interface Props {
-  color: ColorName
-  value: number | undefined // undefined если нет предыдущего значение, то результат не выводим
+  increased : Increased
+  color     : ColorName
+  value     : string // '' если нет предыдущего значение, то результат не выводим
 }
 
 
 /** Цифровое значение итогового изменения */
-export const GrowthChange: FC<Props> = memo(({ color, value }) => {
+export const GrowthChange: FC<Props> = memo(({ color, value, increased }) => {
   
-  if (isUndefined(value) || isNaN(value as number)) return null
+  if (! value) return null
+
+  const char = increased === 1 ? "+" : increased === -1 ? "-" : "";
+  const resultValue = char + value;
 
   return (
-    <MDTypography variant="h6" color={color} mr={0.1}>{(value as number) > 0 ? "+" + value : value}</MDTypography>
+    <MDTypography variant="h6" color={color} mr={0.1}>{resultValue}</MDTypography>
   );
 });
