@@ -4,36 +4,27 @@ export interface ReportsLineChartConfig {
   inverted?       : boolean // Если график перевёрнутый, то есть если задолженность уменьшается то это рост
   unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
 
-  // Chips
-  chips?          : ChipsConfig
+  // Chips - показывать или не показывать
+  chips?: {
+    statisticType? : boolean
+    productType?   : boolean
+    companyType?   : boolean
+    conditionType? : boolean
+  }
 
-  // Values of segments
-  resultChanges?  : ResultChangesConfig
-}
-
-
-// Chips - показывать или не показывать
-interface ChipsConfig {
-  statisticType? : boolean
-  productType?   : boolean
-  companyType?   : boolean
-  conditionType? : boolean
-}
-
-
-// Result changes configuration
-interface ResultChangesConfig {
-  comparisonIndicators? : ComparisonIndicatorsConfig
-  growthResult?         : GrowthResultConfig
-}
-
-interface ComparisonIndicatorsConfig {
-  valuesCount?    : number  // Сколько значений показывать
-  fractionDigits? : number  // Количество знаков после запятой
-  addZero?        : boolean // Добавлять нули после запятой
-}
-
-interface GrowthResultConfig {
-  fractionDigits? : number  // Количество знаков после запятой
-  addZero?        : boolean // Добавлять нули после запятой
+  // Result changes configuration
+  resultChanges?: {
+    // Список значений: последний результат и предыдущие 
+    comparisonIndicators? : {
+      valuesCount?    : number  // Сколько значений показывать
+      reduce?         : boolean // Убрать разряды: 12 500 700 => 12.5007 млн
+      fractionDigits? : number  // Количество знаков после запятой
+      addZero?        : boolean // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+    }
+    // Результат прироста/падения, % | шт, и иконка треуголькин
+    growthResult?: {
+      fractionDigits? : number  // Количество знаков после запятой
+      addZero?        : boolean // Добавлять нули после запятой
+    }
+  }
 }

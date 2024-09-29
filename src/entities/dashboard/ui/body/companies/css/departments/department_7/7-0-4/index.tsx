@@ -45,7 +45,8 @@ export const DashboardReportContainer7_0_4 = memo(() => {
     },
     resultChanges: {
       comparisonIndicators: {
-        fractionDigits : 3,
+        reduce         : true,
+        fractionDigits : 2,
         addZero        : true,
       },
       growthResult: {
