@@ -1,9 +1,8 @@
 import { memo, useMemo } from 'react';
-import { ChartConfig, ChartConfigDataSets } from 'entities/charts';
-import { ReportsLineChart2 } from 'shared/ui/charts';
+import { ChartConfigDataSets } from 'entities/charts';
 import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
-import { ReportsLineChartConfig, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
+import { invertData, ReportsLineChart, ReportsLineChartConfig, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
 import { getConditionType } from 'entities/condition-type';
@@ -26,40 +25,45 @@ const getDatasetConfig = (dates: any[]): ChartConfigDataSets => {
 
 
 
-export const DashboardReportContainer1_1 = memo(() => {
+export const DashboardReportContainer1_0_1 = memo(() => {
   const activeEntities = useSelector(selectActiveEntities);
   const activeDates    = useSelector(selectActiveDates);
 
-  const itemData  = useMemo(() => activeEntities["1-1"], [activeEntities]);
-  const condition = useMemo(() => getConditionType(activeEntities["1-1-C"]?.data), [activeEntities]);
+  const itemData  = useMemo(() => activeEntities["1-0-1"], [activeEntities]);
+  const condition = useMemo(() => getConditionType(activeEntities["1-0-1-C"]?.data), [activeEntities]);
   const dates     = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
 
   if (! itemData) return null;
 
   const reportConfig: ReportsLineChartConfig = {
-    inverted: false,
-
+    chips: {
+      statisticType : true,
+      companyType   : true,
+      conditionType : true,
+    },
     resultChanges: {
       growthResult: {
-        fractionDigits: 1,
+        fractionDigits : 1,    // Количество знаков после запятой
+        addZero        : true, // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
       },
-    }
+    },
   };
+
 
   const datasetConfig = getDatasetConfig(dates);
 
-  const chartData: ChartConfig = {
+  const chartData = {
     labels: dates,
     datasets: {
       ...datasetConfig,
-      // label : "Общее кол-во персонала",
-      data: itemData.data as number[]
+      // label : "Кол-во растущих статистик (с 1 по 6 отд-е)",
+      data: reportConfig.inverted ? invertData(itemData.data as number[]) : itemData.data as number[]
     },
     config: {
       scales: {
         y: {
-          suggestedMax: 5 // Добавление  макс значения оси Y
+          suggestedMax: 40 // Добавление  макс значения оси Y
         }
       }
     }
@@ -68,11 +72,8 @@ export const DashboardReportContainer1_1 = memo(() => {
 
   return (
     <DashboardReportContainer>
-      <ReportsLineChart2
-        bgColor     = "grey-300" // "department_1"
+      <ReportsLineChart
         item        = {itemData}
-        description = {<>(<strong>+15%</strong>) increase in today sales.</>}
-        date        = "updated 4 min ago"
         chart       = {chartData}
         condition   = {condition}
         config      = {reportConfig}

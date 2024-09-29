@@ -1,12 +1,10 @@
 import { memo } from 'react';
 import { DashboardBodyWrapper } from '../../body-wrapper';
-import { DashboardGroupDepartment7 } from './departments/department_7';
-import { DashboardGroupDepartment1 } from './departments/department_1';
-import { DashboardGroupDepartment2 } from './departments/department_2';
-import { DashboardGroupDepartment3 } from './departments/department_3';
-import { DashboardGroupDepartment4 } from './departments/department_4';
-import { DashboardGroupDepartment5 } from './departments/department_5';
-import { DashboardGroupDepartment6 } from './departments/department_6';
+import { DashboardBoxContainer } from 'entities/blocks';
+import { DashboardReportContainer7_0_3 } from './departments/department_7/7-0-3';
+import { DashboardReportContainer7_0_4 } from './departments/department_7/7-0-4';
+import { DashboardReportContainer1_0_1 } from './departments/department_1/1-0-1';
+import { DashboardReportContainer1_0_2 } from './departments/department_1/1-0-2';
 
 
 
@@ -34,13 +32,63 @@ export const DashboardBody_css_1d3r8 = memo(() => {
       {/* {
         sortedBlocks.map(block => block.component)
       } */}
-      <DashboardGroupDepartment7 />
-      <DashboardGroupDepartment1 />
-      <DashboardGroupDepartment2 />
-      <DashboardGroupDepartment3 />
-      <DashboardGroupDepartment4 />
-      <DashboardGroupDepartment5 />
-      <DashboardGroupDepartment6 />
+      <DashboardBoxContainer
+        title      = 'Управление'
+        titleColor = 'department_7_title'
+        bgColor    = 'department_7'
+      >
+        <DashboardReportContainer7_0_3 />
+        <DashboardReportContainer7_0_4 />
+      </DashboardBoxContainer>
+
+      <DashboardBoxContainer
+        title      = 'Персонал'
+        titleColor = 'department_1_title'
+        bgColor    = 'department_1'
+      >
+        <DashboardReportContainer1_0_1 />
+        <DashboardReportContainer1_0_2 />
+      </DashboardBoxContainer>
+
+      <DashboardBoxContainer
+        title      = 'Продажи и распространение'
+        titleColor = 'department_2_title'
+        bgColor    = 'department_2'
+      >
+        {/* <DashboardReportContainer2_1 /> */}
+      </DashboardBoxContainer>
+
+      <DashboardBoxContainer
+        title      = 'Финансы'
+        titleColor = 'department_3_title'
+        bgColor    = 'department_3'
+      >
+        {/* <DashboardReportContainer3_1 /> */}
+      </DashboardBoxContainer>
+
+      <DashboardBoxContainer
+        title      = 'Производство'
+        titleColor = 'department_4_title'
+        bgColor    = 'department_4'
+      >
+        {/* <DashboardReportContainer4_1 /> */}
+      </DashboardBoxContainer>
+      
+      <DashboardBoxContainer
+        title      = 'Качество'
+        titleColor = 'department_5_title'
+        bgColor    = 'department_5'
+      >
+        {/* <DashboardReportContainer5_1 /> */}
+      </DashboardBoxContainer>
+
+      <DashboardBoxContainer
+        title      = 'Расширение'
+        titleColor = 'department_6_title'
+        bgColor    = 'department_6'
+      >
+        {/* <DashboardReportContainer6_1 /> */}
+      </DashboardBoxContainer>
     </DashboardBodyWrapper>
   );
 });

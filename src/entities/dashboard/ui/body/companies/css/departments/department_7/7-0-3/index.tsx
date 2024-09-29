@@ -36,8 +36,6 @@ export const DashboardReportContainer7_0_3 = memo(() => {
   if (! itemData) return null;
 
   const reportConfig: ReportsLineChartConfig = {
-    inverted: false,
-
     chips: {
       statisticType : true,
       companyType   : true,
@@ -45,8 +43,8 @@ export const DashboardReportContainer7_0_3 = memo(() => {
     },
     resultChanges: {
       growthResult: {
-        fractionDigits : 1,
-        addZero        : true,
+        fractionDigits : 1,    // Количество знаков после запятой
+        addZero        : true, // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
       },
     },
   };

@@ -17,8 +17,10 @@ export const GrowthChange: FC<Props> = memo(({ color, value, increased }) => {
   
   if (! value) return null
 
+
+  // если значения отрицательные то падение статистики будет без "-" и надо его добавить
   const char = increased === 1 ? "+" : increased === -1 ? "-" : "";
-  const resultValue = char + value;
+  const resultValue = char + value.replace(/\-/g, ''); // Удалим изначальный знак "-"
 
   return (
     <MDTypography variant="h6" color={color} mr={0.1}>{resultValue}</MDTypography>

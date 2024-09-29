@@ -12,6 +12,9 @@ import { getColorByIncreased } from '../../../model/utils';
 
 const useStyles = (theme: CustomMUITheme, increased: Increased, unchangedBlack?: boolean) => {
   const color = getColorByIncreased(theme, increased, unchangedBlack);
+  if (increased === 0) {
+    console.log('color: ', color);
+  }
 
   return {
     root: {

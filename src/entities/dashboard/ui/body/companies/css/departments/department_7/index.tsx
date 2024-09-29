@@ -6,11 +6,7 @@ import { DashboardReportContainer7_0_4 } from './7-0-4';
 
 
 export const DashboardGroupDepartment7 = memo(() => {
-  console.log('DashboardBlock ');
-  
 
-  // TODO: Настройку выбора до скольки знаков после запятой округлить значения
-  
 
   return (
     <DashboardBoxContainer

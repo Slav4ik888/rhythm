@@ -1,7 +1,7 @@
 
 export interface ReportsLineChartConfig {
   // Global values
-  inverted?       : boolean // Если график перевёрнутый, то есть если задолженность уменьшается то это рост
+  inverted?       : boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
   unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
 
   // Chips - показывать или не показывать
@@ -24,7 +24,7 @@ export interface ReportsLineChartConfig {
     // Результат прироста/падения, % | шт, и иконка треуголькин
     growthResult?: {
       fractionDigits? : number  // Количество знаков после запятой
-      addZero?        : boolean // Добавлять нули после запятой
+      addZero?        : boolean // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
     }
   }
 }

@@ -56,9 +56,9 @@ export const GrowthResult: FC<Props> = memo(({ config, values }) => {
         color = {resultColor}
       />
       <GrowthIcon
-        unchangedBlack
-        value     = {growthChange}
-        increased = {increased}
+        value          = {growthChange}
+        increased      = {increased}
+        unchangedBlack = {unchangedBlack}
       />
     </Box>
   );

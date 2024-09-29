@@ -64,7 +64,7 @@ interface Props  {
   p?          : number
   pr?         : number
   pt?         : number
-  children    : React.ReactNode
+  children?   : React.ReactNode
 }
 
 /**
