@@ -24,7 +24,7 @@ const getDatasetConfig = (dates: any[]): ChartConfigDataSets => {
 }
 
 
-
+/** Общее кол-во сотрудников */
 export const DashboardReportContainer1_0_2 = memo(() => {
   const activeEntities = useSelector(selectActiveEntities);
   const activeDates    = useSelector(selectActiveDates);
@@ -59,7 +59,6 @@ export const DashboardReportContainer1_0_2 = memo(() => {
     labels: dates,
     datasets: {
       ...datasetConfig,
-      // label : "Общее кол-во сотрудников"
       data: reportConfig.inverted ? invertData(itemData.data as number[]) : itemData.data as number[]
     },
     config: {

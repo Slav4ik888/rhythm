@@ -5,6 +5,18 @@ import { DashboardReportContainer7_0_3 } from './departments/department_7/7-0-3'
 import { DashboardReportContainer7_0_4 } from './departments/department_7/7-0-4';
 import { DashboardReportContainer1_0_1 } from './departments/department_1/1-0-1';
 import { DashboardReportContainer1_0_2 } from './departments/department_1/1-0-2';
+import { DashboardReportContainer2_0_1 } from './departments/department_2/2-0-1';
+import { DashboardReportContainer2_0_1_1 } from './departments/department_2/2-0-1-1';
+import { DashboardReportContainer2_0_4 } from './departments/department_2/2-0-4';
+import { DashboardReportContainer2_0_4_1 } from './departments/department_2/2-0-4-1';
+import { DashboardReportContainer3_7_1 } from './departments/department_3/3-7-1';
+import { DashboardReportContainer4_0_2 } from './departments/department_4/4-0-2';
+import { DashboardReportContainer5_0_1 } from './departments/department_5/5-0-1';
+import { DashboardReportContainer6_0_1 } from './departments/department_6/6-0-1';
+import { DashboardReportContainer6_17_3 } from './departments/department_6/6-17-3';
+import { DashboardReportContainer6_17_6 } from './departments/department_6/6-17-6';
+import { DashboardReportContainer6_17_2 } from './departments/department_6/6-17-2';
+import { DashboardReportContainer6_17_7 } from './departments/department_6/6-17-7';
 
 
 
@@ -55,7 +67,10 @@ export const DashboardBody_css_1d3r8 = memo(() => {
         titleColor = 'department_2_title'
         bgColor    = 'department_2'
       >
-        {/* <DashboardReportContainer2_1 /> */}
+        <DashboardReportContainer2_0_1 />
+        <DashboardReportContainer2_0_1_1 />
+        <DashboardReportContainer2_0_4 />
+        <DashboardReportContainer2_0_4_1 />
       </DashboardBoxContainer>
 
       <DashboardBoxContainer
@@ -63,7 +78,7 @@ export const DashboardBody_css_1d3r8 = memo(() => {
         titleColor = 'department_3_title'
         bgColor    = 'department_3'
       >
-        {/* <DashboardReportContainer3_1 /> */}
+        <DashboardReportContainer3_7_1 />
       </DashboardBoxContainer>
 
       <DashboardBoxContainer
@@ -71,7 +86,7 @@ export const DashboardBody_css_1d3r8 = memo(() => {
         titleColor = 'department_4_title'
         bgColor    = 'department_4'
       >
-        {/* <DashboardReportContainer4_1 /> */}
+        <DashboardReportContainer4_0_2 />
       </DashboardBoxContainer>
       
       <DashboardBoxContainer
@@ -79,7 +94,7 @@ export const DashboardBody_css_1d3r8 = memo(() => {
         titleColor = 'department_5_title'
         bgColor    = 'department_5'
       >
-        {/* <DashboardReportContainer5_1 /> */}
+        <DashboardReportContainer5_0_1 />
       </DashboardBoxContainer>
 
       <DashboardBoxContainer
@@ -87,7 +102,12 @@ export const DashboardBody_css_1d3r8 = memo(() => {
         titleColor = 'department_6_title'
         bgColor    = 'department_6'
       >
-        {/* <DashboardReportContainer6_1 /> */}
+        <DashboardReportContainer6_0_1 />
+        <DashboardReportContainer6_17_3 />
+        <DashboardReportContainer6_17_6 />
+
+        <DashboardReportContainer6_17_2 />
+        <DashboardReportContainer6_17_7 />
       </DashboardBoxContainer>
     </DashboardBodyWrapper>
   );

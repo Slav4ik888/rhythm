@@ -23,6 +23,7 @@ import { LineChartContainer } from './line-chart';
 import { ReportsLineChartConfig } from './config-type';
 import { ChipsContainer } from '../../items/chips-container';
 import { DashboardConditionType } from 'entities/condition-type';
+import { Divider } from '@mui/material';
 
 
 
@@ -42,9 +43,10 @@ export const ReportsLineChart: FC<Props> = memo(({ bgColor = "grey-200", item, c
 
   return (
     <MDBox pb={1} px={1}>
-      <MDTypography variant="h6" textTransform="none" mb={2}>
+      <MDTypography variant="h6" textAlign="center" textTransform="none" mb={2}>
         {item?.title}
       </MDTypography>
+      <Divider />
     
       <MDBox sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
         <ChipsContainer item={item} config={config} condition={condition} />

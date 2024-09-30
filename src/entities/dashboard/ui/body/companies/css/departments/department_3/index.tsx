@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { DashboardBoxContainer } from 'entities/blocks';
-import { DashboardReportContainer3_1 } from './3-1';
+import { DashboardReportContainer3_7_1 } from './3-7-1';
 
 
 
@@ -14,7 +14,7 @@ export const DashboardGroupDepartment3 = memo(() => {
       titleColor = 'department_3_title'
       bgColor    = 'department_3'
     >
-      <DashboardReportContainer3_1 />
+      <DashboardReportContainer3_7_1 />
     </DashboardBoxContainer>
   );
 });

@@ -1,9 +1,10 @@
 import { memo, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { ChartConfigDataSets } from 'entities/charts';
 import { DashboardReportContainer } from 'entities/blocks';
-import { invertData, selectActiveDates, selectActiveEntities, ReportsLineChart, ReportsLineChartConfig } from 'entities/dashboard';
+import { useSelector } from 'react-redux';
+import { selectActiveDates, selectActiveEntities, ReportsLineChartConfig, invertData, ReportsLineChart } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
-import { fixPointRadius, ChartConfigDataSets } from 'entities/charts';
+import { fixPointRadius } from 'entities/charts';
 import { getConditionType } from 'entities/condition-type';
 
 
@@ -12,10 +13,10 @@ import { getConditionType } from 'entities/condition-type';
 const getDatasetConfig = (dates: any[]): ChartConfigDataSets => {
 
   const config: ChartConfigDataSets = {
-    pointBackgroundColor : "rgb(80 141 222 / 100%)",
-    backgroundColor      : "rgb(80 141 222 / 30%)",
-    borderColor          : "rgb(80 141 222 / 100%)",
-  };
+    pointBackgroundColor : "rgb(132 132 132)",
+    backgroundColor      : "rgb(132 132 132 / 30%)",
+    borderColor          : "rgb(132 132 132)",
+  }
 
   fixPointRadius(config, dates);
 
@@ -23,18 +24,18 @@ const getDatasetConfig = (dates: any[]): ChartConfigDataSets => {
 }
 
 
-/** Стоимость Чебурашки */
-export const DashboardReportContainer7_0_3 = memo(() => {
+/** Ценность сотрудников */
+export const DashboardReportContainer5_0_1 = memo(() => {
   const activeEntities = useSelector(selectActiveEntities);
   const activeDates    = useSelector(selectActiveDates);
 
-  const itemData  = useMemo(() => activeEntities["7-0-3"], [activeEntities]);
-  const condition = useMemo(() => getConditionType(activeEntities["7-0-3-C"]?.data), [activeEntities]);
+  const itemData  = useMemo(() => activeEntities["5-0-1"], [activeEntities]);
+  const condition = useMemo(() => getConditionType(activeEntities["5-0-1-C"]?.data), [activeEntities]);
   const dates     = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
 
   if (! itemData) return null;
-
+  
   const reportConfig: ReportsLineChartConfig = {
     chips: {
       statisticType : true,
@@ -42,13 +43,17 @@ export const DashboardReportContainer7_0_3 = memo(() => {
       conditionType : true,
     },
     resultChanges: {
+      comparisonIndicators: {
+        reduce         : true, // Убрать разряды: 12 500 700 => 12.5007 млн
+        fractionDigits : 2,    // Количество знаков после запятой
+        addZero        : true, // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+      },
       growthResult: {
         fractionDigits : 1,    // Количество знаков после запятой
         addZero        : true, // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
       },
     },
   };
-
 
   const datasetConfig = getDatasetConfig(dates);
 
@@ -57,8 +62,16 @@ export const DashboardReportContainer7_0_3 = memo(() => {
     datasets: {
       ...datasetConfig,
       data: reportConfig.inverted ? invertData(itemData.data as number[]) : itemData.data as number[]
+    },
+    config: {
+      // scales: {
+      //   y: {
+      //     suggestedMax: 40 // Добавление  макс значения оси Y
+      //   }
+      // }
     }
   };
+    
 
 
   return (
@@ -66,7 +79,7 @@ export const DashboardReportContainer7_0_3 = memo(() => {
       <ReportsLineChart
         item        = {itemData}
         chart       = {chartData}
-        condition   = {condition} // DashboardConditionType
+        condition   = {condition}
         config      = {reportConfig}
       />
     </DashboardReportContainer>
