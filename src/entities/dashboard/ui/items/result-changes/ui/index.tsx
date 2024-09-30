@@ -10,7 +10,7 @@ import { ReportsLineChartConfig } from 'shared/ui/charts/line-charts/reports-lin
 
 const useStyles = () => ({
   root: {
-    display        : "flex",
+    display       : "flex",
     // justifyContent : "center",
     // alignItems: "center",
   },

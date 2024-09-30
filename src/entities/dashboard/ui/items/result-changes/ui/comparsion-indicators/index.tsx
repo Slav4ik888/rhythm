@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { FC, Fragment, memo } from "react";
 import { Box } from '@mui/material';
 import { MDTypography } from 'shared/ui/mui-design-components';
 import { addSpaceBetweenNumbers, getFixedFraction, getReducedWithPrefix } from 'shared/helpers/numbers';
@@ -14,6 +14,17 @@ const useStyles = () => ({
     display       : "flex",
     flexDirection : "column",
     alignItems    : "flex-end",
+  },
+  item: {
+    display       : "flex",
+    alignItems    : "flex-end",
+  },
+  firstPrefix: {
+    ml            : 0.5,
+  },
+  prefixSecond: {
+    fontSize      : "0.8rem",
+    ml            : 0.5,
   },
 });
 
@@ -63,12 +74,20 @@ export const ComparisonIndicators: FC<Props> = memo(({ values: v, config = {} })
     <Box sx={sx.root}>
       {
         values && values.map((v, i) => (
-          <MDTypography
-            key     = {i}
-            variant = {i === 0 ? "h4" : "body2"}
-          >
-            {values[i].value}{values[i].prefix && (" " + values[i].prefix)}
-          </MDTypography>
+          <Box sx={sx.item} key={i}>
+            <MDTypography variant={i === 0 ? "h4" : "body2"}>
+              {values[i].value}
+            </MDTypography>
+            {
+              values[i].prefix && <MDTypography
+                variant = {i === 0 ? "h6" : "body2"}
+                sx      = {i === 0 ? sx.firstPrefix : sx.prefixSecond}
+              >
+                {values[i].prefix}
+              </MDTypography>
+            }
+            
+          </Box>
         ))
       }
     </Box>

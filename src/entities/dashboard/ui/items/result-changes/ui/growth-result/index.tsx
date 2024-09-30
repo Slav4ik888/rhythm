@@ -15,7 +15,8 @@ const useStyles = () => ({
   root: {
     display    : "flex",
     alignItems : "flex-start",
-    ml         : 2,
+    ml         : 4,
+    pt         : "0.3rem",
   },
 });
 
