@@ -32,7 +32,7 @@ interface Props {
 }
 
 
-export const DashboardFooter: FC<Props> = ({
+export const Footer: FC<Props> = ({
   company = { href: "https://rhythm.thm.su/", name: "Учебный центр Основа" },
   links = [
     { href: "https://rhythm.thm.su/", name: "Creative Rhythm" },

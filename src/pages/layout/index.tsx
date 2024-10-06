@@ -11,6 +11,7 @@ import { MessageBar } from 'widgets/message-bar';
 import { ScrollToTop } from 'shared/ui/pages';
 import { useSelector } from 'react-redux';
 import { selectLoading as selectDashboardLoading } from 'entities/dashboard';
+import { Footer } from "widgets/footer";
 
 
 
@@ -62,7 +63,7 @@ export const Layout: FC = memo(() => {
           <Outlet />
         {/* </Box> */}
 
-        {/* <Footer /> */}
+        <Footer />
       {/* </Box> */}
     </>
   )

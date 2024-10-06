@@ -35,153 +35,65 @@ Coded by www.creative-tim.com
   10. The `component` key is used to store the component of its route.
 */
 
-import Icon from "@mui/material/Icon";
-import { DashboardPage } from 'pages/dashboard';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import BadgeIcon from '@mui/icons-material/Badge';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import BackupTableIcon from '@mui/icons-material/BackupTable';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import LockOpenIcon from '@mui/icons-material/LockOpen';
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import PasswordIcon from '@mui/icons-material/Password';
-import SyncLockIcon from '@mui/icons-material/SyncLock';
 import LoginIcon from '@mui/icons-material/Login';
+import { SidenavRouteListItem } from '../../../types';
 
 
 
-export interface RouteListItem {
-  type: "collapse" | "title" | "divider" | "examples" | "auth"
-  name: string
-  key: string
-  icon: React.ReactNode | string
-  title?: string
-  noCollapse: boolean
-  href?: string
-  route: string
-  component?: React.ReactNode
-}
-
-
-export const routesList: RouteListItem[] = [
+export const routesList_demo_pecar: SidenavRouteListItem[] = [
   {
     type: "collapse",
-    name: "Dashboard",
+    title: "Dashboard",
     key: "dashboard",
     icon: <EqualizerIcon fontSize="small" />,
-    noCollapse: false,
     route: "/dashboard",
-    component: <DashboardPage />
   },
   {
     type: "collapse",
-    name: "Tables",
+    title: "Tables",
     key: "tables",
     icon: <BackupTableIcon fontSize="small" />,
-    noCollapse: false,
     route: "/tables",
-    component: <></>
   },
   {
     type: "collapse",
-    name: "Billing",
+    title: "Billing",
     key: "billing",
     icon: <AccountBalanceIcon fontSize="small" />,
-    noCollapse: false,
     route: "/billing",
-    component: <></>
   },
   {
     type: "collapse",
-    name: "Notifications",
+    title: "Notifications",
     key: "notifications",
     icon: <MarkEmailUnreadIcon fontSize="small" />,
-    noCollapse: false,
     route: "/notifications",
-    component: <></>
   },
   {
     type: "collapse",
-    name: "Profile",
+    title: "Profile",
     key: "profile",
     icon: <AccountCircleIcon fontSize="small" />,
-    noCollapse: false,
     route: "/profile",
-    component: <></>
   },
   {
     type: "collapse",
-    name: "Sign In",
+    title: "Sign In",
     key: "sign-in",
     icon: <LoginIcon fontSize="small" />,
-    noCollapse: false,
     route: "/authentication/sign-in",
-    component: <></>
-  },
-  {
-    type: "examples",
-    name: "User Profile",
-    key: "user-profile",
-    icon: <AccountBoxIcon fontSize="small" />,
-    noCollapse: false,
-    route: "/user-profile",
-    component: <></>
-  },
-  {
-    type: "examples",
-    name: "User Management",
-    key: "user-management",
-    icon: <BadgeIcon fontSize="small" />,
-    noCollapse: false,
-    route: "/user-management",
-    component: <></>
   },
   {
     type: "collapse",
-    name: "Sign Up",
+    title: "Sign Up",
     key: "sign-up",
     icon: <ExitToAppIcon fontSize="small" />,
-    noCollapse: false,
     route: "/authentication/sign-up",
-    component: <></>
   },
-  {
-    type: "auth",
-    name: "Login",
-    key: "login",
-    icon: <LockOpenIcon fontSize="small" />,
-    noCollapse: false,
-    route: "/auth/login",
-    component: <></>
-  },
-  {
-    type: "auth",
-    name: "Register",
-    key: "register",
-    icon: <AppRegistrationIcon fontSize="small" />,
-    noCollapse: false,
-    route: "/auth/register",
-    component: <></>
-  },
-  {
-    type: "auth",
-    name: "Forgot Password",
-    key: "forgot-password",
-    icon: <SyncLockIcon fontSize="small" />,
-    noCollapse: false,
-    route: "/auth/forgot-password",
-    component: <></>
-  },
-  {
-    type: "auth",
-    name: "Reset Password",
-    key: "reset-password",
-    icon: <PasswordIcon fontSize="small" />,
-    noCollapse: false,
-    route: "/auth/reset-password",
-    component: <></>
-  }
 ];

@@ -3,16 +3,16 @@ import { Grid } from '@mui/material';
 import MDBox from "shared/ui/mui-design-components/md-box";
 import { ComplexStatisticsCard } from 'shared/ui/cards/complex-statistics-card';
 import { ReportsBarChart, ReportsLineChart } from 'shared/ui/charts';
-import reportsBarChartData from "../../../../model/example-data/reportsBarChartData";
-import reportsLineChartData from "../../../../model/example-data/reportsLineChartData";
-import { DashboardBodyWrapper } from '../../body-wrapper';
-import { DashboardGroupDepartment7 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_7';
-import { DashboardGroupDepartment1 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_1';
-import { DashboardGroupDepartment2 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_2';
-import { DashboardGroupDepartment3 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_3';
-import { DashboardGroupDepartment4 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_4';
-import { DashboardGroupDepartment5 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_5';
-import { DashboardGroupDepartment6 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_6';
+import reportsBarChartData from "../../../../../../entities/dashboard/model/example-data/reportsBarChartData";
+import reportsLineChartData from "../../../../../../entities/dashboard/model/example-data/reportsLineChartData";
+import { DashboardBodyWrapper } from '../../wrapper';
+import { DashboardGroupDepartment7 } from 'pages/dashboard/ui/body/templates/osnova/departments/department_7';
+import { DashboardGroupDepartment1 } from 'pages/dashboard/ui/body/templates/osnova/departments/department_1';
+import { DashboardGroupDepartment2 } from 'pages/dashboard/ui/body/templates/osnova/departments/department_2';
+import { DashboardGroupDepartment3 } from 'pages/dashboard/ui/body/templates/osnova/departments/department_3';
+import { DashboardGroupDepartment4 } from 'pages/dashboard/ui/body/templates/osnova/departments/department_4';
+import { DashboardGroupDepartment5 } from 'pages/dashboard/ui/body/templates/osnova/departments/department_5';
+import { DashboardGroupDepartment6 } from 'pages/dashboard/ui/body/templates/osnova/departments/department_6';
 
 
 // Dashboard components

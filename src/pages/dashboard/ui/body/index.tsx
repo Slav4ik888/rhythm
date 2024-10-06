@@ -1,0 +1,30 @@
+import { memo, useEffect } from 'react';
+import { actionsCompany, CompanyId } from 'entities/companies';
+import { actionsDashboard, selectIsMounted, getInitialState } from 'entities/dashboard';
+import { COMPANIES_CONFIG } from '../../model/config';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch } from 'shared/lib/hooks';
+import { DashboardBody_demo_pecar } from './templates';
+
+
+
+export const DashboardBody = memo(() => {
+  console.log('DashboardBody ');
+  const dispatch = useAppDispatch();
+  const companyId = useParams()?.companyId as CompanyId;
+  const isMounted = useSelector(selectIsMounted);
+
+
+  useEffect(() => {
+    if (isMounted) {
+      dispatch(actionsCompany.setCompanyId(companyId));
+      dispatch(actionsDashboard.setInitial(getInitialState(companyId)));
+    }
+  }, [isMounted]);
+
+
+  return companyId
+    ? COMPANIES_CONFIG[companyId].dashboard
+    : <DashboardBody_demo_pecar />
+});

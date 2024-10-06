@@ -1,5 +1,6 @@
-import { DashboardBody_css_1d3r8, DashboardBody_demo_pecar, DashboardBody_osnova_g2d7 } from 'entities/dashboard';
-import { CompanyId, CompanyData } from '../types';
+import { DashboardBody_css_1d3r8, DashboardBody_demo_pecar, DashboardBody_osnova_g2d7 } from '../../ui/body/templates';
+import { CompanyId, CompanyData } from 'entities/companies';
+
 
 
 export const COMPANIES_CONFIG: Record<CompanyId, CompanyData> = {

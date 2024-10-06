@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { DashboardBodyWrapper } from '../../body-wrapper';
+import { DashboardBodyWrapper } from '../../wrapper';
 import { DashboardBoxContainer } from 'entities/blocks';
 import { DashboardReportContainer7_0_3 } from './departments/department_7/7-0-3';
 import { DashboardReportContainer7_0_4 } from './departments/department_7/7-0-4';
@@ -17,6 +17,7 @@ import { DashboardReportContainer6_17_3 } from './departments/department_6/6-17-
 import { DashboardReportContainer6_17_6 } from './departments/department_6/6-17-6';
 import { DashboardReportContainer6_17_2 } from './departments/department_6/6-17-2';
 import { DashboardReportContainer6_17_7 } from './departments/department_6/6-17-7';
+import { Stack } from '@mui/material';
 
 
 
@@ -67,10 +68,14 @@ export const DashboardBody_css_1d3r8 = memo(() => {
         titleColor = 'department_2_title'
         bgColor    = 'department_2'
       >
-        <DashboardReportContainer2_0_1 />
-        <DashboardReportContainer2_0_1_1 />
-        <DashboardReportContainer2_0_4 />
-        <DashboardReportContainer2_0_4_1 />
+        <Stack>
+          <DashboardReportContainer2_0_1 />
+          <DashboardReportContainer2_0_1_1 />
+        </Stack>
+        <Stack>
+          <DashboardReportContainer2_0_4 />
+          <DashboardReportContainer2_0_4_1 />
+        </Stack>
       </DashboardBoxContainer>
 
       <DashboardBoxContainer
@@ -103,11 +108,15 @@ export const DashboardBody_css_1d3r8 = memo(() => {
         bgColor    = 'department_6'
       >
         <DashboardReportContainer6_0_1 />
-        <DashboardReportContainer6_17_3 />
-        <DashboardReportContainer6_17_6 />
+        <Stack>
+          <DashboardReportContainer6_17_3 />
+          <DashboardReportContainer6_17_6 />
+        </Stack>
 
-        <DashboardReportContainer6_17_2 />
-        <DashboardReportContainer6_17_7 />
+        <Stack>
+          <DashboardReportContainer6_17_2 />
+          <DashboardReportContainer6_17_7 />
+        </Stack>
       </DashboardBoxContainer>
     </DashboardBodyWrapper>
   );

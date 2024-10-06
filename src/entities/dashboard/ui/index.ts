@@ -1,4 +1,3 @@
-export * from './dashboard';
-export * from './body/companies/css';
-export * from './body/companies/demo-pecar';
-export * from './body/companies/osnova';
+export * from '../../../pages/dashboard/ui/body/templates/css';
+export * from '../../../pages/dashboard/ui/body/templates/demo-pecar';
+export * from '../../../pages/dashboard/ui/body/templates/osnova';

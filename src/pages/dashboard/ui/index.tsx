@@ -1,7 +1,10 @@
 import { FC, memo } from 'react';
-import { Dashboard, reducerDashboard } from 'entities/dashboard';
+import { reducerDashboard } from 'entities/dashboard';
 import { Sidenav } from 'widgets/sidenav';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
+import { DashboardLayout } from 'shared/ui/layouts/dashboard-layout';
+import { DashboardNavbar } from 'widgets/dashboard/navbar';
+import { DashboardBody } from './body';
 
 
 
@@ -19,7 +22,10 @@ const DashboardPage: FC = memo(() => {
       {/* <Configurator /> */}
       {/* {configsButton} */}
 
-      <Dashboard />
+      <DashboardLayout>
+        <DashboardNavbar />
+        <DashboardBody />
+      </DashboardLayout>
     </DynamicModuleLoader>
   );
 });

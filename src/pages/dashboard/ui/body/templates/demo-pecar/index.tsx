@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { DashboardBodyWrapper } from '../../body-wrapper';
-import { DashboardGroupDepartment1 } from 'entities/dashboard/ui/body/companies/osnova/departments/department_1';
+import { DashboardBodyWrapper } from '../../wrapper';
+import { DashboardGroupDepartment1 } from 'pages/dashboard/ui/body/templates/osnova/departments/department_1';
 
 
 

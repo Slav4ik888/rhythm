@@ -16,22 +16,16 @@ Coded by www.creative-tim.com
 import { FC, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import List from "@mui/material/List";
-import MDBox from "shared/ui/mui-design-components/md-box";
-import MDTypography from "shared/ui/mui-design-components/md-typography";
 import SidenavRoot from "../root-drawer";
 import {
-  useMaterialUIController,
-  setMiniSidenav,
-  setTransparentSidenav,
-  setWhiteSidenav,
-  ColorName,
-  MaterialUIControllerProviderState,
+  useMaterialUIController, setMiniSidenav, setTransparentSidenav, setWhiteSidenav,
+  ColorName, MaterialUIControllerProviderState
 } from "app/providers/theme";
 import { SidenavDivider } from '../sidenav-items/sidenav-divider';
 import { SidenavLogoLabel } from '../logo-label';
 import { SidenavUpgradeButton } from '../upgrade-button';
-import { renderExampleRoutes } from '../render-example-routes';
 import { renderRoutes } from '../render-routes';
+import { routesList_css_1d3r8 } from 'entities/dashboard';
 
 
 
@@ -45,7 +39,7 @@ export const SidenavContainer: FC<Props> = ({ ...rest }) => {
   const [controller, dispatch] = useMaterialUIController();
   const { miniSidenav, transparentSidenav, whiteSidenav, darkMode } = controller as MaterialUIControllerProviderState;
   const location = useLocation();
-  const collapseName = location.pathname.replace("/", "");
+  const activeName = location.pathname.replace("/", ""); // dashboard/css_1d3r8
 
   const textColor: ColorName = useMemo(() => {
     if (transparentSidenav || (whiteSidenav && !darkMode)) return "dark";
@@ -53,8 +47,7 @@ export const SidenavContainer: FC<Props> = ({ ...rest }) => {
     else return "white" as ColorName
   }, [transparentSidenav, whiteSidenav, darkMode, whiteSidenav]);
 
-  const exampleRoutes = useMemo(() => renderExampleRoutes(collapseName), [collapseName]);
-  const routes = useMemo(() => renderRoutes(collapseName, textColor), [collapseName, textColor]);
+  const routes = useMemo(() => renderRoutes(routesList_css_1d3r8, activeName, textColor), [routesList_css_1d3r8, activeName, textColor]);
   
 
   useEffect(() => {
@@ -85,12 +78,12 @@ export const SidenavContainer: FC<Props> = ({ ...rest }) => {
       <SidenavLogoLabel textColor={textColor} />
       <SidenavDivider />
       <List>
-        <MDBox display="flex flex-col" alignItems="center">
-          <MDTypography color={textColor} variant="body2" fontWeight="medium" pl="1.5rem">
+        {/* <MDBox display="flex flex-col" alignItems="center">
+          <MDTypography color={textColor} variant="body2" fontWeight="medium" pl="1.5rem" mb="1rem">
             { miniSidenav ? "Exam" : "Examples" }
           </MDTypography>
           {exampleRoutes}
-        </MDBox>
+        </MDBox> */}
 
         <SidenavDivider />
         {routes}

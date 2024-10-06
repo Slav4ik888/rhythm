@@ -1,2 +1,2 @@
 export { AppRouter } from './ui'
-export { AppRoutes, RoutePath, routesList, RouteListItem } from './config'
+export { AppRoutes, RoutePath } from './config'

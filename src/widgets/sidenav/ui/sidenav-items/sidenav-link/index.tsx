@@ -3,27 +3,28 @@ import Link from "@mui/material/Link";
 import SidenavCollapse from "../sidenav-collapse";
 
 
+
 interface Props {
-  k: string
-  href: string
-  name: string
-  icon: React.ReactNode | string
-  collapseName: string
-  noCollapse?: boolean
+  k           : string
+  href        : string
+  title       : string
+  icon        : React.ReactNode | string
+  activeName  : string
+  noCollapse? : boolean
 }
 
-export const SidenavLink: FC<Props> = memo(({ k: key, href, collapseName, noCollapse, icon, name }) => (
+export const SidenavLink: FC<Props> = memo(({ k: key, href, activeName, noCollapse, icon, title }) => (
   <Link
-    href={href}
-    target="_blank"
-    rel="noreferrer"
-    sx={{ textDecoration: "none" }}
+    href   = {href}
+    target = "_blank"
+    rel    = "noreferrer"
+    sx     = {{ textDecoration: "none" }}
   >
     <SidenavCollapse
-      name={name}
-      icon={icon}
-      active={key === collapseName}
-      noCollapse={noCollapse}
+      title      = {title}
+      icon       = {icon}
+      active     = {key === activeName}
+      noCollapse = {noCollapse}
     />
   </Link>
 ));
