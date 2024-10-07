@@ -4,12 +4,14 @@ import { Action, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/tool
 import { StateSchemaUI } from 'entities/ui';
 import { StateSchemaDashboard } from 'entities/dashboard';
 import { StateSchemaCompany } from 'entities/companies';
+import { StateSchemaUser } from 'entities/user';
 
 
 
 export interface StateSchema {
   // Entities
   ui      : StateSchemaUI
+  user    : StateSchemaUser
   company : StateSchemaCompany
 
   // Features

@@ -4,6 +4,7 @@ import { StateSchema } from './state';
 import { createReducerManager } from './reducer-manager';
 import { api } from 'shared/api';
 import { reducerCompany } from 'entities/companies';
+import { reducerUser } from 'entities/user';
 
 
 
@@ -17,6 +18,7 @@ export function createReduxStore(
 
       // Entities
       ui      : reducerUI,
+      user    : reducerUser,
       company : reducerCompany,
       // Features
     },
