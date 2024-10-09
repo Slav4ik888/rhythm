@@ -1,21 +1,40 @@
 export { ThemeProvider } from './ui/theme-provider';
-export {
-  CustomTheme, ColorMode, useTheme, useColorMode,
-  MaterialUIControllerProviderState,
-  MaterialUIControllerProvider,
-  useMaterialUIController,
-  setMiniSidenav,
-  setTransparentSidenav,
-  setWhiteSidenav,
-  setSidenavColor,
-  setTransparentNavbar,
-  setFixedNavbar,
-  setOpenConfigurator,
-  setLayout,
-  setDarkMode,
-  typography, theme, themeDark, CustomMUITheme, GradientsBgColorName, RadiusName, ColorName, GreyColor,
-  ColorType, ColorsConfig
-} from './model';
-  
-export { default as linearGradient } from './model/mui-themes/theme/functions/linearGradient';
-export { default as pxToRem } from './model/mui-themes/theme/functions/pxToRem';
+
+
+// 
+// 
+//   ОРГАНИЗАЦИЯ ТЕМ И ЦВЕТОВ
+//   КОНФИГУРАТОР
+// 
+// 
+// 
+//    ОБЩИЕ
+//   -------
+//     - Light | Dark
+//     - Navbar Fixed
+//     - Sidenav Mini
+// 
+//    LAYOUT
+//   --------
+//     - Background theme   : Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
+//     - Active theme color : Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
+//     - Background image   : Без фона | С фоном
+//                                       |- : Загрузить свою | Картинка 1 | Картинка 2 | Картинка 3 ...
+// 
+//    HEADER
+//   --------
+//     - Background theme   : Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
+//     - Active theme color : Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
+//
+//    SIDEBAR
+//   ---------
+//     - Background theme   : Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
+//     - Active theme color : Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
+//     - Background image   : Без фона | С фоном
+//                                       |- : Загрузить свою | Картинка 1 | Картинка 2 | Картинка 3 ...
+// 
+// 
+// 
+// 
+// 
+// 

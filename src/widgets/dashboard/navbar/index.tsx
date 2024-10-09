@@ -34,7 +34,7 @@ import NotificationItem from "shared/ui/items/notification-item";
 // import AuthService from "services/auth-service";
 // import { AuthContext } from "context";
 import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu } from "./styles";
-import { useMaterialUIController, setMiniSidenav, setOpenConfigurator, CustomMUITheme } from "app/providers/theme";
+import { useMaterialUIController, setMiniSidenav, setOpenConfigurator, CustomMUITheme } from "app/providers/theme-old";
 import { DashboardDatebar } from 'widgets/dashboard/dashboard-datebar';
 
 

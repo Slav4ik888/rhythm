@@ -3,14 +3,14 @@ import { IconButton } from '@mui/material';
 import MDBox from 'shared/ui/mui-design-components/md-box';
 import MDTypography from 'shared/ui/mui-design-components/md-typography';
 import ArrowBack from '@mui/icons-material/ArrowBackIos';
-import { CustomMUITheme } from 'app/providers/theme';
+import { CustomMUITheme } from 'app/providers/theme-old';
 import { NavLink } from "react-router-dom";
 import {
   useMaterialUIController,
   setMiniSidenav,
   ColorName,
   MaterialUIControllerProviderState,
-} from "app/providers/theme";
+} from "app/providers/theme-old";
 import { styles } from './styles';
 import brandDark from 'shared/assets/logo_small.png';
 

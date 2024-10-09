@@ -3,7 +3,7 @@ import { DialogTitle as MuiDialogTitle, IconButton, Typography, Tooltip } from '
 import CloseIcon from '@mui/icons-material/Close';
 import HelpOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import HelpIcon from '@mui/icons-material/Help';
-import { CustomTheme, useTheme } from 'app/providers/theme';
+import { CustomTheme, useTheme } from 'app/providers/theme-old';
 
 
 

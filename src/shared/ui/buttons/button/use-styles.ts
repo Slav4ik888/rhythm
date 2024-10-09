@@ -1,5 +1,5 @@
-import { SxCard } from 'app/styles';
-import { CustomTheme } from 'app/providers/theme';
+import { SxCard } from 'app/styles-old';
+import { CustomTheme } from 'app/providers/theme-old';
 import { ButtonType, Variant } from './types';
 
 

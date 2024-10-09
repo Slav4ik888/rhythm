@@ -20,7 +20,7 @@ import SidenavRoot from "../root-drawer";
 import {
   useMaterialUIController, setMiniSidenav, setTransparentSidenav, setWhiteSidenav,
   ColorName, MaterialUIControllerProviderState
-} from "app/providers/theme";
+} from "app/providers/theme-old";
 import { SidenavDivider } from '../sidenav-items/sidenav-divider';
 import { SidenavLogoLabel } from '../logo-label';
 import { SidenavUpgradeButton } from '../upgrade-button';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box } from '@mui/material';
 import { useUI } from 'entities/ui';
 import { useStyles } from './use-styles';
-import { CustomTheme, useTheme } from 'app/providers/theme';
+import { CustomTheme, useTheme } from 'app/providers/theme-old';
 import { WrapperContainerType } from './types';
 export { WrapperContainerType }
 

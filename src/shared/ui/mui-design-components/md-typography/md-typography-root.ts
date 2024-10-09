@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 // @mui material components
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
-import { CustomMUITheme, ColorName } from 'app/providers/theme';
+import { CustomMUITheme, ColorName } from 'app/providers/theme-old';
 
 
 

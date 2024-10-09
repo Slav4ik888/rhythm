@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, CircularProgress as Circular } from '@mui/material';
-import { f_c_c } from 'app/styles';
-import { SxCard } from 'app/styles/types';
+import { f_c_c } from 'app/styles-old';
+import { SxCard } from 'app/styles-old/types';
 import { getTopCenter } from './utils';
 
 

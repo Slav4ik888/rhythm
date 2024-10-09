@@ -5,7 +5,7 @@ import { getValueByScheme } from 'shared/helpers/objects';
 import { Errors } from 'shared/lib/validators';
 import { GridStyle } from '../../grid-wrap';
 import { getErrorFieldByScheme } from '../utils';
-import { SxCard } from 'app/styles/types';
+import { SxCard } from 'app/styles-old/types';
 
 
 

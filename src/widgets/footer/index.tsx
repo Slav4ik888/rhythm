@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { FC } from 'react';
 import Link from "@mui/material/Link";
 import { MDBox, MDTypography } from "shared/ui/mui-design-components";
-import { pxToRem, typography } from "app/providers/theme";
+import { pxToRem, typography } from "app/providers/theme-old";
 
 
 

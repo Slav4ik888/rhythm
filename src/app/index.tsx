@@ -3,7 +3,7 @@ import { FC, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AppRouter } from './providers/routes';
 import { ThemeProvider } from "@mui/material/styles";
-import { useMaterialUIController, theme, themeDark } from './providers/theme';
+import { useMaterialUIController, theme, themeDark } from './providers/theme-old';
 
 
 import 'app/styles/index.scss';

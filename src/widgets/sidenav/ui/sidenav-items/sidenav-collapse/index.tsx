@@ -25,7 +25,7 @@ import {
   collapseIcon,
   collapseText,
 } from "./styles";
-import { CustomMUITheme, useMaterialUIController } from "app/providers/theme";
+import { CustomMUITheme, useMaterialUIController } from "app/providers/theme-old";
 
 
 

@@ -1,4 +1,4 @@
-import { ColorName } from 'app/providers/theme';
+import { ColorName } from 'app/providers/theme-old';
 import { SidenavRouteListItem } from 'entities/dashboard';
 import { Fragment } from 'react';
 import { SidenavDivider } from '../sidenav-items/sidenav-divider';

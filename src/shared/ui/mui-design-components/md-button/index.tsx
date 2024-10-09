@@ -20,7 +20,7 @@ import { forwardRef, FC } from "react";
 import MDButtonRoot from "./md-button-root";
 
 // Material Dashboard 2 React contexts
-import { ColorName, useMaterialUIController } from "app/providers/theme";
+import { ColorName, useMaterialUIController } from "app/providers/theme-old";
 
 
 interface Props {

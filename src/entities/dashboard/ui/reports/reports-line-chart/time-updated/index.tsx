@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { MDBox, MDTypography } from "shared/ui/mui-design-components";
-import { pxToRem, useMaterialUIController } from 'app/providers/theme';
+import { pxToRem, useMaterialUIController } from 'app/providers/theme-old';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 

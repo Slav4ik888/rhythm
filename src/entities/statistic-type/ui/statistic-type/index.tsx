@@ -3,7 +3,7 @@ import Chip from '@mui/material/Chip';
 import { STATISTIC_TYPE } from '../../model/config';
 import { DashboardStatisticType } from '../../model/types';
 import { Tooltip } from 'shared/ui/tooltip';
-import { CustomMUITheme, pxToRem, useTheme } from 'app/providers/theme';
+import { CustomMUITheme, pxToRem, useTheme } from 'app/providers/theme-old';
 import { ReportsLineChartConfig } from '../../../dashboard/ui/reports';
 
 

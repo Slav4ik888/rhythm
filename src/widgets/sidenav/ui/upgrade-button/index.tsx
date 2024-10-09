@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { useMaterialUIController, MaterialUIControllerProviderState } from 'app/providers/theme';
+import { useMaterialUIController, MaterialUIControllerProviderState } from 'app/providers/theme-old';
 import MDBox from 'shared/ui/mui-design-components/md-box';
 import MDButton from 'shared/ui/mui-design-components/md-button';
 

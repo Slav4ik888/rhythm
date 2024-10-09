@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { ColorName, RadiusName, GreyColor, GradientsBgColorName } from 'app/providers/theme';
+import { ColorName, RadiusName, GreyColor, GradientsBgColorName } from 'app/providers/theme-old';
 import { forwardRef, FC } from "react";
 import MDBoxRoot from "./md-box-root";
 

@@ -1,5 +1,5 @@
 import { FC, memo, useState } from 'react';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'app/providers/theme-old';
 import { actionsDashboard, arrayDashboardPeriodType, DashboardPeriodType, DASHBOARD_PERIOD_TEXT } from 'entities/dashboard';
 import { FormControl, MenuItem } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';

@@ -15,7 +15,7 @@ Coded by www.creative-tim.com
 
 import { FC, memo } from "react";
 import { MDBox, MDTypography } from "shared/ui/mui-design-components";
-import { GradientsBgColorName, GreyColor } from 'app/providers/theme';
+import { GradientsBgColorName, GreyColor } from 'app/providers/theme-old';
 import { ChartConfig } from '../../../../charts/model/types';
 import { DashboardStatisticItem, ResultChanges } from 'entities/dashboard';
 // import { TimeUpdated } from './time-updated';

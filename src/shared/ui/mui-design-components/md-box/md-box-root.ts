@@ -15,7 +15,7 @@ Coded by www.creative-tim.com
 
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import { CustomMUITheme, GradientsBgColorName, RadiusName, GreyColor } from 'app/providers/theme';
+import { CustomMUITheme, GradientsBgColorName, RadiusName, GreyColor } from 'app/providers/theme-old';
 
 
 

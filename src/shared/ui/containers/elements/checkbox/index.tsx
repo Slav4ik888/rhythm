@@ -6,7 +6,7 @@ import { Tooltip } from '../../../tooltip';
 import { changeGroup, UseGroup } from 'shared/lib/hooks';
 import { getValueByScheme } from 'shared/helpers/objects';
 import { GridStyle } from '../../grid-wrap';
-import { SxCard } from 'app/styles/types';
+import { SxCard } from 'app/styles-old/types';
 
 
 

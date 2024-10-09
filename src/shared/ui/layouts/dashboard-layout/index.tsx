@@ -15,7 +15,7 @@ Coded by www.creative-tim.com
 
 import { useEffect, FC } from "react";
 import { useLocation } from "react-router-dom";
-import { setLayout, useMaterialUIController } from 'app/providers/theme';
+import { setLayout, useMaterialUIController } from 'app/providers/theme-old';
 import MDBox from 'shared/ui/mui-design-components/md-box';
 
 

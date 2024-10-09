@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 // @mui material components
 import Drawer from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
-import { CustomMUITheme } from 'app/providers/theme';
+import { CustomMUITheme } from 'app/providers/theme-old';
 
 interface OwnerState {
   transparentSidenav: boolean

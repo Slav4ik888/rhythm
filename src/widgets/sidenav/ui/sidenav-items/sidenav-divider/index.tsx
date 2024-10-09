@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import Divider from "@mui/material/Divider";
-import { MaterialUIControllerProviderState, useMaterialUIController } from 'app/providers/theme';
+import { MaterialUIControllerProviderState, useMaterialUIController } from 'app/providers/theme-old';
 
 
 interface Props {

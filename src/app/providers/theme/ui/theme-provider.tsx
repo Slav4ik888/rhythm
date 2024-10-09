@@ -1,9 +1,9 @@
 import { FC, ReactNode, useMemo, useState } from 'react';
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
-import { ColorModeContext } from '../model/context';
+import { ColorModeContext } from '../model/lib/context';
 import { theme as themeStandartLight } from '../model/themes/standart-light';
 import { theme as themeStandartDark } from '../model/themes/standart-dark';
-import { ColorMode } from '../model';
+import { ColorMode } from '../model/types';
 
 
 

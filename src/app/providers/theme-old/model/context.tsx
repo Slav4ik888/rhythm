@@ -1,10 +1,3 @@
-
-
-export const ColorModeContext = createContext({
-  toggleColorMode : () => { }
-});
-
-
 /**
 =========================================================
 * Material Dashboard 2 React - v2.1.0
@@ -25,7 +18,7 @@ Coded by www.creative-tim.com
   you can customize the states for the different components here.
 */
 
-import { createContext, useContext, useReducer, useMemo, useState, FC } from "react";
+import { createContext, useContext, useReducer, useMemo, FC } from "react";
 import { ColorName } from '.';
 
 

@@ -5,7 +5,7 @@ import GrowIcon from './assets/triangle-growth.svg';
 import FallIcon from './assets/triangle-fall.svg';
 import UnchangedLeftIcon from './assets/triangle-unchanged-left.svg';
 import UnchangedRightIcon from './assets/triangle-unchanged-right.svg';
-import { CustomMUITheme, useTheme } from 'app/providers/theme';
+import { CustomMUITheme, useTheme } from 'app/providers/theme-old';
 import { getColorByIncreased } from '../../../model/utils';
 
 

@@ -1,8 +1,8 @@
 import { FC, memo } from 'react';
 import { Box } from '@mui/material';
-import { f_c_c, SxCard } from 'app/styles';
+import { f_c_c, SxCard } from 'app/styles-old';
 import { Errors } from 'shared/lib/validators';
-import { CustomTheme, useTheme } from 'app/providers/theme';
+import { CustomTheme, useTheme } from 'app/providers/theme-old';
 
 
 

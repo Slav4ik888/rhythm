@@ -1,6 +1,6 @@
 import { FC, memo, ReactNode } from "react";
 import Card from "@mui/material/Card";
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'app/providers/theme-old';
 
 
 

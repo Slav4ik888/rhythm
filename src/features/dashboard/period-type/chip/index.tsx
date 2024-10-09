@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'app/providers/theme-old';
 import { DASHBOARD_PERIOD_TEXT, selectSelectedPeriod } from 'entities/dashboard';
 import { Chip } from '@mui/material';
 import { useSelector } from 'react-redux';

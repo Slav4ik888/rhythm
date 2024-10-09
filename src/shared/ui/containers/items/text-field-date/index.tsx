@@ -2,7 +2,7 @@ import { FC, memo, useCallback } from 'react';
 import { TextFieldDate } from '../../elements/textfield-date';
 import { changeGroup, setChanges, UseGroup } from 'shared/lib/hooks';
 import { GridStyle } from '../../grid-wrap';
-import { SxCard } from 'app/styles/types';
+import { SxCard } from 'app/styles-old/types';
 import { getValueByScheme } from 'shared/helpers/objects';
 import { Errors } from 'shared/lib/validators';
 import { getMsFromDate } from 'shared/helpers/dates';

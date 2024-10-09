@@ -17,7 +17,7 @@ Coded by www.creative-tim.com
 // @mui material components
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
-import { CustomMUITheme } from 'app/providers/theme';
+import { CustomMUITheme } from 'app/providers/theme-old';
 
 
 interface OwnerState {

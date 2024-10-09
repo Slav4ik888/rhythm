@@ -1,4 +1,4 @@
-import { CustomMUITheme } from 'app/providers/theme';
+import { CustomMUITheme } from 'app/providers/theme-old';
 import { Increased } from '../../../../../../model/types';
 import { getGrowIconTypeByIncreased } from '../get-grow-icon-type-by-increased';
 

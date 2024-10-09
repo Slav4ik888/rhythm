@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { FC, memo, ReactNode } from "react";
 import Divider from "@mui/material/Divider";
 import { MDBox, MDTypography } from "shared/ui/mui-design-components";
-import { GradientsBgColorName, GreyColor } from 'app/providers/theme';
+import { GradientsBgColorName, GreyColor } from 'app/providers/theme-old';
 import { ChartConfig } from '../../../../../entities/charts/model/types';
 import { DashboardStatisticItem, ResultChanges } from 'entities/dashboard';
 import { TimeUpdated } from './time-updated';

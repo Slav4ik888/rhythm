@@ -4,8 +4,8 @@ import { Dialog, DialogContent } from '@mui/material';
 import { DialogTitle } from '../../dialog-title';
 import { UseBase } from 'shared/lib/hooks';
 import { ReactNode } from 'react';
-import { SxCard } from 'app/styles/types';
-import { CustomTheme, useTheme } from 'app/providers/theme';
+import { SxCard } from 'app/styles-old/types';
+import { CustomTheme, useTheme } from 'app/providers/theme-old';
 
 
 

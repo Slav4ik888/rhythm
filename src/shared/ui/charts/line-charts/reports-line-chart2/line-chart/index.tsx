@@ -3,7 +3,7 @@ import "chart.js/auto";
 import { Chart } from "react-chartjs-2";
 import { MDBox } from "shared/ui/mui-design-components";
 import { configs } from "./configs";
-import { GradientsBgColorName, GreyColor } from 'app/providers/theme';
+import { GradientsBgColorName, GreyColor } from 'app/providers/theme-old';
 import { ChartConfig } from '../../../../../../entities/charts/model/types';
 
 

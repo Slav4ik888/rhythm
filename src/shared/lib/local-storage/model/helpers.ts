@@ -1,4 +1,4 @@
-import { ColorMode } from 'app/providers/theme';
+import { ColorMode } from 'app/providers/theme-old';
 import { CompanyId } from 'entities/companies';
 import { StateSchemaDashboard } from 'entities/dashboard';
 import { ResGetData } from 'features/dashboard/get-data/model/types';

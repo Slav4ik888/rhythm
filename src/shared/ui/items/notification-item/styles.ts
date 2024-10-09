@@ -1,5 +1,5 @@
 import { SxProps } from '@mui/material';
-import { CustomMUITheme } from 'app/providers/theme';
+import { CustomMUITheme } from 'app/providers/theme-old';
 
 
 function menuItem(theme: CustomMUITheme): SxProps {

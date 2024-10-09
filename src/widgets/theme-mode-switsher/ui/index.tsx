@@ -1,4 +1,4 @@
-import { useColorMode, ColorMode, useTheme } from 'app/providers/theme';
+import { useColorMode, ColorMode, useTheme } from 'app/providers/theme-old';
 import { memo } from 'react';
 import { IconButton, Typography } from '@mui/material';
 import Brightness4Icon from '@mui/icons-material/Brightness4';

@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import Chip from '@mui/material/Chip';
 // import { Tooltip } from 'shared/ui/tooltip';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'app/providers/theme-old';
 import { COMPANY_COLORS_CONFIG } from '../../model/config';
 import { ReportsLineChartConfig } from '../../../dashboard/ui/reports';
 import { CompanyId } from 'entities/companies';

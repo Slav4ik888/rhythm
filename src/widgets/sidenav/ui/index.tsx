@@ -1,5 +1,5 @@
 import { FC, memo, useState } from 'react';
-import { useMaterialUIController, setMiniSidenav } from 'app/providers/theme';
+import { useMaterialUIController, setMiniSidenav } from 'app/providers/theme-old';
 import { SidenavContainer } from './container';
 
 

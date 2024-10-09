@@ -1,4 +1,4 @@
-import { SxCard } from 'app/styles/types';
+import { SxCard } from 'app/styles-old/types';
 
 
 

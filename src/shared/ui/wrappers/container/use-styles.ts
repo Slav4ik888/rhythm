@@ -1,4 +1,4 @@
-import { CustomTheme } from 'app/providers/theme';
+import { CustomTheme } from 'app/providers/theme-old';
 import { ScreenFormats } from 'entities/ui';
 import { WrapperContainerType } from './types';
 

@@ -1,6 +1,6 @@
 import { FC, memo, ReactNode } from 'react';
 import { GridSize, Grid } from "@mui/material";
-import { SxCard } from 'app/styles/types';
+import { SxCard } from 'app/styles-old/types';
 
 
 

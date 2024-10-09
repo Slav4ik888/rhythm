@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
-import { f_c } from 'app/styles';
+import { f_c } from 'app/styles-old';
 import { RoutePath } from 'app/providers/routes';
 
 

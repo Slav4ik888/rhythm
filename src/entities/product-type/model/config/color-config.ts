@@ -1,4 +1,4 @@
-import { ColorsConfig } from 'app/providers/theme';
+import { ColorsConfig } from 'app/providers/theme-old';
 import { CompanyId } from 'entities/companies';
 
 

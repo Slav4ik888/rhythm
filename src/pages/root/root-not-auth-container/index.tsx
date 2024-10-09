@@ -1,9 +1,9 @@
 import { FC, memo } from 'react';
 import { Box, Typography } from '@mui/material';
 import { CircularProgress } from 'shared/ui/circular-progress';
-import { f_c_c } from 'app/styles';
+import { f_c_c } from 'app/styles-old';
 import s from './styles.module.scss';
-import { CustomTheme, useTheme } from 'app/providers/theme';
+import { CustomTheme, useTheme } from 'app/providers/theme-old';
 
 
 

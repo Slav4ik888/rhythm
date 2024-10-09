@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { Box, Card } from '@mui/material';
-import { GradientsBgColorName, CustomMUITheme, linearGradient, useTheme, pxToRem, ColorName } from 'app/providers/theme';
+import { GradientsBgColorName, CustomMUITheme, linearGradient, useTheme, pxToRem, ColorName } from 'app/providers/theme-old';
 import { isStr } from 'shared/lib/validators';
 import { MDTypography } from 'shared/ui/mui-design-components';
 

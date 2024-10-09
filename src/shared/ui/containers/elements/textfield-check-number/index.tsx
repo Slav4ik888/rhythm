@@ -7,7 +7,7 @@ import { getStrNumber, toNumber } from '../../../../helpers/numbers';
 import { useValue } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
 import { GridStyle } from '../../grid-wrap';
-import { SxCard } from 'app/styles/types';
+import { SxCard } from 'app/styles-old/types';
 
 
 

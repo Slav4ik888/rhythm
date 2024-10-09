@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { Box } from '@mui/material';
 import { DialogInfo } from 'shared/ui/dialogs';
 import { useValue } from 'shared/lib/hooks';
-import { CustomTheme, useTheme } from 'app/providers/theme';
+import { CustomTheme, useTheme } from 'app/providers/theme-old';
 import { ShowPolicyText } from 'features/docs';
 import { useTranslation } from 'react-i18next';
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SignupData, useSignup } from '../../model';
 import { TextfieldItem } from 'shared/ui/containers/items';
 import { UseGroup } from 'shared/lib/hooks';
-import { useTheme } from 'app/providers/theme';
+import { useTheme } from 'app/providers/theme-old';
 import { TextField } from '@mui/material';
 import { MutableRefObject } from 'react';
 import { GridWrap } from 'shared/ui/containers';

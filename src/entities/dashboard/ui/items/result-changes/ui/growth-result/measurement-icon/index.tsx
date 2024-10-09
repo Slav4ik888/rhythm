@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import { MDTypography } from 'shared/ui/mui-design-components';
-import { ColorName } from 'app/providers/theme';
+import { ColorName } from 'app/providers/theme-old';
 
 
 

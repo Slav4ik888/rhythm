@@ -5,7 +5,7 @@ import { BoxWrap } from '../../box-wrap';
 import { Tooltip } from 'shared/ui/tooltip';
 import { useValue } from 'shared/lib/hooks';
 import { GridStyle } from '../../grid-wrap';
-import { SxCard } from 'app/styles/types';
+import { SxCard } from 'app/styles-old/types';
 import { Errors } from 'shared/lib/validators';
 import { formatDate } from 'shared/helpers/dates';
 
