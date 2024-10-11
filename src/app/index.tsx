@@ -53,8 +53,6 @@ export const App: FC = () => {
 
 
   return (
-    <ThemeProvider theme={darkMode ? themeDark : theme}>
-      <AppRouter />
-    </ThemeProvider>
+    <AppRouter />
   );
 };

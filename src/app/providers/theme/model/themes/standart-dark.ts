@@ -10,6 +10,7 @@ export const theme = {
       light        : '#eee',
       main         : '#000',
       dark         : '#000',
+      gradinet     : 'linear-gradient(195deg, rgb(66 66 74), rgb(25, 25, 25));',
       contrastText : '#fff'
     },
     secondary: {
@@ -17,6 +18,7 @@ export const theme = {
       light        : '#3fa111',
       main         : '#3fa111',
       dark         : '#3fa111',
+      gradinet     : 'linear-gradient195deg, rgb(73, 163, 241), rgb(26, 115, 232));',
       contrastText : '#3fa111'
     },
     logoGreen: '#3fa111'
@@ -173,13 +175,17 @@ export const theme = {
   
   
   dialog: {
-    title: {
-      color: '#8a8753'
+    paper: {
+      color      : '#272727',
+      background : '#f0f2f5'
     }
   },
+
   paper: {
-    background: '#ecece6'
+    color      : '#272727', // On surface
+    background : '#fff'     // Surface
   },
+
   listSelect: {
     textSecondary: {
       color: '#808080'
