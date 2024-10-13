@@ -1,5 +1,6 @@
 export { UIConfiguratorProvider } from './ui/ui-configurator-provider'
 export { useUIConfiguratorController } from './model/lib/use-ui-configurator-controller'
-export { setOpenConfigurator, setMode } from './model/lib/reducer'
-export { CustomTheme } from './model/types'
+export { setOpenConfigurator, setMode, setSidenavMini } from './model/lib/reducer'
+export { CustomTheme, UIConfiguratorProviderState } from './model/types'
 export { getBoxShadows, rgba, pxToRem, getTypography } from './model/themes/functions'
+export { useTheme } from './model/lib/use-theme'

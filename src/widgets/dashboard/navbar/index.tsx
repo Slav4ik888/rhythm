@@ -18,103 +18,60 @@ import { useLocation, Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import Icon from "@mui/material/Icon";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MenuIcon from '@mui/icons-material/Menu';
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import ArrowBack from '@mui/icons-material/ArrowBackIos';
-import ArrowForward from '@mui/icons-material/ArrowForwardIos';
-import FormatIndentIncreaseIcon from '@mui/icons-material/FormatIndentIncrease';
 import { MDBox } from "shared/ui/mui-design-components";
-import Breadcrumbs from 'shared/ui/breadcrumbs';
-import NotificationItem from "shared/ui/items/notification-item";
 // import AuthService from "services/auth-service";
 // import { AuthContext } from "context";
-import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu } from "./styles";
+import { sxNavbar, sxNavbarContainer, sxNavbarRow } from "./styles";
 import { DashboardDatebar } from 'widgets/dashboard/dashboard-datebar';
-import { OpenUIConfiguratorBtn } from 'features/ui';
-import { CustomTheme, rgba } from 'app/providers/theme';
+import { MiniSidenavToggleBtn, OpenNotificationMenuBtn, OpenUIConfiguratorBtn } from 'features/ui';
+import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
+import { sxNavbarIconButton, sxNavbarIconsStyle } from 'features/ui/navbar/ui/styles';
 
 
 
 interface Props {
-  absolute?: boolean;
-  light?: boolean;
-  isMini?: boolean;
+  absolute? : boolean
+  light?    : boolean
+  isMini?   : boolean
 }
+
 
 export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = false, isMini = false }) => {
   const [navbarType, setNavbarType] = useState<"sticky" | "static">();
-  const [controller, dispatch] = useMaterialUIController();
-  const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
-  const [openMenu, setOpenMenu] = useState<Element | null>(null);
+  const [configuratorState, dispatch] = useUIConfiguratorController();
+  const { navbarTransparent, navbarFixed, mode } = configuratorState;
+  const darkMode = mode === 'dark';
   const route = useLocation().pathname.split("/").slice(1);
 
 
   useEffect(() => {
     // Setting the navbar type
-    if (fixedNavbar) {
+    if (navbarFixed) {
       setNavbarType("sticky");
     } else {
       setNavbarType("static");
     }
 
   //   // A function that sets the transparent state of the navbar.
-  //   function handleTransparentNavbar() {
-  //     setTransparentNavbar(dispatch, (fixedNavbar && window.scrollY === 0) || !fixedNavbar);
+  //   function handlenavbarTransparent() {
+  //     setnavbarTransparent(dispatch, (navbarFixed && window.scrollY === 0) || !navbarFixed);
   //   }
 
   //   /** 
-  //    The event listener that's calling the handleTransparentNavbar function when 
+  //    The event listener that's calling the handlenavbarTransparent function when 
   //    scrolling the window.
   //   */
-  //   window.addEventListener("scroll", handleTransparentNavbar);
+  //   window.addEventListener("scroll", handlenavbarTransparent);
 
-  //   // Call the handleTransparentNavbar function to set the state with the initial value.
-  //   handleTransparentNavbar();
+  //   // Call the handlenavbarTransparent function to set the state with the initial value.
+  //   handlenavbarTransparent();
 
   //   // Remove event listener on cleanup
-  //   return () => window.removeEventListener("scroll", handleTransparentNavbar);
-  }, [dispatch, fixedNavbar]);
-
-  const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
-  const handleOpenMenu = (event: any) => setOpenMenu(event.currentTarget);
-  const handleCloseMenu = () => setOpenMenu(null);
+  //   return () => window.removeEventListener("scroll", handlenavbarTransparent);
+  }, [dispatch, navbarFixed]);
 
 
-  // Render the notifications menu
-  const renderMenu = () => (
-    <Menu
-      anchorEl={openMenu}
-      // anchorReference={null}
-      anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "left",
-      }}
-      open={Boolean(openMenu)}
-      onClose={handleCloseMenu}
-      sx={{ mt: 2 }}
-    >
-      <NotificationItem icon={<Icon>email</Icon>} title="Check new messages" />
-      <NotificationItem icon={<Icon>podcasts</Icon>} title="Manage Podcast sessions" />
-      <NotificationItem icon={<Icon>shopping_cart</Icon>} title="Payment successfully completed" />
-    </Menu>
-  );
-
-  // Styles for the navbar icons
-  const iconsStyle = ({ palette: { dark, white, text } }: CustomTheme) => ({
-    color: () => {
-      let colorValue = light || darkMode ? white.main : dark.main;
-
-      if (transparentNavbar && !light) {
-        colorValue = darkMode ? rgba(text.main, 0.6) : text.main;
-      }
-
-      return colorValue;
-    },
-  });
 
   const handleLogOut = async () => {
     // const response = await AuthService.logout();
@@ -126,13 +83,13 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
     <AppBar
       position={absolute ? "absolute" : navbarType}
       color="inherit"
-      sx={(theme) => navbar(theme as CustomTheme, { transparentNavbar, absolute, light, darkMode })}
+      sx={(theme) => sxNavbar(theme as CustomTheme, { navbarTransparent, absolute, light, darkMode })}
     >
-      <Toolbar sx={(theme) => navbarContainer(theme as CustomTheme)}>
+      <Toolbar sx={(theme) => sxNavbarContainer(theme as CustomTheme)}>
         <MDBox
           color="inherit"
           mb={{ xs: 1, md: 0 }}
-          sx={(theme: CustomTheme) => navbarRow(theme, isMini)}
+          sx={(theme: CustomTheme) => sxNavbarRow(theme, isMini)}
         >
           {/* <Breadcrumbs
             title={route[route.length - 1]}
@@ -146,7 +103,7 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
           >
             {
               // @ts-ignore
-              miniSidenav ? <FormatIndentIncreaseIcon sx={iconsStyle} fontSize="small" /> : <MenuIcon sx={iconsStyle} fontSize="small" />
+              miniSidenav ? <FormatIndentIncreaseIcon sx={sxNavbarIconsStyle} fontSize="small" /> : <MenuIcon sx={sxNavbarIconsStyle} fontSize="small" />
             }
           </IconButton> */}
 
@@ -157,53 +114,35 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
           isMini
             ? null
             : (
-                <MDBox sx={(theme: CustomTheme) => navbarRow(theme, isMini)}>
-                  <MDBox display="flex" alignItems="center" color={light ? "white" : "inherit"}>
-                    <IconButton
-                      disableRipple
-                      color="inherit"
-                      sx={(theme) => navbarMobileMenu(theme as CustomTheme)}
-                      onClick={handleMiniSidenav}
+              <MDBox sx={(theme: CustomTheme) => sxNavbarRow(theme, isMini)}>
+                <MDBox display="flex" alignItems="center" color={light ? "white" : "inherit"}>
+                  <MiniSidenavToggleBtn    light={light} />
+                  <OpenNotificationMenuBtn light={light} />
+                  
+                  {/* <MDBox>
+                    <MDButton
+                      variant="gradient"
+                      color="info"
+                      fullWidth
+                      type="button"
+                      onClick={handleLogOut}
                     >
-                      <MenuIcon sx={(theme) => iconsStyle(theme as CustomTheme)} fontSize="small" />
-                    </IconButton>
+                      Log Out
+                    </MDButton>
+                  </MDBox> */}
                     
-                    <IconButton
-                      disableRipple
-                      color="inherit"
-                      aria-controls="notification-menu"
-                      aria-haspopup="true"
-                      variant="contained"
-                      /* @ts-ignore */
-                      sx={navbarIconButton}
-                      onClick={handleOpenMenu}
-                    >
-                      {/* @ts-ignore */}
-                      <NotificationsIcon sx={iconsStyle} fontSize="small" />
+                  <OpenUIConfiguratorBtn light={light} />
+                  
+                  <Link to="/authentication/sign-in/basic">
+                    <IconButton sx={(theme) => sxNavbarIconButton(theme as CustomTheme)} disableRipple>
+                      <AccountCircleIcon
+                        fontSize='small'
+                        sx={(theme) => sxNavbarIconsStyle(theme as CustomTheme, configuratorState, light)}
+                      />
                     </IconButton>
-                    {renderMenu()}
-                    {/* <MDBox>
-                      <MDButton
-                        variant="gradient"
-                        color="info"
-                        fullWidth
-                        type="button"
-                        onClick={handleLogOut}
-                      >
-                        Log Out
-                      </MDButton>
-                    </MDBox> */}
-                    
-                    <OpenUIConfiguratorBtn />
-                    <Link to="/authentication/sign-in/basic">
-                      {/* @ts-ignore */}
-                      <IconButton sx={navbarIconButton} disableRipple>
-                        {/* @ts-ignore */}
-                        <AccountCircleIcon sx={iconsStyle} fontSize='small' />
-                      </IconButton>
-                    </Link>
-                  </MDBox>
+                  </Link>
                 </MDBox>
+              </MDBox>
         )}
       </Toolbar>
     </AppBar>

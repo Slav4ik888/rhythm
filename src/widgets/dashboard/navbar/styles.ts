@@ -13,31 +13,31 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 import { CustomTheme } from 'app/providers/theme';
-import { getBoxShadows, rgba, pxToRem, getTypography } from 'app/providers/theme';
+import { getBoxShadows, rgba, pxToRem } from 'app/providers/theme';
 
 
 
 interface OwnerState {
-  transparentNavbar : boolean
+  navbarTransparent : boolean
   absolute          : boolean
   light             : boolean
   darkMode          : boolean
 }
 
 
-export function navbar(theme: CustomTheme, ownerState: OwnerState) {
+export function sxNavbar(theme: CustomTheme, ownerState: OwnerState) {
   const { palette, transitions, breakpoints, borders } = theme;
-  const { transparentNavbar, absolute, light, darkMode } = ownerState;
+  const { navbarTransparent, absolute, light, darkMode } = ownerState;
 
   const { dark, white, text, transparent, background } = palette;
   const { navbarBoxShadow } = getBoxShadows(theme);
   const { borderRadius } = borders;
 
   return {
-    boxShadow       : transparentNavbar || absolute ? "none" : navbarBoxShadow,
-    backdropFilter  : transparentNavbar || absolute ? "none" : `saturate(200%) blur(${pxToRem(30)})`,
+    boxShadow       : navbarTransparent || absolute ? "none" : navbarBoxShadow,
+    backdropFilter  : navbarTransparent || absolute ? "none" : `saturate(200%) blur(${pxToRem(30)})`,
     backgroundColor :
-      transparentNavbar || absolute
+      navbarTransparent || absolute
         ? `${transparent.main} !important`
         : rgba(darkMode ? background.default : white.main, 0.8),
 
@@ -46,7 +46,7 @@ export function navbar(theme: CustomTheme, ownerState: OwnerState) {
 
       if (light) {
         color = white.main;
-      } else if (transparentNavbar) {
+      } else if (navbarTransparent) {
         color = text.main;
       } else {
         color = dark.main;
@@ -85,7 +85,7 @@ export function navbar(theme: CustomTheme, ownerState: OwnerState) {
 }
 
 
-export const navbarContainer = ({ breakpoints }: CustomTheme) => ({
+export const sxNavbarContainer = ({ breakpoints }: CustomTheme) => ({
   flexDirection  : "column",
   alignItems     : "flex-start",
   justifyContent : "space-between",
@@ -101,7 +101,7 @@ export const navbarContainer = ({ breakpoints }: CustomTheme) => ({
 });
 
 
-export const navbarRow = ({ breakpoints }: CustomTheme, isMini: boolean) => ({
+export const sxNavbarRow = ({ breakpoints }: CustomTheme, isMini: boolean) => ({
   display        : "flex",
   alignItems     : "center",
   justifyContent : "space-between",
@@ -115,37 +115,5 @@ export const navbarRow = ({ breakpoints }: CustomTheme, isMini: boolean) => ({
   [breakpoints.up("xl")]: {
     justifyContent : "stretch !important",
     width          : "max-content !important",
-  },
-});
-
-export const navbarIconButton = (theme: CustomTheme) => {
-  const { breakpoints } = theme;
-
-  return {
-    px: 1,
-
-    "& .material-icons, .material-icons-round": {
-      fontSize: `${getTypography(theme).size.xl} !important`,
-    },
-
-    "& .MuiTypography-root": {
-      display: "none",
-
-      [breakpoints.up("sm")]: {
-        display: "inline-block",
-        lineHeight: 1.2,
-        ml: 0.5,
-      },
-    },
-  }
-};
-
-
-export const navbarMobileMenu = ({ breakpoints }: CustomTheme) => ({
-  display    : "inline-block",
-  lineHeight : 0,
-
-  [breakpoints.up("xl")]: {
-    display: "none",
   },
 });

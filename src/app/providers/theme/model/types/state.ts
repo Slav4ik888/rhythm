@@ -12,6 +12,7 @@ export interface UIConfiguratorProviderState {
 
   // HEADER
   navbarFixed           : boolean // 'fixed' | 'sticky'
+  navbarTransparent     : boolean // Прозрачный (вроде бы)
   navbarBackgroundTheme : NavbarColorName // Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
   //     - Active theme color : Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
 
