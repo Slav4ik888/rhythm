@@ -6,7 +6,7 @@ import { ErrorBoundary } from 'app/providers/error-boundary';
 import { App } from './app';
 
 import cfg from 'app/config';
-import { UIConfigProvider } from 'app/providers/theme';
+import { UIConfiguratorProvider } from 'app/providers/theme';
 console.log(`Version: ${cfg.ASSEMBLY_DATE}`);
 
 
@@ -18,11 +18,11 @@ root.render(
   <BrowserRouter>
     <StoreProvider>
       <ErrorBoundary>
-        <UIConfigProvider>
+        <UIConfiguratorProvider>
           {/* <MaterialUIControllerProvider> */}
             <App />
           {/* </MaterialUIControllerProvider> */}
-        </UIConfigProvider>
+        </UIConfiguratorProvider>
       </ErrorBoundary>
     </StoreProvider>
   </BrowserRouter>

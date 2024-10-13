@@ -1,2 +1,5 @@
-export { UIConfigProvider } from './ui/ui-config-provider'
-export { useUIConfigController } from './model/lib/use-ui-config-controller'
+export { UIConfiguratorProvider } from './ui/ui-configurator-provider'
+export { useUIConfiguratorController } from './model/lib/use-ui-configurator-controller'
+export { setOpenConfigurator, setMode } from './model/lib/reducer'
+export { CustomTheme } from './model/types'
+export { getBoxShadows, rgba, pxToRem, getTypography } from './model/themes/functions'

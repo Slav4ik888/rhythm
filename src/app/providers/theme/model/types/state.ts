@@ -1,16 +1,18 @@
-import { ColorMode } from './base';
+import { PaletteMode } from '@mui/material';
+import { NavbarColorName } from './navbar';
+
 
 /**
- * ОРГАНИЗАЦИЯ ТЕМ И ЦВЕТОВ
- * КОНФИГУРАТОР
+ * КОНФИГУРАТОР ОРГАНИЗАЦИИ ТЕМ И ЦВЕТОВ
  */
-export interface UIConfigProviderState {
+export interface UIConfiguratorProviderState {
   // ОБЩИЕ
-  mode: ColorMode
+  mode                  : PaletteMode
+  isOpenConfigurator    : boolean
 
   // HEADER
   navbarFixed           : boolean // 'fixed' | 'sticky'
-  navbarBackgroundTheme : 'black' | 'grey' | 'blue' // Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
+  navbarBackgroundTheme : NavbarColorName // Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
   //     - Active theme color : Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
 
   // SIDEBAR

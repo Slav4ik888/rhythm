@@ -21,7 +21,6 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import SettingsIcon from '@mui/icons-material/Settings';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
@@ -34,8 +33,9 @@ import NotificationItem from "shared/ui/items/notification-item";
 // import AuthService from "services/auth-service";
 // import { AuthContext } from "context";
 import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu } from "./styles";
-import { useMaterialUIController, setMiniSidenav, setOpenConfigurator, CustomMUITheme } from "app/providers/theme-old";
 import { DashboardDatebar } from 'widgets/dashboard/dashboard-datebar';
+import { OpenUIConfiguratorBtn } from 'features/ui';
+import { CustomTheme, rgba } from 'app/providers/theme';
 
 
 
@@ -80,7 +80,6 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
   }, [dispatch, fixedNavbar]);
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
-  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event: any) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(null);
 
@@ -105,8 +104,7 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
   );
 
   // Styles for the navbar icons
-  // @ts-ignore
-  const iconsStyle = ({ palette: { dark, white, text }, functions: { rgba } }) => ({
+  const iconsStyle = ({ palette: { dark, white, text } }: CustomTheme) => ({
     color: () => {
       let colorValue = light || darkMode ? white.main : dark.main;
 
@@ -128,13 +126,13 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
     <AppBar
       position={absolute ? "absolute" : navbarType}
       color="inherit"
-      sx={(theme) => navbar(theme, { transparentNavbar, absolute, light, darkMode })}
+      sx={(theme) => navbar(theme as CustomTheme, { transparentNavbar, absolute, light, darkMode })}
     >
-      <Toolbar sx={(theme) => navbarContainer(theme)}>
+      <Toolbar sx={(theme) => navbarContainer(theme as CustomTheme)}>
         <MDBox
           color="inherit"
           mb={{ xs: 1, md: 0 }}
-          sx={(theme: CustomMUITheme) => navbarRow(theme, { isMini })}
+          sx={(theme: CustomTheme) => navbarRow(theme, isMini)}
         >
           {/* <Breadcrumbs
             title={route[route.length - 1]}
@@ -159,16 +157,15 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
           isMini
             ? null
             : (
-                <MDBox sx={(theme: CustomMUITheme) => navbarRow(theme, { isMini })}>
+                <MDBox sx={(theme: CustomTheme) => navbarRow(theme, isMini)}>
                   <MDBox display="flex" alignItems="center" color={light ? "white" : "inherit"}>
                     <IconButton
                       disableRipple
                       color="inherit"
-                      sx={navbarMobileMenu}
+                      sx={(theme) => navbarMobileMenu(theme as CustomTheme)}
                       onClick={handleMiniSidenav}
                     >
-                      {/* @ts-ignore */}
-                      <MenuIcon sx={iconsStyle} fontSize="small" />
+                      <MenuIcon sx={(theme) => iconsStyle(theme as CustomTheme)} fontSize="small" />
                     </IconButton>
                     
                     <IconButton
@@ -196,16 +193,8 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
                         Log Out
                       </MDButton>
                     </MDBox> */}
-                    <IconButton
-                      disableRipple
-                      color="inherit"
-                      /* @ts-ignore */
-                      sx={navbarIconButton}
-                      onClick={handleConfiguratorOpen}
-                    >
-                      {/* @ts-ignore */}
-                      <SettingsIcon sx={iconsStyle} fontSize="small" />
-                    </IconButton>
+                    
+                    <OpenUIConfiguratorBtn />
                     <Link to="/authentication/sign-in/basic">
                       {/* @ts-ignore */}
                       <IconButton sx={navbarIconButton} disableRipple>

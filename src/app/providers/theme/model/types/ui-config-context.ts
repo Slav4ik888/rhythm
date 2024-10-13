@@ -1,6 +1,6 @@
-import { UIConfigProviderState } from './state';
+import { UIConfiguratorProviderState } from './state';
 
-export interface UIConfigContextType extends Array<UIConfigProviderState | any> {
-  0: UIConfigProviderState
+export interface UIConfiguratorContextType extends Array<UIConfiguratorProviderState | any> {
+  0: UIConfiguratorProviderState
   1: any
 };
