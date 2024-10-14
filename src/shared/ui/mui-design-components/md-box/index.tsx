@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { ColorName, RadiusName, GreyColor, GradientsBgColorName } from 'app/providers/theme-old';
+import { ColorName, RadiusName, GreyColor, GradientColorName, Shadows } from 'app/providers/theme';
 import { forwardRef, FC } from "react";
 import MDBoxRoot from "./md-box-root";
 
@@ -21,48 +21,48 @@ import MDBoxRoot from "./md-box-root";
 type Flex = "column" | "row" | "row-reverse" | "column-reverse"
 
 interface Props {
-  variant?: "contained" | "gradient"
-  bgColor?: GreyColor | GradientsBgColorName
-  color?: string
-  minWidth?: string
-  width?: string | boolean
-  height?: string
-  minHeight?: string
-  opacity?: number
-  borderRadius?: RadiusName
-  shadow?: any
-  mb?: number | { xs?: number, md?: number }
-  mr?: { xs?: number, xl?: number }
-  ml?: string | number
-  mt?: number | "auto"
-  mx?: number
-  my?: number
-  pr?: number
-  py?: number
-  px?: number
-  pt?: number
-  pb?: number
-  p?: number
-  padding?: string
-  position?: "static" | "relative" | "absolute" | "sticky"
-  top?: number
-  right?: number
-  fontSize?: string
-  lineHeight?: number
-  textAlign?: "center" | "left" | "right"
-  display?: "flex" | "flex flex-col" | "inline" | "none" | { xs: "block", xl: "none" }
-  flexDirection?: { xs: Flex, lg: Flex } | 'column' | 'row' | 'row-reverse' | 'column-reverse'
-  alignItems?: "center"
-  justifyContent?: "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly"
-  flexWrap?: "wrap" | "flex-start"
-  coloredShadow?: string
-  component?: React.ElementType
-  to?: string
-  src?: string
-  alt?: string
-  children?: React.ReactNode;
-  sx?: any;
-  onClick?: () => void
+  variant?        : "contained" | "gradient"
+  bgColor?        : GreyColor | GradientColorName
+  color?          : ColorName
+  minWidth?       : string
+  width?          : string | boolean
+  height?         : string
+  minHeight?      : string
+  opacity?        : number
+  borderRadius?   : RadiusName
+  shadow?         : Shadows
+  mb?             : number | { xs?: number, md?: number }
+  mr?             : { xs?: number, xl?: number }
+  ml?             : string | number
+  mt?             : number | "auto"
+  mx?             : number
+  my?             : number
+  pr?             : number
+  py?             : number
+  px?             : number
+  pt?             : number
+  pb?             : number
+  p?              : number
+  padding?        : string
+  position?       : "static" | "relative" | "absolute" | "sticky"
+  top?            : number
+  right?          : number
+  fontSize?       : string
+  lineHeight?     : number
+  textAlign?      : "center" | "left" | "right"
+  display?        : "flex" | "flex flex-col" | "inline" | "none" | { xs: "block", xl: "none" }
+  flexDirection?  : { xs: Flex, lg: Flex } | 'column' | 'row' | 'row-reverse' | 'column-reverse'
+  alignItems?     : "center"
+  justifyContent? : "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly"
+  flexWrap?       : "wrap" | "flex-start"
+  coloredShadow?  : string
+  component?      : React.ElementType
+  to?             : string
+  src?            : string
+  alt?            : string
+  children?       : React.ReactNode;
+  sx?             : any;
+  onClick?        : () => void
 }
 
 

@@ -8,7 +8,7 @@ import { NavbarColorName } from './navbar';
 export interface UIConfiguratorProviderState {
   // ОБЩИЕ
   mode                  : PaletteMode
-  isOpenConfigurator    : boolean
+  openConfigurator      : boolean // Open / close Configurator
 
   // HEADER
   navbarFixed           : boolean // 'fixed' | 'sticky'

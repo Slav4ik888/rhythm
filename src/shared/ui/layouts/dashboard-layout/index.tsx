@@ -13,10 +13,11 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useEffect, FC } from "react";
-import { useLocation } from "react-router-dom";
-import { setLayout, useMaterialUIController } from 'app/providers/theme-old';
+import { FC } from "react";
+// import { useLocation } from "react-router-dom";
+import { useUIConfiguratorController } from 'app/providers/theme';
 import MDBox from 'shared/ui/mui-design-components/md-box';
+import { CustomTheme, pxToRem } from 'app/providers/theme';
 
 
 
@@ -25,24 +26,23 @@ interface Props {
 }
 
 export const DashboardLayout: FC<Props> = ({ children }) => {
-  const [controller, dispatch] = useMaterialUIController();
-  const { miniSidenav } = controller;
-  const { pathname } = useLocation();
+  const [configuratorState, dispatch] = useUIConfiguratorController();
+  const { sidenavMini } = configuratorState;
+  // const { pathname } = useLocation();
 
-  useEffect(() => {
-    setLayout(dispatch, "dashboard");
-  }, [pathname]);
+  // useEffect(() => {
+  //   setLayout(dispatch, "dashboard");
+  // }, [pathname]);
 
   return (
     <MDBox
-      // @ts-ignore
-      sx={({ breakpoints, transitions, functions: { pxToRem } }) => ({
+      sx={({ breakpoints, transitions }: CustomTheme) => ({
         p: 3,
         position: "relative",
         overflowX: "scroll",
 
         [breakpoints.up("xl")]: {
-          marginLeft: miniSidenav ? pxToRem(120) : pxToRem(274),
+          marginLeft: sidenavMini ? pxToRem(120) : pxToRem(274),
           transition: transitions.create(["margin-left", "margin-right"], {
             easing: transitions.easing.easeInOut,
             duration: transitions.duration.standard,

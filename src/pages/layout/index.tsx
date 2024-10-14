@@ -12,6 +12,7 @@ import { ScrollToTop } from 'shared/ui/pages';
 import { useSelector } from 'react-redux';
 import { selectLoading as selectDashboardLoading } from 'entities/dashboard';
 import { Footer } from "widgets/footer";
+import { UIConfigurator } from 'widgets/ui-configurator';
 
 
 
@@ -58,6 +59,7 @@ export const Layout: FC = memo(() => {
         {/* <Navbar /> */}
         <MessageBar />
         <PageLoader loading={loading} />
+        <UIConfigurator />
         
         {/* <Box component="main" sx={sx.main}> */}
           <Outlet />

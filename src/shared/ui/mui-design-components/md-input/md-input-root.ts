@@ -16,21 +16,21 @@ Coded by www.creative-tim.com
 // @mui material components
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
-import { CustomMUITheme } from 'app/providers/theme-old';
+import { CustomTheme, pxToRem } from 'app/providers/theme';
+
 
 
 interface OwnerState {
-  error?: boolean;
-  success?: boolean;
-  disabled?: boolean;
+  error?    : boolean
+  success?  : boolean
+  disabled? : boolean
 }
-// @ts-ignore
-export default styled(TextField)(({ theme, ownerState }) => {
-  const { palette, functions } = theme as unknown as CustomMUITheme;
-  const { error, success, disabled } = ownerState as OwnerState;
 
+// @ts-ignore
+export default styled(TextField)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
+  const { palette } = theme;
+  const { error, success, disabled } = ownerState;
   const { grey, transparent, error: colorError, success: colorSuccess } = palette;
-  const { pxToRem } = functions;
 
   // styles for the input with error={true}
   const errorStyles = () => ({

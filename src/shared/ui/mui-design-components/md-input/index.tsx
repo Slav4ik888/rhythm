@@ -18,10 +18,10 @@ import MDInputRoot from "./md-input-root";
 
 
 interface Props {
-  error?: boolean;
-  success?: boolean;
-  disabled?: boolean;
-  label?: string;
+  error?    : boolean
+  success?  : boolean
+  disabled? : boolean
+  label?    : string
 }
 
 const MDInput: FC<Props> = forwardRef(({ error, success, disabled, ...rest }, ref) => (

@@ -17,74 +17,64 @@ Coded by www.creative-tim.com
 // @mui material components
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
-import { CustomMUITheme } from 'app/providers/theme-old';
+import {
+  linearGradient, CustomTheme, ColorName, getBoxShadows, pxToRem, rgba, boxShadow, ColoredShadowsName, GradientColorName
+} from 'app/providers/theme';
 
 
 interface OwnerState {
-  color: string;
-  variant: string;
-  size: string;
-  circular: boolean;
-  iconOnly: boolean;
-  darkMode: boolean;
+  color    : ColorName
+  variant  : string
+  size     : string
+  circular : boolean
+  iconOnly : boolean
+  darkMode : boolean
 }
 
 // @ts-ignore
-export default styled(Button)(({ theme, ownerState }) => {
-  const { palette, functions, borders, boxShadows } = theme as unknown as CustomMUITheme;
-  const { color, variant, size, circular, iconOnly, darkMode } = ownerState as OwnerState;
+export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
+  const { palette, borders } = theme;
+  const { color, variant, size, circular, iconOnly, darkMode } = ownerState;
 
   const { white, text, transparent, gradients, grey } = palette;
-  const { boxShadow, linearGradient, pxToRem, rgba } = functions;
   const { borderRadius } = borders;
-  const { colored } = boxShadows;
+  const { colored } = getBoxShadows(theme);
 
   // styles for the button with variant="contained"
   const containedStyles = () => {
     // background color value
-    // @ts-ignore
     const backgroundValue = palette[color] ? palette[color].main : white.main;
 
     // backgroundColor value when button is focused
-    // @ts-ignore
     const focusedBackgroundValue = palette[color] ? palette[color].focus : white.focus;
 
     // boxShadow value
-    // @ts-ignore
-    const boxShadowValue = colored[color]
-    // @ts-ignore
+    const boxShadowValue = colored[color as ColoredShadowsName]
       ? `${boxShadow([0, 3], [3, 0], palette[color].main, 0.15)}, ${boxShadow(
           [0, 3],
           [1, -2],
-    // @ts-ignore
           palette[color].main,
           0.2
-    // @ts-ignore
         )}, ${boxShadow([0, 1], [5, 0], palette[color].main, 0.15)}`
       : "none";
 
     // boxShadow value when button is hovered
-    // @ts-ignore
-    const hoveredBoxShadowValue = colored[color]
-    // @ts-ignore
+    const hoveredBoxShadowValue = colored[color as ColoredShadowsName]
       ? `${boxShadow([0, 14], [26, -12], palette[color].main, 0.4)}, ${boxShadow(
           [0, 4],
           [23, 0],
-    // @ts-ignore
           palette[color].main,
           0.15
-    // @ts-ignore
         )}, ${boxShadow([0, 8], [10, -5], palette[color].main, 0.2)}`
       : "none";
 
     // color value
     let colorValue = white.main;
 
-    // @ts-ignore
     if (!darkMode && (color === "white" || color === "light" || !palette[color])) {
       colorValue = text.main;
-    // @ts-ignore
-    } else if (darkMode && (color === "white" || color === "light" || !palette[color])) {
+    }
+    else if (darkMode && (color === "white" || color === "light" || !palette[color])) {
       colorValue = grey[600];
     }
 
@@ -109,9 +99,7 @@ export default styled(Button)(({ theme, ownerState }) => {
 
       "&:focus:not(:hover)": {
         backgroundColor: focusedBackgroundValue,
-    // @ts-ignore
         boxShadow: palette[color]
-    // @ts-ignore
           ? boxShadow([0, 0], [0, 3.2], palette[color].main, 0.5)
           : boxShadow([0, 0], [0, 3.2], white.main, 0.5),
       },
@@ -129,19 +117,14 @@ export default styled(Button)(({ theme, ownerState }) => {
     const backgroundValue = color === "white" ? rgba(white.main, 0.1) : transparent.main;
 
     // color value
-    // @ts-ignore
     const colorValue = palette[color] ? palette[color].main : white.main;
 
     // boxShadow value
-    // @ts-ignore
     const boxShadowValue = palette[color]
-    // @ts-ignore
       ? boxShadow([0, 0], [0, 3.2], palette[color].main, 0.5)
-    // @ts-ignore
       : boxShadow([0, 0], [0, 3.2], white.main, 0.5);
 
     // border color value
-    // @ts-ignore
     let borderColorValue = palette[color] ? palette[color].main : rgba(white.main, 0.75);
 
     if (color === "white") {
@@ -180,37 +163,27 @@ export default styled(Button)(({ theme, ownerState }) => {
   const gradientStyles = () => {
     // background value
     const backgroundValue =
-    // @ts-ignore
-      color === "white" || !gradients[color]
+      color === "white" || ! gradients[color as GradientColorName]
         ? white.main
-    // @ts-ignore
-        : linearGradient(gradients[color].main, gradients[color].state);
+        : linearGradient(gradients[color as GradientColorName].main, gradients[color as GradientColorName].state);
 
     // boxShadow value
-    // @ts-ignore
-    const boxShadowValue = colored[color]
-    // @ts-ignore
+    const boxShadowValue = colored[color as ColoredShadowsName]
       ? `${boxShadow([0, 3], [3, 0], palette[color].main, 0.15)}, ${boxShadow(
           [0, 3],
           [1, -2],
-    // @ts-ignore
           palette[color].main,
           0.2
-    // @ts-ignore
         )}, ${boxShadow([0, 1], [5, 0], palette[color].main, 0.15)}`
       : "none";
 
     // boxShadow value when button is hovered
-    // @ts-ignore
-    const hoveredBoxShadowValue = colored[color]
-    // @ts-ignore
+    const hoveredBoxShadowValue = colored[color as ColoredShadowsName]
       ? `${boxShadow([0, 14], [26, -12], palette[color].main, 0.4)}, ${boxShadow(
           [0, 4],
           [23, 0],
-    // @ts-ignore
           palette[color].main,
           0.15
-    // @ts-ignore
         )}, ${boxShadow([0, 8], [10, -5], palette[color].main, 0.2)}`
       : "none";
 
@@ -219,7 +192,8 @@ export default styled(Button)(({ theme, ownerState }) => {
 
     if (color === "white") {
       colorValue = text.main;
-    } else if (color === "light") {
+    }
+    else if (color === "light") {
       colorValue = gradients.dark.state;
     }
 
@@ -246,11 +220,9 @@ export default styled(Button)(({ theme, ownerState }) => {
   // styles for the button with variant="text"
   const textStyles = () => {
     // color value
-    // @ts-ignore
     const colorValue = palette[color] ? palette[color].main : white.main;
 
     // color value when button is focused
-    // @ts-ignore
     const focusedColorValue = palette[color] ? palette[color].focus : white.focus;
 
     return {
@@ -278,7 +250,8 @@ export default styled(Button)(({ theme, ownerState }) => {
 
     if (size === "small") {
       sizeValue = pxToRem(25.4);
-    } else if (size === "large") {
+    }
+    else if (size === "large") {
       sizeValue = pxToRem(52);
     }
 
@@ -287,7 +260,8 @@ export default styled(Button)(({ theme, ownerState }) => {
 
     if (size === "small") {
       paddingValue = pxToRem(4.5);
-    } else if (size === "large") {
+    }
+    else if (size === "large") {
       paddingValue = pxToRem(16);
     }
 

@@ -16,8 +16,14 @@ export const baseColors = {
       focus: "#7b809a",
     },
 
+    inherit: {
+      main: "inherit",
+      focus: "inherit",
+    },
+
     transparent: {
       main: "transparent",
+      focus: "transparent",
     },
 
     white: {
@@ -81,6 +87,20 @@ export const baseColors = {
       700: "#495057",
       800: "#343a40",
       900: "#212529",
+    },
+
+    // Рост | Падение | Без изменений - результатов
+    growth: {
+      main: '#02bf02',
+      focus: "#02bf02",
+    },
+    fall: {
+      main: '#cc0000',
+      focus: "#cc0000",
+    },
+    unchanged: {
+      main: '#434343',
+      focus: "#434343",
     },
 
     gradients: {
@@ -153,17 +173,6 @@ export const baseColors = {
         main: "rgb(239 236 129)",
         state: "rgb(194 201 35)",
       },
-    },
-
-    // Рост | Падение | Без изменений - результатов
-    growth: {
-      main: '#02bf02',
-    },
-    fall: {
-      main: '#cc0000',
-    },
-    unchanged: {
-      main: '#434343',
     },
 
     // Цвета с фоном для: Рост | Падение | Без изменений - результатов
@@ -396,76 +405,5 @@ export const baseColors = {
     tabs: {
       indicator: { boxShadow: "#ddd" },
     },
-  },
-
-  body: {
-    color      : '#272727', // on background
-    background : '#f0f2f5'  // background
-  },
-  
-  
-  footer: {
-    color: '#000000',
-    noAuth: {
-      link: {
-        color: '#b3b3b3',
-        xs: {
-          color: '#404040'
-        }
-      }
-    },
-  },
-  
-  
-  menu: {
-    borderColor: '#eeeeee',
-    background: '#F4F4F4',
-    subTitle: {
-      color: '#635f41'
-    },
-    icons: {
-      color: '#7d7d7d'
-    }
-  },
-  
-  
-  dialog: {
-    paper: {
-      color      : '#272727',
-      background : '#f0f2f5'
-    }
-  },
-
-  paper: {
-    color      : '#272727', // On surface
-    background : '#fff'     // Surface
-  },
-
-  listSelect: {
-    textSecondary: {
-      color: '#808080'
-    },
-    selected: {
-      color: '#000000',
-      fontWeight: 600
-    }
-  },
-  button: {
-    delete: {
-      icon: {
-        color: '#e0e0e0'
-      }
-    }
-  },
-  error: {
-    color    : '#d32f2f',
-    fontSize : '0.8rem'
-  },
-  
-  // AUTH
-  auth: {
-    paper: {
-      background: '#fff'
-    }
   }
 };

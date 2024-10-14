@@ -16,7 +16,8 @@ Coded by www.creative-tim.com
 import { FC } from 'react';
 import Link from "@mui/material/Link";
 import { MDBox, MDTypography } from "shared/ui/mui-design-components";
-import { pxToRem, typography } from "app/providers/theme-old";
+import { pxToRem, getTypography, useTheme } from "app/providers/theme";
+import { CustomTheme } from 'app/providers/theme';
 
 
 
@@ -40,7 +41,8 @@ export const Footer: FC<Props> = ({
     { href: "https://rhythm.thm.su/", name: "License" },
   ] }) => {
   const { href, name } = company;
-  const { size } = typography;
+  const theme = useTheme();
+  const { size } = getTypography(theme);
 
   const renderLinks = () =>
     links.map((link) => (
@@ -81,8 +83,7 @@ export const Footer: FC<Props> = ({
       </MDBox>
       <MDBox
         component="ul"
-        // @ts-ignore
-        sx={({ breakpoints }) => ({
+        sx={({ breakpoints }: CustomTheme) => ({
           display: "flex",
           flexWrap: "wrap",
           alignItems: "center",

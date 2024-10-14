@@ -13,18 +13,18 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { CustomMUITheme } from 'app/providers/theme-old';
+import { CustomTheme, getTypography, pxToRem } from 'app/providers/theme';
+
 
 interface OwnerState {
-  miniSidenav: boolean;
+  sidenavMini: boolean;
 }
 
-export const styles = (theme: CustomMUITheme, ownerState: OwnerState) => {
-  const { functions, transitions, typography, breakpoints } = theme;
-  const { miniSidenav } = ownerState;
+export const styles = (theme: CustomTheme, ownerState: OwnerState) => {
+  const { transitions, typography, breakpoints } = theme;
+  const { sidenavMini } = ownerState;
 
-  const { pxToRem } = functions;
-  const { fontWeightMedium } = typography;
+  const { fontWeightMedium } = getTypography(theme);
 
   return {
     ml: 0.5,
@@ -36,7 +36,7 @@ export const styles = (theme: CustomMUITheme, ownerState: OwnerState) => {
     }),
 
     [breakpoints.up("xl")]: {
-      opacity: miniSidenav ? 0 : 1,
+      opacity: sidenavMini ? 0 : 1,
     },
   };
 }

@@ -19,7 +19,6 @@ const DashboardPage: FC = memo(() => {
   return (
     <DynamicModuleLoader reducers={initialReducers}>
       <Sidenav />
-      {/* <Configurator /> */}
       {/* {configsButton} */}
 
       <DashboardLayout>

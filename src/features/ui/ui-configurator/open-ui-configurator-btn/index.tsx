@@ -4,7 +4,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import {
   useTheme, setOpenConfigurator, useUIConfiguratorController, CustomTheme, UIConfiguratorProviderState
 } from 'app/providers/theme';
-import { sxNavbarIconButton, sxNavbarIconsStyle } from '../styles';
+import { sxNavbarIconButton, sxNavbarIconsStyle } from 'shared/lib/styles/navbar';
 
 
 
@@ -26,9 +26,9 @@ interface Props {
 export const OpenUIConfiguratorBtn: FC<Props> = memo(({ light }) => {
   const [configuratorState, dispatch] = useUIConfiguratorController();
   const sx = useStyles(useTheme(), configuratorState, light);
-  const { isOpenConfigurator } = configuratorState;
+  const { openConfigurator } = configuratorState;
 
-  const handleToggleConfigurator = () => setOpenConfigurator(dispatch, ! isOpenConfigurator);
+  const handleToggleConfigurator = () => setOpenConfigurator(dispatch, ! openConfigurator);
 
 
   return (

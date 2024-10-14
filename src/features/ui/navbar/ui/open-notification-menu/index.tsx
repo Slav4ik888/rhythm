@@ -4,7 +4,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import {
   useTheme, useUIConfiguratorController, CustomTheme, UIConfiguratorProviderState
 } from 'app/providers/theme';
-import { sxNavbarIconButton, sxNavbarIconsStyle } from '../styles';
+import { sxNavbarIconButton, sxNavbarIconsStyle } from '../../../../../shared/lib/styles/navbar';
 import NotificationItem from "shared/ui/items/notification-item";
 
 

@@ -15,29 +15,31 @@ Coded by www.creative-tim.com
 
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import { CustomMUITheme, GradientsBgColorName, RadiusName, GreyColor } from 'app/providers/theme-old';
+import {
+  CustomTheme, ColorName, GradientColorName, RadiusName, GreyColor, getBoxShadows, linearGradient, Shadows, ColoredShadowsName
+ } from 'app/providers/theme';
 
 
 
 interface OwnerState {
-  variant: string
-  bgColor: GreyColor | GradientsBgColorName
-  color: string
-  opacity: number
-  borderRadius: RadiusName
-  shadow: any
-  coloredShadow: string
+  variant       : string
+  color         : ColorName
+  bgColor       : GreyColor | GradientColorName
+  opacity       : number
+  borderRadius  : RadiusName
+  shadow        : Shadows
+  coloredShadow : string
 }
 
+
 // @ts-ignore
-export default styled(Box)(({ theme, ownerState }) => {
-  const { palette, functions, borders, boxShadows } = theme as unknown as CustomMUITheme;
-  const { variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow } = ownerState as OwnerState;
+export default styled(Box)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
+  const { palette, borders } = theme;
+  const { variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow } = ownerState;
 
   const { gradients, grey, white } = palette;
-  const { linearGradient } = functions;
   const { borderRadius: radius } = borders;
-  const { colored } = boxShadows;
+  const { colored } = getBoxShadows(theme);
 
   const greyColors = {
     "grey-100": grey[100],
@@ -52,7 +54,7 @@ export default styled(Box)(({ theme, ownerState }) => {
   };
   
 
-  const validGradients: GradientsBgColorName[] = [
+  const validGradients: GradientColorName[] = [
     "primary",
     "secondary",
     "info",
@@ -102,21 +104,21 @@ export default styled(Box)(({ theme, ownerState }) => {
 
   if (variant === "gradient") {
     backgroundValue = validGradients.find((el) => el === bgColor)
-      ? linearGradient(gradients[bgColor as GradientsBgColorName].main, gradients[bgColor as GradientsBgColorName].state)
+      ? linearGradient(gradients[bgColor as GradientColorName].main, gradients[bgColor as GradientColorName].state)
       : white.main;
-  } else if (validColors.find((el) => el === bgColor)) {
-    // @ts-ignore
-    backgroundValue = palette[bgColor] ? palette[bgColor].main : greyColors[bgColor];
-  } else {
+  }
+  else if (validColors.find((el) => el === bgColor)) {
+    backgroundValue = palette[bgColor as ColorName] ? palette[bgColor as ColorName].main : greyColors[bgColor as GreyColor];
+  }
+  else {
     backgroundValue = bgColor;
   }
 
   // color value
-  let colorValue = color;
+  let colorValue = palette.black.main;
 
   if (validColors.find((el) => el === color)) {
-    // @ts-ignore
-    colorValue = palette[color] ? palette[color].main : greyColors[color];
+    colorValue = palette[color] ? palette[color].main : greyColors[color as GreyColor];
   }
 
   // borderRadius value
@@ -130,18 +132,19 @@ export default styled(Box)(({ theme, ownerState }) => {
   let boxShadowValue = "none";
 
   if (validBoxShadows.find((el) => el === shadow)) {
-    // @ts-ignore
-    boxShadowValue = boxShadows[shadow];
-  } else if (coloredShadow) {
-    // @ts-ignore
-    boxShadowValue = colored[coloredShadow] ? colored[coloredShadow] : "none";
+    boxShadowValue = getBoxShadows(theme)[shadow];
+  }
+  else if (coloredShadow) {
+    boxShadowValue = colored[coloredShadow as ColoredShadowsName]
+      ? colored[coloredShadow as ColoredShadowsName]
+      : "none";
   }
 
   return {
     opacity,
-    background: backgroundValue,
-    color: colorValue,
-    borderRadius: borderRadiusValue,
-    boxShadow: boxShadowValue,
+    background   : backgroundValue,
+    color        : colorValue,
+    borderRadius : borderRadiusValue,
+    boxShadow    : boxShadowValue,
   };
 });

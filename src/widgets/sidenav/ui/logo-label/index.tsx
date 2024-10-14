@@ -3,16 +3,11 @@ import { IconButton } from '@mui/material';
 import MDBox from 'shared/ui/mui-design-components/md-box';
 import MDTypography from 'shared/ui/mui-design-components/md-typography';
 import ArrowBack from '@mui/icons-material/ArrowBackIos';
-import { CustomMUITheme } from 'app/providers/theme-old';
+import { CustomTheme, setSidenavMini, ColorName } from 'app/providers/theme';
 import { NavLink } from "react-router-dom";
-import {
-  useMaterialUIController,
-  setMiniSidenav,
-  ColorName,
-  MaterialUIControllerProviderState,
-} from "app/providers/theme-old";
 import { styles } from './styles';
 import brandDark from 'shared/assets/logo_small.png';
+import { useUIConfiguratorController } from 'app/providers/theme';
 
 
 
@@ -22,13 +17,14 @@ interface Props {
 
 
 export const SidenavLogoLabel: FC<Props> = memo(({ textColor }) => {
-  const [controller, dispatch] = useMaterialUIController();
-  const { miniSidenav, transparentSidenav, whiteSidenav, darkMode } = controller as MaterialUIControllerProviderState;
-  const brand = (transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandDark; //brandWhite
+  const [configuratorState, dispatch] = useUIConfiguratorController();
+  const { sidenavMini, mode } = configuratorState;
+  const darkMode = mode === "dark";
+  const brand = darkMode ? brandDark : brandDark; //brandWhite
   const brandName = "Rhythm Dashboard";
   
-  const handleSetMiniSidenav = () => setMiniSidenav(dispatch, ! miniSidenav);
-  const handleCloseSidenav = () => setMiniSidenav(dispatch, true);
+  const handleSetSidenavMini = () => setSidenavMini(dispatch, ! sidenavMini);
+  const handleCloseSidenav = () => setSidenavMini(dispatch, true);
 
 
   return (
@@ -39,13 +35,13 @@ export const SidenavLogoLabel: FC<Props> = memo(({ textColor }) => {
         top={8}
         right={-4}
         p={1.625}
-        onClick={handleCloseSidenav}
         sx={{ cursor: "pointer" }}
+        onClick={handleCloseSidenav}
       >
         <IconButton
           size="small"
           color="inherit"
-          onClick={handleSetMiniSidenav}
+          onClick={handleSetSidenavMini}
         >
           <ArrowBack fontSize="small" color="secondary" />
         </IconButton>
@@ -54,7 +50,7 @@ export const SidenavLogoLabel: FC<Props> = memo(({ textColor }) => {
         {brand && <MDBox component="img" src={brand} alt="Brand" width="2rem" />}
         <MDBox
           width={!brandName && "100%"}
-          sx={(theme: CustomMUITheme) => styles(theme, { miniSidenav })}
+          sx={(theme: CustomTheme) => styles(theme, { sidenavMini })}
         >
           <MDTypography component="h6" variant="button" fontWeight="medium" color={textColor}>
             {brandName}

@@ -15,7 +15,7 @@ Coded by www.creative-tim.com
 
 import { forwardRef, FC } from "react";
 import MDTypographyRoot from "./md-typography-root";
-import { ColorName, useMaterialUIController } from "app/providers/theme-old";
+import { ColorName, useUIConfiguratorController } from "app/providers/theme";
 import { TypographyOwnProps } from '@mui/material';
 
 
@@ -50,8 +50,9 @@ const MDTypography: FC<Props> = forwardRef(
     },
     ref
   ) => {
-    const [controller] = useMaterialUIController();
-    const { darkMode } = controller;
+    const [configuratorState] = useUIConfiguratorController();
+    const { mode } = configuratorState;
+    const darkMode = mode === "dark";
 
     return (
       <MDTypographyRoot

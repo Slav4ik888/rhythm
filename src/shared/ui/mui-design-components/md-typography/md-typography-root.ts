@@ -16,32 +16,32 @@ Coded by www.creative-tim.com
 // @mui material components
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
-import { CustomMUITheme, ColorName } from 'app/providers/theme-old';
+import { CustomTheme, ColorName, linearGradient, GradientColorName, getTypography } from 'app/providers/theme';
 
 
+type FontWeight = 'light' | 'regular' | 'medium' | 'bold';
 
 interface OwnerState {
   color          : ColorName
-  textTransform  : "none" | "capitalize" | "uppercase" | "lowercase"
-  verticalAlign? : "unset" | "baseline" | "sub" | "super" | "text-top" | "text-bottom" | "middle" | "top" | "bottom"
+  textTransform  : 'none' | 'capitalize' | 'uppercase' | 'lowercase'
+  verticalAlign? : 'unset' | 'baseline' | 'sub' | 'super' | 'text-top' | 'text-bottom' | 'middle' | 'top' | 'bottom'
   textGradient?  : boolean
   opacity        : number
-  fontWeight?    : "light" | "regular" | "medium" | "bold"
+  fontWeight?    : FontWeight
   darkMode       : boolean
 }
 
 
 // @ts-ignore
-export default styled(Typography)(({ theme, ownerState }) => {
-  const { palette, typography, functions } = theme as unknown as CustomMUITheme;
-  const { color, textTransform, verticalAlign, fontWeight, opacity, textGradient, darkMode } = ownerState as OwnerState;
-
+export default styled(Typography)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
+  const { palette } = theme;
+  const { color, textTransform, verticalAlign, fontWeight = 'regular', opacity, textGradient, darkMode } = ownerState;
   const { gradients, transparent, white } = palette;
-  const { fontWeightLight, fontWeightRegular, fontWeightMedium, fontWeightBold } = typography;
-  const { linearGradient } = functions;
+  const { fontWeightLight, fontWeightRegular, fontWeightMedium, fontWeightBold } = getTypography(theme);
+
 
   // fontWeight styles
-  const fontWeights = {
+  const fontWeights: Record<FontWeight, number> = {
     light   : fontWeightLight,
     regular : fontWeightRegular,
     medium  : fontWeightMedium,
@@ -51,10 +51,8 @@ export default styled(Typography)(({ theme, ownerState }) => {
   // styles for the typography with textGradient={true}
   const gradientStyles = () => ({
     backgroundImage:
-      // @ts-ignore
-      color !== "inherit" && color !== "text" && color !== "white" && gradients[color]
-        // @ts-ignore
-        ? linearGradient(gradients[color].main, gradients[color].state)
+      color !== "inherit" && color !== "text" && color !== "white" && gradients[color as GradientColorName]
+        ? linearGradient(gradients[color as GradientColorName].main, gradients[color as GradientColorName].state)
         : linearGradient(gradients.dark.main, gradients.dark.state),
     display: "inline-block",
     WebkitBackgroundClip: "text",
@@ -64,10 +62,8 @@ export default styled(Typography)(({ theme, ownerState }) => {
   });
 
   // color value                          если нет цвета, то inherit
-  // @ts-ignore
   let colorValue = color === "inherit" || ! palette[color] ? "inherit" : palette[color].main;
 
-  // @ts-ignore
   if (darkMode && (color === "inherit" || ! palette[color])) {
     colorValue = "inherit";
   }
@@ -80,7 +76,6 @@ export default styled(Typography)(({ theme, ownerState }) => {
     verticalAlign,
     textDecoration: "none",
     color: colorValue,
-    // @ts-ignore
     fontWeight: fontWeights[fontWeight] && fontWeights[fontWeight],
     ...(textGradient && gradientStyles()),
   };

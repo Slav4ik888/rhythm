@@ -105,7 +105,7 @@
       "module": "CommonJS"
     }
   },
-  "exclude": ["build", "node_modules"],
+  "exclude": ["build", "node_modules", "src/app/providers/theme-old"],
   "include": [
     "./config/jest/setup-tests.ts",
     "./src/**/*.ts",

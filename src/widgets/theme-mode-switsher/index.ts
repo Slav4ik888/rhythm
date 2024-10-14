@@ -1,1 +1,0 @@
-export { ThemeModeSwitcher } from './ui';

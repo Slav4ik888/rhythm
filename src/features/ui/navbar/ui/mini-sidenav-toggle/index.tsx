@@ -4,7 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {
   useTheme, useUIConfiguratorController, CustomTheme, UIConfiguratorProviderState, setSidenavMini
 } from 'app/providers/theme';
-import { sxNavbarIconsStyle } from '../styles';
+import { sxNavbarIconsStyle } from '../../../../../shared/lib/styles/navbar';
 
 
 

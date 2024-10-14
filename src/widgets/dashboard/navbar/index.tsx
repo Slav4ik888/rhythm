@@ -26,7 +26,7 @@ import { sxNavbar, sxNavbarContainer, sxNavbarRow } from "./styles";
 import { DashboardDatebar } from 'widgets/dashboard/dashboard-datebar';
 import { MiniSidenavToggleBtn, OpenNotificationMenuBtn, OpenUIConfiguratorBtn } from 'features/ui';
 import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
-import { sxNavbarIconButton, sxNavbarIconsStyle } from 'features/ui/navbar/ui/styles';
+import { sxNavbarIconButton, sxNavbarIconsStyle } from 'shared/lib/styles/navbar';
 
 
 

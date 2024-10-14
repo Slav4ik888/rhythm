@@ -11,9 +11,9 @@ interface Action {
 
 function reducer(state: UIConfiguratorProviderState, action: Action): UIConfiguratorProviderState {
   switch (action.type) {
-    case 'SET_MODE'          : return { ...state, mode               : action.value };
-    case 'OPEN_CONFIGURATOR' : return { ...state, isOpenConfigurator : action.value };
-    case 'SET_SIDENAV_MINI'  : return { ...state, sidenavMini        : action.value };
+    case 'SET_MODE'          : return { ...state, mode             : action.value };
+    case 'OPEN_CONFIGURATOR' : return { ...state, openConfigurator : action.value };
+    case 'SET_SIDENAV_MINI'  : return { ...state, sidenavMini      : action.value };
 
     default: throw new Error(`Unhandled action type: ${action.type}`);
   }
