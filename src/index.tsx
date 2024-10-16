@@ -29,4 +29,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refact md-components" && git push -u origin main
+// git add . && git commit -m "refact some theme" && git push -u origin main

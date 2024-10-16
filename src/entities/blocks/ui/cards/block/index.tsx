@@ -1,20 +1,20 @@
 import { FC, memo } from 'react';
 import { Box, Card } from '@mui/material';
-import { GradientsBgColorName, CustomMUITheme, linearGradient, useTheme, pxToRem, ColorName } from 'app/providers/theme-old';
+import { GradientColorName, CustomTheme, linearGradient, useTheme, pxToRem, ColorName } from 'app/providers/theme';
 import { isStr } from 'shared/lib/validators';
 import { MDTypography } from 'shared/ui/mui-design-components';
 
 
 
 interface StyleConfig {
-  bgColor?   : GradientsBgColorName
+  bgColor?   : GradientColorName
   fullWidth? : boolean
   // minWidth?  : string
   width?     : number | string
 }
 
 
-const useStyles = (theme: CustomMUITheme, config: StyleConfig) => {
+const useStyles = (theme: CustomTheme, config: StyleConfig) => {
   const { bgColor = 'info', width, fullWidth, ...rest } = config;
 
   const rootStyle = {
@@ -55,7 +55,7 @@ const useStyles = (theme: CustomMUITheme, config: StyleConfig) => {
 interface Props  {
   title?      : string
   titleColor? : ColorName
-  bgColor?    : GradientsBgColorName
+  bgColor?    : GradientColorName
   fullWidth?  : boolean
   // minWidth?  : string
   width?      : number | string

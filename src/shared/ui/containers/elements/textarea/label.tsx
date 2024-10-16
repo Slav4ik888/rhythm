@@ -1,13 +1,12 @@
 import { FC, memo } from 'react';
 import { Box, Typography } from '@mui/material';
-import { SxCard } from 'app/styles-old/types';
 import { useStyles } from './styles';
 
 
 
 type Props = {
   label : string
-  sx?   : SxCard
+  sx?   : any
 }
 
 /**

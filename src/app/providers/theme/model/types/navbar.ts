@@ -1,7 +1,2 @@
 
-export type NavbarColorName = 'white' | 'green' | 'grey'
-
-export type NavbarColors = {
-  color      : string
-  background : string
-}
+export type NavbarColorName = 'navbar_white' | 'navbar_green' | 'navbar_grey'

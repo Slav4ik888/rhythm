@@ -2,7 +2,6 @@ import { FC, memo, useCallback } from 'react';
 import { TextFieldDate } from '../../elements/textfield-date';
 import { changeGroup, setChanges, UseGroup } from 'shared/lib/hooks';
 import { GridStyle } from '../../grid-wrap';
-import { SxCard } from 'app/styles-old/types';
 import { getValueByScheme } from 'shared/helpers/objects';
 import { Errors } from 'shared/lib/validators';
 import { getMsFromDate } from 'shared/helpers/dates';
@@ -19,7 +18,7 @@ type Props = {
   label        : string
   type?        : 'datetime-local' | 'date' //  2023-04-14T09:19 | 2023-04-14
   toolTitle?   : string
-  sx?          : SxCard
+  sx?          : any
   errorField?  : string
   errors?      : Errors
   onBlur?      : () => void

@@ -1,14 +1,14 @@
 import { FC, memo } from 'react';
 import Chip from '@mui/material/Chip';
 import { Tooltip } from 'shared/ui/tooltip';
-import { CustomMUITheme, pxToRem, useTheme } from 'app/providers/theme-old';
+import { CustomTheme, pxToRem, useTheme } from 'app/providers/theme';
 import { ReportsLineChartConfig } from '../../../dashboard/ui/reports';
 import { CONDITION_TYPE } from '../../model/config';
 import { DashboardConditionType } from '../../model/types';
 
 
 
-const useStyle = ({ palette: { conditionTypeChip } }: CustomMUITheme, type?: DashboardConditionType) => {
+const useStyle = ({ palette: { conditionTypeChip } }: CustomTheme, type?: DashboardConditionType) => {
   if (! type) return null
 
   return {

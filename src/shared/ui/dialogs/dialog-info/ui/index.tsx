@@ -4,12 +4,11 @@ import { Dialog, DialogContent } from '@mui/material';
 import { DialogTitle } from '../../dialog-title';
 import { UseBase } from 'shared/lib/hooks';
 import { ReactNode } from 'react';
-import { SxCard } from 'app/styles-old/types';
-import { CustomTheme, useTheme } from 'app/providers/theme-old';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 
 
 
-const useStyles = (theme: CustomTheme, sx: SxCard | undefined) => ({
+const useStyles = (theme: CustomTheme, sx?: any) => ({
   root: {
     '& .MuiDialog-paper': {
       width : { xs: '100%' },
@@ -19,7 +18,7 @@ const useStyles = (theme: CustomTheme, sx: SxCard | undefined) => ({
   },
   content: {
     '&.MuiDialogContent-root': {
-      background: theme.dialog.paper.background,
+      background: theme.palette.background.paper,
       p: 4,
       ...sx?.content
     }
@@ -33,7 +32,7 @@ interface Props {
   fullWidth? : boolean
   title?     : string
   question?  : string
-  sx?        : SxCard
+  sx?        : any
   children   : ReactNode
   onClose?   : () => void
 }

@@ -5,13 +5,12 @@ import { BoxWrap } from '../../box-wrap';
 import { Tooltip } from 'shared/ui/tooltip';
 import { useValue } from 'shared/lib/hooks';
 import { GridStyle } from '../../grid-wrap';
-import { SxCard } from 'app/styles-old/types';
 import { Errors } from 'shared/lib/validators';
 import { formatDate } from 'shared/helpers/dates';
 
 
 
-const useStyles = (sx: SxCard | undefined) => ({
+const useStyles = (sx: any | undefined) => ({
   textField: {
     backgroundColor: '#ffffff',
     ...sx?.bg,
@@ -37,7 +36,7 @@ type Props = {
   defaultValue? : string | number
   changesValue? : string | number // If value can be changes in any place, but not here
   disabled?     : boolean
-  sx?           : SxCard
+  sx?           : any
   errorField?   : string
   errors?       : Errors
   onClick?      : () => void

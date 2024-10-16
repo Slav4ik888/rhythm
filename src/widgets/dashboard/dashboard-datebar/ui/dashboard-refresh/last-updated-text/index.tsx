@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { MDTypography } from 'shared/ui/mui-design-components';
 import { useSelector } from 'react-redux';
 import { selectLastUpdated } from 'entities/dashboard';
-import { pxToRem } from 'app/providers/theme-old';
+import { pxToRem } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
 import { formatDate } from 'shared/helpers/dates';
 

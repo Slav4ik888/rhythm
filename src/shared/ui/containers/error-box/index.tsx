@@ -1,12 +1,12 @@
 import { FC, memo } from 'react';
 import { Box } from '@mui/material';
-import { f_c_c, SxCard } from 'app/styles-old';
+import { f_c_c } from 'app/styles';
 import { Errors } from 'shared/lib/validators';
-import { CustomTheme, useTheme } from 'app/providers/theme-old';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 
 
 
-const useStyles = (theme: CustomTheme, sx: SxCard) => ({
+const useStyles = (theme: CustomTheme, sx: any) => ({
   root: {
     width: '100%',
     ...sx.root
@@ -14,8 +14,8 @@ const useStyles = (theme: CustomTheme, sx: SxCard) => ({
   content: {
     ...f_c_c,
     width    : '100%',
-    fontSize : theme.error.fontSize,
-    color    : theme.error.color,
+    // fontSize : theme.error.fontSize,
+    color    : theme.palette.error.main,
     ...sx.content
   }
 });
@@ -23,7 +23,7 @@ const useStyles = (theme: CustomTheme, sx: SxCard) => ({
 
 type Props = {
   field?  : string
-  sx?     : SxCard
+  sx?     : any
   errors? : Errors
 }
 

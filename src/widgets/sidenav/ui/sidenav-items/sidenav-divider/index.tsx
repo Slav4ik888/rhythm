@@ -1,25 +1,21 @@
 import { FC, memo } from 'react';
 import Divider from "@mui/material/Divider";
-import { MaterialUIControllerProviderState, useMaterialUIController } from 'app/providers/theme-old';
+import { useUIConfiguratorController } from 'app/providers/theme';
 
 
 interface Props {
-  key?: string;
+  k?: string;
 }
 
 
-export const SidenavDivider: FC<Props> = memo(({ key }) => {
-  const [controller] = useMaterialUIController();
-  const { transparentSidenav, whiteSidenav, darkMode } = controller as MaterialUIControllerProviderState;
-  
+export const SidenavDivider: FC<Props> = memo(({ k: key }) => {
+  const [configuratorState] = useUIConfiguratorController();
+  const { mode } = configuratorState;
 
   return (
     <Divider
-      key={key}
-      light={
-        (!darkMode && !whiteSidenav && !transparentSidenav) ||
-        (darkMode && !transparentSidenav && whiteSidenav)
-      }
+      key   = {key}
+      light = {mode === 'light'}
     />
   )
 });

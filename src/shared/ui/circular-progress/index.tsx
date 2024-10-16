@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Box, CircularProgress as Circular } from '@mui/material';
-import { f_c_c } from 'app/styles-old';
-import { SxCard } from 'app/styles-old/types';
+import { f_c_c } from 'app/styles';
 import { getTopCenter } from './utils';
 
 
@@ -14,7 +13,7 @@ type Props = {
   bottom? : string
   right?  : string
   left?   : string
-  sx?     : SxCard
+  sx?     : any
   center? : boolean // По центру
   block?  : boolean // Заблокировать экран подсветкой
 }

@@ -4,7 +4,6 @@ import { getValueByScheme } from 'shared/helpers/objects';
 import { Errors } from 'shared/lib/validators';
 import { GridStyle } from '../../grid-wrap';
 import { getErrorFieldByScheme } from '../utils';
-import { SxCard } from 'app/styles-old/types';
 import { Textarea } from '../../elements';
 
 
@@ -26,7 +25,7 @@ interface Props {
   minRows?        : number
   maxRows?        : number
   keyEnterSubmit? : boolean // If press Enter => onBlur
-  sx?             : SxCard
+  sx?             : any
   // onTransform?    : <T, V>(v: T) => V // Transform default value
   onClick?        : (e?: any) => void // If need reaction after click
   onBlur?         : (e: MouseEvent, value: string) => void

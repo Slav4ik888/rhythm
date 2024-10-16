@@ -15,7 +15,7 @@ Coded by www.creative-tim.com
 
 import { FC, memo } from "react";
 import { MDBox, MDTypography } from "shared/ui/mui-design-components";
-import { GradientsBgColorName, GreyColor } from 'app/providers/theme-old';
+import { GradientColorName, GreyColor } from 'app/providers/theme';
 import { ChartConfig } from '../../../../charts/model/types';
 import { DashboardStatisticItem, ResultChanges } from 'entities/dashboard';
 // import { TimeUpdated } from './time-updated';
@@ -28,7 +28,7 @@ import { Divider } from '@mui/material';
 
 
 interface Props {
-  bgColor?   : GradientsBgColorName | GreyColor
+  bgColor?   : GradientColorName | GreyColor
   item       : DashboardStatisticItem
   // description : string | ReactNode
   // date        : string

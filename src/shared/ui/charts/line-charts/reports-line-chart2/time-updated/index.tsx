@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { MDBox, MDTypography } from "shared/ui/mui-design-components";
-import { pxToRem, useMaterialUIController } from 'app/providers/theme-old';
+import { CustomTheme, pxToRem, rgba, useUIConfiguratorController } from 'app/providers/theme';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 
@@ -13,12 +13,12 @@ interface Props {
 
 /** Показывает сколько прошло времени с прошлого обновления */
 export const TimeUpdated: FC<Props> = ({ light = false, date }) => {
-  const [controller] = useMaterialUIController();
-  const { transparentNavbar, darkMode } = controller;
+  const [configuratorState] = useUIConfiguratorController();
+  const { mode } = configuratorState;
+  const darkMode = mode === "dark";
   
   // For Icon style
-  // @ts-ignore
-  const iconsStyle = ({ palette: { dark, white, text }, functions: { rgba } }) => ({
+  const iconsStyle = ({ palette: { dark, white, text } }: CustomTheme) => ({
     width  : pxToRem(12),
     height : pxToRem(12),
     mt     : 0.15,
@@ -26,7 +26,7 @@ export const TimeUpdated: FC<Props> = ({ light = false, date }) => {
     color  : () => {
       let colorValue = light || darkMode ? white.main : dark.main;
 
-      if (transparentNavbar && !light) {
+      if (! light) {
         colorValue = darkMode ? rgba(text.main, 0.6) : text.main;
       }
 
@@ -37,8 +37,7 @@ export const TimeUpdated: FC<Props> = ({ light = false, date }) => {
 
   return (
     <MDBox display="flex" alignItems="center">
-      {/* @ts-ignore */}
-      <AccessTimeIcon sx={iconsStyle} fontSize="small" />
+      <AccessTimeIcon sx={(theme) => iconsStyle(theme as CustomTheme)} fontSize="small" />
       <MDTypography variant="button" color="text" fontWeight="light">
         {date}
       </MDTypography>

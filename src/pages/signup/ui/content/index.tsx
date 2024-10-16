@@ -2,12 +2,11 @@ import * as React from 'react';
 import { SignupData, useSignup } from '../../model';
 import { TextfieldItem } from 'shared/ui/containers/items';
 import { UseGroup } from 'shared/lib/hooks';
-import { useTheme } from 'app/providers/theme-old';
+import { useTheme } from 'app/providers/theme';
 import { TextField } from '@mui/material';
 import { MutableRefObject } from 'react';
 import { GridWrap } from 'shared/ui/containers';
 import { useStylesAuth } from 'shared/ui/pages';
-import { useTranslation } from 'react-i18next';
 
 
 
@@ -22,14 +21,13 @@ type Props = {
 export const SignupContent: React.FC<Props> = ({ firstNameRef, emailRef, passwordRef, group: S }) => {
   const
     sx = useStylesAuth(useTheme()),
-    { t } = useTranslation('auth'),
     { errors } = useSignup();
   
 
   return (
     <>
       <TextfieldItem
-        label      = {t('Название компании')}
+        label      = 'Название компании'
         name       = 'companyName'
         scheme     = 'companyName'
         grid       = {{ sm: 12 }}
@@ -43,7 +41,7 @@ export const SignupContent: React.FC<Props> = ({ firstNameRef, emailRef, passwor
         <TextField
           fullWidth
           name       = 'name'
-          label      = {t('Ваше имя')}
+          label      = 'Ваше имя'
           inputRef   = {firstNameRef}
           helperText = {errors?.firstName}
           error      = {errors?.firstName ? true : false}
@@ -56,7 +54,7 @@ export const SignupContent: React.FC<Props> = ({ firstNameRef, emailRef, passwor
           fullWidth
           name       = 'email'
           type       = 'email'
-          label      = {t('Введите email')}
+          label      = 'Введите email'
           inputRef   = {emailRef}
           helperText = {errors?.email}
           error      = {errors?.email ? true : false}
@@ -69,7 +67,7 @@ export const SignupContent: React.FC<Props> = ({ firstNameRef, emailRef, passwor
           fullWidth
           name       = 'password'
           type       = 'password'
-          label      = {t('Введите пароль')}
+          label      = 'Введите пароль'
           inputRef   = {passwordRef}
           helperText = {errors?.password}
           error      = {errors?.password ? true : false}
@@ -78,7 +76,7 @@ export const SignupContent: React.FC<Props> = ({ firstNameRef, emailRef, passwor
       </GridWrap>
 
       <TextfieldItem
-        label      = {t('Повторите пароль')}
+        label      = 'Повторите пароль'
         type       = 'password'
         name       = 'confirmPassword'
         scheme     = 'confirmPassword'
@@ -88,32 +86,6 @@ export const SignupContent: React.FC<Props> = ({ firstNameRef, emailRef, passwor
         errorField = 'confirmPassword'
         errors     = {errors}
       />
-
-      
-
-      {/* <TextfieldItem
-        label      = 'Введите email'
-        type       = 'email'
-        name       = 'email'
-        scheme     = 'email'
-        grid       = {{ sm: 12 }}
-        sx         = {{ root: sx.gridItem, bg: sx.textField } }
-        group      = {S}
-        errorField = 'email'
-        errors     = {errors}
-      /> */}
-
-      {/* <TextfieldItem
-        label      = 'Введите пароль'
-        type       = 'password'
-        name       = 'password'
-        scheme     = 'password'
-        grid       = {{ sm: 12 }}
-        sx         = {{ root: sx.gridItem, bg: sx.textField }}
-        group      = {S}
-        errorField = 'password'
-        errors     = {errors}
-      /> */}
     </>
   );
 };

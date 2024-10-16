@@ -1,20 +1,30 @@
 import { Theme } from '@mui/material';
-import { borders, breakpoints } from '../themes/base';
-import { baseColors } from '../themes/light-base';
-import { NavbarColors } from './navbar';
+import { borders } from '../themes/base/borders';
+import { breakpoints } from '../themes/base/breakpoints';
+import { customPalette } from '../themes/light-custom-palette';
+import { gradients } from '../themes/light-gradients';
+import { NavbarColorName } from './navbar';
+import { SidenavColorName } from './sidenav';
 
 
-export type BaseColors  = typeof baseColors;
-export type Borders     = typeof borders;
-export type Breakpoints = typeof breakpoints;
+export interface ThemeColorItem {
+  main  : string
+  focus : string
+}
+
+
+export type CustomPalette = typeof customPalette;
+export type Borders       = typeof borders;
+export type Breakpoints   = typeof breakpoints;
+export type Gradients     = typeof gradients;
 
 
 export type CustomTheme =
   & Theme
-  & BaseColors
-  & { borders: Borders }
-  & { breakpoints: Breakpoints }
-  & { navbar: NavbarColors };
+  & { palette     : CustomPalette & { gradients: Gradients } }
+  & { borders     : Borders }
+  & { breakpoints : Breakpoints }
+  // & { navbar      : NavbarColors };
 
 
 export type ThemeName = 'base' | 'orange'
@@ -28,6 +38,8 @@ export type GreyColor = 'grey-100' | 'grey-200' | 'grey-300' | 'grey-400' | 'gre
 
 /** Только те которые есть в Palette */
 export type ColorName =
+  & SidenavColorName
+  & NavbarColorName
   | 'inherit'
   | 'text' | 'transparent' | 'white' | 'black'
   | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'light' | 'dark'

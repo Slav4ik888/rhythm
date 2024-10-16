@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { Typography, Avatar } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { CustomTheme, useTheme } from 'app/providers/theme-old';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 import { AuthType } from 'entities/auth';
 
 
@@ -9,7 +9,7 @@ import { AuthType } from 'entities/auth';
 const useStyles = (theme: CustomTheme) => ({
   lock: {
     color: theme.palette.secondary.main,
-    backgroundColor:  theme.auth.paper.background,
+    backgroundColor:  theme.palette.background.paper,
     boxShadow: '0px 0px 2px #7c7c7c',
     m: 1
   },

@@ -1,8 +1,7 @@
 import { FC, memo, ReactNode } from 'react';
 import { Button as MuiButton } from '@mui/material';
 import { CircularProgress } from 'shared/ui/circular-progress';
-import { SxCard } from 'app/styles-old';
-import { CustomTheme, useTheme } from 'app/providers/theme-old';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
 import { ButtonType, Variant } from './types';
 import { useStyles } from './use-styles';
@@ -17,7 +16,7 @@ interface Props {
   disabled?  : boolean
   variant?   : Variant
   size?      : 'small' | 'medium' | 'large'
-  sx?        : SxCard
+  sx?        : any
   startIcon? : ReactNode
   endIcon?   : ReactNode
   onClick    : () => void

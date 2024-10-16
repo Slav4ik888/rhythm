@@ -1,11 +1,10 @@
 import { FC, memo, ReactNode } from 'react';
 import Box from '@mui/material/Box';
-import { SxCard } from 'app/styles-old';
 
 
 type Props = {
   children? : ReactNode
-  sx?       : SxCard
+  sx?       : any
 }
 
 /** v.2023-06-12 */

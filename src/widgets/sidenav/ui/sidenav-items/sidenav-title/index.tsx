@@ -1,4 +1,4 @@
-import { ColorName } from 'app/providers/theme-old';
+import { ColorName } from 'app/providers/theme';
 import { FC, memo } from 'react';
 import MDTypography from 'shared/ui/mui-design-components/md-typography';
 

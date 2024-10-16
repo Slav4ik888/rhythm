@@ -25,9 +25,9 @@ interface Props {
 
 
 export const OpenNotificationMenuBtn: FC<Props> = memo(({ light }) => {
-  const [configuratorState, dispatch] = useUIConfiguratorController();
+  const [configuratorState] = useUIConfiguratorController();
   const sx = useStyles(useTheme(), configuratorState, light);
-  const { isOpenConfigurator } = configuratorState;
+  const { openConfigurator } = configuratorState;
   const [openMenu, setOpenMenu] = useState<Element | null>(null);
 
   const handleOpenMenu = (event: any) => setOpenMenu(event.currentTarget);

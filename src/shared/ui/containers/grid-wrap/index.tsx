@@ -1,6 +1,5 @@
 import { FC, memo, ReactNode } from 'react';
 import { GridSize, Grid } from "@mui/material";
-import { SxCard } from 'app/styles-old/types';
 
 
 
@@ -12,7 +11,7 @@ export interface GridStyle {
 
 type Props = {
   grid?     : GridStyle
-  sx?       : SxCard    // Styles for Gridbox
+  sx?       : any    // Styles for Gridbox
   children? : ReactNode
   onClick?  : () => void
 }

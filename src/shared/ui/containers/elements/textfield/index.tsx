@@ -6,11 +6,10 @@ import { Tooltip } from '../../../tooltip';
 import { useValue } from 'shared/lib/hooks';
 import { Errors, isNotUndefined } from 'shared/lib/validators';
 import { GridStyle } from '../../grid-wrap';
-import { SxCard } from 'app/styles-old/types';
 
 
 
-const useStyles = (sx: SxCard | undefined) => ({
+const useStyles = (sx: any | undefined) => ({
   textField: {
     // backgroundColor: '#ffffff',
     ...sx?.bg,
@@ -28,7 +27,7 @@ const useStyles = (sx: SxCard | undefined) => ({
 
 interface Props {
   grid?         : GridStyle
-  sx?           : SxCard
+  sx?           : any
   toolTitle?    : string
   label?        : string // The label content
   type?         : 'text' | 'number' | 'password' | 'email'

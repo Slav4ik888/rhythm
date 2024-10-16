@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, memo, MutableRefObject, useEffect, useMemo, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { pxToRem } from 'app/providers/theme-old';
+import { pxToRem } from 'app/providers/theme';
 import { TextField } from '@mui/material';
 import { calculateStartDate, getMsFromRef } from './utils';
 import { actionsDashboard, DashboardPeriodType, selectSelectedPeriod } from 'entities/dashboard';

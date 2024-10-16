@@ -6,11 +6,10 @@ import { Tooltip } from '../../../tooltip';
 import { changeGroup, UseGroup } from 'shared/lib/hooks';
 import { getValueByScheme } from 'shared/helpers/objects';
 import { GridStyle } from '../../grid-wrap';
-import { SxCard } from 'app/styles-old/types';
 
 
 
-const useStyles = (sx: SxCard | undefined) => ({
+const useStyles = (sx: any | undefined) => ({
   checkbox: {
     backgroundColor: '#ffffff',
     mx: 2,
@@ -27,7 +26,7 @@ const useStyles = (sx: SxCard | undefined) => ({
 interface Props {
   grid?       : GridStyle
   box?        : boolean
-  sx?         : SxCard
+  sx?         : any
   sxCheckbox? : object
   group       : UseGroup<any>
   // Tooltip

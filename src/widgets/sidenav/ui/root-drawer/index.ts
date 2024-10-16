@@ -16,36 +16,28 @@ Coded by www.creative-tim.com
 // @mui material components
 import Drawer from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
-import { CustomMUITheme } from 'app/providers/theme-old';
+import { CustomTheme, getBoxShadows, linearGradient, pxToRem } from 'app/providers/theme';
+
 
 interface OwnerState {
-  transparentSidenav: boolean
-  whiteSidenav: boolean
-  miniSidenav: boolean
+  sidenavMini: boolean
   darkMode: boolean
 }
 
 // @ts-ignore
-export default styled(Drawer)(({ theme, ownerState }) => {
-  const { palette, boxShadows, transitions, breakpoints, functions } = theme as unknown as CustomMUITheme;
-  const { transparentSidenav, whiteSidenav, miniSidenav, darkMode } = ownerState as OwnerState;
+export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
+  const { palette, transitions, breakpoints } = theme;
+  const { sidenavMini, darkMode } = ownerState;
 
   const sidebarWidth = 250;
-  const { transparent, gradients, white, background } = palette;
-  const { xxl } = boxShadows;
-  const { pxToRem, linearGradient } = functions;
+  const { gradients, background } = palette;
+  const { xxl } = getBoxShadows(theme);
 
   let backgroundValue = darkMode
     ? background.sidenav
     : linearGradient(gradients.dark.main, gradients.dark.state);
 
-  if (transparentSidenav) {
-    backgroundValue = transparent.main;
-  } else if (whiteSidenav) {
-    backgroundValue = white.main;
-  }
-
-  // styles for the sidenav when miniSidenav={false}
+  // styles for the sidenav when sidenavMini={false}
   const drawerOpenStyles = () => ({
     background: backgroundValue,
     transform: "translateX(0)",
@@ -55,8 +47,8 @@ export default styled(Drawer)(({ theme, ownerState }) => {
     }),
 
     [breakpoints.up("xl")]: {
-      boxShadow: transparentSidenav ? "none" : xxl,
-      marginBottom: transparentSidenav ? 0 : "inherit",
+      boxShadow: xxl,
+      marginBottom: "inherit",
       left: "0",
       width: sidebarWidth,
       transform: "translateX(0)",
@@ -67,7 +59,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
     },
   });
 
-  // styles for the sidenav when miniSidenav={true}
+  // styles for the sidenav when sidenavMini={true}
   const drawerCloseStyles = () => ({
     background: backgroundValue,
     transform: `translateX(${pxToRem(-320)})`,
@@ -77,8 +69,8 @@ export default styled(Drawer)(({ theme, ownerState }) => {
     }),
 
     [breakpoints.up("xl")]: {
-      boxShadow: transparentSidenav ? "none" : xxl,
-      marginBottom: transparentSidenav ? 0 : "inherit",
+      boxShadow: xxl,
+      marginBottom: "inherit",
       left: "0",
       width: pxToRem(96),
       overflowX: "hidden",
@@ -95,7 +87,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
       boxShadow: xxl,
       border: "none",
 
-      ...(miniSidenav ? drawerCloseStyles() : drawerOpenStyles()),
+      ...(sidenavMini ? drawerCloseStyles() : drawerOpenStyles()),
     },
   };
 });

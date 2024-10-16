@@ -13,35 +13,31 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { CustomMUITheme } from 'app/providers/theme-old';
+import { CustomTheme, SidenavColorName, getBoxShadows, getTypography, linearGradient, pxToRem, rgba } from 'app/providers/theme';
+
 
 interface OwnerStateItem {
-  active: boolean
-  transparentSidenav: boolean
-  whiteSidenav: boolean
-  darkMode: boolean
-  sidenavColor: string
+  active       : boolean
+  darkMode     : boolean
+  sidenavColor : SidenavColorName
 }
 
 
-const collapseItem = (theme: CustomMUITheme, ownerState: OwnerStateItem) => {
-  const { palette, transitions, breakpoints, boxShadows, borders, functions } = theme;
-  const { active, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = ownerState;
+const collapseItem = (theme: CustomTheme, ownerState: OwnerStateItem) => {
+  const { palette, transitions, breakpoints, borders } = theme;
+  const { active, darkMode, sidenavColor } = ownerState;
 
   const { white, transparent, dark, grey, gradients } = palette;
-  const { md } = boxShadows;
+  const { md } = getBoxShadows(theme);
   const { borderRadius } = borders;
-  const { pxToRem, rgba, linearGradient } = functions;
 
   return {
     background: active
-      // @ts-ignore
       ? linearGradient(gradients[sidenavColor].main, gradients[sidenavColor].state)
       : transparent.main,
-    color:
-      (transparentSidenav && !darkMode && !active) || (whiteSidenav && !active)
-        ? dark.main
-        : white.main,
+    color: (! darkMode && ! active) || ! active
+      ? dark.main
+      : white.main,
     display: "flex",
     alignItems: "center",
     width: "100%",
@@ -51,7 +47,7 @@ const collapseItem = (theme: CustomMUITheme, ownerState: OwnerStateItem) => {
     cursor: "pointer",
     userSelect: "none",
     whiteSpace: "nowrap",
-    boxShadow: active && !whiteSidenav && !darkMode && !transparentSidenav ? md : "none",
+    boxShadow: active && ! darkMode ? md : "none",
     [breakpoints.up("xl")]: {
       transition: transitions.create(["box-shadow", "background-color"], {
         easing: transitions.easing.easeInOut,
@@ -63,11 +59,10 @@ const collapseItem = (theme: CustomMUITheme, ownerState: OwnerStateItem) => {
       backgroundColor: () => {
         let backgroundValue;
 
-        if (!active) {
-          backgroundValue =
-            transparentSidenav && !darkMode
-              ? grey[300]
-              : rgba(whiteSidenav ? grey[400] : white.main, 0.2);
+        if (! active) {
+          backgroundValue = ! darkMode
+            ? grey[300]
+            : rgba(white.main, 0.2);
         }
 
         return backgroundValue;
@@ -79,24 +74,21 @@ const collapseItem = (theme: CustomMUITheme, ownerState: OwnerStateItem) => {
 
 interface OwnerStateIconBox {
   active: boolean
-  transparentSidenav: boolean
-  whiteSidenav: boolean
   darkMode: boolean
 }
 
-function collapseIconBox(theme: CustomMUITheme, ownerState: OwnerStateIconBox) {
-  const { palette, transitions, borders, functions } = theme;
-  const { transparentSidenav, whiteSidenav, darkMode, active } = ownerState;
+function collapseIconBox(theme: CustomTheme, ownerState: OwnerStateIconBox) {
+  const { palette, transitions, borders } = theme;
+  const { darkMode, active } = ownerState;
 
   const { white, dark } = palette;
   const { borderRadius } = borders;
-  const { pxToRem } = functions;
 
   return {
     minWidth: pxToRem(32),
     minHeight: pxToRem(32),
     color:
-      (transparentSidenav && !darkMode && !active) || (whiteSidenav && !active)
+      (! darkMode && ! active) || ! active
         ? dark.main
         : white.main,
     borderRadius: borderRadius.md,
@@ -108,7 +100,7 @@ function collapseIconBox(theme: CustomMUITheme, ownerState: OwnerStateIconBox) {
     }),
 
     "& svg, svg g": {
-      color: transparentSidenav || whiteSidenav ? dark.main : white.main,
+      color: white.main,
     },
   };
 }
@@ -136,28 +128,26 @@ const collapseIcon = ({ palette: { white, gradients } }: IconProp1, { active }: 
 
 
 interface OwnerStateText {
-  miniSidenav: boolean
-  transparentSidenav: boolean
+  sidenavMini: boolean
   active: boolean
 }
 
-function collapseText(theme: CustomMUITheme, ownerState: OwnerStateText) {
-  const { typography, transitions, breakpoints, functions } = theme;
-  const { miniSidenav, transparentSidenav, active } = ownerState;
+function collapseText(theme: CustomTheme, ownerState: OwnerStateText) {
+  const { transitions, breakpoints } = theme;
+  const { sidenavMini, active } = ownerState;
+  const { size, fontWeightRegular, fontWeightLight } = getTypography(theme);
 
-  const { size, fontWeightRegular, fontWeightLight } = typography;
-  const { pxToRem } = functions;
 
   return {
     marginLeft: pxToRem(10),
 
     [breakpoints.up("xl")]: {
-      opacity: miniSidenav || (miniSidenav && transparentSidenav) ? 0 : 1,
-      maxWidth: miniSidenav || (miniSidenav && transparentSidenav) ? 0 : "100%",
-      marginLeft: miniSidenav || (miniSidenav && transparentSidenav) ? 0 : pxToRem(10),
+      opacity    : sidenavMini ? 0 : 1,
+      maxWidth   : sidenavMini ? 0 : "100%",
+      marginLeft : sidenavMini ? 0 : pxToRem(10),
       transition: transitions.create(["opacity", "margin"], {
-        easing: transitions.easing.easeInOut,
-        duration: transitions.duration.standard,
+        easing   : transitions.easing.easeInOut,
+        duration : transitions.duration.standard,
       }),
     },
 

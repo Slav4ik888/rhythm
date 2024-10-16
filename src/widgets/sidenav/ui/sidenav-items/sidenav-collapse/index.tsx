@@ -25,7 +25,7 @@ import {
   collapseIcon,
   collapseText,
 } from "./styles";
-import { CustomMUITheme, useMaterialUIController } from "app/providers/theme-old";
+import { CustomTheme, useUIConfiguratorController } from "app/providers/theme";
 
 
 
@@ -38,26 +38,19 @@ interface Props {
 
 
 export const SidenavCollapse: FC<Props> = ({ icon, title, active, ...rest }) => {
-  const [controller] = useMaterialUIController();
-  const { miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = controller;
+  const [configuratorState] = useUIConfiguratorController();
+  const { sidenavMini, mode, sidenavColor } = configuratorState;
+  const darkMode = mode === "dark";
 
   return (
     <ListItem component="li">
       <MDBox
         {...rest}
-        sx={(theme: CustomMUITheme) =>
-          collapseItem(theme, {
-            active,
-            transparentSidenav,
-            whiteSidenav,
-            darkMode,
-            sidenavColor,
-          })
-        }
+        sx={(theme: CustomTheme) => collapseItem(theme, { active, darkMode, sidenavColor })}
       >
-        <ListItemIcon sx={(theme) => collapseIconBox(theme as CustomMUITheme, { transparentSidenav, whiteSidenav, darkMode, active })}>
+        <ListItemIcon sx={(theme) => collapseIconBox(theme as CustomTheme, { darkMode, active })}>
           {typeof icon === "string" ? (
-            <Icon sx={(theme) => collapseIcon(theme as CustomMUITheme, { active })}>{icon}</Icon>
+            <Icon sx={(theme) => collapseIcon(theme as CustomTheme, { active })}>{icon}</Icon>
           ) : (
             icon
           )}
@@ -65,14 +58,7 @@ export const SidenavCollapse: FC<Props> = ({ icon, title, active, ...rest }) => 
 
         <ListItemText
           primary={title}
-          sx={(theme) =>
-            collapseText(theme as CustomMUITheme, {
-              miniSidenav,
-              transparentSidenav,
-              // whiteSidenav, здесь почему-то есть, а в collapseText не используется
-              active,
-            })
-          }
+          sx={(theme) => collapseText(theme as CustomTheme, { active, sidenavMini })}
         />
       </MDBox>
     </ListItem>

@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
 import { Button, Box } from '@mui/material';
-import { f_c_c } from 'app/styles-old';
+import { f_c_c } from 'app/styles';
 import MDButton from 'shared/ui/mui-design-components/md-button';
 
 

@@ -7,12 +7,11 @@ import { getStrNumber, toNumber } from '../../../../helpers/numbers';
 import { useValue } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
 import { GridStyle } from '../../grid-wrap';
-import { SxCard } from 'app/styles-old/types';
 
 
 
 
-const useStyles = (sx: SxCard | undefined) => ({
+const useStyles = (sx: any | undefined) => ({
   textField: {
     backgroundColor: '#ffffff',
     ...sx?.bg,
@@ -41,7 +40,7 @@ type Props = {
   defaultValue? : number | string;
   disabled?     : boolean;
   errorField?   : string;
-  sx?           : SxCard;
+  sx?           : any;
   autoFocus?    : boolean;
   changesValue? : number; // If value can be changes in any place, but not here
   // Control

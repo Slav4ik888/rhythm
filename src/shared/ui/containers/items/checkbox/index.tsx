@@ -2,14 +2,13 @@ import { FC, memo } from 'react';
 import { Checkbox } from '../../elements/checkbox';
 import { UseGroup } from 'shared/lib/hooks';
 import { GridStyle } from '../../grid-wrap';
-import { SxCard } from 'app/styles-old/types';
 
 
 
 interface Props {
   grid?         : GridStyle
   box?          : boolean
-  sx?           : SxCard
+  sx?           : any
   sxCheckbox?   : object
   group         : UseGroup<any>
   scheme?       : string

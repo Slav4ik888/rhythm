@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { FC, memo, ReactNode } from "react";
 import Divider from "@mui/material/Divider";
 import { MDBox, MDTypography } from "shared/ui/mui-design-components";
-import { GradientsBgColorName, GreyColor } from 'app/providers/theme-old';
+import { GradientColorName, GreyColor } from 'app/providers/theme';
 import { ChartConfig } from '../../../../../entities/charts/model/types';
 import { DashboardStatisticItem, ResultChanges } from 'entities/dashboard';
 import { TimeUpdated } from './time-updated';
@@ -28,7 +28,7 @@ import { ChipsContainer } from 'entities/dashboard/ui/items/chips-container';
 
 
 interface Props {
-  bgColor?    : GradientsBgColorName | GreyColor
+  bgColor?    : GradientColorName | GreyColor
   item        : DashboardStatisticItem
   description : string | ReactNode
   date        : string

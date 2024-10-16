@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { ErrorBox } from '..';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { createTheme, ThemeOptions, ThemeProvider } from '@mui/material/styles';
-import { theme as themeLight } from 'app/providers/theme/model/themes/light-base';
+import { customPalette as themeLight } from 'app/providers/theme/model/themes/light-custom-palette';
 
 
 

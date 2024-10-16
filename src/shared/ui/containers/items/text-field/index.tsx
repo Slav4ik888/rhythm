@@ -5,7 +5,6 @@ import { getValueByScheme } from 'shared/helpers/objects';
 import { Errors } from 'shared/lib/validators';
 import { GridStyle } from '../../grid-wrap';
 import { getErrorFieldByScheme } from '../utils';
-import { SxCard } from 'app/styles-old/types';
 
 
 
@@ -25,7 +24,7 @@ interface Props {
   tabIndex?     : number
   errorField?   : string
   errors?       : Errors
-  sx?           : SxCard
+  sx?           : any
   onTransform?  : <T, V>(v: T) => V // Transform default value
   onPrepeare?   : (v: string | number) => void // Transform input value before save
   onBlur?       : (e: MouseEvent, value: number | string) => void

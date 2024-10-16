@@ -6,7 +6,6 @@ import { ErrorBox } from '../../error-box';
 import { useValue } from 'shared/lib/hooks';
 import { Errors, isNotUndefined } from 'shared/lib/validators';
 import { GridStyle } from '../../grid-wrap';
-import { SxCard } from 'app/styles-old/types';
 import { useStyles } from './styles';
 import { Label } from './label';
 
@@ -16,7 +15,7 @@ type Props = {
   grid?           : GridStyle
   // Textarea
   label           : string
-  sx?             : SxCard
+  sx?             : any
   defaultValue?   : string
   changesValue?   : string // If value can be changes in any place, but not here
   placeholder?    : string

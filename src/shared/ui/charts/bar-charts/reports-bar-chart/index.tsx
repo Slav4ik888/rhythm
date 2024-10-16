@@ -30,13 +30,13 @@ import MDTypography from "shared/ui/mui-design-components/md-typography";
 
 // ReportsBarChart configurations
 import { configs } from "./configs";
-import { GradientsBgColorName, GreyColor } from 'app/providers/theme-old';
+import { GradientColorName, GreyColor } from 'app/providers/theme';
 import { ChartConfigDataSets } from 'entities/charts';
 
 
 
 interface Props {
-  bgColor?: GradientsBgColorName | GreyColor
+  bgColor?: GradientColorName | GreyColor
   title: string
   description: string | React.ReactNode
   date: string

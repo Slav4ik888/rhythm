@@ -3,7 +3,7 @@ import { TextfieldItem } from '..';
 import { render, screen, fireEvent, renderHook } from '@testing-library/react';
 import { useGroup } from '../../../../../lib/hooks';
 import { createTheme, ThemeProvider, ThemeOptions } from '@mui/material/styles';
-import { theme as themeLight } from 'app/providers/theme/model/themes/light-base';
+import { customPalette as themeLight } from 'app/providers/theme/model/themes/light-custom-palette';
 
 const theme = createTheme(themeLight as ThemeOptions);
 

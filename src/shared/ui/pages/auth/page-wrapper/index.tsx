@@ -1,6 +1,6 @@
 import { FC, memo, ReactNode } from 'react';
 import { Box, Container, Paper } from '@mui/material';
-import { CustomTheme, useTheme } from 'app/providers/theme-old';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 import { PageHeader } from '../../page-header';
 
 
@@ -21,7 +21,7 @@ const useStyles = (theme: CustomTheme) => ({
     display         : 'flex',
     alignItems      : 'center',
     flexDirection   : 'column',
-    backgroundColor : theme.auth.paper.background,
+    backgroundColor : theme.palette.background.paper,
     width           : '100%',
     p               : 4
   }

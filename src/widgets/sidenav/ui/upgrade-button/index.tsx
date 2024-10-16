@@ -5,7 +5,7 @@ import MDButton from 'shared/ui/mui-design-components/md-button';
 
 
 export const SidenavUpgradeButton: FC = memo(({  }) => {
-  const [configuratorState, dispatch] = useUIConfiguratorController();
+  const [configuratorState] = useUIConfiguratorController();
   const { sidenavMini, sidenavColor } = configuratorState;
   
 

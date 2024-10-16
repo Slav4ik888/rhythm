@@ -17,7 +17,7 @@ Coded by www.creative-tim.com
 import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
 import Icon from "@mui/material/Icon";
-import { GradientsBgColorName, GreyColor, ColorName } from 'app/providers/theme-old';
+import { GradientColorName, GreyColor, ColorName } from 'app/providers/theme';
 import { FC } from 'react';
 
 // Material Dashboard 2 React components
@@ -26,7 +26,7 @@ import MDTypography from "shared/ui/mui-design-components/md-typography";
 
 
 interface Props {
-  bgColor?: GradientsBgColorName | GreyColor
+  bgColor?: GradientColorName | GreyColor
   title: string
   count: number | string
   percentage: {

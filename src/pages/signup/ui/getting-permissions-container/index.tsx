@@ -5,7 +5,7 @@ import { CheckboxContainer as Checkbox } from 'shared/ui/containers/items';
 import { PolicyDescription } from './policy-description';
 import { ErrorBox } from 'shared/ui/containers';
 import { UseGroup } from 'shared/lib/hooks';
-import { CustomTheme, useTheme } from 'app/providers/theme-old';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 
 
 

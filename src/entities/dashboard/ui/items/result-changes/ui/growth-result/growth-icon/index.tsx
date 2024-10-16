@@ -5,12 +5,12 @@ import GrowIcon from './assets/triangle-growth.svg';
 import FallIcon from './assets/triangle-fall.svg';
 import UnchangedLeftIcon from './assets/triangle-unchanged-left.svg';
 import UnchangedRightIcon from './assets/triangle-unchanged-right.svg';
-import { CustomMUITheme, useTheme } from 'app/providers/theme-old';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 import { getColorByIncreased } from '../../../model/utils';
 
 
 
-const useStyles = (theme: CustomMUITheme, increased: Increased, unchangedBlack?: boolean) => {
+const useStyles = (theme: CustomTheme, increased: Increased, unchangedBlack?: boolean) => {
   const color = getColorByIncreased(theme, increased, unchangedBlack);
 
   return {
