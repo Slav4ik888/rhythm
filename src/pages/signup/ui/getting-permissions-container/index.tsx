@@ -26,7 +26,7 @@ const useStyles = (theme: CustomTheme) => ({
     my         : 0.5
   },
   sxBox: {
-    backgroundColor : theme.auth.paper.background,
+    backgroundColor : theme.palette.background.paper,
     pr              : 1.1
   },
   checkbox: {

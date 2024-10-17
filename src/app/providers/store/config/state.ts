@@ -5,6 +5,8 @@ import { StateSchemaUI } from 'entities/ui';
 import { StateSchemaDashboard } from 'entities/dashboard';
 import { StateSchemaCompany } from 'entities/companies';
 import { StateSchemaUser } from 'entities/user';
+import { StateSchemaSignupPage } from 'pages/signup';
+import { StateSchemaLoginPage } from 'pages/login';
 
 
 
@@ -17,7 +19,9 @@ export interface StateSchema {
   // Features
 
   // Async reducer
-  dashboard? : StateSchemaDashboard
+  signupPage? : StateSchemaSignupPage
+  loginPage?  : StateSchemaLoginPage
+  dashboard?  : StateSchemaDashboard
 };
 
 

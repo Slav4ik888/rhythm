@@ -8,8 +8,11 @@ import { SidenavColorName } from './sidenav';
 
 
 export interface ThemeColorItem {
-  main  : string
-  focus : string
+  light        : string
+  main         : string
+  dark         : string
+  focus        : string
+  contrastText : string
 }
 
 
@@ -36,16 +39,17 @@ export type Shadows = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'inset';
 
 export type GreyColor = 'grey-100' | 'grey-200' | 'grey-300' | 'grey-400' | 'grey-500' | 'grey-600' | 'grey-700' | 'grey-800' | 'grey-900'
 
-/** Только те которые есть в Palette */
-export type ColorName =
-  & SidenavColorName
-  & NavbarColorName
+export type BaseColorName =
   | 'inherit'
   | 'text' | 'transparent' | 'white' | 'black'
   | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'light' | 'dark'
   | 'growth'  | 'fall' | 'unchanged'
   // | 'department_7'       | 'department_6'       | 'department_5'       | 'department_4'       | 'department_3'       | 'department_2'       | 'department_1'
-  // | 'department_7_title' | 'department_6_title' | 'department_5_title' | 'department_4_title' | 'department_3_title' | 'department_2_title' | 'department_1_title';
+  | 'department_7_title' | 'department_6_title' | 'department_5_title' | 'department_4_title' | 'department_3_title' | 'department_2_title' | 'department_1_title';
+
+
+/** Только те которые есть в Palette */
+export type ColorName = BaseColorName | SidenavColorName | NavbarColorName
 
 export type GradientColorName =
   | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'light' | 'dark'
@@ -60,3 +64,6 @@ export type ColoredShadowsName =
   | 'error'
   | 'light'
   | 'dark'
+
+// type NavbarColorName = 'navbar_white' | 'navbar_green' | 'navbar_grey'
+// type ColorName = 'text' | 'transparent' | 'white' | 'black'

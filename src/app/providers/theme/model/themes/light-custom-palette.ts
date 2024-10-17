@@ -5,10 +5,10 @@ export const customPalette = {
   mode: 'light' as PaletteMode,
   
   background: {
-    default: '#f0f2f5',
-    sidenav: '',
-    card: '',
-    paper: '',
+    default : '#f0f2f5',
+    // sidenav : '#f0f2f5',
+    card    : '#f0f2f5',
+    paper   : '#f0f2f5',
   },
 
   text: {

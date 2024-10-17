@@ -5,7 +5,6 @@ import { GettingPermissionsContainer } from 'pages/signup/ui/getting-permissions
 import { ActionMain, ActionHelps } from 'widgets/auth/action-container';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 import { UseGroup } from 'shared/lib/hooks';
-import { AuthType } from 'entities/auth';
 import { AuthPageWrapper, AuthContentWrapper, AuthCardHeader } from 'shared/ui/pages';
 
 
@@ -27,7 +26,7 @@ interface Props {
 export const SignupPageComponent: FC<Props> = memo(({ group: S, firstNameRef, emailRef, passwordRef, onSubmit }) => (
   <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
     <AuthPageWrapper>
-      <AuthCardHeader type={AuthType.SIGNUP} />
+      <AuthCardHeader type='signup' />
 
       <AuthContentWrapper>
         <Content
@@ -39,10 +38,10 @@ export const SignupPageComponent: FC<Props> = memo(({ group: S, firstNameRef, em
 
         <GettingPermissionsContainer group={S} />
         <ActionMain
-          type     = {AuthType.SIGNUP}
+          type     = 'signup'
           onSubmit = {onSubmit}
         />
-        <ActionHelps type={AuthType.SIGNUP } />
+        <ActionHelps type='signup' />
       </AuthContentWrapper>
 
     </AuthPageWrapper>

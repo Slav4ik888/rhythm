@@ -2,8 +2,10 @@ import { FC, memo } from 'react';
 import { Typography, Avatar } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-import { AuthType } from 'entities/auth';
 
+
+
+export type AuthType = 'login' | 'signup';
 
 
 const useStyles = (theme: CustomTheme) => ({
@@ -18,7 +20,6 @@ const useStyles = (theme: CustomTheme) => ({
   }
 });
 
-
 interface Props {
   type: AuthType
 }
@@ -26,7 +27,7 @@ interface Props {
 export const AuthCardHeader: FC<Props> = memo(({ type }) => {
   const
     sx = useStyles(useTheme()),
-    title = type === AuthType.SIGNUP ? 'Регистрация' : 'Войти';
+    title = type === 'signup' ? 'Регистрация' : 'Войти';
 
 
   return (

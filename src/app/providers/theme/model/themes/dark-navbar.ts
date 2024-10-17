@@ -1,18 +1,33 @@
 import { ThemeColorItem, NavbarColorName } from '../types';
 
+type Navbar = { navbar: ThemeColorItem }
 
-
-export const navbarColors: Record<NavbarColorName, ThemeColorItem> = {
+export const navbarColors: Record<NavbarColorName, Navbar> = {
   'navbar_white': {
-    main  : 'rgba(255, 255, 255, 0.8)',
-    focus : 'rgba(255, 255, 255, 0.8)',
+    navbar: {
+      light : '',
+      main  : 'rgba(255, 255, 255, 0.8)',
+      dark  : '',
+      focus : 'rgba(255, 255, 255, 0.8)',
+      contrastText: '',
+    }
   },
   'navbar_green': {
-    main  : 'rgb(76 175 80)',
-    focus : 'rgb(76 175 80)',
+    navbar: {
+      light : '',
+      main  : 'rgb(76 175 80)',
+      dark  : '',
+      focus : 'rgb(76 175 80)',
+      contrastText: '',
+    }
   },
   'navbar_grey': {
-    main  : 'rgb(184 184 184)',
-    focus : 'rgb(184 184 184)',
+    navbar: {
+      light : '',
+      main  : 'rgb(184 184 184)',
+      dark  : '',
+      focus : 'rgb(184 184 184)',
+      contrastText: '',
+    }
   },
 }
