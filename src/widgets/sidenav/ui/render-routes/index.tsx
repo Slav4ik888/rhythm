@@ -1,6 +1,5 @@
 import { ColorName } from 'app/providers/theme';
 import { SidenavRouteListItem } from 'entities/dashboard';
-import { Fragment } from 'react';
 import { SidenavDivider } from '../sidenav-items/sidenav-divider';
 import { SidenavLink } from '../sidenav-items/sidenav-link';
 import { SidenavNavLink } from '../sidenav-items/sidenav-navlink';
@@ -35,14 +34,15 @@ export const renderRoutes = (routesList: SidenavRouteListItem[], activeName: str
     else if (type === "title") {
       returnValue = (
         <SidenavTitle
+          k         = {key as string}
           textColor = {textColor}
           title     = {title as string}
         />
       );
     }
     else if (type === "divider") {
-      returnValue = <SidenavDivider />;
+      returnValue = <SidenavDivider k={key as string} />;
     }
   
-  return <Fragment key={key}>{returnValue}</Fragment>;
+  return returnValue;
 });

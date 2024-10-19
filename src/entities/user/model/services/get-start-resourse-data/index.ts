@@ -1,47 +1,33 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig, errorHandlers, CustomAxiosError } from 'app/providers/store';
-import { Company, actionsCompany } from 'entities/company';
-import { actionsDocuments, Document } from 'entities/documents';
-import { actionsFolders, Folder } from 'entities/folders';
+import { actionsCompany, CompanyData } from 'entities/company';
 import { paths } from 'shared/api';
-import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
 import { User } from '../../types';
 
 
 
-/** 2024-03-06 */
+/** 2024-10-18 */
 interface ResGetStartResourseData {
   userData    : User
-  companyData : Company
-  folders     : Folder[]
-  breadcrumbs : Folder[]
-  documents   : Document[]
+  companyData : CompanyData
 }
 
 
 export const getStartResourseData = createAsyncThunk <
   User,
-  string,
+  undefined,
   ThunkConfig<Errors>
 >(
   'entitiesUser/getStartResourseData',
   async (pathname, thunkApi) => {
-    const
-      { extra, dispatch, rejectWithValue } = thunkApi,
-      activeFolder = LS.getActiveFolder() || {} as Folder;
+    const { extra, dispatch, rejectWithValue } = thunkApi;
     
     try {
-      const { data: { userData, companyData, folders, breadcrumbs, documents } } = await extra.api
-        .post<ResGetStartResourseData>(paths.user.getStartResourseData, { activeFolder });
+      const { data: { userData, companyData } } = await extra.api
+        .get<ResGetStartResourseData>(paths.user.getStartResourseData);
       
-      console.log('folders: ', folders);
-      console.log('breadcrumbs: ', breadcrumbs);
-      console.log('documents: ', documents);
-      
-      dispatch(actionsCompany.setCompany(companyData));
-      dispatch(actionsFolders.addFolders([...folders, ...breadcrumbs]));
-      dispatch(actionsDocuments.addDocuments(documents));
+      dispatch(actionsCompany.setCompanyData(companyData));
       
       return userData;
     }

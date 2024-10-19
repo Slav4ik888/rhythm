@@ -3,7 +3,8 @@ import { reducerUI } from 'entities/ui';
 import { api } from 'shared/api';
 import { StateSchema } from 'app/providers/store';
 import { createReducerManager } from 'app/providers/store/config/reducer-manager';
-import { reducerCompany } from 'entities/companies';
+import { reducerCompany } from 'entities/company';
+import { reducerUser } from 'entities/user';
 
 
 
@@ -12,6 +13,7 @@ export function createReduxStore(initialState: DeepPartial<StateSchema>) {
     rootReducers: ReducersMapObject<StateSchema> = {
       // Entities
       ui      : reducerUI,
+      user    : reducerUser,
       company : reducerCompany,
       // Features
     },

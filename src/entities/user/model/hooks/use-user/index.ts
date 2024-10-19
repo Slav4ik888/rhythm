@@ -27,7 +27,7 @@ export const useUser = () => {
     role           = useSelector(s.selectUserRole),
     companyId      = useSelector(s.selectCompanyId),
 
-    serviceGetStartResourseData = (pathname: string) => dispatch(getStartResourseData(pathname)),
+    serviceGetStartResourseData = () => dispatch(getStartResourseData()),
     // serviceUpdateUser            = (user: Partial<User>) => dispatch(updateUser(user)),
     // serviceDeleteUser            = (companyId: string, userId: string) => dispatch(deleteUser({ companyId, userId })),
     serviceLogout            = (email: string) => dispatch(logout(email));

@@ -1,4 +1,4 @@
-import { selectCompanyId } from 'entities/companies';
+import { selectCompanyId } from 'entities/company';
 import { actionsDashboard, selectActivePeriod, selectSelectedPeriod } from 'entities/dashboard';
 import { FC, memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';

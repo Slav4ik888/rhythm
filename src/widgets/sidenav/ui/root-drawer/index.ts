@@ -33,9 +33,10 @@ export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, owne
   const { gradients, background } = palette;
   const { xxl } = getBoxShadows(theme);
 
-  let backgroundValue = darkMode
-    ? background.sidenav
-    : linearGradient(gradients.dark.main, gradients.dark.state);
+  let backgroundValue = linearGradient(gradients.sidenav.main, gradients.sidenav.state)
+    // darkMode
+    // ? background.sidenav
+    // : linearGradient(gradients.dark.main, gradients.dark.state);
 
   // styles for the sidenav when sidenavMini={false}
   const drawerOpenStyles = () => ({

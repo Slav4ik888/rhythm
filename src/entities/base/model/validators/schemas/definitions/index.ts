@@ -1,4 +1,4 @@
-import { SCHEMA_NAME } from '../../../../../libs/validators/ajv/schemas';
+import { SCHEMA_NAME } from 'shared/lib/validators/ajv/schemas';
 
 
 export const definitions = {

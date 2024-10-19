@@ -6,7 +6,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { PeriodTypeChip } from './chip';
 import { useSelector } from 'react-redux';
-import { selectCompanyId } from 'entities/companies';
+import { selectCompanyId } from 'entities/company';
 
 
 

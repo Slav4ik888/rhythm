@@ -3,10 +3,11 @@ import { NavigateOptions, To } from 'react-router-dom';
 import { Action, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { StateSchemaUI } from 'entities/ui';
 import { StateSchemaDashboard } from 'entities/dashboard';
-import { StateSchemaCompany } from 'entities/companies';
+import { StateSchemaCompany } from 'entities/company';
 import { StateSchemaUser } from 'entities/user';
 import { StateSchemaSignupPage } from 'pages/signup';
 import { StateSchemaLoginPage } from 'pages/login';
+import { StateSchemaDocs } from 'entities/docs';
 
 
 
@@ -22,6 +23,7 @@ export interface StateSchema {
   signupPage? : StateSchemaSignupPage
   loginPage?  : StateSchemaLoginPage
   dashboard?  : StateSchemaDashboard
+  docs?       : StateSchemaDocs
 };
 
 

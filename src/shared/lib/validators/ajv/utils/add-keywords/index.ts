@@ -1,7 +1,5 @@
 import Ajv from 'ajv';
-import { isCompanyStatus } from 'entities/company/model/validators/schemas';
-import { isRuleType } from 'entities/rules/model/validators/schemas';
-import { isCondition } from 'entities/ui/model/validators/schemas';
+// import { isCompanyStatus } from 'entities/company/model/validators/schemas';
 import { isCountryCode, isPhoneNumberScheme, isPhoneType, isRole, isUserStatus } from 'entities/user/model/validators/schemas';
 
 
@@ -9,11 +7,7 @@ export const addKeywords = (ajv: Ajv) => {
   ajv
     // Company
     // @ts-ignore
-    .addKeyword(isCompanyStatus)
-
-    // UI
-    // @ts-ignore
-    .addKeyword(isCondition)
+    // .addKeyword(isCompanyStatus)
 
     // User
     // @ts-ignore
@@ -26,8 +20,4 @@ export const addKeywords = (ajv: Ajv) => {
     .addKeyword(isRole)
     // @ts-ignore
     .addKeyword(isUserStatus)
-
-    // Rules
-    // @ts-ignore
-    .addKeyword(isRuleType)
 };

@@ -1,7 +1,6 @@
 import { MOCK_USER_EMPTY, MOCK_USER_EMPLOYEE } from '../../../mocks';
 import { cloneObj } from 'shared/helpers/objects';
 import { creatorUser } from '..';
-import { Languages } from 'entities/user/model/types';
 
 
 
@@ -17,7 +16,6 @@ describe('creatorUser', () => {
 
     res.createdAt.date   = 0;
     res.lastChange.date  = 0;
-    user.settings.language = Languages.RU;
     user.createdAt.date  = 0;
     user.lastChange.date = 0;
     

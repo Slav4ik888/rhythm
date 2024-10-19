@@ -1,5 +1,5 @@
 import { memo, useEffect } from 'react';
-import { actionsCompany, CompanyId } from 'entities/companies';
+import { actionsCompany, CompanyId } from 'entities/company';
 import { actionsDashboard, selectIsMounted, getInitialState } from 'entities/dashboard';
 import { COMPANIES_CONFIG } from '../../model/config';
 import { useSelector } from 'react-redux';

@@ -7,7 +7,7 @@ import { getData, PayloadGetData } from 'features/dashboard';
 import { DashboardPeriodType } from '../config';
 import { getEntitiesByPeriod } from '../utils';
 import { calculateStartDate } from 'features/dashboard/set-period-date/utils';
-import { CompanyId } from 'entities/companies';
+import { CompanyId } from 'entities/company';
 
 
 

@@ -1,8 +1,8 @@
 import { SxProps } from '@mui/material';
-import { CustomMUITheme } from 'app/providers/theme-old';
+import { CustomTheme } from 'app/providers/theme';
 
 
-function menuItem(theme: CustomMUITheme): SxProps {
+function menuItem(theme: CustomTheme): SxProps {
   const { palette, borders, transitions } = theme;
 
   const { secondary, light, dark } = palette;

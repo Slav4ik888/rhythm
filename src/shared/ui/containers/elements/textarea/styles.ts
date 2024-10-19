@@ -1,8 +1,7 @@
-import { SxCard } from 'app/styles-old/types';
 
 
 
-export const useStyles = (sx: SxCard | undefined, length?: number) => ({
+export const useStyles = (sx: any | undefined, length?: number) => ({
   field: {
     width           : '100%',
     // minHeight       : '56px',

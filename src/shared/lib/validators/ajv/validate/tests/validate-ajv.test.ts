@@ -1,6 +1,6 @@
+import { MOCK_FIX_DATE } from 'entities/base/mocks';
 import { validate } from '..';
 import { SCHEMA_NAME } from '../../schemas';
-import { MOCK_FIX_DATE } from 'entities/ui/model/mocks';
 
 
 

@@ -1,4 +1,4 @@
-import { CompanyId } from 'entities/companies';
+import { CompanyId } from 'entities/company';
 import { DashboardEntities, DashboardDates } from 'entities/dashboard';
 
 

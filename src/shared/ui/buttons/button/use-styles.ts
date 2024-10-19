@@ -1,12 +1,11 @@
-import { SxCard } from 'app/styles-old';
-import { CustomTheme } from 'app/providers/theme-old';
+import { CustomTheme } from 'app/providers/theme';
 import { ButtonType, Variant } from './types';
 
 
 
 export const useStyles = (
   theme    : CustomTheme,
-  sx       : SxCard = {},
+  sx       : any = {},
   type     : ButtonType,
   variant  : Variant,
   disabled : boolean | undefined
@@ -25,7 +24,7 @@ export const useStyles = (
     ? 'inherit'
     : isContained
       ? isPrimary
-        ? theme.palette.primary.gradinet : theme.palette.secondary.gradinet
+        ? theme.palette.primary.main : theme.palette.secondary.main
       : 'inherit'
 
 

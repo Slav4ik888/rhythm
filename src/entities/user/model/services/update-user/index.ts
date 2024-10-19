@@ -20,12 +20,12 @@ export const updateUser = createAsyncThunk <
   Partial<User>,
   ThunkConfig<Errors>
 >(
-  'entitiesUser/updateUser',
+  'entities/user/update',
   async (userData, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
     
     try {
-      const { data: { message } } = await extra.api.post<ResUpdateUser>(paths.user.updateUser, { userData });
+      const { data: { message } } = await extra.api.post<ResUpdateUser>(paths.user.update, { userData });
       
       dispatch(actionsUI.setSuccessMessage(message));
     
@@ -33,7 +33,7 @@ export const updateUser = createAsyncThunk <
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue({ general: 'Error in entitiesUser/updateUser' });
+      return rejectWithValue({ general: 'Error in entities/user/update' });
     }
   }
 );

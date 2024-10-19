@@ -13,19 +13,18 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { CustomTheme, SidenavColorName, getBoxShadows, getTypography, linearGradient, pxToRem, rgba } from 'app/providers/theme';
+import { CustomTheme, getBoxShadows, getTypography, linearGradient, pxToRem, rgba } from 'app/providers/theme';
 
 
 interface OwnerStateItem {
-  active       : boolean
-  darkMode     : boolean
-  sidenavColor : SidenavColorName
+  active   : boolean
+  darkMode : boolean
 }
 
 
 const collapseItem = (theme: CustomTheme, ownerState: OwnerStateItem) => {
   const { palette, transitions, breakpoints, borders } = theme;
-  const { active, darkMode, sidenavColor } = ownerState;
+  const { active, darkMode } = ownerState;
 
   const { white, transparent, dark, grey, gradients } = palette;
   const { md } = getBoxShadows(theme);
@@ -33,7 +32,7 @@ const collapseItem = (theme: CustomTheme, ownerState: OwnerStateItem) => {
 
   return {
     background: active
-      ? linearGradient(gradients[sidenavColor].main, gradients[sidenavColor].state)
+      ? linearGradient(gradients.sidenav.main, gradients.sidenav.state)
       : transparent.main,
     color: (! darkMode && ! active) || ! active
       ? dark.main

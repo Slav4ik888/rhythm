@@ -7,17 +7,17 @@ export const customPalette: CustomPalette = {
 
   background: {
     default: '#f0f2f5',
-    sidenav: '',
-    card: '',
-    paper: '',
+    // sidenav: '#000000',
+    card: '#000000',
+    paper: '#000000',
   },
 
   text: {
     main: '#7b809a',
     focus: '#7b809a',
-    primary: '',
-    secondary: '',
-    disabled: '',
+    primary: '#000000',
+    secondary: '#000000',
+    disabled: '#000000',
   },
 
   inherit: {
@@ -42,67 +42,67 @@ export const customPalette: CustomPalette = {
   },
 
   primary: {
-    light: '',
+    light: '#000000',
     main: '#e91e63',
-    dark: '',
+    dark: '#000000',
     focus: '#e91e63',
-    contrastText: '',
+    contrastText: '#000000',
   },
 
   secondary: {
-    light: '',
+    light: '#000000',
     main: '#7b809a',
-    dark: '',
+    dark: '#000000',
     focus: '#8f93a9',
-    contrastText: '',
+    contrastText: '#000000',
   },
 
   info: {
-    light: '',
+    light: '#000000',
     main: '#1A73E8',
-    dark: '',
+    dark: '#000000',
     focus: '#1662C4',
-    contrastText: '',
+    contrastText: '#000000',
   },
 
   success: {
-    light: '',
+    light: '#000000',
     main: '#4CAF50',
-    dark: '',
+    dark: '#000000',
     focus: '#67bb6a',
-    contrastText: '',
+    contrastText: '#000000',
   },
 
   warning: {
-    light: '',
+    light: '#000000',
     main: '#fb8c00',
-    dark: '',
+    dark: '#000000',
     focus: '#fc9d26',
-    contrastText: '',
+    contrastText: '#000000',
   },
 
   error: {
-    light: '',
+    light: '#000000',
     main: '#F44335',
-    dark: '',
+    dark: '#000000',
     focus: '#f65f53',
-    contrastText: '',
+    contrastText: '#000000',
   },
 
   light: {
-    light: '',
+    light: '#000000',
     main: '#f0f2f5',
-    dark: '',
+    dark: '#000000',
     focus: '#f0f2f5',
-    contrastText: '',
+    contrastText: '#000000',
   },
 
   dark: {
-    light: '',
+    light: '#000000',
     main: '#4a4a4a',
-    dark: '',
+    dark: '#000000',
     focus: '#232323',
-    contrastText: '',
+    contrastText: '#000000',
   },
 
   grey: {
@@ -168,24 +168,31 @@ export const customPalette: CustomPalette = {
   // My colors for departments
   department_7_title: {
     main: 'rgb(80 141 222 / 80%)', // Заголовок первого главного блока отделения
+    focus: 'rgb(80 141 222 / 80%)',
   },
   department_1_title: {
     main: 'rgb(209 148 58 / 80%)',
+    focus: 'rgb(209 148 58 / 80%)',
   },
   department_2_title: {
     main: 'rgb(141 97 183 / 80%)',
+    focus: 'rgb(141 97 183 / 80%)',
   },
   department_3_title: {
     main: 'rgb(235 129 129 / 80%)',
+    focus: 'rgb(235 129 129 / 80%)',
   },
   department_4_title: {
     main: 'rgb(63 122 53 / 80%)',
+    focus: 'rgb(63 122 53 / 80%)',
   },
   department_5_title: {
     main: 'rgb(132 132 132 / 80%)',
+    focus: 'rgb(132 132 132 / 80%)',
   },
   department_6_title: {
     main: 'rgb(194 201 35 / 80%)',
+    focus: 'rgb(194 201 35 / 80%)',
   },
 
   socialMediaColors: {

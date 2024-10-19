@@ -39,14 +39,14 @@ interface Props {
 
 export const SidenavCollapse: FC<Props> = ({ icon, title, active, ...rest }) => {
   const [configuratorState] = useUIConfiguratorController();
-  const { sidenavMini, mode, sidenavColor } = configuratorState;
+  const { sidenavMini, mode } = configuratorState;
   const darkMode = mode === "dark";
 
   return (
     <ListItem component="li">
       <MDBox
         {...rest}
-        sx={(theme: CustomTheme) => collapseItem(theme, { active, darkMode, sidenavColor })}
+        sx={(theme: CustomTheme) => collapseItem(theme, { active, darkMode })}
       >
         <ListItemIcon sx={(theme) => collapseIconBox(theme as CustomTheme, { darkMode, active })}>
           {typeof icon === "string" ? (

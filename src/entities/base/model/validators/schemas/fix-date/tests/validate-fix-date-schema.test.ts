@@ -1,6 +1,6 @@
-import { validate } from '../../../../../../libs/validators';
-import { SCHEMA_NAME } from '../../../../../../libs/validators/ajv/schemas/schema-names';
-import { MOCK_USER_ID } from '../../../../../users/mocks';
+import { MOCK_USER_ID } from '../../../../../../user/model/mocks';
+import { validate } from 'shared/lib/validators';
+import { SCHEMA_NAME } from 'shared/lib/validators/ajv/schemas/schema-names';
 import { MOCK_FIX_DATE } from '../../../../../mocks';
 
 

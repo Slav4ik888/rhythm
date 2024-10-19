@@ -1,4 +1,4 @@
-import { MOCK_EMAIL, MOCK_PASSWORD } from 'entities/ui/model/mocks';
+import { MOCK_EMAIL, MOCK_PASSWORD } from 'entities/base/mocks';
 import { SignupData } from '../types';
 
 

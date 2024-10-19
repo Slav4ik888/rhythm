@@ -1,13 +1,13 @@
-import { ColorMode } from 'app/providers/theme-old';
-import { CompanyId } from 'entities/companies';
+import { PaletteMode } from '@mui/material';
+import { CompanyId } from 'entities/company';
 import { StateSchemaDashboard } from 'entities/dashboard';
 import { ResGetData } from 'features/dashboard/get-data/model/types';
 import { setStorageData, getStorageData, removeStorageData } from './main';
 import { Names } from './names';
 
 
-export const setColorMode = (companyId: CompanyId, data: ColorMode) => setStorageData(companyId + '-ColorMode', data);
-export const getColorMode = (companyId: CompanyId) => getStorageData<ColorMode>(companyId + '-ColorMode');
+export const setPaletteMode = (companyId: CompanyId, data: PaletteMode) => setStorageData(companyId + '-PaletteMode', data);
+export const getPaletteMode = (companyId: CompanyId) => getStorageData<PaletteMode>(companyId + '-PaletteMode');
 
 
 export const setDashboardState = (companyId: CompanyId, state: StateSchemaDashboard) => setStorageData(companyId + '-DashboardState', state);

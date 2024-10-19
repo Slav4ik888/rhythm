@@ -1,4 +1,4 @@
-import { CompanyId } from 'entities/companies';
+import { CompanyId } from 'entities/company';
 import { LS } from 'shared/lib/local-storage';
 import { DashboardPeriodType } from '../../config';
 import { DashboardPeriod, StateSchemaDashboard } from '../../types';

@@ -1,5 +1,5 @@
-import { getCurrentMs } from '../../../../shared/utils/dates';
-import { isNum } from '../../../../libs/validators';
+import { getCurrentMs } from 'shared/helpers/dates';
+import { isNum } from 'shared/lib/validators';
 import { FixDate } from '../../types';
 
 /**

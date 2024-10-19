@@ -6,7 +6,7 @@ import { ConditionTypeChip, DashboardConditionType } from 'entities/condition-ty
 import { StatisticTypeChip } from 'entities/statistic-type';
 import { ProductTypeChip } from 'entities/product-type';
 import { useSelector } from 'react-redux';
-import { selectCompanyId } from 'entities/companies';
+import { selectCompanyId } from 'entities/company';
 import { CompanyTypeChip } from 'entities/company-type';
 
 

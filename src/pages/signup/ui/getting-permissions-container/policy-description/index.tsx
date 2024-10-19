@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { DialogInfo } from 'shared/ui/dialogs';
 import { useValue } from 'shared/lib/hooks';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-import { ShowPolicyText } from 'features/docs';
+import { ShowPolicyText } from 'features/docs/get-policy';
 
 
 

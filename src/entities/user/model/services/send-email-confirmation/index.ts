@@ -12,6 +12,7 @@ interface ResSendEmailConfirmation {
 
 
 /**
+ * TODO: перенести в фичи  Auth/signup
  * Повторная отправка ссылки для подтверждения почты
  */
 export const sendEmailConfirmation = createAsyncThunk <
@@ -24,7 +25,7 @@ export const sendEmailConfirmation = createAsyncThunk <
     const { extra, dispatch, rejectWithValue } = thunkApi;
     
     try {
-      const { data: { message } } = await extra.api.get<ResSendEmailConfirmation>(`${paths.user.sendEmailConfirmation}/${email}`);
+      const { data: { message } } = await extra.api.get<ResSendEmailConfirmation>(`${paths.auth.signup.sendEmailConfirmation}/${email}`);
       
       dispatch(actionsUI.setSuccessMessage(message));
     

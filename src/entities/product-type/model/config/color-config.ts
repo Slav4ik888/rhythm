@@ -1,5 +1,5 @@
-import { ColorsConfig } from 'app/providers/theme-old';
-import { CompanyId } from 'entities/companies';
+import { ColorsConfig } from 'app/providers/theme';
+import { CompanyId } from 'entities/company';
 
 
 export const PRODUCT_COLORS_CONFIG: Record<CompanyId, ColorsConfig> = {

@@ -6,7 +6,7 @@ import { calculateStartDate, getMsFromRef } from './utils';
 import { actionsDashboard, DashboardPeriodType, selectSelectedPeriod } from 'entities/dashboard';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { formatDate } from 'shared/helpers/dates';
-import { selectCompanyId } from 'entities/companies';
+import { selectCompanyId } from 'entities/company';
 
 
 

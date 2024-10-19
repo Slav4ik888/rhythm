@@ -16,7 +16,8 @@ Coded by www.creative-tim.com
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import {
-  CustomTheme, ColorName, GradientColorName, RadiusName, GreyColor, getBoxShadows, linearGradient, Shadows, ColoredShadowsName
+  CustomTheme, ColorName, GradientColorName, RadiusName, GreyColor, getBoxShadows,
+  linearGradient, Shadows, ColoredShadowsName
  } from 'app/providers/theme';
 
 

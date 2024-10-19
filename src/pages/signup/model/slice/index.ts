@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { Errors } from 'shared/lib/validators';
-import { signupByLogin } from '../services';
+import { signupByEmail } from '../services';
 import { StateSchemaSignupPage } from '../types';
 
 
@@ -22,15 +22,15 @@ export const slice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(signupByLogin.pending, (state) => {
+      .addCase(signupByEmail.pending, (state) => {
         state.errors  = {};
         state.loading = true;
       })
-      .addCase(signupByLogin.fulfilled, (state, { payload }) => {
+      .addCase(signupByEmail.fulfilled, (state, { payload }) => {
         state.errors  = {};
         state.loading = false;
       })
-      .addCase(signupByLogin.rejected, (state, { payload }) => {
+      .addCase(signupByEmail.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       })

@@ -4,7 +4,7 @@ import Chip from '@mui/material/Chip';
 import { pxToRem } from 'app/providers/theme';
 import { COMPANY_COLORS_CONFIG } from '../../model/config';
 import { ReportsLineChartConfig } from '../../../dashboard/ui/reports';
-import { CompanyId } from 'entities/companies';
+import { CompanyId } from 'entities/company';
 
 
 

@@ -41,31 +41,15 @@ export const gradients = {
   },
 
   // Navbar gradients
-  navbar_white: {
-    main: "",
-    state: "",
+  navbar: {
+    main: 'rgba(255, 255, 255, 0.8)',
+    state: 'rgba(255, 255, 255, 0.6)',
   },
-  navbar_green: {
-    main: "",
-    state: "",
-  },
-  navbar_grey: {
-    main: "",
-    state: "",
-  },
-
+  
   // Sidenav gradients
-  sidenav_black: {
-    main: "",
-    state: "",
-  },
-  sidenav_blue: {
-    main: "",
-    state: "",
-  },
-  sidenav_grey: {
-    main: "",
-    state: "",
+  sidenav: {
+    main: 'rgba(0, 0, 0, 0.8)',
+    state: 'rgba(0, 0, 0, 0.6)',
   },
 
   // My gradient for departments

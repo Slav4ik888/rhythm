@@ -3,7 +3,7 @@ import { reducerUI } from 'entities/ui';
 import { StateSchema } from './state';
 import { createReducerManager } from './reducer-manager';
 import { api } from 'shared/api';
-import { reducerCompany } from 'entities/companies';
+import { reducerCompany } from 'entities/company';
 import { reducerUser } from 'entities/user';
 
 

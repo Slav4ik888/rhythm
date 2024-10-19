@@ -6,7 +6,7 @@ import { COMPANIES_CONFIG } from 'shared/api/keys';
 import { getEntities } from './utils';
 import { ResGetData, PayloadGetData } from '../../types';
 import { LS } from 'shared/lib/local-storage';
-import { CompanyId } from 'entities/companies';
+import { CompanyId } from 'entities/company';
 
 
 

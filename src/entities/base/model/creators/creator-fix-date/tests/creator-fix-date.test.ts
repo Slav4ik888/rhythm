@@ -1,7 +1,8 @@
 import { MOCK_DATE_13_03_2023 } from '../../../mocks';
-import { MOCK_USER_ID } from '../../../../users/mocks';
+import { MOCK_USER_ID } from '../../../../../user/model/mocks';
 import { creatorFixDate } from '..';
-import { getCurrentMs, sec } from '../../../../../shared/utils/dates';
+import { getCurrentMs, sec } from 'shared/helpers/dates';
+
 
 
 describe('creatorFixDate', () => {

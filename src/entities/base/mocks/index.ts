@@ -1,6 +1,8 @@
-import { MOCK_USER_ID } from '../../user/mocks';
-import { creatorFixDate } from '../creators';
-import { FixDate } from '../types';
+import { MOCK_USER_ID } from '../../user/model/mocks';
+import { creatorFixDate } from '../model/creators';
+import { FixDate } from '../model/types';
+
+
 
 /** 2023-03-13 */
 export const MOCK_DATE_13_03_2023 = 1678665600000;

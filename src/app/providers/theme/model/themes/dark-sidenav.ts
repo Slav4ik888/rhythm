@@ -1,34 +1,33 @@
-import { ThemeColorItem, SidenavColorName } from '../types';
+import { SidenavColorName, SidenavTheme } from './light-sidenav';
 
 
-type Sidenav = { sidenav: ThemeColorItem }
 
-export const sidenavColors: Record<SidenavColorName, Sidenav> = {
+export const sidenavThemes: Record<SidenavColorName, SidenavTheme> = {
   'sidenav_black': {
     sidenav: {
-      light : '',
+      light : '#000000',
       main  : 'rgba(0, 0, 0, 0.8)',
-      dark  : '',
+      dark  : '#000000',
       focus : 'rgba(0, 0, 0, 0.8)',
-      contrastText: '',
+      contrastText: '#000000',
     }
   },
   'sidenav_blue': {
     sidenav: {
-      light : '',
+      light : '#000000',
       main  : 'rgb(0 59 117)',
-      dark  : '',
+      dark  : '#000000',
       focus : 'rgb(0 59 117)',
-      contrastText: '',
+      contrastText: '#000000',
     }
   },
   'sidenav_grey': {
     sidenav: {
-      light : '',
+      light : '#000000',
       main  : 'rgb(184 184 184)',
-      dark  : '',
+      dark  : '#000000',
       focus : 'rgb(184 184 184)',
-      contrastText: '',
+      contrastText: '#000000',
     }
   },
 }

@@ -3,7 +3,7 @@ export { useUIConfiguratorController } from './model/lib/use-ui-configurator-con
 export { setOpenConfigurator, setMode, setSidenavMini } from './model/lib/reducer'
 export {
   CustomTheme, ColoredShadowsName, UIConfiguratorProviderState, ColorName, GradientColorName,
-  Offset, Radius, RadiusName, GreyColor, Shadows, SidenavColorName
+  Offset, Radius, RadiusName, GreyColor, Shadows, ColorsConfig, Borders
 } from './model/types'
 export {
   getBoxShadows, boxShadow, rgba, pxToRem, getTypography, linearGradient

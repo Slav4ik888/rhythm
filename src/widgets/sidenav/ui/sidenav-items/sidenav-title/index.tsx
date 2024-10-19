@@ -5,13 +5,15 @@ import MDTypography from 'shared/ui/mui-design-components/md-typography';
 
 
 interface Props {
-  textColor: ColorName
-  title: string
+  k         : string
+  textColor : ColorName
+  title     : string
 }
 
 
-export const SidenavTitle: FC<Props> = memo(({ textColor, title }) => (
+export const SidenavTitle: FC<Props> = memo(({ k: key, textColor, title }) => (
   <MDTypography
+    key           = {key}
     color         = {textColor}
     display       = "block"
     variant       = "caption"

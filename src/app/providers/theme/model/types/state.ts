@@ -1,6 +1,6 @@
 import { PaletteMode } from '@mui/material';
-import { NavbarColorName } from './navbar';
-import { SidenavColorName } from './sidenav';
+import { NavbarColorName } from '../themes/light-navbar';
+import { SidenavColorName } from '../themes/light-sidenav';
 
 
 /**
