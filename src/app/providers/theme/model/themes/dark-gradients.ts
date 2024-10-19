@@ -43,13 +43,13 @@ export const gradients = {
   // Navbar gradients
   navbar: {
     main: 'rgba(255, 255, 255, 0.8)',
-    state: 'rgba(255, 255, 255, 0.6)',
+    state: 'rgba(255, 255, 255, 1)',
   },
   
   // Sidenav gradients
   sidenav: {
     main: 'rgba(0, 0, 0, 0.8)',
-    state: 'rgba(0, 0, 0, 0.6)',
+    state: 'rgba(0, 0, 0, 1)',
   },
 
   // My gradient for departments

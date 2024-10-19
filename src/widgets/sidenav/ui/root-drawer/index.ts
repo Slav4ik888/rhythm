@@ -26,11 +26,11 @@ interface OwnerState {
 
 // @ts-ignore
 export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
-  const { palette, transitions, breakpoints } = theme;
+  const { palette, transitions, breakpoints, borders: { borderRadius } } = theme;
   const { sidenavMini, darkMode } = ownerState;
 
   const sidebarWidth = 250;
-  const { gradients, background } = palette;
+  const { gradients } = palette;
   const { xxl } = getBoxShadows(theme);
 
   let backgroundValue = linearGradient(gradients.sidenav.main, gradients.sidenav.state)
@@ -40,19 +40,10 @@ export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, owne
 
   // styles for the sidenav when sidenavMini={false}
   const drawerOpenStyles = () => ({
-    background: backgroundValue,
     transform: "translateX(0)",
-    transition: transitions.create("transform", {
-      easing: transitions.easing.sharp,
-      duration: transitions.duration.shorter,
-    }),
 
     [breakpoints.up("xl")]: {
-      boxShadow: xxl,
-      marginBottom: "inherit",
-      left: "0",
       width: sidebarWidth,
-      transform: "translateX(0)",
       transition: transitions.create(["width", "background-color"], {
         easing: transitions.easing.sharp,
         duration: transitions.duration.enteringScreen,
@@ -62,20 +53,11 @@ export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, owne
 
   // styles for the sidenav when sidenavMini={true}
   const drawerCloseStyles = () => ({
-    background: backgroundValue,
     transform: `translateX(${pxToRem(-320)})`,
-    transition: transitions.create("transform", {
-      easing: transitions.easing.sharp,
-      duration: transitions.duration.shorter,
-    }),
-
+    
     [breakpoints.up("xl")]: {
-      boxShadow: xxl,
-      marginBottom: "inherit",
-      left: "0",
       width: pxToRem(96),
       overflowX: "hidden",
-      transform: "translateX(0)",
       transition: transitions.create(["width", "background-color"], {
         easing: transitions.easing.sharp,
         duration: transitions.duration.shorter,
@@ -85,9 +67,23 @@ export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, owne
 
   return {
     "& .MuiDrawer-paper": {
-      boxShadow: xxl,
-      border: "none",
+      border       : "none",
+      boxShadow    : xxl,
+      borderRadius : borderRadius.xl,
+      background   : backgroundValue,
+      height       : 'calc(100vh - 2rem)',
+      margin       : '1rem 0 1rem 1rem !important',
+      transition   : transitions.create("transform", {
+        easing   : transitions.easing.sharp,
+        duration : transitions.duration.shorter,
+      }),
 
+      [breakpoints.up("xl")]: {
+        boxShadow    : xxl,
+        marginBottom : "inherit",
+        left         : "0",
+        transform    : "translateX(0)",
+      },
       ...(sidenavMini ? drawerCloseStyles() : drawerOpenStyles()),
     },
   };
