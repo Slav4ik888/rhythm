@@ -9,13 +9,15 @@ import { PaletteMode } from '@mui/material';
 
 
 const initialState: UIConfiguratorProviderState = {
-  mode              : 'light',
-  openConfigurator  : false,
-  navbarColor       : 'navbar_grey',
-  navbarFixed       : true,
-  navbarTransparent : false,
-  sidenavMini       : false,
-  sidenavColor      : 'sidenav_black',
+  mode               : 'light',
+  isOpenConfigurator : false,
+  navbarFixed        : true,
+  navbarTransparent  : false,
+  navbarColor        : 'navbar_grey',
+  isSidenav          : false,
+  sidebarWidth       : 250,
+  sidenavMini        : false,
+  sidenavColor       : 'sidenav_black',
 };
 
 

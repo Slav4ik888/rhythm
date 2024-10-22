@@ -1,6 +1,6 @@
 export { UIConfiguratorProvider } from './ui/ui-configurator-provider'
 export { useUIConfiguratorController } from './model/lib/use-ui-configurator-controller'
-export { setOpenConfigurator, setMode, setSidenavMini } from './model/lib/reducer'
+export { setIsOpenConfigurator, setMode, setSidenavMini, setIsSidenav } from './model/lib/reducer'
 export {
   CustomTheme, ColoredShadowsName, UIConfiguratorProviderState, ColorName, GradientColorName,
   Offset, Radius, RadiusName, GreyColor, Shadows, ColorsConfig, Borders

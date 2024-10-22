@@ -27,7 +27,7 @@ export const PaletteModeSwitcher = memo(() => {
         width          : '100%',
         alignItems     : 'center',
         justifyContent : 'space-between',
-        p              : 3,
+        py             : 3,
       }}
     >
       {mode} mode

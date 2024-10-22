@@ -27,6 +27,7 @@ import { DashboardDatebar } from 'widgets/dashboard/dashboard-datebar';
 import { MiniSidenavToggleBtn, OpenNotificationMenuBtn, OpenUIConfiguratorBtn } from 'features/ui';
 import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
 import { sxNavbarIconButton, sxNavbarIconsStyle } from 'shared/lib/styles/navbar';
+import { SidenavRegulatorWrapper } from 'shared/ui/wrappers';
 
 
 
@@ -37,7 +38,7 @@ interface Props {
 }
 
 
-export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = false, isMini = false }) => {
+export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini = false }) => {
   const [navbarType, setNavbarType] = useState<"sticky" | "static">();
   const [configuratorState, dispatch] = useUIConfiguratorController();
   const { navbarTransparent, navbarFixed, mode } = configuratorState;
@@ -80,71 +81,73 @@ export const DashboardNavbar: FC<Props> = memo(({ absolute = false, light = fals
 
 
   return (
-    <AppBar
-      position={absolute ? "absolute" : navbarType}
-      color="inherit"
-      sx={(theme) => sxNavbar(theme as CustomTheme, { navbarTransparent, absolute, light, darkMode })}
-    >
-      <Toolbar sx={(theme) => sxNavbarContainer(theme as CustomTheme)}>
-        <MDBox
-          color="inherit"
-          mb={{ xs: 1, md: 0 }}
-          sx={(theme: CustomTheme) => sxNavbarRow(theme, isMini)}
-        >
-          {/* <Breadcrumbs
-            title={route[route.length - 1]}
-            route={route}
-            light={light}
-          /> */}
-
-          {/* <IconButton
+    <SidenavRegulatorWrapper>
+      <AppBar
+        position={absolute ? "absolute" : navbarType}
+        color="inherit"
+        sx={(theme) => sxNavbar(theme as CustomTheme, { navbarTransparent, absolute, light, darkMode })}
+      >
+        <Toolbar sx={(theme) => sxNavbarContainer(theme as CustomTheme)}>
+          <MDBox
             color="inherit"
-            onClick={handleMiniSidenav}
+            mb={{ xs: 1, md: 0 }}
+            sx={(theme: CustomTheme) => sxNavbarRow(theme, isMini)}
           >
-            {
-              // @ts-ignore
-              miniSidenav ? <FormatIndentIncreaseIcon sx={sxNavbarIconsStyle} fontSize="small" /> : <MenuIcon sx={sxNavbarIconsStyle} fontSize="small" />
-            }
-          </IconButton> */}
+            {/* <Breadcrumbs
+              title={route[route.length - 1]}
+              route={route}
+              light={light}
+            /> */}
 
-          <DashboardDatebar />
-        </MDBox>
+            {/* <IconButton
+              color="inherit"
+              onClick={handleMiniSidenav}
+            >
+              {
+                // @ts-ignore
+                miniSidenav ? <FormatIndentIncreaseIcon sx={sxNavbarIconsStyle} fontSize="small" /> : <MenuIcon sx={sxNavbarIconsStyle} fontSize="small" />
+              }
+            </IconButton> */}
 
-        {
-          isMini
-            ? null
-            : (
-              <MDBox sx={(theme: CustomTheme) => sxNavbarRow(theme, isMini)}>
-                <MDBox display="flex" alignItems="center" color={light ? "white" : "inherit"}>
-                  <MiniSidenavToggleBtn    light={light} />
-                  <OpenNotificationMenuBtn light={light} />
-                  
-                  {/* <MDBox>
-                    <MDButton
-                      variant="gradient"
-                      color="info"
-                      fullWidth
-                      type="button"
-                      onClick={handleLogOut}
-                    >
-                      Log Out
-                    </MDButton>
-                  </MDBox> */}
+            <DashboardDatebar />
+          </MDBox>
+
+          {
+            isMini
+              ? null
+              : (
+                <MDBox sx={(theme: CustomTheme) => sxNavbarRow(theme, isMini)}>
+                  <MDBox display="flex" alignItems="center" color={light ? "white" : "inherit"}>
+                    <MiniSidenavToggleBtn    light={light} />
+                    <OpenNotificationMenuBtn light={light} />
                     
-                  <OpenUIConfiguratorBtn light={light} />
-                  
-                  <Link to="/authentication/sign-in/basic">
-                    <IconButton sx={(theme) => sxNavbarIconButton(theme as CustomTheme)} disableRipple>
-                      <AccountCircleIcon
-                        fontSize='small'
-                        sx={(theme) => sxNavbarIconsStyle(theme as CustomTheme, configuratorState, light)}
-                      />
-                    </IconButton>
-                  </Link>
+                    {/* <MDBox>
+                      <MDButton
+                        variant="gradient"
+                        color="info"
+                        fullWidth
+                        type="button"
+                        onClick={handleLogOut}
+                      >
+                        Log Out
+                      </MDButton>
+                    </MDBox> */}
+                      
+                    <OpenUIConfiguratorBtn light={light} />
+                    
+                    <Link to="/authentication/sign-in/basic">
+                      <IconButton sx={(theme) => sxNavbarIconButton(theme as CustomTheme)} disableRipple>
+                        <AccountCircleIcon
+                          fontSize='small'
+                          sx={(theme) => sxNavbarIconsStyle(theme as CustomTheme, configuratorState, light)}
+                        />
+                      </IconButton>
+                    </Link>
+                  </MDBox>
                 </MDBox>
-              </MDBox>
-        )}
-      </Toolbar>
-    </AppBar>
+          )}
+        </Toolbar>
+      </AppBar>
+    </SidenavRegulatorWrapper>
   );
 })

@@ -17,44 +17,44 @@ import { CustomTheme, getBoxShadows, getTypography, linearGradient, pxToRem, rgb
 
 
 interface OwnerStateItem {
-  active   : boolean
-  darkMode : boolean
+  active: boolean
 }
 
 
 const collapseItem = (theme: CustomTheme, ownerState: OwnerStateItem) => {
   const { palette, transitions, breakpoints, borders } = theme;
-  const { active, darkMode } = ownerState;
+  const { active } = ownerState;
+  const darkMode = palette.mode === 'dark';
 
-  const { white, transparent, dark, grey, gradients } = palette;
+  const { white, transparent, grey, gradients } = palette;
   const { md } = getBoxShadows(theme);
   const { borderRadius } = borders;
 
   return {
-    background: active
+    display      : 'flex',
+    alignItems   : 'center',
+    width        : '100%',
+    margin       : `${pxToRem(1.5)}`,
+    padding      : `${pxToRem(8)}`,
+    borderRadius : borderRadius.md,
+    cursor       : 'pointer',
+    userSelect   : 'none',
+    whiteSpace   : 'nowrap',
+    boxShadow    : active && ! darkMode ? md : 'none',
+
+    color        : white.main,
+    background   : active
       ? linearGradient(gradients.sidenav.main, gradients.sidenav.state)
       : transparent.main,
-    color: (! darkMode && ! active) || ! active
-      ? dark.main
-      : white.main,
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
-    padding: `${pxToRem(8)} ${pxToRem(10)}`,
-    margin: `${pxToRem(1.5)} ${pxToRem(16)}`,
-    borderRadius: borderRadius.md,
-    cursor: "pointer",
-    userSelect: "none",
-    whiteSpace: "nowrap",
-    boxShadow: active && ! darkMode ? md : "none",
-    [breakpoints.up("xl")]: {
-      transition: transitions.create(["box-shadow", "background-color"], {
+
+    [breakpoints.up('xl')]: {
+      transition: transitions.create(['box-shadow', 'background-color'], {
         easing: transitions.easing.easeInOut,
         duration: transitions.duration.shorter,
       }),
     },
 
-    "&:hover, &:focus": {
+    '&:hover, &:focus': {
       backgroundColor: () => {
         let backgroundValue;
 
@@ -73,62 +73,52 @@ const collapseItem = (theme: CustomTheme, ownerState: OwnerStateItem) => {
 
 interface OwnerStateIconBox {
   active: boolean
-  darkMode: boolean
 }
 
 function collapseIconBox(theme: CustomTheme, ownerState: OwnerStateIconBox) {
   const { palette, transitions, borders } = theme;
-  const { darkMode, active } = ownerState;
+  const { active } = ownerState;
+  const darkMode = palette.mode === 'dark';
 
   const { white, dark } = palette;
   const { borderRadius } = borders;
 
   return {
-    minWidth: pxToRem(32),
-    minHeight: pxToRem(32),
-    color:
-      (! darkMode && ! active) || ! active
-        ? dark.main
-        : white.main,
-    borderRadius: borderRadius.md,
-    display: "grid",
-    placeItems: "center",
-    transition: transitions.create("margin", {
-      easing: transitions.easing.easeInOut,
-      duration: transitions.duration.standard,
+    display      : 'grid',
+    minWidth     : pxToRem(32),
+    minHeight    : pxToRem(32),
+    
+    borderRadius : borderRadius.md,
+    placeItems   : 'center',
+    color: (! darkMode && ! active) || ! active
+      ? dark.main
+      : white.main,
+    
+    transition: transitions.create('margin', {
+      easing   : transitions.easing.easeInOut,
+      duration : transitions.duration.standard,
     }),
 
-    "& svg, svg g": {
+    '& svg, svg g': {
       color: white.main,
     },
   };
 }
 
-interface IconProp1 {
-  palette: {
-    white: {
-      main: string
-    },
-    gradients: {
-      dark: {
-        state: string
-      }
-    }
-  }
-}
+
 
 interface IconProp2 {
   active: boolean
 }
 
-const collapseIcon = ({ palette: { white, gradients } }: IconProp1, { active }: IconProp2) => ({
-  color: active ? white.main : gradients.dark.state,
+const collapseIcon = ({ palette: { white, dark } }: CustomTheme, { active }: IconProp2) => ({
+  color: active ? white.main : dark.main,
 });
 
 
 interface OwnerStateText {
-  sidenavMini: boolean
-  active: boolean
+  sidenavMini : boolean
+  active      : boolean
 }
 
 function collapseText(theme: CustomTheme, ownerState: OwnerStateText) {
@@ -140,17 +130,17 @@ function collapseText(theme: CustomTheme, ownerState: OwnerStateText) {
   return {
     marginLeft: pxToRem(10),
 
-    [breakpoints.up("xl")]: {
+    [breakpoints.up('xl')]: {
       opacity    : sidenavMini ? 0 : 1,
-      maxWidth   : sidenavMini ? 0 : "100%",
+      maxWidth   : sidenavMini ? 0 : '100%',
       marginLeft : sidenavMini ? 0 : pxToRem(10),
-      transition: transitions.create(["opacity", "margin"], {
+      transition: transitions.create(['opacity', 'margin'], {
         easing   : transitions.easing.easeInOut,
         duration : transitions.duration.standard,
       }),
     },
 
-    "& span": {
+    '& span': {
       fontWeight: active ? fontWeightRegular : fontWeightLight,
       fontSize: size.sm,
       lineHeight: 0,

@@ -20,16 +20,16 @@ import { CustomTheme, getBoxShadows, linearGradient, pxToRem } from 'app/provide
 
 
 interface OwnerState {
-  sidenavMini: boolean
-  darkMode: boolean
+  sidebarWidth : number
+  sidenavMini  : boolean
+  // darkMode     : boolean
 }
 
 // @ts-ignore
 export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
   const { palette, transitions, breakpoints, borders: { borderRadius } } = theme;
-  const { sidenavMini, darkMode } = ownerState;
+  const { sidenavMini, sidebarWidth } = ownerState;
 
-  const sidebarWidth = 250;
   const { gradients } = palette;
   const { xxl } = getBoxShadows(theme);
 

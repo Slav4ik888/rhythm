@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import Divider from "@mui/material/Divider";
-import { useUIConfiguratorController } from 'app/providers/theme';
+
 
 
 interface Props {
@@ -8,14 +8,14 @@ interface Props {
 }
 
 
-export const SidenavDivider: FC<Props> = memo(({ k: key }) => {
-  const [configuratorState] = useUIConfiguratorController();
-  const { mode } = configuratorState;
-
-  return (
-    <Divider
-      key   = {key}
-      light = {mode === 'light'}
-    />
-  )
-});
+export const SidenavDivider: FC<Props> = memo(({ k: key }) => 
+  <Divider
+    key={key}
+    sx={{
+      backgroundImage : 'linear-gradient(90deg, transparent, rgba(0, 0, 0, .4), transparent)',
+      backgroundColor : 'transparent',
+      height          : '1px',
+      border          : 'none',
+    }} 
+  />
+);

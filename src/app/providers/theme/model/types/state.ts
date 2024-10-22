@@ -9,7 +9,7 @@ import { SidenavColorName } from '../themes/light-sidenav';
 export interface UIConfiguratorProviderState {
   // ОБЩИЕ
   mode                  : PaletteMode
-  openConfigurator      : boolean         // Open / close Configurator
+  isOpenConfigurator    : boolean         // Open / close Configurator
 
   // HEADER
   navbarFixed           : boolean         // 'fixed' | 'sticky'
@@ -18,6 +18,8 @@ export interface UIConfiguratorProviderState {
   //     - Active theme color : Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
 
   // SIDEBAR
+  isSidenav             : boolean // Отображён или нет
+  sidebarWidth          : number
   sidenavMini           : boolean
   sidenavColor          : SidenavColorName // Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
   //     - Active theme color : Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...

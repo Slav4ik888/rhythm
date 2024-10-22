@@ -34,7 +34,7 @@ interface Props {
 
 export const SidenavContainer: FC<Props> = ({ ...rest }) => {
   const [configuratorState, dispatch] = useUIConfiguratorController();
-  const { sidenavMini, mode } = configuratorState;
+  const { sidenavMini, sidebarWidth, mode } = configuratorState;
   const darkMode = mode === "dark";
   const location = useLocation();
   const activeName = location.pathname.replace("/", ""); // dashboard/css_1d3r8
@@ -69,9 +69,9 @@ export const SidenavContainer: FC<Props> = ({ ...rest }) => {
     <SidenavRoot
       {...rest}
       variant="permanent"
-      ownerState={{ sidenavMini, darkMode }}
+      ownerState={{ sidenavMini, sidebarWidth }}
     >
-      <SidenavLogoLabel textColor={textColor} />
+      <SidenavLogoLabel />
       <SidenavDivider />
       <List>
         {/* <MDBox display="flex flex-col" alignItems="center">
@@ -81,7 +81,6 @@ export const SidenavContainer: FC<Props> = ({ ...rest }) => {
           {exampleRoutes}
         </MDBox> */}
 
-        <SidenavDivider />
         {routes}
       </List>
 

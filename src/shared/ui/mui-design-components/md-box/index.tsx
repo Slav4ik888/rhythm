@@ -14,14 +14,14 @@ Coded by www.creative-tim.com
 */
 
 import { ColorName, RadiusName, GreyColor, GradientColorName, Shadows } from 'app/providers/theme';
-import { forwardRef, FC } from "react";
-import MDBoxRoot from "./md-box-root";
+import { forwardRef, FC } from 'react';
+import MDBoxRoot from './md-box-root';
 
 
-type Flex = "column" | "row" | "row-reverse" | "column-reverse"
+type Flex = 'column' | 'row' | 'row-reverse' | 'column-reverse'
 
 interface Props {
-  variant?        : "contained" | "gradient"
+  variant?        : 'contained' | 'gradient'
   bgColor?        : GreyColor | GradientColorName
   color?          : ColorName
   minWidth?       : string
@@ -34,7 +34,7 @@ interface Props {
   mb?             : number | { xs?: number, md?: number }
   mr?             : { xs?: number, xl?: number }
   ml?             : string | number
-  mt?             : number | "auto"
+  mt?             : number | 'auto'
   mx?             : number
   my?             : number
   pr?             : number
@@ -44,17 +44,17 @@ interface Props {
   pb?             : number
   p?              : number
   padding?        : string
-  position?       : "static" | "relative" | "absolute" | "sticky"
+  position?       : 'static' | 'relative' | 'absolute' | 'sticky'
   top?            : number
   right?          : number
   fontSize?       : string
   lineHeight?     : number
-  textAlign?      : "center" | "left" | "right"
-  display?        : "flex" | "flex flex-col" | "inline" | "none" | { xs: "block", xl: "none" }
+  textAlign?      : 'center' | 'left' | 'right'
+  display?        : 'flex' | 'flex flex-col' | 'inline' | 'none' | { xs: 'block', xl: 'none' }
   flexDirection?  : { xs: Flex, lg: Flex } | 'column' | 'row' | 'row-reverse' | 'column-reverse'
-  alignItems?     : "center"
-  justifyContent? : "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly"
-  flexWrap?       : "wrap" | "flex-start"
+  alignItems?     : 'center' | 'flex-start' | 'flex-end' | 'baseline' | 'stretch'
+  justifyContent? : 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly'
+  flexWrap?       : 'wrap' | 'flex-start'
   coloredShadow?  : string
   component?      : React.ElementType
   to?             : string
@@ -68,13 +68,13 @@ interface Props {
 
 const MDBox: FC<Props> = forwardRef(
   ({
-    variant       = "contained",
-    bgColor       = "transparent",
-    color         = "dark",
+    variant       = 'contained',
+    bgColor       = 'transparent',
+    color         = 'dark',
     opacity       = 1,
-    borderRadius  = "none",
-    shadow        = "none",
-    coloredShadow = "none",
+    borderRadius  = 'none',
+    shadow        = 'none',
+    coloredShadow = 'none',
     ...rest
   }, ref) => (
     <MDBoxRoot

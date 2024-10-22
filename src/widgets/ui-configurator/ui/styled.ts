@@ -14,8 +14,8 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Drawer from "@mui/material/Drawer";
-import { styled } from "@mui/material/styles";
+import Drawer from '@mui/material/Drawer';
+import { styled } from '@mui/material/styles';
 import { CustomTheme, getBoxShadows, pxToRem } from 'app/providers/theme';
 
 
@@ -23,17 +23,15 @@ import { CustomTheme, getBoxShadows, pxToRem } from 'app/providers/theme';
 // @ts-ignore
 export default styled(Drawer)(({ theme, ownerState }) => {
   const { transitions } = theme;
-  const { openConfigurator } = ownerState;
+  const { isOpenConfigurator } = ownerState;
 
   const configuratorWidth = 360;
-  const { lg } = getBoxShadows(theme as CustomTheme);
 
   // drawer styles when openConfigurator={true}
   const drawerOpenStyles = () => ({
     width : configuratorWidth,
-    left  : "initial",
     right : 0,
-    transition: transitions.create("right", {
+    transition: transitions.create('right', {
       easing   : transitions.easing.sharp,
       duration : transitions.duration.short,
     }),
@@ -41,9 +39,8 @@ export default styled(Drawer)(({ theme, ownerState }) => {
 
   // drawer styles when openConfigurator={false}
   const drawerCloseStyles = () => ({
-    left  : "initial",
     right : pxToRem(-350),
-    transition: transitions.create("all", {
+    transition: transitions.create('all', {
       easing   : transitions.easing.sharp,
       duration : transitions.duration.short,
     }),
@@ -51,14 +48,15 @@ export default styled(Drawer)(({ theme, ownerState }) => {
 
 
   return {
-    "& .MuiDrawer-paper": {
-      height       : "100vh",
+    '& .MuiDrawer-paper': {
+      height       : '100%', // 'max-content', // '100vh',
+      left         : 'initial',
       margin       : 0,
-      padding      : `0 ${pxToRem(10)}`,
+      padding      : `0 ${pxToRem(24)}`,
       borderRadius : 0,
-      boxShadow    : lg,
-      overflowY    : "auto",
-      ...(openConfigurator ? drawerOpenStyles() : drawerCloseStyles()),
+      boxShadow    : getBoxShadows(theme as CustomTheme).lg,
+      overflowY    : 'auto',
+      ...(isOpenConfigurator ? drawerOpenStyles() : drawerCloseStyles()),
     },
   };
 });

@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { selectLoading as selectDashboardLoading } from 'entities/dashboard';
 import { Footer } from "widgets/footer";
 import { UIConfigurator } from 'widgets/ui-configurator';
-
+import { Navbar } from 'widgets/navbar';
 
 
 // const useStyles = (theme: CustomTheme) => ({
@@ -38,6 +38,7 @@ import { UIConfigurator } from 'widgets/ui-configurator';
 
 
 export const Layout: FC = memo(() => {
+  console.log('Layout');
   // const sx = useStyles(useTheme());
   const dispatch = useAppDispatch();
   const { pageLoading, errors, setWarningMessage } = useUI();
@@ -55,18 +56,13 @@ export const Layout: FC = memo(() => {
     <>
       <CssBaseline />
       <ScrollToTop />
-      {/* <Box sx={sx.wrapper}> */}
-        {/* <Navbar /> */}
-        <MessageBar />
-        <PageLoader loading={loading} />
-        <UIConfigurator />
-        
-        {/* <Box component="main" sx={sx.main}> */}
-          <Outlet />
-        {/* </Box> */}
+      <Navbar />
+      <MessageBar />
+      <PageLoader loading={loading} />
+      <UIConfigurator />
 
-        <Footer />
-      {/* </Box> */}
+      <Outlet />
+      <Footer />
     </>
   )
 });

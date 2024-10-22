@@ -1,21 +1,29 @@
 import { memo } from 'react';
-import { useUIConfiguratorController } from 'app/providers/theme';
+import { setIsOpenConfigurator, useUIConfiguratorController } from 'app/providers/theme';
 import DrawerStyled from './styled';
 import { PaletteModeSwitcher } from 'features/ui';
+import { UIConfiguratorHeader as Header } from './header';
 
 
 
 export const UIConfigurator = memo(() => {
   const [configuratorState, dispatch] = useUIConfiguratorController();
-  const { openConfigurator } = configuratorState;
+  const { isOpenConfigurator } = configuratorState;
+
+  const handleClose = () => setIsOpenConfigurator(dispatch, false);
 
 
-  if (! openConfigurator) return null
+  if (! isOpenConfigurator) return null
 
   return (
-    // @ts-ignore
-    <DrawerStyled ownerState={openConfigurator}>
-      {/* Light / Dark mode : PaletteMode */}
+    <DrawerStyled
+      anchor     = 'right'
+      onClose    = {handleClose}
+      open       = {isOpenConfigurator}
+      // @ts-ignore
+      ownerState = {{ isOpenConfigurator }}
+    >
+      <Header />
       <PaletteModeSwitcher />
       {/* navbarBackgroundTheme : NavbarColorName */}
     </DrawerStyled>
