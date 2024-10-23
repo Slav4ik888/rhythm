@@ -5,15 +5,14 @@ import SidenavCollapse from "../sidenav-collapse";
 
 
 interface Props {
-  k           : string
   href        : string
   title       : string
+  activeName  : string // as title
   icon        : React.ReactNode | string
-  activeName  : string
   noCollapse? : boolean
 }
 
-export const SidenavLink: FC<Props> = memo(({ k: key, href, activeName, noCollapse, icon, title }) => (
+export const SidenavLink: FC<Props> = memo(({ href, activeName, noCollapse, icon, title }) => (
   <Link
     href   = {href}
     target = "_blank"
@@ -23,7 +22,7 @@ export const SidenavLink: FC<Props> = memo(({ k: key, href, activeName, noCollap
     <SidenavCollapse
       title      = {title}
       icon       = {icon}
-      active     = {key === activeName}
+      active     = {title === activeName}
       noCollapse = {noCollapse}
     />
   </Link>

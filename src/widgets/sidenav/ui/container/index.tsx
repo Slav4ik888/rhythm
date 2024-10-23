@@ -18,7 +18,7 @@ import { useLocation } from "react-router-dom";
 import List from "@mui/material/List";
 import SidenavRoot from "../root-drawer";
 import { useUIConfiguratorController, ColorName, setSidenavMini } from "app/providers/theme";
-import { SidenavDivider } from '../sidenav-items/sidenav-divider';
+import { SidenavDivider } from '../../../../shared/ui/sidenav-divider';
 import { SidenavLogoLabel } from '../logo-label';
 import { SidenavUpgradeButton } from '../upgrade-button';
 import { renderRoutes } from '../render-routes';
@@ -72,7 +72,6 @@ export const SidenavContainer: FC<Props> = ({ ...rest }) => {
       ownerState={{ sidenavMini, sidebarWidth }}
     >
       <SidenavLogoLabel />
-      <SidenavDivider />
       <List>
         {/* <MDBox display="flex flex-col" alignItems="center">
           <MDTypography color={textColor} variant="body2" fontWeight="medium" pl="1.5rem" mb="1rem">

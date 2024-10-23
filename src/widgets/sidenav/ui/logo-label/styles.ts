@@ -29,7 +29,7 @@ export const styles = (theme: CustomTheme, ownerState: OwnerState) => {
   return {
     fontWeight  : fontWeightMedium,
     wordSpacing : pxToRem(-1),
-    ml          : 0.5,
+    ml          : 1,
     transition  : transitions.create("opacity", {
       easing   : transitions.easing.easeInOut,
       duration : transitions.duration.standard,

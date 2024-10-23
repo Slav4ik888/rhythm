@@ -3,14 +3,8 @@ import Divider from "@mui/material/Divider";
 
 
 
-interface Props {
-  k?: string;
-}
-
-
-export const SidenavDivider: FC<Props> = memo(({ k: key }) => 
+export const SidenavDivider = memo(() => 
   <Divider
-    key={key}
     sx={{
       backgroundImage : 'linear-gradient(90deg, transparent, rgba(0, 0, 0, .4), transparent)',
       backgroundColor : 'transparent',

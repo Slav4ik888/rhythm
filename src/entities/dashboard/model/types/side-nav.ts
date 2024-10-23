@@ -10,7 +10,7 @@ type SidenavRouteListItemType =
 export interface SidenavRouteListItem {
   type        : SidenavRouteListItemType
   title?      : string  // Текстовое название выводимое на экран
-  key?        : string  // Key for rendering this item
+  key         : string  // Key for rendering this item
   icon?       : React.ReactNode | string // Иконка | Буква которая будет преобразована в иконку
   noCollapse? : boolean // If true, don't collapse this item
 

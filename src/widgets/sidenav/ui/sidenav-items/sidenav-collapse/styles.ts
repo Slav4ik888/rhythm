@@ -91,8 +91,8 @@ function collapseIconBox(theme: CustomTheme, ownerState: OwnerStateIconBox) {
     borderRadius : borderRadius.md,
     placeItems   : 'center',
     color: (! darkMode && ! active) || ! active
-      ? dark.main
-      : white.main,
+      ? white.main
+      : dark.main,
     
     transition: transitions.create('margin', {
       easing   : transitions.easing.easeInOut,
@@ -100,7 +100,7 @@ function collapseIconBox(theme: CustomTheme, ownerState: OwnerStateIconBox) {
     }),
 
     '& svg, svg g': {
-      color: white.main,
+      color: dark.main,
     },
   };
 }

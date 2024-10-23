@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom';
 import { styles } from './styles';
 import brandDark from 'shared/assets/logo_small.png';
 import { useUIConfiguratorController } from 'app/providers/theme';
+import { SidenavDivider } from '../../../../shared/ui/sidenav-divider';
 
 
 
@@ -23,40 +24,45 @@ export const SidenavLogoLabel = memo(() => {
 
 
   return (
-    <MDBox pt={3} pb={1} px={4} textAlign='center'>
-      <MDBox
-        display={{ xs: 'block', xl: 'none' }}
-        position='absolute'
-        top={8}
-        right={-4}
-        p={1.625}
-        sx={{ cursor: 'pointer' }}
-        onClick={handleCloseSidenav}
-      >
-        <IconButton
-          size='small'
-          color='inherit'
-          onClick={handleSetSidenavMini}
-        >
-          <ArrowBack fontSize='small' color='secondary' />
-        </IconButton>
-      </MDBox>
-      <MDBox component={NavLink} to='/' display='flex' alignItems='center'>
-        {brand && <MDBox component='img' src={brand} alt='Brand' width='2rem' />}
+    <>
+      <MDBox pt={3} pb={1} px={3} mb={2} textAlign='center'>
         <MDBox
-          width={!brandName && '100%'}
-          sx={(theme: CustomTheme) => styles(theme, { sidenavMini })}
+          display={{ xs: 'block', xl: 'none' }}
+          position='absolute'
+          top={8}
+          right={-4}
+          p={1.625}
+          sx={{ cursor: 'pointer' }}
+          onClick={handleCloseSidenav}
         >
-          <MDTypography
-            component  = 'h6'
-            variant    = 'button'
-            fontWeight = 'medium'
-            color      = 'white'
+          <IconButton
+            size='small'
+            color='inherit'
+            onClick={handleSetSidenavMini}
           >
-            {brandName}
-          </MDTypography>
+            <ArrowBack fontSize='small' color='secondary' />
+          </IconButton>
+        </MDBox>
+        <MDBox component={NavLink} to='/' display='flex' alignItems='center'>
+          {brand && <MDBox component='img' src={brand} alt='Brand' width='2rem' />}
+          <MDBox
+            // width={! brandName && '100%'}
+            sx={(theme: CustomTheme) => styles(theme, { sidenavMini })}
+          >
+            <MDTypography
+              component  = 'h6'
+              variant    = 'button'
+              fontWeight = 'medium'
+              textAlign  = 'left'
+              color      = 'white'
+            >
+              {brandName}
+            </MDTypography>
+          </MDBox>
         </MDBox>
       </MDBox>
-    </MDBox>
+      
+      <SidenavDivider />
+    </>
   )
 });

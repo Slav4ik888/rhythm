@@ -6,6 +6,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import { MDBox, MDTypography } from 'shared/ui/mui-design-components';
 import { IconButton } from '@mui/material';
+import { SidenavDivider } from 'shared/ui/sidenav-divider';
 
 
 
@@ -20,10 +21,11 @@ const useStyles = (
   return {
     root: {
       display        : 'flex',
-      justifyContent : 'space-between',
+      justifyContent : 'flex-end',
       // alignItems     : 'baseline',
       pt             : 4,
       pb             : 0.5,
+      mb             : 2,
     },
     icon: {
       fontSize    : `${size.lg} !important`,
@@ -45,26 +47,31 @@ export const UIConfiguratorHeader = memo(() => {
 
 
   return (
-    <MDBox sx={sx.root}>
-      <MDBox>
-        <MDTypography
-          color      = 'black'
-          variant    = 'h6'
-          fontWeight = 'bold'
+    <>
+      <MDBox sx={sx.root}>
+        <MDBox width='100%'>
+          <MDTypography
+            color      = 'black'
+            variant    = 'h6'
+            fontWeight = 'bold'
+            textAlign  = 'center'
+          >
+            Настройки интерфейса
+          </MDTypography>
+          {/* <MDTypography variant='body2' color='text'>
+            See our dashboard options.
+          </MDTypography> */}
+        </MDBox>
+
+        <IconButton
+          color   = 'inherit'
+          onClick = {handleClose}
         >
-          Настройки интерфейса
-        </MDTypography>
-        {/* <MDTypography variant='body2' color='text'>
-          See our dashboard options.
-        </MDTypography> */}
+          <CloseIcon sx={sx.icon} fontSize='small' />
+        </IconButton>
       </MDBox>
 
-      <IconButton
-        color   = 'inherit'
-        onClick = {handleClose}
-      >
-        <CloseIcon sx={sx.icon} fontSize='small' />
-      </IconButton>
-    </MDBox>
+      <SidenavDivider />
+    </>
   )
 });

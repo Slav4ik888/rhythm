@@ -4,19 +4,18 @@ import { NavLink, To } from 'react-router-dom';
 
 
 interface Props {
-  k          : string
   route      : To
   title      : string
+  activeName : string // as title
   icon       : React.ReactNode
-  activeName : string
 }
 
-export const SidenavNavLink: FC<Props> = memo(({ k: key, activeName, icon, title, route }) => (
+export const SidenavNavLink: FC<Props> = memo(({ activeName, icon, title, route }) => (
   <NavLink to={route}>
     <SidenavCollapse
       title  = {title}
       icon   = {icon}
-      active = {key === activeName}
+      active = {title === activeName}
     />
   </NavLink>
 ));
