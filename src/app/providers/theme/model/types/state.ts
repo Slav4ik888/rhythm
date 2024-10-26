@@ -1,6 +1,6 @@
 import { PaletteMode } from '@mui/material';
 import { NavbarColorName } from '../themes/light-navbar';
-import { SidenavColorName } from '../themes/light-sidenav';
+import { SidebarColorName } from '../themes/light-sidebar';
 
 
 /**
@@ -18,10 +18,10 @@ export interface UIConfiguratorProviderState {
   //     - Active theme color : Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
 
   // SIDEBAR
-  isSidenav             : boolean // Отображён или нет
+  isSidebar             : boolean // Отображён или нет
   sidebarWidth          : number
-  sidenavMini           : boolean
-  sidenavColor          : SidenavColorName // Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
+  sidebarMini           : boolean
+  sidebarColor          : SidebarColorName // Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
   //     - Active theme color : Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
   //     - Background image   : Без фона | С фоном
   //                                       |- : Загрузить свою | Картинка 1 | Картинка 2 | Картинка 3 ...

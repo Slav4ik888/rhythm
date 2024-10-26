@@ -4,7 +4,7 @@ import { breakpoints } from '../themes/base/breakpoints';
 import { customPalette } from '../themes/light-custom-palette';
 import { gradients } from '../themes/light-gradients';
 import { NavbarTheme } from '../themes/light-navbar';
-import { SidenavTheme } from '../themes/light-sidenav';
+import { SidebarTheme } from '../themes/light-sidebar';
 
 
 
@@ -35,7 +35,7 @@ export type CustomTheme =
     palette: CustomPalette
     & { gradients : Gradients }
     & NavbarTheme
-    & SidenavTheme
+    & SidebarTheme
   }
   & { borders     : Borders }
   & { breakpoints : Breakpoints }
@@ -60,7 +60,7 @@ export type BaseColorName =
 
 
 /** Только те которые есть в Palette */
-export type ColorName = BaseColorName | 'sidenav' | 'navbar' // | SidenavColorName | NavbarColorName
+export type ColorName = BaseColorName | 'sidebar' | 'navbar' // | SidebarColorName | NavbarColorName
 
 export type GradientColorName =
   | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'light' | 'dark'

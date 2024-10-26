@@ -1,11 +1,11 @@
 import { FC, memo } from 'react';
 import { reducerDashboard } from 'entities/dashboard';
-import { Sidenav } from 'widgets/sidenav';
+import { Sidebar } from 'widgets/sidebar';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 import { DashboardBody } from './body';
-import { SidenavRegulatorWrapper } from 'shared/ui/wrappers';
+import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { useInitialEffect } from 'shared/lib/hooks';
-import { setIsSidenav, useUIConfiguratorController } from 'app/providers/theme';
+import { setIsSidebar, useUIConfiguratorController } from 'app/providers/theme';
 
 
 
@@ -18,16 +18,16 @@ const DashboardPage: FC = memo(() => {
   console.log('DashboardPage');
   const [_, dispatch] = useUIConfiguratorController();
 
-  useInitialEffect(() => setIsSidenav(dispatch, true));
+  useInitialEffect(() => setIsSidebar(dispatch, true));
 
   return (
     <DynamicModuleLoader reducers={initialReducers}>
-      <Sidenav />
+      <Sidebar />
       {/* {configsButton} */}
 
-      <SidenavRegulatorWrapper>
+      <SidebarRegulatorWrapper>
         <DashboardBody />
-      </SidenavRegulatorWrapper>
+      </SidebarRegulatorWrapper>
     </DynamicModuleLoader>
   );
 });

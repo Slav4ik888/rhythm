@@ -2,12 +2,13 @@ import EqualizerIcon from '@mui/icons-material/Equalizer';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
-import { SidenavRouteListItem } from '../../../types';
+import { SidebarRouteListItem } from '../../../types';
 import GroupsIcon from '@mui/icons-material/Groups';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import FolderSpecialIcon from '@mui/icons-material/FolderSpecial';
+
 
 
 // type      : 'collapse',
@@ -25,7 +26,7 @@ import FolderSpecialIcon from '@mui/icons-material/FolderSpecial';
 // component : <ResetPassword />,
 
 
-export const routesList_css_1d3r8: SidenavRouteListItem[] = [
+export const routesList_css_1d3r8: SidebarRouteListItem[] = [
   {
     type  : 'collapse',
     title : 'Dashboard',

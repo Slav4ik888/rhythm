@@ -24,10 +24,10 @@ import { MDBox } from "shared/ui/mui-design-components";
 // import { AuthContext } from "context";
 import { sxNavbar, sxNavbarContainer, sxNavbarRow } from "./styles";
 import { DashboardDatebar } from 'widgets/dashboard/dashboard-datebar';
-import { MiniSidenavToggleBtn, OpenNotificationMenuBtn, OpenUIConfiguratorBtn } from 'features/ui';
+import { MiniSidebarToggleBtn, OpenNotificationMenuBtn, OpenUIConfiguratorBtn } from 'features/ui';
 import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
 import { sxNavbarIconButton, sxNavbarIconsStyle } from 'shared/lib/styles/navbar';
-import { SidenavRegulatorWrapper } from 'shared/ui/wrappers';
+import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 
 
 
@@ -81,7 +81,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
 
 
   return (
-    <SidenavRegulatorWrapper>
+    <SidebarRegulatorWrapper>
       <AppBar
         position={absolute ? "absolute" : navbarType}
         color="inherit"
@@ -93,6 +93,8 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
             mb={{ xs: 1, md: 0 }}
             sx={(theme: CustomTheme) => sxNavbarRow(theme, isMini)}
           >
+            <MiniSidebarToggleBtn light={light} />
+
             {/* <Breadcrumbs
               title={route[route.length - 1]}
               route={route}
@@ -101,11 +103,11 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
 
             {/* <IconButton
               color="inherit"
-              onClick={handleMiniSidenav}
+              onClick={handleMiniSidebar}
             >
               {
                 // @ts-ignore
-                miniSidenav ? <FormatIndentIncreaseIcon sx={sxNavbarIconsStyle} fontSize="small" /> : <MenuIcon sx={sxNavbarIconsStyle} fontSize="small" />
+                miniSidebar ? <FormatIndentIncreaseIcon sx={sxNavbarIconsStyle} fontSize="small" /> : <MenuIcon sx={sxNavbarIconsStyle} fontSize="small" />
               }
             </IconButton> */}
 
@@ -118,7 +120,6 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
               : (
                 <MDBox sx={(theme: CustomTheme) => sxNavbarRow(theme, isMini)}>
                   <MDBox display="flex" alignItems="center" color={light ? "white" : "inherit"}>
-                    <MiniSidenavToggleBtn    light={light} />
                     <OpenNotificationMenuBtn light={light} />
                     
                     {/* <MDBox>
@@ -139,7 +140,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
                       <IconButton sx={(theme) => sxNavbarIconButton(theme as CustomTheme)} disableRipple>
                         <AccountCircleIcon
                           fontSize='small'
-                          sx={(theme) => sxNavbarIconsStyle(theme as CustomTheme, configuratorState, light)}
+                          sx={(theme) => sxNavbarIconsStyle(theme as CustomTheme, configuratorState.navbarTransparent, light)}
                         />
                       </IconButton>
                     </Link>
@@ -148,6 +149,6 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
           )}
         </Toolbar>
       </AppBar>
-    </SidenavRegulatorWrapper>
+    </SidebarRegulatorWrapper>
   );
 })

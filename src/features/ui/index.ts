@@ -1,2 +1,2 @@
-export { MiniSidenavToggleBtn, OpenNotificationMenuBtn } from './navbar'
-export { OpenUIConfiguratorBtn, PaletteModeSwitcher } from './ui-configurator'
+export { MiniSidebarToggleBtn, OpenNotificationMenuBtn } from './navbar'
+export { OpenUIConfiguratorBtn, PaletteModeSwitcher, MiniSidebarSwitcher, SidebarColorSwitcher } from './ui-configurator'

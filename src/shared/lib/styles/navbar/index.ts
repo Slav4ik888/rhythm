@@ -28,12 +28,11 @@ export const sxNavbarIconButton = (theme: CustomTheme) => {
 
 /** Styles for the navbar icons */
 export const sxNavbarIconsStyle = (
-  theme: CustomTheme,
-  state: UIConfiguratorProviderState,
-  light: boolean | undefined
+  theme             : CustomTheme,
+  navbarTransparent : boolean,
+  light             : boolean | undefined
 ) => {
-  const { palette: { dark, white, text } } = theme;
-  const { mode, navbarTransparent } = state;
+  const { palette: { dark, white, text, mode } } = theme;
   const darkMode = mode === 'dark';
 
   return {

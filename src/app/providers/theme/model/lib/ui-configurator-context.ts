@@ -1,5 +1,12 @@
 import { createContext } from 'react';
-import { UIConfiguratorContextType } from '../types';
+import { UIConfiguratorProviderState } from '../types';
+
+
+
+export interface UIConfiguratorContextType extends Array<UIConfiguratorProviderState | any> {
+  0: UIConfiguratorProviderState
+  1: any
+};
 
 
 export const UIConfiguratorContext = createContext<UIConfiguratorContextType>([] as unknown as UIConfiguratorContextType);

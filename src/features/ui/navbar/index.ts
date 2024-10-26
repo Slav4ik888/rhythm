@@ -1,2 +1,2 @@
-export { MiniSidenavToggleBtn } from './ui/mini-sidenav-toggle'
-export { OpenNotificationMenuBtn } from './ui/open-notification-menu'
+export { MiniSidebarToggleBtn } from './mini-sidebar-toggle-btn'
+export { OpenNotificationMenuBtn } from './open-notification-menu-btn'

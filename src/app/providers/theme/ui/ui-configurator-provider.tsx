@@ -1,9 +1,9 @@
 import { FC, ReactNode, useMemo, useReducer } from 'react';
 import { ThemeProvider as MuiThemeProvider, createTheme, useTheme as useMUITheme } from '@mui/material/styles';
-import { UIConfiguratorContextType, UIConfiguratorProviderState } from '../model/types';
+import { UIConfiguratorProviderState } from '../model/types';
 import { reducer } from '../model/lib/reducer';
 import { getThemeByName } from '../model/utils';
-import { UIConfiguratorContext } from '../model/lib/ui-configurator-context';
+import { UIConfiguratorContext, UIConfiguratorContextType } from '../model/lib/ui-configurator-context';
 import { PaletteMode } from '@mui/material';
 
 
@@ -14,10 +14,10 @@ const initialState: UIConfiguratorProviderState = {
   navbarFixed        : true,
   navbarTransparent  : false,
   navbarColor        : 'navbar_grey',
-  isSidenav          : false,
+  isSidebar          : false,
   sidebarWidth       : 250,
-  sidenavMini        : false,
-  sidenavColor       : 'sidenav_black',
+  sidebarMini        : false,
+  sidebarColor       : 'sidebar_black',
 };
 
 

@@ -1,3 +1,3 @@
 export * from './dashboard'
-export * from './side-nav'
+export * from './sidebar'
 export * from './state-schema'

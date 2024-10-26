@@ -1,20 +1,18 @@
 import { FC, memo } from 'react';
 import { IconButton } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
-import {
-  useTheme, setIsOpenConfigurator, useUIConfiguratorController, CustomTheme, UIConfiguratorProviderState
-} from 'app/providers/theme';
+import { useTheme, setIsOpenConfigurator, useUIConfiguratorController, CustomTheme } from 'app/providers/theme';
 import { sxNavbarIconButton, sxNavbarIconsStyle } from 'shared/lib/styles/navbar';
 
 
 
 const useStyles = (
   theme             : CustomTheme,
-  configuratorState : UIConfiguratorProviderState,
+  navbarTransparent : boolean,
   light             : boolean | undefined
 ) => ({
   button : sxNavbarIconButton(theme),
-  icon   : sxNavbarIconsStyle(theme, configuratorState, light)
+  icon   : sxNavbarIconsStyle(theme, navbarTransparent, light)
 });
 
 
@@ -25,10 +23,9 @@ interface Props {
 
 export const OpenUIConfiguratorBtn: FC<Props> = memo(({ light }) => {
   const [configuratorState, dispatch] = useUIConfiguratorController();
-  const sx = useStyles(useTheme(), configuratorState, light);
-  const { isOpenConfigurator } = configuratorState;
+  const sx = useStyles(useTheme(), configuratorState.navbarTransparent, light);
 
-  const handleToggleConfigurator = () => setIsOpenConfigurator(dispatch, ! isOpenConfigurator);
+  const handleOpenConfigurator = () => setIsOpenConfigurator(dispatch, true);
 
 
   return (
@@ -36,7 +33,7 @@ export const OpenUIConfiguratorBtn: FC<Props> = memo(({ light }) => {
       disableRipple
       color   = "inherit"
       sx      = {sx.button}
-      onClick = {handleToggleConfigurator}
+      onClick = {handleOpenConfigurator}
     >
       <SettingsIcon
         fontSize = "small"

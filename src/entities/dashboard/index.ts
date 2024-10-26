@@ -1,7 +1,7 @@
 export { ReportsLineChart, ReportsLineChartConfig } from './ui/reports'
 export {
   DashboardEntities, DashboardDates, StateSchemaDashboard, DashboardItemData,
-  DashboardStatisticItem, DashboardPeriod, Increased, DashboardItemType, SidenavRouteListItem,
+  DashboardStatisticItem, DashboardPeriod, Increased, DashboardItemType, SidebarRouteListItem,
 } from './model/types'
 export { ResultChanges } from './ui/items/result-changes'
 export {

@@ -46,9 +46,11 @@ export function sxNavbar(theme: CustomTheme, ownerState: OwnerState) {
 
       if (light) {
         color = white.main;
-      } else if (navbarTransparent) {
+      }
+      else if (navbarTransparent) {
         color = text.main;
-      } else {
+      }
+      else {
         color = dark.main;
       }
 

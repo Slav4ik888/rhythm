@@ -46,8 +46,8 @@ export const gradients = {
     state: 'rgba(255, 255, 255, 1)',
   },
   
-  // Sidenav gradients
-  sidenav: {
+  // Sidebar gradients
+  sidebar: {
     main: 'rgba(0, 0, 0, 0.8)',
     state: 'rgba(0, 0, 0, 1)',
   },
