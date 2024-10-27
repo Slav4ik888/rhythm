@@ -2,9 +2,9 @@ import { Theme } from '@mui/material';
 import { borders } from '../themes/base/borders';
 import { breakpoints } from '../themes/base/breakpoints';
 import { customPalette } from '../themes/light-custom-palette';
-import { gradients } from '../themes/light-gradients';
 import { NavbarTheme } from '../themes/light-navbar';
 import { SidebarTheme } from '../themes/light-sidebar';
+import { Gradients } from './gradients';
 
 
 
@@ -26,7 +26,6 @@ export interface ColorsConfig {
 export type CustomPalette = typeof customPalette;
 export type Borders       = typeof borders;
 export type Breakpoints   = typeof breakpoints;
-export type Gradients     = typeof gradients;
 
 
 export type CustomTheme =
@@ -61,10 +60,6 @@ export type BaseColorName =
 
 /** Только те которые есть в Palette */
 export type ColorName = BaseColorName | 'sidebar' | 'navbar' // | SidebarColorName | NavbarColorName
-
-export type GradientColorName =
-  | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'light' | 'dark'
-  | 'department_7' | 'department_6' | 'department_5' | 'department_4' | 'department_3' | 'department_2' | 'department_1';
 
 export type ColoredShadowsName =
   | 'primary'

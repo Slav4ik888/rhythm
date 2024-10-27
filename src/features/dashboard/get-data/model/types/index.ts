@@ -13,7 +13,6 @@ export interface StartEntitiesData {
   startDates    : DashboardDates
 }
 
-export interface PayloadGetData {
-  data      : StartEntitiesData
-  companyId : CompanyId
-}
+// export interface PayloadGetData {
+//   data: StartEntitiesData
+// }

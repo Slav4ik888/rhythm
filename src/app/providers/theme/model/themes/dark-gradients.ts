@@ -1,5 +1,6 @@
+import { Gradients } from '../types';
 
-export const gradients = {
+export const gradients: Gradients = {
   primary: {
     main: "#EC407A",
     state: "#D81B60",
@@ -46,12 +47,6 @@ export const gradients = {
     state: 'rgba(255, 255, 255, 1)',
   },
   
-  // Sidebar gradients
-  sidebar: {
-    main: 'rgba(0, 0, 0, 0.8)',
-    state: 'rgba(0, 0, 0, 1)',
-  },
-
   // My gradient for departments
   department_7: {
     main: "rgb(165 210 248)",

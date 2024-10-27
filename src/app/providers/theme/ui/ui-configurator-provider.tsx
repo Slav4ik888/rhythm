@@ -5,19 +5,23 @@ import { reducer } from '../model/lib/reducer';
 import { getThemeByName } from '../model/utils';
 import { UIConfiguratorContext, UIConfiguratorContextType } from '../model/lib/ui-configurator-context';
 import { PaletteMode } from '@mui/material';
+import { LS } from 'shared/lib/local-storage';
 
+
+
+const fromLS = LS.getUIConfiguratorState();
 
 
 const initialState: UIConfiguratorProviderState = {
-  mode               : 'light',
-  isOpenConfigurator : false,
-  navbarFixed        : true,
-  navbarTransparent  : false,
-  navbarColor        : 'navbar_grey',
-  isSidebar          : false,
-  sidebarWidth       : 250,
-  sidebarMini        : false,
-  sidebarColor       : 'sidebar_black',
+  mode               : fromLS.mode               || 'light',
+  isOpenConfigurator : fromLS.isOpenConfigurator || false,
+  navbarFixed        : fromLS.navbarFixed        || true,
+  navbarTransparent  : fromLS.navbarTransparent  || false,
+  navbarColor        : fromLS.navbarColor        || 'navbar_grey',
+  isSidebar          : fromLS.isSidebar          || false,
+  sidebarWidth       : fromLS.sidebarWidth       || 250,
+  sidebarMini        : fromLS.sidebarMini        || false,
+  sidebarColor       : fromLS.sidebarColor       || 'sidebar_black',
 };
 
 

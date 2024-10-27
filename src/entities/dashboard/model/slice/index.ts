@@ -3,7 +3,7 @@ import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
 import { DashboardPeriod, StateSchemaDashboard } from '../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
-import { getData, PayloadGetData } from 'features/dashboard';
+import { getData, StartEntitiesData } from 'features/dashboard';
 import { DashboardPeriodType } from '../config';
 import { getEntitiesByPeriod } from '../utils';
 import { calculateStartDate } from 'features/dashboard/set-period-date/utils';
@@ -70,7 +70,7 @@ export const slice = createSlice({
       state.activeDates    = activeDates;
 
       // Save state to local storage
-      payload.companyId && LS.setDashboardState(payload.companyId, state);
+      LS.setDashboardState(state);
     },
     setSelectedPeriod: (state, { payload }: PayloadAction<{ period: Partial<DashboardPeriod>, companyId: CompanyId }>) => {
       const calcedStartDate = calculateStartDate(state.selectedPeriod.end, payload.period.type || state.selectedPeriod.type || DashboardPeriodType.NINE_MONTHS);
@@ -92,15 +92,14 @@ export const slice = createSlice({
       state.activeDates    = activeDates;
       
       // Save state to local storage
-      if (payload.companyId) {
-        // Тк при первом запуске setSelectedPeriod вызывается автоматически, поэтому нужно НЕ затереть имеющиеся данные
-        const oldData = LS.getDashboardState(payload.companyId);
-        LS.setDashboardState(payload.companyId, {
-          ...oldData,
-          activePeriod   : state.activePeriod,
-          selectedPeriod : state.selectedPeriod,
-        });
-      }
+      // Тк при первом запуске setSelectedPeriod вызывается автоматически, поэтому нужно НЕ затереть имеющиеся данные
+      // TODO: перепроверить, возможно это уже надо убрать
+      const oldData = LS.getDashboardState();
+      LS.setDashboardState({
+        ...oldData,
+        activePeriod   : state.activePeriod,
+        selectedPeriod : state.selectedPeriod,
+      });
     },
   },
 
@@ -111,8 +110,8 @@ export const slice = createSlice({
         state.loading = true;
         state.errors = {};
       })
-      .addCase(getData.fulfilled, (state, { payload }: PayloadAction<PayloadGetData>) => {
-        const { startEntities = {}, startDates = {} } = payload.data;
+      .addCase(getData.fulfilled, (state, { payload }: PayloadAction<StartEntitiesData>) => {
+        const { startEntities = {}, startDates = {} } = payload;
         state.startEntities = startEntities;
         state.startDates    = startDates;
         state.lastUpdated   = new Date().getTime();
@@ -125,7 +124,7 @@ export const slice = createSlice({
         state.errors      = {};
 
         // Save state to local storage
-        LS.setDashboardState(payload.companyId, state);
+        LS.setDashboardState(state);
       })
       .addCase(getData.rejected, (state, { payload }) => {
         state.errors  = getError(payload);

@@ -1,7 +1,17 @@
 import { PaletteMode } from '@mui/material';
 import { SidebarColorName } from '../themes/light-sidebar';
 import { UIConfiguratorProviderState } from '../types';
+import { LS } from 'shared/lib/local-storage';
 
+
+
+/** Helpers for set to LS & state */
+const setState = (_state: UIConfiguratorProviderState, field: string, value: any): UIConfiguratorProviderState => {
+  const state = { ..._state, [field]: value }
+  LS.setUIConfiguratorState(state);
+
+  return state
+};
 
 
 interface Action {
@@ -12,11 +22,11 @@ interface Action {
 
 function reducer(state: UIConfiguratorProviderState, action: Action): UIConfiguratorProviderState {
   switch (action.type) {
-    case 'SET_MODE'             : return { ...state, mode               : action.value };
-    case 'IS_OPEN_CONFIGURATOR' : return { ...state, isOpenConfigurator : action.value };
-    case 'IS_SIDEBAR'           : return { ...state, isSidebar          : action.value };
-    case 'SET_SIDEBAR_MINI'     : return { ...state, sidebarMini        : action.value };
-    case 'SET_SIDEBAR_COLOR'    : return { ...state, sidebarColor       : action.value };
+    case 'SET_MODE'             : return setState(state, 'mode',               action.value);
+    case 'IS_OPEN_CONFIGURATOR' : return setState(state, 'isOpenConfigurator', action.value);
+    case 'IS_SIDEBAR'           : return setState(state, 'isSidebar',          action.value);
+    case 'SET_SIDEBAR_MINI'     : return setState(state, 'sidebarMini',        action.value);
+    case 'SET_SIDEBAR_COLOR'    : return setState(state, 'sidebarColor',       action.value);
 
     default: throw new Error(`Unhandled action type: ${action.type}`);
   }

@@ -19,7 +19,7 @@ export const DashboardBody = memo(() => {
   useEffect(() => {
     if (isMounted) {
       dispatch(actionsCompany.setCompanyId(companyId));
-      dispatch(actionsDashboard.setInitial(getInitialState(companyId)));
+      dispatch(actionsDashboard.setInitial(getInitialState()));
     }
   }, [isMounted]);
 

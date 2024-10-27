@@ -10,8 +10,8 @@ import { selectCompanyId } from 'entities/company';
 
 export const DashboardRefreshButton: FC = memo(() => {
   const dispatch = useAppDispatch();
-  const companyId = useSelector(selectCompanyId);
-  const handleRefresh = () => dispatch(getData(companyId));
+  // const companyId = useSelector(selectCompanyId);
+  const handleRefresh = () => dispatch(getData());
 
 
   return (

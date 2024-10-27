@@ -33,10 +33,10 @@ interface OwnerState {
 
 // @ts-ignore
 export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
-  const { palette, borders } = theme;
+  const { palette, borders, transitions } = theme;
   const { color, variant, size, circular, iconOnly, darkMode } = ownerState;
 
-  const { white, text, transparent, gradients, grey } = palette;
+  const { white, text, transparent, gradients, grey, sidebar } = palette;
   const { borderRadius } = borders;
   const { colored } = getBoxShadows(theme);
 
@@ -162,10 +162,15 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
   // styles for the button with variant="gradient"
   const gradientStyles = () => {
     // background value
-    const backgroundValue =
-      color === "white" || ! gradients[color as GradientColorName]
-        ? white.main
-        : linearGradient(gradients[color as GradientColorName].main, gradients[color as GradientColorName].state);
+    let backgroundValue = white.main;
+
+    // if (color === "white") backgroundValue = white.main;
+    if (color === 'sidebar' && sidebar.gradients.main) {
+      backgroundValue = linearGradient(sidebar.gradients.main, sidebar.gradients.state);
+    }
+    else if (gradients[color as GradientColorName]) {
+      backgroundValue = linearGradient(gradients[color as GradientColorName].main, gradients[color as GradientColorName].state);
+    }
 
     // boxShadow value
     const boxShadowValue = colored[color as ColoredShadowsName]
@@ -198,12 +203,16 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
     }
 
     return {
-      background: backgroundValue,
-      color: colorValue,
-      boxShadow: boxShadowValue,
-
+      color      : colorValue,
+      background : backgroundValue,
+      boxShadow  : boxShadowValue,
+      transition : transitions.create(['opacity', 'background-color'], {
+        easing: transitions.easing.sharp,
+        duration: transitions.duration.shorter,
+      }),
       "&:hover": {
         boxShadow: hoveredBoxShadowValue,
+        opacity: 0.85,
       },
 
       "&:focus:not(:hover)": {
@@ -211,8 +220,8 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
       },
 
       "&:disabled": {
-        background: backgroundValue,
-        color: colorValue,
+        color      : colorValue,
+        background : backgroundValue,
       },
     };
   };

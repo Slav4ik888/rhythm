@@ -45,12 +45,6 @@ export const gradients = {
     main: 'rgba(255, 255, 255, 0.8)',
     state: 'rgba(255, 255, 255, 1)',
   },
-  
-  // Sidebar gradients
-  sidebar: {
-    main: 'rgba(66, 66, 74, 1)',
-    state: 'rgba(25, 25, 25, 1)',
-  },
 
   // My gradient for departments
   department_7: {

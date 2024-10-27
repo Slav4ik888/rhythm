@@ -27,15 +27,11 @@ interface OwnerState {
 
 // @ts-ignore
 export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
-  const { palette, transitions, breakpoints, borders: { borderRadius } } = theme;
+  const { palette: { sidebar }, transitions, breakpoints, borders: { borderRadius } } = theme;
   const { sidebarMini, sidebarWidth, isSidebar } = ownerState;
-  const { gradients } = palette;
   const { xxl } = getBoxShadows(theme);
 
-  let backgroundValue = linearGradient(gradients.sidebar.main, gradients.sidebar.state)
-    // darkMode
-    // ? background.sidebar
-    // : linearGradient(gradients.dark.main, gradients.dark.state);
+  let backgroundValue = linearGradient(sidebar.gradients.main, sidebar.gradients.state);
 
   // styles for the sidebar when sidebarMini={false}
   const drawerFullwidthStyles = () => ({

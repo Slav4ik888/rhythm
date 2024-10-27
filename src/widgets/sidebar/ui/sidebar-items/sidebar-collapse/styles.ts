@@ -26,7 +26,7 @@ const collapseItem = (theme: CustomTheme, ownerState: OwnerStateItem) => {
   const { active } = ownerState;
   const darkMode = palette.mode === 'dark';
 
-  const { white, transparent, dark, gradients } = palette;
+  const { white, transparent, dark, sidebar } = palette;
   const { md } = getBoxShadows(theme);
   const { borderRadius } = borders;
 
@@ -45,7 +45,7 @@ const collapseItem = (theme: CustomTheme, ownerState: OwnerStateItem) => {
 
     color          : white.main,
     background     : active
-      ? linearGradient(gradients.sidebar.main, gradients.sidebar.state)
+      ? linearGradient(sidebar.gradients.main, sidebar.gradients.state)
       : transparent.main,
 
     [breakpoints.up('xl')]: {
