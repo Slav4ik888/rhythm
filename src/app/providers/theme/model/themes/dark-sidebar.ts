@@ -5,10 +5,10 @@ import { SidebarColorName, SidebarTheme } from './light-sidebar';
 export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
   'sidebar_black': {
     sidebar: {
-      light        : '#000000',
-      main         : 'rgba(0, 0, 0, 0.8)',
-      dark         : '#000000',
-      focus        : 'rgba(0, 0, 0, 0.8)',
+      light        : 'rgba(66, 66, 74, 1)',
+      main         : 'rgba(66, 66, 74, 1)',
+      dark         : 'rgba(66, 66, 74, 1)',
+      focus        : 'rgba(66, 66, 74, 1)',
       contrastText : '#000000',
 
       gradients: {
@@ -19,29 +19,29 @@ export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
   },
   'sidebar_blue': {
     sidebar: {
-      light        : '#000000',
-      main         : 'rgb(0 59 117)',
-      dark         : '#000000',
-      focus        : 'rgb(0 59 117)',
+      light        : 'rgba(31, 63, 94, 1)',
+      main         : 'rgba(31, 63, 94, 1)',
+      dark         : 'rgba(31, 63, 94, 1)',
+      focus        : 'rgba(31, 63, 94, 1)',
       contrastText : '#000000',
 
       gradients: {
-        main  : 'rgba(66, 66, 74, 1)',
-        state : 'rgba(25, 25, 25, 1)',
+        main  : 'rgba(31, 63, 94, 1)',
+        state : 'rgba(4, 20, 34, 1)',
       },
     }
   },
   'sidebar_grey': {
     sidebar: {
-      light        : '#000000',
-      main         : 'rgb(184 184 184)',
-      dark         : '#000000',
-      focus        : 'rgb(184 184 184)',
+      light        : 'rgb(72 72 72)',
+      main         : 'rgb(72 72 72)',
+      dark         : 'rgb(72 72 72)',
+      focus        : 'rgb(72 72 72)',
       contrastText : '#000000',
 
       gradients: {
-        main  : 'rgba(66, 66, 74, 1)',
-        state : 'rgba(25, 25, 25, 1)',
+        main  : 'rgb(72 72 72)',
+        state : 'rgb(41 41 41)',
       },
     }
   },

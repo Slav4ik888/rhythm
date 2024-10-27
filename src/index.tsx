@@ -29,4 +29,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "add to MDButton gradient from 'sidebar' color" && git push -u origin main
+// git add . && git commit -m "add gradient colors to sidebarThemes" && git push -u origin main
