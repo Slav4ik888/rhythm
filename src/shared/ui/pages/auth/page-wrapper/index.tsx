@@ -13,7 +13,7 @@ const useStyles = (theme: CustomTheme) => ({
     width           : '100%'
   },
   container: {
-    my              : 8,
+    mb              : 4,
     px              : { xs: 0 }
   },
   paper: {

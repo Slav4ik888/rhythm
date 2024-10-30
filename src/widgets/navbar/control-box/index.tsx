@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
 import { useLocation } from "react-router-dom";
 import { MDBox } from "shared/ui/mui-design-components";
-import { sxNavbarRow } from "./styles";
+import { sxNavbarRow } from "../styles";
 import { DashboardDatebar } from 'widgets/dashboard/dashboard-datebar';
 import { MiniSidebarToggleBtn } from 'features/ui';
 import { CustomTheme } from 'app/providers/theme';

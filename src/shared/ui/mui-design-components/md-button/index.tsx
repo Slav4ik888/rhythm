@@ -33,6 +33,9 @@ interface Props {
   target?    : string
   rel?       : string
   href?      : string
+  disabled?  : boolean
+  startIcon? : ReactNode
+  endIcon?   : ReactNode
   component? : ElementType
   children   : ReactNode
   sx?        : any

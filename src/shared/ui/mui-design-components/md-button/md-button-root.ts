@@ -36,7 +36,7 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
   const { palette, borders, transitions } = theme;
   const { color, variant, size, circular, iconOnly, darkMode } = ownerState;
 
-  const { white, text, transparent, gradients, grey, sidebar } = palette;
+  const { white, text, transparent, gradients, grey, sidebar, dark } = palette;
   const { borderRadius } = borders;
   const { colored } = getBoxShadows(theme);
 
@@ -228,8 +228,8 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
 
   // styles for the button with variant="text"
   const textStyles = () => {
-    // color value
     const colorValue = palette[color] ? palette[color].main : white.main;
+    const backgroundValue = rgba(palette[color] ? palette[color].main : dark.main, 0.08);
 
     // color value when button is focused
     const focusedColorValue = palette[color] ? palette[color].focus : white.focus;
@@ -238,7 +238,8 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
       color: colorValue,
 
       "&:hover": {
-        color: focusedColorValue,
+        color      : focusedColorValue,
+        background : backgroundValue,
       },
 
       "&:focus:not(:hover)": {

@@ -20,7 +20,9 @@ import { sxNavbar, sxNavbarContainer } from "./styles";
 import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { NavbarControlBox } from './control-box';
-import { NavbarSetupBox } from './setup-box';
+import { NavbarSetupBox } from './setup-box/index.';
+import { useLocation } from 'react-router-dom';
+import { RoutePath } from 'app/providers/routes';
 
 
 
@@ -36,6 +38,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
   const [configuratorState, dispatch] = useUIConfiguratorController();
   const { navbarTransparent, navbarFixed, mode } = configuratorState;
   const darkMode = mode === 'dark';
+  const { pathname } = useLocation(); // '/signup'
 
 
   useEffect(() => {
@@ -64,6 +67,8 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
   //   return () => window.removeEventListener("scroll", handlenavbarTransparent);
   }, [dispatch, navbarFixed]);
 
+
+  if (pathname === (RoutePath.SIGNUP || RoutePath.LOGIN)) return null
 
 
   return (

@@ -25,7 +25,7 @@ import { boxShadow } from "./boxShadow";
 
 
 
-export const getBoxShadows = ({ palette: { black, white, tabs, coloredShadows }}: CustomTheme) => {
+export const getBoxShadows = ({ palette: { black, white, tabs, coloredShadows, dark }}: CustomTheme) => {
   
   return {
     xs: boxShadow([0, 2], [9, -5], black.main, 0.15),
@@ -104,7 +104,7 @@ export const getBoxShadows = ({ palette: { black, white, tabs, coloredShadows }}
     navbarBoxShadow: `${boxShadow([0, 0], [1, 1], white.main, 0.9, "inset")}, ${boxShadow(
       [0, 20],
       [27, 0],
-      black.main,
+      dark.main,
       0.05
     )}`,
     sliderBoxShadow: {
