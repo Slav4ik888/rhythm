@@ -43,7 +43,7 @@ export const Layout: FC = memo(() => {
   const dispatch = useAppDispatch();
   const { pageLoading, errors, setWarningMessage } = useUI();
   const dashboardLoading = useSelector(selectDashboardLoading);
-  const loading = pageLoading || dashboardLoading;
+  const loading = pageLoading || dashboardLoading || false;
   
   
   // Global show errors

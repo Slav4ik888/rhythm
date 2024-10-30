@@ -19,9 +19,7 @@ root.render(
     <StoreProvider>
       <ErrorBoundary>
         <UIConfiguratorProvider>
-          {/* <MaterialUIControllerProvider> */}
-            <App />
-          {/* </MaterialUIControllerProvider> */}
+          <App />
         </UIConfiguratorProvider>
       </ErrorBoundary>
     </StoreProvider>
@@ -29,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "add gradient colors to sidebarThemes" && git push -u origin main
+// git add . && git commit -m "refact Navbar" && git push -u origin main

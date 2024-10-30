@@ -14,7 +14,7 @@ export const RootAuthComponent: FC = memo(() => {
   return (<>
     <div>RootAuthComponent ...</div>
     {
-      [...new Array(10)].map(_ => <p>Any some text...</p>)
+      [...new Array(100)].map((_, idx) => <p key={idx}>Any some text...</p>)
     }
   </>)
 });

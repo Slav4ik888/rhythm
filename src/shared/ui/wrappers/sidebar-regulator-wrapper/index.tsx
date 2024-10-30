@@ -31,6 +31,7 @@ interface Props {
 export const SidebarRegulatorWrapper: FC<Props> = ({ children }) => {
   const [configuratorState] = useUIConfiguratorController();
   const { isSidebar, sidebarMini, sidebarWidth } = configuratorState;
+  
   // const { pathname } = useLocation();
 
   // useEffect(() => {

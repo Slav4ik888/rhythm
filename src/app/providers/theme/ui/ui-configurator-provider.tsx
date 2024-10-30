@@ -18,7 +18,7 @@ const initialState: UIConfiguratorProviderState = {
   navbarFixed        : fromLS.navbarFixed        || true,
   navbarTransparent  : fromLS.navbarTransparent  || false,
   navbarColor        : fromLS.navbarColor        || 'navbar_grey',
-  isSidebar          : fromLS.isSidebar          || false,
+  isSidebar          : false,
   sidebarWidth       : fromLS.sidebarWidth       || 250,
   sidebarMini        : fromLS.sidebarMini        || false,
   sidebarColor       : fromLS.sidebarColor       || 'sidebar_black',

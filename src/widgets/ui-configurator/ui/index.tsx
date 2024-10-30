@@ -34,7 +34,7 @@ export const UIConfigurator = memo(() => {
       <SidebarColorSwitcher />
       <SidebarDivider />
 
-      <SubHeader title='Верхняя панель'/>
+      {/* <SubHeader title='Верхняя панель'/> */}
       {/* navbarBackgroundTheme : NavbarColorName */}
     </DrawerStyled>
   )

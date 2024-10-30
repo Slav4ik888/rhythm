@@ -16,14 +16,6 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     path    : RoutePath.ROOT,
     element : <></>
   },
-  [AppRoutes.DASHBOARD]: {
-    path    : RoutePath.DASHBOARD,
-    element : <DashboardPage />
-  },
-  [AppRoutes.DASHBOARD_ID]: {
-    path    : RoutePath.DASHBOARD_ID,
-    element : <DashboardPage />
-  },
   [AppRoutes.SIGNUP]: {
     path    : RoutePath.SIGNUP,
     element : <SignupPage />
@@ -32,6 +24,16 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     path    : RoutePath.LOGIN,
     element : <LoginPage />
   },
+
+  [AppRoutes.DASHBOARD]: {
+    path    : RoutePath.DASHBOARD,
+    element : <DashboardPage />
+  },
+  [AppRoutes.DASHBOARD_ID]: {
+    path    : RoutePath.DASHBOARD_ID,
+    element : <DashboardPage />
+  },
+
   [AppRoutes.NOT_FOUND]: {
     path    : RoutePath.NOT_FOUND,
     element : <NotFoundPage />
