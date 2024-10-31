@@ -1,11 +1,10 @@
 import { FC, memo, ReactNode } from 'react';
 import { Button as MuiButton } from '@mui/material';
 import { CircularProgress } from 'shared/ui/circular-progress';
-import { ColorName, CustomTheme, useTheme } from 'app/providers/theme';
+import { useTheme } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
 import { ButtonType, Variant } from './types';
 import { useStyles } from './use-styles';
-import { MDButton } from 'shared/ui/mui-design-components';
 
 
 
@@ -18,14 +17,13 @@ interface Props {
   variant?   : Variant
   size?      : 'small' | 'medium' | 'large'
   sx?        : any
-  color?     : ColorName
   startIcon? : ReactNode
   endIcon?   : ReactNode
   onClick    : () => void
 }
 
 
-/** 2024-10-30 */
+/** 2023-11-04 */
 export const Button: FC<Props> = memo(({
   text,
   toolTitle = '',
@@ -37,17 +35,16 @@ export const Button: FC<Props> = memo(({
   sx,
   startIcon,
   endIcon,
-  color,
   onClick
 }) => {
-  const { root } = useStyles(useTheme() as unknown as CustomTheme, sx, type, variant, disabled);
+  const { root } = useStyles(useTheme(), sx, type, variant, disabled);
   
 
   return (
     <Tooltip title={toolTitle}>
-      <MDButton
+      <MuiButton
         variant   = {variant}
-        color     = {color}
+        // color    = {type === ButtonType.SECONDARY ? 'secondary' : 'primary'}
         disabled  = {disabled || loading}
         size      = {size}
         startIcon = {startIcon}
@@ -59,7 +56,7 @@ export const Button: FC<Props> = memo(({
         {text}
         {/* {endIcon} */}
         <CircularProgress size={30} loading={loading} />
-      </MDButton>
+      </MuiButton>
     </Tooltip>
   )
 });

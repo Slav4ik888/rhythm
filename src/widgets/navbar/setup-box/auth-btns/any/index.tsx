@@ -30,7 +30,7 @@ export const AnyAuthBtns: FC = memo(() => {
   return (
     <MDBox >
       <Link to={RoutePath.SIGNUP}>
-        <MDButton sx={signup} variant='text' color='text'>
+        <MDButton sx={{ root: signup }} variant='text' color='text'>
           Регистрация
         </MDButton>
       </Link>

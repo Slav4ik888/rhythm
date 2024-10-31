@@ -18,7 +18,7 @@ Coded by www.creative-tim.com
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import {
-  linearGradient, CustomTheme, ColorName, getBoxShadows, pxToRem, rgba, boxShadow, ColoredShadowsName, GradientColorName
+  linearGradient, CustomTheme, ColorName, getBoxShadows, pxToRem, rgba, boxShadow, ColoredShadowsName, GradientColorName, SxCard
 } from 'app/providers/theme';
 
 
@@ -29,12 +29,13 @@ interface OwnerState {
   circular : boolean
   iconOnly : boolean
   darkMode : boolean
+  sx       : SxCard | undefined
 }
 
 // @ts-ignore
 export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
   const { palette, borders, transitions } = theme;
-  const { color, variant, size, circular, iconOnly, darkMode } = ownerState;
+  const { color, variant, size, circular, iconOnly, darkMode, sx } = ownerState;
 
   const { white, text, transparent, gradients, grey, sidebar, dark } = palette;
   const { borderRadius } = borders;
@@ -293,6 +294,7 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
   };
 
   return {
+    ...sx?.root,
     ...(variant === "contained" && containedStyles()),
     ...(variant === "outlined" && outliedStyles()),
     ...(variant === "gradient" && gradientStyles()),

@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { Box } from '@mui/material';
 import { ErrorBox } from 'shared/ui/containers';
 import { Errors } from 'shared/lib/validators';
-import { Button } from 'shared/ui/buttons';
+import { MDButton } from 'shared/ui/mui-design-components';
 
 
 
@@ -32,6 +32,7 @@ interface Props {
   onSubmit : () => void
 }
 
+
 /** Кнопка "Зарегистрироваться" | "Войти" */
 export const ActionMainComponent: FC<Props> = memo(({ textBtn, loading, errors, disabled, onSubmit }) => {
   const { root, error, button } = useStyles();
@@ -44,11 +45,12 @@ export const ActionMainComponent: FC<Props> = memo(({ textBtn, loading, errors, 
         errors = {errors}
         sx     = {error}
       />
-      <Button
-        loading = {loading || disabled}
-        text    = {textBtn}
-        sx      = {button}
-        onClick = {onSubmit}
+      <MDButton
+        loading  = {loading || disabled}
+        color    = 'primary'
+        children = {textBtn}
+        sx       = {button}
+        onClick  = {onSubmit}
       />
     </Box>
   )

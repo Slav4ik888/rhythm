@@ -5,7 +5,7 @@ export {
  } from './model/lib/reducer'
 export {
   CustomTheme, ColoredShadowsName, UIConfiguratorProviderState, ColorName, GradientColorName,
-  Offset, Radius, RadiusName, GreyColor, Shadows, ColorsConfig, Borders
+  Offset, Radius, RadiusName, GreyColor, Shadows, ColorsConfig, Borders, SxCard
 } from './model/types'
 export {
   getBoxShadows, boxShadow, rgba, pxToRem, getTypography, linearGradient

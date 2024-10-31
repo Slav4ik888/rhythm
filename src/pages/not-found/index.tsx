@@ -43,7 +43,7 @@ export const NotFoundPage: FC = memo(() => {
         variant = "gradient"
         color   = "info"
         type    = "button"
-        sx      = {sx.btn}
+        sx      = {{ root: sx.btn }}
         onClick = {handleClick}
       >
         Перейти на главную

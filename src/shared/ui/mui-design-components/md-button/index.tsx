@@ -19,7 +19,8 @@ import { forwardRef, FC, ElementType, ReactNode } from "react";
 import MDButtonRoot from "./md-button-root";
 
 // Material Dashboard 2 React contexts
-import { ColorName, useUIConfiguratorController } from "app/providers/theme";
+import { ColorName, SxCard, useUIConfiguratorController } from "app/providers/theme";
+import { CircularProgress } from 'shared/ui/circular-progress';
 
 
 interface Props {
@@ -33,12 +34,13 @@ interface Props {
   target?    : string
   rel?       : string
   href?      : string
+  loading?   : boolean
   disabled?  : boolean
   startIcon? : ReactNode
   endIcon?   : ReactNode
   component? : ElementType
   children   : ReactNode
-  sx?        : any
+  sx?        : SxCard
   onClick?   : () => void
 }
 
@@ -50,6 +52,8 @@ const MDButton: FC<Props> = forwardRef(
     size     = "medium",
     circular = false,
     iconOnly = false,
+    loading  = false,
+    sx,
     children,
     ...rest }, ref) => {
     const [configuratorState] = useUIConfiguratorController();
@@ -64,9 +68,10 @@ const MDButton: FC<Props> = forwardRef(
         color      = "primary"
         variant    = {variant === "gradient" ? "contained" : variant}
         size       = {size}
-        ownerState = {{ color, variant, size, circular, iconOnly, darkMode }}
+        ownerState = {{ color, variant, size, circular, iconOnly, darkMode, sx }}
       >
         {children}
+        <CircularProgress size={30} loading={loading} />
       </MDButtonRoot>
     );
   }
