@@ -1,7 +1,7 @@
 import { Configuration as DevServerConfiguraion } from 'webpack-dev-server';
 import { BuildOptions } from './types';
 
-export const buildDevServer = ({ port }: BuildOptions): DevServerConfiguraion => ({
+export const buildDevServer = ({ port, apiUrl }: BuildOptions): DevServerConfiguraion => ({
   port,
   open               : false,
   hot                : true,
@@ -9,7 +9,7 @@ export const buildDevServer = ({ port }: BuildOptions): DevServerConfiguraion =>
   proxy: [
     {
       context: ['/api'],
-      target: 'http://localhost:7575'
+      target: apiUrl
     }
   ]
 });

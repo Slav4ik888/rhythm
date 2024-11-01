@@ -18,13 +18,6 @@ export enum SCHEMA_NAME {
   POSITION          = 'position',
   PHONE_NUMBER      = 'phone-number',
 
-  // FOLDERS
-  FOLDER            = 'folder',
-
-  // RULES
-  DEFS_RULE            = 'defs-rule',
-  RULE                 = 'rule',
-  
   // LOGIN_PAGE
   AUTH_BY_LOGIN     = 'auth-by-login',
   RECOVERY_PASSWORD = 'recovery-password',

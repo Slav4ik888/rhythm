@@ -1,7 +1,7 @@
 import Ajv from 'ajv';
-// import { defsCompany, schemaCompany } from 'entities/company/model/validators/schemas';
+import { defsCompany, schemaCompany } from 'entities/company/model/validators/schemas';
 import { defsBase } from '../../schemas';
-// import { defsItemBase, schemaFixDate } from 'entities/ui/model/validators/schemas';
+import { defsItemBase, schemaFixDate } from 'entities/base/model/validators/schemas';
 import { defsFIO, defsPhone, defsUser, schemaPerson, schemaPhoneNumber, schemaPosition } from 'entities/user/model/validators/schemas';
 import { schemaAuthByLogin } from 'pages/login/model/validators/schemas';
 import { schemaSignupData } from 'pages/signup/model/validators/schemas';
@@ -15,8 +15,8 @@ export const addSchemas = (ajv: Ajv) => {
       defsBase,
 
       // UI
-      // schemaFixDate,
-      // defsItemBase,
+      schemaFixDate,
+      defsItemBase,
 
       // Auth
       schemaAuthByLogin,
@@ -32,7 +32,7 @@ export const addSchemas = (ajv: Ajv) => {
       schemaPosition,
 
       // Company
-      // defsCompany,
-      // schemaCompany,
+      defsCompany,
+      schemaCompany,
     ])
 };
