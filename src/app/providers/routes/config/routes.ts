@@ -1,29 +1,43 @@
 
 export enum AppRoutes {
-  ROOT         = 'ROOT',
-  SIGNUP       = 'SIGNUP',
-  LOGIN        = 'LOGIN',
+  ROOT            = 'ROOT',
+  
+  // Auth
+  SIGNUP          = 'SIGNUP',
+  LOGIN           = 'LOGIN',
 
-  DASHBOARD    = 'DASHBOARD',
-  DASHBOARD_ID = 'DASHBOARD_ID',
+  USER_PROFILE    = 'USER_PROFILE',
+  COMPANY_PROFILE = 'COMPANY_PROFILE',
 
-  NOT_FOUND    = 'NOT_FOUND',
+  DASHBOARD       = 'DASHBOARD',
+  DASHBOARD_ID    = 'DASHBOARD_ID',
+
+  NOT_FOUND       = 'NOT_FOUND',
 }
 
 export const RouteName: Record<string, string> = {
-  [AppRoutes.ROOT]         : '',
-  [AppRoutes.SIGNUP]       : 'signup',
-  [AppRoutes.LOGIN]        : 'login',
-  [AppRoutes.DASHBOARD]    : 'dashboard',
-  [AppRoutes.NOT_FOUND]    : '*',
+  [AppRoutes.ROOT]            : '',
+  // Auth
+  [AppRoutes.SIGNUP]          : 'signup',
+  [AppRoutes.LOGIN]           : 'login',
+  // Profiles
+  [AppRoutes.USER_PROFILE]    : 'user-profile',
+  [AppRoutes.COMPANY_PROFILE] : 'company-profile',
+  // Dashboard
+  [AppRoutes.DASHBOARD]       : 'dashboard',
+  [AppRoutes.NOT_FOUND]       : '*',
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
-  [AppRoutes.ROOT]         : '/',
-  [AppRoutes.SIGNUP]       : '/signup',
-  [AppRoutes.LOGIN]        : '/login',
-
-  [AppRoutes.DASHBOARD]    : '/dashboard',
-  [AppRoutes.DASHBOARD_ID] : '/dashboard/:companyId',
-  [AppRoutes.NOT_FOUND]    : '*',
+  [AppRoutes.ROOT]            : '/',
+  // Auth
+  [AppRoutes.SIGNUP]          : '/signup',
+  [AppRoutes.LOGIN]           : '/login',
+  // Profiles
+  [AppRoutes.USER_PROFILE]    : '/user-profile',
+  [AppRoutes.COMPANY_PROFILE] : '/company-profile',
+  // Dashboard
+  [AppRoutes.DASHBOARD]       : '/dashboard',
+  [AppRoutes.DASHBOARD_ID]    : '/dashboard/:companyId',
+  [AppRoutes.NOT_FOUND]       : '*',
 };

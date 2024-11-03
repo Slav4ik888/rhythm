@@ -68,7 +68,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
   }, [dispatch, navbarFixed]);
 
 
-  if (pathname === (RoutePath.SIGNUP || RoutePath.LOGIN)) return null
+  if (pathname === RoutePath.SIGNUP || pathname === RoutePath.LOGIN) return null
 
 
   return (

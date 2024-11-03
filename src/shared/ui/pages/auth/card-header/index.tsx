@@ -27,15 +27,17 @@ interface Props {
 export const AuthCardHeader: FC<Props> = memo(({ type }) => {
   const
     sx = useStyles(useTheme()),
-    title = type === 'signup' ? 'Регистрация' : 'Войти';
+    login = type === 'login',
+    title = login ? 'Войти' : 'Регистрация';
 
 
   return (
     <>
-      <Avatar sx={sx.lock}>
-        <LockOutlinedIcon />
-      </Avatar>
-
+      {
+        login && <Avatar sx={sx.lock}>
+          <LockOutlinedIcon />
+        </Avatar>
+      }
       <Typography component="h1" variant="h5" sx={sx.pageTitle}>
         {title}
       </Typography>

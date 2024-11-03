@@ -1,7 +1,9 @@
+import { CompanyProfilePage } from 'pages/company-profile';
 import { DashboardPage } from 'pages/dashboard';
 import { LoginPage } from 'pages/login';
 import { NotFoundPage } from 'pages/not-found';
 import { SignupPage } from 'pages/signup';
+import { UserProfilePage } from 'pages/user-profile';
 import { RouteProps } from 'react-router-dom';
 import { AppRoutes, RoutePath } from './routes';
 
@@ -16,6 +18,8 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     path    : RoutePath.ROOT,
     element : <></>
   },
+  
+  // Auth
   [AppRoutes.SIGNUP]: {
     path    : RoutePath.SIGNUP,
     element : <SignupPage />
@@ -25,6 +29,17 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     element : <LoginPage />
   },
 
+  // Profiles
+  [AppRoutes.USER_PROFILE]: {
+    path    : RoutePath.USER_PROFILE,
+    element : <UserProfilePage />
+  },
+  [AppRoutes.COMPANY_PROFILE]: {
+    path    : RoutePath.COMPANY_PROFILE,
+    element : <CompanyProfilePage />
+  },
+
+  // Dashboard
   [AppRoutes.DASHBOARD]: {
     path    : RoutePath.DASHBOARD,
     element : <DashboardPage />
@@ -34,6 +49,7 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     element : <DashboardPage />
   },
 
+  // Others
   [AppRoutes.NOT_FOUND]: {
     path    : RoutePath.NOT_FOUND,
     element : <NotFoundPage />

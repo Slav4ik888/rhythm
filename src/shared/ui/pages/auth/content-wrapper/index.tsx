@@ -12,7 +12,7 @@ const useStyles = () => ({
     flexWrap       : 'nowrap',
     textAlign      : 'center',
     width          : '100%',
-    mt             : 3,
+    mt             : 1,
     ml             : 0
   }
 });

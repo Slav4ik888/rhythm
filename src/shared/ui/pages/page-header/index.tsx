@@ -9,6 +9,9 @@ import { RoutePath } from 'app/providers/routes';
 
 const useStyles = () => ({
   root: {
+    // position   : 'absolute',
+    // top        : 0,
+    // left       : 0,
     display    : 'flex',
     alignItems : 'center',
     width      : '100%',
