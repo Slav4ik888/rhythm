@@ -14,6 +14,11 @@ export enum CompanyStatus {
   REMOVED = 'REMOVED' // 'Удалён'
 }
 
+
+export interface GoogleData {
+  url: string
+}
+
 export type CompanyDashboardData = ReactElement<any, any>
 
 export interface CompanyData {
@@ -25,6 +30,7 @@ export interface CompanyData {
   logoUrl       : string // https://firebasestorage.googleapis.com/v0/b/osnova-course.appspot.com/o/no-img-company.svg?alt=media
   status        : CompanyStatus
 
+  googleData    : GoogleData
   dashboardData : CompanyDashboardData
 
   createdAt     : FixDate

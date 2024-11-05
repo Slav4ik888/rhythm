@@ -3,10 +3,11 @@ import { TextField } from '@mui/material';
 import { ActionMain, ActionHelps } from 'widgets/auth/action-container';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 import { reducer as reducerLoginPage } from '../model/slice';
-import { AuthPageWrapper, AuthContentWrapper, AuthCardHeader, useStylesAuth } from 'shared/ui/pages';
+import { AuthContentWrapper, AuthCardHeader, useStylesAuth } from 'shared/ui/pages';
 import { GridWrap } from 'shared/ui/containers';
 import { useTheme } from 'app/providers/theme';
 import { Errors } from 'shared/lib/validators';
+import { InnerPageWrapper } from 'shared/ui/wrappers';
 
 
 
@@ -29,7 +30,7 @@ export const LoginPageComponent: FC<Props> = memo(({ emailRef, passwordRef, erro
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-      <AuthPageWrapper>
+      <InnerPageWrapper>
         <AuthCardHeader type='login' />
 
         <AuthContentWrapper>
@@ -65,7 +66,7 @@ export const LoginPageComponent: FC<Props> = memo(({ emailRef, passwordRef, erro
           />
           <ActionHelps type='login' />
         </AuthContentWrapper>
-      </AuthPageWrapper>
+      </InnerPageWrapper>
     </DynamicModuleLoader>
   );
 });

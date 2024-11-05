@@ -14,7 +14,7 @@ const initialState: StateSchemaDocs = {
 
 
 export const slice = createSlice({
-  name: 'features/docs',
+  name: 'entities/docs',
   initialState,
   reducers: {
     setLoading: (state, { payload }: PayloadAction<boolean>) => {

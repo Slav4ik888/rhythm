@@ -20,12 +20,12 @@ export const sendEmailConfirmation = createAsyncThunk <
   string,
   ThunkConfig<Errors>
 >(
-  'entitiesUser/sendEmailConfirmation',
+  'entities/user/sendEmailConfirmation',
   async (email, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
     
     try {
-      const { data: { message } } = await extra.api.get<ResSendEmailConfirmation>(`${paths.auth.signup.sendEmailConfirmation}/${email}`);
+      const { data: { message } } = await extra.api.get<ResSendEmailConfirmation>(`${paths.user.sendEmailConfirmation}/${email}`);
       
       dispatch(actionsUI.setSuccessMessage(message));
     

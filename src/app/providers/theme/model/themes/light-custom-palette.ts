@@ -6,7 +6,7 @@ export const customPalette = {
   
   background: {
     default : '#f0f2f5',
-    card    : '#f0f2f5',
+    card    : '#dbe0e8',
     paper   : '#f0f2f5',
   },
 

@@ -4,19 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
 import { CompanyProfilePageComponent } from './component';
 import { useUI } from 'entities/ui';
+import { useGroup } from 'shared/lib/hooks';
+import { CompanyData, creatorCompany, useCompany } from 'entities/company';
 
 
 
 const CompanyProfilePage: FC = memo(() => {
-  const
-    { auth } = useUser(),
-    { setErrorStatus } = useUI(),
-    navigate = useNavigate();
+  const { auth } = useUser();
+  const { companyData } = useCompany();
+  const { setErrorStatus } = useUI();
+  const C = useGroup<CompanyData>(creatorCompany());
+  const navigate = useNavigate();
 
   
   useEffect(() => {
     // Обнулить если была записана ошибка, например 401, 403...
     setErrorStatus(0);
+    C.setGroup(companyData);
   }, []);
   
 
@@ -24,7 +28,7 @@ const CompanyProfilePage: FC = memo(() => {
 
   return (
     <CompanyProfilePageComponent 
-      // emailRef    = {emailRef}
+      group    = {C}
       // passwordRef = {passwordRef}
       // errors      = {errors}
       // onSubmit    = {handlerSubmit}

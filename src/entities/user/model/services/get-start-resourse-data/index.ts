@@ -19,7 +19,7 @@ export const getStartResourseData = createAsyncThunk <
   undefined,
   ThunkConfig<Errors>
 >(
-  'entitiesUser/getStartResourseData',
+  'entities/user/getStartResourseData',
   async (pathname, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
     

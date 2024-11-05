@@ -48,7 +48,7 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children }) => {
           ? sidebarMini ? pxToRem(120) : pxToRem(sidebarWidth)
           : 0,
         px         : 3,
-        pb         : 3,
+        // pb         : 3,
         pt         : 'calc(1rem + 2px)',
 
         [breakpoints.down('sm')]: {

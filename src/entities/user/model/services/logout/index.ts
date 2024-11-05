@@ -13,12 +13,12 @@ export const logout = createAsyncThunk <
   string,
   ThunkConfig<Errors>
 >(
-  'entitiesUser/logout',
+  'entities/user/logout',
   async (email, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
     
     try {
-      await extra.api.get(`${paths.auth.logout}/${email}`);
+      await extra.api.get(`${paths.user.logout}/${email}`);
       
       dispatch(actionsCompany.setCompanyData({} as CompanyData));
       return;

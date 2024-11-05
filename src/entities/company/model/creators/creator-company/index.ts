@@ -13,6 +13,7 @@ export const creatorCompany = (cfg: Partial<CompanyData> = {} as CompanyData): C
   logoUrl       : cfg.logoUrl     || '', // 'TODO: save in FB Cloude', // 'https://firebasestorage.googleapis.com/v0/b/osnova-course.appspot.com/o/no-img-company.svg?alt=media'
   status        : cfg.status      || CompanyStatus.NEW,
 
+  googleData    : cfg.googleData  || { url: '' }, // TODO: add to tests
   dashboardData : cfg.dashboardData || {} as CompanyDashboardData,
   createdAt     : cfg.createdAt   || creatorFixDate(cfg.id),
   lastChange    : cfg.lastChange  || creatorFixDate(cfg.id)

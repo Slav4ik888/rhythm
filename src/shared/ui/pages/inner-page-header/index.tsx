@@ -27,7 +27,7 @@ const useStyles = () => ({
 interface Props {}
 
 
-export const PageHeader: FC<Props> = memo(({}) => {
+export const InnerPageHeader: FC<Props> = memo(({}) => {
   const
     sx = useStyles(),
     navigate = useNavigate();

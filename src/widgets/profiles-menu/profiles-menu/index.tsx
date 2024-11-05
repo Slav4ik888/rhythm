@@ -42,7 +42,7 @@ export const ProfilesMenu: FC<Props> = ({ open, anchorEl, menuId, onClose }) => 
       transformOrigin = {{ vertical: 'top', horizontal: 'right' }}
       onClose         = {onClose}
     >
-      <Link to={RoutePath.USER_PROFILE}>
+      <Link to={RoutePath.USER_PROFILE} onClick={onClose}>
         <MenuItem>
           <ListItemIcon>
             <AccountCircle fontSize="small" />
@@ -51,7 +51,7 @@ export const ProfilesMenu: FC<Props> = ({ open, anchorEl, menuId, onClose }) => 
         </MenuItem>
       </Link>
 
-      <Link to={RoutePath.COMPANY_PROFILE}>
+      <Link to={RoutePath.COMPANY_PROFILE} onClick={onClose}>
         <MenuItem>
             <ListItemIcon>
               <HomeIcon fontSize="small" />

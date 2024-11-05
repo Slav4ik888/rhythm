@@ -4,7 +4,7 @@ import axios from 'axios';
 export const api = axios.create({
   baseURL         : '/api',
   timeout         : 1000 * 30,
-  // withCredentials : true // Если с куки
+  withCredentials : true // Если с куки
 });
 
 // const onSuccess = (response) => response;
