@@ -8,7 +8,7 @@ import { CompanyId } from 'entities/company';
 
 
 
-const useStyle = (companyId: CompanyId, productType: string) => ({
+const useStyle = (productType: string) => ({
   tooltip: {
     display    : 'flex',
     alignItems : 'center',
@@ -19,14 +19,13 @@ const useStyle = (companyId: CompanyId, productType: string) => ({
     width      : pxToRem(70),
     height     : pxToRem(15),
     fontSize   : pxToRem(12),
-    color      : PRODUCT_COLORS_CONFIG[companyId][productType]?.color,
-    background : PRODUCT_COLORS_CONFIG[companyId][productType]?.background,
+    color      : PRODUCT_COLORS_CONFIG[CompanyId.CSS][productType]?.color,
+    background : PRODUCT_COLORS_CONFIG[CompanyId.CSS][productType]?.background,
   },
 });
 
 interface Props {
   type      : string
-  companyId : CompanyId
   config    : ReportsLineChartConfig
 }
 
@@ -34,8 +33,8 @@ interface Props {
 /**
  * Chip для статистики типа компании: Общая | Сопровождение | Курс | Ритм | Разработка | Конструктор | Прочие	
  */
-export const ProductTypeChip: FC<Props> = memo(({ companyId, type, config }) => {
-  const sx = useStyle(companyId, type);
+export const ProductTypeChip: FC<Props> = memo(({ type, config }) => {
+  const sx = useStyle(type);
 
   if (! config?.chips?.productType) return null
 

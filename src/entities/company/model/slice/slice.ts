@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Errors } from 'shared/lib/validators';
-import { CompanyData } from '../types';
+import { Company } from '../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
-import { CompanyId, StateSchemaCompany } from 'entities/company';
+import { StateSchemaCompany } from 'entities/company';
+import { updateCompany } from 'features/company';
 
 
 
 const initialState: StateSchemaCompany = {
-  companyId   : undefined,
-  loading     : false,
-  errors      : {},
-  companyData : {} as CompanyData,
+  loading : false,
+  errors  : {},
+  company : {} as Company,
 };
 
 
@@ -24,40 +24,30 @@ const slice = createSlice({
     clearErrors: (state) => {
       state.errors = {};
     },
-    setCompanyId: (state, { payload }: PayloadAction<CompanyId> ) => {
-      state.companyId = payload;
-    },
-    setCompanyData: (state, { payload }: PayloadAction<CompanyData> ) => {
-      state.companyData = payload;
+    setCompany: (state, { payload }: PayloadAction<Company> ) => {
+      state.company = payload;
     },
   },
 
   extraReducers: builder => {
-    // GET-DATA-FROM-GOOGLE
-    // builder
-    //   .addCase(getData.pending, (state) => {
-    //     state.loading = true;
-    //     state.errors = {};
-    //   })
-    //   .addCase(getData.fulfilled, (state, { payload }: PayloadAction<PayloadGetData>) => {
-    //     const { startEntities = {}, startDates = {}, companyId } = payload;
-    //     state.startEntities = startEntities;
-    //     state.startDates    = startDates;
-    //     state.lastUpdated   = new Date().getTime();
-
-    //     const { activeDates, activeEntities } = getEntitiesByPeriod(startEntities, startDates, state.activePeriod);
-    //     state.activeEntities = activeEntities;
-    //     state.activeDates    = activeDates;
-
-    //     state.loading     = false;
-    //     state.errors      = {};
-
-    //     LS.setDashboardState(companyId, state);
-    //   })
-    //   .addCase(getData.rejected, (state, { payload }) => {
-    //     state.errors  = getError(payload);
-    //     state.loading = false;
-    //   })
+    // COMPANY-UPDATE
+    builder
+      .addCase(updateCompany.pending, (state) => {
+        state.loading = true;
+        state.errors = {};
+      })
+      .addCase(updateCompany.fulfilled, (state, { payload }: PayloadAction<Partial<Company>>) => {
+        state.company = {
+          ...state.company,
+          ...payload,
+        };
+        state.loading = false;
+        state.errors  = {};
+      })
+      .addCase(updateCompany.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
+        state.loading = false;
+      })
   }
 })
 

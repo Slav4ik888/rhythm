@@ -10,18 +10,23 @@ import { DeleteButton } from '../delete-button';
 
 
 type Props = {
-  loading         : boolean
+  loading         : boolean // disable button if loading
   disabledDelete? : boolean
-  hookOpen        : UseGroup<unknown>
+  // 1 - Если нужно закрыть верхнего уровня объект после удаления
+  // 2 - Если нужно чтобы кнопки (cancel | submit) были доступны только при изменении в объекте верхнего уровня
+  hookOpen?       : UseGroup<unknown>
   submitText?     : string
   onDel?          : () => void
-  onClose?        : () => void
+  onCancel?        : () => void
   onSubmit        : () => void
 }
 
 
-/** Actions: Delete? Cancel? Submit */
-export const Actions: React.FC<Props> = ({ loading, disabledDelete, hookOpen, submitText, onClose, onDel, onSubmit }) => {
+/**
+ * v.2024-11-10
+ * Actions: Delete? Cancel? Submit
+ */
+export const Actions: React.FC<Props> = ({ loading, disabledDelete, hookOpen, submitText, onCancel, onDel, onSubmit }) => {
   const sx = useStyles();
 
   
@@ -40,9 +45,9 @@ export const Actions: React.FC<Props> = ({ loading, disabledDelete, hookOpen, su
         
         <CancelSubmitBtn
           loading    = {loading}
-          disabled   = {! hookOpen.isChanges}
+          disabled   = {hookOpen && ! hookOpen?.isChanges} // only if hookOpen presented
           submitText = {submitText}
-          onCancel   = {onClose}
+          onCancel   = {onCancel}
           onSubmit   = {onSubmit}
         />
       </Box>

@@ -1,5 +1,5 @@
 import { DashboardBody_css_1d3r8, DashboardBody_demo_pecar, DashboardBody_osnova_g2d7 } from '../../ui/body/templates';
-import { CompanyId, CompanyData } from 'entities/company';
+import { CompanyId } from 'entities/company';
 
 
 

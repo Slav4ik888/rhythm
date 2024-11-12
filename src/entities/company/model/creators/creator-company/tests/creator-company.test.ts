@@ -1,7 +1,7 @@
 import { MOCK_COMPANY_EMPTY } from '../../../mocks';
 import { cloneObj } from 'shared/helpers/objects';
 import { creatorCompany } from '..';
-import { CompanyData } from 'entities/company';
+import { Company } from 'entities/company';
 
 
 
@@ -14,7 +14,7 @@ const COMPANY_WITHOUT_ANY_FIELDS = {
 
 describe('creatorCompany', () => {
   test('Company without any fields & has additional', () => {
-    const res = creatorCompany(COMPANY_WITHOUT_ANY_FIELDS as unknown as CompanyData);
+    const res = creatorCompany(COMPANY_WITHOUT_ANY_FIELDS as unknown as Company);
     res.createdAt = MOCK_COMPANY_EMPTY.createdAt;
     res.lastChange = MOCK_COMPANY_EMPTY.lastChange;
 

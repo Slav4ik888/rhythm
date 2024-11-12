@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "start CompanyProfilePageComponent" && git push -u origin main
+// git add . && git commit -m "add updateCompany" && git push -u origin main

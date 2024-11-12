@@ -10,3 +10,4 @@ export { getStartResourseData, logout } from './model/services'
 
 export { selectUserId } from './model/selectors'
 export { schemas } from './model/validators'
+export { creatorUser } from './model/creators'

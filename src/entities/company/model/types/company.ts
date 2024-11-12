@@ -2,12 +2,14 @@ import { FixDate } from 'entities/base';
 import { ReactElement } from 'react';
 
 
+
 export enum CompanyId {
   OSNOVA     = "osnova_g2d7",
   CSS        = "css_1d3r8",
   DEMO_PECAR = "demo_pecar",
 }
-   
+
+
 export enum CompanyStatus {
   NEW     = 'NEW',    // 'Зарегистрирован'
   ACTIVE  = 'ACTIVE', // 'Активный'
@@ -21,7 +23,8 @@ export interface GoogleData {
 
 export type CompanyDashboardData = ReactElement<any, any>
 
-export interface CompanyData {
+
+export interface Company {
   id            : string
   companyName   : string
   ownerId       : string

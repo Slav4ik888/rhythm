@@ -3,8 +3,6 @@ import { IconButton } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Autorenew';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { getData } from '../../model/services';
-import { useSelector } from 'react-redux';
-import { selectCompanyId } from 'entities/company';
 
 
 

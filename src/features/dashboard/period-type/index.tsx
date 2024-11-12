@@ -5,9 +5,6 @@ import { FormControl, MenuItem } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { PeriodTypeChip } from './chip';
-import { useSelector } from 'react-redux';
-import { selectCompanyId } from 'entities/company';
-
 
 
 
@@ -30,12 +27,11 @@ const useStyles = () => ({
 export const PeriodType: FC = memo(() => {
   const sx = useStyles();
   const dispatch = useAppDispatch();
-  const companyId = useSelector(selectCompanyId);
   const [openSelect, setOpenSelect] = useState(false);
 
 
   const handleChangePeriod = (e: SelectChangeEvent) => {
-    dispatch(actionsDashboard.setSelectedPeriod({ period: { type: e.target.value as DashboardPeriodType }, companyId }));
+    dispatch(actionsDashboard.setSelectedPeriod({ period: { type: e.target.value as DashboardPeriodType } }));
     setOpenSelect(false);
   };
 

@@ -1,37 +1,40 @@
+import { pxToRem } from 'app/providers/theme';
 import { FC, memo } from 'react';
-import { Button, ButtonType } from '../button';
+import { MDButton } from 'shared/ui/mui-design-components';
 
 
 
-type Props = {
-  submitText? : string;
-  disabled?   : boolean;
-  loading?    : boolean;
-  onCancel?   : () => void;
-  onSubmit    : () => void;
-};
+interface Props {
+  submitText? : string
+  disabled?   : boolean
+  loading?    : boolean // disable button if loading
+  onCancel?   : () => void
+  onSubmit    : () => void
+}
 
 
-/** v.2024.08.26 */
+/**
+ * v.2024.11.12
+ */
 export const CancelSubmitBtn: FC<Props> = memo(({ submitText, disabled, loading, onCancel, onSubmit }) => {
 
   return (
     <>
       {
-        onCancel && <Button
-          text     = {'Отмена'}
+        onCancel && <MDButton
           variant  = 'outlined'
-          type     = {ButtonType.PRIMARY}
+          color    = 'secondary'
           disabled = {disabled || loading}
-          sx       = {{ root: { mr: 2 } }}
+          children = 'Отмена'
+          sx       = {{ root: { marginRight: pxToRem(16) } }}
           onClick  = {onCancel}
         />
       }
       
-      <Button
-        text     = {`${submitText ? submitText : 'Сохранить'}`}
+      <MDButton
         disabled = {disabled || loading}
-        type     = {ButtonType.PRIMARY}
+        color    = 'primary'
+        children = {`${submitText ? submitText : 'Сохранить'}`}
         onClick  = {onSubmit}
       />
     </>

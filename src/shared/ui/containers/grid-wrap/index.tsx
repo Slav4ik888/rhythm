@@ -4,8 +4,11 @@ import { GridSize, Grid } from "@mui/material";
 
 
 export interface GridStyle {
-  xs? : GridSize
+  lg? : GridSize
+  md? : GridSize
   sm? : GridSize
+  xl? : GridSize
+  xs? : GridSize
 };
 
 
@@ -17,13 +20,16 @@ type Props = {
 }
 
 /**
- * v.2023-08-23
+ * v.2024-11-09
  */
 export const GridWrap: FC<Props> = memo(({ grid, children, sx, onClick }) => (
   <Grid
     item
-    xs      = {grid?.xs || 12}
+    lg      = {grid?.lg || 12}
+    md      = {grid?.md || 12}
     sm      = {grid?.sm || 3}
+    xl      = {grid?.xl || 12}
+    xs      = {grid?.xs || 12}
     sx      = {sx?.root}
     onClick = {onClick}
   >

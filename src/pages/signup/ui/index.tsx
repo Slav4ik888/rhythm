@@ -29,7 +29,7 @@ const SignupPage: FC = memo(() => {
   }, [auth]);
 
 
-  const handlerSubmit = useCallback(async () => {
+  const handleSubmit = useCallback(async () => {
     if (loading) return;
     const data = await S.getGroup();
 
@@ -54,7 +54,7 @@ const SignupPage: FC = memo(() => {
       firstNameRef = {firstNameRef}
       emailRef     = {emailRef}
       passwordRef  = {passwordRef}
-      onSubmit     = {handlerSubmit}
+      onSubmit     = {handleSubmit}
     />
   );
 });

@@ -294,12 +294,12 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
   };
 
   return {
-    ...sx?.root,
     ...(variant === "contained" && containedStyles()),
     ...(variant === "outlined" && outliedStyles()),
     ...(variant === "gradient" && gradientStyles()),
     ...(variant === "text" && textStyles()),
     ...(circular && circularStyles()),
     ...(iconOnly && iconOnlyStyles()),
+    ...sx?.root,
   };
 });

@@ -59,7 +59,7 @@ export const slice = createSlice({
     clearErrors: (state) => {
       state.errors = {};
     },
-    setActivePeriod: (state, { payload }: PayloadAction<{ period: DashboardPeriod, companyId: CompanyId }>) => {
+    setActivePeriod: (state, { payload }: PayloadAction<{ period: DashboardPeriod }>) => {
       state.activePeriod = {
         ...state.activePeriod,
         ...payload.period
@@ -72,7 +72,7 @@ export const slice = createSlice({
       // Save state to local storage
       LS.setDashboardState(state);
     },
-    setSelectedPeriod: (state, { payload }: PayloadAction<{ period: Partial<DashboardPeriod>, companyId: CompanyId }>) => {
+    setSelectedPeriod: (state, { payload }: PayloadAction<{ period: Partial<DashboardPeriod> }>) => {
       const calcedStartDate = calculateStartDate(state.selectedPeriod.end, payload.period.type || state.selectedPeriod.type || DashboardPeriodType.NINE_MONTHS);
 
       state.activePeriod = {

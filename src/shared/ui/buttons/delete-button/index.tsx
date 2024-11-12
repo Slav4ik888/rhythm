@@ -1,28 +1,28 @@
 import * as React from 'react';
 import { UseGroup, useValue } from 'shared/lib/hooks';
 import { ConfirmType, DialogConfirm } from 'shared/ui/dialogs';
-import { Button, ButtonType } from '../button';
+import { MDButton } from 'shared/ui/mui-design-components';
 
 
 
 type Props = {
-  disabled : boolean | undefined
-  hookOpen : UseGroup<unknown>
-  onDel?   : () => void
-  onClose? : () => void
+  disabled  : boolean | undefined
+  hookOpen? : UseGroup<unknown>
+  onDel?    : () => void
+  onClose?  : () => void
 }
 
 
+/** v.2024-11-12 */
 export const DeleteButton: React.FC<Props> = ({ disabled, hookOpen, onClose, onDel }) => {
-  const
-    confirm = useValue();
+  const confirm = useValue();
   
 
   const handlerDel = () => {
     confirm.setClose();
-    hookOpen.setClose();
-    if (onClose) onClose();
-    if (onDel) onDel();
+    hookOpen && hookOpen.setClose();
+    onClose && onClose();
+    onDel && onDel();
   };
 
   const handlerCancel = () => {
@@ -35,9 +35,9 @@ export const DeleteButton: React.FC<Props> = ({ disabled, hookOpen, onClose, onD
 
   return (
     <>
-      <Button
-        text     = {'Удалить'}
-        type     = {ButtonType.PRIMARY}
+      <MDButton
+        color    = 'primary'
+        children = 'Удалить'
         variant  = "outlined"
         disabled = {disabled}
         onClick  = {confirm.setOpen}
@@ -47,7 +47,7 @@ export const DeleteButton: React.FC<Props> = ({ disabled, hookOpen, onClose, onD
       <DialogConfirm
         open     = {confirm.open}
         typeOk   = {ConfirmType.DEL}
-        title    = {'Подтверждение удаления'}
+        title    = 'Подтверждение удаления'
         onCancel = {handlerCancel}
         onOk     = {handlerDel}
       />

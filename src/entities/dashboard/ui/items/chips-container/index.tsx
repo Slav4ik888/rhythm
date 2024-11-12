@@ -5,8 +5,6 @@ import { ReportsLineChartConfig } from '../../reports/reports-line-chart/config-
 import { ConditionTypeChip, DashboardConditionType } from 'entities/condition-type';
 import { StatisticTypeChip } from 'entities/statistic-type';
 import { ProductTypeChip } from 'entities/product-type';
-import { useSelector } from 'react-redux';
-import { selectCompanyId } from 'entities/company';
 import { CompanyTypeChip } from 'entities/company-type';
 
 
@@ -20,7 +18,7 @@ interface Props {
 
 export const ChipsContainer: FC<Props> = memo(({ item, config, condition }) => {
   const { companyType, productType, statisticType } = item;
-  const companyId = useSelector(selectCompanyId);
+
 
   return (
     <MDBox display="flex" flexDirection="column">
@@ -30,12 +28,10 @@ export const ChipsContainer: FC<Props> = memo(({ item, config, condition }) => {
       />
       <CompanyTypeChip
         type      = {companyType}
-        companyId = {companyId}
         config    = {config}
       />
       <ProductTypeChip
         type      = {productType}
-        companyId = {companyId}
         config    = {config}
       />
       <ConditionTypeChip

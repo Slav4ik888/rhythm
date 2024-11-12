@@ -8,21 +8,20 @@ import { CompanyId } from 'entities/company';
 
 
 
-const useStyle = (companyId: CompanyId, companyType : string) => {
+const useStyle = (companyType : string) => {
   return {
     cursor     : 'default',
     width      : pxToRem(70),
     height     : pxToRem(15),
     fontSize   : pxToRem(12),
-    color      : COMPANY_COLORS_CONFIG[companyId][companyType]?.color,
-    background : COMPANY_COLORS_CONFIG[companyId][companyType]?.background,
+    color      : COMPANY_COLORS_CONFIG[CompanyId.CSS][companyType]?.color,
+    background : COMPANY_COLORS_CONFIG[CompanyId.CSS][companyType]?.background,
   };
 };
 
 interface Props {
   // colorConfig : CompanyColorsConfig
   type      : string
-  companyId : CompanyId
   config    : ReportsLineChartConfig
 }
 
@@ -31,8 +30,8 @@ interface Props {
  * TODO: сделать ярлыком влевом верхнем углу карточки статистики (поз: абсолют)
  * Chip для статистики типа компании: Общая | Да-Телеком | Бэдком |
  */
-export const CompanyTypeChip: FC<Props> = memo(({ companyId, type, config }) => {
-  const sx = useStyle(companyId, type);
+export const CompanyTypeChip: FC<Props> = memo(({ type, config }) => {
+  const sx = useStyle(type);
   // const { label, description } = DASHBOARD_STATISTIC_TYPE[type] || {};
 
   if (! config?.chips?.companyType) return null

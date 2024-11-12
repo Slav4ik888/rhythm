@@ -1,5 +1,5 @@
 import { memo, useEffect } from 'react';
-import { actionsCompany, CompanyId } from 'entities/company';
+import { CompanyId } from 'entities/company';
 import { actionsDashboard, selectIsMounted, getInitialState } from 'entities/dashboard';
 import { COMPANIES_CONFIG } from '../../model/config';
 import { useSelector } from 'react-redux';
@@ -18,7 +18,6 @@ export const DashboardBody = memo(() => {
 
   useEffect(() => {
     if (isMounted) {
-      dispatch(actionsCompany.setCompanyId(companyId));
       dispatch(actionsDashboard.setInitial(getInitialState()));
     }
   }, [isMounted]);

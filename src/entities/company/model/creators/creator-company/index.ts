@@ -1,10 +1,10 @@
 import { creatorFixDate } from 'entities/base/model/creators';
 import { cloneObj } from 'shared/helpers/objects';
-import { CompanyDashboardData, CompanyData, CompanyStatus } from '../../types';
+import { CompanyDashboardData, Company, CompanyStatus } from '../../types';
 
 
 
-export const creatorCompany = (cfg: Partial<CompanyData> = {} as CompanyData): CompanyData => cloneObj({
+export const creatorCompany = (cfg: Partial<Company> = {} as Company): Company => cloneObj({
   id            : cfg.id          || '',
   companyName   : cfg.companyName || '',
   ownerId       : cfg.ownerId     || '',

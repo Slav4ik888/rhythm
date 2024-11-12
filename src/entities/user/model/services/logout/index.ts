@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
-import { actionsCompany, CompanyData } from 'entities/company';
+import { actionsCompany, Company } from 'entities/company';
 import { paths } from 'shared/api';
 import { Errors } from 'shared/lib/validators';
 
@@ -20,7 +20,7 @@ export const logout = createAsyncThunk <
     try {
       await extra.api.get(`${paths.user.logout}/${email}`);
       
-      dispatch(actionsCompany.setCompanyData({} as CompanyData));
+      dispatch(actionsCompany.setCompany({} as Company));
       return;
     }
     catch (e) {

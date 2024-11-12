@@ -6,7 +6,6 @@ import { calculateStartDate, getMsFromRef } from './utils';
 import { actionsDashboard, DashboardPeriodType, selectSelectedPeriod } from 'entities/dashboard';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { formatDate } from 'shared/helpers/dates';
-import { selectCompanyId } from 'entities/company';
 
 
 
@@ -18,7 +17,6 @@ interface Props {
 export const SetPeriodDate: FC<Props> = memo(({ type }) => {
   const dispatch = useAppDispatch();
   const ref      = useRef<HTMLInputElement>(null);
-  const companyId         = useSelector(selectCompanyId);
   const storeSelectPeriod = useSelector(selectSelectedPeriod);
   const storePeriodType   = storeSelectPeriod?.type;
   const storeDate         = storeSelectPeriod?.[type];
@@ -42,7 +40,6 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
         period: {
           start
         },
-        companyId,
       }));
     }
   }, [storeDate, storePeriodType, storeSelectPeriod.end]);
@@ -54,7 +51,6 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
 
       dispatch(actionsDashboard.setSelectedPeriod({
         period: { [type]: getMsFromRef(ref as MutableRefObject<HTMLInputElement>) },
-        companyId,
       }));
     }
   };

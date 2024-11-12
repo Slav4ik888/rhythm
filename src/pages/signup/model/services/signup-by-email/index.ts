@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { actionsUser, User } from 'entities/user';
-import { actionsCompany, CompanyData } from 'entities/company';
+import { actionsCompany, Company } from 'entities/company';
 import { SignupData } from '../../types';
 import { actionsUI } from 'entities/ui';
 import { Errors } from 'shared/lib/validators';
@@ -11,7 +11,7 @@ import { paths } from 'shared/api';
 
 interface ResSignup {
   newUserData    : User
-  newCompanyData : CompanyData
+  newCompanyData : Company
   message        : string
 }
 
@@ -29,7 +29,7 @@ export const signupByEmail = createAsyncThunk<
       console.log('data: ', newUserData, newCompanyData, message);
       
       dispatch(actionsUser.setUser(newUserData));
-      dispatch(actionsCompany.setCompanyData(newCompanyData));
+      dispatch(actionsCompany.setCompany(newCompanyData));
       dispatch(actionsUI.setSuccessMessage(message));
     
       return;

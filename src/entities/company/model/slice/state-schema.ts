@@ -1,10 +1,10 @@
 import { Errors } from 'shared/lib/validators';
-import { CompanyData } from '../types/company';
+import { Company } from '../types/company';
 
 
 
 export interface StateSchemaCompany {
-  companyData : CompanyData
-  loading     : boolean
-  errors      : Errors
+  company : Company
+  loading : boolean
+  errors  : Errors
 }
