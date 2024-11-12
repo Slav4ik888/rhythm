@@ -9,18 +9,21 @@ import { TextfieldItem } from 'shared/ui/containers';
 import { UseGroup } from 'shared/lib/hooks';
 import { Actions } from 'shared/ui/buttons';
 import { User } from 'entities/user';
+import { PageLoader } from 'widgets/page-loader';
 
 
 
 interface Props {
   loading  : boolean
+  auth     : boolean
   group    : UseGroup<User>
   errors   : Errors
+  onCancel : () => void
   onSubmit : () => void
 }
 
 
-export const UserProfilePageComponent: FC<Props> = memo(({ loading, errors, group: U, onSubmit }) => {
+export const UserProfilePageComponent: FC<Props> = memo(({ loading, auth, errors, group: U, onCancel, onSubmit }) => {
   const sx = useStylesAuth(useTheme());
 
 
@@ -31,45 +34,53 @@ export const UserProfilePageComponent: FC<Props> = memo(({ loading, errors, grou
       </MDTypography>
       <SidebarDivider />
       
-      <TextfieldItem
-        label      = 'Фамилия'
-        name       = 'secondName'
-        scheme     = 'person.fio.secondName'
-        // grid       = {{ md: 4, sm: 6 }}
-        sx         = {{ root: sx.gridItem, bg: sx.textField } }
-        group      = {U}
-        errorField = 'secondName'
-        errors     = {errors}
-      />
+      {
+        ! auth
+          ? <PageLoader loading={true} />
+          : <>
+              <TextfieldItem
+                label      = 'Фамилия'
+                name       = 'secondName'
+                scheme     = 'person.fio.secondName'
+                // grid       = {{ md: 4, sm: 6 }}
+                sx         = {{ root: sx.gridItem, bg: sx.textField } }
+                group      = {U}
+                errorField = 'secondName'
+                errors     = {errors}
+              />
 
-      <TextfieldItem
-        label      = 'Имя'
-        name       = 'firstName'
-        scheme     = 'person.fio.firstName'
-        // grid       = {{ md: 4, sm: 6 }}
-        sx         = {{ root: sx.gridItem, bg: sx.textField } }
-        group      = {U}
-        errorField = 'firstName'
-        errors     = {errors}
-      />
+              <TextfieldItem
+                label      = 'Имя'
+                name       = 'firstName'
+                scheme     = 'person.fio.firstName'
+                // grid       = {{ md: 4, sm: 6 }}
+                sx         = {{ root: sx.gridItem, bg: sx.textField } }
+                group      = {U}
+                errorField = 'firstName'
+                errors     = {errors}
+              />
 
-      <TextfieldItem
-        disabled
-        label      = 'Отчество'
-        name       = 'middleName'
-        scheme     = 'person.fio.middleName'
-        // grid       = {{ md: 4, sm: 6 }}
-        sx         = {{ root: sx.gridItem, bg: sx.textField } }
-        group      = {U}
-        errorField = 'middleName'
-        errors     = {errors}
-      />
+              <TextfieldItem
+                disabled
+                label      = 'Отчество'
+                name       = 'middleName'
+                scheme     = 'person.fio.middleName'
+                // grid       = {{ md: 4, sm: 6 }}
+                sx         = {{ root: sx.gridItem, bg: sx.textField } }
+                group      = {U}
+                errorField = 'middleName'
+                errors     = {errors}
+              />
 
-      <Actions
-        loading  = {loading}
-        hookOpen = {U}
-        onSubmit = {onSubmit}
-      />
+              <Actions
+                hideIfNotChanges
+                loading  = {loading}
+                hookOpen = {U}
+                onCancel = {onCancel}
+                onSubmit = {onSubmit}
+              />
+            </>
+      }
     </InnerPageWrapper>
   );
 });

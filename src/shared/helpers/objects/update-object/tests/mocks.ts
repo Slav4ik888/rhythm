@@ -132,6 +132,53 @@ const updatedObj = {
 };
 
 
+
+const fakeUserStart = {
+  id            : '123',
+  companyId     : '345',
+  person        : {
+    displayName   : '',
+    avatarUrl     : 'avatarUrl',
+    phoneNumber   : '',
+    phones        : [],
+    fio           : {
+      firstName  : 'Slava',
+      secondName : '',
+      middleName : ''
+    },
+  },
+  email         : '',
+};
+
+
+const fakeUserUpdatedFields = {
+  companyId: '777',
+  person: {
+    fio: {
+      secondName: 'Korzan',
+    },
+  },
+};
+
+
+const fakeUserUpdated = {
+  id            : '123',
+  companyId     : '777',
+  person        : {
+    displayName   : '',
+    avatarUrl     : 'avatarUrl',
+    phoneNumber   : '',
+    phones        : [],
+    fio           : {
+      firstName  : 'Slava',
+      secondName : 'Korzan',
+      middleName : ''
+    },
+  },
+  email         : '',
+};
+
+
 export const mocks: Mocks = [
   [{
     description : 'updatedFields is undefined',
@@ -166,5 +213,12 @@ export const mocks: Mocks = [
     prevObj,
     updatedFields
   },
-    updatedObj]
+    updatedObj],
+  
+  [{
+    description   : 'User changes',
+    prevObj       : fakeUserStart,
+    updatedFields : fakeUserUpdatedFields,
+  },
+    fakeUserUpdated],
 ];

@@ -24,8 +24,8 @@ const CompanyProfilePage: FC = memo(() => {
   useEffect(() => {
     // Обнулить если была записана ошибка, например 401, 403...
     setErrorStatus(0);
-    C.setGroup(companyState);
-  }, []);
+    C.setGroup(companyState, { isChanges: false });
+  }, [auth]);
   
 
   const handleSubmit = useCallback(async () => {
@@ -38,13 +38,6 @@ const CompanyProfilePage: FC = memo(() => {
     updatedData.id = companyState.id;
     updatedData.lastChange = creatorFixDate(userId);
 
-    // if (companyState.companyName !== data.companyName) {
-    //   companyData.companyName = data.companyName;
-    // }
-    // if (companyState.googleData?.url !== data.googleData?.url) {
-    //   companyData.googleData = { ...data.googleData };
-    // }
-    
     console.log('updatedData: ', updatedData);
     if (isEmpty(updatedData)) return;
 
@@ -52,19 +45,21 @@ const CompanyProfilePage: FC = memo(() => {
     // const { valid, errors } = validateCompanyData(updatedData);
     // valid ? serviceUpdateCompany(updatedData) : setErrors(errors);
     serviceUpdateCompany(updatedData);
-  }, [C.group, companyState]);
+    C.setIsChanges(false);
+  }, [auth, C.group, companyState]);
   
 
   const handleCancel = useCallback(async () => {
-
+    C.setGroup(companyState, { isChanges: false });
   }, [C.group, companyState]);
 
 
-  if (! auth) navigate(RoutePath.LOGIN);
+  // if (! auth) return;
 
   return (
-    <CompanyProfilePageComponent 
+    <CompanyProfilePageComponent
       group    = {C}
+      auth     = {auth}
       loading  = {loading}
       errors   = {errors}
       onCancel = {handleCancel}

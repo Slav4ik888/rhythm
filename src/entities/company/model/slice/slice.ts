@@ -4,6 +4,7 @@ import { Company } from '../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { StateSchemaCompany } from 'entities/company';
 import { updateCompany } from 'features/company';
+import { updateObject } from 'shared/helpers/objects';
 
 
 
@@ -37,10 +38,7 @@ const slice = createSlice({
         state.errors = {};
       })
       .addCase(updateCompany.fulfilled, (state, { payload }: PayloadAction<Partial<Company>>) => {
-        state.company = {
-          ...state.company,
-          ...payload,
-        };
+        state.company =  updateObject(state.company, payload);
         state.loading = false;
         state.errors  = {};
       })

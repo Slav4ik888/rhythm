@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { updateObject } from 'shared/helpers/objects';
 // import { updateObject } from 'shared/helpers/objects';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { Errors } from 'shared/lib/validators';
 import { creatorUser } from '../creators';
 import {
   // deleteUser,
-  getStartResourseData, logout,
+  getStartResourseData, logout, updateUser,
   // sendEmailConfirmation, updateUser
 } from '../services';
 import { StateSchemaUser, User } from '../types';
@@ -18,6 +19,7 @@ const initialState: StateSchemaUser = {
   auth    : false,
   user    : {} as User
 };
+
 
 
 export const slice = createSlice({
@@ -60,20 +62,20 @@ export const slice = createSlice({
       })
 
     // UPDATE-USER
-    // builder
-    //   .addCase(updateUser.pending, (state) => {
-    //     state.errors  = {};
-    //     state.loading = true;
-    //   })
-    //   .addCase(updateUser.fulfilled, (state, { payload }) => {
-    //     state.user    = updateObject(state.user, payload);
-    //     state.errors  = {};
-    //     state.loading = false;
-    //   })
-    //   .addCase(updateUser.rejected, (state, { payload }) => {
-    //     state.errors  = payload;
-    //     state.loading = false;
-    //   }),
+    builder
+      .addCase(updateUser.pending, (state) => {
+        state.errors  = {};
+        state.loading = true;
+      })
+      .addCase(updateUser.fulfilled, (state, { payload }) => {
+        state.user    = updateObject(state.user, payload);
+        state.errors  = {};
+        state.loading = false;
+      })
+      .addCase(updateUser.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
+        state.loading = false;
+      }),
     
     // DELETE-USER
     // builder
