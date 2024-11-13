@@ -1,1 +1,2 @@
-export { updateUser } from './update-user'
+export { serviceUpdateUser } from './update-user'
+export { serviceLogout } from './logout'

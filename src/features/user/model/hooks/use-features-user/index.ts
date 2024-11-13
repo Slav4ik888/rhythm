@@ -1,6 +1,6 @@
 import { User } from 'entities/user';
 import { useAppDispatch } from 'shared/lib/hooks';
-import { updateUser } from '../../services';
+import { serviceUpdateUser as updateUser } from '../../services';
 
 
 

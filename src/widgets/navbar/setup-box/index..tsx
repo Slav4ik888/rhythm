@@ -6,20 +6,13 @@ import { AuthBtns } from './auth-btns';
 
 
 interface Props {
-  light?  : boolean
   isMini? : boolean
 }
 
 
 /** Кнопки Navbar авторизация и профилей */
-export const NavbarSetupBox: FC<Props> = memo(({ light = false, isMini = false }) => {
+export const NavbarSetupBox: FC<Props> = memo(({ isMini = false }) => {
   const { auth } = useUser();
-
-
-  const handleLogOut = async () => {
-    // const response = await AuthService.logout();
-    // authContext.logout();
-  };
 
   // Не понимаю что это
   // TODO: remove to useUIConfiguratorController

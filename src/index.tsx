@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refact updateCompany & updateUser" && git push -u origin main
+// git add . && git commit -m "refact updateCompany & updateUser & logout" && git push -u origin main

@@ -2,11 +2,10 @@ import * as s from '../../selectors';
 import { actions } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
-import {
-  getStartResourseData, logout, // logoutUser, updateUser, sendEmailConfirmation
-} from '../../services';
+import { getStartResourseData } from '../../services';
 // import { User } from '../../types';
 import { Errors } from 'shared/lib/validators';
+import { serviceLogout as logout } from 'features/user';
 
 
 
@@ -30,7 +29,7 @@ export const useUser = () => {
     serviceGetStartResourseData = () => dispatch(getStartResourseData()),
     // serviceUpdateUser            = (user: Partial<User>) => dispatch(updateUser(user)),
     // serviceDeleteUser            = (companyId: string, userId: string) => dispatch(deleteUser({ companyId, userId })),
-    serviceLogout            = (email: string) => dispatch(logout(email));
+    serviceLogout            = () => dispatch(logout());
     // serviceSendEmailConfirmation = (email: string) => dispatch(sendEmailConfirmation(email));
   
   return {

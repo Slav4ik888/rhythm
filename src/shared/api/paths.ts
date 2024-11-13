@@ -12,7 +12,7 @@ export const paths = {
     getStartResourseData  : '/user/getStartResourseData',
     update                : '/user/update',
     sendEmailConfirmation : '/user/sendEmailConfirmation',
-    logout                : '/user/logout/:email',
+    logout                : '/user/logout',
   },
   company: {
     update : '/company/update',

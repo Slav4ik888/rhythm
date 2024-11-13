@@ -1,14 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { serviceUpdateUser, serviceLogout } from 'features/user';
 import { updateObject } from 'shared/helpers/objects';
 // import { updateObject } from 'shared/helpers/objects';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { Errors } from 'shared/lib/validators';
 import { creatorUser } from '../creators';
-import {
-  // deleteUser,
-  getStartResourseData, logout, updateUser,
-  // sendEmailConfirmation, updateUser
-} from '../services';
+import { getStartResourseData } from '../services';
 import { StateSchemaUser, User } from '../types';
 
 
@@ -63,16 +60,17 @@ export const slice = createSlice({
 
     // UPDATE-USER
     builder
-      .addCase(updateUser.pending, (state) => {
+      .addCase(serviceUpdateUser.pending, (state) => {
         state.errors  = {};
         state.loading = true;
       })
-      .addCase(updateUser.fulfilled, (state, { payload }) => {
+      .addCase(serviceUpdateUser.fulfilled, (state, { payload }) => {
+        console.log('payload: ', payload);
         state.user    = updateObject(state.user, payload);
         state.errors  = {};
         state.loading = false;
       })
-      .addCase(updateUser.rejected, (state, { payload }) => {
+      .addCase(serviceUpdateUser.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       }),
@@ -94,17 +92,17 @@ export const slice = createSlice({
     
     // LOGOUT-USER
     builder
-      .addCase(logout.pending, (state) => {
+      .addCase(serviceLogout.pending, (state) => {
         state.errors  = {};
         state.loading = true;
       })
-      .addCase(logout.fulfilled, (state) => {
+      .addCase(serviceLogout.fulfilled, (state) => {
         state.auth    = false;
         state.user    = {} as User;
         state.errors  = {};
         state.loading = false;
       })
-      .addCase(logout.rejected, (state, { payload }) => {
+      .addCase(serviceLogout.rejected, (state, { payload }) => {
         state.errors  = payload || {};
         state.loading = false;
       })

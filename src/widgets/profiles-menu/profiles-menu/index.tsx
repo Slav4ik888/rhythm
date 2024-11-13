@@ -20,13 +20,13 @@ type Props = {
 
 // Меню с профилями для Navbar
 export const ProfilesMenu: FC<Props> = ({ open, anchorEl, menuId, onClose }) => {
-  const { user, serviceLogout } = useUser();
+  const { serviceLogout } = useUser();
   const navigate = useNavigate();
 
   // Выход из аккаунта
   const handleUserLogout = () => {
     onClose();
-    serviceLogout(user.email);
+    serviceLogout();
     navigate(RoutePath.ROOT);
   };
   

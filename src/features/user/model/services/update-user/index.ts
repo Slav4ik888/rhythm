@@ -10,7 +10,7 @@ import { User } from 'entities/user';
 /**
  * Owner update User data
  */
-export const updateUser = createAsyncThunk <
+export const serviceUpdateUser = createAsyncThunk <
   Partial<User>,
   Partial<User>,
   ThunkConfig<Errors>

@@ -8,24 +8,24 @@ import { Errors } from 'shared/lib/validators';
 /**
  * Logout User & set initial
  */
-export const logout = createAsyncThunk <
+export const serviceLogout = createAsyncThunk <
   undefined,
-  string,
+  undefined,
   ThunkConfig<Errors>
 >(
-  'entities/user/logout',
-  async (email, thunkApi) => {
+  'features/user/logout',
+  async (_, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
     
     try {
-      await extra.api.get(`${paths.user.logout}/${email}`);
+      await extra.api.get(paths.user.logout);
       
       dispatch(actionsCompany.setCompany({} as Company));
       return;
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue({ general: 'Error in entitiesUser/logout' });
+      return rejectWithValue({ general: 'Error in features/user/logout' });
     }
   }
 );
