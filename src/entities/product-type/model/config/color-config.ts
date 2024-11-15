@@ -1,9 +1,9 @@
 import { ColorsConfig } from 'app/providers/theme';
-import { CompanyId } from 'entities/company';
+import { ActivatedCompanyId } from 'entities/company';
 
 
-export const PRODUCT_COLORS_CONFIG: Record<CompanyId, ColorsConfig> = {
-  [CompanyId.OSNOVA]: {
+export const PRODUCT_COLORS_CONFIG: Record<ActivatedCompanyId, ColorsConfig> = {
+  [ActivatedCompanyId.OSNOVA]: {
     'Общая': {
       color      : '#0a53a8',
       background : '#bfe1f6',
@@ -33,8 +33,8 @@ export const PRODUCT_COLORS_CONFIG: Record<CompanyId, ColorsConfig> = {
       background : '#e6e6e6',
     },
   },
-  [CompanyId.DEMO_PECAR]: {
+  [ActivatedCompanyId.DEMO_PECAR]: {
   },
-  [CompanyId.CSS]: {
+  [ActivatedCompanyId.CSS]: {
   },
 }

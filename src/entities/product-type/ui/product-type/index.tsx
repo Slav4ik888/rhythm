@@ -4,7 +4,7 @@ import { Tooltip } from 'shared/ui/tooltip';
 import { pxToRem } from 'app/providers/theme';
 import { PRODUCT_COLORS_CONFIG } from '../../model/config';
 import { ReportsLineChartConfig } from '../../../dashboard/ui/reports';
-import { CompanyId } from 'entities/company';
+import { ActivatedCompanyId } from 'entities/company';
 
 
 
@@ -19,8 +19,8 @@ const useStyle = (productType: string) => ({
     width      : pxToRem(70),
     height     : pxToRem(15),
     fontSize   : pxToRem(12),
-    color      : PRODUCT_COLORS_CONFIG[CompanyId.CSS][productType]?.color,
-    background : PRODUCT_COLORS_CONFIG[CompanyId.CSS][productType]?.background,
+    color      : PRODUCT_COLORS_CONFIG[ActivatedCompanyId.CSS][productType]?.color,
+    background : PRODUCT_COLORS_CONFIG[ActivatedCompanyId.CSS][productType]?.background,
   },
 });
 

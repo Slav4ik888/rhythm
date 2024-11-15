@@ -4,7 +4,7 @@ import Chip from '@mui/material/Chip';
 import { pxToRem } from 'app/providers/theme';
 import { COMPANY_COLORS_CONFIG } from '../../model/config';
 import { ReportsLineChartConfig } from '../../../dashboard/ui/reports';
-import { CompanyId } from 'entities/company';
+import { ActivatedCompanyId } from 'entities/company';
 
 
 
@@ -14,8 +14,8 @@ const useStyle = (companyType : string) => {
     width      : pxToRem(70),
     height     : pxToRem(15),
     fontSize   : pxToRem(12),
-    color      : COMPANY_COLORS_CONFIG[CompanyId.CSS][companyType]?.color,
-    background : COMPANY_COLORS_CONFIG[CompanyId.CSS][companyType]?.background,
+    color      : COMPANY_COLORS_CONFIG[ActivatedCompanyId.CSS][companyType]?.color,
+    background : COMPANY_COLORS_CONFIG[ActivatedCompanyId.CSS][companyType]?.background,
   };
 };
 

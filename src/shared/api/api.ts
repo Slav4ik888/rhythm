@@ -7,6 +7,12 @@ export const api = axios.create({
   withCredentials : true // Если с куки
 });
 
+export const apiWithoutCookie = axios.create({
+  baseURL : '/api',
+  timeout : 1000 * 30,
+});
+
+
 // const onSuccess = (response) => response;
 // const onFail = (err) => {
 //   if (err.response.status === 401) {

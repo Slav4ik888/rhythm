@@ -2,10 +2,14 @@ import { FixDate } from 'entities/base';
 import { ReactElement } from 'react';
 
 
-
-export enum CompanyId {
-  OSNOVA     = "osnova_g2d7",
-  CSS        = "css_1d3r8",
+/**
+ * Временно для компаний которых я подключил к Ритму
+ * До тех пор пока не сделаю возможность настройки dashboard в виде Конструктора
+ * с сохранением конструкции в аккаунте компании
+ */
+export enum ActivatedCompanyId {
+  OSNOVA     = "89MM9qHJLJlY5DZp1T9S",
+  CSS        = "jOiXJDIY0nJeiIuBMtI4",
   DEMO_PECAR = "demo_pecar",
 }
 

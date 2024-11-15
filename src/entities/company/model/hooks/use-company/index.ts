@@ -19,7 +19,8 @@ export const useCompany = (config: Config = {}) => {
     setErrors   = (errors: Errors) => dispatch(a.setErrors(errors)),
     clearErrors = () => dispatch(a.setErrors({})),
 
-    company     = useSelector(s.selectCompany);
+    company     = useSelector(s.selectCompany),
+    companyId   = company.id;
     // serviceDeleteCompany = (companyId: string) => dispatch(deleteCompany(companyId)),
 
   
@@ -30,5 +31,6 @@ export const useCompany = (config: Config = {}) => {
     clearErrors,
 
     company,
+    companyId
   }
 };

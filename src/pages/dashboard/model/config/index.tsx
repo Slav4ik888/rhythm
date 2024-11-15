@@ -1,19 +1,19 @@
 import { DashboardBody_css_1d3r8, DashboardBody_demo_pecar, DashboardBody_osnova_g2d7 } from '../../ui/body/templates';
-import { CompanyId } from 'entities/company';
+import { ActivatedCompanyId } from 'entities/company';
 
 
 
-export const COMPANIES_CONFIG: Record<CompanyId, any> = {
-  [CompanyId.OSNOVA]: {
-    id        : CompanyId.OSNOVA,
+export const COMPANIES_CONFIG: Record<ActivatedCompanyId, any> = {
+  [ActivatedCompanyId.OSNOVA]: {
+    id        : ActivatedCompanyId.OSNOVA,
     dashboard : <DashboardBody_osnova_g2d7 />,
   },
-  [CompanyId.CSS]: {
-    id        : CompanyId.CSS,
+  [ActivatedCompanyId.CSS]: {
+    id        : ActivatedCompanyId.CSS,
     dashboard : <DashboardBody_css_1d3r8 />,
   },
-  [CompanyId.DEMO_PECAR]: {
-    id        : CompanyId.DEMO_PECAR,
+  [ActivatedCompanyId.DEMO_PECAR]: {
+    id        : ActivatedCompanyId.DEMO_PECAR,
     dashboard : <DashboardBody_demo_pecar />,
   },
 }
