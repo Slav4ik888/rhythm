@@ -17,12 +17,12 @@ export const DashboardBody = memo(() => {
 
   useEffect(() => {
     if (isMounted) {
-      dispatch(actionsDashboard.setInitial(getInitialState()));
+      dispatch(actionsDashboard.setInitial(getInitialState(companyId)));
     }
   }, [isMounted]);
 
 
   return companyId
-    ? COMPANIES_CONFIG[companyId as ActivatedCompanyId].dashboard
+    ? COMPANIES_CONFIG[companyId].dashboard
     : <DashboardBody_demo_pecar />
 });

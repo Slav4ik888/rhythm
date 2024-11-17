@@ -1,9 +1,8 @@
 import { FC, memo } from 'react';
 import { CustomTheme, useTheme, getTypography } from 'app/providers/theme';
 import CloseIcon from '@mui/icons-material/Close';
-import { MDBox, MDTypography } from 'shared/ui/mui-design-components';
+import { MDBox, MDTypography, MDDivider } from 'shared/ui/mui-design-components';
 import { IconButton } from '@mui/material';
-import { SidebarDivider } from 'shared/ui/sidebar-divider';
 
 
 
@@ -66,7 +65,7 @@ export const UIConfiguratorMainHeader: FC<Props> = memo(({ onClose }) => {
         </IconButton>
       </MDBox>
 
-      <SidebarDivider />
+      <MDDivider />
     </>
   )
 });

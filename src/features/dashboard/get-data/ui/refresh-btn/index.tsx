@@ -10,7 +10,7 @@ import { useCompany } from 'entities/company';
 export const DashboardRefreshButton: FC = memo(() => {
   const dispatch = useAppDispatch();
   const { company } = useCompany();
-  const handleRefresh = () => dispatch(getData(company?.googleData?.url));
+  const handleRefresh = () => dispatch(getData(company));
 
 
   return (

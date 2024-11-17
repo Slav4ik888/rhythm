@@ -1,3 +1,4 @@
+import { useCompany } from 'entities/company';
 import { actionsDashboard, selectActivePeriod, selectSelectedPeriod } from 'entities/dashboard';
 import { FC, memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
@@ -9,6 +10,7 @@ import { Tooltip } from 'shared/ui/tooltip';
 
 /** DEPRECATED */
 export const UpdateGraphicsBtn: FC = memo(() => {
+  const { companyId } = useCompany();
   const dispatch = useAppDispatch();
   const storeActivePeriod   = useSelector(selectActivePeriod);
   const activePeriodType    = storeActivePeriod?.type;
@@ -27,7 +29,7 @@ export const UpdateGraphicsBtn: FC = memo(() => {
     , [activePeriodType, selectedPeriodType, activeDateStart, selectedDateStart, activeDateEnd, selectedDateEnd]);
   
   
-  const handleSaveChanges = () => dispatch(actionsDashboard.setActivePeriod({ period: storeSelectedPeriod }));
+  const handleSaveChanges = () => dispatch(actionsDashboard.setActivePeriod({ companyId, period: storeSelectedPeriod }));
 
 
   if (! isChanged) return null;

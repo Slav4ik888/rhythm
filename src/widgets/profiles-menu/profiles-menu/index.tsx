@@ -6,7 +6,7 @@ import { KeyboardReturn, AccountCircle, Home as HomeIcon } from '@mui/icons-mate
 import { useUser } from 'entities/user';
 import { RoutePath } from 'app/providers/routes';
 import { Link, useNavigate } from 'react-router-dom';
-import { SidebarDivider } from 'shared/ui/sidebar-divider';
+import { MDDivider } from 'shared/ui/mui-design-components';
 
 
 
@@ -60,7 +60,7 @@ export const ProfilesMenu: FC<Props> = ({ open, anchorEl, menuId, onClose }) => 
         </MenuItem>
       </Link>
 
-      <SidebarDivider />
+      <MDDivider />
 
       <MenuItem onClick={handleUserLogout}>
         <ListItemIcon>

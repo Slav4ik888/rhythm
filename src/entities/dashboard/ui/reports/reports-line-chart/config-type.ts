@@ -4,6 +4,9 @@ export interface ReportsLineChartConfig {
   inverted?       : boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
   unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
 
+  header?: {
+    minHeight?: string // Минимальная высота "шапки", напр. если заголовок на 2 строки, то нужно выравнить у всех в ряду
+  }
   // Chips - показывать или не показывать
   chips?: {
     statisticType? : boolean

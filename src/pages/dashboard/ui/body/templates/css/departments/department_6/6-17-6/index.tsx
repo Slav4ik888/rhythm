@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { selectActiveDates, selectActiveEntities, ReportsLineChartConfig, invertData, ReportsLineChart } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
-import { getConditionType } from 'entities/condition-type';
+import { pxToRem } from 'app/providers/theme';
 
 
 
@@ -36,6 +36,9 @@ export const DashboardReportContainer6_17_6 = memo(() => {
   if (! itemData) return null;
   
   const reportConfig: ReportsLineChartConfig = {
+    header: {
+      minHeight: pxToRem(64),
+    },
     chips: {
       statisticType : true,
       companyType   : true,

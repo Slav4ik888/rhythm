@@ -1,5 +1,5 @@
 import { StateSchema } from 'app/providers/store';
-import { StateSchemaDashboard } from '../types';
+import { StateSchemaDashboard } from '../slice/state-schema';
 
 
 export const selectModule         = (state: StateSchema) => state.dashboard || {} as StateSchemaDashboard;

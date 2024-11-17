@@ -16,7 +16,7 @@ const useStyles = (theme: CustomTheme, increased: Increased, unchangedBlack?: bo
   return {
     root: {
       display : "flex",
-      pt      : 1,
+      pt      : 1.5,
       // justifyContent : "center",
       // alignItems     : "center",
     },

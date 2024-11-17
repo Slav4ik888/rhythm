@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
-import { DashboardPeriod, StateSchemaDashboard } from '../types';
+import { DashboardPeriod } from '../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
-import { getData, StartEntitiesData } from 'features/dashboard';
 import { DashboardPeriodType } from '../config';
 import { getEntitiesByPeriod } from '../utils';
-import { calculateStartDate } from 'features/dashboard/set-period-date/utils';
+import { StateSchemaDashboard } from './state-schema';
+import { ActivatedCompanyId } from 'entities/company';
+import { ResGetGoogleData, calculateStartDate, getData } from 'features/dashboard';
 
 
 
@@ -58,7 +59,7 @@ export const slice = createSlice({
     clearErrors: (state) => {
       state.errors = {};
     },
-    setActivePeriod: (state, { payload }: PayloadAction<{ period: DashboardPeriod }>) => {
+    setActivePeriod: (state, { payload }: PayloadAction<{ companyId: ActivatedCompanyId, period: DashboardPeriod }>) => {
       state.activePeriod = {
         ...state.activePeriod,
         ...payload.period
@@ -69,9 +70,9 @@ export const slice = createSlice({
       state.activeDates    = activeDates;
 
       // Save state to local storage
-      LS.setDashboardState(state);
+      LS.setDashboardState(payload.companyId, state);
     },
-    setSelectedPeriod: (state, { payload }: PayloadAction<{ period: Partial<DashboardPeriod> }>) => {
+    setSelectedPeriod: (state, { payload }: PayloadAction<{ companyId: ActivatedCompanyId, period: Partial<DashboardPeriod> }>) => {
       const calcedStartDate = calculateStartDate(state.selectedPeriod.end, payload.period.type || state.selectedPeriod.type || DashboardPeriodType.NINE_MONTHS);
 
       state.activePeriod = {
@@ -93,12 +94,15 @@ export const slice = createSlice({
       // Save state to local storage
       // Тк при первом запуске setSelectedPeriod вызывается автоматически, поэтому нужно НЕ затереть имеющиеся данные
       // TODO: перепроверить, возможно это уже надо убрать
-      const oldData = LS.getDashboardState();
-      LS.setDashboardState({
-        ...oldData,
-        activePeriod   : state.activePeriod,
-        selectedPeriod : state.selectedPeriod,
-      });
+      const oldData = LS.getDashboardState(payload.companyId);
+      LS.setDashboardState(
+        payload.companyId,
+        {
+          ...oldData,
+          activePeriod   : state.activePeriod,
+          selectedPeriod : state.selectedPeriod,
+        }
+      );
     },
   },
 
@@ -109,8 +113,8 @@ export const slice = createSlice({
         state.loading = true;
         state.errors = {};
       })
-      .addCase(getData.fulfilled, (state, { payload }: PayloadAction<StartEntitiesData>) => {
-        const { startEntities = {}, startDates = {} } = payload;
+      .addCase(getData.fulfilled, (state, { payload }: PayloadAction<ResGetGoogleData>) => {
+        const { startEntities = {}, startDates = {} } = payload.data;
         state.startEntities = startEntities;
         state.startDates    = startDates;
         state.lastUpdated   = new Date().getTime();
@@ -123,7 +127,7 @@ export const slice = createSlice({
         state.errors      = {};
 
         // Save state to local storage
-        LS.setDashboardState(state);
+        LS.setDashboardState(payload.companyId, state);
       })
       .addCase(getData.rejected, (state, { payload }) => {
         state.errors  = getError(payload);

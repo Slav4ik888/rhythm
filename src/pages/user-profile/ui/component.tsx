@@ -2,9 +2,8 @@ import { FC, memo } from 'react';
 import { useStylesAuth } from 'shared/ui/pages';
 import { useTheme } from 'app/providers/theme';
 import { Errors } from 'shared/lib/validators';
-import { MDBox, MDTypography } from 'shared/ui/mui-design-components';
+import { MDDivider, MDTypography } from 'shared/ui/mui-design-components';
 import { InnerPageWrapper } from 'shared/ui/wrappers';
-import { SidebarDivider } from 'shared/ui/sidebar-divider';
 import { TextfieldItem } from 'shared/ui/containers';
 import { UseGroup } from 'shared/lib/hooks';
 import { Actions } from 'shared/ui/buttons';
@@ -32,7 +31,7 @@ export const UserProfilePageComponent: FC<Props> = memo(({ loading, auth, errors
       <MDTypography variant="h6" textAlign="center" textTransform="none" mb={2}>
         Профиль пользователя
       </MDTypography>
-      <SidebarDivider />
+      <MDDivider />
       
       {
         ! auth

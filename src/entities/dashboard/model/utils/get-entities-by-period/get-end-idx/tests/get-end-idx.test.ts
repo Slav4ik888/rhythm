@@ -1,5 +1,6 @@
-import { DashboardDates, DashboardPeriodDates } from '../../../../types';
+import { DashboardPeriodDates } from '../../../../types';
 import { getEndIdx } from '..';
+import { DashboardDates } from 'entities/dashboard/model/slice/state-schema';
 
 
 

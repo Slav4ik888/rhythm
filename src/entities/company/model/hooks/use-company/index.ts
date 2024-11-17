@@ -3,6 +3,7 @@ import { actions as a } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
+import { ActivatedCompanyId } from '../../types';
 
 
 
@@ -20,7 +21,7 @@ export const useCompany = (config: Config = {}) => {
     clearErrors = () => dispatch(a.setErrors({})),
 
     company     = useSelector(s.selectCompany),
-    companyId   = company.id;
+    companyId   = company.id as ActivatedCompanyId;
     // serviceDeleteCompany = (companyId: string) => dispatch(deleteCompany(companyId)),
 
   

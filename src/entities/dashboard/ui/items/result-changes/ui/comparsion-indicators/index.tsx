@@ -75,18 +75,21 @@ export const ComparisonIndicators: FC<Props> = memo(({ values: v, config = {} })
       {
         values && values.map((v, i) => (
           <Box sx={sx.item} key={i}>
-            <MDTypography variant={i === 0 ? "h4" : "body2"}>
+            <MDTypography
+              variant = {i === 0 ? 'h4' : 'body2'}
+              color   = {i === 0 ? 'comparisonIndicators_1' : 'dark'}
+            >
               {values[i].value}
             </MDTypography>
             {
               values[i].prefix && <MDTypography
-                variant = {i === 0 ? "h6" : "body2"}
+                variant = {i === 0 ? 'h6' : 'body2'}
+                color   = {i === 0 ? 'comparisonIndicators_1' : 'dark'}
                 sx      = {i === 0 ? sx.firstPrefix : sx.prefixSecond}
               >
                 {values[i].prefix}
               </MDTypography>
             }
-            
           </Box>
         ))
       }

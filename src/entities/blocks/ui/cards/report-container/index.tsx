@@ -18,6 +18,7 @@ export const DashboardReportContainer: FC<Props> = memo(({ children }) => {
         minWidth : pxToRem(440),
         maxWidth : pxToRem(440),
         mr       : 3,
+        mb       : 3,
         p        : pxToRem(16),
       }}
     >

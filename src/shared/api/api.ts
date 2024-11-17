@@ -7,6 +7,8 @@ export const api = axios.create({
   withCredentials : true // Если с куки
 });
 
+
+// Для загрузки с гугл таблиц
 export const apiWithoutCookie = axios.create({
   baseURL : '/api',
   timeout : 1000 * 30,

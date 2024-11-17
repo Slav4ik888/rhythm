@@ -6,6 +6,7 @@ import { invertData, ReportsLineChart, ReportsLineChartConfig, selectActiveDates
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
 import { getConditionType } from 'entities/condition-type';
+import { pxToRem } from 'app/providers/theme';
 
 
 
@@ -39,6 +40,9 @@ export const DashboardReportContainer1_0_2 = memo(() => {
   const reportConfig: ReportsLineChartConfig = {
     unchangedBlack : true, // При отсутствии изменений в результатах красить чёрным цветом
 
+    header: {
+      minHeight: pxToRem(64),
+    },
     chips: {
       statisticType : true,
       companyType   : true,

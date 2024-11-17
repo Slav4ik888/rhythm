@@ -6,6 +6,7 @@ import { invertData, ReportsLineChart, ReportsLineChartConfig, selectActiveDates
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
 import { getConditionType } from 'entities/condition-type';
+import { pxToRem } from 'app/providers/theme';
 
 
 
@@ -37,6 +38,9 @@ export const DashboardReportContainer1_0_1 = memo(() => {
   if (! itemData) return null;
 
   const reportConfig: ReportsLineChartConfig = {
+    header: {
+      minHeight: pxToRem(64),
+    },
     chips: {
       statisticType : true,
       companyType   : true,

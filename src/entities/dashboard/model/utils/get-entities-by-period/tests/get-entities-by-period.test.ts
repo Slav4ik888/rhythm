@@ -1,6 +1,7 @@
-import { DashboardDates, DashboardEntities } from '../../../types';
 import { getEntitiesByPeriod } from '..';
 import { DashboardStatisticType } from 'entities/statistic-type';
+import { DashboardDates, DashboardEntities } from 'entities/dashboard/model/slice/state-schema';
+
 
 
 const startEntities: DashboardEntities = {

@@ -115,6 +115,19 @@ export const customPalette = {
     900: '#212529',
   } as Color,
 
+
+  // Заголовок в ReportsLineChart
+  reportsChartTitle: {
+    main: '#7a7a7a',
+    focus: '#7a7a7a',
+  },
+  
+  // Цифры сравнения - последнее значение
+  comparisonIndicators_1: {
+    main: '#3a3a3a',
+    focus: '#3a3a3a',
+  },
+
   // Рост | Падение | Без изменений - результатов
   growth: {
     main: '#02bf02',

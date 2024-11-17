@@ -2,9 +2,8 @@ import { FC, memo } from 'react';
 import { useStylesAuth } from 'shared/ui/pages';
 import { useTheme } from 'app/providers/theme';
 import { Errors } from 'shared/lib/validators';
-import { MDTypography } from 'shared/ui/mui-design-components';
+import { MDTypography, MDDivider } from 'shared/ui/mui-design-components';
 import { InnerPageWrapper } from 'shared/ui/wrappers';
-import { SidebarDivider } from 'shared/ui/sidebar-divider';
 import { UseGroup } from 'shared/lib/hooks';
 import { Company } from 'entities/company';
 import { TextfieldItem } from 'shared/ui/containers';
@@ -32,7 +31,7 @@ export const CompanyProfilePageComponent: FC<Props> = memo(({ loading, auth, err
       <MDTypography variant="h6" textAlign="center" textTransform="none" mb={2}>
         Профиль компании
       </MDTypography>
-      <SidebarDivider />
+      <MDDivider />
       
       {
         ! auth

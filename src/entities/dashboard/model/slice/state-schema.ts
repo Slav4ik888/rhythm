@@ -1,5 +1,5 @@
 import { Errors } from 'shared/lib/validators';
-import { DashboardPeriod, DashboardStatisticItem } from './dashboard';
+import { DashboardPeriod, DashboardStatisticItem } from '../types/dashboard';
 
 
 

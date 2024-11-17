@@ -6,6 +6,7 @@ import { calculateStartDate, getMsFromRef } from './utils';
 import { actionsDashboard, DashboardPeriodType, selectSelectedPeriod } from 'entities/dashboard';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { formatDate } from 'shared/helpers/dates';
+import { ActivatedCompanyId, useCompany } from 'entities/company';
 
 
 
@@ -15,6 +16,7 @@ interface Props {
 
 
 export const SetPeriodDate: FC<Props> = memo(({ type }) => {
+  const { companyId } = useCompany();
   const dispatch = useAppDispatch();
   const ref      = useRef<HTMLInputElement>(null);
   const storeSelectPeriod = useSelector(selectSelectedPeriod);
@@ -37,6 +39,7 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
       // При монтировании, может быть не указана дата (storeSelectPeriod.end) и нельзя обнулять данные в сторадже
       // которые подтянуться чуть позже, иначе они затираются
       if (start) dispatch(actionsDashboard.setSelectedPeriod({
+        companyId,
         period: {
           start
         },
@@ -50,6 +53,7 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
     if (new Date(e.target.value)?.getTime() > -2208997817000) {
 
       dispatch(actionsDashboard.setSelectedPeriod({
+        companyId,
         period: { [type]: getMsFromRef(ref as MutableRefObject<HTMLInputElement>) },
       }));
     }

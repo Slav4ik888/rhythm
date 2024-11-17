@@ -3,7 +3,7 @@ import { setIsOpenConfigurator, useUIConfiguratorController } from 'app/provider
 import DrawerStyled from './styled';
 import { PaletteModeSwitcher, MiniSidebarSwitcher, SidebarColorSwitcher } from 'features/ui';
 import { UIConfiguratorMainHeader as MainHeader } from './main-header';
-import { SidebarDivider } from 'shared/ui/sidebar-divider';
+import { MDDivider } from 'shared/ui/mui-design-components';
 import { UIConfiguratorSubHeader as SubHeader } from './sub-header';
 
 
@@ -27,12 +27,12 @@ export const UIConfigurator = memo(() => {
     >
       <MainHeader onClose={handleClose} />
       <PaletteModeSwitcher />
-      <SidebarDivider />
+      <MDDivider />
       
       <SubHeader title='Боковая панель'/>
       <MiniSidebarSwitcher />
       <SidebarColorSwitcher />
-      <SidebarDivider />
+      <MDDivider />
 
       {/* <SubHeader title='Верхняя панель'/> */}
       {/* navbarBackgroundTheme : NavbarColorName */}

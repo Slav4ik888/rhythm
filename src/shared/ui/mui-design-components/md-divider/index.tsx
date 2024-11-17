@@ -3,7 +3,7 @@ import Divider from "@mui/material/Divider";
 
 
 
-export const SidebarDivider = memo(() => 
+export const MDDivider = memo(() => 
   <Divider
     sx={{
       backgroundImage : 'linear-gradient(90deg, transparent, rgba(0, 0, 0, .4), transparent)',

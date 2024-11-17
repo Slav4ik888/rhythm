@@ -1,7 +1,7 @@
 import { ColorName } from 'app/providers/theme';
 import { SidebarRouteListItem } from 'entities/dashboard';
 import { Fragment } from 'react/jsx-runtime';
-import { SidebarDivider } from '../../../../shared/ui/sidebar-divider';
+import { MDDivider } from 'shared/ui/mui-design-components';
 import { SidebarLink } from '../sidebar-items/sidebar-link';
 import { SidebarNavLink } from '../sidebar-items/sidebar-navlink';
 import { SidebarTitle } from '../sidebar-items/sidebar-title';
@@ -39,7 +39,7 @@ export const renderRoutes = (routesList: SidebarRouteListItem[], activeName: str
       );
     }
     else if (type === "divider") {
-      returnValue = <SidebarDivider />;
+      returnValue = <MDDivider />;
     }
   
   return <Fragment key={key}>{returnValue}</Fragment>;

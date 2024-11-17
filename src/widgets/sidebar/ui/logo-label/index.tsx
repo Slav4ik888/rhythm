@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { styles } from './styles';
 import brandDark from 'shared/assets/logo_small.png';
 import { useUIConfiguratorController } from 'app/providers/theme';
-import { SidebarDivider } from '../../../../shared/ui/sidebar-divider';
+import { MDDivider } from '../../../../shared/ui/mui-design-components';
 
 
 
@@ -41,7 +41,7 @@ export const SidebarLogoLabel = memo(() => {
         </MDBox>
       </MDBox>
       
-      <SidebarDivider />
+      <MDDivider />
     </>
   )
 });
