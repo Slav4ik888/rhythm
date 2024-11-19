@@ -26,7 +26,7 @@ export const getInitialState = (companyId: ActivatedCompanyId): StateSchemaDashb
     activeEntities : LS.getDashboardState(companyId).activeEntities || {},
     activeDates    : LS.getDashboardState(companyId).activeDates    || {},
 
-    _isMounted     : true,
+    // _isMounted     : true,
     loading        : false,
     errors         : {}
   };

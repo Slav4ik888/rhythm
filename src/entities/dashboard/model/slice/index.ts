@@ -30,7 +30,7 @@ const initialState: StateSchemaDashboard = {
   activeEntities : {},
   activeDates    : {},
 
-  _isMounted     : true,
+  // _isMounted     : false,
   loading        : false,
   errors         : {}
 };

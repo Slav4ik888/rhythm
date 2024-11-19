@@ -10,15 +10,14 @@ import { formatDate } from 'shared/helpers/dates';
 
 export const DashboardLastUpdatedText: FC = memo(() => {
   const lastUpdated = useSelector(selectLastUpdated);
-  const date = formatDate(lastUpdated, "DD.MM.YY HH:MM"); //  "D Month YYYY HH:MM"
 
   return (
     <Tooltip
-      title      = {`Последнее обновление было в ${date}`}
+      title      = {`Последнее обновление было в ${formatDate(lastUpdated, 'D Month YYYY HH:MM')}`}
       enterDelay = {500}
       sxSpan     = {{ cursor: "default" }}
     >
-      <MDTypography fontSize={pxToRem(10)}>{date}</MDTypography>
+      <MDTypography fontSize={pxToRem(10)}>{formatDate(lastUpdated, "DD.MM.YY HH:MM")}</MDTypography>
     </Tooltip>
   )
 });

@@ -13,6 +13,6 @@ export const selectSelectedPeriod = (state: StateSchema) => selectModule(state).
 export const selectActiveEntities = (state: StateSchema) => selectModule(state).activeEntities || {};
 export const selectActiveDates    = (state: StateSchema) => selectModule(state).activeDates || {};
 
-export const selectIsMounted      = (state: StateSchema) => selectModule(state)._isMounted;
+// export const selectIsMounted      = (state: StateSchema) => selectModule(state)._isMounted;
 export const selectLoading        = (state: StateSchema) => selectModule(state).loading;
 export const selectErrors         = (state: StateSchema) => selectModule(state).errors;

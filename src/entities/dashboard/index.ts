@@ -11,6 +11,6 @@ export { actions as actionsDashboard, reducer as reducerDashboard } from './mode
 export { DashboardEntities, DashboardDates, StateSchemaDashboard } from './model/slice/state-schema'
 export {
   selectLoading, selectErrors, selectActivePeriod, selectSelectedPeriod, selectLastUpdated,
-  selectActiveDates, selectActiveEntities, selectIsMounted
+  selectActiveDates, selectActiveEntities
 } from './model/selectors'
 export { invertData, getInitialState } from './model/utils'

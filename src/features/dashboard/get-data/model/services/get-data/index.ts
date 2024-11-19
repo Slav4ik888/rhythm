@@ -27,11 +27,11 @@ export const getData = createAsyncThunk<
     const { dispatch, rejectWithValue } = thunkApi;
     
     try {
-      const { data } = await apiWithoutCookie.get(company.googleData.url);
+      // const { data } = await apiWithoutCookie.get(company.googleData.url);
 
       // **
       // For development - сохраняем входящие данные в localStorage
-      // const data = LS.devGetGSData(company.id as ActivatedCompanyId);
+      const data = LS.devGetGSData(company.id as ActivatedCompanyId);
       console.log('GS data: ', data);
       LS.devSetGSData(company.id as ActivatedCompanyId, data);
 

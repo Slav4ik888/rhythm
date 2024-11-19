@@ -24,7 +24,7 @@ export interface StateSchemaDashboard {
   activeEntities : DashboardEntities
   activeDates    : DashboardDates
 
-  _isMounted?    : boolean
+  // _isMounted?    : boolean // Признак того, что компонент находится в DOM
   loading        : boolean
   errors         : Errors
 }

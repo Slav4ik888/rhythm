@@ -6,7 +6,7 @@ import { calculateStartDate, getMsFromRef } from './utils';
 import { actionsDashboard, DashboardPeriodType, selectSelectedPeriod } from 'entities/dashboard';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { formatDate } from 'shared/helpers/dates';
-import { ActivatedCompanyId, useCompany } from 'entities/company';
+import { useCompany } from 'entities/company';
 
 
 
@@ -67,7 +67,7 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
       type     = "date"
       size     = "small"
       disabled = {disabled}
-      sx       = {{ width: pxToRem(120), mr: 1 }}
+      sx       = {{ width: pxToRem(140), mr: 1 }}
       onChange = {handleChange}
     />
   )

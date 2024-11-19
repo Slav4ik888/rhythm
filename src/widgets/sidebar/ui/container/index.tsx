@@ -47,6 +47,7 @@ export const SidebarContainer: FC<Props> = ({ ...rest }) => {
     else return "white" as ColorName
   }, [darkMode]);
 
+  // TODO: вставлять routesList в функцию по companyId
   const routes = useMemo(() => renderRoutes(routesList_css_1d3r8, activeName, textColor), [routesList_css_1d3r8, activeName, textColor]);
   
 

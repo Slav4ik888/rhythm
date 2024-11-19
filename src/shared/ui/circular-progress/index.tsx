@@ -63,7 +63,7 @@ const useStyles = (
 };
 
 
-/** 2024-01-21 */
+/** 2024-11-17 */
 export const CircularProgress: React.FC<Props> = (props) => {
   const
     {
@@ -80,8 +80,14 @@ export const CircularProgress: React.FC<Props> = (props) => {
   
   
   return (
-    <Box id={id} sx={sx.root}>
-      <Circular size={size} sx={sx.circular} />
+    <Box
+      id = {id}
+      sx = {sx.root}
+    >
+      <Circular
+        size = {size}
+        sx   = {sx.circular}
+      />
     </Box>
   );
 };

@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { DashboardBodyWrapper } from '../../wrapper';
 import { DashboardBoxContainer } from 'entities/blocks';
 import { DashboardReportContainer7_0_3 } from './departments/department_7/7-0-3';
 import { DashboardReportContainer7_0_4 } from './departments/department_7/7-0-4';
@@ -18,6 +17,7 @@ import { DashboardReportContainer6_17_6 } from './departments/department_6/6-17-
 import { DashboardReportContainer6_17_2 } from './departments/department_6/6-17-2';
 import { DashboardReportContainer6_17_7 } from './departments/department_6/6-17-7';
 import { Stack } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 
 
 
@@ -37,11 +37,15 @@ import { Stack } from '@mui/material';
 
 export const DashboardBody_css_1d3r8 = memo(() => {
   console.log('CSS DashboardBody ');
+  const { pathname } = useLocation();
+  const subPathname = pathname?.split('/')?.[2];
+  console.log('pathname: ', pathname);
+  console.log('subPathname: ', subPathname);
 
   // const sortedBlocks = [...config.blocks].sort((a, b) => a.order - b.order);
 
   return (
-    <DashboardBodyWrapper>
+    <>
       {/* {
         sortedBlocks.map(block => block.component)
       } */}
@@ -118,6 +122,6 @@ export const DashboardBody_css_1d3r8 = memo(() => {
           <DashboardReportContainer6_17_7 />
         </Stack>
       </DashboardBoxContainer>
-    </DashboardBodyWrapper>
+    </>
   );
 });

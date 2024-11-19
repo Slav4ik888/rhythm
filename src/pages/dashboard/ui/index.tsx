@@ -25,7 +25,7 @@ const DashboardPage: FC = memo(() => {
       <Sidebar />
       {/* {configsButton} */}
 
-      <SidebarRegulatorWrapper>
+      <SidebarRegulatorWrapper body>
         <DashboardBody />
       </SidebarRegulatorWrapper>
     </DynamicModuleLoader>

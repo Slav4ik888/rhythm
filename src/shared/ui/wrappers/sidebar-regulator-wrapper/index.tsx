@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 // import { useLocation } from 'react-router-dom';
 import { useUIConfiguratorController } from 'app/providers/theme';
 import MDBox from 'shared/ui/mui-design-components/md-box';
@@ -22,16 +22,19 @@ import { CustomTheme, pxToRem } from 'app/providers/theme';
 
 
 interface Props {
-  children: React.ReactNode;
+  body?    : boolean // для него добавляем minHeight
+  children : ReactNode
 }
 
 /**
  * Регулирует, на сколько нужно отодвинуть элемент от левого края (Sidebar)
  */
-export const SidebarRegulatorWrapper: FC<Props> = ({ children }) => {
+export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
   const [configuratorState] = useUIConfiguratorController();
   const { isSidebar, sidebarMini, sidebarWidth } = configuratorState;
   
+  const isBody   = body;
+  const isNavbar = ! isBody;
   // const { pathname } = useLocation();
 
   // useEffect(() => {
@@ -44,13 +47,21 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children }) => {
       sx={({ breakpoints, transitions }: CustomTheme) => ({
         position   : 'relative',
         overflowX  : 'scroll',
-        marginLeft : isSidebar
-          ? sidebarMini ? pxToRem(120) : pxToRem(sidebarWidth)
+        minHeight  : isBody 
+          ? 'calc(100vh - 200px)'
           : 0,
-        px         : 3,
-        // pb         : 3,
-        pt         : 'calc(1rem + 2px)',
 
+        marginLeft : isSidebar
+          ? sidebarMini
+            ? pxToRem(104)
+            : pxToRem(sidebarWidth + 8)
+          : 0,
+
+        px: 3,
+        pt: isNavbar 
+          ? 'calc(1rem + 2px)'
+          : '',
+        
         [breakpoints.down('sm')]: {
           marginLeft: isSidebar
             ? sidebarMini ? 0 : pxToRem(sidebarWidth)
