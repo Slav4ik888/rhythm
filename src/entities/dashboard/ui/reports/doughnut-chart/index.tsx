@@ -2,9 +2,9 @@ import { FC } from "react";
 import "chart.js/auto";
 import { Chart } from "react-chartjs-2";
 import { MDBox } from "shared/ui/mui-design-components";
-import { config } from "./config";
 import { GradientColorName, GreyColor } from 'app/providers/theme';
-import { ChartConfig } from '../../../../../charts/model/types';
+import { ChartConfig } from '../../../../charts/model/types';
+import { config } from './config';
 
 
 
@@ -14,7 +14,7 @@ interface Props {
 }
 
 
-export const LineChartContainer: FC<Props> = ({ bgColor, chart }) => {
+export const DoughnutChartContainer: FC<Props> = ({ bgColor, chart }) => {
   const { data, options } = config(chart);
 
 
@@ -30,7 +30,7 @@ export const LineChartContainer: FC<Props> = ({ bgColor, chart }) => {
       mt            = {1}
     >
       {/* @ts-ignore */}
-      <Chart type="line" data={data} options={options} />
+      <Chart type='doughnut' data={data} options={options} />
     </MDBox>
   );
 }

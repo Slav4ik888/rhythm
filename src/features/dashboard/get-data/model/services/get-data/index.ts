@@ -36,6 +36,7 @@ export const getData = createAsyncThunk<
       LS.devSetGSData(company.id as ActivatedCompanyId, data);
 
       const gsData = getEntities(data);
+      console.log('gsData: ', gsData);
       dispatch(actionsUI.setSuccessMessage("Данные с гугл-таблицы загружены"));
     
       return { companyId: company.id as ActivatedCompanyId, data: gsData };

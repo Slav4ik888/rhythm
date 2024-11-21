@@ -14,7 +14,7 @@ export interface ChartConfigDataSets {
   pointBackgroundColor? : string
   borderColor?          : string
   borderWidth?          : number // Толщика линии
-  backgroundColor?      : string
+  backgroundColor?      : string | string[]
   fill?                 : boolean
   maxBarThickness?      : number
 }

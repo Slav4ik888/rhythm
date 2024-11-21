@@ -1,1 +1,1 @@
-export * from './get-condition-type'
+export { getConditionType } from './get-condition-type'

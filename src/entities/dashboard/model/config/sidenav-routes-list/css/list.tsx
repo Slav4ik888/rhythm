@@ -8,7 +8,6 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import FolderSpecialIcon from '@mui/icons-material/FolderSpecial';
-import { RoutePath } from 'app/providers/routes';
 import { CSS_SubRouteName } from './routes';
 
 
@@ -20,7 +19,7 @@ export const routesList_css_1d3r8: SidebarRouteListItem[] = [
     title : 'Dashboard',
     key   : 'dashboard',
     icon  : <EqualizerIcon fontSize='small' />,
-    route : RoutePath.DASHBOARD,
+    route : '/dashboard',
   },
   {
     type  : 'divider',
@@ -31,48 +30,48 @@ export const routesList_css_1d3r8: SidebarRouteListItem[] = [
     title : '7 отделение',
     key   : `${CSS_SubRouteName.DEPARTMENT_7}`,
     icon  : <AccountBalanceIcon fontSize='small' />,
-    route : `${RoutePath.DASHBOARD}/${CSS_SubRouteName.DEPARTMENT_7}`,
+    route : `/dashboard/${CSS_SubRouteName.DEPARTMENT_7}`,
   },
   {
     type  : 'collapse',
     title : '1 отделение',
     key   : `${CSS_SubRouteName.DEPARTMENT_1}`,
     icon  : <GroupsIcon fontSize='small' />,
-    route : `${RoutePath.DASHBOARD}/${CSS_SubRouteName.DEPARTMENT_1}`,
+    route : `/dashboard/${CSS_SubRouteName.DEPARTMENT_1}`,
   },
   {
     type  : 'collapse',
     title : '2 отделение',
     key   : `${CSS_SubRouteName.DEPARTMENT_2}`,
     icon  : <StorefrontIcon fontSize='small' />,
-    route : `${RoutePath.DASHBOARD}/${CSS_SubRouteName.DEPARTMENT_2}`,
+    route : `/dashboard/${CSS_SubRouteName.DEPARTMENT_2}`,
   },
   {
     type  : 'collapse',
     title : '3 отделение',
     key   : `${CSS_SubRouteName.DEPARTMENT_3}`,
     icon  : <CalculateIcon fontSize='small' />,
-    route : `${RoutePath.DASHBOARD}/${CSS_SubRouteName.DEPARTMENT_3}`,
+    route : `/dashboard/${CSS_SubRouteName.DEPARTMENT_3}`,
   },
   {
     type  : 'collapse',
     title : '4 отделение',
     key   : `${CSS_SubRouteName.DEPARTMENT_4}`,
     icon  : <PrecisionManufacturingIcon fontSize='small' />,
-    route : `${RoutePath.DASHBOARD}/${CSS_SubRouteName.DEPARTMENT_4}`,
+    route : `/dashboard/${CSS_SubRouteName.DEPARTMENT_4}`,
   },
   {
     type  : 'collapse',
     title : '5 отделение',
     key   : `${CSS_SubRouteName.DEPARTMENT_5}`,
     icon  : <FolderSpecialIcon fontSize='small' />,
-    route : `${RoutePath.DASHBOARD}/${CSS_SubRouteName.DEPARTMENT_5}`,
+    route : `/dashboard/${CSS_SubRouteName.DEPARTMENT_5}`,
   },
   {
     type  : 'collapse',
     title : '6 отделение',
     key   : `${CSS_SubRouteName.DEPARTMENT_6}`,
     icon  : <AutoFixHighIcon fontSize='small' />,
-    route : `${RoutePath.DASHBOARD}/${CSS_SubRouteName.DEPARTMENT_6}`,
+    route : `/dashboard/${CSS_SubRouteName.DEPARTMENT_6}`,
   },
 ];

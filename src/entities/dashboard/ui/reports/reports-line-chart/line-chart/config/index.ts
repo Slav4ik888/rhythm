@@ -13,22 +13,17 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { isNotUndefined } from 'shared/lib/validators';
-import { ChartConfigDataSets, ChartConfigOptions } from '../../../../../../charts/model/types';
+import { setValue } from 'shared/lib/charts';
+import { ChartConfig, ChartConfigDataSets, ChartConfigOptions } from '../../../../../../charts/model/types';
 
 
-
-function isConfig<T>(config: T, defaultValue: T) {
-  return isNotUndefined(config) ? config : defaultValue;
-}
-
-
-
-export function configs(
-  labels   : any[] = [],
-  datasets : ChartConfigDataSets = {},
-  config   : ChartConfigOptions = {}
-) {
+/** Line config */
+export function config(chartConfig: ChartConfig) {
+  const {
+    labels   = [] as string[],
+    datasets = {} as ChartConfigDataSets,
+    config   = {} as ChartConfigOptions
+  } = chartConfig
   const { scales } = config;
   
   return {
@@ -37,15 +32,15 @@ export function configs(
       datasets: [
         {
           label                : datasets.label,
-          tension              : 0,
-          pointRadius          : isConfig(datasets.pointRadius, 5), // Толщика точки (круглешков)
-          pointBorderColor     : "transparent",
-          pointBackgroundColor : isConfig(datasets.pointBackgroundColor, "rgba(255, 255, 255, .8)"),
-          borderColor          : isConfig(datasets.borderColor, "rgba(255, 255, 255, .8)"),
-          borderWidth          : isConfig(datasets.borderWidth, 3), // Толщика линии
-          backgroundColor      : isConfig(datasets.backgroundColor, "transparent"),
-          fill                 : isConfig(datasets.fill, true),
           data                 : datasets.data,
+          tension              : 0,
+          pointRadius          : setValue(datasets.pointRadius, 5), // Толщика точки (круглешков)
+          pointBorderColor     : 'transparent',
+          pointBackgroundColor : setValue(datasets.pointBackgroundColor, 'rgba(255, 255, 255, .8)'),
+          borderColor          : setValue(datasets.borderColor, 'rgba(255, 255, 255, .8)'),
+          borderWidth          : setValue(datasets.borderWidth, 3), // Толщика линии
+          backgroundColor      : setValue(datasets.backgroundColor, 'transparent'),
+          fill                 : setValue(datasets.fill, true),
           maxBarThickness      : 6,
         },
       ],
@@ -66,20 +61,20 @@ export function configs(
         y: {
           // Горизонтальные линии от оси Y
           grid: {
-            display         : isConfig(scales?.y?.grid?.display, true),
+            display         : setValue(scales?.y?.grid?.display, true),
             drawBorder      : false,
             drawOnChartArea : true,
             drawTicks       : false, // Насечки на оси
             borderDash      : [5, 5],
-            color           : isConfig(scales?.y?.grid?.color, "#dadada"), // "rgba(255, 255, 255, .2)"),
+            color           : setValue(scales?.y?.grid?.color, "#dadada"), // "rgba(255, 255, 255, .2)"),
           },
           // Подпись оси
           ticks: {
             display : true,
-            color   : isConfig(scales?.y?.ticks?.color, "rgba(0, 0, 0, .8)"), // "#f8f9fa"),
+            color   : setValue(scales?.y?.ticks?.color, "rgba(0, 0, 0, .8)"), // "#f8f9fa"),
             padding : 10,
             font    : {
-              size       : isConfig(scales?.y?.ticks?.font?.size, 10),
+              size       : setValue(scales?.y?.ticks?.font?.size, 10),
               weight     : 300,
               family     : "Arial", // "Roboto",
               style      : "normal",
@@ -87,26 +82,26 @@ export function configs(
             },
           },
           // Добавление  мин / макс значения оси Y
-          suggestedMin: isConfig(scales?.y?.suggestedMin, null),
-          suggestedMax: isConfig(scales?.y?.suggestedMax, null),
+          suggestedMin: setValue(scales?.y?.suggestedMin, null),
+          suggestedMax: setValue(scales?.y?.suggestedMax, null),
         },
         x: {
           // Вертикальные линии от оси X
           grid: {
-            display         : isConfig(scales?.x?.grid?.display, true),
+            display         : setValue(scales?.x?.grid?.display, true),
             drawBorder      : true,
             drawOnChartArea : false,
             drawTicks       : false, // Насечки на оси
             borderDash      : [5, 5],
-            color           : isConfig(scales?.x?.grid?.color, "#dadada"), // "rgba(255, 255, 255, .2)"),
+            color           : setValue(scales?.x?.grid?.color, "#dadada"), // "rgba(255, 255, 255, .2)"),
           },
           // Подпись оси
           ticks: {
             display : true,
-            color   : isConfig(scales?.x?.ticks?.color, "rgba(0, 0, 0, .8)"), // "#f8f9fa"),
+            color   : setValue(scales?.x?.ticks?.color, "rgba(0, 0, 0, .8)"), // "#f8f9fa"),
             padding : 10,
             font    : {
-              size       : isConfig(scales?.x?.ticks?.font?.size, 10),
+              size       : setValue(scales?.x?.ticks?.font?.size, 10),
               weight     : 300,
               family     : "Arial", // "Roboto",
               style      : "normal",

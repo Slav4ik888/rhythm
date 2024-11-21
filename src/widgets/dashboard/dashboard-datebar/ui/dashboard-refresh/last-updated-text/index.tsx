@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectLastUpdated } from 'entities/dashboard';
 import { pxToRem } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
-import { formatDate } from 'shared/helpers/dates';
+import { formatDate, SUB } from 'shared/helpers/dates';
 
 
 
@@ -13,7 +13,7 @@ export const DashboardLastUpdatedText: FC = memo(() => {
 
   return (
     <Tooltip
-      title      = {`Последнее обновление было в ${formatDate(lastUpdated, 'D Month YYYY HH:MM')}`}
+      title      = {`Последнее обновление было в ${formatDate(lastUpdated, 'D Month YYYY HH:MM', SUB.RU)}`}
       enterDelay = {500}
       sxSpan     = {{ cursor: "default" }}
     >

@@ -31,6 +31,8 @@ export type FORMAT = 'Month'
 //   HHMM           = 'HH:MM',
 // }
 
+// TODO: type SUB = 'en' | 'ru' | 'ru_decl' | 'ru_abbr' | 'ru_abbr_dec'
+
 export enum SUB {
   EN          = 'en',
   RU          = 'ru',
