@@ -30,7 +30,7 @@ import MDTypography from "shared/ui/mui-design-components/md-typography";
 // ReportsBarChart configurations
 import { configs } from "./configs";
 import { ColorName } from 'app/providers/theme';
-import { ChartConfigDataSets } from 'entities/charts';
+import { ChartConfigDatasets } from 'entities/charts';
 
 
 
@@ -41,7 +41,7 @@ interface Props {
   date: string
   chart: {
     labels: any[],
-    datasets: ChartConfigDataSets
+    datasets: ChartConfigDatasets
   }
 }
 

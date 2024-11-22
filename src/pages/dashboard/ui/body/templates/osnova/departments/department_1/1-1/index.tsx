@@ -1,5 +1,5 @@
 import { memo, useMemo } from 'react';
-import { ChartConfig, ChartConfigDataSets } from 'entities/charts';
+import { ChartConfig, ChartConfigDatasets } from 'entities/charts';
 import { ReportsLineChart2 } from 'shared/ui/charts';
 import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
@@ -11,9 +11,9 @@ import { getConditionType } from 'entities/condition-type';
 
 
 /** Доп поля в конфиг данных для графика */
-const getDatasetConfig = (dates: any[]): ChartConfigDataSets => {
+const getDatasetConfig = (dates: any[]): ChartConfigDatasets => {
 
-  const config: ChartConfigDataSets = {
+  const config: ChartConfigDatasets = {
     pointBackgroundColor : "rgb(209 148 58)",
     backgroundColor      : "rgb(209 148 58 / 30%)",
     borderColor          : "rgb(209 148 58)",
@@ -56,7 +56,7 @@ export const DashboardReportContainer1_1 = memo(() => {
       // label : "Общее кол-во персонала",
       data: itemData.data as number[]
     },
-    config: {
+    options: {
       scales: {
         y: {
           suggestedMax: 5 // Добавление  макс значения оси Y

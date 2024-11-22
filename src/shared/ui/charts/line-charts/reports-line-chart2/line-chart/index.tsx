@@ -15,7 +15,7 @@ interface Props {
 
 
 export const LineChartContainer: FC<Props> = ({ bgColor, chart }) => {
-  const { data, options } = configs(chart.labels, chart.datasets, chart.config);
+  const { data, options } = configs(chart.labels, chart.datasets, chart.options);
 
 
   return (

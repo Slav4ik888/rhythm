@@ -1,5 +1,5 @@
 import { memo, useMemo } from 'react';
-import { ChartConfigDataSets } from 'entities/charts';
+import { ChartConfig, ChartConfigDatasets } from 'entities/charts';
 import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
 import { selectActiveDates, selectActiveEntities, ReportsLineChartConfig, invertData, ReportsLineChart } from 'entities/dashboard';
@@ -10,9 +10,9 @@ import { getConditionType } from 'entities/condition-type';
 
 
 /** Доп поля в конфиг данных для графика */
-const getDatasetConfig = (dates: any[]): ChartConfigDataSets => {
+const getDatasetConfig = (dates: any[]): ChartConfigDatasets => {
 
-  const config: ChartConfigDataSets = {
+  const config: ChartConfigDatasets = {
     pointBackgroundColor : "rgb(141 97 183)",
     backgroundColor      : "rgb(141 97 183 / 30%)",
     borderColor          : "rgb(141 97 183)",
@@ -55,15 +55,13 @@ export const DashboardReportContainer2_0_1_1 = memo(() => {
     },
   };
 
-  const datasetConfig = getDatasetConfig(dates);
-
-  const chartData = {
+  const chartData: ChartConfig = {
     labels: dates,
     datasets: {
-      ...datasetConfig,
+      ...getDatasetConfig(dates),
       data: reportConfig.inverted ? invertData(itemData.data as number[]) : itemData.data as number[]
     },
-    config: {
+    options: {
       // scales: {
       //   y: {
       //     suggestedMax: 40 // Добавление  макс значения оси Y

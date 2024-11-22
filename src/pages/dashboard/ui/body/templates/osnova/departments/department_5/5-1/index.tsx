@@ -1,5 +1,5 @@
 import { memo, useMemo } from 'react';
-import { ChartConfigDataSets } from 'entities/charts';
+import { ChartConfigDatasets } from 'entities/charts';
 import { ReportsLineChart2 } from 'shared/ui/charts';
 import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
@@ -10,9 +10,9 @@ import { fixPointRadius } from 'entities/charts';
 
 
 /** Доп поля в конфиг данных для графика */
-const getDatasetConfig = (dates: any[]): ChartConfigDataSets => {
+const getDatasetConfig = (dates: any[]): ChartConfigDatasets => {
 
-  const config: ChartConfigDataSets = {
+  const config: ChartConfigDatasets = {
     pointBackgroundColor : "rgb(132 132 132)",
     backgroundColor      : "rgb(132 132 132 / 30%)",
     borderColor          : "rgb(132 132 132)",

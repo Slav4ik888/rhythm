@@ -31,7 +31,7 @@ import MDTypography from "shared/ui/mui-design-components/md-typography";
 // ReportsLineChart configurations
 import { configs } from "./configs";
 import { GradientColorName, GreyColor } from 'app/providers/theme';
-import { ChartConfigDataSets } from 'entities/charts/model/types';
+import { ChartConfigDatasets } from 'entities/charts/model/types';
 
 
 
@@ -42,7 +42,7 @@ interface Props {
   date: string
   chart: {
     labels: any[],
-    datasets: ChartConfigDataSets
+    datasets: ChartConfigDatasets
   }
 }
 

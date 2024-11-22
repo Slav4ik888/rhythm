@@ -3,15 +3,15 @@ import { useSelector } from 'react-redux';
 import { DashboardReportContainer } from 'entities/blocks';
 import { invertData, selectActiveDates, selectActiveEntities, ReportsLineChart, ReportsLineChartConfig } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
-import { fixPointRadius, ChartConfigDataSets } from 'entities/charts';
+import { fixPointRadius, ChartConfigDatasets, ChartConfig } from 'entities/charts';
 import { getConditionType } from 'entities/condition-type';
 
 
 
 /** Доп поля в конфиг данных для графика */
-const getDatasetConfig = (dates: any[]): ChartConfigDataSets => {
+const getDatasetConfig = (dates: any[]): ChartConfigDatasets => {
 
-  const config: ChartConfigDataSets = {
+  const config: ChartConfigDatasets = {
     pointBackgroundColor : "rgb(80 141 222 / 100%)",
     backgroundColor      : "rgb(80 141 222 / 30%)",
     borderColor          : "rgb(80 141 222 / 100%)"
@@ -54,12 +54,10 @@ export const DashboardReportContainer7_0_4 = memo(() => {
     }
   };
 
-  const datasetConfig = getDatasetConfig(dates);
-
-  const chartData = {
+  const chartData: ChartConfig = {
     labels: dates,
     datasets: {
-      ...datasetConfig,
+      ...getDatasetConfig(dates),
       data: reportConfig.inverted ? invertData(itemData.data as number[]) : itemData.data as number[]
     }
   };

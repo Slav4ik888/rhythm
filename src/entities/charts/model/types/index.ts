@@ -1,16 +1,16 @@
 
 export interface ChartConfig {
   labels   : any[]
-  datasets : ChartConfigDataSets
-  config?  : ChartConfigOptions
+  datasets : ChartConfigDatasets
+  options? : ChartConfigOptions
 }
 
-export interface ChartConfigDataSets {
+export interface ChartConfigDatasets {
   label?                : string
   data?                 : number[] // Данные
   tension?              : number
   pointRadius?          : number // Толщика точки (круглешков)
-  pointBorderColor?     : "transparent"
+  pointBorderColor?     : 'transparent'
   pointBackgroundColor? : string
   borderColor?          : string
   borderWidth?          : number // Толщика линии
@@ -20,7 +20,7 @@ export interface ChartConfigDataSets {
 }
 
 
-type FontStyle = "normal" | "italic" | "oblique" | "initial" | "inherit"
+type FontStyle = 'normal' | 'italic' | 'oblique' | 'initial' | 'inherit'
 
 
 export interface ChartConfigOptions {
@@ -33,7 +33,7 @@ export interface ChartConfigOptions {
   }
   interaction?: {
     intersect?: boolean
-    mode?: "index"
+    mode?: 'index'
   }
   scales?: {
     y?: {
@@ -54,7 +54,7 @@ export interface ChartConfigOptions {
         font?: {
           size?: number
           weight?: number
-          family?: "Roboto"
+          family?: 'Roboto'
           style?: FontStyle
           lineHeight?: number
         }
@@ -80,7 +80,7 @@ export interface ChartConfigOptions {
         font?: {
           size?: number
           weight?: number
-          family?: "Roboto"
+          family?: 'Roboto'
           style?: FontStyle
           lineHeight?: number
         }

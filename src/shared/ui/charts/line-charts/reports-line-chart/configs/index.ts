@@ -13,11 +13,11 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { ChartConfig, ChartConfigDataSets } from 'entities/charts';
+import { ChartConfigDatasets } from 'entities/charts';
 
 
 
-export function configs(labels: any[], datasets: ChartConfigDataSets) {
+export function configs(labels: any[], datasets: ChartConfigDatasets) {
   return {
     data: {
       labels,

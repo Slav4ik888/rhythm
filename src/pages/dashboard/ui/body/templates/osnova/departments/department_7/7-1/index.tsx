@@ -1,5 +1,5 @@
 import { memo, useMemo } from 'react';
-import { ChartConfigDataSets } from 'entities/charts';
+import { ChartConfigDatasets } from 'entities/charts';
 import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
 import { invertData, ReportsLineChart, ReportsLineChartConfig, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
@@ -10,9 +10,9 @@ import { getConditionType } from 'entities/condition-type';
 
 
 /** Доп поля в конфиг данных для графика */
-const getDatasetConfig = (dates: any[]): ChartConfigDataSets => {
+const getDatasetConfig = (dates: any[]): ChartConfigDatasets => {
 
-  const config: ChartConfigDataSets = {
+  const config: ChartConfigDatasets = {
     pointBackgroundColor : "rgb(80 141 222 / 100%)",
     backgroundColor      : "rgb(80 141 222 / 30%)",
     borderColor          : "rgb(80 141 222 / 100%)",

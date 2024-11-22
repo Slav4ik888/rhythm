@@ -14,17 +14,17 @@ Coded by www.creative-tim.com
 */
 
 import { setValue } from 'shared/lib/charts';
-import { ChartConfig, ChartConfigDataSets, ChartConfigOptions } from '../../../../../../charts/model/types';
+import { ChartConfig, ChartConfigDatasets, ChartConfigOptions } from '../../../../../../charts/model/types';
 
 
 /** Line config */
 export function config(chartConfig: ChartConfig) {
   const {
     labels   = [] as string[],
-    datasets = {} as ChartConfigDataSets,
-    config   = {} as ChartConfigOptions
+    datasets = {} as ChartConfigDatasets,
+    options  = {} as ChartConfigOptions
   } = chartConfig
-  const { scales } = config;
+  const { scales } = options;
   
   return {
     data: {
