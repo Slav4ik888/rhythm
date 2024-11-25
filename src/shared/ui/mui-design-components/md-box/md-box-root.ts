@@ -13,8 +13,8 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 import {
   CustomTheme, ColorName, GradientColorName, RadiusName, GreyColor, getBoxShadows,
   linearGradient, Shadows, ColoredShadowsName
@@ -43,67 +43,67 @@ export default styled(Box)(({ theme, ownerState }: { theme: CustomTheme, ownerSt
   const { colored } = getBoxShadows(theme);
 
   const greyColors = {
-    "grey-100": grey[100],
-    "grey-200": grey[200],
-    "grey-300": grey[300],
-    "grey-400": grey[400],
-    "grey-500": grey[500],
-    "grey-600": grey[600],
-    "grey-700": grey[700],
-    "grey-800": grey[800],
-    "grey-900": grey[900],
+    'grey-100': grey[100],
+    'grey-200': grey[200],
+    'grey-300': grey[300],
+    'grey-400': grey[400],
+    'grey-500': grey[500],
+    'grey-600': grey[600],
+    'grey-700': grey[700],
+    'grey-800': grey[800],
+    'grey-900': grey[900],
   };
   
 
   const validGradients: GradientColorName[] = [
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "dark",
-    "light",
-    "department_7",
-    "department_1",
-    "department_2",
-    "department_3",
-    "department_4",
-    "department_5",
-    "department_6",
+    'primary',
+    'secondary',
+    'info',
+    'success',
+    'warning',
+    'error',
+    'dark',
+    'light',
+    'department_7',
+    'department_1',
+    'department_2',
+    'department_3',
+    'department_4',
+    'department_5',
+    'department_6',
   ];
 
   const validColors = [
-    "transparent",
-    "white",
-    "black",
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "light",
-    "dark",
-    "text",
-    "grey-100",
-    "grey-200",
-    "grey-300",
-    "grey-400",
-    "grey-500",
-    "grey-600",
-    "grey-700",
-    "grey-800",
-    "grey-900",
+    'transparent',
+    'white',
+    'black',
+    'primary',
+    'secondary',
+    'info',
+    'success',
+    'warning',
+    'error',
+    'light',
+    'dark',
+    'text',
+    'grey-100',
+    'grey-200',
+    'grey-300',
+    'grey-400',
+    'grey-500',
+    'grey-600',
+    'grey-700',
+    'grey-800',
+    'grey-900',
   ];
 
-  const validBorderRadius = ["xs", "sm", "md", "lg", "xl", "xxl", "section"];
-  const validBoxShadows = ["xs", "sm", "md", "lg", "xl", "xxl", "inset"];
+  const validBorderRadius = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'section'];
+  const validBoxShadows = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'inset'];
 
   // background value
   let backgroundValue = bgColor as string;
 
-  if (variant === "gradient") {
+  if (variant === 'gradient') {
     backgroundValue = validGradients.find((el) => el === bgColor)
       ? linearGradient(gradients[bgColor as GradientColorName].main, gradients[bgColor as GradientColorName].state)
       : white.main;
@@ -130,7 +130,7 @@ export default styled(Box)(({ theme, ownerState }: { theme: CustomTheme, ownerSt
   }
 
   // boxShadow value
-  let boxShadowValue = "none";
+  let boxShadowValue = 'none';
 
   if (validBoxShadows.find((el) => el === shadow)) {
     boxShadowValue = getBoxShadows(theme)[shadow];
@@ -138,7 +138,7 @@ export default styled(Box)(({ theme, ownerState }: { theme: CustomTheme, ownerSt
   else if (coloredShadow) {
     boxShadowValue = colored[coloredShadow as ColoredShadowsName]
       ? colored[coloredShadow as ColoredShadowsName]
-      : "none";
+      : 'none';
   }
 
   return {

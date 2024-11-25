@@ -1,6 +1,7 @@
 import { FC, memo, ReactNode } from "react";
 import Card from "@mui/material/Card";
 import { pxToRem } from 'app/providers/theme';
+import { f } from 'app/styles';
 
 
 
@@ -14,6 +15,7 @@ export const DashboardReportContainer: FC<Props> = memo(({ children }) => {
   return (
     <Card
       sx={{
+        ...f,
         height   : "100%",
         minWidth : pxToRem(440),
         maxWidth : pxToRem(440),

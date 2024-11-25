@@ -14,11 +14,14 @@ Coded by www.creative-tim.com
 */
 
 import { setValue } from 'shared/lib/charts';
-import { ChartConfig, ChartConfigDatasets, ChartConfigOptions } from '../../../../../../charts/model/types';
+import { ChartConfig, ChartConfigDatasets, ChartConfigOptions, FontStyle } from '../../../model/types';
+// @ts-ignore
+import { InteractionMode } from 'node_modules/chart.js/dist/types/index.d.ts';
+
 
 
 /** Line config */
-export function config(chartConfig: ChartConfig) {
+export function lineConfig(chartConfig: ChartConfig) {
   const {
     labels   = [] as string[],
     datasets = {} as ChartConfigDatasets,
@@ -55,7 +58,7 @@ export function config(chartConfig: ChartConfig) {
       },
       interaction: {
         intersect : false,
-        mode      : "index",
+        mode      : 'index' as InteractionMode,
       },
       scales: {
         y: {
@@ -66,24 +69,24 @@ export function config(chartConfig: ChartConfig) {
             drawOnChartArea : true,
             drawTicks       : false, // Насечки на оси
             borderDash      : [5, 5],
-            color           : setValue(scales?.y?.grid?.color, "#dadada"), // "rgba(255, 255, 255, .2)"),
+            color           : setValue(scales?.y?.grid?.color, '#dadada'), // 'rgba(255, 255, 255, .2)'),
           },
           // Подпись оси
           ticks: {
             display : true,
-            color   : setValue(scales?.y?.ticks?.color, "rgba(0, 0, 0, .8)"), // "#f8f9fa"),
+            color   : setValue(scales?.y?.ticks?.color, 'rgba(0, 0, 0, .8)'), // '#f8f9fa'),
             padding : 10,
             font    : {
               size       : setValue(scales?.y?.ticks?.font?.size, 10),
               weight     : 300,
-              family     : "Arial", // "Roboto",
-              style      : "normal",
+              family     : 'Arial', // 'Roboto',
+              style      : 'normal' as FontStyle,
               lineHeight : 2,
             },
           },
           // Добавление  мин / макс значения оси Y
-          suggestedMin: setValue(scales?.y?.suggestedMin, null),
-          suggestedMax: setValue(scales?.y?.suggestedMax, null),
+          suggestedMin: setValue(scales?.y?.suggestedMin, undefined),
+          suggestedMax: setValue(scales?.y?.suggestedMax, undefined),
         },
         x: {
           // Вертикальные линии от оси X
@@ -93,18 +96,18 @@ export function config(chartConfig: ChartConfig) {
             drawOnChartArea : false,
             drawTicks       : false, // Насечки на оси
             borderDash      : [5, 5],
-            color           : setValue(scales?.x?.grid?.color, "#dadada"), // "rgba(255, 255, 255, .2)"),
+            color           : setValue(scales?.x?.grid?.color, '#dadada'), // 'rgba(255, 255, 255, .2)'),
           },
           // Подпись оси
           ticks: {
             display : true,
-            color   : setValue(scales?.x?.ticks?.color, "rgba(0, 0, 0, .8)"), // "#f8f9fa"),
+            color   : setValue(scales?.x?.ticks?.color, 'rgba(0, 0, 0, .8)'), // '#f8f9fa'),
             padding : 10,
             font    : {
               size       : setValue(scales?.x?.ticks?.font?.size, 10),
               weight     : 300,
-              family     : "Arial", // "Roboto",
-              style      : "normal",
+              family     : 'Arial', // 'Roboto',
+              style      : 'normal' as FontStyle,
               lineHeight : 2,
             },
           },

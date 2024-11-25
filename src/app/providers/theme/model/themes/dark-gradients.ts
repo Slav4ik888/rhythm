@@ -65,7 +65,7 @@ export const gradients: Gradients = {
     state: "rgb(235 129 129)",
   },
   department_4: {
-    main: "rgb(130 222 115)",
+    main: "rgb(161 209 153)",
     state: "rgb(63 122 53)",
   },
   department_5: {

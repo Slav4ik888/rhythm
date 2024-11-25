@@ -1,3 +1,5 @@
+// @ts-ignore
+import { InteractionMode } from 'node_modules/chart.js/dist/types/index.d.ts';
 
 export interface ChartConfig {
   labels   : any[]
@@ -20,8 +22,7 @@ export interface ChartConfigDatasets {
 }
 
 
-type FontStyle = 'normal' | 'italic' | 'oblique' | 'initial' | 'inherit'
-
+export type FontStyle = 'normal' | 'italic' | 'oblique' | 'initial' | 'inherit'
 
 export interface ChartConfigOptions {
   responsive?: boolean
@@ -32,8 +33,8 @@ export interface ChartConfigOptions {
     }
   }
   interaction?: {
-    intersect?: boolean
-    mode?: 'index'
+    intersect? : boolean
+    mode?      : InteractionMode //'index'
   }
   scales?: {
     y?: {
@@ -59,8 +60,8 @@ export interface ChartConfigOptions {
           lineHeight?: number
         }
       }
-      suggestedMin?: number | null
-      suggestedMax?: number | null
+      suggestedMin?: number | undefined
+      suggestedMax?: number | undefined
     }
     x?: {
       // Горизонтальные линии на оси

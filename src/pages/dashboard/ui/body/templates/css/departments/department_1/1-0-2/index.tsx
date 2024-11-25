@@ -66,7 +66,8 @@ export const DashboardReportContainer1_0_2 = memo(() => {
     options: {
       scales: {
         y: {
-          suggestedMax: 40 // Добавление  макс значения оси Y
+          suggestedMax: 40, // Добавление  макс значения оси Y
+          suggestedMin: 30
         }
       }
     }
