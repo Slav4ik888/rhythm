@@ -19,7 +19,7 @@ import { GradientColorName, GreyColor } from 'app/providers/theme';
 import { ChartConfig } from '../../../../charts/model/types';
 import { DashboardStatisticItem, ResultChanges } from 'entities/dashboard';
 // import { TimeUpdated } from './time-updated';
-import { ReportsLineChartConfig } from './config-type';
+import { ReportsLineChartConfig } from './types';
 import { ChipsContainer } from '../../items/chips-container';
 import { DashboardConditionType } from 'entities/condition-type';
 import { ReportsHeaderTitle } from './header-title';

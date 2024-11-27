@@ -1,5 +1,5 @@
 import { memo, useMemo } from 'react';
-import { ChartConfigDatasets } from 'entities/charts';
+import { ChartConfig, ChartConfigDatasets } from 'entities/charts';
 import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
 import { ReportsLineChart, ReportsLineChartConfig, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
@@ -47,15 +47,14 @@ export const DashboardReportContainer7_2 = memo(() => {
     }
   };
   
-  const datasetConfig = getDatasetConfig(dates);
 
-  const chartData = {
+  const chartData: ChartConfig = {
     labels: dates,
-    datasets: {
-      ...datasetConfig,
+    datasets: [{
+      ...getDatasetConfig(dates),
       // label : "Резервный фонд",
       data: itemData.data as number[]
-    }
+    }]
   };
 
 

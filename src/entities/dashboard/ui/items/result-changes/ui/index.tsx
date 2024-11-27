@@ -4,7 +4,7 @@ import { DashboardStatisticItem } from '../../../../model/types';
 import { GrowthResult } from './growth-result';
 import { ComparisonIndicators } from './comparsion-indicators';
 import { getComparisonIndicators } from '../model/utils';
-import { ReportsLineChartConfig } from 'shared/ui/charts/line-charts/reports-line-chart2/config-type';
+import { ReportsLineChartConfig } from 'entities/dashboard';
 
 
 

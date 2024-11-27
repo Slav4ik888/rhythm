@@ -1,12 +1,16 @@
 
-export interface ReportsLineChartConfig {
-  // Global values
-  inverted?       : boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
-  unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
+export interface ReportsBaseConfig {
+  inverted?: boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
 
   header?: {
     minHeight?: string // Минимальная высота "шапки", напр. если заголовок на 2 строки, то нужно выравнить у всех в ряду
   }
+}
+
+
+export interface ReportsLineChartConfig extends ReportsBaseConfig {
+  unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
+
   // Chips - показывать или не показывать
   chips?: {
     statisticType? : boolean

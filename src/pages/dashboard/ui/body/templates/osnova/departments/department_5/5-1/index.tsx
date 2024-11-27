@@ -1,9 +1,8 @@
 import { memo, useMemo } from 'react';
-import { ChartConfigDatasets } from 'entities/charts';
-import { ReportsLineChart2 } from 'shared/ui/charts';
+import { ChartConfig, ChartConfigDatasets } from 'entities/charts';
 import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
-import { ReportsLineChartConfig, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
+import { ReportsLineChart, ReportsLineChartConfig, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
 
@@ -45,25 +44,22 @@ export const DashboardReportContainer5_1 = memo(() => {
     }
   };
   
-  const datasetConfig = getDatasetConfig(dates);
 
-  const chartData = {
+  const chartData: ChartConfig = {
     labels: dates,
-    datasets: {
-      ...datasetConfig,
+    datasets: [{
+      ...getDatasetConfig(dates),
       // label : "Ценность сотрудников",
       data: itemData.data as number[]
-    }
+    }]
   };
 
 
   return (
     <DashboardReportContainer>
-      <ReportsLineChart2
+      <ReportsLineChart
         bgColor     = "grey-300" // "department_1"
         item        = {itemData}
-        description = {<>(<strong>+15%</strong>) increase in today sales.</>}
-        date        = "updated 4 min ago"
         chart       = {chartData}
         config      = {reportConfig}
       />

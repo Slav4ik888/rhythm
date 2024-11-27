@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { MDTypography } from 'shared/ui/mui-design-components';
-import { ReportsLineChartConfig } from '../config-type';
+import { ReportsLineChartConfig } from '../types';
 import { MDDivider } from 'shared/ui/mui-design-components';
 
 

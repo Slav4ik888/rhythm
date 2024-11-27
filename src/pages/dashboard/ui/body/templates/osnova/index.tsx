@@ -2,7 +2,6 @@ import { memo } from 'react';
 import { Grid } from '@mui/material';
 import MDBox from "shared/ui/mui-design-components/md-box";
 import { ComplexStatisticsCard } from 'shared/ui/cards/complex-statistics-card';
-import { ReportsBarChart, ReportsLineChart } from 'shared/ui/charts';
 import reportsBarChartData from "../../../../../../entities/dashboard/model/example-data/reportsBarChartData";
 import reportsLineChartData from "../../../../../../entities/dashboard/model/example-data/reportsLineChartData";
 import { DashboardBodyWrapper } from '../../wrapper';
@@ -103,18 +102,18 @@ export const DashboardBody_osnova_g2d7 = memo(() => {
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={4}>
             <MDBox mb={3}>
-              <ReportsBarChart
+              {/* <ReportsBarChart
                 bgColor="info"
                 title="website views"
                 description="Last Campaign Performance"
                 date="campaign sent 2 days ago"
                 chart={reportsBarChartData}
-              />
+              /> */}
             </MDBox>
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
             <MDBox mb={3}>
-              <ReportsLineChart
+              {/* <ReportsLineChart
                 bgColor="success"
                 title="daily sales"
                 description={
@@ -124,18 +123,18 @@ export const DashboardBody_osnova_g2d7 = memo(() => {
                 }
                 date="updated 4 min ago"
                 chart={sales}
-              />
+              /> */}
             </MDBox>
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
             <MDBox mb={3}>
-              <ReportsLineChart
+              {/* <ReportsLineChart
                 bgColor="dark"
                 title="completed tasks"
                 description="Last Campaign Performance"
                 date="just updated"
                 chart={tasks}
-              />
+              /> */}
             </MDBox>
           </Grid>
         </Grid>

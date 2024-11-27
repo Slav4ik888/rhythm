@@ -1,4 +1,6 @@
 import { PaletteMode, Color } from '@mui/material';
+import { amber, blue, deepPurple, green, grey, pink, yellow } from '@mui/material/colors';
+
 
 
 export const customPalette = {
@@ -114,8 +116,7 @@ export const customPalette = {
     800: '#343a40',
     900: '#212529',
   } as Color,
-
-
+  
   // Заголовок в ReportsLineChart
   reportsChartTitle: {
     main: '#7a7a7a',
@@ -177,31 +178,31 @@ export const customPalette = {
 
   // My colors for departments
   department_7_title: {
-    main: 'rgb(80 141 222 / 80%)', // Заголовок первого главного блока отделения
+    main: blue[600] as string, // 'rgb(80 141 222 / 80%)', // Заголовок первого главного блока отделения
     focus: 'rgb(80 141 222 / 80%)',
   },
   department_1_title: {
-    main: 'rgb(209 148 58 / 80%)',
+    main: amber[600] as string, // 'rgb(209 148 58 / 80%)',
     focus: 'rgb(209 148 58 / 80%)',
   },
   department_2_title: {
-    main: 'rgb(141 97 183 / 80%)',
+    main: deepPurple[500] as string, // 'rgb(141 97 183 / 80%)',
     focus: 'rgb(141 97 183 / 80%)',
   },
   department_3_title: {
-    main: 'rgb(235 129 129 / 80%)',
+    main: pink[400] as string, // 'rgb(235 129 129 / 80%)',
     focus: 'rgb(235 129 129 / 80%)',
   },
   department_4_title: {
-    main: 'rgb(63 122 53 / 80%)',
+    main: green[800] as string, // 'rgb(63 122 53 / 80%)',
     focus: 'rgb(63 122 53 / 80%)',
   },
   department_5_title: {
-    main: 'rgb(132 132 132 / 80%)',
+    main: grey[700] as string, // 'rgb(132 132 132 / 80%)',
     focus: 'rgb(132 132 132 / 80%)',
   },
   department_6_title: {
-    main: 'rgb(194 201 35 / 80%)',
+    main: yellow[700] as string, // 'rgb(194 201 35 / 80%)',
     focus: 'rgb(194 201 35 / 80%)',
   },
 

@@ -7,7 +7,7 @@ export const gradients: Gradients = {
   },
 
   secondary: {
-    main: "#747b8a",
+    main: "#74fb8a",
     state: "#495361",
   },
 

@@ -59,10 +59,10 @@ export const DashboardReportContainer1_0_2 = memo(() => {
 
   const chartData: ChartConfig = {
     labels: dates,
-    datasets: {
+    datasets: [{
       ...getDatasetConfig(dates),
       data: reportConfig.inverted ? invertData(itemData.data as number[]) : itemData.data as number[]
-    },
+    }],
     options: {
       scales: {
         y: {

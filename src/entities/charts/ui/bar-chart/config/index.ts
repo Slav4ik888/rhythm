@@ -1,32 +1,47 @@
 import { setValue } from 'shared/lib/charts';
 import { ChartConfig, ChartConfigDatasets, ChartConfigOptions } from '../../../model/types';
+// @ts-ignore
+import { ChartData } from 'node_modules/chart.js/dist/types/index.d.ts';
 
+
+
+interface BarConfig {
+  data    : ChartData<"bar", (number | [number, number] | null)[], any>
+  options : ChartConfigOptions
+}
 
 /** Bar config */
-export function barConfig(chartConfig: ChartConfig) {
+export function barConfig(chartConfig: ChartConfig): BarConfig {
   const {
-    labels   = [] as string[],
-    datasets = {} as ChartConfigDatasets,
+    labels,
+    datasets,
     options  = {} as ChartConfigOptions
   } = chartConfig
   // const { scales } = options;
-  
+
+
   return {
     data: {
       labels,
-      datasets: [
-        {
-          // label           : datasets.label,
-          // data            : datasets.data,
-          // backgroundColor : setValue(datasets.backgroundColor, [
-          //   'rgb(255, 99, 132)',
-          //   'rgb(54, 162, 235)',
-          //   'rgb(255, 205, 86)',
-          // ]),
-        },
-      ],
+      datasets: [...datasets.map(item => {
+        const result: ChartConfigDatasets = {
+          label : item.label,
+          data  : item.data,
+        };
+      
+        if (item.backgroundColor) result.backgroundColor = item.backgroundColor;
+        if (item.borderColor)     result.borderColor = item.borderColor;
+        if (item.borderWidth)     result.borderWidth = item.borderWidth;
+
+        return result
+      })]
     },
     options: {
+      scales: {
+        y: {
+          beginAtZero: true, // y axis starts at 0
+        }
+      } 
     },
   };
 }

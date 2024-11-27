@@ -1,11 +1,14 @@
 // @ts-ignore
 import { InteractionMode } from 'node_modules/chart.js/dist/types/index.d.ts';
 
+
+
 export interface ChartConfig {
-  labels   : any[]
-  datasets : ChartConfigDatasets
+  labels   : any[] // Dates (метки на оси X)
+  datasets : ChartConfigDatasets[]
   options? : ChartConfigOptions
 }
+
 
 export interface ChartConfigDatasets {
   label?                : string
@@ -14,9 +17,9 @@ export interface ChartConfigDatasets {
   pointRadius?          : number // Толщика точки (круглешков)
   pointBorderColor?     : 'transparent'
   pointBackgroundColor? : string
-  borderColor?          : string
+  borderColor?          : string | string[] // Несколько цветов [], если нужно каждый столбик раскрасить разным цветом
   borderWidth?          : number // Толщика линии
-  backgroundColor?      : string | string[]
+  backgroundColor?      : string | string[] // Несколько цветов [], если нужно каждый столбик раскрасить разным цветом
   fill?                 : boolean
   maxBarThickness?      : number
 }
@@ -60,6 +63,7 @@ export interface ChartConfigOptions {
           lineHeight?: number
         }
       }
+      beginAtZero?: boolean // y axis starts at 0
       suggestedMin?: number | undefined
       suggestedMax?: number | undefined
     }

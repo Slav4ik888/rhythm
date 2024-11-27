@@ -4,8 +4,8 @@ export {
   setIsOpenConfigurator, setMode, setSidebarMini, setIsSidebar, setSidebarColor
  } from './model/lib/reducer'
 export {
-  CustomTheme, ColoredShadowsName, UIConfiguratorProviderState, ColorName, GradientColorName,
-  Offset, Radius, RadiusName, GreyColor, Shadows, ColorsConfig, Borders, SxCard
+  CustomTheme, ColoredShadowsName, UIConfiguratorProviderState, ColorName, GradientColorName, GreyColor,
+  Offset, Radius, RadiusName, Shadows, ColorsConfig, Borders, SxCard, MUIColors
 } from './model/types'
 export {
   getBoxShadows, boxShadow, rgba, pxToRem, getTypography, linearGradient

@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 import { setValue } from 'shared/lib/charts';
-import { ChartConfig, ChartConfigDatasets, ChartConfigOptions, FontStyle } from '../../../model/types';
+import { ChartConfig, ChartConfigOptions, FontStyle } from '../../../model/types';
 // @ts-ignore
 import { InteractionMode } from 'node_modules/chart.js/dist/types/index.d.ts';
 
@@ -23,8 +23,8 @@ import { InteractionMode } from 'node_modules/chart.js/dist/types/index.d.ts';
 /** Line config */
 export function lineConfig(chartConfig: ChartConfig) {
   const {
-    labels   = [] as string[],
-    datasets = {} as ChartConfigDatasets,
+    labels,
+    datasets,
     options  = {} as ChartConfigOptions
   } = chartConfig
   const { scales } = options;
@@ -32,21 +32,19 @@ export function lineConfig(chartConfig: ChartConfig) {
   return {
     data: {
       labels,
-      datasets: [
-        {
-          label                : datasets.label,
-          data                 : datasets.data,
-          tension              : 0,
-          pointRadius          : setValue(datasets.pointRadius, 5), // Толщика точки (круглешков)
-          pointBorderColor     : 'transparent',
-          pointBackgroundColor : setValue(datasets.pointBackgroundColor, 'rgba(255, 255, 255, .8)'),
-          borderColor          : setValue(datasets.borderColor, 'rgba(255, 255, 255, .8)'),
-          borderWidth          : setValue(datasets.borderWidth, 3), // Толщика линии
-          backgroundColor      : setValue(datasets.backgroundColor, 'transparent'),
-          fill                 : setValue(datasets.fill, true),
-          maxBarThickness      : 6,
-        },
-      ],
+      datasets: [...datasets.map(item => ({
+        label                : item.label,
+        data                 : item.data,
+        tension              : 0,
+        pointRadius          : setValue(item.pointRadius, 5), // Толщика точки (круглешков)
+        pointBorderColor     : 'transparent',
+        pointBackgroundColor : setValue(item.pointBackgroundColor, 'rgba(255, 255, 255, .8)'),
+        borderColor          : setValue(item.borderColor, 'rgba(255, 255, 255, .8)'),
+        borderWidth          : setValue(item.borderWidth, 3), // Толщика линии
+        backgroundColor      : setValue(item.backgroundColor, 'transparent'),
+        fill                 : setValue(item.fill, true),
+        maxBarThickness      : 6,
+      }))],
     },
     options: {
       responsive          : true,

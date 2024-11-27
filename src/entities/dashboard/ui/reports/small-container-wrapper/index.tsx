@@ -7,25 +7,27 @@ import { Tooltip } from 'shared/ui/tooltip';
 
 
 interface Props {
-  // type        : 'simple' | 'ratio'
-  // width       : 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
-  headerBGColor   : ColorName
-  titleBGColor?   : ColorName
+  headerBGColor   : string // from MUIColors
+  titleColor?     : ColorName
   title           : string
   toolTitle?      : string
   width           : string // in rem
-  height          : string // in rem
-  contentBGColor? : ColorName
+  height?         : string // in rem
+  contentBGColor? : string // from MUIColors
   children        : ReactNode
 }
 
 
 const useStyles = (theme: CustomTheme, props: Props) => {
-  const { headerBGColor, titleBGColor, contentBGColor, width, height } = props;
+  const {
+    headerBGColor, titleColor, contentBGColor,
+    width  = 'max-content',
+    height = 'max-content',
+  } = props;
   
   return {
     root: {
-      border     : `1px solid ${theme.palette[headerBGColor].main}`,
+      border     : `1px solid ${headerBGColor}`,
       width,
       height,
       cursor     : 'default',
@@ -33,18 +35,18 @@ const useStyles = (theme: CustomTheme, props: Props) => {
     },
     header: {
       ...f_c_c,
-      background : `${theme.palette[headerBGColor].main}`,
+      background : `${headerBGColor}`,
       py         : pxToRem(4),
     },
     title: {
       fontSize   : pxToRem(10),
       fontWeight : 'regular',
       textAlign  : 'center',
-      color      : titleBGColor ? theme.palette[titleBGColor].main : theme.palette.comparisonIndicators_1.main,
+      color      : titleColor ? titleColor : theme.palette.comparisonIndicators_1.main,
     },
     content: {
       ...f_c_c,
-      background : contentBGColor ? `${theme.palette[contentBGColor].main}` : 'transparent',
+      background : contentBGColor ? `${contentBGColor}` : 'transparent',
     }
   }
 };

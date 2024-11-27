@@ -1,9 +1,8 @@
 import { memo, useMemo } from 'react';
 import { ChartConfig, ChartConfigDatasets } from 'entities/charts';
-import { ReportsLineChart2 } from 'shared/ui/charts';
 import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
-import { selectActiveDates, selectActiveEntities, ReportsLineChartConfig } from 'entities/dashboard';
+import { selectActiveDates, selectActiveEntities, ReportsLineChartConfig, ReportsLineChart } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
 import { getConditionType } from 'entities/condition-type';
@@ -47,15 +46,14 @@ export const DashboardReportContainer1_1 = memo(() => {
     }
   };
 
-  const datasetConfig = getDatasetConfig(dates);
 
   const chartData: ChartConfig = {
     labels: dates,
-    datasets: {
-      ...datasetConfig,
+    datasets: [{
+      ...getDatasetConfig(dates),
       // label : "Общее кол-во персонала",
       data: itemData.data as number[]
-    },
+    }],
     options: {
       scales: {
         y: {
@@ -68,11 +66,9 @@ export const DashboardReportContainer1_1 = memo(() => {
 
   return (
     <DashboardReportContainer>
-      <ReportsLineChart2
+      <ReportsLineChart
         bgColor     = "grey-300" // "department_1"
         item        = {itemData}
-        description = {<>(<strong>+15%</strong>) increase in today sales.</>}
-        date        = "updated 4 min ago"
         chart       = {chartData}
         condition   = {condition}
         config      = {reportConfig}

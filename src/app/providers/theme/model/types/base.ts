@@ -56,8 +56,10 @@ export type BaseColorName =
   | 'reportsChartTitle' | 'comparisonIndicators_1'
   | 'growth'  | 'fall' | 'unchanged'
   // | 'department_7'       | 'department_6'       | 'department_5'       | 'department_4'       | 'department_3'       | 'department_2'       | 'department_1'
-  | 'department_7_title' | 'department_6_title' | 'department_5_title' | 'department_4_title' | 'department_3_title' | 'department_2_title' | 'department_1_title';
+  | 'department_7_title' | 'department_6_title' | 'department_5_title' | 'department_4_title' | 'department_3_title' | 'department_2_title' | 'department_1_title'
 
+export type MUIColors = 'amber' | 'blue' | 'blueGrey' | 'brown' | 'common' | 'cyan' | 'deepOrange' | 'deepPurple' | 'green' | 'grey' |
+  'indigo' | 'lightBlue' | 'lightGreen' | 'lime' | 'orange' | 'pink' | 'purple' | 'red' | 'teal' | 'yellow'
 
 /** Только те которые есть в Palette */
 export type ColorName = BaseColorName | 'sidebar' | 'navbar' // | SidebarColorName | NavbarColorName

@@ -1,5 +1,5 @@
 import { memo, useMemo } from 'react';
-import { ChartConfigDatasets } from 'entities/charts';
+import { ChartConfig, ChartConfigDatasets } from 'entities/charts';
 import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
 import { invertData, ReportsLineChart, ReportsLineChartConfig, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
@@ -47,15 +47,13 @@ export const DashboardReportContainer7_1 = memo(() => {
   };
 
 
-  const datasetConfig = getDatasetConfig(dates);
-
-  const chartData = {
+  const chartData: ChartConfig = {
     labels: dates,
-    datasets: {
-      ...datasetConfig,
+    datasets: [{
+      ...getDatasetConfig(dates),
       // label : "Сумма кредиторской задолженности",
       data: reportConfig.inverted ? invertData(itemData.data as number[]) : itemData.data as number[]
-    }
+    }]
   };
 
   

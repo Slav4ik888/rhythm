@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
 import { MDBox } from "shared/ui/mui-design-components";
 import { DashboardStatisticItem } from 'entities/dashboard';
-import { ReportsLineChartConfig } from '../../reports/reports-line-chart/config-type';
+import { ReportsLineChartConfig } from '../../reports/reports-line-chart/types';
 import { ConditionTypeChip, DashboardConditionType } from 'entities/condition-type';
 import { StatisticTypeChip } from 'entities/statistic-type';
 import { ProductTypeChip } from 'entities/product-type';

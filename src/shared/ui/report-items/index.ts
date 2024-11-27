@@ -1,1 +1,1 @@
-export { ReportSmallItemBox } from './small-item'
+export { ReportSmallItemBox } from '../../../entities/dashboard/ui/items/small-item'

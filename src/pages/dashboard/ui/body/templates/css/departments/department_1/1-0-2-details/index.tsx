@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react';
-import { BarChart, ChartConfig, DoughnutChart } from 'entities/charts';
+import { BarChart, ChartConfig, ChartConfigDatasets, DoughnutChart, fixPointRadius } from 'entities/charts';
 import { useSelector } from 'react-redux';
-import { selectActiveDates, selectActiveEntities } from 'entities/dashboard';
+import { invertData, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
 import { getLastItem } from 'shared/helpers/arrays';
 import { ReportSmallItemBox } from 'shared/ui/report-items';
 import { Stack } from '@mui/material';
@@ -11,7 +11,27 @@ import { f__sb } from 'app/styles';
 import { ReportSmallContainerWrapper } from 'entities/dashboard/ui/reports';
 import { getConditionType } from 'entities/condition-type';
 import { formatDate, SUB } from 'shared/helpers/dates';
+import {
+  amber, blue, blueGrey, brown, common, cyan, deepOrange, deepPurple, green, grey,
+  indigo, lightBlue, lightGreen, lime, orange, pink, purple, red, teal, yellow,
+} from '@mui/material/colors';
+import { ReportsBaseConfig } from 'entities/dashboard/ui/reports/reports-line-chart/types';
 
+
+
+/** Доп поля в конфиг данных для графика */
+const getDatasetConfig = (dates: any[]): ChartConfigDatasets => {
+
+  const config: ChartConfigDatasets = {
+    pointBackgroundColor : "rgb(209 148 58)",
+    backgroundColor      : "rgb(209 148 58 / 30%)",
+    borderColor          : "rgb(209 148 58)",
+  }
+
+  fixPointRadius(config, dates);    
+
+  return config;
+}
 
 
 /** Общее кол-во сотрудников */
@@ -30,12 +50,39 @@ export const DashboardReportContainer_1_0_2_Details = memo(() => {
 
   if (! itemData || ! itemData_1_1_2 || ! itemData_1_1_3 || ! itemData_1_1_4) return null;
 
-  const chartData: ChartConfig = {
+  // BAR
+  const reportConfig: ReportsBaseConfig = {
+    inverted : true, // При отсутствии изменений в результатах красить чёрным цветом
+
+    header: {
+      minHeight: pxToRem(64),
+    },
+  };
+
+  const barChartData: ChartConfig = {
+    labels: dates,
+    datasets: [{
+      ...getDatasetConfig(dates),
+      data: reportConfig.inverted ? invertData(itemData.data as number[]) : itemData.data as number[]
+    }],
+    options: {
+      scales: {
+        y: {
+          suggestedMax: 40, // Добавление  макс значения оси Y
+          suggestedMin: 30
+        }
+      }
+    }
+  };
+
+
+  // DOUGHNUT
+  const doughnutChartData: ChartConfig = {
     labels   : ['В продажах', 'На производстве', 'Прочие'],
-    datasets : {
+    datasets : [{
       data            : [itemData_1_1_2, itemData_1_1_3, itemData_1_1_4],
       backgroundColor : ['rgb(141 97 183)', 'rgb(63 122 53)', 'rgb(209 148 58)'],
-    },
+    }],
   };
 
   const width = 'lg';
@@ -47,12 +94,12 @@ export const DashboardReportContainer_1_0_2_Details = memo(() => {
       {/* <DoughnutChartContainer bgColor='grey-200' chart={chartData} /> */}
       <Stack>
         <ReportSmallContainerWrapper
-          headerBGColor = 'department_1_title'
+          headerBGColor = {amber[300]}
           title         = 'Всего сотрудников'
           width         = {pxToRem(300)}        
           height        = {pxToRem(100)}        
         >
-          <BarChart chart={} />
+          <BarChart chart={barChartData} />
         </ReportSmallContainerWrapper>
 
         <MDBox
@@ -68,7 +115,7 @@ export const DashboardReportContainer_1_0_2_Details = memo(() => {
           }}
         >
           <MDBox width={pxToRem(280)} mr={1}>
-            <DoughnutChart chart={chartData} />
+            <DoughnutChart chart={doughnutChartData} />
           </MDBox>
         </MDBox>
           
@@ -76,41 +123,46 @@ export const DashboardReportContainer_1_0_2_Details = memo(() => {
 
       <Stack>
         <ReportSmallItemBox
-          type  = 'simple'
-          width = {width}
-          color = 'department_1'
-          title = 'Всего'
-          value = {35}
+          type           = 'simple'
+          width          = {width}
+          headerBGColor  = {amber[300]}
+          contentBGColor = {amber[100]}
+          title          = 'Всего'
+          value          = {35}
         />
         <ReportSmallItemBox
-          type  = 'simple'
-          width = {width}
-          color = 'department_2'
-          title = 'В продаж'
-          value = {5}
+          type           = 'simple'
+          width          = {width}
+          headerBGColor  = {deepPurple[400]}
+          contentBGColor = {deepPurple[200]}
+          title          = 'В продаж'
+          value          = {5}
         />
         <ReportSmallItemBox
-          type  = 'simple'
-          width = {width}
-          color = 'department_4'
-          title = 'На производстве'
-          value = {26}
+          type           = 'simple'
+          width          = {width}
+          headerBGColor  = {green[500]}
+          contentBGColor = {green[300]}
+          title          = 'На производстве'
+          value          = {26}
         />
         <ReportSmallItemBox
-          type  = 'simple'
-          width = {width}
-          color = 'department_1'
-          title = 'Прочие'
-          value = {4}
+          type           = 'simple'
+          width          = {width}
+          headerBGColor  = {amber[300]}
+          contentBGColor = {amber[100]}
+          title          = 'Прочие'
+          value          = {4}
         />
         <ReportSmallItemBox
-          type      = 'ratio'
-          width     = {width}
-          color     = 'department_4'
-          title     = 'Соотношение'
-          toolTitle = 'Соотношение производства ко всем остальным'
-          value     = {2.9}
-          ratio     = {1}
+          type           = 'ratio'
+          width          = {width}
+          headerBGColor  = {green[500]}
+          contentBGColor = {green[300]}
+          title          = 'Соотношение'
+          toolTitle      = 'Соотношение производства ко всем остальным'
+          value          = {2.9}
+          ratio          = {1}
         />
       </Stack>
     </>

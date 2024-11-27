@@ -21,7 +21,7 @@ import { ChartConfigDatasets, ChartConfigOptions } from '../../../../../../../en
 
 export function configs(
   labels   : any[] = [],
-  datasets : ChartConfigDatasets = {},
+  datasets : ChartConfigDatasets[],
   options  : ChartConfigOptions = {}
 ) {
   const { scales } = options;
@@ -31,16 +31,16 @@ export function configs(
       labels,
       datasets: [
         {
-          label                : datasets.label,
+          label                : datasets[0].label,
           tension              : 0,
-          pointRadius          : setValue(datasets.pointRadius, 5), // Толщика точки (круглешков)
+          pointRadius          : setValue(datasets[0].pointRadius, 5), // Толщика точки (круглешков)
           pointBorderColor     : "transparent",
-          pointBackgroundColor : setValue(datasets.pointBackgroundColor, "rgba(255, 255, 255, .8)"),
-          borderColor          : setValue(datasets.borderColor, "rgba(255, 255, 255, .8)"),
-          borderWidth          : setValue(datasets.borderWidth, 3), // Толщика линии
-          backgroundColor      : setValue(datasets.backgroundColor, "transparent"),
-          fill                 : setValue(datasets.fill, true),
-          data                 : datasets.data,
+          pointBackgroundColor : setValue(datasets[0].pointBackgroundColor, "rgba(255, 255, 255, .8)"),
+          borderColor          : setValue(datasets[0].borderColor, "rgba(255, 255, 255, .8)"),
+          borderWidth          : setValue(datasets[0].borderWidth, 3), // Толщика линии
+          backgroundColor      : setValue(datasets[0].backgroundColor, "transparent"),
+          fill                 : setValue(datasets[0].fill, true),
+          data                 : datasets[0].data,
           maxBarThickness      : 6,
         },
       ],
