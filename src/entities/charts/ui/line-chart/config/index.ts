@@ -17,6 +17,7 @@ import { setValue } from 'shared/lib/charts';
 import { ChartConfig, ChartConfigOptions, FontStyle } from '../../../model/types';
 // @ts-ignore
 import { InteractionMode } from 'node_modules/chart.js/dist/types/index.d.ts';
+import { updateObject } from 'shared/helpers/objects';
 
 
 
@@ -46,7 +47,7 @@ export function lineConfig(chartConfig: ChartConfig) {
         maxBarThickness      : 6,
       }))],
     },
-    options: {
+    options: updateObject({
       responsive          : true,
       maintainAspectRatio : false,
       plugins: {
@@ -111,6 +112,6 @@ export function lineConfig(chartConfig: ChartConfig) {
           },
         },
       },
-    },
+    }, options)
   };
 }

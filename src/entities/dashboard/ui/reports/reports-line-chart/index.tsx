@@ -22,7 +22,7 @@ import { DashboardStatisticItem, ResultChanges } from 'entities/dashboard';
 import { ReportsLineChartConfig } from './types';
 import { ChipsContainer } from '../../items/chips-container';
 import { DashboardConditionType } from 'entities/condition-type';
-import { ReportsHeaderTitle } from './header-title';
+// import { ReportsHeaderTitle } from '../report-container/header-title';
 import { ChartContainer, LineChart } from 'entities/charts';
 
 
@@ -42,8 +42,9 @@ interface Props {
 export const ReportsLineChart: FC<Props> = memo(({ bgColor = 'grey-200', item, config, condition, chart }) => {
 
   return (
-    <MDBox pb={1} px={1} width='100%'>
-      <ReportsHeaderTitle title={item?.title} config={config} />
+    <>
+    {/* <MDBox pb={1} px={1} width='100%'> */}
+      {/* <ReportsHeaderTitle title={item?.title} config={config} /> */}
     
       <MDBox sx={{ display: 'flex', justifyContent: 'space-between', my: 2 }}>
         <ChipsContainer item={item} config={config} condition={condition} />
@@ -54,12 +55,25 @@ export const ReportsLineChart: FC<Props> = memo(({ bgColor = 'grey-200', item, c
         {description}
       </MDTypography> */}
 
-      <ChartContainer bgColor={bgColor}>
+      <ChartContainer
+        bgColor       = {bgColor}
+        height        = '20rem'
+        coloredShadow = 'secondary'
+        borderRadius  = 'lg'
+        sx={{
+          root: {
+            py: 2,
+            pr: 0.5,
+            mt: 1,
+          }
+        }}
+      >
         <LineChart chart={chart} />
       </ChartContainer>
 
       {/* <Divider />
       <TimeUpdated date={date} light={light} /> */}
-    </MDBox>
+    {/* </MDBox> */}
+    </>
   );
 });

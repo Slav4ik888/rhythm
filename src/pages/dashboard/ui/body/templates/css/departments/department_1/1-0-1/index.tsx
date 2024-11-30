@@ -1,8 +1,7 @@
 import { memo, useMemo } from 'react';
 import { ChartConfig, ChartConfigDatasets } from 'entities/charts';
-import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
-import { invertData, ReportsLineChart, ReportsLineChartConfig, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
+import { DashboardReportContainer, invertData, ReportsLineChart, ReportsLineChartConfig, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
 import { getConditionType } from 'entities/condition-type';
@@ -38,9 +37,6 @@ export const DashboardReportContainer1_0_1 = memo(() => {
   if (! itemData) return null;
 
   const reportConfig: ReportsLineChartConfig = {
-    header: {
-      minHeight: pxToRem(64),
-    },
     chips: {
       statisticType : true,
       companyType   : true,
@@ -72,7 +68,10 @@ export const DashboardReportContainer1_0_1 = memo(() => {
 
 
   return (
-    <DashboardReportContainer>
+    <DashboardReportContainer
+      title  = {itemData.title}
+      config = {{ header: { minHeight: pxToRem(64) } }}
+    >
       <ReportsLineChart
         item        = {itemData}
         chart       = {chartData}

@@ -32,7 +32,9 @@ export interface ChartConfigOptions {
   maintainAspectRatio?: boolean
   plugins?: {
     legend?: {
-      display?: boolean
+      display?  : boolean
+      position? : 'top' | 'left' | 'bottom' | 'right' | 'chartArea'
+      align?    : 'start' | 'center' | 'end'
     }
   }
   interaction?: {
@@ -41,6 +43,7 @@ export interface ChartConfigOptions {
   }
   scales?: {
     y?: {
+      display?: boolean
       // Вертикальные линии на оси
       grid?: {
         drawBorder?: boolean
@@ -66,8 +69,11 @@ export interface ChartConfigOptions {
       beginAtZero?: boolean // y axis starts at 0
       suggestedMin?: number | undefined
       suggestedMax?: number | undefined
+      min?: number | undefined
+      max?: number | undefined
     }
     x?: {
+      display?: boolean
       // Горизонтальные линии на оси
       grid?: {
         drawBorder?: boolean

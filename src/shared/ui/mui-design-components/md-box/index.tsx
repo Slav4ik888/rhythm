@@ -30,7 +30,6 @@ interface Props {
   minHeight?      : string
   opacity?        : number
   borderRadius?   : RadiusName
-  shadow?         : Shadows
   mb?             : number | { xs?: number, md?: number }
   mr?             : number | { xs?: number, xl?: number }
   ml?             : string | number
@@ -55,6 +54,7 @@ interface Props {
   alignItems?     : 'center' | 'flex-start' | 'flex-end' | 'baseline' | 'stretch'
   justifyContent? : 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly'
   flexWrap?       : 'wrap' | 'flex-start'
+  shadow?         : Shadows
   coloredShadow?  : string
   component?      : React.ElementType
   to?             : string

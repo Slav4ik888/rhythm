@@ -2,6 +2,7 @@ import { setValue } from 'shared/lib/charts';
 import { ChartConfig, ChartConfigDatasets, ChartConfigOptions } from '../../../model/types';
 // @ts-ignore
 import { ChartData } from 'node_modules/chart.js/dist/types/index.d.ts';
+import { updateObject } from 'shared/helpers/objects';
 
 
 
@@ -36,12 +37,12 @@ export function barConfig(chartConfig: ChartConfig): BarConfig {
         return result
       })]
     },
-    options: {
+    options: updateObject({
       scales: {
         y: {
-          beginAtZero: true, // y axis starts at 0
+          // beginAtZero: true, // y axis starts at 0
         }
       } 
-    },
+    }, options),
   };
 }

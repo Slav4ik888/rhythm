@@ -53,31 +53,31 @@ export const gradients = {
 
   // My gradient for departments
   department_7: {
-    main: blue[200] as string, // "rgb(165 210 248)",
-    state: blue[600] as string, // "rgb(80 141 222)",
+    main: blue[100] as string, // "rgb(165 210 248)",
+    state: blue[300] as string, // "rgb(80 141 222)",
   },
   department_1: {
-    main: amber[200] as string, // "rgb(249 214 176)",
-    state: amber[600] as string, // "rgb(209 148 58)",
+    main: orange[100] as string, // "rgb(249 214 176)",
+    state: orange[300] as string, // "rgb(209 148 58)",
   },
   department_2: {
-    main: deepPurple[200] as string, // "rgb(210 186 233)",
-    state: deepPurple[500] as string, // "rgb(141 97 183)",
+    main: deepPurple[100] as string, // "rgb(210 186 233)",
+    state: deepPurple[300] as string, // "rgb(141 97 183)",
   },
   department_3: {
-    main: pink[100] as string, // "rgb(242 188 188)",
-    state: pink[400] as string, // "rgb(235 129 129)",
+    main: pink[50] as string, // "rgb(242 188 188)",
+    state: pink[300] as string, // "rgb(235 129 129)",
   },
   department_4: {
-    main: green[200] as string, // "rgb(161 209 153)",
-    state: green[800] as string, // "rgb(63 122 53)",
+    main: green[100] as string, // "rgb(161 209 153)",
+    state: green[300] as string, // "rgb(63 122 53)",
   },
   department_5: {
     main: grey[300] as string, // "rgb(213 211 211)",
-    state: grey[700] as string, // "rgb(132 132 132)",
+    state: grey[500] as string, // "rgb(132 132 132)",
   },
   department_6: {
-    main: yellow[300] as string, // "rgb(239 236 129)",
-    state: yellow[700] as string, // "rgb(194 201 35)",
+    main: yellow[100] as string, // "rgb(239 236 129)",
+    state: yellow[300] as string, // "rgb(194 201 35)",
   },
 }

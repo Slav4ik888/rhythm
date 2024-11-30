@@ -1,4 +1,4 @@
-export { ReportsLineChart, ReportsLineChartConfig } from './ui/reports'
+export { ReportsLineChart, ReportsLineChartConfig, DashboardReportContainer } from './ui/reports'
 export {
   DashboardItemData, DashboardStatisticItem, DashboardPeriod, Increased, DashboardItemType, SidebarRouteListItem,
 } from './model/types'

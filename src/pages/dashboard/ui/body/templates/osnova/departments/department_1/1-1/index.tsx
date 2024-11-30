@@ -1,8 +1,7 @@
 import { memo, useMemo } from 'react';
 import { ChartConfig, ChartConfigDatasets } from 'entities/charts';
-import { DashboardReportContainer } from 'entities/blocks';
 import { useSelector } from 'react-redux';
-import { selectActiveDates, selectActiveEntities, ReportsLineChartConfig, ReportsLineChart } from 'entities/dashboard';
+import { DashboardReportContainer, selectActiveDates, selectActiveEntities, ReportsLineChartConfig, ReportsLineChart } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
 import { getConditionType } from 'entities/condition-type';
@@ -65,7 +64,7 @@ export const DashboardReportContainer1_1 = memo(() => {
 
 
   return (
-    <DashboardReportContainer>
+    <DashboardReportContainer title={itemData.title}>
       <ReportsLineChart
         bgColor     = "grey-300" // "department_1"
         item        = {itemData}

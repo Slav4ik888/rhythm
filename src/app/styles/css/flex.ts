@@ -1,10 +1,33 @@
-// v.2023-05-04
+// v.2024-11-29
+
 export const f = {
   display: 'flex'
 };
 
+export const fc = {
+  ...f,
+  flexDirection: 'column'
+};
+
+export const fr = {
+  ...f,
+  flexDirection: 'row'
+};
+
+// -----------------------
+
 export const f_c = {
   ...f,
+  alignItems: 'center'
+};
+
+export const fc_c = {
+  ...fc,
+  alignItems: 'center'
+};
+
+export const fr_c = {
+  ...fr,
   alignItems: 'center'
 };
 

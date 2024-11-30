@@ -1,5 +1,6 @@
+import { updateObject } from 'shared/helpers/objects';
 import { setValue } from 'shared/lib/charts';
-import { ChartConfig, ChartConfigDatasets, ChartConfigOptions } from '../../../model/types';
+import { ChartConfig, ChartConfigOptions } from '../../../model/types';
 
 
 /** Doughnut config */
@@ -25,7 +26,8 @@ export function doughnutConfig(chartConfig: ChartConfig) {
         ]),
       }))],
     },
-    options: {
-    },
+    options: updateObject({
+      
+    }, options)
   };
 }
