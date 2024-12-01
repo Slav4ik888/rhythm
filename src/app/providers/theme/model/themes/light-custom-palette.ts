@@ -202,7 +202,7 @@ export const customPalette = {
     focus: 'rgb(132 132 132 / 80%)',
   },
   department_6_title: {
-    main: yellow[500] as string, // 'rgb(194 201 35 / 80%)',
+    main: amber[500] as string, // 'rgb(194 201 35 / 80%)',
     focus: 'rgb(194 201 35 / 80%)',
   },
 

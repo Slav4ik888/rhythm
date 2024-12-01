@@ -1,8 +1,11 @@
-export { ReportsLineChart, ReportsLineChartConfig, DashboardReportContainer } from './ui/reports'
+export {
+  ReportsLineChart, ReportsLineChartConfig, DashboardReportContainer, ReportSmallContainerWrapper,
+  ReportsResultChangesConfig, SxSmallContainer
+} from './ui/reports'
 export {
   DashboardItemData, DashboardStatisticItem, DashboardPeriod, Increased, DashboardItemType, SidebarRouteListItem,
 } from './model/types'
-export { ResultChanges } from './ui/items/result-changes'
+export { ResultChanges, ComparisonIndicators, ReportSmallItemBox, GrowthResult } from './ui/items'
 export {
   DASHBOARD_PERIOD_TEXT, DashboardPeriodType, arrayDashboardPeriodType,
   routesList_css_1d3r8, routesList_demo_pecar, routesList_osnova_g2d7

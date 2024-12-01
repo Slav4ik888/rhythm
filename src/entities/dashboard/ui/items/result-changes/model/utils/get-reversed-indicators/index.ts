@@ -2,7 +2,7 @@
 /** 
  * @returns Array when indexes: 0 - lastValue, 1 - prevValue, 2 - nextValue
  */
-export function getComparisonIndicators<T>(
+export function getReversedIndicators<T>(
   arr         : T[],
   countValues : number = 2, // Сколько значений записать
 ): T[] { 

@@ -1,9 +1,8 @@
 import { FC, memo } from "react";
 import { Box } from '@mui/material';
-import { DashboardStatisticItem } from '../../../../model/types';
-import { GrowthResult } from './growth-result';
-import { ComparisonIndicators } from './comparsion-indicators';
-import { getComparisonIndicators } from '../model/utils';
+import { DashboardStatisticItem } from '../../../../../model/types';
+import { GrowthResult } from '../growth-result';
+import { ComparisonIndicators } from '../comparsion-indicators';
 import { ReportsLineChartConfig } from 'entities/dashboard';
 
 
@@ -27,21 +26,15 @@ interface Props {
 export const ResultChanges: FC<Props> = memo(({ item, config = {} }) => {
   const sx = useStyles();
 
-  const values = getComparisonIndicators(
-    item.data as number[],
-    config.resultChanges?.comparisonIndicators?.valuesCount
-  );
-
-
   return (
     <Box sx={sx.root}>
       <ComparisonIndicators
-        values = {values}
+        data   = {item.data as number[]}
         config = {config}
       />
 
       <GrowthResult
-        values = {values}
+        data   = {item.data as number[]}
         config = {config}
       />
     </Box>

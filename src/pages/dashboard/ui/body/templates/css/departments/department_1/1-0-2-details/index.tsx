@@ -31,12 +31,12 @@ export const DashboardReportContainer_1_0_2_Details = memo(() => {
     <DashboardReportContainer
       title  = 'Сотрудники'
       config = {{ header: { minHeight: pxToRem(64) } }}
-      sx     = {{ root: { width: pxToRem(600) } }}
+      sx     = {{ root: { width: pxToRem(540) } }}
     >
       <Stack direction='row' mt={2} spacing={2}>
         <LeftStack
           dates          = {dates}
-          data           = {itemData.data}
+          itemData       = {itemData}
           itemData_1_1_2 = {itemData_1_1_2}
           itemData_1_1_3 = {itemData_1_1_3}
           itemData_1_1_4 = {itemData_1_1_4}

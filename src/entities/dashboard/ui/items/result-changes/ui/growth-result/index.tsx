@@ -2,36 +2,41 @@ import { FC, memo } from "react";
 import { Box } from '@mui/material';
 import { Increased } from '../../../../../model/types';
 import { calcIncreased } from '../../model/utils/calc-increased';
-import { calcGrowthChange, getGrowIconTypeByIncreased } from '../../model/utils';
+import { calcGrowthChange, getGrowIconTypeByIncreased, getReversedIndicators } from '../../model/utils';
 import { MeasurementIcon } from './measurement-icon';
 import { GrowthChange } from './growth-change';
 import { GrowthIcon } from './growth-icon';
 import { getFixedFraction } from 'shared/helpers/numbers';
-import { ReportsLineChartConfig } from 'entities/dashboard';
+import { ReportsResultChangesConfig } from 'entities/dashboard';
+import { SxCard } from 'app/providers/theme';
 
 
 
-const useStyles = () => ({
+const useStyles = (sx?: SxCard) => ({
   root: {
     display    : "flex",
     alignItems : "flex-start",
     ml         : 4,
     pt         : "0.3rem",
+    ...sx?.root,
   },
 });
 
 
 interface Props {
-  values : number[] // 0 - lastValue, 1 - prevValue, 2 - nextValue
-  config : ReportsLineChartConfig
+  data   : number[] // 0 - lastValue, 1 - prevValue, 2 - nextValue
+  config : ReportsResultChangesConfig
+  sx?    : SxCard
 }
 
 
 /** Итоговое изменение в процентах | шт | ... */
-export const GrowthResult: FC<Props> = memo(({ config, values }) => {
-  const sx = useStyles();
+export const GrowthResult: FC<Props> = memo(({ config, data, sx: style }) => {
+  const sx = useStyles(style);
   const { unchangedBlack, inverted } = config;
-  const [lastValue, prevValue] = values;
+  const { valuesCount } = config.resultChanges?.comparisonIndicators || {};
+  const [lastValue, prevValue] = getReversedIndicators(data, valuesCount); // 0 - lastValue, 1 - prevValue, 2 - nextValue
+
 
   const growthChange = getFixedFraction(
     calcGrowthChange(lastValue, prevValue),

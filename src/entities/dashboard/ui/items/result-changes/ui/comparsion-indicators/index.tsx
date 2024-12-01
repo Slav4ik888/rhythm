@@ -1,73 +1,47 @@
-import { FC, Fragment, memo } from "react";
+import { FC, memo } from 'react';
 import { Box } from '@mui/material';
 import { MDTypography } from 'shared/ui/mui-design-components';
-import { addSpaceBetweenNumbers, getFixedFraction, getReducedWithPrefix } from 'shared/helpers/numbers';
-import { isNum } from 'shared/lib/validators';
-import { ReportsLineChartConfig } from 'entities/dashboard';
-
-
+import { ReportsResultChangesConfig } from '../../../../reports';
+import { getComparisonValues } from './utils';
+import { getReversedIndicators } from '../../model/utils';
 
 
 
 const useStyles = () => ({
   root: {
-    display       : "flex",
-    flexDirection : "column",
-    alignItems    : "flex-end",
+    display       : 'flex',
+    flexDirection : 'column',
+    alignItems    : 'flex-end',
   },
   item: {
-    display       : "flex",
-    alignItems    : "flex-end",
+    display       : 'flex',
+    alignItems    : 'flex-end',
   },
   firstPrefix: {
     ml            : 0.5,
   },
   prefixSecond: {
-    fontSize      : "0.8rem",
+    fontSize      : '0.8rem',
     ml            : 0.5,
   },
 });
 
 
-interface Value {
-  value  : string
-  prefix : string
-}
-
 interface Props {
-  values  : number[] // 0 - lastValue, 1 - prevValue, 2 - nextValue
-  config? : ReportsLineChartConfig
+  data    : number[]
+  config? : ReportsResultChangesConfig
 }
 
 
 /** Показатели для сравнения */
-export const ComparisonIndicators: FC<Props> = memo(({ values: v, config = {} }) => {
+export const ComparisonIndicators: FC<Props> = memo(({ data, config = {} }) => {
   const sx = useStyles();
+  const { valuesCount } = config.resultChanges?.comparisonIndicators || {};
 
-  const values: Value[] = v.map(startValue => {
-    // Убираем разряды и определяем префикс
-    let resultValue: any = startValue;
-    let prefix = '';
-
-    if (config.resultChanges?.comparisonIndicators?.reduce) {
-      const { value: v, prefix: p = '' } = getReducedWithPrefix(startValue);
-      resultValue = v;
-      prefix = p;
-    }
-
-    // Обрабатываем десятичные
-    if (isNum(resultValue)) {
-      resultValue = getFixedFraction(resultValue, {
-        fractionDigits : config.resultChanges?.comparisonIndicators?.fractionDigits,
-        addZero        : config.resultChanges?.comparisonIndicators?.addZero
-      })
-    }
-    
-    return {
-      prefix,
-      value: addSpaceBetweenNumbers(resultValue as number)
-    }
-  });
+  const values = getComparisonValues(
+    getReversedIndicators(data, valuesCount), // 0 - lastValue, 1 - prevValue, 2 - nextValue
+    config
+  );
 
 
   return (

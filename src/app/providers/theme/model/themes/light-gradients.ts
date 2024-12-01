@@ -77,7 +77,7 @@ export const gradients = {
     state: grey[500] as string, // "rgb(132 132 132)",
   },
   department_6: {
-    main: yellow[100] as string, // "rgb(239 236 129)",
-    state: yellow[300] as string, // "rgb(194 201 35)",
+    main: amber[100] as string, // "rgb(239 236 129)",
+    state: amber[300] as string, // "rgb(194 201 35)",
   },
 }

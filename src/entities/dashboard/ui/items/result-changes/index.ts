@@ -1,1 +1,1 @@
-export { ResultChanges } from './ui'
+export { ResultChanges, ComparisonIndicators, GrowthResult } from './ui'

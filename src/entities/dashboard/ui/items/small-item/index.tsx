@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { MDBox, MDTypography } from 'shared/ui/mui-design-components';
-import { CustomTheme, useTheme, pxToRem, ColorName, MUIColors } from 'app/providers/theme';
-import { f_c_c } from 'app/styles';
-import { Tooltip } from 'shared/ui/tooltip';
+import { MDTypography } from 'shared/ui/mui-design-components';
+import { CustomTheme, useTheme, pxToRem } from 'app/providers/theme';
 import { ReportSmallContainerWrapper } from '../../reports';
+import { SxSmallContainer } from '../../reports/small-container-wrapper';
+
 
 
 type WidthType = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
@@ -18,10 +18,7 @@ const sxWidth: Record<WidthType, string> = {
 };
 
 
-const useStyles = (theme: CustomTheme, props: Props) => {
-  const { headerBGColor, width } = props;
-  
-  
+const useStyles = (theme: CustomTheme) => {
   return {
     value: {
       fontSize   : pxToRem(30),
@@ -36,33 +33,27 @@ const useStyles = (theme: CustomTheme, props: Props) => {
   }
 };
 
+
 interface Props {
   type            : 'simple' | 'ratio'
-  width           : WidthType
-  height?         : string // in rem
-  headerBGColor   : string // from MUIColors
-  titleColor?     : ColorName
+  // width           : WidthType
   title           : string
-  contentBGColor? : string // from MUIColors
+  toolTitle?      : string
   value           : number
   ratio?          : number
-  toolTitle?      : string
+  sx              : SxSmallContainer
 }
 
 export const ReportSmallItemBox: FC<Props> = (props) => {
-  const sx = useStyles(useTheme(), props);
-  const { type, titleColor, width, title, value, ratio, toolTitle, headerBGColor, contentBGColor, height } = props;
+  const sx = useStyles(useTheme());
+  const { type, title, value, ratio, toolTitle } = props;
 
 
   return (
     <ReportSmallContainerWrapper
-      headerBGColor  = {headerBGColor}
-      titleColor     = {titleColor}
-      title          = {title}
-      toolTitle      = {toolTitle}
-      width          = {sxWidth[width]}
-      height         = {height}
-      contentBGColor = {contentBGColor}
+      title     = {title}
+      toolTitle = {toolTitle}
+      sx        = {props.sx}
     >
       <MDTypography sx={sx.value}>{value}</MDTypography>
       {

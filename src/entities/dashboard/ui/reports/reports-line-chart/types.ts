@@ -1,6 +1,7 @@
 
 export interface ReportsBaseConfig {
-  inverted?: boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
+  inverted?       : boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
+  unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
 
   header?: {
     minHeight?: string // Минимальная высота "шапки", напр. если заголовок на 2 строки, то нужно выравнить у всех в ряду
@@ -8,23 +9,13 @@ export interface ReportsBaseConfig {
 }
 
 
-export interface ReportsLineChartConfig extends ReportsBaseConfig {
-  unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
-
-  // Chips - показывать или не показывать
-  chips?: {
-    statisticType? : boolean
-    productType?   : boolean
-    companyType?   : boolean
-    conditionType? : boolean
-  }
-
-  // Result changes configuration
+/** Result changes configuration */
+export interface ReportsResultChangesConfig extends ReportsBaseConfig {
   resultChanges?: {
     // Список значений: последний результат и предыдущие 
     comparisonIndicators? : {
       valuesCount?    : number  // Сколько значений показывать
-      reduce?         : boolean // Убрать разряды: 12 500 700 => 12.5007 млн
+      reduce?         : boolean // Убрать разряды: 12 500 700 => 12.5 млн
       fractionDigits? : number  // Количество знаков после запятой
       addZero?        : boolean // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
     }
@@ -33,5 +24,17 @@ export interface ReportsLineChartConfig extends ReportsBaseConfig {
       fractionDigits? : number  // Количество знаков после запятой
       addZero?        : boolean // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
     }
+  }
+}
+
+
+export interface ReportsLineChartConfig extends ReportsResultChangesConfig {
+
+  // Chips - показывать или не показывать
+  chips?: {
+    statisticType? : boolean
+    productType?   : boolean
+    companyType?   : boolean
+    conditionType? : boolean
   }
 }

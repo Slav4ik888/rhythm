@@ -3,7 +3,8 @@ import { DashboardBoxContainer } from 'entities/blocks';
 import { DashboardReportContainer7_0_3 } from '../departments/department_7/7-0-3';
 import { DashboardReportContainer7_0_4 } from '../departments/department_7/7-0-4';
 import { DashboardReportContainer1_0_1 } from '../departments/department_1/1-0-1';
-import { DashboardReportContainer1_0_2 } from '../departments/department_1/1-0-2';
+import { DashboardReportContainer_1_0_2_Details } from '../departments/department_1/1-0-2-details';
+// import { DashboardReportContainer1_0_2 } from '../departments/department_1/1-0-2';
 import { DashboardReportContainer2_0_1 } from '../departments/department_2/2-0-1';
 import { DashboardReportContainer2_0_1_1 } from '../departments/department_2/2-0-1-1';
 import { DashboardReportContainer2_0_4 } from '../departments/department_2/2-0-4';
@@ -58,7 +59,7 @@ export const DashboardBodyMain = memo(() => {
         bgColor    = 'department_1'
       >
         <DashboardReportContainer1_0_1 />
-        <DashboardReportContainer1_0_2 />
+        <DashboardReportContainer_1_0_2_Details />
       </DashboardBoxContainer>
 
       <DashboardBoxContainer
