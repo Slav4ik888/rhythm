@@ -7,18 +7,17 @@ import { MeasurementIcon } from './measurement-icon';
 import { GrowthChange } from './growth-change';
 import { GrowthIcon } from './growth-icon';
 import { getFixedFraction } from 'shared/helpers/numbers';
-import { ReportsResultChangesConfig } from 'entities/dashboard';
-import { SxCard } from 'app/providers/theme';
+import { ReportsResultChangesConfig, SxSmallContainer } from 'entities/dashboard';
 
 
 
-const useStyles = (sx?: SxCard) => ({
+const useStyles = (sx?: SxSmallContainer) => ({
   root: {
     display    : "flex",
     alignItems : "flex-start",
     ml         : 4,
     pt         : "0.3rem",
-    ...sx?.root,
+    ...sx?.growthResult?.root,
   },
 });
 
@@ -26,7 +25,7 @@ const useStyles = (sx?: SxCard) => ({
 interface Props {
   data   : number[] // 0 - lastValue, 1 - prevValue, 2 - nextValue
   config : ReportsResultChangesConfig
-  sx?    : SxCard
+  sx?    : SxSmallContainer
 }
 
 
@@ -38,13 +37,8 @@ export const GrowthResult: FC<Props> = memo(({ config, data, sx: style }) => {
   const [lastValue, prevValue] = getReversedIndicators(data, valuesCount); // 0 - lastValue, 1 - prevValue, 2 - nextValue
 
 
-  const growthChange = getFixedFraction(
-    calcGrowthChange(lastValue, prevValue),
-    {
-      fractionDigits : config.resultChanges?.growthResult?.fractionDigits,
-      addZero        : config.resultChanges?.growthResult?.addZero,
-    }
-  );
+  const { fractionDigits, addZero } = config.resultChanges?.growthResult || {};
+  const growthChange = getFixedFraction(calcGrowthChange(lastValue, prevValue), { fractionDigits, addZero });
 
   const increased: Increased = calcIncreased(lastValue, prevValue, inverted);
   const resultColor = getGrowIconTypeByIncreased(increased, unchangedBlack);
@@ -56,15 +50,18 @@ export const GrowthResult: FC<Props> = memo(({ config, data, sx: style }) => {
         value     = {growthChange}
         color     = {resultColor}
         increased = {increased}
+        sx        = {style}
       />
       <MeasurementIcon
         value = {growthChange}
         color = {resultColor}
+        sx    = {style}
       />
       <GrowthIcon
         value          = {growthChange}
         increased      = {increased}
         unchangedBlack = {unchangedBlack}
+        sx             = {style}
       />
     </Box>
   );

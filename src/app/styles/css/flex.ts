@@ -14,7 +14,7 @@ export const fr = {
   flexDirection: 'row'
 };
 
-// -----------------------
+// ------ COLUMN -----------------
 
 export const f_c = {
   ...f,
@@ -26,6 +26,13 @@ export const fc_c = {
   alignItems: 'center'
 };
 
+export const fc_fe = {
+  ...fc,
+  alignItems: 'flex-end'
+};
+
+
+// ------ ROW -----------------
 export const fr_c = {
   ...fr,
   alignItems: 'center'
@@ -34,6 +41,17 @@ export const fr_c = {
 export const f_fs = {
   ...f,
   alignItems: 'flex-start'
+};
+
+export const f_fe = {
+  ...f,
+  alignItems: 'flex-end'
+};
+
+export const f_fs_c = {
+  ...f,
+  alignItems     : 'flex-start',
+  justifyContent : 'center'
 };
 
 export const f_c_c = {

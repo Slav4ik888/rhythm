@@ -1,4 +1,4 @@
-import { FC, memo, useMemo } from "react";
+import { FC, memo, useMemo } from 'react';
 import { Box } from '@mui/material';
 import { Increased } from '../../../../../../model/types';
 import GrowIcon from './assets/triangle-growth.svg';
@@ -7,24 +7,36 @@ import UnchangedLeftIcon from './assets/triangle-unchanged-left.svg';
 import UnchangedRightIcon from './assets/triangle-unchanged-right.svg';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { getColorByIncreased } from '../../../model/utils';
+import { SxSmallContainer } from 'entities/dashboard';
+import { isNotUndefined } from 'shared/lib/validators';
+import { cloneObj } from 'shared/helpers/objects';
 
 
 
-const useStyles = (theme: CustomTheme, increased: Increased, unchangedBlack?: boolean) => {
+const useStyles = (
+  theme           : CustomTheme,
+  increased       : Increased,
+  unchangedBlack? : boolean,
+  sx?             : SxSmallContainer
+) => {
   const color = getColorByIncreased(theme, increased, unchangedBlack);
+  const root  = cloneObj(sx?.growthResult?.growthIcon);
+  const scale = `scale(${root?.scale || 1.5})`;
 
+  if (isNotUndefined(root?.scale)) delete root?.scale;
+  
   return {
     root: {
-      display : "flex",
-      pt      : 1.5,
-      // justifyContent : "center",
-      // alignItems     : "center",
+      display : 'flex',
+      pt      : 1.2,
+      // justifyContent : 'center',
+      // alignItems     : 'center',
+      ...root
     },
     svg: {
-      transform       : "scale(1.5)",
-      WebkitTransform : "scale(1.5)",
-      MozTransform    : "scale(1.5)",
-      
+      transform       : scale,
+      WebkitTransform : scale,
+      MozTransform    : scale,
     },
     fill: color,
   };
@@ -36,13 +48,14 @@ interface Props {
   increased       : Increased
   unchangedBlack? : boolean  // При отсутствии изменений в результатах красить чёрным цветом
   isLeft?         : boolean  // При отсутствии изменений чёрный треугольник повернуть влево
-  value           : string // '' если нет предыдущего значение, то результат не выводим
+  value           : string   // '' если нет предыдущего значение, то результат не выводим
+  sx?             : SxSmallContainer
 }
 
 
 /** Иконка вверх вниз на месте, показывает положительные или отрицательные изменения */
-export const GrowthIcon: FC<Props> = memo(({ value, increased, unchangedBlack, isLeft }) => {
-  const sx = useStyles(useTheme(), increased, unchangedBlack);
+export const GrowthIcon: FC<Props> = memo(({ value, increased, unchangedBlack, isLeft, sx: style }) => {
+  const sx = useStyles(useTheme(), increased, unchangedBlack, style);
   
   const icon = useMemo(() => {
     switch (increased) {

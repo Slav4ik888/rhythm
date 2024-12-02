@@ -4,18 +4,28 @@ import { MDTypography } from 'shared/ui/mui-design-components';
 import { ReportsResultChangesConfig } from '../../../../reports';
 import { getComparisonValues } from './utils';
 import { getReversedIndicators } from '../../model/utils';
+import { Tooltip } from 'shared/ui/tooltip';
+import { fc_fe, f_fe } from 'app/styles';
 
+
+/* Returns tooltip title for 1 & 2 indexes */
+const getTooltip = (index: number) => {
+  let title = '';
+
+  if (index === 0) title = 'Последнее';
+  else if (index === 1) title = 'Предпоследнее';
+
+  return  index > 2 ? '' : (title  + ' значение в выбранном периоде');
+}
 
 
 const useStyles = () => ({
   root: {
-    display       : 'flex',
-    flexDirection : 'column',
-    alignItems    : 'flex-end',
+    ...fc_fe,
+    cursor: 'default'
   },
   item: {
-    display       : 'flex',
-    alignItems    : 'flex-end',
+    ...f_fe,
   },
   firstPrefix: {
     ml            : 0.5,
@@ -48,23 +58,25 @@ export const ComparisonIndicators: FC<Props> = memo(({ data, config = {} }) => {
     <Box sx={sx.root}>
       {
         values && values.map((v, i) => (
-          <Box sx={sx.item} key={i}>
-            <MDTypography
-              variant = {i === 0 ? 'h4' : 'body2'}
-              color   = {i === 0 ? 'comparisonIndicators_1' : 'dark'}
-            >
-              {values[i].value}
-            </MDTypography>
-            {
-              values[i].prefix && <MDTypography
-                variant = {i === 0 ? 'h6' : 'body2'}
-                color   = {i === 0 ? 'comparisonIndicators_1' : 'dark'}
-                sx      = {i === 0 ? sx.firstPrefix : sx.prefixSecond}
+          <Tooltip title={getTooltip(i)} enterDelay={300} key={i}>
+            <Box sx={sx.item}>
+              <MDTypography
+                variant = {i === 0 ? 'h4' : 'body1'}
+                color   = {i === 0 ? 'comparisonIndicators_1' : 'comparisonIndicators_2'}
               >
-                {values[i].prefix}
+                {values[i].value}
               </MDTypography>
-            }
-          </Box>
+              {
+                values[i].prefix && <MDTypography
+                  variant = {i === 0 ? 'h6' : 'body1'}
+                  color   = {i === 0 ? 'comparisonIndicators_1' : 'comparisonIndicators_2'}
+                  sx      = {i === 0 ? sx.firstPrefix : sx.prefixSecond}
+                >
+                  {values[i].prefix}
+                </MDTypography>
+              }
+            </Box>
+          </Tooltip>
         ))
       }
     </Box>

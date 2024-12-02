@@ -19,6 +19,19 @@ export interface SxSmallContainer {
     background? : string // from MUIColors
     height?     : string // in rem
   } | any
+  
+  growthResult?: {
+    root?: any
+    growthChange?: {
+      size?: number // 0.7 | 0.8 | 0.9 | 1 | 1.25 | 1.5 in rem
+    } | any
+    measurementIcon?: {
+      size?: number // 0.7 | 0.8 | 0.9 | 1 | 1.25 | 1.5 in rem
+    } | any
+    growthIcon?: {
+      scale?: number
+    } | any
+  }
 }
 
 interface Props {

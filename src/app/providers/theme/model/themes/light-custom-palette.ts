@@ -129,6 +129,11 @@ export const customPalette = {
     focus: '#3a3a3a',
   },
 
+  comparisonIndicators_2: {
+    main: '#8a8a8a',
+    focus: '#8a8a8a',
+  },
+
   // Рост | Падение | Без изменений - результатов
   growth: {
     main: '#02bf02',

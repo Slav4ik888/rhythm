@@ -53,7 +53,7 @@ export type BaseColorName =
   | 'inherit'
   | 'text' | 'transparent' | 'white' | 'black'
   | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'light' | 'dark'
-  | 'reportsChartTitle' | 'comparisonIndicators_1'
+  | 'reportsChartTitle' | 'comparisonIndicators_1' | 'comparisonIndicators_2'
   | 'growth'  | 'fall' | 'unchanged'
   // | 'department_7'       | 'department_6'       | 'department_5'       | 'department_4'       | 'department_3'       | 'department_2'       | 'department_1'
   | 'department_7_title' | 'department_6_title' | 'department_5_title' | 'department_4_title' | 'department_3_title' | 'department_2_title' | 'department_1_title'

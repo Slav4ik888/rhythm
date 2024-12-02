@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { BarChart, ChartConfig, ChartConfigDatasets, ChartContainer, fixPointRadius } from 'entities/charts';
 import {
   DashboardStatisticItem, invertData, ReportSmallContainerWrapper, ReportsResultChangesConfig,
-  ComparisonIndicators, GrowthResult
+  ComparisonIndicators, GrowthResult, ReportContainer_Small, SxSmallContainer
 } from 'entities/dashboard';
 import { pxToRem } from 'app/providers/theme';
 import { orange } from '@mui/material/colors';
@@ -26,28 +26,38 @@ const getDatasetConfig = (dates: any[]): ChartConfigDatasets => {
 };
 
 
-const useStyles = () => ({
-  wrapper: {
-    root: {
-      ...f__sb,
-      width  : '100%',
-      height : pxToRem(100),
-    },
-    header: {
-      background: orange[200]
-    },
-    content: {
-      ...f__sb,
-      background: orange[50],
-      px: 2,
-      py: 0.5,
-    }
+const useStyles = (): SxSmallContainer => ({
+  root: {
+    ...f__sb,
+    width  : '100%',
+    height : pxToRem(100),
   },
-  indicators: {
-    ...f_c_c,
-  }
+  header: {
+    background: orange[200]
+  },
+  content: {
+    ...f__sb,
+    background : orange[50],
+    px         : 2,
+    py         : 0.5,
+  },
+  growthResult: {
+    root: {
+      ml: 2,
+    },
+    growthChange: {
+      size: 0.9,
+    },
+    measurementIcon: {
+      size : 0.9,
+      mr   : 0.5,
+    },
+    growthIcon: {
+      scale : 1.2,
+      pt    : 0.8,
+    },
+  },
 });
-
 
 
 
@@ -104,32 +114,17 @@ export const DashboardReportContainer_1_0_2_Details_SmallReport: FC<Props> = mem
       aspectRatio: 1, // или другое значение, которое вам подходит
       maintainAspectRatio: false // важно отключить это свойство, если хотите изменить размер диаграммы
     }
-  } as ChartConfig;
+  };
 
 
   return (
-    <ReportSmallContainerWrapper
-      title = 'Всего сотрудников'
-      sx    = {sx.wrapper}
-    >
-      <MDBox sx={sx.indicators}>
-        <ComparisonIndicators
-          data   = {itemData.data as number[]}
-          config = {reportConfig}
-        />
-        <GrowthResult
-          data   = {itemData.data as number[]}
-          config = {reportConfig}
-          sx     = {{ root: { mx: 2 }}}
-        />
-      </MDBox>
-
-
-      <ChartContainer
-        width    = {pxToRem(200)}
-        height   = {pxToRem(70)}
-        children = {<BarChart chart={barChartData} />}
-      />
-    </ReportSmallContainerWrapper>
+    <ReportContainer_Small
+      chartType    = 'bar'
+      title        = 'Всего сотрудников'
+      itemData     = {itemData}
+      reportConfig = {reportConfig}
+      chartData    = {barChartData}
+      sx           = {sx}
+    />
   );
 });

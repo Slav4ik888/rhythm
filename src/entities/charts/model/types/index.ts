@@ -28,8 +28,11 @@ export interface ChartConfigDatasets {
 export type FontStyle = 'normal' | 'italic' | 'oblique' | 'initial' | 'inherit'
 
 export interface ChartConfigOptions {
-  responsive?: boolean
-  maintainAspectRatio?: boolean
+  responsive?          : boolean
+
+  aspectRatio?         : number // или другое значение, которое вам подходит
+  maintainAspectRatio? : boolean // важно отключить это свойство, если хотите изменить размер диаграммы
+  
   plugins?: {
     legend?: {
       display?  : boolean
@@ -41,6 +44,7 @@ export interface ChartConfigOptions {
     intersect? : boolean
     mode?      : InteractionMode //'index'
   }
+    
   scales?: {
     y?: {
       display?: boolean

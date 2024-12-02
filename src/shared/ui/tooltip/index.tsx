@@ -47,7 +47,7 @@ type Props = {
 };
 
 
-/** v.2024-09-18 */
+/** v.2024-12-02 */
 export const Tooltip: React.FC<Props> = React.memo(({
   sxRoot,
   sxSpan,
@@ -68,7 +68,7 @@ export const Tooltip: React.FC<Props> = React.memo(({
       placement      = {placement}
       enterDelay     = {enterDelay}
       enterNextDelay = {enterNextDelay}
-      sx             = {sxRoot}
+      sx             = {{ ...sxRoot, fontSize: '1rem' }}
     >
       <span style={sxSpan}>
         {children}
