@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { Box } from '@mui/material';
-import { f_c_c } from 'app/styles';
+import { f } from 'app/styles';
 import { Errors } from 'shared/lib/validators';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 
@@ -12,10 +12,10 @@ const useStyles = (theme: CustomTheme, sx: any) => ({
     ...sx.root
   },
   content: {
-    ...f_c_c,
-    width    : '100%',
+    ...f('-c-c'),
+    width : '100%',
     // fontSize : theme.error.fontSize,
-    color    : theme.palette.error.main,
+    color : theme.palette.error.main,
     ...sx.content
   }
 });

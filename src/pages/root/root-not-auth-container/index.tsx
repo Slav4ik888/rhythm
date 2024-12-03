@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { Box, Typography } from '@mui/material';
-import { f_c_c } from 'app/styles';
+import { f } from 'app/styles';
 import s from './styles.module.scss';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 
@@ -15,8 +15,7 @@ const useStyles = (theme: CustomTheme) => ({
     height          : '100%'
   },
   container: {
-    ...f_c_c,
-    flexDirection : 'column',
+    ...f('c-c-c'),
     maxWidth      : '1400px',
     height        : '60vh'
   },

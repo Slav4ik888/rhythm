@@ -7,7 +7,7 @@ import {
 import { pxToRem } from 'app/providers/theme';
 import { orange } from '@mui/material/colors';
 import { MDBox } from 'shared/ui/mui-design-components';
-import { f_c_c, f__sb } from 'app/styles';
+import { f } from 'app/styles';
 
 
 
@@ -28,7 +28,7 @@ const getDatasetConfig = (dates: any[]): ChartConfigDatasets => {
 
 const useStyles = (): SxSmallContainer => ({
   root: {
-    ...f__sb,
+    ...f('--sb'),
     width  : '100%',
     height : pxToRem(100),
   },
@@ -36,7 +36,7 @@ const useStyles = (): SxSmallContainer => ({
     background: orange[200]
   },
   content: {
-    ...f__sb,
+    ...f('--sb'),
     background : orange[50],
     px         : 2,
     py         : 0.5,

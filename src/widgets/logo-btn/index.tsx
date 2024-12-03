@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { RoutePath } from 'app/providers/routes';
-import { f_c } from 'app/styles';
+import { f } from 'app/styles';
 
 
 export enum LogoBtnType {
@@ -17,7 +17,7 @@ const useStyles = (type: LogoBtnType) => {
 
   return {
     root: {
-      ...f_c,
+      ...f('-c'),
       fontWeight     : 600,
       fontSize       : '1rem',
       borderStyle    : 'none',

@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
 import { Button, Box } from '@mui/material';
-import { f_c_c } from 'app/styles';
+import { f } from 'app/styles';
 import MDButton from 'shared/ui/mui-design-components/md-button';
 
 
@@ -10,6 +10,7 @@ import MDButton from 'shared/ui/mui-design-components/md-button';
 
 const useStyles = () => ({
   root: {
+    ...f('c-c'),
     display         : 'flex',
     flexDirection   : 'column',
     alignItems      : 'center',
@@ -17,7 +18,7 @@ const useStyles = () => ({
     height          : '100%'
   },
   text: {
-    ...f_c_c,
+    ...f('-c-c'),
     height    : '50vh',
     fontSize  : '1.8rem',
     fontStyle : 'italic'

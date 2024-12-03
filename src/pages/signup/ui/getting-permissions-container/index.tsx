@@ -6,24 +6,22 @@ import { PolicyDescription } from './policy-description';
 import { ErrorBox } from 'shared/ui/containers';
 import { UseGroup } from 'shared/lib/hooks';
 import { CustomTheme, useTheme } from 'app/providers/theme';
+import { f } from 'app/styles';
 
 
 
 const useStyles = (theme: CustomTheme) => ({
   root: {
-    display       : 'flex',
-    flexDirection : 'column',
-    alignItems    : 'flex-start',
-    textAlign     : 'left',
-    fontSize      : '0.8rem',
-    lineHeight    : 1.4,
-    mt            : 4,
-    mb            : 2
+    ...f('c-fs'),
+    textAlign  : 'left',
+    fontSize   : '0.8rem',
+    lineHeight : 1.4,
+    mt         : 4,
+    mb         : 2
   },
   boxCheck: {
-    display    : 'flex',
-    alignItems : 'center',
-    my         : 0.5
+    ...f('-c'),
+    my: 0.5
   },
   sxBox: {
     backgroundColor : theme.palette.background.paper,

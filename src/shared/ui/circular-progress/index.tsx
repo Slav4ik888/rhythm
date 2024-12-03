@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Box, CircularProgress as Circular } from '@mui/material';
-import { f_c_c } from 'app/styles';
+import { f } from 'app/styles';
 import { getTopCenter } from './utils';
 
 
@@ -38,7 +38,7 @@ const useStyles = (
       left       : left   || 0,
       zIndex     : 2000,
       opacity    : block ? '60%'  : 'inherit',
-      ...f_c_c,
+      ...f('-c-c'),
       ...sx?.root
     },
     circular: {

@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { MDBox, MDTypography } from 'shared/ui/mui-design-components';
 import { CustomTheme, useTheme, pxToRem, ColorName } from 'app/providers/theme';
-import { f, fc, f_c_c } from 'app/styles';
+import { f } from 'app/styles';
 import { Tooltip } from 'shared/ui/tooltip';
 
 
@@ -19,7 +19,7 @@ export interface SxSmallContainer {
     background? : string // from MUIColors
     height?     : string // in rem
   } | any
-  
+
   growthResult?: {
     root?: any
     growthChange?: {
@@ -54,7 +54,7 @@ const useStyles = (theme: CustomTheme, { sx }: Props) => {
 
   return {
     root: {
-      ...fc,
+      ...f('c'),
       border     : `1px solid ${header.background}`,
       width      : root?.width  || 'max-content',
       height     : root?.height || 'max-content',
@@ -65,7 +65,7 @@ const useStyles = (theme: CustomTheme, { sx }: Props) => {
       ...root
     },
     header: {
-      ...f_c_c,
+      ...f('-c-c'),
       py         : pxToRem(4),
       ...header
     },
@@ -76,7 +76,7 @@ const useStyles = (theme: CustomTheme, { sx }: Props) => {
       color      : header.color ? header.color : theme.palette.comparisonIndicators_1.main,
     },
     content: {
-      ...f_c_c,
+      ...f('-c-c'),
       background : content?.background || 'transparent',
       ...content
     }

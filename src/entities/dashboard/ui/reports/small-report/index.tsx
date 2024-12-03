@@ -7,13 +7,13 @@ import {
 import { pxToRem } from 'app/providers/theme';
 import { orange } from '@mui/material/colors';
 import { MDBox } from 'shared/ui/mui-design-components';
-import { f_fs_c } from 'app/styles';
+import { f } from 'app/styles';
 
 
 
 const useStyles = () => ({
   indicators: {
-    ...f_fs_c,
+    ...f('-fs-c'),
   }
 });
 

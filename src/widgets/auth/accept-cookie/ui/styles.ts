@@ -1,12 +1,12 @@
 import { CustomTheme } from 'app/providers/theme';
-import { f_c_c } from 'app/styles';
+import { f } from 'app/styles';
 
 
 
 export const useStyles = (theme: CustomTheme) => ({
   root: {
     position: 'fixed',
-    ...f_c_c,
+    ...f('-c-c'),
     flexDirection: { xs: 'column', sm: 'row' },
     bottom  : 0,
     zIndex  : 2000,
@@ -19,8 +19,7 @@ export const useStyles = (theme: CustomTheme) => ({
     p  : { xs: 2 }
   },
   form: {
-    display: 'flex',
-    alignItems: 'center',
+    ...f('-c'),
     '& .MuiTypography-body1 ': {
       xs: { fontSize: '0.7rem' }
     }

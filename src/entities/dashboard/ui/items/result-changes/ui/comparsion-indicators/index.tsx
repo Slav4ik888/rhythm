@@ -5,7 +5,7 @@ import { ReportsResultChangesConfig } from '../../../../reports';
 import { getComparisonValues } from './utils';
 import { getReversedIndicators } from '../../model/utils';
 import { Tooltip } from 'shared/ui/tooltip';
-import { fc_fe, f_fe } from 'app/styles';
+import { f } from 'app/styles';
 
 
 /* Returns tooltip title for 1 & 2 indexes */
@@ -21,11 +21,11 @@ const getTooltip = (index: number) => {
 
 const useStyles = () => ({
   root: {
-    ...fc_fe,
+    ...f('-c-fe'),
     cursor: 'default'
   },
   item: {
-    ...f_fe,
+    ...f('-fe'),
   },
   firstPrefix: {
     ml            : 0.5,
