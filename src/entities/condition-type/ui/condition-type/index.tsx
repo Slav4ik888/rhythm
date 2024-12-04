@@ -2,14 +2,13 @@ import { FC, memo } from 'react';
 import Chip from '@mui/material/Chip';
 import { Tooltip } from 'shared/ui/tooltip';
 import { CustomTheme, pxToRem, useTheme } from 'app/providers/theme';
-import { ReportsLineChartConfig } from '../../../dashboard/ui/reports';
 import { CONDITION_TYPE } from '../../model/config';
 import { DashboardConditionType } from '../../model/types';
 
 
 
-const useStyle = ({ palette: { conditionTypeChip } }: CustomTheme, type?: DashboardConditionType) => {
-  if (! type) return null
+const useStyle = ({ palette: { conditionTypeChip } }: CustomTheme, condition?: DashboardConditionType) => {
+  if (! condition) return null
 
   return {
     tooltip: {
@@ -22,27 +21,25 @@ const useStyle = ({ palette: { conditionTypeChip } }: CustomTheme, type?: Dashbo
       width      : pxToRem(70),
       height     : pxToRem(15),
       fontSize   : pxToRem(12),
-      color      : conditionTypeChip[type]?.color,
-      background : conditionTypeChip[type]?.background,
+      color      : conditionTypeChip[condition]?.color,
+      background : conditionTypeChip[condition]?.background,
     },
   }
 };
 
 
 interface Props {
-  type?  : DashboardConditionType
-  config : ReportsLineChartConfig
+  condition?: DashboardConditionType
 }
 
 
 /** Chip для типа состояния: Могущество | Изобилие | Норма | ЧП  | Опасность | Несущ */
-export const ConditionTypeChip: FC<Props> = memo(({ type, config }) => {
-  const sx = useStyle(useTheme(), type);
+export const ConditionTypeChip: FC<Props> = memo(({ condition }) => {
+  const sx = useStyle(useTheme(), condition);
 
-  if (! type) return null
-  if (! config?.chips?.conditionType) return null
+  if (! condition) return null
   
-  const { label, description } = CONDITION_TYPE[type] || {};
+  const { label, description } = CONDITION_TYPE[condition] || {};
 
 
   return (

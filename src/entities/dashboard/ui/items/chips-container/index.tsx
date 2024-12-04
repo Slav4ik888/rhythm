@@ -1,11 +1,11 @@
-import { FC, memo } from "react";
-import { MDBox } from "shared/ui/mui-design-components";
+import { FC, memo } from 'react';
 import { DashboardStatisticItem } from 'entities/dashboard';
 import { ReportsLineChartConfig } from '../../reports/reports-line-chart/types';
 import { ConditionTypeChip, DashboardConditionType } from 'entities/condition-type';
 import { StatisticTypeChip } from 'entities/statistic-type';
 import { ProductTypeChip } from 'entities/product-type';
 import { CompanyTypeChip } from 'entities/company-type';
+import { Stack } from '@mui/material';
 
 
 
@@ -21,23 +21,19 @@ export const ChipsContainer: FC<Props> = memo(({ item, config, condition }) => {
 
 
   return (
-    <MDBox display="flex" flexDirection="column">
-      <StatisticTypeChip
-        type   = {statisticType}
-        config = {config}
-      />
-      <CompanyTypeChip
-        type      = {companyType}
-        config    = {config}
-      />
-      <ProductTypeChip
-        type      = {productType}
-        config    = {config}
-      />
-      <ConditionTypeChip
-        type   = {condition}
-        config = {config}
-      />
-    </MDBox>
+    <Stack>
+      {
+        config?.chips?.statisticType && <StatisticTypeChip type={statisticType} />
+      }
+      {
+        config?.chips?.companyType && <CompanyTypeChip type={companyType} />
+      }
+      {
+        config?.chips?.productType && <ProductTypeChip type={productType} />
+      }
+      {
+        config?.chips?.conditionType && <ConditionTypeChip condition={condition} />
+      }
+    </Stack>
   );
 });

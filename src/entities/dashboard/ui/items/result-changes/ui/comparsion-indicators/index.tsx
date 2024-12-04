@@ -21,7 +21,7 @@ const getTooltip = (index: number) => {
 
 const useStyles = () => ({
   root: {
-    ...f('-c-fe'),
+    ...f('c-c-fe'),
     cursor: 'default'
   },
   item: {

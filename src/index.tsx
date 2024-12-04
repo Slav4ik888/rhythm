@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refact Flex styles" && git push -u origin main
+// git add . && git commit -m "refact configs" && git push -u origin main

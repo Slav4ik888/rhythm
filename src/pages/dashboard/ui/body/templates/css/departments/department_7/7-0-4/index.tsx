@@ -1,34 +1,17 @@
 import { memo, useMemo } from 'react';
-import { useSelector } from 'react-redux';
-import { DashboardReportContainer, invertData, selectActiveDates, selectActiveEntities, ReportsLineChart, ReportsLineChartConfig } from 'entities/dashboard';
+import { DashboardReportContainer, useDashboard, ReportsLineChart, ReportsLineChartConfig, DashboardStatisticItem, checkInvertData } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
-import { fixPointRadius, ChartConfigDatasets, ChartConfig } from 'entities/charts';
+import { ChartConfig, fixPointRadius } from 'entities/charts';
 import { getConditionType } from 'entities/condition-type';
 
 
 
-/** Доп поля в конфиг данных для графика */
-const getDatasetConfig = (dates: any[]): ChartConfigDatasets => {
-
-  const config: ChartConfigDatasets = {
-    pointBackgroundColor : "rgb(80 141 222 / 100%)",
-    backgroundColor      : "rgb(80 141 222 / 30%)",
-    borderColor          : "rgb(80 141 222 / 100%)"
-  };
-
-  fixPointRadius(config, dates);
-
-  return config;
-}
-
-
 /** Счёт организации (все средства в наличии - все текущие обязательства) */
 export const DashboardReportContainer7_0_4 = memo(() => {
-  const activeEntities = useSelector(selectActiveEntities);
-  const activeDates    = useSelector(selectActiveDates);
+  const { activeEntities, activeDates } = useDashboard();
 
-  const itemData  = useMemo(() => activeEntities["7-0-4"], [activeEntities]);
-  const condition = useMemo(() => getConditionType(activeEntities["7-0-4-C"]?.data), [activeEntities]);
+  const itemData  = useMemo(() => activeEntities['7-0-4'] as DashboardStatisticItem<number>, [activeEntities]);
+  const condition = useMemo(() => getConditionType(activeEntities['7-0-4-C']?.data), [activeEntities]);
   const dates     = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
 
@@ -56,8 +39,11 @@ export const DashboardReportContainer7_0_4 = memo(() => {
   const chartData: ChartConfig = {
     labels: dates,
     datasets: [{
-      ...getDatasetConfig(dates),
-      data: reportConfig.inverted ? invertData(itemData.data as number[]) : itemData.data as number[]
+      data                 : checkInvertData(reportConfig, itemData),
+      pointBackgroundColor : 'rgb(80 141 222 / 100%)',
+      backgroundColor      : 'rgb(80 141 222 / 30%)',
+      borderColor          : 'rgb(80 141 222 / 100%)',
+      pointRadius          : fixPointRadius(dates),
     }]
   };
 

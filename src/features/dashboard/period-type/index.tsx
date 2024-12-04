@@ -1,6 +1,6 @@
 import { FC, memo, useState } from 'react';
 import { pxToRem } from 'app/providers/theme';
-import { actionsDashboard, arrayDashboardPeriodType, DashboardPeriodType, DASHBOARD_PERIOD_TEXT } from 'entities/dashboard';
+import { actionsDashboard, arrayDashboardPeriodType, DashboardPeriodType, DASHBOARD_PERIOD_TEXT, useDashboard } from 'entities/dashboard';
 import { FormControl, MenuItem } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useAppDispatch } from 'shared/lib/hooks';
@@ -28,12 +28,12 @@ const useStyles = () => ({
 export const PeriodType: FC = memo(() => {
   const sx = useStyles();
   const { companyId } = useCompany();
-  const dispatch = useAppDispatch();
+  const { setSelectedPeriod } = useDashboard();
   const [openSelect, setOpenSelect] = useState(false);
 
 
   const handleChangePeriod = (e: SelectChangeEvent) => {
-    dispatch(actionsDashboard.setSelectedPeriod({ companyId, period: { type: e.target.value as DashboardPeriodType } }));
+    setSelectedPeriod({ companyId, period: { type: e.target.value as DashboardPeriodType } });
     setOpenSelect(false);
   };
 

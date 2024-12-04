@@ -12,9 +12,11 @@ interface Value {
 
 /** Показатели для сравнения */
 export const getComparisonValues = (values: number[], config: ReportsResultChangesConfig = {}): Value[] => {
-  const { reduce, fractionDigits, addZero } = config.resultChanges?.comparisonIndicators || {};
+  const { reduce, fractionDigits, addZero, valuesCount } = config.resultChanges?.comparisonIndicators || {};
 
-  return values.map(startValue => {
+  return values
+    .slice(0, valuesCount) // Оставляем нужное кол-во значений
+    .map(startValue => {
     // Убираем разряды и определяем префикс
     let resultValue: any = startValue;
     let prefix = '';

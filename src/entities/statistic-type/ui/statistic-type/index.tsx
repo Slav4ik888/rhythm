@@ -4,7 +4,6 @@ import { STATISTIC_TYPE } from '../../model/config';
 import { DashboardStatisticType } from '../../model/types';
 import { Tooltip } from 'shared/ui/tooltip';
 import { CustomTheme, pxToRem, useTheme } from 'app/providers/theme';
-import { ReportsLineChartConfig } from '../../../dashboard/ui/reports';
 
 
 
@@ -26,17 +25,15 @@ const useStyle = ({ palette: { statisticTypeChip } }: CustomTheme, type: Dashboa
 
 
 interface Props {
-  type   : DashboardStatisticType
-  config : ReportsLineChartConfig
+  type: DashboardStatisticType
 }
 
 
 /** Chip для типа статистики: День | Нед | Мес | */
-export const StatisticTypeChip: FC<Props> = memo(({ type, config }) => {
+export const StatisticTypeChip: FC<Props> = memo(({ type }) => {
   const sx = useStyle(useTheme(), type);
   const { label, description } = STATISTIC_TYPE[type] || {};
 
-  if (! config?.chips?.statisticType) return null
   
   return (
     <Tooltip

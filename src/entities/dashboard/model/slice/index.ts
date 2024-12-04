@@ -8,6 +8,7 @@ import { getEntitiesByPeriod } from '../utils';
 import { StateSchemaDashboard } from './state-schema';
 import { ActivatedCompanyId } from 'entities/company';
 import { ResGetGoogleData, calculateStartDate, getData } from 'features/dashboard';
+import { SetActivePeriod, SetSelectedPeriod } from './types';
 
 
 
@@ -59,7 +60,7 @@ export const slice = createSlice({
     clearErrors: (state) => {
       state.errors = {};
     },
-    setActivePeriod: (state, { payload }: PayloadAction<{ companyId: ActivatedCompanyId, period: DashboardPeriod }>) => {
+    setActivePeriod: (state, { payload }: PayloadAction<SetActivePeriod>) => {
       state.activePeriod = {
         ...state.activePeriod,
         ...payload.period
@@ -72,7 +73,7 @@ export const slice = createSlice({
       // Save state to local storage
       LS.setDashboardState(payload.companyId, state);
     },
-    setSelectedPeriod: (state, { payload }: PayloadAction<{ companyId: ActivatedCompanyId, period: Partial<DashboardPeriod> }>) => {
+    setSelectedPeriod: (state, { payload }: PayloadAction<SetSelectedPeriod>) => {
       const calcedStartDate = calculateStartDate(state.selectedPeriod.end, payload.period.type || state.selectedPeriod.type || DashboardPeriodType.NINE_MONTHS);
 
       state.activePeriod = {

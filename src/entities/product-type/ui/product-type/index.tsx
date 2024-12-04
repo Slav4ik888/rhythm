@@ -3,7 +3,6 @@ import Chip from '@mui/material/Chip';
 import { Tooltip } from 'shared/ui/tooltip';
 import { pxToRem } from 'app/providers/theme';
 import { PRODUCT_COLORS_CONFIG } from '../../model/config';
-import { ReportsLineChartConfig } from '../../../dashboard/ui/reports';
 import { ActivatedCompanyId } from 'entities/company';
 
 
@@ -25,18 +24,16 @@ const useStyle = (productType: string) => ({
 });
 
 interface Props {
-  type      : string
-  config    : ReportsLineChartConfig
+  type: string
 }
 
 
 /**
  * Chip для статистики типа компании: Общая | Сопровождение | Курс | Ритм | Разработка | Конструктор | Прочие	
  */
-export const ProductTypeChip: FC<Props> = memo(({ type, config }) => {
+export const ProductTypeChip: FC<Props> = memo(({ type }) => {
   const sx = useStyle(type);
 
-  if (! config?.chips?.productType) return null
 
   return (
     <Tooltip

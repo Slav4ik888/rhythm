@@ -1,35 +1,17 @@
 import { memo, useMemo } from 'react';
-import { ChartConfig, ChartConfigDatasets } from 'entities/charts';
-import { useSelector } from 'react-redux';
-import { DashboardReportContainer, selectActiveDates, selectActiveEntities, ReportsLineChartConfig, ReportsLineChart } from 'entities/dashboard';
+import { ChartConfig } from 'entities/charts';
+import { DashboardReportContainer, ReportsLineChartConfig, ReportsLineChart, useDashboard, checkInvertData, DashboardStatisticItem } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
 import { getConditionType } from 'entities/condition-type';
 
 
 
-/** Доп поля в конфиг данных для графика */
-const getDatasetConfig = (dates: any[]): ChartConfigDatasets => {
-
-  const config: ChartConfigDatasets = {
-    pointBackgroundColor : "rgb(209 148 58)",
-    backgroundColor      : "rgb(209 148 58 / 30%)",
-    borderColor          : "rgb(209 148 58)",
-  }
-
-  fixPointRadius(config, dates);    
-
-  return config;
-}
-
-
-
 export const DashboardReportContainer1_1 = memo(() => {
-  const activeEntities = useSelector(selectActiveEntities);
-  const activeDates    = useSelector(selectActiveDates);
+  const { activeEntities, activeDates } = useDashboard();
 
-  const itemData  = useMemo(() => activeEntities["1-1"], [activeEntities]);
-  const condition = useMemo(() => getConditionType(activeEntities["1-1-C"]?.data), [activeEntities]);
+  const itemData  = useMemo(() => activeEntities['1-1'] as DashboardStatisticItem<number>, [activeEntities]);
+  const condition = useMemo(() => getConditionType(activeEntities['1-1-C']?.data), [activeEntities]);
   const dates     = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
 
@@ -49,9 +31,11 @@ export const DashboardReportContainer1_1 = memo(() => {
   const chartData: ChartConfig = {
     labels: dates,
     datasets: [{
-      ...getDatasetConfig(dates),
-      // label : "Общее кол-во персонала",
-      data: itemData.data as number[]
+      data                 : checkInvertData(reportConfig, itemData),
+      pointBackgroundColor : 'rgb(209 148 58)',
+      backgroundColor      : 'rgb(209 148 58 / 30%)',
+      borderColor          : 'rgb(209 148 58)',
+      pointRadius          : fixPointRadius(dates),
     }],
     options: {
       scales: {
@@ -66,7 +50,7 @@ export const DashboardReportContainer1_1 = memo(() => {
   return (
     <DashboardReportContainer title={itemData.title}>
       <ReportsLineChart
-        bgColor     = "grey-300" // "department_1"
+        bgColor     = 'grey-300' // 'department_1'
         item        = {itemData}
         chart       = {chartData}
         condition   = {condition}

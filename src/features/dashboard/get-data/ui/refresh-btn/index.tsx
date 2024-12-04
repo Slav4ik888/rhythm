@@ -1,16 +1,15 @@
 import { FC, memo } from 'react';
 import { IconButton } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Autorenew';
-import { useAppDispatch } from 'shared/lib/hooks';
-import { getData } from '../../model/services';
 import { useCompany } from 'entities/company';
+import { useDashboard } from 'entities/dashboard';
 
 
 
 export const DashboardRefreshButton: FC = memo(() => {
-  const dispatch = useAppDispatch();
+  const { serviceGetData } = useDashboard();
   const { company } = useCompany();
-  const handleRefresh = () => dispatch(getData(company));
+  const handleRefresh = () => serviceGetData(company);
 
 
   return (

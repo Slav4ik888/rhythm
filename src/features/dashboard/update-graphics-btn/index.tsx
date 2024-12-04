@@ -1,8 +1,7 @@
 import { useCompany } from 'entities/company';
-import { actionsDashboard, selectActivePeriod, selectSelectedPeriod } from 'entities/dashboard';
+import { useDashboard } from 'entities/dashboard';
 import { FC, memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from 'shared/lib/hooks';
 import { MDButton } from 'shared/ui/mui-design-components';
 import { Tooltip } from 'shared/ui/tooltip';
 
@@ -11,16 +10,10 @@ import { Tooltip } from 'shared/ui/tooltip';
 /** DEPRECATED */
 export const UpdateGraphicsBtn: FC = memo(() => {
   const { companyId } = useCompany();
-  const dispatch = useAppDispatch();
-  const storeActivePeriod   = useSelector(selectActivePeriod);
-  const activePeriodType    = storeActivePeriod?.type;
-  const activeDateStart     = storeActivePeriod?.start;
-  const activeDateEnd       = storeActivePeriod?.end;
-  const storeSelectedPeriod = useSelector(selectSelectedPeriod);
-  const selectedPeriodType  = storeSelectedPeriod?.type;
-  const selectedDateStart   = storeSelectedPeriod?.start;
-  const selectedDateEnd     = storeSelectedPeriod?.end;
-
+  const {
+    selectedPeriod, activePeriodType, activeDateStart, activeDateEnd, selectedPeriodType, selectedDateStart, selectedDateEnd,
+    setActivePeriod
+  } = useDashboard();
 
   const isChanged = useMemo(() =>
     activePeriodType !== selectedPeriodType ||
@@ -29,7 +22,7 @@ export const UpdateGraphicsBtn: FC = memo(() => {
     , [activePeriodType, selectedPeriodType, activeDateStart, selectedDateStart, activeDateEnd, selectedDateEnd]);
   
   
-  const handleSaveChanges = () => dispatch(actionsDashboard.setActivePeriod({ companyId, period: storeSelectedPeriod }));
+  const handleSaveChanges = () => setActivePeriod({ companyId, period: selectedPeriod });
 
 
   if (! isChanged) return null;

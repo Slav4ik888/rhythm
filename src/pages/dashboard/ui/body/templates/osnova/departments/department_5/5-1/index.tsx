@@ -1,33 +1,16 @@
 import { memo, useMemo } from 'react';
-import { ChartConfig, ChartConfigDatasets } from 'entities/charts';
-import { useSelector } from 'react-redux';
-import { DashboardReportContainer, ReportsLineChart, ReportsLineChartConfig, selectActiveDates, selectActiveEntities } from 'entities/dashboard';
+import { ChartConfig } from 'entities/charts';
+import { checkInvertData, DashboardReportContainer, DashboardStatisticItem, ReportsLineChart, ReportsLineChartConfig, useDashboard } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
 
 
 
-/** Доп поля в конфиг данных для графика */
-const getDatasetConfig = (dates: any[]): ChartConfigDatasets => {
-
-  const config: ChartConfigDatasets = {
-    pointBackgroundColor : "rgb(132 132 132)",
-    backgroundColor      : "rgb(132 132 132 / 30%)",
-    borderColor          : "rgb(132 132 132)",
-  }
-
-  fixPointRadius(config, dates);
-
-  return config;
-}
-
-
-
+/** Ценность сотрудников */
 export const DashboardReportContainer5_1 = memo(() => {
-  const activeEntities = useSelector(selectActiveEntities);
-  const activeDates    = useSelector(selectActiveDates);
+  const { activeEntities, activeDates } = useDashboard();
 
-  const itemData = useMemo(() => activeEntities["5-1"], [activeEntities]);
+  const itemData = useMemo(() => activeEntities['5-1'] as DashboardStatisticItem<number>, [activeEntities]);
   const dates = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
 
@@ -47,9 +30,11 @@ export const DashboardReportContainer5_1 = memo(() => {
   const chartData: ChartConfig = {
     labels: dates,
     datasets: [{
-      ...getDatasetConfig(dates),
-      // label : "Ценность сотрудников",
-      data: itemData.data as number[]
+      data                 : checkInvertData(reportConfig, itemData),
+      pointBackgroundColor : 'rgb(132 132 132)',
+      backgroundColor      : 'rgb(132 132 132 / 30%)',
+      borderColor          : 'rgb(132 132 132)',
+      pointRadius          : fixPointRadius(dates),
     }]
   };
 
@@ -57,7 +42,7 @@ export const DashboardReportContainer5_1 = memo(() => {
   return (
     <DashboardReportContainer title={itemData.title}>
       <ReportsLineChart
-        bgColor     = "grey-300" // "department_1"
+        bgColor     = 'grey-300' // 'department_1'
         item        = {itemData}
         chart       = {chartData}
         config      = {reportConfig}

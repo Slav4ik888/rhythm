@@ -3,7 +3,6 @@ import Chip from '@mui/material/Chip';
 // import { Tooltip } from 'shared/ui/tooltip';
 import { pxToRem } from 'app/providers/theme';
 import { COMPANY_COLORS_CONFIG } from '../../model/config';
-import { ReportsLineChartConfig } from '../../../dashboard/ui/reports';
 import { ActivatedCompanyId } from 'entities/company';
 
 
@@ -21,8 +20,7 @@ const useStyle = (companyType : string) => {
 
 interface Props {
   // colorConfig : CompanyColorsConfig
-  type      : string
-  config    : ReportsLineChartConfig
+  type: string
 }
 
 
@@ -30,11 +28,10 @@ interface Props {
  * TODO: сделать ярлыком влевом верхнем углу карточки статистики (поз: абсолют)
  * Chip для статистики типа компании: Общая | Да-Телеком | Бэдком |
  */
-export const CompanyTypeChip: FC<Props> = memo(({ type, config }) => {
+export const CompanyTypeChip: FC<Props> = memo(({ type }) => {
   const sx = useStyle(type);
   // const { label, description } = DASHBOARD_STATISTIC_TYPE[type] || {};
 
-  if (! config?.chips?.companyType) return null
 
   return (
     // <Tooltip title={description}>

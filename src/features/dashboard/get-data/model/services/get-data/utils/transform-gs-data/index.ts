@@ -22,7 +22,7 @@ export const getEntities = (data: ResGetData): StartEntitiesData => {
         
         
       // Добавляем в entities
-      allSheetData.forEach((columnData: DashboardItemData, idx) => {
+      allSheetData.forEach((columnData: DashboardItemData<string | number>, idx) => {
         const kod = columnData[kodIdx] as string;
         const currentStatisticType = columnData[statisticTypeIdx] as DashboardStatisticType;
         const validStatisticType = currentStatisticType === sheetStatisticType;
@@ -42,7 +42,7 @@ export const getEntities = (data: ResGetData): StartEntitiesData => {
       // Добавляем в dates
       startDates[sheetStatisticType] = allSheetData[0]
         .slice(dataRow - 1)
-        .map(date => new Date(date).getTime());
+        .map((date: string | number) => new Date(date).getTime());
     }
   }
 
@@ -54,7 +54,7 @@ export const getEntities = (data: ResGetData): StartEntitiesData => {
 
 
 /** Вернуть индексы якорей */
-function getIdxAnchors(allSheetData: DashboardItemData[]) {
+function getIdxAnchors(allSheetData: DashboardItemData<string | number>[]) {
   const getIdxByKod = (label: string): number => allSheetData[0].findIndex(value => value === label);
 
   return {
@@ -72,7 +72,7 @@ function getIdxAnchors(allSheetData: DashboardItemData[]) {
  * Transform Google Sheets row data into column data
  * @param data Google Sheets data
  */
-export const transformGSData = (data: GoogleSheetData): DashboardItemData[] => {
+export const transformGSData = (data: GoogleSheetData): DashboardItemData<string | number>[] => {
   const obj = transformToObject(data);
   const res = transformToArray(obj);
 
@@ -82,7 +82,7 @@ export const transformGSData = (data: GoogleSheetData): DashboardItemData[] => {
 
 
 interface ObjGSData {
-  [key: string]: DashboardItemData;
+  [key: string]: DashboardItemData<string | number>;
 }
 
 
@@ -106,8 +106,8 @@ function transformToObject(data: GoogleSheetData): ObjGSData {
 
 
 
-function transformToArray(obj: ObjGSData): DashboardItemData[] {
-  const res: DashboardItemData[] = [];
+function transformToArray(obj: ObjGSData): DashboardItemData<string | number>[] {
+  const res: DashboardItemData<string | number>[] = [];
 
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {

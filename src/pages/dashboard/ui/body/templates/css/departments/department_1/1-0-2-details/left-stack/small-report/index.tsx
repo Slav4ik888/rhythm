@@ -1,29 +1,14 @@
 import { FC, memo } from 'react';
-import { BarChart, ChartConfig, ChartConfigDatasets, ChartContainer, fixPointRadius } from 'entities/charts';
+import { ChartConfig } from 'entities/charts';
 import {
-  DashboardStatisticItem, invertData, ReportSmallContainerWrapper, ReportsResultChangesConfig,
-  ComparisonIndicators, GrowthResult, ReportContainer_Small, SxSmallContainer
+  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, SxSmallContainer, checkInvertData
 } from 'entities/dashboard';
 import { pxToRem } from 'app/providers/theme';
 import { orange } from '@mui/material/colors';
-import { MDBox } from 'shared/ui/mui-design-components';
 import { f } from 'app/styles';
+import { DashboardConditionType } from 'entities/condition-type';
+import { DashboardStatisticType } from 'entities/statistic-type';
 
-
-
-/** Доп поля в конфиг данных для графика */
-const getDatasetConfig = (dates: any[]): ChartConfigDatasets => {
-
-  const config: ChartConfigDatasets = {
-    pointBackgroundColor : "rgb(209 148 58)",
-    backgroundColor      : "rgb(209 148 58 / 30%)",
-    borderColor          : "rgb(209 148 58)",
-  }
-
-  fixPointRadius(config, dates);    
-
-  return config;
-};
 
 
 const useStyles = (): SxSmallContainer => ({
@@ -31,6 +16,7 @@ const useStyles = (): SxSmallContainer => ({
     ...f('--sb'),
     width  : '100%',
     height : pxToRem(100),
+    mb     : 2,
   },
   header: {
     background: orange[200]
@@ -62,12 +48,18 @@ const useStyles = (): SxSmallContainer => ({
 
 
 interface Props {
-  dates    : string[]
-  itemData : DashboardStatisticItem
+  dates          : string[]
+  itemData       : DashboardStatisticItem<number>
+  condition?     : DashboardConditionType
+  statisticType? : DashboardStatisticType
+  companyType?   : string
+  productType?   : string
 }
 
 
-export const DashboardReportContainer_1_0_2_Details_SmallReport: FC<Props> = memo(({ itemData, dates }) => {
+export const DashboardReportContainer_1_0_2_Details_SmallReport: FC<Props> = memo(({
+  itemData, dates, condition, statisticType, companyType, productType
+}) => {
   const sx = useStyles();
   
   const reportConfig: ReportsResultChangesConfig = {
@@ -77,6 +69,7 @@ export const DashboardReportContainer_1_0_2_Details_SmallReport: FC<Props> = mem
     resultChanges: {
       // Список значений: последний результат и предыдущие 
       comparisonIndicators : {
+        valuesCount    : 2,  // Сколько значений показывать
         fractionDigits : 0,  // Количество знаков после запятой
         addZero        : false // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
       },
@@ -88,17 +81,21 @@ export const DashboardReportContainer_1_0_2_Details_SmallReport: FC<Props> = mem
     },
   };
 
-  const barChartData: ChartConfig = {
+
+  const chartData: ChartConfig = {
     labels: dates,
     datasets: [{
-      ...getDatasetConfig(dates),
-      data: reportConfig.inverted ? invertData(itemData.data as number[]) : itemData.data as number[]
+      data                 : checkInvertData(reportConfig, itemData),
+      pointBackgroundColor : 'rgb(209 148 58)',
+      backgroundColor      : 'rgb(209 148 58 / 30%)',
+      borderColor          : 'rgb(209 148 58)',
+      borderWidth          : 1,
+      pointRadius          : 1, // fixPointRadius(dates)
+      fill                 : true,
     }],
     options: {
       scales: {
         y: {
-          // suggestedMax: 40, // Добавление  макс значения оси Y
-          // suggestedMin: 30,
           min: 30,
           max: 40,
         },
@@ -119,12 +116,16 @@ export const DashboardReportContainer_1_0_2_Details_SmallReport: FC<Props> = mem
 
   return (
     <ReportContainer_Small
-      chartType    = 'bar'
-      title        = 'Всего сотрудников'
-      itemData     = {itemData}
-      reportConfig = {reportConfig}
-      chartData    = {barChartData}
-      sx           = {sx}
+      chartType     = 'bar'
+      title         = 'Всего сотрудников'
+      // condition     = {condition}
+      // statisticType = {statisticType}
+      // companyType   = {companyType}
+      // productType   = {productType}
+      itemData      = {itemData}
+      reportConfig  = {reportConfig}
+      chartData     = {chartData}
+      sx            = {sx}
     />
   );
 });

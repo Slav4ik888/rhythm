@@ -10,11 +10,11 @@ export interface SxSmallContainer {
   root?: {
     width?  : string // in rem
     height? : string // in rem
-  },
+  } | any,
   header: {
     color?     : ColorName
     background : string // from MUIColors
-  },
+  } | any,
   content?: {
     background? : string // from MUIColors
     height?     : string // in rem

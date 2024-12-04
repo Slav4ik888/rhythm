@@ -1,15 +1,14 @@
 import { FC, memo } from 'react';
 import { MDTypography } from 'shared/ui/mui-design-components';
-import { useSelector } from 'react-redux';
-import { selectLastUpdated } from 'entities/dashboard';
 import { pxToRem } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
 import { formatDate, SUB } from 'shared/helpers/dates';
+import { useDashboard } from 'entities/dashboard';
 
 
 
 export const DashboardLastUpdatedText: FC = memo(() => {
-  const lastUpdated = useSelector(selectLastUpdated);
+  const { lastUpdated } = useDashboard();
 
   return (
     <Tooltip

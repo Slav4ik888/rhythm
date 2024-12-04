@@ -12,8 +12,5 @@ export {
 } from './model/config'
 export { actions as actionsDashboard, reducer as reducerDashboard } from './model/slice'
 export { DashboardEntities, DashboardDates, StateSchemaDashboard } from './model/slice/state-schema'
-export {
-  selectLoading, selectErrors, selectActivePeriod, selectSelectedPeriod, selectLastUpdated,
-  selectActiveDates, selectActiveEntities
-} from './model/selectors'
-export { invertData, getInitialState } from './model/utils'
+export { checkInvertData, getInitialState } from './model/utils'
+export { useDashboard } from './model/hooks'
