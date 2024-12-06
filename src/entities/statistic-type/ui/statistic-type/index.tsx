@@ -1,16 +1,16 @@
 import { FC, memo } from 'react';
-import Chip from '@mui/material/Chip';
+import { Chip } from '@mui/material';
 import { STATISTIC_TYPE } from '../../model/config';
 import { DashboardStatisticType } from '../../model/types';
 import { Tooltip } from 'shared/ui/tooltip';
 import { CustomTheme, pxToRem, useTheme } from 'app/providers/theme';
+import { f } from 'app/styles';
 
 
 
 const useStyle = ({ palette: { statisticTypeChip } }: CustomTheme, type: DashboardStatisticType) => ({
   tooltip: {
-    display    : 'flex',
-    alignItems : 'center',
+    ...f('_c'),
     height     : pxToRem(20),
     cursor     : 'default',
   },
@@ -25,12 +25,12 @@ const useStyle = ({ palette: { statisticTypeChip } }: CustomTheme, type: Dashboa
 
 
 interface Props {
-  type: DashboardStatisticType
+  type?: DashboardStatisticType
 }
 
 
 /** Chip для типа статистики: День | Нед | Мес | */
-export const StatisticTypeChip: FC<Props> = memo(({ type }) => {
+export const StatisticTypeChip: FC<Props> = memo(({ type = '' as DashboardStatisticType }) => {
   const sx = useStyle(useTheme(), type);
   const { label, description } = STATISTIC_TYPE[type] || {};
 

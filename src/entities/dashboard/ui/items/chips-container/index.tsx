@@ -16,7 +16,7 @@ interface Props {
 }
 
 
-export const ChipsContainer: FC<Props> = memo(({ item, config, condition }) => {
+export const ChipsContainer: FC<Props> = memo(({ item = {}, config, condition }) => {
   const { companyType, productType, statisticType } = item;
 
 

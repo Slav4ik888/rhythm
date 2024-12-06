@@ -4,22 +4,23 @@ import { DashboardStatisticType } from '../types';
 
 
 export const STATISTIC_TYPE: Record<DashboardStatisticType, DashboardItemType> = {
-  [DashboardStatisticType.DAY]: {
+  ['day']: {
     label       : 'Ден',
     description : 'Ежедневная статистика'
   },
-  [DashboardStatisticType.WEEK]: {
+  ['week']: {
     label       : 'Нед',
     description : 'Недельная статистика'
   },
-  [DashboardStatisticType.MONTH]: {
+  ['month']: {
     label       : 'Мес',
     description : 'Месячная статистика'
   },
-  [DashboardStatisticType.MONTH_CAL]: {
+  ['month_cal']: {
     label       : 'МеК',
     description : 'Месячная статистика (по календарному месяцу)'
   }
 }
 
-export const arrayDashboardStatisticType = Array.from(Object.values(DashboardStatisticType));
+// export const arrayDashboardStatisticType = Array.from(Object.values(DashboardStatisticType));
+export const arrayDashboardStatisticType = Array.from(Object.keys(STATISTIC_TYPE));

@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react';
 import { ChartConfig } from 'entities/charts';
 import {
-  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, SxSmallContainer, checkInvertData, useDashboard
+  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, SxSmallContainer, checkInvertData, useDashboard, createConfig
 } from 'entities/dashboard';
 import { pxToRem } from 'app/providers/theme';
 import { deepPurple } from '@mui/material/colors';
@@ -59,6 +59,10 @@ export const SmallReport_2_6_3 = memo(() => {
     // inverted : true, // При отсутствии изменений в результатах красить чёрным цветом
     unchangedBlack: true, // При отсутствии изменений в результатах красить чёрным цветом
 
+    // header: {
+    //   minHeight: string // Минимальная высота "шапки", напр. если заголовок на 2 строки, то нужно выравнить у всех в ряду
+    // }
+
     resultChanges: {
       // Список значений: последний результат и предыдущие 
       comparisonIndicators : {
@@ -75,38 +79,24 @@ export const SmallReport_2_6_3 = memo(() => {
   };
 
 
-  const chartData: ChartConfig = {
+  const chartData = createConfig({
     labels: dates,
     datasets: [{
       data                 : checkInvertData(reportConfig, itemData),
       pointBackgroundColor : 'rgb(141 97 183)',
       backgroundColor      : 'rgb(141 97 183 / 70%)',
-      // borderColor          : 'rgb(141 97 183)',
       borderWidth          : 0,
       pointRadius          : 1, // fixPointRadius(dates)
-      // fill                 : true,
     }],
     options: {
       scales: {
         y: {
-          // suggestedMin: 265,
-          // suggestedMax: 290,
           min: 250,
           max: 290,
-        },
-        x: {
-          display: false,
         }
-      },
-      plugins: {
-        legend: {
-          display: false,
-        }
-      },
-      aspectRatio: 1, // или другое значение, которое вам подходит
-      maintainAspectRatio: false // важно отключить это свойство, если хотите изменить размер диаграммы
+      }
     }
-  };
+  });
 
 
   return (

@@ -1,19 +1,22 @@
 import { FC, memo } from 'react';
-import Chip from '@mui/material/Chip';
+import { Chip } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
 import { CustomTheme, pxToRem, useTheme } from 'app/providers/theme';
 import { CONDITION_TYPE } from '../../model/config';
 import { DashboardConditionType } from '../../model/types';
+import { f } from 'app/styles';
 
 
 
-const useStyle = ({ palette: { conditionTypeChip } }: CustomTheme, condition?: DashboardConditionType) => {
-  if (! condition) return null
+const useStyle = (
+  { palette: { conditionTypeChip } }: CustomTheme,
+  condition: DashboardConditionType = '' as DashboardConditionType
+) => {
+  // if (! condition) return null
 
   return {
     tooltip: {
-      display    : 'flex',
-      alignItems : 'center',
+      ...f('_c'),
       height     : pxToRem(20),
       cursor     : 'default',
     },

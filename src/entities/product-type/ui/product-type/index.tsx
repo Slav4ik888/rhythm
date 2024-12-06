@@ -1,16 +1,16 @@
 import { FC, memo } from 'react';
-import Chip from '@mui/material/Chip';
+import { Chip } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
 import { pxToRem } from 'app/providers/theme';
 import { PRODUCT_COLORS_CONFIG } from '../../model/config';
 import { ActivatedCompanyId } from 'entities/company';
+import { f } from 'app/styles';
 
 
 
 const useStyle = (productType: string) => ({
   tooltip: {
-    display    : 'flex',
-    alignItems : 'center',
+    ...f('_c'),
     height     : pxToRem(20),
     cursor     : 'default',
   },
@@ -24,14 +24,14 @@ const useStyle = (productType: string) => ({
 });
 
 interface Props {
-  type: string
+  type?: string
 }
 
 
 /**
  * Chip для статистики типа компании: Общая | Сопровождение | Курс | Ритм | Разработка | Конструктор | Прочие	
  */
-export const ProductTypeChip: FC<Props> = memo(({ type }) => {
+export const ProductTypeChip: FC<Props> = memo(({ type = '' }) => {
   const sx = useStyle(type);
 
 

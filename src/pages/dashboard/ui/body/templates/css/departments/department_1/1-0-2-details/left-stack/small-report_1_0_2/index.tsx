@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react';
-import { ChartConfig } from 'entities/charts';
 import {
-  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, SxSmallContainer, checkInvertData, useDashboard
+  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, SxSmallContainer,
+  checkInvertData, useDashboard, createConfig
 } from 'entities/dashboard';
 import { pxToRem } from 'app/providers/theme';
 import { orange } from '@mui/material/colors';
@@ -74,36 +74,24 @@ export const SmallReport_1_0_2 = memo(() => {
   };
 
 
-  const chartData: ChartConfig = {
+  const chartData = createConfig({
     labels: dates,
     datasets: [{
       data                 : checkInvertData(reportConfig, itemData),
       pointBackgroundColor : 'rgb(209 148 58)',
       backgroundColor      : 'rgb(209 148 58 / 70%)',
-      // borderColor          : 'rgb(209 148 58)',
       borderWidth          : 0,
       pointRadius          : 1, // fixPointRadius(dates)
-      // fill                 : true,
     }],
     options: {
       scales: {
         y: {
           min: 30,
           max: 40,
-        },
-        x: {
-          display: false,
         }
-      },
-      plugins: {
-        legend: {
-          display: false,
-        }
-      },
-      aspectRatio: 1, // или другое значение, которое вам подходит
-      maintainAspectRatio: false // важно отключить это свойство, если хотите изменить размер диаграммы
+      }
     }
-  };
+  });
 
 
   return (

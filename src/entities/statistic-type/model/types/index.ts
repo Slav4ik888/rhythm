@@ -1,6 +1,2 @@
-export enum DashboardStatisticType {
-  DAY       = 'day',
-  WEEK      = 'week',
-  MONTH     = 'month',
-  MONTH_CAL = 'month_cal' // Календарный
-}
+
+export type DashboardStatisticType = 'day' | 'week' | 'month' | 'month_cal'

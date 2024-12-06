@@ -11,6 +11,7 @@ import { ConditionTypeChip, DashboardConditionType } from 'entities/condition-ty
 import { DashboardStatisticType, StatisticTypeChip } from 'entities/statistic-type';
 import { CompanyTypeChip } from 'entities/company-type';
 import { ProductTypeChip } from 'entities/product-type';
+import { ChipsContainer } from '../../../../ui/items';
 
 
 
@@ -55,7 +56,17 @@ export const ReportContainer_Small: FC<Props> = memo(({
       sx    = {style}
     >
       <MDBox sx={sx.indicators}>
-        {
+        <ChipsContainer
+          item      = {itemData}
+          condition = {condition}
+          config = {{ chips: {
+            statisticType : Boolean(statisticType),
+            productType   : Boolean(productType),
+            companyType   : Boolean(companyType),
+            conditionType : Boolean(condition),
+          }}}
+        />
+        {/* {
           companyType && <CompanyTypeChip type={companyType} />
         }
         {
@@ -66,7 +77,7 @@ export const ReportContainer_Small: FC<Props> = memo(({
         }
         {
           condition && <ConditionTypeChip condition={condition} />
-        }
+        } */}
 
         <MDBox sx={sx.comparison}>
           <ComparisonIndicators
