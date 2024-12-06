@@ -1,13 +1,12 @@
-import { FC, memo } from 'react';
+import { memo, useMemo } from 'react';
 import { ChartConfig } from 'entities/charts';
 import {
-  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, SxSmallContainer, checkInvertData
+  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, SxSmallContainer, checkInvertData, useDashboard
 } from 'entities/dashboard';
 import { pxToRem } from 'app/providers/theme';
 import { orange } from '@mui/material/colors';
 import { f } from 'app/styles';
-import { DashboardConditionType } from 'entities/condition-type';
-import { DashboardStatisticType } from 'entities/statistic-type';
+import { formatDate, SUB } from 'shared/helpers/dates';
 
 
 
@@ -47,20 +46,13 @@ const useStyles = (): SxSmallContainer => ({
 
 
 
-interface Props {
-  dates          : string[]
-  itemData       : DashboardStatisticItem<number>
-  condition?     : DashboardConditionType
-  statisticType? : DashboardStatisticType
-  companyType?   : string
-  productType?   : string
-}
-
-
-export const DashboardReportContainer_1_0_2_Details_SmallReport: FC<Props> = memo(({
-  itemData, dates, condition, statisticType, companyType, productType
-}) => {
+export const SmallReport_1_0_2 = memo(() => {
   const sx = useStyles();
+  const { activeEntities, activeDates } = useDashboard();
+
+  const itemData  = useMemo(() => activeEntities['1-0-2'] as DashboardStatisticItem<number>, [activeEntities]);
+  const dates     = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
+
   
   const reportConfig: ReportsResultChangesConfig = {
     // inverted : true, // При отсутствии изменений в результатах красить чёрным цветом
@@ -87,11 +79,11 @@ export const DashboardReportContainer_1_0_2_Details_SmallReport: FC<Props> = mem
     datasets: [{
       data                 : checkInvertData(reportConfig, itemData),
       pointBackgroundColor : 'rgb(209 148 58)',
-      backgroundColor      : 'rgb(209 148 58 / 30%)',
-      borderColor          : 'rgb(209 148 58)',
-      borderWidth          : 1,
+      backgroundColor      : 'rgb(209 148 58 / 70%)',
+      // borderColor          : 'rgb(209 148 58)',
+      borderWidth          : 0,
       pointRadius          : 1, // fixPointRadius(dates)
-      fill                 : true,
+      // fill                 : true,
     }],
     options: {
       scales: {

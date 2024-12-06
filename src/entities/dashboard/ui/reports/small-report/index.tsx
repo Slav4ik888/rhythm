@@ -5,7 +5,6 @@ import {
   ComparisonIndicators, GrowthResult, SxSmallContainer
 } from 'entities/dashboard';
 import { pxToRem } from 'app/providers/theme';
-import { orange } from '@mui/material/colors';
 import { MDBox } from 'shared/ui/mui-design-components';
 import { f } from 'app/styles';
 import { ConditionTypeChip, DashboardConditionType } from 'entities/condition-type';
@@ -17,7 +16,8 @@ import { ProductTypeChip } from 'entities/product-type';
 
 const useStyles = () => ({
   indicators: {
-    ...f('c-c'),
+    ...f('c-fs'),
+    mr: 1,
   },
   comparison: {
     ...f('-fs-c'),
@@ -56,13 +56,13 @@ export const ReportContainer_Small: FC<Props> = memo(({
     >
       <MDBox sx={sx.indicators}>
         {
-          statisticType && <StatisticTypeChip type={statisticType} />
-        }
-        {
           companyType && <CompanyTypeChip type={companyType} />
         }
         {
           productType && <ProductTypeChip type={productType} />
+        }
+        {
+          statisticType && <StatisticTypeChip type={statisticType} />
         }
         {
           condition && <ConditionTypeChip condition={condition} />
@@ -70,11 +70,11 @@ export const ReportContainer_Small: FC<Props> = memo(({
 
         <MDBox sx={sx.comparison}>
           <ComparisonIndicators
-            data   = {itemData.data as number[]}
+            data   = {itemData?.data as number[] || []}
             config = {reportConfig}
           />
           <GrowthResult
-            data   = {itemData.data as number[]}
+            data   = {itemData?.data as number[] || []}
             config = {reportConfig}
             sx     = {style}
           />
@@ -82,7 +82,7 @@ export const ReportContainer_Small: FC<Props> = memo(({
       </MDBox>
 
       <ChartContainer
-        width    = {pxToRem(200)}
+        width    = {pxToRem(220)}
         height   = {pxToRem(70)}
         children = {component}
       />

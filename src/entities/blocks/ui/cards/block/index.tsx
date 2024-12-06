@@ -3,6 +3,7 @@ import { Box, Card } from '@mui/material';
 import { GradientColorName, CustomTheme, linearGradient, useTheme, pxToRem, ColorName } from 'app/providers/theme';
 import { isStr } from 'shared/lib/validators';
 import { MDTypography } from 'shared/ui/mui-design-components';
+import { f } from 'app/styles';
 
 
 
@@ -18,15 +19,14 @@ const useStyles = (theme: CustomTheme, config: StyleConfig) => {
   const { bgColor = 'info', width, fullWidth, ...rest } = config;
 
   const rootStyle = {
-    display       : 'flex',
-    flexDirection : 'column',
-    width         : ! width ? 'max-content' : isStr(width) ? width : pxToRem(width as number),
-    minWidth      : pxToRem(900),
-    minHeight     : pxToRem(400),
-    background    : linearGradient(theme.palette.gradients[bgColor].main, theme.palette.gradients[bgColor].state),
-    my            : 5,
-    p             : 3,
-    pr            : 0,
+      ...f('c'),
+    width      : ! width ? 'max-content' : isStr(width) ? width : pxToRem(width as number),
+    minWidth   : pxToRem(900),
+    minHeight  : pxToRem(400),
+    background : linearGradient(theme.palette.gradients[bgColor].main, theme.palette.gradients[bgColor].state),
+    my         : 5,
+    p          : 3,
+    pr         : 0,
     ...rest
   };
 
@@ -39,9 +39,8 @@ const useStyles = (theme: CustomTheme, config: StyleConfig) => {
   return {
     root: { ...rootStyle },
     content: {
-      display       : 'flex',
-      flexDirection : 'row',
-      width         : '100%'
+      ...f('r'),
+      width: '100%'
     },
     title: {
       mb : 2,

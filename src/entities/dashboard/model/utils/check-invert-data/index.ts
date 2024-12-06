@@ -5,7 +5,12 @@ import { invertData } from './invert-data'
 
 
 /** Делает invertData если нужно */
-export const checkInvertData = (config: ReportsBaseConfig, itemData: DashboardStatisticItem<number>): number[] =>
-  config.inverted
+export const checkInvertData = (config: ReportsBaseConfig, itemData: DashboardStatisticItem<number>): number[] => {
+
+  if (! itemData?.data) return []
+  
+  return config.inverted
     ? invertData(itemData.data)
     : itemData.data
+}
+  

@@ -4,11 +4,6 @@ import { DashboardReportContainer7_0_3 } from '../departments/department_7/7-0-3
 import { DashboardReportContainer7_0_4 } from '../departments/department_7/7-0-4';
 import { DashboardReportContainer1_0_1 } from '../departments/department_1/1-0-1';
 import { DashboardReportContainer_1_0_2_Details } from '../departments/department_1/1-0-2-details';
-// import { DashboardReportContainer1_0_2 } from '../departments/department_1/1-0-2';
-import { DashboardReportContainer2_0_1 } from '../departments/department_2/2-0-1';
-import { DashboardReportContainer2_0_1_1 } from '../departments/department_2/2-0-1-1';
-import { DashboardReportContainer2_0_4 } from '../departments/department_2/2-0-4';
-import { DashboardReportContainer2_0_4_1 } from '../departments/department_2/2-0-4-1';
 import { DashboardReportContainer3_7_1 } from '../departments/department_3/3-7-1';
 import { DashboardReportContainer4_0_2 } from '../departments/department_4/4-0-2';
 import { DashboardReportContainer5_0_1 } from '../departments/department_5/5-0-1';
@@ -18,6 +13,7 @@ import { DashboardReportContainer6_17_6 } from '../departments/department_6/6-17
 import { DashboardReportContainer6_17_2 } from '../departments/department_6/6-17-2';
 import { DashboardReportContainer6_17_7 } from '../departments/department_6/6-17-7';
 import { Stack } from '@mui/material';
+import { DashboardGroupDepartment2 } from '../departments/department_2';
 
 
 
@@ -62,20 +58,13 @@ export const DashboardBodyMain = memo(() => {
         <DashboardReportContainer_1_0_2_Details />
       </DashboardBoxContainer>
 
-      <DashboardBoxContainer
+      {/* <DashboardBoxContainer
         title      = 'Продажи и распространение'
         titleColor = 'department_2_title'
         bgColor    = 'department_2'
-      >
-        <Stack>
-          <DashboardReportContainer2_0_1 />
-          <DashboardReportContainer2_0_1_1 />
-        </Stack>
-        <Stack>
-          <DashboardReportContainer2_0_4 />
-          <DashboardReportContainer2_0_4_1 />
-        </Stack>
-      </DashboardBoxContainer>
+      > */}
+        <DashboardGroupDepartment2 />
+      {/* </DashboardBoxContainer> */}
 
       <DashboardBoxContainer
         title      = 'Финансы'

@@ -23,13 +23,13 @@ export const ChipsContainer: FC<Props> = memo(({ item, config, condition }) => {
   return (
     <Stack>
       {
-        config?.chips?.statisticType && <StatisticTypeChip type={statisticType} />
-      }
-      {
         config?.chips?.companyType && <CompanyTypeChip type={companyType} />
       }
       {
         config?.chips?.productType && <ProductTypeChip type={productType} />
+      }
+      {
+        config?.chips?.statisticType && <StatisticTypeChip type={statisticType} />
       }
       {
         config?.chips?.conditionType && <ConditionTypeChip condition={condition} />
