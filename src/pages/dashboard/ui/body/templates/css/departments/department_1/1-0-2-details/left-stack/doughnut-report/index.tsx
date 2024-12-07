@@ -1,7 +1,6 @@
 import { FC, memo } from 'react';
 import { ChartConfig, ChartContainer, DoughnutChart } from 'entities/charts';
 import { pxToRem } from 'app/providers/theme';
-import { f } from 'app/styles';
 
 
 
@@ -37,9 +36,12 @@ export const DoughnutSmallReport: FC<Props> = memo(({ itemData_1_1_2, itemData_1
     <ChartContainer
       sx={{
         root: {
-          ...f,
-          width: pxToRem(280),
-          mt: 2,
+          width        : pxToRem(280),
+          minWidth     : pxToRem(280),
+          background   : 'transparent',
+          borderRadius : 'none',
+          boxShadow    : 'none',
+          mt           : 2,
         }
       }}
       children={<DoughnutChart chart={doughnutChartData} />}

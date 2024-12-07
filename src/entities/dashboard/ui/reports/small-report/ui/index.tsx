@@ -5,23 +5,23 @@ import {
   ComparisonIndicators, GrowthResult, SxSmallContainer
 } from 'entities/dashboard';
 import { pxToRem } from 'app/providers/theme';
-import { MDBox } from 'shared/ui/mui-design-components';
 import { f } from 'app/styles';
-import { ConditionTypeChip, DashboardConditionType } from 'entities/condition-type';
-import { DashboardStatisticType, StatisticTypeChip } from 'entities/statistic-type';
-import { CompanyTypeChip } from 'entities/company-type';
-import { ProductTypeChip } from 'entities/product-type';
+import { DashboardConditionType } from 'entities/condition-type';
+import { DashboardStatisticType } from 'entities/statistic-type';
 import { ChipsContainer } from '../../../../ui/items';
+import { Box } from '@mui/material';
 
 
 
 const useStyles = () => ({
   indicators: {
     ...f('c-fs'),
+    width: '100%',
     mr: 1,
   },
   comparison: {
-    ...f('-fs-c'),
+    ...f('-fs-fe'),
+    width: '100%',
   },
 });
 
@@ -44,6 +44,15 @@ export const ReportContainer_Small: FC<Props> = memo(({
   chartType, condition, itemData, statisticType, companyType, productType, title, chartData, reportConfig, sx: style
 }) => {
   const sx = useStyles();
+  const sxStyle = {
+    ...style,
+    content: {
+      ...f('--sb'),
+      ...style.content,
+    },
+  };
+
+
   
   const component = chartType === 'bar'
     ? <BarChart chart={chartData} />
@@ -53,33 +62,21 @@ export const ReportContainer_Small: FC<Props> = memo(({
   return (
     <ReportSmallContainerWrapper
       title = {title}
-      sx    = {style}
+      sx    = {sxStyle}
     >
-      <MDBox sx={sx.indicators}>
+      <Box sx={sx.indicators}>
         <ChipsContainer
           item      = {itemData}
           condition = {condition}
-          config = {{ chips: {
+          config    = {{ chips: {
             statisticType : Boolean(statisticType),
             productType   : Boolean(productType),
             companyType   : Boolean(companyType),
             conditionType : Boolean(condition),
           }}}
         />
-        {/* {
-          companyType && <CompanyTypeChip type={companyType} />
-        }
-        {
-          productType && <ProductTypeChip type={productType} />
-        }
-        {
-          statisticType && <StatisticTypeChip type={statisticType} />
-        }
-        {
-          condition && <ConditionTypeChip condition={condition} />
-        } */}
 
-        <MDBox sx={sx.comparison}>
+        <Box sx={sx.comparison}>
           <ComparisonIndicators
             data   = {itemData?.data as number[] || []}
             config = {reportConfig}
@@ -89,13 +86,21 @@ export const ReportContainer_Small: FC<Props> = memo(({
             config = {reportConfig}
             sx     = {style}
           />
-        </MDBox>
-      </MDBox>
+        </Box>
+      </Box>
 
       <ChartContainer
-        width    = {pxToRem(220)}
-        height   = {pxToRem(70)}
         children = {component}
+        sx       = {{
+          root: {
+            width        : pxToRem(220),
+            minWidth     : pxToRem(220),
+            height       : pxToRem(70),
+            background   : 'transparent',
+            borderRadius : 'none',
+            boxShadow    : 'none',
+          }
+        }}
       />
     </ReportSmallContainerWrapper>
   );

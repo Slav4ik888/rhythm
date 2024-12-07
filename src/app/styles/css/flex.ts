@@ -45,13 +45,3 @@ export const f = (str?: string): Flex => {
 
   return style
 };
-
-export const fc = {
-  ...f,
-  flexDirection: 'column'
-};
-
-export const fr = {
-  ...f,
-  flexDirection: 'row'
-};

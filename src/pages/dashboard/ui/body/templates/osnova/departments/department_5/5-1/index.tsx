@@ -42,7 +42,6 @@ export const DashboardReportContainer5_1 = memo(() => {
   return (
     <DashboardReportContainer title={itemData.title}>
       <ReportsLineChart
-        bgColor     = 'grey-300' // 'department_1'
         item        = {itemData}
         chart       = {chartData}
         config      = {reportConfig}

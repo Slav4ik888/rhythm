@@ -1,30 +1,22 @@
 import { memo, useMemo } from 'react';
-import { ChartConfig } from 'entities/charts';
 import {
   DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, SxSmallContainer, checkInvertData, useDashboard, createConfig
 } from 'entities/dashboard';
-import { pxToRem } from 'app/providers/theme';
 import { deepPurple } from '@mui/material/colors';
-import { f } from 'app/styles';
 import { formatDate, SUB } from 'shared/helpers/dates';
 
 
 
 const useStyles = (): SxSmallContainer => ({
   root: {
-    ...f('--sb'),
-    width  : '100%',
-    // height : pxToRem(100),
-    mb     : 2,
+    width : '100%',
+    mb    : 2,
   },
   header: {
     background: deepPurple[200]
   },
   content: {
-    ...f(),
-    background : deepPurple[50],
-    px         : 2,
-    py         : 1,
+    background: deepPurple[50],
   },
   growthResult: {
     root: {
@@ -86,7 +78,6 @@ export const SmallReport_2_6_3 = memo(() => {
       pointBackgroundColor : 'rgb(141 97 183)',
       backgroundColor      : 'rgb(141 97 183 / 70%)',
       borderWidth          : 0,
-      pointRadius          : 1, // fixPointRadius(dates)
     }],
     options: {
       scales: {

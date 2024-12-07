@@ -12,11 +12,10 @@ const useStyle = (
   { palette: { conditionTypeChip } }: CustomTheme,
   condition: DashboardConditionType = '' as DashboardConditionType
 ) => {
-  // if (! condition) return null
 
   return {
     tooltip: {
-      ...f('_c'),
+      ...f('-c'),
       height     : pxToRem(20),
       cursor     : 'default',
     },

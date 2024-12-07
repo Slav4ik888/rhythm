@@ -20,14 +20,12 @@ export const DashboardReportContainer: FC<Props> = memo(({ children, config, sx,
   return (
     <Card
       sx={{
-        ...f,
-        flexDirection : 'column',
-        height        : '100%',
-        minWidth      : pxToRem(440),
-        maxWidth      : sx?.root?.width ? sx?.root?.width : pxToRem(440),
-        mr            : 3,
-        mb            : 3,
-        p             : pxToRem(24),
+        ...f('c'),
+        minWidth : pxToRem(440),
+        maxWidth : sx?.root?.width ? sx?.root?.width : pxToRem(440),
+        mr       : 3,
+        mb       : 3,
+        p        : pxToRem(24),
         ...sx?.root
       }}
     >

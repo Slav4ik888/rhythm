@@ -10,7 +10,7 @@ import { f } from 'app/styles';
 
 const useStyle = ({ palette: { statisticTypeChip } }: CustomTheme, type: DashboardStatisticType) => ({
   tooltip: {
-    ...f('_c'),
+    ...f('-c'),
     height     : pxToRem(20),
     cursor     : 'default',
   },

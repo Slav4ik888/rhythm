@@ -1,9 +1,8 @@
 import { memo, useMemo } from 'react';
 import {
-  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, SxSmallContainer,
-  checkInvertData, useDashboard, createConfig
+  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, SxSmallContainer, checkInvertData, useDashboard, createConfig
 } from 'entities/dashboard';
-import { orange } from '@mui/material/colors';
+import { deepPurple } from '@mui/material/colors';
 import { formatDate, SUB } from 'shared/helpers/dates';
 
 
@@ -14,12 +13,10 @@ const useStyles = (): SxSmallContainer => ({
     mb    : 2,
   },
   header: {
-    background : orange[200]
+    background: deepPurple[200]
   },
   content: {
-    background : orange[50],
-    px         : 2,
-    py         : 0.5,
+    background: deepPurple[50],
   },
   growthResult: {
     root: {
@@ -41,11 +38,12 @@ const useStyles = (): SxSmallContainer => ({
 
 
 
-export const SmallReport_1_0_2 = memo(() => {
+/** Кол-во активных абонентов (Нед) */
+export const SmallReport_2_6_5 = memo(() => {
   const sx = useStyles();
   const { activeEntities, activeDates } = useDashboard();
 
-  const itemData  = useMemo(() => activeEntities['1-0-2'] as DashboardStatisticItem<number>, [activeEntities]);
+  const itemData  = useMemo(() => activeEntities['2-6-5'] as DashboardStatisticItem<number>, [activeEntities]);
   const dates     = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
   
@@ -53,10 +51,14 @@ export const SmallReport_1_0_2 = memo(() => {
     // inverted : true, // При отсутствии изменений в результатах красить чёрным цветом
     unchangedBlack: true, // При отсутствии изменений в результатах красить чёрным цветом
 
+    // header: {
+    //   minHeight: string // Минимальная высота "шапки", напр. если заголовок на 2 строки, то нужно выравнить у всех в ряду
+    // }
+
     resultChanges: {
       // Список значений: последний результат и предыдущие 
       comparisonIndicators : {
-        valuesCount    : 2,  // Сколько значений показывать
+        valuesCount    : 1,  // Сколько значений показывать
         fractionDigits : 0,  // Количество знаков после запятой
         addZero        : false // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
       },
@@ -73,16 +75,15 @@ export const SmallReport_1_0_2 = memo(() => {
     labels: dates,
     datasets: [{
       data                 : checkInvertData(reportConfig, itemData),
-      pointBackgroundColor : 'rgb(209 148 58)',
-      backgroundColor      : 'rgb(209 148 58 / 70%)',
+      pointBackgroundColor : 'rgb(141 97 183)',
+      backgroundColor      : 'rgb(141 97 183 / 70%)',
       borderWidth          : 0,
-      pointRadius          : 1, // fixPointRadius(dates)
     }],
     options: {
       scales: {
         y: {
-          max: 40,
-          min: 30,
+          max: 1800,
+          min: 1650,
         }
       }
     }
@@ -92,11 +93,11 @@ export const SmallReport_1_0_2 = memo(() => {
   return (
     <ReportContainer_Small
       chartType     = 'bar'
-      title         = 'Всего сотрудников'
-      // condition     = {condition}
-      // statisticType = {statisticType}
-      // companyType   = {companyType}
+      title         = 'Кол-во активных абонентов'
+      companyType   = {itemData?.companyType}
       // productType   = {productType}
+      statisticType = {itemData?.statisticType}
+      // condition     = {condition}
       itemData      = {itemData}
       reportConfig  = {reportConfig}
       chartData     = {chartData}

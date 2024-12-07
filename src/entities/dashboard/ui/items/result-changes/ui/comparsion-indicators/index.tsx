@@ -22,17 +22,18 @@ const getTooltip = (index: number) => {
 const useStyles = () => ({
   root: {
     ...f('c-c-fe'),
-    cursor: 'default'
+    width  : '100%',
+    cursor : 'default',
   },
   item: {
     ...f('-fe'),
   },
   firstPrefix: {
-    ml            : 0.5,
+    ml : 0.5,
   },
   prefixSecond: {
-    fontSize      : '0.8rem',
-    ml            : 0.5,
+    fontSize : '0.8rem',
+    ml       : 0.5,
   },
 });
 

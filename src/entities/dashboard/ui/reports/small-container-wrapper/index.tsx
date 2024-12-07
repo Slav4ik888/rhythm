@@ -1,8 +1,8 @@
 import { FC, ReactNode } from 'react';
-import { MDBox, MDTypography } from 'shared/ui/mui-design-components';
 import { CustomTheme, useTheme, pxToRem, ColorName } from 'app/providers/theme';
 import { f } from 'app/styles';
 import { Tooltip } from 'shared/ui/tooltip';
+import { Card, Box, Typography } from '@mui/material';
 
 
 
@@ -35,16 +35,10 @@ export interface SxSmallContainer {
 }
 
 interface Props {
-  // headerBGColor   : string // from MUIColors
-  // titleColor?     : ColorName
-  title           : string
-  toolTitle?      : string
-  // width?          : string // in rem
-  // height?         : string // in rem
-  // contentBGColor? : string // from MUIColors
-  // contentHeight?  : string // in rem
-  sx              : SxSmallContainer
-  children        : ReactNode
+  title      : string
+  toolTitle? : string
+  sx         : SxSmallContainer
+  children   : ReactNode
 }
 
 
@@ -55,7 +49,7 @@ const useStyles = (theme: CustomTheme, { sx }: Props) => {
   return {
     root: {
       ...f('c'),
-      border     : `1px solid ${header.background}`,
+      // border     : `1px solid ${header.background}`,
       width      : root?.width  || 'max-content',
       height     : root?.height || 'max-content',
       maxHeight  : root?.height || 'max-content',
@@ -78,6 +72,8 @@ const useStyles = (theme: CustomTheme, { sx }: Props) => {
     content: {
       ...f('-c-c'),
       background : content?.background || 'transparent',
+      px         : 2,
+      pt         : 1,
       ...content
     }
   }
@@ -90,18 +86,18 @@ export const ReportSmallContainerWrapper: FC<Props> = (props) => {
   const { children, title, toolTitle } = props;
 
   return (
-    <MDBox sx={sx.root} borderRadius='xs'>
-      <MDBox sx={sx.header}>
+    <Card sx={sx.root}>
+      <Box sx={sx.header}>
         <Tooltip title={toolTitle}>
-          <MDTypography sx={sx.title}>{title}</MDTypography>
+          <Typography sx={sx.title}>{title}</Typography>
         </Tooltip>
-      </MDBox>
+      </Box>
 
-      <MDBox sx={sx.content}>
+      <Box sx={sx.content}>
         {
           children
         }
-      </MDBox>
-    </MDBox>
+      </Box>
+    </Card>
   );
 }

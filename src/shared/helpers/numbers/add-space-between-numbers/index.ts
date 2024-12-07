@@ -1,8 +1,8 @@
 
 /**
- * v.2024-09-28
- * Возвращает строку с разделением тысяч пробелом
- * разделителем должна быть точка
+ * v.2024-12-07
+ * @returns строку с разделением тысяч пробелом, а дроби ','
+ * @param _number - число или строка (символ отделяющий дробную часть должна быть точка '.')
  */
 export function addSpaceBetweenNumbers(_number: number | string): string {
   if (_number === undefined || _number === null) return '';
@@ -15,7 +15,7 @@ export function addSpaceBetweenNumbers(_number: number | string): string {
 
   // Разрезаем до и после знака
   let beforeDot = newNumber.split('.')[0];
-  let afterDot = newNumber.split('.')[1] ? '.' + newNumber.split('.')[1] : '';
+  let afterDot = newNumber.split('.')[1] ? ',' + newNumber.split('.')[1] : '';
 
   // Добавляем пробелы
   let result = '';
@@ -25,7 +25,7 @@ export function addSpaceBetweenNumbers(_number: number | string): string {
     let num = 0; // Чтобы отсчитывать по 3 числа
     for (let i = beforeDot.length - 1; i > -1; i--) {
       num++;
-      // if (result.length/3 === Math.floor(result.length/3) && (result.length > 0)) {
+
       if (num / 4 === Math.floor(num / 4) && (num > 0)) {
         num = 0;
         result += ' ';

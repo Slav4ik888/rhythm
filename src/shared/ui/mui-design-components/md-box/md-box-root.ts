@@ -40,7 +40,6 @@ export default styled(Box)(({ theme, ownerState }: { theme: CustomTheme, ownerSt
 
   const { gradients, grey, white } = palette;
   const { borderRadius: radius } = borders;
-  const { colored } = getBoxShadows(theme);
 
   const greyColors = {
     'grey-100': grey[100],
@@ -136,6 +135,8 @@ export default styled(Box)(({ theme, ownerState }: { theme: CustomTheme, ownerSt
     boxShadowValue = getBoxShadows(theme)[shadow];
   }
   else if (coloredShadow) {
+    const { colored } = getBoxShadows(theme);
+
     boxShadowValue = colored[coloredShadow as ColoredShadowsName]
       ? colored[coloredShadow as ColoredShadowsName]
       : 'none';
