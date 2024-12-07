@@ -19,11 +19,24 @@ export interface ReportsResultChangesConfig extends ReportsBaseConfig {
       fractionDigits? : number  // Количество знаков после запятой
       addZero?        : boolean // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
     }
-    // Результат прироста/падения, % | шт, и иконка треуголькин
-    growthResult?: {
-      fractionDigits? : number  // Количество знаков после запятой
-      addZero?        : boolean // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
-    }
+    growthResult?: GrowthResultConfig
+  }
+}
+
+/** Результат прироста/падения, % | шт, и иконка треуголькин */
+export interface GrowthResultConfig {
+  // Для процентов
+  persent?: {
+    display?        : boolean
+    fractionDigits? : number  // Количество знаков после запятой
+    addZero?        : boolean // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+  }
+
+  // Для чисел
+  value?: {
+    display?        : boolean
+    fractionDigits? : number  // Количество знаков после запятой
+    addZero?        : boolean // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
   }
 }
 

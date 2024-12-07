@@ -37,24 +37,28 @@ export const DashboardReportContainer_1_0_2_Details_RightStack: FC<Props> = memo
       <ReportSmallItemBox
         type  = 'simple'
         title = 'Всего'
+        kod   = '1_0_2'
         value = {sum}
         sx    = {getStyle(orange[200], orange[50])}
       />
       <ReportSmallItemBox
         type  = 'simple'
         title = 'В продаж'
+        kod   = '1_1_2'
         value = {itemData_1_1_2}
         sx    = {getStyle(deepPurple[200], deepPurple[50])}
       />
       <ReportSmallItemBox
         type  = 'simple'
         title = 'На производстве'
+        kod   = '1_1_3'
         value = {itemData_1_1_3}
         sx    = {getStyle(green[200], green[50])}
       />
       <ReportSmallItemBox
         type  = 'simple'
         title = 'Прочие'
+        kod   = '1_1_4'
         value = {itemData_1_1_4}
         sx    = {getStyle(orange[200], orange[50])}
       />
@@ -62,6 +66,7 @@ export const DashboardReportContainer_1_0_2_Details_RightStack: FC<Props> = memo
         type      = 'ratio'
         title     = 'Соотношение'
         toolTitle = 'Соотношение производства ко всем остальным'
+        kod       = 'нет'
         value     = {ratioProdToOther}
         ratio     = {1}
         sx        = {getStyle(green[200], green[50])}

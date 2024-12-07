@@ -23,6 +23,22 @@ const useStyles = () => ({
     ...f('-fs-fe'),
     width: '100%',
   },
+  growthResult: {
+    root: {
+      ml: 2,
+    },
+    growthChange: {
+      size: 0.9,
+    },
+    measurementIcon: {
+      size : 0.9,
+      mr   : 0.5,
+    },
+    growthIcon: {
+      scale : 1.2,
+      pt    : 0.8,
+    },
+  },
 });
 
 
@@ -62,6 +78,7 @@ export const ReportContainer_Small: FC<Props> = memo(({
   return (
     <ReportSmallContainerWrapper
       title = {title}
+      kod   = {itemData?.kod}
       sx    = {sxStyle}
     >
       <Box sx={sx.indicators}>
@@ -84,7 +101,7 @@ export const ReportContainer_Small: FC<Props> = memo(({
           <GrowthResult
             data   = {itemData?.data as number[] || []}
             config = {reportConfig}
-            sx     = {style}
+            sx     = {{ growthResult: sx.growthResult }}
           />
         </Box>
       </Box>

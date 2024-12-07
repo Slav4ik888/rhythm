@@ -6,8 +6,9 @@ import { SxSmallContainer } from 'entities/dashboard';
 
 
 const useStyles = (sx?: SxSmallContainer) => ({
-  fontSize : `${sx?.growthResult?.measurementIcon?.size || 1}rem`,
-  mr       : 1,
+  fontSize   : `${sx?.growthResult?.measurementIcon?.size || 1}rem`,
+  lineHeight : 1.2,
+  mr         : 1,
   ...sx?.growthResult?.measurementIcon
 });
 

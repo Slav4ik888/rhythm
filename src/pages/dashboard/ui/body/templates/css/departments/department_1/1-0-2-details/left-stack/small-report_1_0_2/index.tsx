@@ -10,32 +10,15 @@ import { formatDate, SUB } from 'shared/helpers/dates';
 
 const useStyles = (): SxSmallContainer => ({
   root: {
-    width : '100%',
-    mb    : 2,
+    width: '100%',
   },
   header: {
-    background : orange[200]
+    background : orange[200],
   },
   content: {
     background : orange[50],
     px         : 2,
     py         : 0.5,
-  },
-  growthResult: {
-    root: {
-      ml: 2,
-    },
-    growthChange: {
-      size: 0.9,
-    },
-    measurementIcon: {
-      size : 0.9,
-      mr   : 0.5,
-    },
-    growthIcon: {
-      scale : 1.2,
-      pt    : 0.8,
-    },
   },
 });
 
@@ -62,8 +45,19 @@ export const SmallReport_1_0_2 = memo(() => {
       },
       // Результат прироста/падения, % | шт, и иконка треуголькин
       growthResult: {
-        fractionDigits : 1,    // Количество знаков после запятой
-        addZero        : true, // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+        // Для процентов
+        persent: {
+          display        : true,
+          fractionDigits : 1,    // Количество знаков после запятой
+          addZero        : true, // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+        },
+
+        // Для чисел
+        value: {
+          display        : true,
+          fractionDigits : 0,     // Количество знаков после запятой
+          addZero        : false, // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+        },
       },
     },
   };

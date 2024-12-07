@@ -1,6 +1,6 @@
 export {
   ReportsLineChart, ReportsLineChartConfig, DashboardReportContainer, ReportSmallContainerWrapper,
-  ReportsResultChangesConfig, SxSmallContainer, ReportContainer_Small, createConfig
+  ReportsResultChangesConfig, SxSmallContainer, ReportContainer_Small, createConfig, GrowthResultConfig
 } from './ui/reports'
 export {
   DashboardItemData, DashboardStatisticItem, DashboardPeriod, Increased, DashboardItemType, SidebarRouteListItem,

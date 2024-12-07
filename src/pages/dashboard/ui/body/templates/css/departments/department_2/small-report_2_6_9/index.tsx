@@ -9,30 +9,13 @@ import { formatDate, SUB } from 'shared/helpers/dates';
 
 const useStyles = (): SxSmallContainer => ({
   root: {
-    width : '100%',
-    mb    : 2,
+    width: '100%',
   },
   header: {
-    background: deepPurple[200]
+    background: deepPurple[200],
   },
   content: {
     background: deepPurple[50],
-  },
-  growthResult: {
-    root: {
-      ml: 2,
-    },
-    growthChange: {
-      size: 0.9,
-    },
-    measurementIcon: {
-      size : 0.9,
-      mr   : 0.5,
-    },
-    growthIcon: {
-      scale : 1.2,
-      pt    : 0.8,
-    },
   },
 });
 
@@ -64,8 +47,19 @@ export const SmallReport_2_6_9 = memo(() => {
       },
       // Результат прироста/падения, % | шт, и иконка треуголькин
       growthResult: {
-        fractionDigits : 1,    // Количество знаков после запятой
-        addZero        : true, // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+        // Для процентов
+        persent: {
+          display        : true,
+          fractionDigits : 1,    // Количество знаков после запятой
+          addZero        : true, // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+        },
+
+        // Для чисел
+        value: {
+          display        : true,
+          fractionDigits : 0,     // Количество знаков после запятой
+          addZero        : false, // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+        },
       },
     },
   };
@@ -94,7 +88,7 @@ export const SmallReport_2_6_9 = memo(() => {
     <ReportContainer_Small
       chartType     = 'bar'
       title         = 'Кол-во проданных основных продуктов'
-      companyType   = {itemData?.companyType}
+      // companyType   = {itemData?.companyType}
       // productType   = {productType}
       statisticType = {itemData?.statisticType}
       // condition     = {condition}

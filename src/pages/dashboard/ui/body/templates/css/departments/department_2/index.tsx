@@ -12,6 +12,7 @@ import { SmallReport_2_6_1 } from './small-report_2_6_1';
 import { SmallReport_2_6_2_2 } from './small-report_2_6_2_2';
 import { SmallReport_2_6_4_2 } from './small-report_2_6_4_2';
 import { SmallReport_2_6_5 } from './small-report_2_6_5';
+import { pxToRem } from 'app/providers/theme';
 
 
 
@@ -30,7 +31,7 @@ export const DashboardGroupDepartment2 = memo(() => {
         <DashboardReportContainer2_0_1_1 />
       </Stack>
 
-      <Stack mr={3} spacing={3}>
+      <Stack mr={3} spacing={3} minWidth={pxToRem(400)}>
         <SmallReport_2_6_3 />   {/* Кол-во активных станций (Нед) */}
         <SmallReport_2_0_3 />   {/* Кол-во проданных основных продуктов (Мес) */}
         <SmallReport_2_6_9 />   {/* Кол-во проданных основных продуктов (Нед) */}
@@ -45,7 +46,7 @@ export const DashboardGroupDepartment2 = memo(() => {
         <DashboardReportContainer2_0_4_1 />
       </Stack>
       
-      <Stack mr={3}>
+      <Stack mr={3} spacing={3} minWidth={pxToRem(400)}>
         <SmallReport_2_6_4_2 /> {/* Кол-во активных станций (ЮЛ) (Нед) 2-6-4-2 */}
         <SmallReport_2_6_5 />   {/* Кол-во активных абонентов (Нед) 2-6-5 */}
       </Stack>

@@ -1,8 +1,7 @@
 import { FC } from 'react';
 import { MDTypography } from 'shared/ui/mui-design-components';
 import { CustomTheme, useTheme, pxToRem } from 'app/providers/theme';
-import { ReportSmallContainerWrapper } from '../../reports';
-import { SxSmallContainer } from '../../reports/small-container-wrapper';
+import { ReportSmallContainerWrapper, SxSmallContainer } from '../../reports';
 
 
 
@@ -35,24 +34,25 @@ const useStyles = (theme: CustomTheme) => {
 
 
 interface Props {
-  type            : 'simple' | 'ratio'
-  // width           : WidthType
-  title           : string
-  toolTitle?      : string
-  value           : number
-  ratio?          : number
-  sx              : SxSmallContainer
+  type       : 'simple' | 'ratio'
+  title      : string
+  toolTitle? : string
+  kod        : string
+  value      : number
+  ratio?     : number
+  sx         : SxSmallContainer
 }
 
 export const ReportSmallItemBox: FC<Props> = (props) => {
   const sx = useStyles(useTheme());
-  const { type, title, value, ratio, toolTitle } = props;
+  const { type, title, value, ratio, toolTitle, kod } = props;
 
 
   return (
     <ReportSmallContainerWrapper
       title     = {title}
       toolTitle = {toolTitle}
+      kod       = {kod}
       sx        = {props.sx}
     >
       <MDTypography sx={sx.value}>{value}</MDTypography>
