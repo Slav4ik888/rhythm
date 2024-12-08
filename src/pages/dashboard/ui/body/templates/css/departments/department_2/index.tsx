@@ -6,8 +6,7 @@ import { DashboardReportContainer2_0_4 } from './2-0-4';
 import { DashboardReportContainer2_0_4_1 } from './2-0-4-1';
 import { Stack } from '@mui/material';
 import { SmallReport_2_6_3 } from './small-report_2_6_3';
-import { SmallReport_2_0_3 } from './small-report_2_0_3';
-import { SmallReport_2_6_9 } from './small-report_2_6_9';
+import { SmallReport_2_0_3_and_2_6_9 } from './small-report_2_0_3_and_2_6_9';
 import { SmallReport_2_6_1 } from './small-report_2_6_1';
 import { SmallReport_2_6_2_2 } from './small-report_2_6_2_2';
 import { SmallReport_2_6_4_2 } from './small-report_2_6_4_2';
@@ -32,11 +31,10 @@ export const DashboardGroupDepartment2 = memo(() => {
       </Stack>
 
       <Stack mr={3} spacing={3} minWidth={pxToRem(400)}>
-        <SmallReport_2_6_3 />   {/* Кол-во активных станций (Нед) */}
-        <SmallReport_2_0_3 />   {/* Кол-во проданных основных продуктов (Мес) */}
-        <SmallReport_2_6_9 />   {/* Кол-во проданных основных продуктов (Нед) */}
-        <SmallReport_2_6_1 />   {/* Кол-во изменений в услугах клиентов(Нед) */}
-        <SmallReport_2_6_2_2 /> {/* Кол-во клиентов на периодических услугах (Нед) 2-6-2-2 */}
+        <SmallReport_2_6_3 />            {/* Кол-во активных станций (Нед) */}
+        <SmallReport_2_0_3_and_2_6_9 />  {/* Кол-во проданных основных продуктов (Мес) & (Нед) */}
+        <SmallReport_2_6_1 />            {/* Кол-во изменений в услугах клиентов(Нед) */}
+        <SmallReport_2_6_2_2 />          {/* Кол-во клиентов на периодических услугах (Нед) 2-6-2-2 */}
 
         {/* Обороты в месяц по менеджерам */}
       </Stack>

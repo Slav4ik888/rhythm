@@ -1,66 +1,44 @@
 import { FC, memo } from 'react';
-import { BarChart, ChartConfig, ChartContainer, LineChart } from 'entities/charts';
+import { ChartConfig } from 'entities/charts';
 import {
-  DashboardStatisticItem, ReportSmallContainerWrapper, ReportsResultChangesConfig,
-  ComparisonIndicators, GrowthResult, SxSmallContainer
+  DashboardStatisticItem, ReportSmallContainerWrapper, ReportsResultChangesConfig, SxSmallContainer
 } from 'entities/dashboard';
-import { pxToRem } from 'app/providers/theme';
 import { f } from 'app/styles';
 import { DashboardConditionType } from 'entities/condition-type';
 import { DashboardStatisticType } from 'entities/statistic-type';
-import { ChipsContainer } from '../../../../ui/items';
-import { Box } from '@mui/material';
+import { ReportContainer_SmallItem } from './item-component';
 
 
 
-const useStyles = () => ({
-  indicators: {
-    ...f('c-fs'),
-    width: '100%',
-    mr: 1,
-  },
-  comparison: {
-    ...f('-fs-fe'),
-    width: '100%',
-  },
-  growthResult: {
-    root: {
-      ml: 2,
-    },
-    growthChange: {
-      size: 0.9,
-    },
-    measurementIcon: {
-      size : 0.9,
-      mr   : 0.5,
-    },
-    growthIcon: {
-      scale : 1.1,
-      pt    : 0.5,
-    },
-  },
-});
+export type ChartType = 'bar' | 'line'
 
 
 interface Props {
-  chartType      : 'bar' | 'line'
+  title          : string
+  chartType?     : ChartType
+  itemData       : DashboardStatisticItem
+  reportConfig   : ReportsResultChangesConfig
+  chartData      : ChartConfig
+
+  chartType2?    : ChartType
+  itemData2?     : DashboardStatisticItem
+  reportConfig2? : ReportsResultChangesConfig
+  chartData2?    : ChartConfig
+
   condition?     : DashboardConditionType
   statisticType? : DashboardStatisticType
   companyType?   : string
   productType?   : string
-  title          : string
-  itemData       : DashboardStatisticItem
-  reportConfig   : ReportsResultChangesConfig
-  chartData      : ChartConfig
+
   sx             : SxSmallContainer
 }
 
 
 export const ReportContainer_Small: FC<Props> = memo(({
-  chartType, condition, itemData, statisticType, companyType, productType, title, chartData, reportConfig, sx: style
+  chartType, condition, itemData, itemData2, statisticType, companyType, productType, title, chartData,
+  reportConfig, reportConfig2, sx: style, chartData2
 }) => {
-  const sx = useStyles();
-  const sxStyle = {
+  const sx = {
     ...style,
     content: {
       ...f('--sb'),
@@ -69,56 +47,39 @@ export const ReportContainer_Small: FC<Props> = memo(({
   };
 
 
-  
-  const component = chartType === 'bar'
-    ? <BarChart chart={chartData} />
-    : <LineChart chart={chartData} />;
-
 
   return (
     <ReportSmallContainerWrapper
       title = {title}
       kod   = {itemData?.kod}
-      sx    = {sxStyle}
+      sx    = {sx}
     >
-      <Box sx={sx.indicators}>
-        <ChipsContainer
-          item      = {itemData}
-          condition = {condition}
-          config    = {{ chips: {
-            statisticType : Boolean(statisticType),
-            productType   : Boolean(productType),
-            companyType   : Boolean(companyType),
-            conditionType : Boolean(condition),
-          }}}
-        />
-
-        <Box sx={sx.comparison}>
-          <ComparisonIndicators
-            data   = {itemData?.data as number[] || []}
-            config = {reportConfig}
-          />
-          <GrowthResult
-            data   = {itemData?.data as number[] || []}
-            config = {reportConfig}
-            sx     = {{ growthResult: sx.growthResult }}
-          />
-        </Box>
-      </Box>
-
-      <ChartContainer
-        children = {component}
-        sx       = {{
-          root: {
-            width        : pxToRem(220),
-            minWidth     : pxToRem(220),
-            height       : pxToRem(70),
-            background   : 'transparent',
-            borderRadius : 'none',
-            boxShadow    : 'none',
-          }
-        }}
+      <ReportContainer_SmallItem
+        chartType     = {chartType}
+        itemData      = {itemData}
+        reportConfig  = {reportConfig}
+        chartData     = {chartData}
+        condition     = {condition}
+        statisticType = {statisticType}
+        productType   = {productType}
+        companyType   = {companyType}
       />
+      {
+        itemData2 &&
+        reportConfig2 &&
+        chartData2 && (
+          <ReportContainer_SmallItem
+            chartType     = {chartType}
+            itemData      = {itemData2}
+            reportConfig  = {reportConfig2}
+            chartData     = {chartData2}
+            condition     = {condition}
+            statisticType = {statisticType}
+            productType   = {productType}
+            companyType   = {companyType}
+          />
+        )
+      }
     </ReportSmallContainerWrapper>
   );
 });

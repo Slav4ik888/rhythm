@@ -22,14 +22,15 @@ const useStyles = (): SxSmallContainer => ({
 
 
 /** Кол-во проданных основных продуктов (Мес) */
-export const SmallReport_2_0_3 = memo(() => {
+export const SmallReport_2_0_3_and_2_6_9 = memo(() => {
   const sx = useStyles();
   const { activeEntities, activeDates } = useDashboard();
 
-  const itemData  = useMemo(() => activeEntities['2-0-3'] as DashboardStatisticItem<number>, [activeEntities]);
-  const dates     = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
+  const itemData_2_0_3 = useMemo(() => activeEntities['2-0-3'] as DashboardStatisticItem<number>, [activeEntities]);
+  const dates          = useMemo(() => activeDates[itemData_2_0_3?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData_2_0_3]);
 
-  
+  const itemData_2_6_9 = useMemo(() => activeEntities['2-6-9'] as DashboardStatisticItem<number>, [activeEntities]);
+
   const reportConfig: ReportsResultChangesConfig = {
     // inverted : true, // При отсутствии изменений в результатах красить чёрным цветом
     unchangedBlack: true, // При отсутствии изменений в результатах красить чёрным цветом
@@ -65,10 +66,10 @@ export const SmallReport_2_0_3 = memo(() => {
   };
 
 
-  const chartData = createConfig({
+  const chartData_2_0_3 = createConfig({
     labels: dates,
     datasets: [{
-      data                 : checkInvertData(reportConfig, itemData),
+      data                 : checkInvertData(reportConfig, itemData_2_0_3),
       pointBackgroundColor : 'rgb(141 97 183)',
       backgroundColor      : 'rgb(141 97 183 / 70%)',
       borderWidth          : 0,
@@ -84,17 +85,40 @@ export const SmallReport_2_0_3 = memo(() => {
   });
 
 
+  const chartData_2_6_9 = createConfig({
+    labels: dates,
+    datasets: [{
+      data                 : checkInvertData(reportConfig, itemData_2_6_9),
+      pointBackgroundColor : 'rgb(141 97 183)',
+      backgroundColor      : 'rgb(141 97 183 / 70%)',
+      borderWidth          : 0,
+    }],
+    options: {
+      scales: {
+        y: {
+          max: 10,
+          min: 0,
+        }
+      }
+    }
+  });
+
+
   return (
     <ReportContainer_Small
-      chartType     = 'bar'
       title         = 'Кол-во проданных основных продуктов'
+      itemData      = {itemData_2_0_3}
+      reportConfig  = {reportConfig}
+      chartData     = {chartData_2_0_3}
+
+      itemData2      = {itemData_2_6_9}
+      reportConfig2  = {reportConfig}
+      chartData2     = {chartData_2_6_9}
+
       // companyType   = {itemData?.companyType}
       // productType   = {productType}
-      statisticType = {itemData?.statisticType}
+      statisticType = {itemData_2_0_3?.statisticType}
       // condition     = {condition}
-      itemData      = {itemData}
-      reportConfig  = {reportConfig}
-      chartData     = {chartData}
       sx            = {sx}
     />
   );
