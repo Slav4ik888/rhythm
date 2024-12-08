@@ -41,7 +41,8 @@ export const ReportContainer_Small: FC<Props> = memo(({
   const sx = {
     ...style,
     content: {
-      ...f('--sb'),
+      // ...f('--sb'),
+      ...f('c'),
       ...style.content,
     },
   };

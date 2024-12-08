@@ -15,6 +15,10 @@ import { ChartType } from '.';
 
 
 const useStyles = () => ({
+  root: {
+    ...f('--sb'),
+    width: '100%',
+  },
   indicators: {
     ...f('c-fs'),
     width: '100%',
@@ -67,7 +71,7 @@ export const ReportContainer_SmallItem: FC<Props> = memo(({
 
 
   return (
-    <>
+    <Box sx={sx.root}>
       <Box sx={sx.indicators}>
         <ChipsContainer
           item      = {itemData}
@@ -106,6 +110,6 @@ export const ReportContainer_SmallItem: FC<Props> = memo(({
           }
         }}
       />
-    </>
+    </Box>
   );
 });

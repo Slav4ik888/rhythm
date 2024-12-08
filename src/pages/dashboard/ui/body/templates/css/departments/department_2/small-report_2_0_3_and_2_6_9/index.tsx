@@ -27,9 +27,10 @@ export const SmallReport_2_0_3_and_2_6_9 = memo(() => {
   const { activeEntities, activeDates } = useDashboard();
 
   const itemData_2_0_3 = useMemo(() => activeEntities['2-0-3'] as DashboardStatisticItem<number>, [activeEntities]);
-  const dates          = useMemo(() => activeDates[itemData_2_0_3?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData_2_0_3]);
+  const dates_2_0_3    = useMemo(() => activeDates[itemData_2_0_3?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData_2_0_3]);
 
   const itemData_2_6_9 = useMemo(() => activeEntities['2-6-9'] as DashboardStatisticItem<number>, [activeEntities]);
+  const dates_2_6_9    = useMemo(() => activeDates[itemData_2_6_9?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData_2_6_9]);
 
   const reportConfig: ReportsResultChangesConfig = {
     // inverted : true, // При отсутствии изменений в результатах красить чёрным цветом
@@ -67,7 +68,7 @@ export const SmallReport_2_0_3_and_2_6_9 = memo(() => {
 
 
   const chartData_2_0_3 = createConfig({
-    labels: dates,
+    labels: dates_2_0_3,
     datasets: [{
       data                 : checkInvertData(reportConfig, itemData_2_0_3),
       pointBackgroundColor : 'rgb(141 97 183)',
@@ -86,7 +87,7 @@ export const SmallReport_2_0_3_and_2_6_9 = memo(() => {
 
 
   const chartData_2_6_9 = createConfig({
-    labels: dates,
+    labels: dates_2_6_9,
     datasets: [{
       data                 : checkInvertData(reportConfig, itemData_2_6_9),
       pointBackgroundColor : 'rgb(141 97 183)',
