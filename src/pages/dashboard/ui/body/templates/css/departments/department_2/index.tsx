@@ -12,6 +12,9 @@ import { SmallReport_2_6_2_2 } from './small-report_2_6_2_2';
 import { SmallReport_2_6_4_2 } from './small-report_2_6_4_2';
 import { SmallReport_2_6_5 } from './small-report_2_6_5';
 import { pxToRem } from 'app/providers/theme';
+import { SmallReport_2_osi_ob } from './small-report_2_osi_ob';
+import { SmallReport_2_tay_ob } from './small-report_2_tay_ob';
+import { SmallReport_2_epi_ob } from './small-report_2_epi_ob';
 
 
 
@@ -37,6 +40,9 @@ export const DashboardGroupDepartment2 = memo(() => {
         <SmallReport_2_6_2_2 />          {/* Кол-во клиентов на периодических услугах (Нед) 2-6-2-2 */}
 
         {/* Обороты в месяц по менеджерам */}
+        <SmallReport_2_tay_ob />
+        <SmallReport_2_epi_ob />
+        <SmallReport_2_osi_ob />
       </Stack>
 
       <Stack>

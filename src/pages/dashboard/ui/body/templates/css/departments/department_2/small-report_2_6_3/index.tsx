@@ -1,29 +1,15 @@
 import { memo, useMemo } from 'react';
 import {
-  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, SxSmallContainer, checkInvertData, useDashboard, createConfig
+  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, checkInvertData, useDashboard, createConfig
 } from 'entities/dashboard';
-import { deepPurple } from '@mui/material/colors';
 import { formatDate, SUB } from 'shared/helpers/dates';
-
-
-
-const useStyles = (): SxSmallContainer => ({
-  root: {
-    width: '100%',
-  },
-  header: {
-    background: deepPurple[200]
-  },
-  content: {
-    background: deepPurple[50],
-  },
-});
+import { useSmallStyles } from '../small-styles';
 
 
 
 /** Кол-во активных станций */
 export const SmallReport_2_6_3 = memo(() => {
-  const sx = useStyles();
+  const sx = useSmallStyles();
   const { activeEntities, activeDates } = useDashboard();
 
   const itemData  = useMemo(() => activeEntities['2-6-3'] as DashboardStatisticItem<number>, [activeEntities]);

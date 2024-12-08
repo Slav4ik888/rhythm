@@ -4,21 +4,23 @@ import {
 } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { useSmallStyles } from '../small-styles';
+import { getConditionType } from 'entities/condition-type';
 
 
 
-/** Кол-во активных станций (ЮЛ) (Нед) */
-export const SmallReport_2_6_4_2 = memo(() => {
+/** Обороты (Епифанова) */
+export const SmallReport_2_epi_ob = memo(() => {
   const sx = useSmallStyles();
   const { activeEntities, activeDates } = useDashboard();
 
-  const itemData  = useMemo(() => activeEntities['2-6-4-2'] as DashboardStatisticItem<number>, [activeEntities]);
+  const itemData  = useMemo(() => activeEntities['2_epi_ob'] as DashboardStatisticItem<number>, [activeEntities]);
+  const condition = useMemo(() => getConditionType(activeEntities['2_epi_ob-C']?.data), [activeEntities]);
   const dates     = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
   
   const reportConfig: ReportsResultChangesConfig = {
     // inverted : true, // При отсутствии изменений в результатах красить чёрным цветом
-    unchangedBlack: true, // При отсутствии изменений в результатах красить чёрным цветом
+    // unchangedBlack: true, // При отсутствии изменений в результатах красить чёрным цветом
 
     // header: {
     //   minHeight: string // Минимальная высота "шапки", напр. если заголовок на 2 строки, то нужно выравнить у всех в ряду
@@ -27,9 +29,10 @@ export const SmallReport_2_6_4_2 = memo(() => {
     resultChanges: {
       // Список значений: последний результат и предыдущие 
       comparisonIndicators : {
-        valuesCount    : 1,  // Сколько значений показывать
-        fractionDigits : 0,  // Количество знаков после запятой
-        addZero        : false // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+        valuesCount    : 1,    // Сколько значений показывать
+        reduce         : true, // Убрать разряды: 12 500 700 => 12.5 млн
+        fractionDigits : 1,    // Количество знаков после запятой
+        addZero        : true  // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
       },
       // Результат прироста/падения, % | шт, и иконка треуголькин
       growthResult: {
@@ -43,8 +46,9 @@ export const SmallReport_2_6_4_2 = memo(() => {
         // Для чисел
         value: {
           display        : true,
-          fractionDigits : 0,     // Количество знаков после запятой
-          addZero        : false, // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+          reduce         : true,  // Убрать разряды: 12 500 700 => 12.5 млн
+          fractionDigits : 1,     // Количество знаков после запятой
+          addZero        : true, // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
         },
       },
     },
@@ -56,15 +60,18 @@ export const SmallReport_2_6_4_2 = memo(() => {
     datasets: [{
       data                 : checkInvertData(reportConfig, itemData),
       pointBackgroundColor : 'rgb(141 97 183)',
-      backgroundColor      : 'rgb(141 97 183 / 70%)',
-      borderWidth          : 0,
+      backgroundColor      : 'rgb(141 97 183 / 30%)',
+      borderColor          : 'rgb(141 97 183)',
+      borderWidth          : 1,
+      pointRadius          : 2,
     }],
     options: {
       scales: {
         y: {
-          max: 110,
-          min: 80,
-        }
+          display : false,
+          max     : 28500000,
+          min     : 8500000,
+        },
       }
     }
   });
@@ -72,12 +79,12 @@ export const SmallReport_2_6_4_2 = memo(() => {
 
   return (
     <ReportContainer_Small
-      chartType     = 'bar'
-      title         = 'Кол-во активных станций (ЮЛ)'
+      chartType     = 'line'
+      title         = 'Обороты (Епифанова)'
       // companyType   = {itemData?.companyType}
       // productType   = {productType}
       statisticType = {itemData?.statisticType}
-      // condition     = {condition}
+      condition     = {condition}
       itemData      = {itemData}
       reportConfig  = {reportConfig}
       chartData     = {chartData}
