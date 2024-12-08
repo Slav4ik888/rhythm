@@ -35,14 +35,6 @@ export const useStyles = (theme: CustomTheme, { sx }: Props) => {
     tooltipTitle: {
       width      : '100%',
     },
-    kod: {
-      width  : pxToRem(8),
-      height : '100%',
-    },
-    tooltipKod: {
-      width  : pxToRem(8),
-      height : '100%',
-    },
     content: {
       ...f('-c-c'),
       background : content?.background || 'transparent',

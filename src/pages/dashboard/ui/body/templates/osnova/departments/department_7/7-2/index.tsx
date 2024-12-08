@@ -33,7 +33,8 @@ export const DashboardReportContainer7_2 = memo(() => {
         // Для чисел
         value: {
           display        : true,
-          fractionDigits : 0,     // Количество знаков после запятой
+          reduce         : true,  // Убрать разряды: 12 500 700 => 12.5 млн
+          fractionDigits : 1,     // Количество знаков после запятой
           addZero        : false, // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
         },
       },
@@ -54,7 +55,10 @@ export const DashboardReportContainer7_2 = memo(() => {
 
 
   return (
-    <DashboardReportContainer title={itemData.title}>
+    <DashboardReportContainer
+      title = {itemData.title}
+      kod   = {itemData.kod}
+    >
       <ReportsLineChart
         item        = {itemData}
         chart       = {chartData}

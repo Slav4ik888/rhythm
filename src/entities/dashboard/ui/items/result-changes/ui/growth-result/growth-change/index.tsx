@@ -6,9 +6,10 @@ import { Increased, SxSmallContainer } from 'entities/dashboard';
 
 
 const useStyles = (sx?: SxSmallContainer) => ({
-  fontSize   : `${sx?.growthResult?.growthChange?.size || 1}rem`,
-  lineHeight : 1.2,
+  fontSize   : `${sx?.growthResult?.growthChange?.size || 0.9}rem`,
+  lineHeight : 1.1,
   mr         : 0.1,
+  cursor     : 'default',
   ...sx?.growthResult?.growthChange
 });
 

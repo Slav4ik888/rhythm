@@ -5,7 +5,7 @@ import GrowIcon from './assets/triangle-growth.svg';
 import FallIcon from './assets/triangle-fall.svg';
 import UnchangedLeftIcon from './assets/triangle-unchanged-left.svg';
 import UnchangedRightIcon from './assets/triangle-unchanged-right.svg';
-import { CustomTheme, useTheme } from 'app/providers/theme';
+import { CustomTheme, pxToRem, useTheme } from 'app/providers/theme';
 import { getColorByIncreased } from '../../../model/utils';
 import { SxSmallContainer } from 'entities/dashboard';
 import { isNotUndefined } from 'shared/lib/validators';
@@ -28,7 +28,7 @@ const useStyles = (
   return {
     root: {
       display : 'flex',
-      pt      : 1.2,
+      pt      : pxToRem(5),
       // justifyContent : 'center',
       // alignItems     : 'center',
       ...root

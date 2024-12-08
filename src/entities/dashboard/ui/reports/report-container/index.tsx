@@ -8,6 +8,7 @@ import { ReportsBaseConfig } from '../reports-line-chart/types';
 
 
 interface Props {
+  kod      : string
   title?   : string
   config?  : ReportsBaseConfig
   children : ReactNode
@@ -15,7 +16,7 @@ interface Props {
 }
 
 
-export const DashboardReportContainer: FC<Props> = memo(({ children, config, sx, title }) => {
+export const DashboardReportContainer: FC<Props> = memo(({ children, config, sx, title, kod }) => {
 
   return (
     <Card
@@ -30,7 +31,11 @@ export const DashboardReportContainer: FC<Props> = memo(({ children, config, sx,
       }}
     >
       {
-        title && <ReportsHeaderTitle title={title} config={config} />
+        title && <ReportsHeaderTitle
+          title  = {title}
+          kod    = {kod}
+          config = {config}
+        />
       }
       {
         children

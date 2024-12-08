@@ -22,6 +22,7 @@ export const DashboardReportContainer_1_0_2_Details = memo(() => {
   return (
     <DashboardReportContainer
       title  = 'Сотрудники'
+      kod    = '1-0-2'
       config = {{ header: { minHeight: pxToRem(64) } }}
       sx     = {{ root: { width: pxToRem(540) } }}
     >

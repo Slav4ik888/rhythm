@@ -35,8 +35,8 @@ const useStyles = () => ({
       mr   : 0.5,
     },
     growthIcon: {
-      scale : 1.2,
-      pt    : 0.8,
+      scale : 1.1,
+      pt    : 0.5,
     },
   },
 });

@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { Box } from '@mui/material';
 import { Increased } from '../../../../../model/types';
 import { calcIncreased } from '../../model/utils/calc-increased';
-import { calcGrowthChange, getGrowIconTypeByIncreased, getReversedIndicators } from '../../model/utils';
+import { calcGrowthChange, getGrowIconTypeByIncreased, getReversedIndicators, getValueAndPrefix } from '../../model/utils';
 import { MeasurementIcon } from './measurement-icon';
 import { GrowthChange } from './growth-change';
 import { GrowthIcon } from './growth-icon';
@@ -15,13 +15,13 @@ import { f } from 'app/styles';
 const useStyles = (sx?: SxSmallContainer) => ({
   root: {
     ...f('-fs'),
-    ml : 4,
-    pt : '0.3rem',
+    ml     : 4,
+    pt     : '0.3rem',
+    cursor : 'default',
     ...sx?.growthResult?.root,
   },
   growthChange: {
     ...f('c-fe'),
-    
   },
 });
 
@@ -40,13 +40,17 @@ export const GrowthResult: FC<Props> = memo(({ config, data, sx: style }) => {
   const { valuesCount } = config.resultChanges?.comparisonIndicators || {};
   const [lastValue, prevValue] = getReversedIndicators(data, valuesCount); // 0 - lastValue, 1 - prevValue, 2 - nextValue
 
+  const growthResult = config.resultChanges?.growthResult;
 
-  const { display: displayPersent, fractionDigits: fdPersent, addZero: azPersent } = config.resultChanges?.growthResult?.persent || {};
+  // Persent
+  const { display: displayPersent, fractionDigits: fdPersent, addZero: azPersent } = growthResult?.persent || {};
   const growthPersent = getFixedFraction(calcGrowthChange(lastValue, prevValue), { fractionDigits: fdPersent, addZero: azPersent });
   
-  const { display: displayValue, fractionDigits: fdValue, addZero: azValue } = config.resultChanges?.growthResult?.value || {};
-  const growthValue   = getFixedFraction(lastValue - prevValue, { fractionDigits: fdValue, addZero: azValue });
+  // Value
+  const { display: displayValue } = growthResult?.value || {};
+  const { value: growthValue, prefix } = getValueAndPrefix(lastValue - prevValue, growthResult?.value);
 
+  // Increased
   const increased: Increased = calcIncreased(lastValue, prevValue, inverted);
   const resultColor = getGrowIconTypeByIncreased(increased, unchangedBlack);
   
