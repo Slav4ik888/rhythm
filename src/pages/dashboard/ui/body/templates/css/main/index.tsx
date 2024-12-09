@@ -14,6 +14,12 @@ import { DashboardReportContainer6_17_2 } from '../departments/department_6/6-17
 import { DashboardReportContainer6_17_7 } from '../departments/department_6/6-17-7';
 import { Stack } from '@mui/material';
 import { DashboardGroupDepartment2 } from '../departments/department_2';
+import { DashboardGroupDepartment1 } from '../departments/department_1';
+import { DashboardGroupDepartment4 } from '../departments/department_4';
+import { DashboardGroupDepartment3 } from '../departments/department_3';
+import { DashboardGroupDepartment5 } from '../departments/department_5';
+import { DashboardGroupDepartment6 } from '../departments/department_6';
+import { DashboardGroupDepartment7 } from '../departments/department_7';
 
 
 
@@ -40,72 +46,23 @@ export const DashboardBodyMain = memo(() => {
       {/* {
         sortedBlocks.map(block => block.component)
       } */}
-      <DashboardBoxContainer
+
+      {/* <DashboardBoxContainer
         title      = 'Управление'
         titleColor = 'department_7_title'
         bgColor    = 'department_7'
       >
         <DashboardReportContainer7_0_3 />
         <DashboardReportContainer7_0_4 />
-      </DashboardBoxContainer>
+      </DashboardBoxContainer> */}
 
-      <DashboardBoxContainer
-        title      = 'Персонал'
-        titleColor = 'department_1_title'
-        bgColor    = 'department_1'
-      >
-        <DashboardReportContainer1_0_1 />
-        <DashboardReportContainer_1_0_2_Details />
-      </DashboardBoxContainer>
-
-      {/* <DashboardBoxContainer
-        title      = 'Продажи и распространение'
-        titleColor = 'department_2_title'
-        bgColor    = 'department_2'
-      > */}
-        <DashboardGroupDepartment2 />
-      {/* </DashboardBoxContainer> */}
-
-      <DashboardBoxContainer
-        title      = 'Финансы'
-        titleColor = 'department_3_title'
-        bgColor    = 'department_3'
-      >
-        <DashboardReportContainer3_7_1 />
-      </DashboardBoxContainer>
-
-      <DashboardBoxContainer
-        title      = 'Производство'
-        titleColor = 'department_4_title'
-        bgColor    = 'department_4'
-      >
-        <DashboardReportContainer4_0_2 />
-      </DashboardBoxContainer>
-      
-      <DashboardBoxContainer
-        title      = 'Качество'
-        titleColor = 'department_5_title'
-        bgColor    = 'department_5'
-      >
-        <DashboardReportContainer5_0_1 />
-      </DashboardBoxContainer>
-
-      <DashboardBoxContainer
-        title      = 'Расширение'
-        titleColor = 'department_6_title'
-        bgColor    = 'department_6'
-      >
-        <DashboardReportContainer6_0_1 />
-        <Stack>
-          <DashboardReportContainer6_17_3 />
-          <DashboardReportContainer6_17_6 />
-        </Stack>
-
-        <Stack>
-          <DashboardReportContainer6_17_2 />
-          <DashboardReportContainer6_17_7 />
-        </Stack>
-      </DashboardBoxContainer>
+      <DashboardGroupDepartment7 />
+      <DashboardGroupDepartment1 />
+      <DashboardGroupDepartment2 />
+      <DashboardGroupDepartment3 />
+      <DashboardGroupDepartment4 />
+      <DashboardGroupDepartment5 />
+      <DashboardGroupDepartment6 />
     </>
   );
 });

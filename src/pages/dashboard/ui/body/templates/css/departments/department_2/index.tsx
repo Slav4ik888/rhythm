@@ -28,7 +28,7 @@ export const DashboardGroupDepartment2 = memo(() => {
       titleColor = 'department_2_title'
       bgColor    = 'department_2'
     >
-      <Stack>
+      <Stack mr={3} spacing={3}>
         <DashboardReportContainer2_0_1 />
         <DashboardReportContainer2_0_1_1 />
       </Stack>
@@ -45,12 +45,12 @@ export const DashboardGroupDepartment2 = memo(() => {
         <SmallReport_2_osi_ob />
       </Stack>
 
-      <Stack>
+      <Stack mr={3} spacing={3}>
         <DashboardReportContainer2_0_4 />
         <DashboardReportContainer2_0_4_1 />
       </Stack>
       
-      <Stack mr={3} spacing={3} minWidth={pxToRem(400)}>
+      <Stack spacing={3} minWidth={pxToRem(400)}>
         <SmallReport_2_6_4_2 /> {/* Кол-во активных станций (ЮЛ) (Нед) 2-6-4-2 */}
         <SmallReport_2_6_5 />   {/* Кол-во активных абонентов (Нед) 2-6-5 */}
       </Stack>

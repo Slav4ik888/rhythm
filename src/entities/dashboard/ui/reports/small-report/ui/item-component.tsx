@@ -103,7 +103,7 @@ export const ReportContainer_SmallItem: FC<Props> = memo(({
           root: {
             width        : pxToRem(220),
             minWidth     : pxToRem(220),
-            height       : pxToRem(70),
+            height       : '100%', // pxToRem(70),
             background   : 'transparent',
             borderRadius : 'none',
             boxShadow    : 'none',

@@ -22,6 +22,7 @@ const useStyles = (sx?: SxSmallContainer) => ({
   },
   growthChange: {
     ...f('c-fe'),
+    width: 'max-content',
   },
 });
 

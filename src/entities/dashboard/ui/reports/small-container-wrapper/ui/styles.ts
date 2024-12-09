@@ -39,7 +39,7 @@ export const useStyles = (theme: CustomTheme, { sx }: Props) => {
       ...f('-c-c'),
       background : content?.background || 'transparent',
       px         : 2,
-      pt         : 1,
+      py         : 1,
       ...content
     }
   }

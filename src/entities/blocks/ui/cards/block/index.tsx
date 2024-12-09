@@ -21,12 +21,12 @@ const useStyles = (theme: CustomTheme, config: StyleConfig) => {
   const rootStyle = {
       ...f('c'),
     width      : ! width ? 'max-content' : isStr(width) ? width : pxToRem(width as number),
-    minWidth   : pxToRem(900),
+    minWidth   : pxToRem(440),
     minHeight  : pxToRem(400),
     background : linearGradient(theme.palette.gradients[bgColor].main, theme.palette.gradients[bgColor].state),
     my         : 5,
     p          : 3,
-    pr         : 0,
+    // pr         : 0,
     ...rest
   };
 
