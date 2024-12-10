@@ -14,6 +14,7 @@ Coded by www.creative-tim.com
 */
 import { CustomTheme } from 'app/providers/theme';
 import { getBoxShadows, rgba, pxToRem } from 'app/providers/theme';
+import { f } from 'app/styles';
 
 
 
@@ -34,8 +35,8 @@ export function sxNavbar(theme: CustomTheme, ownerState: OwnerState) {
   const { borderRadius } = borders;
 
   return {
-    boxShadow       : navbarTransparent || absolute ? "none" : navbarBoxShadow,
-    backdropFilter  : navbarTransparent || absolute ? "none" : `saturate(200%) blur(${pxToRem(30)})`,
+    boxShadow       : navbarTransparent || absolute ? 'none' : navbarBoxShadow,
+    backdropFilter  : navbarTransparent || absolute ? 'none' : `saturate(200%) blur(${pxToRem(30)})`,
     backgroundColor :
       navbarTransparent || absolute
         ? `${transparent.main} !important`
@@ -58,28 +59,26 @@ export function sxNavbar(theme: CustomTheme, ownerState: OwnerState) {
     },
     top           : absolute ? 0 : pxToRem(12),
     minHeight     : pxToRem(75),
-    display       : "grid",
-    alignItems    : "center",
+    display       : 'grid',
+    alignItems    : 'center',
     borderRadius  : borderRadius.xl,
     paddingTop    : pxToRem(8),
     paddingBottom : pxToRem(8),
     paddingRight  : absolute ? pxToRem(8)  : 0,
     paddingLeft   : absolute ? pxToRem(16) : 0,
 
-    "& > *": {
-      transition: transitions.create("all", {
+    '& > *': {
+      transition: transitions.create('all', {
         easing   : transitions.easing.easeInOut,
         duration : transitions.duration.standard,
       }),
     },
 
-    "& .MuiToolbar-root": {
-      display        : "flex",
-      justifyContent : "space-between",
-      alignItems     : "center",
+    '& .MuiToolbar-root': {
+      ...f('-c-sb'),
 
-      [breakpoints.up("sm")]: {
-        minHeight : "auto",
+      [breakpoints.up('sm')]: {
+        minHeight : 'auto',
         padding   : `${pxToRem(4)} ${pxToRem(16)}`,
       },
     },
@@ -88,34 +87,29 @@ export function sxNavbar(theme: CustomTheme, ownerState: OwnerState) {
 
 
 export const sxNavbarContainer = ({ breakpoints }: CustomTheme) => ({
-  flexDirection  : "column",
-  alignItems     : "flex-start",
-  justifyContent : "space-between",
-  pt             : 0.5,
-  pb             : 0.5,
+  ...f('c-fs-sb'),
+  pt: 0.5,
+  pb: 0.5,
 
-  [breakpoints.up("md")]: {
-    flexDirection : "row",
-    alignItems    : "center",
-    paddingTop    : "0",
-    paddingBottom : "0",
+  [breakpoints.up('md')]: {
+    ...f('r-c'),
+    paddingTop    : '0',
+    paddingBottom : '0',
   },
 });
 
 
 export const sxNavbarRow = ({ breakpoints }: CustomTheme, isMini: boolean) => ({
-  display        : "flex",
-  alignItems     : "center",
-  justifyContent : "space-between",
-  width          : "100%",
+  ...f('-c-sb'),
+  width: '100%',
 
-  [breakpoints.up("md")]: {
-    justifyContent : isMini ? "space-between" : "stretch",
-    width          : isMini ? "100%"          : "max-content",
+  [breakpoints.up('md')]: {
+    justifyContent : isMini ? 'space-between' : 'stretch',
+    width          : isMini ? '100%'          : 'max-content',
   },
 
-  [breakpoints.up("xl")]: {
-    justifyContent : "stretch !important",
-    width          : "max-content !important",
+  [breakpoints.up('xl')]: {
+    justifyContent : 'stretch !important',
+    width          : 'max-content !important',
   },
 });

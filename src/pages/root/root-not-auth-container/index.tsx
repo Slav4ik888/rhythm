@@ -1,12 +1,15 @@
 import { FC, memo } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { f } from 'app/styles';
-import s from './styles.module.scss';
+// import s from './styles.module.scss';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 
 
 
 const useStyles = (theme: CustomTheme) => ({
+  root: {
+    ...f('c-c-c')
+  },
   fill: {
     textAlign       : 'center',
     // backgroundColor : '#000',
@@ -48,19 +51,8 @@ const RootNotAuthContainer: FC = memo(() => {
 
 
   return (
-    <Box className={s.root}>
-      <Box className={s.wrapper}>
-        <Box sx={sx.fill}>
-          <Box sx={sx.container}>
-            {/* <Typography sx={sx.headerTitle}>
-              
-            </Typography> */}
-            <Typography sx={sx.mainTitle}>
-              Company Rules
-            </Typography>
-          </Box>
-        </Box>
-      </Box>
+    <Box sx={sx.root}>
+      Rhythm of Company
     </Box>
   );
 });

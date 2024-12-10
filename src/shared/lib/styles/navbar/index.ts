@@ -1,5 +1,4 @@
 import { CustomTheme, getTypography, rgba } from 'app/providers/theme';
-import { UIConfiguratorProviderState } from 'app/providers/theme/model/types';
 
 
 
@@ -9,15 +8,15 @@ export const sxNavbarIconButton = (theme: CustomTheme) => {
   return {
     px: 1,
 
-    "& .material-icons, .material-icons-round": {
+    '& .material-icons, .material-icons-round': {
       fontSize: `${getTypography(theme).size.xl} !important`,
     },
 
-    "& .MuiTypography-root": {
-      display: "none",
+    '& .MuiTypography-root': {
+      display: 'none',
 
-      [breakpoints.up("sm")]: {
-        display    : "inline-block",
+      [breakpoints.up('sm')]: {
+        display    : 'inline-block',
         lineHeight : 1.2,
         ml         : 0.5,
       },

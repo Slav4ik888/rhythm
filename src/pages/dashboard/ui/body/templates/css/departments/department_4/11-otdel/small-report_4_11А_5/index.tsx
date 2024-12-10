@@ -56,16 +56,16 @@ export const SmallReport_4_11А_5 = memo(() => {
     datasets: [{
       data                 : checkInvertData(reportConfig, itemData),
       pointBackgroundColor : 'rgb(63 122 53)',
-      backgroundColor      : 'rgb(63 122 53 / 70%)',
+      backgroundColor      : 'rgb(63 122 53 / 60%)',
       // borderColor          : 'rgb(63 122 53)',
       borderWidth          : 0,
     }],
     options: {
       scales: {
-        // y: {
-        //   max: 6000,
-        //   min: 0,
-        // }
+        y: {
+          max: 7,
+          min: 0,
+        }
       }
     }
   });

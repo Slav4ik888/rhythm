@@ -12,6 +12,11 @@ export interface DashboardDates {
 }
 
 export interface StateSchemaDashboard {
+  loading        : boolean
+  errors         : Errors
+  _isMounted     : boolean // Признак того, что Reducer mounted
+  editMode       : boolean // Режим редактирования
+
   // Загруженные данные из гугл-таблицы
   startEntities  : DashboardEntities
   startDates     : DashboardDates
@@ -24,7 +29,5 @@ export interface StateSchemaDashboard {
   activeEntities : DashboardEntities
   activeDates    : DashboardDates
 
-  // _isMounted?    : boolean // Признак того, что компонент находится в DOM
-  loading        : boolean
-  errors         : Errors
+  
 }

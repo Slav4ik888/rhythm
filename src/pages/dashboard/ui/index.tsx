@@ -20,6 +20,7 @@ const DashboardPage: FC = memo(() => {
 
   useInitialEffect(() => setIsSidebar(dispatch, true));
 
+
   return (
     <DynamicModuleLoader reducers={initialReducers}>
       <Sidebar />

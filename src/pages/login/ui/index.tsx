@@ -22,7 +22,7 @@ const LoginPage: FC = memo(() => {
 
   
   useEffect(() => {
-    if (auth) navigate(RoutePath.ROOT);
+    if (auth) navigate(RoutePath.DASHBOARD);
   }, [auth]);
   
   useEffect(() => {

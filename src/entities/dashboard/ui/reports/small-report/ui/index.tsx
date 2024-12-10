@@ -7,6 +7,8 @@ import { f } from 'app/styles';
 import { DashboardConditionType } from 'entities/condition-type';
 import { DashboardStatisticType } from 'entities/statistic-type';
 import { ReportContainer_SmallItem } from './item-component';
+import { getDigit } from 'shared/helpers/numbers';
+import { pxToRem } from 'app/providers/theme';
 
 
 
@@ -47,6 +49,17 @@ export const ReportContainer_Small: FC<Props> = memo(({
     },
   };
 
+  const isTwo = itemData2 && reportConfig2 && chartData2;
+  let height = '100%';
+  
+  if (isTwo) {
+    const getRemValue = (v: string) => Number(v.replace('rem', ''));
+    const py          = getRemValue(pxToRem(8 + 8));
+    const heightValue = getRemValue(style.content.height);
+    const baseHeight  = (heightValue - py) / 2;
+    height = baseHeight + 'rem';
+  }
+
 
 
   return (
@@ -64,11 +77,10 @@ export const ReportContainer_Small: FC<Props> = memo(({
         statisticType = {statisticType}
         productType   = {productType}
         companyType   = {companyType}
+        sx            = {{ root: { height }}}
       />
       {
-        itemData2 &&
-        reportConfig2 &&
-        chartData2 && (
+        isTwo && (
           <ReportContainer_SmallItem
             chartType     = {chartType}
             itemData      = {itemData2}
@@ -78,6 +90,7 @@ export const ReportContainer_Small: FC<Props> = memo(({
             statisticType = {statisticType}
             productType   = {productType}
             companyType   = {companyType}
+            sx            = {{ root: { height }}}
           />
         )
       }

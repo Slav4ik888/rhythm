@@ -1,27 +1,29 @@
 import { memo, useEffect } from 'react';
 import { useCompany } from 'entities/company';
-import { actionsDashboard, getInitialState } from 'entities/dashboard';
+import { getInitialState, useDashboard } from 'entities/dashboard';
 import { COMPANIES_CONFIG } from '../../model/config';
-import { useAppDispatch } from 'shared/lib/hooks';
-// import { DashboardBody_demo_pecar } from './templates';
 import { CircularProgress } from 'shared/ui/circular-progress';
 import { DashboardBodyWrapper } from './wrapper';
+import { PageLoader } from 'widgets';
 
 
 
 export const DashboardBody = memo(() => {
   console.log('DashboardBody ');
   const { companyId } = useCompany();
-  const dispatch = useAppDispatch();
+  const { isMounted, setInitial } = useDashboard();
 
 
   useEffect(() => {
-    if (companyId) {
-      dispatch(actionsDashboard.setInitial(getInitialState(companyId)));
+    if (companyId && isMounted) {
+      setInitial(getInitialState(companyId));
     }
-  }, [companyId]);
+  }, [companyId, isMounted]);
 
-   
+  // Должен смонтироваться dashboardReducer
+  if (! isMounted)  return  <PageLoader loading={true} />
+
+
   return companyId
     ? <DashboardBodyWrapper>
         {COMPANIES_CONFIG[companyId].dashboard}

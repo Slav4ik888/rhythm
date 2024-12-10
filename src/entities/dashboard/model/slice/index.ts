@@ -6,7 +6,6 @@ import { getPayloadError as getError } from 'shared/lib/errors';
 import { DashboardPeriodType } from '../config';
 import { getEntitiesByPeriod } from '../utils';
 import { StateSchemaDashboard } from './state-schema';
-import { ActivatedCompanyId } from 'entities/company';
 import { ResGetGoogleData, calculateStartDate, getData } from 'features/dashboard';
 import { SetActivePeriod, SetSelectedPeriod } from './types';
 
@@ -22,6 +21,11 @@ const emptyPeriod: DashboardPeriod = {
 
 
 const initialState: StateSchemaDashboard = {
+  loading        : false,
+  errors         : {},
+  _isMounted     : true,
+  editMode       : false,
+
   startEntities  : {},
   startDates     : {},
   lastUpdated    : undefined,
@@ -30,10 +34,6 @@ const initialState: StateSchemaDashboard = {
   activePeriod   : { ...emptyPeriod },
   activeEntities : {},
   activeDates    : {},
-
-  // _isMounted     : false,
-  loading        : false,
-  errors         : {}
 };
 
 
@@ -60,6 +60,10 @@ export const slice = createSlice({
     clearErrors: (state) => {
       state.errors = {};
     },
+    setEditMode: (state, { payload }: PayloadAction<boolean>) => {
+      state.editMode = payload;
+    },
+
     setActivePeriod: (state, { payload }: PayloadAction<SetActivePeriod>) => {
       state.activePeriod = {
         ...state.activePeriod,

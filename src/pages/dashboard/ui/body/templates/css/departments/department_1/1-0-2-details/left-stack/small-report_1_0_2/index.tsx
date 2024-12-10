@@ -5,27 +5,35 @@ import {
 } from 'entities/dashboard';
 import { orange } from '@mui/material/colors';
 import { formatDate, SUB } from 'shared/helpers/dates';
+import { pxToRem } from 'app/providers/theme';
 
 
 
-const useStyles = (): SxSmallContainer => ({
-  root: {
-    width: '100%',
-  },
-  header: {
-    background : orange[200],
-  },
-  content: {
-    background : orange[50],
-    px         : 2,
-    py         : 0.5,
-  },
-});
+const useSmallStyles = (): SxSmallContainer => {
+  const baseRootHeight   = 102; // px
+  const baseHeaderHeight = 24; // px
 
+  return {
+    root: {
+      width: '100%',
+      height: pxToRem(baseRootHeight),
+    },
+    header: {
+      background: orange[200],
+      height: pxToRem(baseHeaderHeight),
+    },
+    content: {
+      background : orange[50],
+      height     : pxToRem(baseRootHeight - baseHeaderHeight),
+      px         : 2,
+      py         : 0.5,
+    },
+  }
+};
 
 
 export const SmallReport_1_0_2 = memo(() => {
-  const sx = useStyles();
+  const sx = useSmallStyles();
   const { activeEntities, activeDates } = useDashboard();
 
   const itemData  = useMemo(() => activeEntities['1-0-2'] as DashboardStatisticItem<number>, [activeEntities]);

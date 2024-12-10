@@ -1,15 +1,29 @@
 import { memo, useMemo } from 'react';
 import {
-  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, checkInvertData, useDashboard, createConfig
+  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, checkInvertData,
+  useDashboard, createConfig, SxSmallContainer
 } from 'entities/dashboard';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { useSmallStyles } from '../small-styles';
+import { pxToRem } from 'app/providers/theme';
 
+
+
+export const useStyles = (): SxSmallContainer => {
+  const sx = useSmallStyles();
+  const baseRootHeight   = 224; // px
+  const baseHeaderHeight = 24; // px
+
+  sx.root.height = pxToRem(baseRootHeight);
+  sx.content.height = pxToRem(baseRootHeight - baseHeaderHeight);
+
+  return sx
+};
 
 
 /** Кол-во проданных основных продуктов (Мес) */
 export const SmallReport_2_0_3_and_2_6_9 = memo(() => {
-  const sx = useSmallStyles();
+  const sx = useStyles();
   const { activeEntities, activeDates } = useDashboard();
 
   const itemData_2_0_3 = useMemo(() => activeEntities['2-0-3'] as DashboardStatisticItem<number>, [activeEntities]);

@@ -13,21 +13,21 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { forwardRef, FC, ElementType, ReactNode } from "react";
+import { forwardRef, FC, ElementType, ReactNode } from 'react';
 
 // Custom styles for MDButton
-import MDButtonRoot from "./md-button-root";
+import MDButtonRoot from './md-button-root';
 
 // Material Dashboard 2 React contexts
-import { ColorName, SxCard, useUIConfiguratorController } from "app/providers/theme";
+import { ColorName, SxCard, useUIConfiguratorController } from 'app/providers/theme';
 import { CircularProgress } from 'shared/ui/circular-progress';
 
 
 interface Props {
   color?     : ColorName
-  variant?   : "text" | "contained" | "outlined" | "gradient"
-  size?      : "small" | "medium" | "large"
-  type?      : "button" | "reset" | "submit" | "link" | "default"
+  variant?   : 'text' | 'contained' | 'outlined' | 'gradient'
+  size?      : 'small' | 'medium' | 'large'
+  type?      : 'button' | 'reset' | 'submit' | 'link' | 'default'
   circular?  : boolean
   iconOnly?  : boolean
   fullWidth? : boolean
@@ -47,9 +47,9 @@ interface Props {
 
 const MDButton: FC<Props> = forwardRef(
   ({
-    color    = "white",
-    variant  = "contained",
-    size     = "medium",
+    color    = 'white',
+    variant  = 'contained',
+    size     = 'medium',
     circular = false,
     iconOnly = false,
     loading  = false,
@@ -58,15 +58,15 @@ const MDButton: FC<Props> = forwardRef(
     ...rest }, ref) => {
     const [configuratorState] = useUIConfiguratorController();
     const { mode } = configuratorState;
-    const darkMode = mode === "dark";
+    const darkMode = mode === 'dark';
 
     return (
       <MDButtonRoot
         {...rest}
         // @ts-ignore
         ref        = {ref}
-        color      = "primary"
-        variant    = {variant === "gradient" ? "contained" : variant}
+        color      = 'primary'
+        variant    = {variant === 'gradient' ? 'contained' : variant}
         size       = {size}
         ownerState = {{ color, variant, size, circular, iconOnly, darkMode, sx }}
       >

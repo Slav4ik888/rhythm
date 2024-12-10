@@ -14,37 +14,43 @@ import { ChartType } from '.';
 
 
 
-const useStyles = () => ({
-  root: {
-    ...f('--sb'),
-    width: '100%',
-  },
-  indicators: {
-    ...f('c-fs'),
-    width: '100%',
-    mr: 1,
-  },
-  comparison: {
-    ...f('-fs-fe'),
-    width: '100%',
-  },
-  growthResult: {
+const useStyles = (styles: { root: { height: string } }) => {
+  
+  const sx = {
     root: {
-      ml: 2,
+      ...f('--sb'),
+      width  : '100%',
+      height : styles.root.height,
     },
-    growthChange: {
-      size: 0.9,
+    indicators: {
+      ...f('c-fs'),
+      width: '100%',
+      mr: 1,
     },
-    measurementIcon: {
-      size : 0.9,
-      mr   : 0.5,
+    comparison: {
+      ...f('-fs-fe'),
+      width: '100%',
     },
-    growthIcon: {
-      scale : 1.1,
-      pt    : 0.5,
+    growthResult: {
+      root: {
+        ml: 2,
+      },
+      growthChange: {
+        size: 0.9,
+      },
+      measurementIcon: {
+        size : 0.9,
+        mr   : 0.5,
+      },
+      growthIcon: {
+        scale : 1.1,
+        pt    : 0.5,
+      },
     },
-  },
-});
+  };
+
+  return sx;
+};
 
 
 interface Props {
@@ -56,13 +62,15 @@ interface Props {
   itemData       : DashboardStatisticItem
   reportConfig   : ReportsResultChangesConfig
   chartData      : ChartConfig
+  sx             : { root: { height: string }}
 }
 
 
 export const ReportContainer_SmallItem: FC<Props> = memo(({
-  chartType = 'bar', condition, itemData, statisticType, companyType, productType, chartData, reportConfig
+  chartType = 'bar',
+  condition, itemData, statisticType, companyType, productType, chartData, reportConfig, sx: styles
 }) => {
-  const sx = useStyles();
+  const sx = useStyles(styles);
 
   
   const component = chartType === 'bar'

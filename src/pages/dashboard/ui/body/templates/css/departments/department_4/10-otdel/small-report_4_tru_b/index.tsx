@@ -58,17 +58,15 @@ export const SmallReport_4_tru_b = memo(() => {
     datasets: [{
       data                 : checkInvertData(reportConfig, itemData),
       pointBackgroundColor : 'rgb(63 122 53)',
-      backgroundColor      : 'rgb(63 122 53 / 70%)',
-      borderColor          : 'rgb(63 122 53)',
-      borderWidth          : 1,
-      pointRadius          : 2,
+      backgroundColor      : 'rgb(63 122 53 / 60%)',
     }],
     options: {
       scales: {
-        // y: {
-        //   max: 6000,
-        //   min: 0,
-        // }
+        y: {
+          display : false,
+          min     : 0,
+          max     : 6000,
+        }
       }
     }
   });
@@ -76,7 +74,6 @@ export const SmallReport_4_tru_b = memo(() => {
 
   return (
     <ReportContainer_Small
-      chartType     = 'line'
       title         = 'Трушков (баллы)'
       // companyType   = {itemData?.companyType}
       // productType   = {productType}

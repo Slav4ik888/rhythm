@@ -31,12 +31,12 @@ export const OpenUIConfiguratorBtn: FC<Props> = memo(({ light }) => {
   return (
     <IconButton
       disableRipple
-      color   = "inherit"
+      color   = 'inherit'
       sx      = {sx.button}
       onClick = {handleOpenConfigurator}
     >
       <SettingsIcon
-        fontSize = "small"
+        fontSize = 'small'
         sx       = {sx.icon}
       />
     </IconButton>

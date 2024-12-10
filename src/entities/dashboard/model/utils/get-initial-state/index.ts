@@ -17,6 +17,11 @@ export const getInitialState = (companyId: ActivatedCompanyId): StateSchemaDashb
   const activePeriod = LS.getDashboardState(companyId).activePeriod || { ...emptyPeriod };
   
   const initialState: StateSchemaDashboard = {
+    loading        : false,
+    errors         : {},
+    _isMounted     : true,
+    editMode       : false,
+    
     startEntities  : LS.getDashboardState(companyId).startEntities  || {},
     startDates     : LS.getDashboardState(companyId).startDates     || {},
     lastUpdated    : LS.getDashboardState(companyId).lastUpdated    || undefined, // Дата последнего обновления
@@ -25,10 +30,6 @@ export const getInitialState = (companyId: ActivatedCompanyId): StateSchemaDashb
     activePeriod,
     activeEntities : LS.getDashboardState(companyId).activeEntities || {},
     activeDates    : LS.getDashboardState(companyId).activeDates    || {},
-
-    // _isMounted     : true,
-    loading        : false,
-    errors         : {}
   };
 
   return initialState;

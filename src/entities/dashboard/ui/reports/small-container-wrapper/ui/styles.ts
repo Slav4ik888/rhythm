@@ -36,7 +36,7 @@ export const useStyles = (theme: CustomTheme, { sx }: Props) => {
       width      : '100%',
     },
     content: {
-      ...f('-c-c'),
+      ...f('-c-fs'),
       background : content?.background || 'transparent',
       px         : 2,
       py         : 1,

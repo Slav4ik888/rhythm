@@ -23,7 +23,10 @@ export const useDashboard = (config: Config = {}) => {
     errors             = useSelector(s.selectErrors),
     setErrors          = (errors: Errors) => dispatch(a.setErrors(errors)),
     clearErrors        = () => dispatch(a.setErrors({})),
-
+    isMounted          = useSelector(s.selectIsMounted),
+    editMode           = useSelector(s.selectEditMode),
+    setEditMode        = (editMode: boolean) => dispatch(a.setEditMode(editMode)),
+    
     setInitial         = (state: StateSchemaDashboard) => dispatch(a.setInitial(state)),
     startEntities      = useSelector(s.selectStartEntities),
     // getStartEntity     = (kod: string) => startEntities[kod],
@@ -55,7 +58,10 @@ export const useDashboard = (config: Config = {}) => {
     errors,
     setErrors,
     clearErrors,
-
+    isMounted,
+    editMode,
+    setEditMode,
+    
     setInitial,
     startEntities,
     startDates,
