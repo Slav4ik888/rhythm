@@ -11,6 +11,7 @@ interface Props {
 export const DashboardBodyWrapper: FC<Props> = memo(({ children }) => (
   <Box
     sx={{
+      position  : 'relative',
       width     : 'max-content',
       minWidth  : '100%',
       minHeight : 'calc(100vh - 300px)',

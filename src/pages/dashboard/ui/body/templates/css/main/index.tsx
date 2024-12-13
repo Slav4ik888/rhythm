@@ -23,29 +23,12 @@ import { DashboardGroupDepartment7 } from '../departments/department_7';
 
 
 
-// const config = {
-//   name: 'DashboardBody_css_1d3r8',
-
-//   // body: {} config for <DashboardBodyWrapper />
-//   blocks: [
-//     {
-//       order: 1,
-//       // component: <DashboardBoxContainer />,
-//     }
-//   ]
-// }
-
-
 export const DashboardBodyMain = memo(() => {
   console.log('CSS DashboardBody Main');
 
-  // const sortedBlocks = [...config.blocks].sort((a, b) => a.order - b.order);
 
   return (
     <>
-      {/* {
-        sortedBlocks.map(block => block.component)
-      } */}
 
       {/* <DashboardBoxContainer
         title      = 'Управление'

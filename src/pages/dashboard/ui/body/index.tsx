@@ -5,6 +5,9 @@ import { COMPANIES_CONFIG } from '../../model/config';
 import { CircularProgress } from 'shared/ui/circular-progress';
 import { DashboardBodyWrapper } from './wrapper';
 import { PageLoader } from 'widgets';
+import { DashboardAddNewCardBtn, DashboardSetEditBtn } from 'features/dashboard';
+import { DashboardBody_demo_pecar } from './templates';
+import { DashboardBodyContent } from './content';
 
 
 
@@ -20,12 +23,16 @@ export const DashboardBody = memo(() => {
     }
   }, [companyId, isMounted]);
 
-  // Должен смонтироваться dashboardReducer
+  // Вначале должен смонтироваться dashboardReducer
   if (! isMounted)  return  <PageLoader loading={true} />
 
 
   return companyId
     ? <DashboardBodyWrapper>
+        <DashboardSetEditBtn />
+        <DashboardAddNewCardBtn />
+        <DashboardBodyContent />
+      
         {COMPANIES_CONFIG[companyId].dashboard}
       </DashboardBodyWrapper>
     

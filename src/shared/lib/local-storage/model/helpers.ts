@@ -1,6 +1,6 @@
 import { UIConfiguratorProviderState } from 'app/providers/theme';
 import { ActivatedCompanyId } from 'entities/company';
-import { StateSchemaDashboard } from 'entities/dashboard';
+import { DashboardViewEntities, StateSchemaDashboard } from 'entities/dashboard';
 import { ResGetData } from 'features/dashboard/get-data/model/types';
 import { setStorageData, getStorageData, removeStorageData } from './main';
 import { Names } from './names';
@@ -12,6 +12,10 @@ export const getUIConfiguratorState = () => (getStorageData<object>('UIConfigura
 
 export const setDashboardState = (companyId: ActivatedCompanyId, state: StateSchemaDashboard) => setStorageData(`DashboardState-${companyId}`, state);
 export const getDashboardState = (companyId: ActivatedCompanyId) => (getStorageData<object>(`DashboardState-${companyId}`) || {}) as StateSchemaDashboard;
+
+export const setDashboardView = (companyId: ActivatedCompanyId, view: DashboardViewEntities) => setStorageData(`DashboardView-${companyId}`, view);
+export const getDashboardView = (companyId: ActivatedCompanyId) => (getStorageData<object>(`DashboardView-${companyId}`) || {}) as DashboardViewEntities;
+
 
 export const devSetGSData = (companyId: ActivatedCompanyId, data: ResGetData) => setStorageData(`Dashboard-GSData-${companyId}`, data);
 export const devGetGSData = (companyId: ActivatedCompanyId) => getStorageData<object>(`Dashboard-GSData-${companyId}`) as ResGetData;

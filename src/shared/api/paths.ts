@@ -18,4 +18,10 @@ export const paths = {
     update : '/company/update',
     // deleteCompany : '/deleteCompany/:companyId',
   },
+  dashboard: {
+    view: {
+      add    : '/dashboard/view/add',
+      update : '/dashboard/view/update',
+    }
+  }
 };

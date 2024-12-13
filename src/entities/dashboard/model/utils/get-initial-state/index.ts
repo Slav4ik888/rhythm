@@ -20,7 +20,10 @@ export const getInitialState = (companyId: ActivatedCompanyId): StateSchemaDashb
     loading        : false,
     errors         : {},
     _isMounted     : true,
+
+    // View
     editMode       : false,
+    viewEntities   : LS.getDashboardView(companyId) || {},
     
     startEntities  : LS.getDashboardState(companyId).startEntities  || {},
     startDates     : LS.getDashboardState(companyId).startDates     || {},

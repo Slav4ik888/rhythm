@@ -7,7 +7,10 @@ import { DashboardPeriodType } from '../config';
 import { getEntitiesByPeriod } from '../utils';
 import { StateSchemaDashboard } from './state-schema';
 import { ResGetGoogleData, calculateStartDate, getData } from 'features/dashboard';
-import { SetActivePeriod, SetSelectedPeriod } from './types';
+import { SetActivePeriod, SetDashboardView, SetSelectedPeriod } from './types';
+import { CardItem } from 'entities/card-item';
+import { addEntities } from 'entities/base';
+import { AddNewCard, addNewCard } from 'features/dashboard/add-new-card';
 
 
 
@@ -24,8 +27,12 @@ const initialState: StateSchemaDashboard = {
   loading        : false,
   errors         : {},
   _isMounted     : true,
-  editMode       : false,
 
+  // View
+  editMode       : false,
+  viewEntities   : {},
+
+  // Data
   startEntities  : {},
   startDates     : {},
   lastUpdated    : undefined,
@@ -42,6 +49,8 @@ export const slice = createSlice({
   initialState,
   reducers: {
     setInitial: (state, { payload }: PayloadAction<StateSchemaDashboard>) => {
+      state.viewEntities   = payload.viewEntities || {},
+
       state.startEntities  = payload.startEntities;
       state.startDates     = payload.startDates;
       state.lastUpdated    = payload.lastUpdated;
@@ -60,10 +69,19 @@ export const slice = createSlice({
     clearErrors: (state) => {
       state.errors = {};
     },
+
+    // VIEW
     setEditMode: (state, { payload }: PayloadAction<boolean>) => {
       state.editMode = payload;
     },
+    setDashboardView: (state, { payload }: PayloadAction<SetDashboardView>) => {
+      state.viewEntities = addEntities(state.viewEntities, payload.cardItems);
 
+      // Save viewEntities to local storage
+      LS.setDashboardView(payload.companyId, state.viewEntities);
+    },
+
+    // DATA
     setActivePeriod: (state, { payload }: PayloadAction<SetActivePeriod>) => {
       state.activePeriod = {
         ...state.activePeriod,
@@ -119,6 +137,7 @@ export const slice = createSlice({
         state.errors = {};
       })
       .addCase(getData.fulfilled, (state, { payload }: PayloadAction<ResGetGoogleData>) => {
+        // Data
         const { startEntities = {}, startDates = {} } = payload.data;
         state.startEntities = startEntities;
         state.startDates    = startDates;
@@ -135,6 +154,23 @@ export const slice = createSlice({
         LS.setDashboardState(payload.companyId, state);
       })
       .addCase(getData.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
+        state.loading = false;
+      }),
+
+    // ADD-NEW-CARD
+    builder
+      .addCase(addNewCard.pending, (state) => {
+        state.loading = true;
+        state.errors = {};
+      })
+      .addCase(addNewCard.fulfilled, (state, { payload }: PayloadAction<AddNewCard>) => {
+        state.viewEntities = addEntities(state.viewEntities, [payload.cardItem]);
+
+        // Save viewEntities to local storage
+        LS.setDashboardView(payload.companyId, state.viewEntities);
+      })
+      .addCase(addNewCard.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       })

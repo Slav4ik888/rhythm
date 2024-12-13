@@ -7,7 +7,9 @@ import {  } from '../../types';
 import { StateSchemaDashboard } from '../../slice/state-schema';
 import { SetActivePeriod, SetSelectedPeriod } from '../../slice/types';
 import { getData } from 'features/dashboard';
-import { Company } from 'entities/company';
+import { ActivatedCompanyId, Company } from 'entities/company';
+import { CardItem, CardItemId } from 'entities/card-item';
+import { addNewCard } from 'features/dashboard/add-new-card';
 
 
 
@@ -24,9 +26,15 @@ export const useDashboard = (config: Config = {}) => {
     setErrors          = (errors: Errors) => dispatch(a.setErrors(errors)),
     clearErrors        = () => dispatch(a.setErrors({})),
     isMounted          = useSelector(s.selectIsMounted),
+
+    // VIEW
     editMode           = useSelector(s.selectEditMode),
     setEditMode        = (editMode: boolean) => dispatch(a.setEditMode(editMode)),
+    serviceAddNewCard  = (companyId: ActivatedCompanyId, cardItem: CardItem) => dispatch(addNewCard({ companyId, cardItem })),
+    viewEntities       = useSelector(s.selectViewEntitiesEntities),
+    cardItems          = useSelector(s.selectCardItems),
     
+    // DATA
     setInitial         = (state: StateSchemaDashboard) => dispatch(a.setInitial(state)),
     startEntities      = useSelector(s.selectStartEntities),
     // getStartEntity     = (kod: string) => startEntities[kod],
@@ -59,9 +67,15 @@ export const useDashboard = (config: Config = {}) => {
     setErrors,
     clearErrors,
     isMounted,
+
+    // View
     editMode,
     setEditMode,
+    viewEntities,
+    cardItems,
+    serviceAddNewCard,
     
+    // Data
     setInitial,
     startEntities,
     startDates,

@@ -1,10 +1,9 @@
 import { FC } from 'react';
 import { MDBox } from "shared/ui/mui-design-components";
 import { OpenNotificationMenuBtn, OpenUIConfiguratorBtn } from 'features/ui';
-import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
+import { CustomTheme } from 'app/providers/theme';
 import { sxNavbarRow } from 'widgets/navbar/styles';
 import { ProfilesMenuRoot } from 'widgets/profiles-menu';
-import { DashboardSetEditBtn } from 'features/dashboard';
 
 
 
@@ -19,7 +18,6 @@ export const MenuBtns: FC<Props> = ({ light, isMini = false }) => {
   return (
     <MDBox sx={(theme: CustomTheme) => sxNavbarRow(theme, isMini)}>
       <MDBox display="flex" alignItems="center" color={light ? "white" : "inherit"}>
-        <DashboardSetEditBtn />
         <OpenNotificationMenuBtn light={light} />
         
         {/* <MDBox>
