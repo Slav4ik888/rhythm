@@ -31,7 +31,7 @@ export const getStartResourseData = createAsyncThunk <
         .get<ResGetStartResourseData>(paths.user.getStartResourseData);
       
       dispatch(actionsCompany.setCompany(companyData));
-      dispatch(actionsDashboard.setDashboardView(dashboardView));
+      dispatch(actionsDashboard.setDashboardView({ companyId: companyData.id, cardItems: dashboardView }));
       
       return userData;
     }

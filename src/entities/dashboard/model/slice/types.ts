@@ -6,7 +6,7 @@ import { DashboardPeriod } from '../types';
 
 // View
 export interface SetDashboardView {
-  companyId : ActivatedCompanyId
+  companyId : string
   cardItems : CardItem[]
 }
 

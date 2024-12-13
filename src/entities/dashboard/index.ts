@@ -12,5 +12,5 @@ export {
 } from './model/config'
 export { actions as actionsDashboard, reducer as reducerDashboard } from './model/slice'
 export { DashboardEntities, DashboardDates, StateSchemaDashboard, DashboardViewEntities } from './model/slice/state-schema'
-export { checkInvertData, getInitialState } from './model/utils'
+export { checkInvertData, getInitialState, ParentsCardItems } from './model/utils'
 export { useDashboard } from './model/hooks'

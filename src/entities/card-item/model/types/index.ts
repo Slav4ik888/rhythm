@@ -24,7 +24,7 @@ export interface CardItem extends ItemBase {
 
   type         : CardItemType
   sx?          : ItemStyles
-  content?     : string
-  contentSx?   : ItemStyles
+  // content?     : string
+  // contentSx?   : ItemStyles
   childrenIds? : CardItemId[]
 }

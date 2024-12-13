@@ -33,7 +33,7 @@ export const DashboardAddNewCardBtn = memo(() => {
 
  
   const handleToggle = useCallback(() => {
-    const cardItem = createCardItem({ sheetId: '', parentId: '', type: 'box' }, userId);
+    const cardItem = createCardItem({ sheetId: 'no_sheetId', parentId: 'no_parentId', type: 'box' }, userId);
 
     serviceAddNewCard(companyId, cardItem);
   }, [serviceAddNewCard]);

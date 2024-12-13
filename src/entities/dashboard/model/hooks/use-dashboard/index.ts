@@ -33,7 +33,8 @@ export const useDashboard = (config: Config = {}) => {
     serviceAddNewCard  = (companyId: ActivatedCompanyId, cardItem: CardItem) => dispatch(addNewCard({ companyId, cardItem })),
     viewEntities       = useSelector(s.selectViewEntitiesEntities),
     cardItems          = useSelector(s.selectCardItems),
-    
+    parentsCardItems   = useSelector(s.selectParentsCardItems),
+
     // DATA
     setInitial         = (state: StateSchemaDashboard) => dispatch(a.setInitial(state)),
     startEntities      = useSelector(s.selectStartEntities),
@@ -73,6 +74,7 @@ export const useDashboard = (config: Config = {}) => {
     setEditMode,
     viewEntities,
     cardItems,
+    parentsCardItems,
     serviceAddNewCard,
     
     // Data
