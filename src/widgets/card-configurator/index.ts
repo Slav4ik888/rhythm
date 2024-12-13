@@ -1,0 +1,1 @@
+export { CardItemConfigurator } from './ui';

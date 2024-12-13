@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "add DashboardBodyContentRender" && git push -u origin main
+// git add . && git commit -m "add CardItemConfigurator" && git push -u origin main

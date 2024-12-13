@@ -2,11 +2,14 @@ import { creatorFixDate } from 'entities/base/model/creators';
 import { cloneObj } from 'shared/helpers/objects';
 import { CardItem, ItemStyles } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
+import { f } from 'app/styles';
 // import { pxToRem } from 'app/providers/theme';
 
 
 const BASE_SX: ItemStyles = {
-  m: 3,
+  ...f(),
+  width: '100%',
+  my: 3,
   p: 3,
   border: '1px solid rgb(64, 64, 64)',
 }

@@ -1,5 +1,6 @@
 import { FC, memo } from 'react';
 import { Box } from '@mui/material';
+import { f } from 'app/styles';
 
 
 
@@ -11,6 +12,7 @@ interface Props {
 export const DashboardBodyWrapper: FC<Props> = memo(({ children }) => (
   <Box
     sx={{
+      ...f('c'),
       position  : 'relative',
       width     : 'max-content',
       minWidth  : '100%',

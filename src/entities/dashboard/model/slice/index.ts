@@ -162,10 +162,12 @@ export const slice = createSlice({
     builder
       .addCase(addNewCard.pending, (state) => {
         state.loading = true;
-        state.errors = {};
+        state.errors  = {};
       })
       .addCase(addNewCard.fulfilled, (state, { payload }: PayloadAction<AddNewCard>) => {
         state.viewEntities = addEntities(state.viewEntities, [payload.cardItem]);
+        state.loading = false;
+        state.errors  = {};
 
         // Save viewEntities to local storage
         LS.setDashboardView(payload.companyId, state.viewEntities);

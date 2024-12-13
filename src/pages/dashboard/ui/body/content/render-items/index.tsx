@@ -8,12 +8,14 @@ import { ParentsCardItems } from 'entities/dashboard';
 interface Props {
   parentsCardItems : ParentsCardItems
   parentId         : CardItemId // Current Rendered ParentId
+  onSelect         : (id: CardItemId) => void
 }
 
 
-export const DashboardBodyContentRender: FC<Props> = memo(({ parentsCardItems, parentId }) => {
+export const DashboardBodyContentRender: FC<Props> = memo(({ parentsCardItems, parentId, onSelect }) => {
   console.log('DashboardBodyContentRender parentId:', parentId);
 
+  if (! parentsCardItems[parentId]) return null;
 
   return (
     <>
@@ -22,6 +24,7 @@ export const DashboardBodyContentRender: FC<Props> = memo(({ parentsCardItems, p
           key              = {item.id}
           parentsCardItems = {parentsCardItems}
           item             = {item}
+          onSelect         = {onSelect}
         />)
       }
     </>

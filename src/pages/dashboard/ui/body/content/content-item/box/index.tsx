@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { CardItem } from 'entities/card-item';
+import { CardItem, CardItemId } from 'entities/card-item';
 import { Box } from '@mui/material';
 import { DashboardBodyContentRender } from '../../render-items';
 import { ParentsCardItems } from 'entities/dashboard';
@@ -9,14 +9,20 @@ import { ParentsCardItems } from 'entities/dashboard';
 interface Props {
   parentsCardItems : ParentsCardItems
   item             : CardItem
+  onSelect         : (id: CardItemId) => void
 }
 
 /** Item box */
-export const DashboardBodyContentItemBox: FC<Props> = memo(({ parentsCardItems, item }) => {
+export const DashboardBodyContentItemBox: FC<Props> = memo(({ parentsCardItems, item, onSelect }) => {
   console.log('DashboardBodyContentItemBox id:', item.id);
 
+  const handleClick = () => onSelect(item.id);
+  
   return (
-    <Box sx={item.sx}>
+    <Box
+      sx={item.sx}
+      onClick = {handleClick}
+    >
       {/* {
         item.content && <DashboardBodyContentItemBoxContent
           content = {item.content}
@@ -24,7 +30,11 @@ export const DashboardBodyContentItemBox: FC<Props> = memo(({ parentsCardItems, 
         />
       } */}
 
-      <DashboardBodyContentRender parentsCardItems={parentsCardItems} parentId={item.id} />
+      <DashboardBodyContentRender
+        parentsCardItems = {parentsCardItems}
+        parentId         = {item.id}
+        onSelect         = {onSelect}
+      />
     </Box>
   )
 });

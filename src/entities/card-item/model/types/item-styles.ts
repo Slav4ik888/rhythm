@@ -1,5 +1,14 @@
 
 export interface ItemStyles {
+  width?     : string // In rem
+  minWidth?  : string // In rem
+  maxWidth?  : string // In rem
+  
+  height?    : string // In rem
+  minHeight? : string // In rem
+  maxHeight? : string // In rem
+  
+
   // padding
   p? : number
   px?: number
@@ -21,10 +30,11 @@ export interface ItemStyles {
   ml?: number
 
   // border
-  border?: string
+  border?       : string
+  borderRadius? : string // In rem
 
   // background
-  bg?: string
+  background?: string
 
   // color
   color?: string
