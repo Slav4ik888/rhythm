@@ -1,8 +1,8 @@
 import { FC, memo } from 'react';
 import { CustomTheme, useTheme, getTypography } from 'app/providers/theme';
 import CloseIcon from '@mui/icons-material/Close';
-import { MDBox, MDTypography, MDDivider } from 'shared/ui/mui-design-components';
-import { IconButton } from '@mui/material';
+import { MDDivider } from 'shared/ui/mui-design-components';
+import { Box, IconButton, Typography } from '@mui/material';
 
 
 
@@ -19,6 +19,12 @@ const useStyles = (theme: CustomTheme) => {
       pt             : 4,
       pb             : 0.5,
       mb             : 2,
+    },
+    title: {
+      fontSize    : size.lg, // `${size.lg} !important`,
+      fontWeight  : 'bold',
+      color       : darkMode ? white.main : dark.main,
+      textAlign   : 'center',
     },
     icon: {
       fontSize    : `${size.lg} !important`,
@@ -42,20 +48,15 @@ export const CardItemConfiguratorMainHeader: FC<Props> = memo(({ onClose }) => {
 
   return (
     <>
-      <MDBox sx={sx.root}>
-        <MDBox width='100%'>
-          <MDTypography
-            color      = 'black'
-            variant    = 'h6'
-            fontWeight = 'bold'
-            textAlign  = 'center'
-          >
-            Настройки карточки
-          </MDTypography>
-          {/* <MDTypography variant='body2' color='text'>
+      <Box sx={sx.root}>
+        <Box width='100%'>
+          <Typography sx={sx.title}>
+            Настройки элемента
+          </Typography>
+          {/* <Typography variant='body2' color='text'>
             See our dashboard options.
-          </MDTypography> */}
-        </MDBox>
+          </Typography> */}
+        </Box>
 
         <IconButton
           color   = 'inherit'
@@ -63,8 +64,7 @@ export const CardItemConfiguratorMainHeader: FC<Props> = memo(({ onClose }) => {
         >
           <CloseIcon sx={sx.icon} fontSize='small' />
         </IconButton>
-      </MDBox>
-
+      </Box>
       <MDDivider />
     </>
   )

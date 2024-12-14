@@ -23,5 +23,8 @@ export const paths = {
       add    : '/dashboard/view/add',
       update : '/dashboard/view/update',
     }
+  },
+  transactions: {
+    sendTransactions: '/sendTransactions',
   }
 };

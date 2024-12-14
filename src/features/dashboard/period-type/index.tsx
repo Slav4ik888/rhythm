@@ -48,7 +48,7 @@ export const PeriodType: FC = memo(() => {
       <Select
         variant      = 'standard'
         open         = {openSelect}
-        defaultValue = ""
+        defaultValue = ''
         sx           = {sx.select}
         onClose      = {handleSelectClose}
         onChange     = {handleChangePeriod}

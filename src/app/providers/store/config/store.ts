@@ -5,6 +5,7 @@ import { createReducerManager } from './reducer-manager';
 import { api } from 'shared/api';
 import { reducerCompany } from 'entities/company';
 import { reducerUser } from 'entities/user';
+import { reducerTransactions } from 'entities/transactions';
 
 
 
@@ -17,9 +18,10 @@ export function createReduxStore(
       ...asyncReducers,
 
       // Entities
-      ui      : reducerUI,
-      user    : reducerUser,
-      company : reducerCompany,
+      ui           : reducerUI,
+      user         : reducerUser,
+      company      : reducerCompany,
+      transactions : reducerTransactions,
       // Features
     },
     reducerManager = createReducerManager(rootReducers),

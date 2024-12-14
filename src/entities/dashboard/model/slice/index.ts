@@ -7,7 +7,7 @@ import { DashboardPeriodType } from '../config';
 import { getEntitiesByPeriod } from '../utils';
 import { StateSchemaDashboard } from './state-schema';
 import { ResGetGoogleData, calculateStartDate, getData } from 'features/dashboard';
-import { SetActivePeriod, SetDashboardView, SetSelectedPeriod } from './types';
+import { ChangeSelectedStyle, SetActivePeriod, SetDashboardView, SetSelectedPeriod } from './types';
 import { CardItem } from 'entities/card-item';
 import { addEntities } from 'entities/base';
 import { AddNewCard, addNewCard } from 'features/dashboard/add-new-card';
@@ -74,11 +74,19 @@ export const slice = createSlice({
     setEditMode: (state, { payload }: PayloadAction<boolean>) => {
       state.editMode = payload;
     },
+
     setDashboardView: (state, { payload }: PayloadAction<SetDashboardView>) => {
       state.viewEntities = addEntities(state.viewEntities, payload.cardItems);
 
       // Save viewEntities to local storage
       LS.setDashboardView(payload.companyId, state.viewEntities);
+    },
+
+    /** Изменяем 1 выбранный стиль у элемента */
+    changeSelectedStyle: (state, { payload }: PayloadAction<ChangeSelectedStyle>) => {
+      const { selectedId, field, value } = payload;
+      // @ts-ignore
+      state.viewEntities[selectedId].styles[field] = value;
     },
 
     // DATA

@@ -1,15 +1,16 @@
 
+
 export interface ItemStyles {
-  width?     : string // In rem
-  minWidth?  : string // In rem
-  maxWidth?  : string // In rem
+  width?     : number | string // In px | '100%' | 'auto' | 'max-content' | 'min-content'
+  minWidth?  : number | string
+  maxWidth?  : number | string
   
-  height?    : string // In rem
-  minHeight? : string // In rem
-  maxHeight? : string // In rem
+  height?    : number | string // In px | '100%' | 'auto' | 'max-content' | 'min-content'
+  minHeight? : number | string
+  maxHeight? : number | string
   
 
-  // padding
+  // padding - 1 === 8px
   p? : number
   px?: number
   py?: number
@@ -19,7 +20,7 @@ export interface ItemStyles {
   pb?: number
   pl?: number
 
-  // margin
+  // margin - 1 === 8px
   m? : number
   mx?: number
   my?: number
@@ -31,7 +32,7 @@ export interface ItemStyles {
 
   // border
   border?       : string
-  borderRadius? : string // In rem
+  borderRadius? : string // In px
 
   // background
   background?: string
@@ -54,3 +55,5 @@ export interface ItemStyles {
   // textWrap?: string
 
 }
+
+export type ItemStylesField = keyof ItemStyles;

@@ -8,14 +8,16 @@ import { StateSchemaUser } from 'entities/user';
 import { StateSchemaSignupPage } from 'pages/signup';
 import { StateSchemaLoginPage } from 'pages/login';
 import { StateSchemaDocs } from 'entities/docs';
+import { StateSchemaTransactions } from 'entities/transactions';
 
 
 
 export interface StateSchema {
   // Entities
-  ui      : StateSchemaUI
-  user    : StateSchemaUser
-  company : StateSchemaCompany
+  ui           : StateSchemaUI
+  user         : StateSchemaUser
+  company      : StateSchemaCompany
+  transactions : StateSchemaTransactions
 
   // Features
 
