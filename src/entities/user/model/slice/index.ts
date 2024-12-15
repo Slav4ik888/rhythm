@@ -65,7 +65,6 @@ export const slice = createSlice({
         state.loading = true;
       })
       .addCase(serviceUpdateUser.fulfilled, (state, { payload }) => {
-        console.log('payload: ', payload);
         state.user    = updateObject(state.user, payload);
         state.errors  = {};
         state.loading = false;

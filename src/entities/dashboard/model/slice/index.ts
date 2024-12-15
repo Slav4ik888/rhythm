@@ -7,7 +7,7 @@ import { DashboardPeriodType } from '../config';
 import { getEntitiesByPeriod } from '../utils';
 import { StateSchemaDashboard } from './state-schema';
 import { ResGetGoogleData, calculateStartDate, getData } from 'features/dashboard';
-import { ChangeSelectedStyle, SetActivePeriod, SetDashboardView, SetSelectedPeriod } from './types';
+import { ChangeSelectedStyle, SetActivePeriod, SetDashboardView, SetSelectedPeriod, SetSelectedStyle } from './types';
 import { CardItem } from 'entities/card-item';
 import { addEntities } from 'entities/base';
 import { AddNewCard, addNewCard } from 'features/dashboard/add-new-card';
@@ -76,17 +76,27 @@ export const slice = createSlice({
     },
 
     setDashboardView: (state, { payload }: PayloadAction<SetDashboardView>) => {
-      state.viewEntities = addEntities(state.viewEntities, payload.cardItems);
+      // TODO: Открыть скобки, когда данные будут приходить с сервера, сейчас закрыто чтобы LS не затирались
+      // state.viewEntities = addEntities(state.viewEntities, payload.cardItems);
 
-      // Save viewEntities to local storage
-      LS.setDashboardView(payload.companyId, state.viewEntities);
+      // LS.setDashboardView(payload.companyId, state.viewEntities); // Save viewEntities to local storage
     },
 
     /** Изменяем 1 выбранный стиль у элемента */
     changeSelectedStyle: (state, { payload }: PayloadAction<ChangeSelectedStyle>) => {
-      const { selectedId, field, value } = payload;
+      const { selectedId, field, value, companyId } = payload;
       // @ts-ignore
       state.viewEntities[selectedId].styles[field] = value;
+
+      LS.setDashboardView(companyId, state.viewEntities); // Save viewEntities to local storage
+    },
+
+    /** Заменяем весь стиль у выбранного элемента */
+    setSelectedStyle: (state, { payload }: PayloadAction<SetSelectedStyle>) => {
+      const { selectedId, styles, companyId } = payload;
+      state.viewEntities[selectedId].styles = styles;
+
+      LS.setDashboardView(companyId, state.viewEntities); // Save viewEntities to local storage
     },
 
     // DATA
@@ -122,10 +132,9 @@ export const slice = createSlice({
       state.activeEntities = activeEntities;
       state.activeDates    = activeDates;
       
-      // Save state to local storage
       // Тк при первом запуске setSelectedPeriod вызывается автоматически, поэтому нужно НЕ затереть имеющиеся данные
       // TODO: перепроверить, возможно это уже надо убрать
-      const oldData = LS.getDashboardState(payload.companyId);
+      const oldData = LS.getDashboardState(payload.companyId); // Save state to local storage
       LS.setDashboardState(
         payload.companyId,
         {
@@ -158,8 +167,7 @@ export const slice = createSlice({
         state.loading     = false;
         state.errors      = {};
 
-        // Save state to local storage
-        LS.setDashboardState(payload.companyId, state);
+        LS.setDashboardState(payload.companyId, state); // Save state to local storage
       })
       .addCase(getData.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
@@ -177,8 +185,7 @@ export const slice = createSlice({
         state.loading = false;
         state.errors  = {};
 
-        // Save viewEntities to local storage
-        LS.setDashboardView(payload.companyId, state.viewEntities);
+        LS.setDashboardView(payload.companyId, state.viewEntities); // Save viewEntities to local storage
       })
       .addCase(addNewCard.rejected, (state, { payload }) => {
         state.errors  = getError(payload);

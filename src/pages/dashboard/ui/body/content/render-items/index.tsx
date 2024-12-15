@@ -13,9 +13,9 @@ interface Props {
 
 
 export const DashboardBodyContentRender: FC<Props> = memo(({ parentsCardItems, parentId, onSelect }) => {
-  console.log('DashboardBodyContentRender parentId:', parentId);
 
   if (! parentsCardItems[parentId]) return null;
+  console.log('DashboardBodyContentRender parentId:', parentId);
 
   return (
     <>

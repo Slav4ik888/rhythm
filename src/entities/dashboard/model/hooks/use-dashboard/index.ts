@@ -5,7 +5,7 @@ import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
 import {  } from '../../types';
 import { StateSchemaDashboard } from '../../slice/state-schema';
-import { ChangeSelectedStyle, SetActivePeriod, SetSelectedPeriod } from '../../slice/types';
+import { ChangeSelectedStyle, SetActivePeriod, SetSelectedPeriod, SetSelectedStyle } from '../../slice/types';
 import { getData } from 'features/dashboard';
 import { ActivatedCompanyId, Company } from 'entities/company';
 import { CardItem, CardItemId } from 'entities/card-item';
@@ -35,7 +35,8 @@ export const useDashboard = (config: Config = {}) => {
     cardItems           = useSelector(s.selectCardItems),
     parentsCardItems    = useSelector(s.selectParentsCardItems),
     changeSelectedStyle = (data: ChangeSelectedStyle) => dispatch(a.changeSelectedStyle(data)),
-
+    setSelectedStyle    = (data: SetSelectedStyle) => dispatch(a.setSelectedStyle(data)),
+    
     // DATA
     setInitial          = (state: StateSchemaDashboard) => dispatch(a.setInitial(state)),
     startEntities       = useSelector(s.selectStartEntities),
@@ -78,7 +79,8 @@ export const useDashboard = (config: Config = {}) => {
     parentsCardItems,
     serviceAddNewCard,
     changeSelectedStyle, 
-
+    setSelectedStyle,
+    
     // Data
     setInitial,
     startEntities,

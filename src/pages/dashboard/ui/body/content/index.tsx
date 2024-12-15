@@ -20,7 +20,7 @@ export const DashboardBodyContent = memo(() => {
     console.log('Selected: ', id);
     setIsOpen(true);
     setSelected(viewEntities[id]);
-  }, [editMode, setSelected]);
+  }, [editMode, viewEntities, setSelected, setIsOpen]);
 
   const handleClose = useCallback(() => {
     setIsOpen(false);

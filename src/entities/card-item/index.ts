@@ -1,2 +1,2 @@
 export { CardItem, ItemStyles, CardItemId, ItemStylesField } from './model/types'
-export { stylesToSx } from './model/utils'
+export { stylesToSx, sxToStyles } from './model/utils'

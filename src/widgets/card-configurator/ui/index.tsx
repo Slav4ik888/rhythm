@@ -3,9 +3,11 @@ import DrawerStyled from './styled';
 import { CardItemConfiguratorMainHeader as MainHeader } from './main-header';
 import { MDDivider } from 'shared/ui/mui-design-components';
 import { CardItemConfiguratorSubHeader as SubHeader } from './sub-header';
-import { CardItem, CardItemId, ItemStyles, ItemStylesField } from 'entities/card-item';
-import { ChangeStyleItem } from 'features/dashboard';
+import { CardItem, ItemStylesField } from 'entities/card-item';
 import { useDashboard } from 'entities/dashboard';
+import { Dimensions } from './dimensions';
+import { useCompany } from 'entities/company';
+import { Indents } from './indents';
 
 
 
@@ -16,12 +18,11 @@ interface Props {
 }
 
 export const CardItemConfigurator: FC<Props> = memo(({ isOpen, selected, onClose }) => {
+  const { companyId } = useCompany();
   const { changeSelectedStyle } = useDashboard();
 
   const handleChangeSelectedStyle = useCallback((field: ItemStylesField, value: number | string) => {
-    if (! selected) return;
-    
-    changeSelectedStyle({ selectedId: selected.id, field, value });
+    changeSelectedStyle({ companyId, selectedId: (selected as CardItem).id, field, value });
   }, [selected, changeSelectedStyle]);
 
 
@@ -40,27 +41,12 @@ export const CardItemConfigurator: FC<Props> = memo(({ isOpen, selected, onClose
     >
       <MainHeader onClose={handleClose} />
 
-      <SubHeader title='Размеры'/>
-      <ChangeStyleItem
-        field        = 'width'
-        title        = 'width'
-        toolTitle    = 'Ширина элемента'
-        defaultValue = {selected.styles.width}
-        onChange     = {handleChangeSelectedStyle}
+      <Dimensions
+        styles   = {selected.styles}
+        onChange = {handleChangeSelectedStyle}
       />
-      <ChangeStyleItem
-        field        = 'height'
-        title        = 'height'
-        toolTitle    = 'Высота элемента'
-        defaultValue = {selected.styles.height}
-        onChange     = {handleChangeSelectedStyle}
-      />
-      <MDDivider />
-
-      <SubHeader title='Отступы'/>
-      {/* margin */}
-      {/* padding */}
-      <MDDivider />
+      
+      <Indents selected={selected} />
 
       <SubHeader title='Выравнивание внутреннего содержимого' />
       {/* display - flex, block, inline ... */}

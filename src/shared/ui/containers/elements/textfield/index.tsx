@@ -9,7 +9,14 @@ import { GridStyle } from '../../grid-wrap';
 
 
 
-const useStyles = (sx: any | undefined) => ({
+interface SxTextfield {
+  bg?    : any
+  field? : any
+  input? : any
+}
+
+
+const useStyles = (sx?: SxTextfield) => ({
   textField: {
     // backgroundColor: '#ffffff',
     ...sx?.bg,
@@ -17,6 +24,9 @@ const useStyles = (sx: any | undefined) => ({
     '& .MuiInputBase-root': {
       // backgroundColor: '#ffffff',
       ...sx?.field
+    },
+    '& .MuiInputBase-input': {
+      ...sx?.input 
     },
     '& .MuiInputLabel-root': {
       // top: '7px'
@@ -27,7 +37,7 @@ const useStyles = (sx: any | undefined) => ({
 
 interface Props {
   grid?         : GridStyle
-  sx?           : any
+  sx?           : SxTextfield
   toolTitle?    : string
   label?        : string // The label content
   type?         : 'text' | 'number' | 'password' | 'email'
@@ -71,7 +81,8 @@ export const TextField: FC<Props> = memo((props) => {
     Wrap     = grid ? GridWrap : BoxWrap,
     focusRef = useRef(null),
     typeNum  = type === 'number',
-    S        = useValue(defaultValue as string | number || (typeNum ? 0 : ''));
+    // S        = useValue(defaultValue as string | number || (typeNum ? 0 : ''));
+    S        = useValue(defaultValue as string | number || '');
     
   
   useEffect(() => {

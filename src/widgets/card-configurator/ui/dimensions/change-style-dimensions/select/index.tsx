@@ -2,21 +2,21 @@ import { FC, memo, useState } from 'react';
 import { pxToRem } from 'app/providers/theme';
 import { Chip, FormControl, MenuItem } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { f } from 'app/styles';
 
 
 
 const useStyles = () => ({
   root: {
+    ...f(),
     position: 'relative',
-    display: 'flex',
-    width: 120,
-    mr: 1
+    width: 110,
   },
   chip: {
     position : 'absolute',
-    top      : pxToRem(3),
-    right    : pxToRem(10),
-    // zIndex   : 10,
+    top      : pxToRem(6),
+    right    : 0,
+    height   : '24px',
   },
   select: {
     visibility: 'hidden',

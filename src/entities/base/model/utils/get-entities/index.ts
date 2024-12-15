@@ -8,7 +8,7 @@ interface Entities<T extends Item> {
 }
 
 /** Add new items into the entities */
-export function addEntities<T extends Item>(entities: Entities<T>, payload  : T[]): Entities<T> {
+export function addEntities<T extends Item>(entities: Entities<T>, payload: T[] = []): Entities<T> {
   return {
     ...entities,
     ...payload.reduce((acc: Entities<T>, entity: T) => {

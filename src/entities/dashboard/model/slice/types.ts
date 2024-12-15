@@ -1,4 +1,4 @@
-import { CardItem, CardItemId, ItemStylesField } from 'entities/card-item';
+import { CardItem, CardItemId, ItemStyles, ItemStylesField } from 'entities/card-item';
 import { ActivatedCompanyId } from 'entities/company';
 import { DashboardPeriod } from '../types';
 
@@ -11,9 +11,16 @@ export interface SetDashboardView {
 }
 
 export interface ChangeSelectedStyle {
+  companyId  : string
   selectedId : CardItemId
   field      : ItemStylesField
   value      : number | string
+}
+
+export interface SetSelectedStyle {
+  companyId  : string
+  selectedId : CardItemId
+  styles     : ItemStyles
 }
 
 
