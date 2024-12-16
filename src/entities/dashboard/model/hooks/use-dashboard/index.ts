@@ -8,17 +8,20 @@ import { StateSchemaDashboard } from '../../slice/state-schema';
 import { ChangeSelectedStyle, SetActivePeriod, SetSelectedPeriod, SetSelectedStyle } from '../../slice/types';
 import { getData } from 'features/dashboard';
 import { ActivatedCompanyId, Company } from 'entities/company';
-import { CardItem, CardItemId } from 'entities/card-item';
+import { CardItem, CardItemId, ItemStylesField } from 'entities/card-item';
 import { addNewCard } from 'features/dashboard/add-new-card';
+import { StateSchema } from 'app/providers/store';
 
 
 
 interface Config {
+  cardItemId? : CardItemId
+  field?      : ItemStylesField
 }
 
 export const useDashboard = (config: Config = {}) => {
   const
-    { } = config,
+    { cardItemId, field } = config,
     dispatch = useAppDispatch(),
 
     loading             = useSelector(s.selectLoading),
@@ -36,7 +39,9 @@ export const useDashboard = (config: Config = {}) => {
     parentsCardItems    = useSelector(s.selectParentsCardItems),
     changeSelectedStyle = (data: ChangeSelectedStyle) => dispatch(a.changeSelectedStyle(data)),
     setSelectedStyle    = (data: SetSelectedStyle) => dispatch(a.setSelectedStyle(data)),
-    
+    stylesByCardItemId  = useSelector((state: StateSchema) => s.selectCardItemStyle(state, cardItemId as CardItemId)),
+    styleByField        = useSelector((state: StateSchema) => s.selectStyleByField(state, cardItemId as CardItemId, field as ItemStylesField)),
+
     // DATA
     setInitial          = (state: StateSchemaDashboard) => dispatch(a.setInitial(state)),
     startEntities       = useSelector(s.selectStartEntities),
@@ -80,7 +85,9 @@ export const useDashboard = (config: Config = {}) => {
     serviceAddNewCard,
     changeSelectedStyle, 
     setSelectedStyle,
-    
+    stylesByCardItemId,
+    styleByField,
+
     // Data
     setInitial,
     startEntities,

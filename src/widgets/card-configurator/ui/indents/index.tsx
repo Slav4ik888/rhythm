@@ -1,11 +1,12 @@
 import { FC, memo } from 'react';
 import { MDDivider } from 'shared/ui/mui-design-components';
 import { CardItemConfiguratorSubHeader as SubHeader } from '../sub-header';
-import { CardItem, ItemStyles, ItemStylesField } from 'entities/card-item';
+import { CardItemId, ItemStyles, ItemStylesField } from 'entities/card-item';
 import { useDashboard } from 'entities/dashboard';
-import { ChangeStyleItemIndents } from '../change-style-indents';
+import { ChangeStyleItemIndents } from './change-style-indents';
 import { useCompany } from 'entities/company';
 import { deleteField } from 'shared/helpers/objects';
+import { isUndefined } from 'shared/lib/validators';
 
 
 
@@ -13,19 +14,22 @@ const deleteFields = (styles: ItemStyles, arr: ItemStylesField[]) => arr.forEach
 
 
 interface Props {
-  selected : CardItem
+  cardItemId : CardItemId
 }
 
 /** Отступы */
-export const Indents: FC<Props> = memo(({ selected }) => {
+export const Indents: FC<Props> = memo(({ cardItemId }) => {
   const { companyId } = useCompany();
-  const { setSelectedStyle } = useDashboard();
+  const { stylesByCardItemId, setSelectedStyle } = useDashboard({ cardItemId });
 
 
   const handleSubmit = (field: ItemStylesField, value: number) => {
-    const getFields = (arr: string[]) => arr.map(item => field + item) as ItemStylesField[]
+    // @ts-ignore
+    if (isUndefined(value) || value === '') return;
+
+    const getFields = (arr: string[]) => arr.map(item => field[0] + item) as ItemStylesField[]
     const newStyles = {
-      ...selected.styles,
+      ...stylesByCardItemId,
       [field]: value,
     };
 
@@ -53,7 +57,7 @@ export const Indents: FC<Props> = memo(({ selected }) => {
     }
     
     deleteFields(newStyles, fields);
-    setSelectedStyle({ companyId, selectedId: selected.id, styles: newStyles });
+    setSelectedStyle({ companyId, selectedId: cardItemId, styles: newStyles });
   };
 
 
@@ -62,19 +66,19 @@ export const Indents: FC<Props> = memo(({ selected }) => {
       <SubHeader title='Отступы'/>
       <ChangeStyleItemIndents
         bold
-        title     = 'margin'
-        toolTitle = 'Отступ вокруг элемента'
-        baseField = 'm'
-        styles    = {selected.styles}
-        onChange  = {handleSubmit}
+        title      = 'margin'
+        toolTitle  = 'Отступ вокруг элемента'
+        baseField  = 'm'
+        cardItemId = {cardItemId}
+        onChange   = {handleSubmit}
       />
       <ChangeStyleItemIndents
         bold
-        title     = 'padding'
-        toolTitle = 'Отступ внутри элемента'
-        baseField = 'p'
-        styles    = {selected.styles}
-        onChange  = {handleSubmit}
+        title      = 'padding'
+        toolTitle  = 'Отступ внутри элемента'
+        baseField  = 'p'
+        cardItemId = {cardItemId}
+        onChange   = {handleSubmit}
       />
       <MDDivider mt={1} />
     </>

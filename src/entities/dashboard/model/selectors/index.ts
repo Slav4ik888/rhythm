@@ -1,4 +1,5 @@
 import { StateSchema } from 'app/providers/store';
+import { CardItemId, ItemStylesField } from 'entities/card-item';
 import { StateSchemaDashboard } from '../slice/state-schema';
 import { getParents } from '../utils';
 
@@ -14,6 +15,10 @@ export const selectEditMode             = (state: StateSchema) => selectModule(s
 export const selectViewEntitiesEntities = (state: StateSchema) => selectModule(state).viewEntities || {};
 export const selectCardItems            = (state: StateSchema) => Object.values(selectViewEntitiesEntities(state));
 export const selectParentsCardItems     = (state: StateSchema) => getParents(selectCardItems(state));
+
+export const selectCardItemById         = (state: StateSchema, cardItemId: CardItemId) => selectViewEntitiesEntities(state)[cardItemId] || {};
+export const selectCardItemStyle        = (state: StateSchema, cardItemId: CardItemId) => selectCardItemById(state, cardItemId).styles || {};
+export const selectStyleByField         = (state: StateSchema, cardItemId: CardItemId, field: ItemStylesField) => selectCardItemStyle(state, cardItemId)[field];
 
 // Data
 export const selectStartEntities        = (state: StateSchema) => selectModule(state).startEntities || {};

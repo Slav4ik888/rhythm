@@ -46,7 +46,7 @@ export const CardItemConfigurator: FC<Props> = memo(({ isOpen, selected, onClose
         onChange = {handleChangeSelectedStyle}
       />
       
-      <Indents selected={selected} />
+      <Indents cardItemId={selected.id} />
 
       <SubHeader title='Выравнивание внутреннего содержимого' />
       {/* display - flex, block, inline ... */}

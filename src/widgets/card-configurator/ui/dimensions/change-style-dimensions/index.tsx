@@ -16,13 +16,14 @@ const useStyles = (bold?: boolean) => ({
   },
   title: {
     fontWeight: bold ? 'bold' : 'normal',
+    textShadow: bold ? '1px 1px 8px #9e9e9e' : 'none',
   },
   inPx: {
     ...f('-c'),
   },
   textfield: {
     field: {
-      width: '100px',
+      width: '80px',
     },
     input: {
       padding: '2px 4px',
