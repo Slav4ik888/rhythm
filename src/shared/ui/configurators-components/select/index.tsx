@@ -9,8 +9,8 @@ import { f } from 'app/styles';
 const useStyles = () => ({
   root: {
     ...f(),
-    position: 'relative',
-    width: 110,
+    position : 'relative',
+    width    : 110,
   },
   chip: {
     position : 'absolute',
@@ -19,27 +19,27 @@ const useStyles = () => ({
     height   : '24px',
   },
   select: {
-    visibility: 'hidden',
-    opacity: 0,
-    height: pxToRem(38)
+    visibility : 'hidden',
+    opacity    : 0,
+    height     : pxToRem(38),
   }
 });
 
 
-interface Props {
-  selectedValue : string
-  array         : string[]
-  onSelect      : (value: string) => void
+interface Props<T> {
+  selectedValue : T
+  array         : T[]
+  onSelect      : (value: T) => void
 }
 
 
-export const SelectValue: FC<Props> = memo(({ selectedValue, array, onSelect }) => {
+export const SelectValue = memo(<T extends string>({ selectedValue, array, onSelect }: Props<T>) => {
   const sx = useStyles();
   const [openSelect, setOpenSelect] = useState(false);
 
 
   const handleChange = (e: SelectChangeEvent) => {
-    onSelect(e.target.value as string);
+    onSelect(e.target.value as T);
     setOpenSelect(false);
   };
 

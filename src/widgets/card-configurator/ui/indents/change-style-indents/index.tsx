@@ -1,14 +1,14 @@
 import { FC, memo } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { CardItemId, ItemStylesField } from 'entities/card-item';
-import { Tooltip } from 'shared/ui/tooltip';
 import { f } from 'app/styles';
 import { ChangeStyleTextfieldNumberItem as NumberItem } from '../textfield-number-item';
 import { StyleItemWrapper } from '../style-item-wrapper';
+import { ConfiguratorTextTitle } from 'shared/ui/configurators-components';
 
 
 
-const useStyles = (bold?: boolean) => ({
+const useStyles = () => ({
   root: {
     ...f('c'),
     mb : 1,
@@ -16,11 +16,7 @@ const useStyles = (bold?: boolean) => ({
   },
   row: {
     ...f('-fs-sb'),
-  },
-  title: {
-    fontWeight: bold ? 'bold' : 'normal',
-    textShadow: bold ? '1px 1px 8px #9e9e9e' : 'none',
-  },
+  }
 });
 
 
@@ -35,16 +31,14 @@ interface Props {
 
 /** Отступы */
 export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTitle, title, cardItemId, onChange }) => {
-  const sx = useStyles(bold);
+  const sx = useStyles();
 
 
   return (
     <Box sx={sx.root}>
       <Box sx={sx.row}>
         <StyleItemWrapper>
-          <Tooltip title={toolTitle} sxRoot={{ cursor: 'default' }}>
-            <Typography sx={sx.title}>{title}</Typography>
-          </Tooltip>
+          <ConfiguratorTextTitle title={title} toolTitle={toolTitle} bold={bold} />
         </StyleItemWrapper>
 
         <NumberItem

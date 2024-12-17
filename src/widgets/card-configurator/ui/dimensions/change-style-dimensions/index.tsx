@@ -1,34 +1,21 @@
 import { FC, memo, MouseEvent, useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { ItemStylesField } from 'entities/card-item';
-import { TextField } from 'shared/ui/containers';
-import { Tooltip } from 'shared/ui/tooltip';
 import { f } from 'app/styles';
 import { isNum, isStr, isUndefined } from 'shared/lib/validators';
-import { SelectValue } from './select';
+import { SelectValue } from '../../../../../shared/ui/configurators-components/select';
+import { ConfiguratorTextTitle, TextfieldItemNumber } from 'shared/ui/configurators-components';
 
 
 
-const useStyles = (bold?: boolean) => ({
+const useStyles = () => ({
   root: {
     ...f('-c-sb'),
     py : 0.5,
   },
-  title: {
-    fontWeight: bold ? 'bold' : 'normal',
-    textShadow: bold ? '1px 1px 8px #9e9e9e' : 'none',
-  },
   inPx: {
     ...f('-c'),
   },
-  textfield: {
-    field: {
-      width: '80px',
-    },
-    input: {
-      padding: '2px 4px',
-    }
-  }
 });
 
 
@@ -43,7 +30,7 @@ interface Props {
 
 /** Размеры */
 export const ChangeStyleItemDimensions: FC<Props> = memo(({ field, bold, toolTitle, title, defaultValue = '', onChange }) => {
-  const sx = useStyles(bold);
+  const sx = useStyles();
   const [selectedValue, setSelectedValue] = useState(isStr(defaultValue)
     ? defaultValue !== ''
       ? defaultValue as string // Если строка и она не пуста
@@ -53,10 +40,7 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ field, bold, toolTit
   const [isValueNumber, setIsValuerNumber] = useState(isNum(defaultValue) || isUndefined(defaultValue));
 
 
-  const handleSubmit = (e: MouseEvent, value: number | string) => {
-    onChange(field, value);
-  };
-
+  const handleSubmit = (e: MouseEvent, value: number | string) => onChange(field, value);
 
   const handleSelectedValue = (selected: string) => {
     setSelectedValue(selected);
@@ -69,19 +53,13 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ field, bold, toolTit
 
   return (
     <Box sx={sx.root}>
-      <Tooltip title={toolTitle} sxRoot={{ cursor: 'default' }}>
-        <Typography sx={sx.title}>{title}</Typography>
-      </Tooltip>
+      <ConfiguratorTextTitle title={title} toolTitle={toolTitle} bold={bold}/>
 
       <Box sx={sx.inPx}>
         {/* In px */}
-        <TextField
-          small
-          type         = 'number'
+        <TextfieldItemNumber
           defaultValue = {defaultValue}
           disabled     = {! isValueNumber}
-          sx           = {sx.textfield}
-          onBlur       = {handleSubmit}
           onSubmit     = {handleSubmit}
         />
 

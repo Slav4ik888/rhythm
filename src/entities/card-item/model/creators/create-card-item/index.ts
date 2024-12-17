@@ -8,11 +8,14 @@ import { f } from 'app/styles';
 
 const BASE_SX: ItemStyles = {
   ...f(),
-  width  : 'max-content',
-  height : 'max-content',
-  m      : 24,
-  p      : 24,
-  border : '1px solid rgb(64, 64, 64)',
+  width        : 'max-content',
+  height       : 'max-content',
+  m            : 24,
+  p            : 24,
+  borderStyle  : 'solid',
+  borderWidth  : '1px',
+  borderColor  : 'rgb(146, 146, 146)',
+  borderRadius : '4px',
 }
 
 // const BASE_CONTENT_SX: ItemStyles = {

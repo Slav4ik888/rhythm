@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { MDDivider } from 'shared/ui/mui-design-components';
-import { CardItemConfiguratorSubHeader as SubHeader } from '../sub-header';
+import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { CardItemId, ItemStyles, ItemStylesField } from 'entities/card-item';
 import { useDashboard } from 'entities/dashboard';
 import { ChangeStyleItemIndents } from './change-style-indents';

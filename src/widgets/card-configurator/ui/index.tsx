@@ -1,13 +1,13 @@
 import { FC, memo, useCallback } from 'react';
 import DrawerStyled from './styled';
-import { CardItemConfiguratorMainHeader as MainHeader } from './main-header';
 import { MDDivider } from 'shared/ui/mui-design-components';
-import { CardItemConfiguratorSubHeader as SubHeader } from './sub-header';
+import { ConfiguratorSubHeader as SubHeader, ConfiguratorMainHeader as MainHeader } from 'shared/ui/configurators-components';
 import { CardItem, ItemStylesField } from 'entities/card-item';
 import { useDashboard } from 'entities/dashboard';
 import { Dimensions } from './dimensions';
 import { useCompany } from 'entities/company';
 import { Indents } from './indents';
+import { Borders } from './borders';
 
 
 
@@ -48,20 +48,19 @@ export const CardItemConfigurator: FC<Props> = memo(({ isOpen, selected, onClose
       
       <Indents cardItemId={selected.id} />
 
-      <SubHeader title='Выравнивание внутреннего содержимого' />
+      {/* <SubHeader title='Выравнивание внутреннего содержимого' /> */}
       {/* display - flex, block, inline ... */}
       {/* flex-direction */}
       {/* flex-wrap */}
       {/* align-items */}
       {/* justify-content */}
-      <MDDivider />
+      {/* <MDDivider /> */}
 
-      <SubHeader title='Рамка'/>
-      {/* border */}
-      {/* border-radius */}
-      {/* border-color */}
-      {/* shaddow */}
-      <MDDivider />
+      <Borders
+        styles     = {selected.styles}
+        cardItemId = {selected.id}
+        onChange   = {handleChangeSelectedStyle}
+      />
 
       <SubHeader title='Цвет'/>
       {/* background-color */}

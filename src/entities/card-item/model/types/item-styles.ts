@@ -1,4 +1,6 @@
 
+export type BorderStyleType = 'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'ridge' | 'inset' | 'outset' | 'none';
+export const arrayBorderStyles = ['solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset', 'none'];
 
 export interface ItemStyles {
   width?     : number | string // In px | '100%' | 'auto' | 'max-content' | 'min-content'
@@ -31,8 +33,10 @@ export interface ItemStyles {
   ml?: number
 
   // border
-  border?       : string
-  borderRadius? : string // In px
+  borderStyle?  : BorderStyleType
+  borderWidth?  : number // In px
+  borderRadius? : number // In px
+  borderColor?  : string
 
   // background
   background?: string
