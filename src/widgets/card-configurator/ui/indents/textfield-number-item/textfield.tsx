@@ -1,6 +1,6 @@
 import { FC, memo, MouseEvent } from 'react';
 import { ItemStylesField } from 'entities/card-item';
-import { TextfieldItemNumber } from 'shared/ui/configurators-components';
+import { ConfiguratorTextfieldItem } from 'shared/ui/configurators-components';
 
 
 
@@ -18,8 +18,9 @@ interface Props {
 export const ChangeStyleTextfieldNumberItemComponent: FC<Props> = memo(({ field, defaultValue, onSubmit }) => {
 
   return (
-    <TextfieldItemNumber
+    <ConfiguratorTextfieldItem
       autoFocus
+      type         = 'number'
       defaultValue = {defaultValue}
       onSubmit     = {(e: MouseEvent, value: number | string) => onSubmit(field, value as number)}
     />

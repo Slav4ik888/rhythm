@@ -13,9 +13,9 @@ const BASE_SX: ItemStyles = {
   m            : 24,
   p            : 24,
   borderStyle  : 'solid',
-  borderWidth  : '1px',
+  borderWidth  : 1,
   borderColor  : 'rgb(146, 146, 146)',
-  borderRadius : '4px',
+  borderRadius : 4,
 }
 
 // const BASE_CONTENT_SX: ItemStyles = {

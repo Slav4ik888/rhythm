@@ -1,16 +1,17 @@
 import { FC, memo, useState } from 'react';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem, SxCard } from 'app/providers/theme';
 import { Chip, FormControl, MenuItem } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { f } from 'app/styles';
 
 
 
-const useStyles = () => ({
+const useStyles = (sx?: SxCard) => ({
   root: {
     ...f(),
     position : 'relative',
-    width    : 110,
+    width    : '110px',
+    ...sx?.root
   },
   chip: {
     position : 'absolute',
@@ -29,12 +30,13 @@ const useStyles = () => ({
 interface Props<T> {
   selectedValue : T
   array         : T[]
+  sx?           : SxCard
   onSelect      : (value: T) => void
 }
 
 
-export const SelectValue = memo(<T extends string>({ selectedValue, array, onSelect }: Props<T>) => {
-  const sx = useStyles();
+export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, array, onSelect }: Props<T>) => {
+  const sx = useStyles(style);
   const [openSelect, setOpenSelect] = useState(false);
 
 

@@ -19,6 +19,7 @@ export const stylesToSx = (style?: ItemStyles): ItemStyles => {
 
   const {
     width, minWidth, maxWidth, height, minHeight, maxHeight,
+    borderWidth, borderRadius,
     p, px, py, pt, pb, pr, pl,
     m, mx, my, mt, mb, mr, ml,
    } = style;
@@ -51,12 +52,9 @@ export const stylesToSx = (style?: ItemStyles): ItemStyles => {
   if (is(mb)) sx.mb = getIndents(mb);
   if (is(ml)) sx.ml = getIndents(ml);
 
-
-
-
-  // if (style.color) sx.color = style.color;
-  // if (style.background) sx.background = style.background;
-  // if (style.fontSize) sx.fontSize = style.fontSize;
+  // borders
+  if (is(borderWidth))  sx.borderWidth  = borderWidth  + 'px';
+  if (is(borderRadius)) sx.borderRadius = borderRadius + 'px';
 
 
   return sx

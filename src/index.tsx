@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "start Borders" && git push -u origin main
+// git add . && git commit -m "end Border" && git push -u origin main

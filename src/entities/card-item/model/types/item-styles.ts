@@ -34,8 +34,8 @@ export interface ItemStyles {
 
   // border
   borderStyle?  : BorderStyleType
-  borderWidth?  : number // In px
-  borderRadius? : number // In px
+  borderWidth?  : number | string // In px
+  borderRadius? : number | string // In px
   borderColor?  : string
 
   // background

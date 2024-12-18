@@ -9,13 +9,15 @@ const useStyles = (width?: string) => ({
       width: width ? width : '80px',
     },
     input: {
-      padding: '2px 4px',
+      textAlign : 'center',
+      padding   : '2px 4px',
     }
   }
 });
 
 
 interface Props {
+  type         : 'text' | 'number'
   defaultValue : number | string | undefined
   disabled?    : boolean
   autoFocus?   : boolean
@@ -24,13 +26,13 @@ interface Props {
 }
 
 
-export const TextfieldItemNumber: FC<Props> = memo(({ defaultValue = '', disabled, autoFocus, width, onSubmit }) => {
+export const ConfiguratorTextfieldItem: FC<Props> = memo(({ defaultValue = '', type, disabled, autoFocus, width, onSubmit }) => {
   const sx = useStyles(width);
 
   return (
     <TextField
       small
-      type         = 'number'
+      type         = {type}
       defaultValue = {defaultValue}
       autoFocus    = {autoFocus}
       disabled     = {disabled}

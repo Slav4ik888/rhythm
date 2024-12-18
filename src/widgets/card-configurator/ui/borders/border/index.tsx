@@ -1,9 +1,8 @@
 import { FC, memo, useState, MouseEvent } from 'react';
 import { Box, Typography } from '@mui/material';
 import { f } from 'app/styles';
-import { ConfiguratorTextTitle, SelectValue, TextfieldItemNumber } from 'shared/ui/configurators-components';
+import { ConfiguratorTextfieldItem, ConfiguratorTextTitle, SelectValue } from 'shared/ui/configurators-components';
 import { BorderStyleType, ItemStylesField, arrayBorderStyles } from 'entities/card-item';
-import { TextField } from 'shared/ui/containers';
 
 
 
@@ -11,16 +10,13 @@ const useStyles = () => ({
   root: {
     ...f('-c-sb'),
     py : 0.5,
-  },
-  inPx: {
-    ...f('-c'),
-  },
+  }
 });
 
 
 interface Props {
   borderStyle : BorderStyleType | undefined
-  borderWidth : number | undefined
+  borderWidth : number | string | undefined
   borderColor : string | undefined
   onChange    : (field: ItemStylesField, value: number | string) => void
 }
@@ -47,29 +43,34 @@ export const Border: FC<Props> = memo(({
 
   return (
     <Box sx={sx.root}>
-      <ConfiguratorTextTitle title='border-style' toolTitle='border-style' bold />
+      <ConfiguratorTextTitle title='border' toolTitle='border' bold />
 
-      <Box sx={sx.inPx}>
-        <TextfieldItemNumber
-          defaultValue = {borderWidth}
-          width        = '40px'
-          onSubmit     = {handleSubmitWidth}
+      <Box sx={{ ...f('-c-fe') }}>
+        <Box sx={{ ...f('-c-fe') }}>
+          <ConfiguratorTextfieldItem
+            type         = 'number'
+            defaultValue = {borderWidth}
+            width        = '40px'
+            onSubmit     = {handleSubmitWidth}
+          />
+          <Typography ml={1}>px</Typography>
+        </Box>
+        
+        <SelectValue
+          selectedValue = {selectedValue}
+          array         = {arrayBorderStyles}
+          sx            = {{ root: { width: '80px', mr: 1 }}}
+          // @ts-ignore
+          onSelect      = {handleSelectedValue}
         />
-        <Typography>px</Typography>
-      </Box>
-      
-      <SelectValue
-        selectedValue = {selectedValue}
-        array         = {arrayBorderStyles}
-        // @ts-ignore
-        onSelect      = {handleSelectedValue}
-      />
 
-      <TextField
-        defaultValue = {borderColor}
-        onBlur       = {handleSubmitColor}
-        onSubmit     = {handleSubmitColor}
-      />
+        <ConfiguratorTextfieldItem
+          type         = 'text'
+          defaultValue = {borderColor}
+          width        = '100px'
+          onSubmit     = {handleSubmitColor}
+        />
+      </Box>
     </Box>
   )
 });

@@ -4,7 +4,7 @@ import { ItemStylesField } from 'entities/card-item';
 import { f } from 'app/styles';
 import { isNum, isStr, isUndefined } from 'shared/lib/validators';
 import { SelectValue } from '../../../../../shared/ui/configurators-components/select';
-import { ConfiguratorTextTitle, TextfieldItemNumber } from 'shared/ui/configurators-components';
+import { ConfiguratorTextTitle, ConfiguratorTextfieldItem } from 'shared/ui/configurators-components';
 
 
 
@@ -57,7 +57,8 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ field, bold, toolTit
 
       <Box sx={sx.inPx}>
         {/* In px */}
-        <TextfieldItemNumber
+        <ConfiguratorTextfieldItem
+          type         = 'number'
           defaultValue = {defaultValue}
           disabled     = {! isValueNumber}
           onSubmit     = {handleSubmit}
