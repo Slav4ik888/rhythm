@@ -39,6 +39,7 @@ export const BorderRadius: FC<Props> = memo(({ defaultValue = 0, onChange }) => 
           type         = 'number'
           defaultValue = {defaultValue}
           width        = '50px'
+          onCallback   = {handleSubmit}
           onSubmit     = {handleSubmit}
         />
         <Typography ml={1}>px</Typography>

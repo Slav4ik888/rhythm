@@ -3,6 +3,7 @@ import { Box, Typography } from '@mui/material';
 import { f } from 'app/styles';
 import { ConfiguratorTextfieldItem, ConfiguratorTextTitle, SelectValue } from 'shared/ui/configurators-components';
 import { BorderStyleType, ItemStylesField, arrayBorderStyles } from 'entities/card-item';
+import { TextFieldColorPicker } from '../../colors-picker';
 
 
 
@@ -38,7 +39,7 @@ export const Border: FC<Props> = memo(({
   };
 
   const handleSubmitWidth = (e: MouseEvent, value: number | string) => onChange('borderWidth', value);
-  const handleSubmitColor = (e: MouseEvent, value: number | string) => onChange('borderColor', value);
+  const handleSubmitColor = (value: string) => onChange('borderColor', value);
 
 
   return (
@@ -51,6 +52,7 @@ export const Border: FC<Props> = memo(({
             type         = 'number'
             defaultValue = {borderWidth}
             width        = '40px'
+            onCallback   = {handleSubmitWidth}
             onSubmit     = {handleSubmitWidth}
           />
           <Typography ml={1}>px</Typography>
@@ -64,12 +66,16 @@ export const Border: FC<Props> = memo(({
           onSelect      = {handleSelectedValue}
         />
 
-        <ConfiguratorTextfieldItem
+        <TextFieldColorPicker
+          defaultColor = {borderColor}
+          onChange     = {handleSubmitColor}
+        />
+        {/* <ConfiguratorTextfieldItem
           type         = 'text'
           defaultValue = {borderColor}
           width        = '100px'
           onSubmit     = {handleSubmitColor}
-        />
+        /> */}
       </Box>
     </Box>
   )

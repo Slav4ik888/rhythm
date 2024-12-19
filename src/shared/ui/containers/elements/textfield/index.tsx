@@ -58,7 +58,7 @@ interface Props {
   onPrepeare?   : (v: string | number) => void // Transform input value before save
   onClick?      : () => void
   onBlur?       : (e: MouseEvent, v: string | number) => void
-  onCallback?   : () => void // Calls in handlerChange
+  onCallback?   : (e: MouseEvent, v: string | number) => void // Calls in handlerChange
   onSubmit?     : (e: MouseEvent, v: string | number) => void
 }
 
@@ -106,10 +106,11 @@ export const TextField: FC<Props> = memo((props) => {
   const handlerChange = (e: any) => {
     if (disabled) return null;
 
-    const value = onPrepeare ? onPrepeare(e.target.value) : e.target.value;
-    S.setValue(typeNum ? Number(value) : value);
+    const valuePrep = onPrepeare ? onPrepeare(e.target.value) : e.target.value;
+    const value     = typeNum ? Number(valuePrep) : valuePrep;
+    S.setValue(value);
 
-    onCallback && onCallback();
+    onCallback && onCallback(e, value);
     if (e.keyCode === 13) {
       onSubmit && onSubmit(e, S.value);
     }
@@ -122,7 +123,7 @@ export const TextField: FC<Props> = memo((props) => {
   
 
   const handlerBlur = (e: any) => {
-    onCallback && onCallback();
+    onCallback && onCallback(e, S.value);
     onBlur && onBlur(e, S.value);
   };
 

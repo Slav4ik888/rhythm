@@ -22,11 +22,12 @@ interface Props {
   disabled?    : boolean
   autoFocus?   : boolean
   width?       : string
+  onCallback?  : (e: MouseEvent, value: number | string) => void // Если нужно чтобы каждое изменение отображалось на экране
   onSubmit     : (e: MouseEvent, value: number | string) => void
 }
 
 
-export const ConfiguratorTextfieldItem: FC<Props> = memo(({ defaultValue = '', type, disabled, autoFocus, width, onSubmit }) => {
+export const ConfiguratorTextfieldItem: FC<Props> = memo(({ defaultValue = '', type, disabled, autoFocus, width, onCallback, onSubmit }) => {
   const sx = useStyles(width);
 
   return (
@@ -37,6 +38,7 @@ export const ConfiguratorTextfieldItem: FC<Props> = memo(({ defaultValue = '', t
       autoFocus    = {autoFocus}
       disabled     = {disabled}
       sx           = {sx.textfield}
+      onCallback   = {onCallback}
       onBlur       = {onSubmit}
       onSubmit     = {onSubmit}
     />
