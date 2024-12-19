@@ -4,19 +4,8 @@ import { ItemStylesField } from 'entities/card-item';
 import { f } from 'app/styles';
 import { isNum, isStr, isUndefined } from 'shared/lib/validators';
 import { SelectValue } from '../../../../../shared/ui/configurators-components/select';
-import { ConfiguratorTextTitle, ConfiguratorTextfieldItem } from 'shared/ui/configurators-components';
+import { ConfiguratorTextTitle, ConfiguratorTextfieldItem, RowWrapper } from 'shared/ui/configurators-components';
 
-
-
-const useStyles = () => ({
-  root: {
-    ...f('-c-sb'),
-    py : 0.5,
-  },
-  inPx: {
-    ...f('-c'),
-  },
-});
 
 
 interface Props {
@@ -30,7 +19,6 @@ interface Props {
 
 /** Размеры */
 export const ChangeStyleItemDimensions: FC<Props> = memo(({ field, bold, toolTitle, title, defaultValue = '', onChange }) => {
-  const sx = useStyles();
   const [selectedValue, setSelectedValue] = useState(isStr(defaultValue)
     ? defaultValue !== ''
       ? defaultValue as string // Если строка и она не пуста
@@ -52,10 +40,10 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ field, bold, toolTit
 
 
   return (
-    <Box sx={sx.root}>
+    <RowWrapper>
       <ConfiguratorTextTitle title={title} toolTitle={toolTitle} bold={bold}/>
 
-      <Box sx={sx.inPx}>
+      <Box sx={{ ...f('-c') }}>
         {/* In px */}
         <ConfiguratorTextfieldItem
           type         = 'number'
@@ -71,6 +59,6 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ field, bold, toolTit
           onSelect      = {handleSelectedValue}
         />
       </Box>
-    </Box>
+    </RowWrapper>
   )
 });

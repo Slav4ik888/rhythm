@@ -1,17 +1,13 @@
 import { FC, memo, MouseEvent, useMemo, useState } from 'react';
 import { Box } from '@mui/material';
 import { f } from 'app/styles';
-import { ConfiguratorTextTitle, ConfiguratorTextfieldItem } from 'shared/ui/configurators-components';
+import { ConfiguratorTextTitle, ConfiguratorTextfieldItem, RowWrapper } from 'shared/ui/configurators-components';
 import { ItemStylesField } from 'entities/card-item';
 import { ColorPicker } from 'shared/lib/colors-picker';
 
 
 
 const useStyles = () => ({
-  root: {
-    ...f('-c-sb'),
-    py : 0.5,
-  },
   row: {
     ...f('-c'),
   },
@@ -70,7 +66,7 @@ export const BoxShadow: FC<Props> = memo(({ defaultValue = '', onChange }) => {
 
 
   return (
-    <Box sx={sx.root}>
+    <RowWrapper>
       <ConfiguratorTextTitle
         bold
         title     = 'box-shadow'
@@ -112,6 +108,6 @@ export const BoxShadow: FC<Props> = memo(({ defaultValue = '', onChange }) => {
           onChange     = {handleSetColor}
         />
       </Box>
-    </Box>
+    </RowWrapper>
   )
 });

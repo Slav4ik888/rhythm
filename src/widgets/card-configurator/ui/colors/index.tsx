@@ -2,9 +2,8 @@ import { FC, memo } from 'react';
 import { MDDivider } from 'shared/ui/mui-design-components';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { ItemStyles, ItemStylesField } from 'entities/card-item';
-import { Border } from './border';
-import { BorderRadius } from './border-radius';
-import { BoxShadow } from './box-shadow';
+import { SetBackground } from './set-background';
+import { SetColor } from './set-color';
 
 
 
@@ -17,26 +16,28 @@ interface Props {
 }
 
 
-/** Рамки */
-export const Borders: FC<Props> = memo(({ styles, onChange }) => {
+/** Цвет */
+export const Colors: FC<Props> = memo(({ styles, onChange }) => {
+
   return (
     <>
-      <SubHeader title='Рамка'/>
-      <Border
-        borderStyle = {styles.borderStyle}
-        borderWidth = {styles.borderWidth}
-        borderColor = {styles.borderColor}
-        onChange    = {onChange}
-      />
-      <BorderRadius
-        defaultValue = {styles.borderRadius}
-        onChange     = {onChange}
-      />
+      <SubHeader title='Цвет'/>
       
-      <BoxShadow
-        defaultValue = {styles.boxShadow}
+      <SetColor
+        defaultValue = {styles.color}
         onChange     = {onChange}
       />
+      <SetBackground
+        defaultValue = {styles.background}
+        onChange     = {onChange}
+      />
+
+      {/* background-gradient */}
+        {/* liner-gradient state */}
+        {/* liner-gradient main */}
+        {/* gradus */}
+      
+      {/* opacity */}
       <MDDivider mt={1} />
     </>
   )

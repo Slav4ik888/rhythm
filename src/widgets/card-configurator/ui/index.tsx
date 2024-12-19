@@ -8,6 +8,7 @@ import { Dimensions } from './dimensions';
 import { useCompany } from 'entities/company';
 import { Indents } from './indents';
 import { Borders } from './borders';
+import { Colors } from './colors';
 
 
 
@@ -17,12 +18,13 @@ interface Props {
   onClose  : () => void
 }
 
-export const CardItemConfigurator: FC<Props> = memo(({ isOpen, selected, onClose }) => {
+export const CardItemConfigurator: FC<Props> = memo(({ isOpen, selected = {} as CardItem, onClose }) => {
   const { companyId } = useCompany();
+  const { id, styles } = selected;
   const { changeSelectedStyle } = useDashboard();
 
-  const handleChangeSelectedStyle = useCallback((field: ItemStylesField, value: number | string) => {
-    changeSelectedStyle({ companyId, selectedId: (selected as CardItem).id, field, value });
+  const handleChange = useCallback((field: ItemStylesField, value: number | string) => {
+    changeSelectedStyle({ companyId, selectedId: id, field, value });
   }, [selected, changeSelectedStyle]);
 
 
@@ -41,12 +43,8 @@ export const CardItemConfigurator: FC<Props> = memo(({ isOpen, selected, onClose
     >
       <MainHeader onClose={handleClose} />
 
-      <Dimensions
-        styles   = {selected.styles}
-        onChange = {handleChangeSelectedStyle}
-      />
-      
-      <Indents cardItemId={selected.id} />
+      <Dimensions styles={styles} onChange={handleChange} />
+      <Indents cardItemId={id} />
 
       {/* <SubHeader title='Выравнивание внутреннего содержимого' /> */}
       {/* display - flex, block, inline ... */}
@@ -56,22 +54,8 @@ export const CardItemConfigurator: FC<Props> = memo(({ isOpen, selected, onClose
       {/* justify-content */}
       {/* <MDDivider /> */}
 
-      <Borders
-        styles     = {selected.styles}
-        cardItemId = {selected.id}
-        onChange   = {handleChangeSelectedStyle}
-      />
-
-      <SubHeader title='Цвет'/>
-      {/* background-color */}
-      {/* background-gradient */}
-        {/* liner-gradient state */}
-        {/* liner-gradient main */}
-        {/* gradus */}
-        
-      {/* color */}
-      {/* opacity */}
-      <MDDivider />
+      <Borders styles={styles} onChange={handleChange} />
+      <Colors styles={styles} onChange={handleChange} />
 
       <SubHeader title='Текст'/>
       {/* font-size */}

@@ -4,7 +4,8 @@ import { f } from 'app/styles';
 import { useClickOutside } from 'shared/lib/hooks';
 import { HexColorPicker, HexColorInput } from 'react-colorful';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-
+import s from './index.module.scss';
+console.log('s: ', s);
 
 
 const useStyles = (theme: CustomTheme, backgroundColor: string) => ({
@@ -62,7 +63,7 @@ export const PopoverColorsPicker: FC<Props> = memo(({ color, onChange }) => {
 
       {isOpen && (
         <Box sx={sx.popover} ref={popoverRef}>
-          <HexColorPicker color={color} onChange={onChange} />
+          <HexColorPicker color={color} className={s?.resposive } onChange={onChange} />
           <HexColorInput alpha prefixed color={color} onChange={onChange} />
         </Box>
       )}

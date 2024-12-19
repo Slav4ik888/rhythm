@@ -1,18 +1,10 @@
 import { FC, memo, useState, MouseEvent } from 'react';
 import { Box, Typography } from '@mui/material';
 import { f } from 'app/styles';
-import { ConfiguratorTextfieldItem, ConfiguratorTextTitle, SelectValue } from 'shared/ui/configurators-components';
+import { ConfiguratorTextfieldItem, ConfiguratorTextTitle, RowWrapper, SelectValue } from 'shared/ui/configurators-components';
 import { BorderStyleType, ItemStylesField, arrayBorderStyles } from 'entities/card-item';
 import { ColorPicker } from 'shared/lib/colors-picker';
 
-
-
-const useStyles = () => ({
-  root: {
-    ...f('-c-sb'),
-    py : 0.5,
-  }
-});
 
 
 interface Props {
@@ -30,7 +22,6 @@ export const Border: FC<Props> = memo(({
   borderColor = 'none',
   onChange
 }) => {
-  const sx = useStyles();
   const [selectedValue, setSelectedValue] = useState<BorderStyleType>(borderStyle);
   
   const handleSelectedValue = (selected: BorderStyleType) => {
@@ -43,7 +34,7 @@ export const Border: FC<Props> = memo(({
 
 
   return (
-    <Box sx={sx.root}>
+    <RowWrapper>
       <ConfiguratorTextTitle title='border' toolTitle='border' bold />
 
       <Box sx={{ ...f('-c-fe') }}>
@@ -70,13 +61,7 @@ export const Border: FC<Props> = memo(({
           defaultColor = {borderColor}
           onChange     = {handleSubmitColor}
         />
-        {/* <ConfiguratorTextfieldItem
-          type         = 'text'
-          defaultValue = {borderColor}
-          width        = '100px'
-          onSubmit     = {handleSubmitColor}
-        /> */}
       </Box>
-    </Box>
+    </RowWrapper>
   )
 });

@@ -9,9 +9,9 @@ import { f } from 'app/styles';
 const BASE_SX: ItemStyles = {
   ...f(),
   width        : 'max-content',
-  minWidth     : '10px',
+  minWidth     : 10,
   height       : 'max-content',
-  minHeight    : '10px',
+  minHeight    : 10,
   m            : 24,
   p            : 24,
   // borderStyle  : 'solid',
