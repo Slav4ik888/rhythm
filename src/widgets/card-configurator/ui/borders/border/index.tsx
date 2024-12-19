@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 import { f } from 'app/styles';
 import { ConfiguratorTextfieldItem, ConfiguratorTextTitle, SelectValue } from 'shared/ui/configurators-components';
 import { BorderStyleType, ItemStylesField, arrayBorderStyles } from 'entities/card-item';
-import { TextFieldColorPicker } from '../../colors-picker';
+import { ColorPicker } from 'shared/lib/colors-picker';
 
 
 
@@ -66,7 +66,7 @@ export const Border: FC<Props> = memo(({
           onSelect      = {handleSelectedValue}
         />
 
-        <TextFieldColorPicker
+        <ColorPicker
           defaultColor = {borderColor}
           onChange     = {handleSubmitColor}
         />

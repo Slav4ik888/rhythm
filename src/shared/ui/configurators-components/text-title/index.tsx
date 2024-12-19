@@ -25,7 +25,7 @@ export const ConfiguratorTextTitle: FC<Props> = memo(({ bold, toolTitle, title }
   return (
     <Tooltip
       title  = {toolTitle}
-      sxRoot = {{ cursor: 'default' }}
+      sxSpan = {{ cursor: 'default' }}
     >
       <Typography sx={sx.title}>{title}</Typography>
     </Tooltip>

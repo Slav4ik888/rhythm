@@ -9,13 +9,16 @@ import { f } from 'app/styles';
 const BASE_SX: ItemStyles = {
   ...f(),
   width        : 'max-content',
+  minWidth     : '10px',
   height       : 'max-content',
+  minHeight    : '10px',
   m            : 24,
   p            : 24,
-  borderStyle  : 'solid',
-  borderWidth  : 1,
-  borderColor  : 'rgb(146, 146, 146)',
+  // borderStyle  : 'solid',
+  // borderWidth  : 1,
+  // borderColor  : 'rgb(146, 146, 146)',
   borderRadius : 4,
+  boxShadow    : '1px 1px 3px 0px rgb(184 184 184);',
 }
 
 // const BASE_CONTENT_SX: ItemStyles = {

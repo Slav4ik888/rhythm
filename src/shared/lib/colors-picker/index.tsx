@@ -10,10 +10,10 @@ interface Props {
 }
 
 
-export const TextFieldColorPicker: FC<Props> = memo(({ defaultColor, onChange }) => {
+export const ColorPicker: FC<Props> = memo(({ defaultColor, onChange }) => {
   const [color, setColor] = useState(defaultColor);
 
-  useDebouncyEffect(() => onChange(color), 200, [color]);
+  useDebouncyEffect(() => onChange(color), 100, [color]);
   
 
   return <PopoverColorsPicker color={color} onChange={setColor} />;

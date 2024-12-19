@@ -1,12 +1,17 @@
+import { SxCard } from 'app/providers/theme';
 import { FC, memo, MouseEvent } from 'react';
 import { TextField } from 'shared/ui/containers';
 
 
 
-const useStyles = (width?: string) => ({
+const useStyles = (sx?: SxCard, width?: string) => ({
   textfield: {
+    bg: {
+      ...sx?.bg,
+    },
     field: {
       width: width ? width : '80px',
+      ...sx?.field,
     },
     input: {
       textAlign : 'center',
@@ -22,13 +27,14 @@ interface Props {
   disabled?    : boolean
   autoFocus?   : boolean
   width?       : string
+  sx?          : SxCard
   onCallback?  : (e: MouseEvent, value: number | string) => void // Если нужно чтобы каждое изменение отображалось на экране
   onSubmit     : (e: MouseEvent, value: number | string) => void
 }
 
 
-export const ConfiguratorTextfieldItem: FC<Props> = memo(({ defaultValue = '', type, disabled, autoFocus, width, onCallback, onSubmit }) => {
-  const sx = useStyles(width);
+export const ConfiguratorTextfieldItem: FC<Props> = memo(({ defaultValue = '', sx: style, type, disabled, autoFocus, width, onCallback, onSubmit }) => {
+  const sx = useStyles(style, width);
 
   return (
     <TextField

@@ -38,7 +38,7 @@ export const BorderRadius: FC<Props> = memo(({ defaultValue = 0, onChange }) => 
         <ConfiguratorTextfieldItem
           type         = 'number'
           defaultValue = {defaultValue}
-          width        = '50px'
+          width        = '40px'
           onCallback   = {handleSubmit}
           onSubmit     = {handleSubmit}
         />

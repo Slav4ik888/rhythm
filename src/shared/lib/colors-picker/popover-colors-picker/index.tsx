@@ -6,13 +6,14 @@ import { HexColorPicker, HexColorInput } from 'react-colorful';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 
 
+
 const useStyles = (theme: CustomTheme, backgroundColor: string) => ({
   root: {
     position: 'relative',
   },
 
   swatch: {
-    width        : '28px',
+    width        : '50px',
     height       : '28px',
     borderRadius : '8px',
     border       : '3px solid #fff',
@@ -57,30 +58,12 @@ export const PopoverColorsPicker: FC<Props> = memo(({ color, onChange }) => {
 
   return (
     <Box sx={sx.root}>
-      {/* <ConfiguratorTextfieldItem
-        type         = 'text'
-        defaultValue = {borderColor}
-        width        = '100px'
-        onSubmit     = {handleSubmitColor}
-      /> */}
-      <Box
-        sx      = {sx.swatch}
-        // style   = {{ backgroundColor: color }}
-        onClick = {handleOpen}
-      />
+      <Box sx={sx.swatch} onClick={handleOpen} />
 
       {isOpen && (
         <Box sx={sx.popover} ref={popoverRef}>
-          <HexColorPicker
-            color    = {color}
-            onChange = {onChange}
-          />
-          <HexColorInput
-            alpha
-            prefixed
-            color    = {color}
-            onChange = {onChange}
-          />
+          <HexColorPicker color={color} onChange={onChange} />
+          <HexColorInput alpha prefixed color={color} onChange={onChange} />
         </Box>
       )}
     </Box>

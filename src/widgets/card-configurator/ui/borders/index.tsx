@@ -6,6 +6,7 @@ import { useDashboard } from 'entities/dashboard';
 import { useCompany } from 'entities/company';
 import { Border } from './border';
 import { BorderRadius } from './border-radius';
+import { BoxShadow } from './box-shadow';
 
 
 
@@ -39,8 +40,10 @@ export const Borders: FC<Props> = memo(({ styles, cardItemId, onChange }) => {
         onChange     = {onChange}
       />
       
-      {/* border-color */}
-      {/* shaddow */}
+      <BoxShadow
+        defaultValue = {styles.boxShadow}
+        onChange     = {onChange}
+      />
       <MDDivider mt={1} />
     </>
   )

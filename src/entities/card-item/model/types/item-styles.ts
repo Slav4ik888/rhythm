@@ -38,6 +38,9 @@ export interface ItemStyles {
   borderRadius? : number | string // In px
   borderColor?  : string
 
+  // shadow      offset-x | offset-y | blur-radius | spread-radius | color 
+  boxShadow?: string // 1px 1px 3px 0px rgb(184 184 184);
+
   // background
   background?: string
 
