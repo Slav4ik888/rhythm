@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { Box, Switch } from '@mui/material';
+import { Switch } from '@mui/material';
 import { UIConfiguratorItemWrapper } from '../../ui-configurator-item-wrapper';
 
 
@@ -16,7 +16,7 @@ export const SwitcherItem: FC<Props> = memo(({ title, checked, ariaLabel, onTogg
     {title}
 
     <Switch
-      size       = "small"
+      size       = 'small'
       checked    = {checked}
       inputProps = {{ 'aria-label': ariaLabel }}
       onChange   = {onToggle}

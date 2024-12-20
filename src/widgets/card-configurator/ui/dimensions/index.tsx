@@ -1,5 +1,4 @@
 import { FC, memo } from 'react';
-import { MDDivider } from 'shared/ui/mui-design-components';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { ItemStyles, ItemStylesField } from 'entities/card-item';
 import { ChangeStyleItemDimensions as ChangeStyle } from './change-style-dimensions';
@@ -13,8 +12,7 @@ interface Props {
 
 export const Dimensions: FC<Props> = memo(({ styles, onChange }) => {
   return (
-    <>
-      <SubHeader title='Размеры'/>
+    <SubHeader title='Размеры'>
       <ChangeStyle
         bold
         field        = 'width'
@@ -59,8 +57,6 @@ export const Dimensions: FC<Props> = memo(({ styles, onChange }) => {
         defaultValue = {styles.maxHeight}
         onChange     = {onChange}
       />
-
-      <MDDivider mt={1} />
-    </>
+    </SubHeader>
   )
 });

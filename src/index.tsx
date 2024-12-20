@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "add Colors" && git push -u origin main
+// git add . && git commit -m "add SetLinearGradient" && git push -u origin main

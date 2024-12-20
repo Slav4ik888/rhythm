@@ -1,5 +1,4 @@
 import { FC, memo } from 'react';
-import { MDDivider } from 'shared/ui/mui-design-components';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { ItemStyles, ItemStylesField } from 'entities/card-item';
 import { Border } from './border';
@@ -20,8 +19,7 @@ interface Props {
 /** Рамки */
 export const Borders: FC<Props> = memo(({ styles, onChange }) => {
   return (
-    <>
-      <SubHeader title='Рамка'/>
+    <SubHeader title='Рамка'>
       <Border
         borderStyle = {styles.borderStyle}
         borderWidth = {styles.borderWidth}
@@ -37,7 +35,6 @@ export const Borders: FC<Props> = memo(({ styles, onChange }) => {
         defaultValue = {styles.boxShadow}
         onChange     = {onChange}
       />
-      <MDDivider mt={1} />
-    </>
+    </SubHeader>
   )
 });

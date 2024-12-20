@@ -6,15 +6,16 @@ import { ChangeStyleTextfieldNumberItemComponent as TextfieldItemComponent } fro
 import { useValue } from 'shared/lib/hooks';
 import { useDashboard } from 'entities/dashboard';
 import { StyleItemWrapper } from '../style-item-wrapper';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 
 
 
-const useStyles = () => ({
+const useStyles = (theme: CustomTheme) => ({
   textBox: {
     ...f('c-c-c'),
     width        : '80px',
     height       : '1.4375em;',
-    border       : '1px solid #666',
+    border       : `1px solid ${theme.palette.dark.light}`,
     borderRadius : '4px',
   },
   smallTitle: {
@@ -33,7 +34,7 @@ interface Props {
 
 
 export const ChangeStyleTextfieldNumberItem: FC<Props> = memo(({ title, field, cardItemId, onSubmit }) => {
-  const sx = useStyles();
+  const sx = useStyles(useTheme());
   const { styleByField } = useDashboard({ cardItemId, field });
   const hookOpen = useValue();
   

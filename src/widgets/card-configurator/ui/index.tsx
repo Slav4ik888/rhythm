@@ -57,14 +57,13 @@ export const CardItemConfigurator: FC<Props> = memo(({ isOpen, selected = {} as 
       <Borders styles={styles} onChange={handleChange} />
       <Colors styles={styles} onChange={handleChange} />
 
-      <SubHeader title='Текст'/>
+      {/* <SubHeader title='Текст'/> */}
       {/* font-size */}
       {/* font-weight */}
       {/* font-style */}
       {/* font-family */}
-      <MDDivider />
 
-      <SubHeader title='Управление'/>
+      {/* <SubHeader title='Управление'/> */}
       {/* DisplayShow - показать/скрыть элемент, "скрытый" - показывается только в режиме редактирования */}
       {/* Добавить новый элемент выше */}
       {/* Добавить новый элемент ниже */}

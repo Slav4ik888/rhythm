@@ -5,7 +5,7 @@ import { useClickOutside } from 'shared/lib/hooks';
 import { HexColorPicker, HexColorInput } from 'react-colorful';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import s from './index.module.scss';
-console.log('s: ', s);
+console.log('MODULE STYLE: ', s);
 
 
 const useStyles = (theme: CustomTheme, backgroundColor: string) => ({

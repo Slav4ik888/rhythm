@@ -49,13 +49,14 @@ export default styled(Drawer)(({ theme, ownerState }) => {
 
   return {
     '& .MuiDrawer-paper': {
-      height       : '100%', // 'max-content', // '100vh',
-      left         : 'initial',
-      margin       : 0,
-      padding      : `0 ${pxToRem(24)}`,
-      borderRadius : 0,
-      boxShadow    : getBoxShadows(theme as CustomTheme).lg,
-      overflowY    : 'auto',
+      height        : '100%', // 'max-content', // '100vh',
+      left          : 'initial',
+      margin        : 0,
+      padding       : `0 ${pxToRem(24)}`,
+      paddingBottom : pxToRem(60),
+      borderRadius  : 0,
+      boxShadow     : getBoxShadows(theme as CustomTheme).lg,
+      overflowY     : 'auto',
       ...(isOpen ? drawerOpenStyles() : drawerCloseStyles()),
     },
     '& .MuiModal-backdrop': {

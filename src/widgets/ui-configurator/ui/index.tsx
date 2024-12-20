@@ -28,10 +28,10 @@ export const UIConfigurator = memo(() => {
       <PaletteModeSwitcher />
       <MDDivider />
       
-      <SubHeader title='Боковая панель'/>
-      <MiniSidebarSwitcher />
-      <SidebarColorSwitcher />
-      <MDDivider />
+      <SubHeader title='Боковая панель'>
+        <MiniSidebarSwitcher />
+        <SidebarColorSwitcher />
+      </SubHeader>
 
       {/* <SubHeader title='Верхняя панель'/> */}
       {/* navbarBackgroundTheme : NavbarColorName */}

@@ -1,6 +1,7 @@
 import { SxCard } from 'app/providers/theme';
 import { FC, memo, MouseEvent } from 'react';
 import { TextField } from 'shared/ui/containers';
+import { Tooltip } from 'shared/ui/tooltip';
 
 
 
@@ -24,6 +25,7 @@ const useStyles = (sx?: SxCard, width?: string) => ({
 interface Props {
   type         : 'text' | 'number'
   defaultValue : number | string | undefined
+  toolTitle?   : string
   disabled?    : boolean
   autoFocus?   : boolean
   width?       : string
@@ -33,20 +35,22 @@ interface Props {
 }
 
 
-export const ConfiguratorTextfieldItem: FC<Props> = memo(({ defaultValue = '', sx: style, type, disabled, autoFocus, width, onCallback, onSubmit }) => {
+export const ConfiguratorTextfieldItem: FC<Props> = memo(({ defaultValue = '', toolTitle, sx: style, type, disabled, autoFocus, width, onCallback, onSubmit }) => {
   const sx = useStyles(style, width);
 
   return (
-    <TextField
-      small
-      type         = {type}
-      defaultValue = {defaultValue}
-      autoFocus    = {autoFocus}
-      disabled     = {disabled}
-      sx           = {sx.textfield}
-      onCallback   = {onCallback}
-      onBlur       = {onSubmit}
-      onSubmit     = {onSubmit}
-    />
+    <Tooltip title={toolTitle}>
+      <TextField
+        small
+        type         = {type}
+        defaultValue = {defaultValue}
+        autoFocus    = {autoFocus}
+        disabled     = {disabled}
+        sx           = {sx.textfield}
+        onCallback   = {onCallback}
+        onBlur       = {onSubmit}
+        onSubmit     = {onSubmit}
+      />
+    </Tooltip>
   )
 });

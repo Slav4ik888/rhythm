@@ -1,38 +1,43 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 import { f } from 'app/styles';
-import { FC, memo } from 'react';
-import { MDTypography } from 'shared/ui/mui-design-components';
+import { FC, memo, ReactNode } from 'react';
+import { MDDivider } from 'shared/ui/mui-design-components';
 
 
 
-const useStyles = () => ({
+const useStyles = (theme: CustomTheme) => ({
   root: {
+    ...f('c'),
+    width: '100%',
+  },
+  title: {
     ...f('-c-c'),
-    width : '100%',
-    py    : 2,
-    pb    : 0.5,
-    mt    : 1,
+    fontSize : '1.3rem',
+    color    : theme.palette.dark.main,
+    my       : 3,
   },
 });
 
 
 interface Props {
-  title: string
+  title    : string
+  children : ReactNode
 }
 
-export const ConfiguratorSubHeader: FC<Props> = memo(({ title }) => {
-  const sx = useStyles();
+export const ConfiguratorSubHeader: FC<Props> = memo(({ title, children }) => {
+  const sx = useStyles(useTheme());
 
 
   return (
     <Box sx={sx.root}>
-      <MDTypography
-        color      = 'black'
-        variant    = 'subtitle1'
-        fontWeight = 'bold'
-      >
+      <Typography sx={sx.title}>
         {title}
-      </MDTypography>
+      </Typography>
+      {/* <MDDivider mt={1} mb={2} /> */}
+      {
+        children
+      }
     </Box>
   )
 });

@@ -1,5 +1,4 @@
 import { FC, memo } from 'react';
-import { MDDivider } from 'shared/ui/mui-design-components';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { CardItemId, ItemStyles, ItemStylesField } from 'entities/card-item';
 import { useDashboard } from 'entities/dashboard';
@@ -62,8 +61,7 @@ export const Indents: FC<Props> = memo(({ cardItemId }) => {
 
 
   return (
-    <>
-      <SubHeader title='Отступы'/>
+    <SubHeader title='Отступы'>
       <ChangeStyleItemIndents
         bold
         title      = 'margin'
@@ -80,7 +78,6 @@ export const Indents: FC<Props> = memo(({ cardItemId }) => {
         cardItemId = {cardItemId}
         onChange   = {handleSubmit}
       />
-      <MDDivider mt={1} />
-    </>
+    </SubHeader>
   )
 });

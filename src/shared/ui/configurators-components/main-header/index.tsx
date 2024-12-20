@@ -20,8 +20,7 @@ const useStyles = (theme: CustomTheme) => {
       mb : 2,
     },
     title: {
-      fontSize    : size.lg, // `${size.lg} !important`,
-      fontWeight  : 'bold',
+      fontSize    : size.xl, // `${size.lg} !important`,
       color       : darkMode ? white.main : dark.main,
       textAlign   : 'center',
     },
