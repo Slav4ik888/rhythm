@@ -33,6 +33,9 @@ export const useDashboard = (config: Config = {}) => {
     // VIEW
     editMode            = useSelector(s.selectEditMode),
     setEditMode         = (editMode: boolean) => dispatch(a.setEditMode(editMode)),
+    selectedId          = useSelector(s.selectElectedId),
+    setSelectedId       = (id: CardItemId) => dispatch(a.setSelectedId(id)),
+    
     serviceAddNewCard   = (companyId: ActivatedCompanyId, cardItem: CardItem) => dispatch(addNewCard({ companyId, cardItem })),
     viewEntities        = useSelector(s.selectViewEntitiesEntities),
     cardItems           = useSelector(s.selectCardItems),
@@ -40,8 +43,8 @@ export const useDashboard = (config: Config = {}) => {
     changeSelectedStyle = (data: ChangeSelectedStyle) => dispatch(a.changeSelectedStyle(data)),
     setSelectedStyle    = (data: SetSelectedStyle) => dispatch(a.setSelectedStyle(data)),
     stylesByCardItemId  = useSelector((state: StateSchema) => s.selectCardItemStyle(state, cardItemId as CardItemId)),
-    styleByField        = useSelector((state: StateSchema) => s.selectStyleByField(state, cardItemId as CardItemId, field as ItemStylesField)),
-
+    styleValueByField   = useSelector((state: StateSchema) => s.selectStyleByField(state, cardItemId as CardItemId, field as ItemStylesField)),
+    
     // DATA
     setInitial          = (state: StateSchemaDashboard) => dispatch(a.setInitial(state)),
     startEntities       = useSelector(s.selectStartEntities),
@@ -86,7 +89,9 @@ export const useDashboard = (config: Config = {}) => {
     changeSelectedStyle, 
     setSelectedStyle,
     stylesByCardItemId,
-    styleByField,
+    styleValueByField,
+    selectedId,
+    setSelectedId,
 
     // Data
     setInitial,

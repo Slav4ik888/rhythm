@@ -1,17 +1,19 @@
 import { FC, memo } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { ItemStylesField } from 'entities/card-item';
+import { CardItemId, ItemStylesField } from 'entities/card-item';
 import { ColorPicker } from 'shared/lib/colors-picker';
+import { useDashboard } from 'entities/dashboard';
 
 
 
 interface Props {
-  defaultValue : number | string | undefined
-  onChange     : (field: ItemStylesField, value: number | string) => void
+  cardItemId : CardItemId
+  onChange   : (field: ItemStylesField, value: number | string) => void
 }
 
 /** color */
-export const SetColor: FC<Props> = memo(({ defaultValue = '', onChange }) => {
+export const SetColor: FC<Props> = memo(({ cardItemId, onChange }) => {
+  const { styleValueByField } = useDashboard({ cardItemId, field: 'color' });
 
   const handleColor= (value: string) => onChange('color', value);
 
@@ -24,7 +26,7 @@ export const SetColor: FC<Props> = memo(({ defaultValue = '', onChange }) => {
         toolTitle = 'color'
       />
       <ColorPicker
-        defaultColor = {defaultValue as string}
+        defaultColor = {styleValueByField as string}
         onChange     = {handleColor}
       />
     </RowWrapper>

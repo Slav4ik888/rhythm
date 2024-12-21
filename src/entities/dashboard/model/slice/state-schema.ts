@@ -30,6 +30,7 @@ export interface StateSchemaDashboard {
   // -- View --
   editMode       : boolean // Режим редактирования
   viewEntities   : DashboardViewEntities
+  selectedId     : CardItemId // Id выбранного элемента (при editMode === true)
 
   // -- Data --
   // Загруженные данные из гугл-таблицы

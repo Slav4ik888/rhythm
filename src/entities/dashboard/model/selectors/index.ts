@@ -12,6 +12,7 @@ export const selectIsMounted            = (state: StateSchema) => selectModule(s
 
 // View
 export const selectEditMode             = (state: StateSchema) => selectModule(state).editMode;
+export const selectElectedId            = (state: StateSchema) => selectModule(state).selectedId;
 export const selectViewEntitiesEntities = (state: StateSchema) => selectModule(state).viewEntities || {};
 export const selectCardItems            = (state: StateSchema) => Object.values(selectViewEntitiesEntities(state));
 export const selectParentsCardItems     = (state: StateSchema) => getParents(selectCardItems(state));

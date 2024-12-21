@@ -8,7 +8,7 @@ import { getEntitiesByPeriod } from '../utils';
 import { StateSchemaDashboard } from './state-schema';
 import { ResGetGoogleData, calculateStartDate, getData } from 'features/dashboard';
 import { ChangeSelectedStyle, SetActivePeriod, SetDashboardView, SetSelectedPeriod, SetSelectedStyle } from './types';
-import { CardItem } from 'entities/card-item';
+import { CardItem, CardItemId } from 'entities/card-item';
 import { addEntities } from 'entities/base';
 import { AddNewCard, addNewCard } from 'features/dashboard/add-new-card';
 
@@ -31,6 +31,7 @@ const initialState: StateSchemaDashboard = {
   // View
   editMode       : false,
   viewEntities   : {},
+  selectedId     : '',
 
   // Data
   startEntities  : {},
@@ -71,15 +72,23 @@ export const slice = createSlice({
     },
 
     // VIEW
-    setEditMode: (state, { payload }: PayloadAction<boolean>) => {
-      state.editMode = payload;
-    },
-
     setDashboardView: (state, { payload }: PayloadAction<SetDashboardView>) => {
       // TODO: Открыть скобки, когда данные будут приходить с сервера, сейчас закрыто чтобы LS не затирались
       // state.viewEntities = addEntities(state.viewEntities, payload.cardItems);
 
       // LS.setDashboardView(payload.companyId, state.viewEntities); // Save viewEntities to local storage
+    },
+
+    setEditMode: (state, { payload }: PayloadAction<boolean>) => {
+      state.editMode = payload;
+      if (! payload) {
+        state.selectedId = '';
+      }
+    },
+    
+    /** Id выбранного элемента (при editMode === true) */
+    setSelectedId: (state, { payload }: PayloadAction<CardItemId>) => {
+      state.selectedId = payload;
     },
 
     /** Изменяем 1 выбранный стиль у элемента */

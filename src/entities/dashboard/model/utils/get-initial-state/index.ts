@@ -23,6 +23,7 @@ export const getInitialState = (companyId: ActivatedCompanyId): StateSchemaDashb
 
     // View
     editMode       : false,
+    selectedId     : '',
     viewEntities   : LS.getDashboardView(companyId) || {},
     
     startEntities  : LS.getDashboardState(companyId).startEntities  || {},

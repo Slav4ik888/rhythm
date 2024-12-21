@@ -1,37 +1,27 @@
-import { FC, memo, MouseEvent, useMemo, useState } from 'react';
+import { FC, memo, useEffect, useMemo, useState } from 'react';
 import { Box } from '@mui/material';
 import { f } from 'app/styles';
-import { ConfiguratorTextTitle, ConfiguratorTextfieldItem, RowWrapper } from 'shared/ui/configurators-components';
-import { ItemStylesField } from 'entities/card-item';
+import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
+import { CardItemId, ItemStylesField } from 'entities/card-item';
 import { ColorPicker } from 'shared/lib/colors-picker';
+import { useDashboard } from 'entities/dashboard';
+import { ChangeStyleTextfieldBoxShadow } from './textfield-change-component';
 
 
+const splitShadow = (value: number | string | undefined = '') => String(value).split('px').map(item => item.trim());
 
-const useStyles = () => ({
-  row: {
-    ...f('-c'),
-  },
-  item: {
-    bg: {
-      ...f('-c'),
-      mr    : 1,
-    },
-    field: {
-      width : '40px',
-    }
-  }
-});
+
 
 
 interface Props {
-  defaultValue : number | string | undefined
-  onChange     : (field: ItemStylesField, value: number | string) => void
+  cardItemId : CardItemId
+  onChange   : (field: ItemStylesField, value: number | string) => void
 }
 
 /** box-shadow */
-export const BoxShadow: FC<Props> = memo(({ defaultValue = '', onChange }) => {
-  const sx = useStyles();
-  const [oX = 1, oY = 1, bR = 3, sR = 0, clr = 'rgb(184 184 184)'] = useMemo(() => String(defaultValue).split('px').map(item => item.trim()), []);
+export const BoxShadow: FC<Props> = memo(({ cardItemId, onChange }) => {
+  const { styleValueByField } = useDashboard({ cardItemId, field: 'boxShadow' });
+  const [oX = 1, oY = 1, bR = 3, sR = 0, clr = 'rgb(184 184 184)'] = useMemo(() => splitShadow(styleValueByField), []);
 
   const [offsetX,      setOffsetX]      = useState(Number(oX));
   const [offsetY,      setOffsetY]      = useState(Number(oY));
@@ -39,22 +29,33 @@ export const BoxShadow: FC<Props> = memo(({ defaultValue = '', onChange }) => {
   const [spreadRadius, setSpreadRadius] = useState(Number(sR));
   const [color,        setColor]        = useState(clr);
 
-  const handleSetOffsetX = (e: MouseEvent, value: number | string) => {
+  useEffect(() => {
+    const [oX = 1, oY = 1, bR = 3, sR = 0, clr = 'rgb(184 184 184)'] = splitShadow(styleValueByField);
+
+    setOffsetX(Number(oX));
+    setOffsetY(Number(oY));
+    setBlurRadius(Number(bR));
+    setSpreadRadius(Number(sR));
+    setColor(clr);
+  }, [styleValueByField]);
+
+
+  const handleSetOffsetX = (field: ItemStylesField, value: number) => {
     setOffsetX(value as number);
     onChange('boxShadow', `${value}px ${offsetY}px ${blurRadius}px ${spreadRadius}px ${color}`);
   };
 
-  const handleSetOffsetY = (e: MouseEvent, value: number | string) => {
+  const handleSetOffsetY = (field: ItemStylesField, value: number) => {
     setOffsetY(value as number);
     onChange('boxShadow', `${offsetX}px ${value}px ${blurRadius}px ${spreadRadius}px ${color}`);
   };
 
-  const handleSetBlurRadius = (e: MouseEvent, value: number | string) => {
+  const handleSetBlurRadius = (field: ItemStylesField, value: number) => {
     setBlurRadius(value as number);
     onChange('boxShadow', `${offsetX}px ${offsetY}px ${value}px ${spreadRadius}px ${color}`);
   };
   
-  const handleSetSpreadRadius = (e: MouseEvent, value: number | string) => {
+  const handleSetSpreadRadius = (field: ItemStylesField, value: number) => {
     setSpreadRadius(value as number);
     onChange('boxShadow', `${offsetX}px ${offsetY}px ${blurRadius}px ${value}px ${color}`);
   };
@@ -73,38 +74,30 @@ export const BoxShadow: FC<Props> = memo(({ defaultValue = '', onChange }) => {
         toolTitle = 'box-shadow => offset-x | offset-y | blur-radius | spread-radius | color 1px 1px 3px 0px rgb(184 184 184)'
       />
 
-      <Box sx={sx.row}>
-        <ConfiguratorTextfieldItem
-          type         = 'number'
-          defaultValue = {oX}
-          sx           = {sx.item}
-          onCallback   = {handleSetOffsetX}
-          onSubmit     = {handleSetOffsetX}
+      <Box sx={{ ...f('-c') }}>
+        <ChangeStyleTextfieldBoxShadow
+          value      = {offsetX}
+          onCallback = {handleSetOffsetX}
+          onSubmit   = {handleSetOffsetX}
         />
-        <ConfiguratorTextfieldItem
-          type         = 'number'
-          defaultValue = {oY}
-          sx           = {sx.item}
-          onCallback   = {handleSetOffsetY}
-          onSubmit     = {handleSetOffsetY}
+        <ChangeStyleTextfieldBoxShadow
+          value      = {offsetY}
+          onCallback = {handleSetOffsetY}
+          onSubmit   = {handleSetOffsetY}
         />
-        <ConfiguratorTextfieldItem
-          type         = 'number'
-          defaultValue = {bR}
-          sx           = {sx.item}
-          onCallback   = {handleSetBlurRadius}
-          onSubmit     = {handleSetBlurRadius}
+        <ChangeStyleTextfieldBoxShadow
+          value      = {blurRadius}
+          onCallback = {handleSetBlurRadius}
+          onSubmit   = {handleSetBlurRadius}
         />
-        <ConfiguratorTextfieldItem
-          type         = 'number'
-          defaultValue = {sR}
-          sx           = {sx.item}
-          onCallback   = {handleSetSpreadRadius}
-          onSubmit     = {handleSetSpreadRadius}
+        <ChangeStyleTextfieldBoxShadow
+          value      = {spreadRadius}
+          onCallback = {handleSetSpreadRadius}
+          onSubmit   = {handleSetSpreadRadius}
         />
 
         <ColorPicker
-          defaultColor = {clr}
+          defaultColor = {color}
           onChange     = {handleSetColor}
         />
       </Box>

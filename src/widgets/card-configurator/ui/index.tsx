@@ -1,74 +1,69 @@
-import { FC, memo, useCallback } from 'react';
-import DrawerStyled from './styled';
-import { MDDivider } from 'shared/ui/mui-design-components';
-import { ConfiguratorSubHeader as SubHeader, ConfiguratorMainHeader as MainHeader } from 'shared/ui/configurators-components';
-import { CardItem, ItemStylesField } from 'entities/card-item';
+import { memo, useCallback } from 'react';
+import DrawerStyled from './styled-paper';
+import { ConfiguratorMainHeader as MainHeader } from 'shared/ui/configurators-components';
+import { ItemStylesField } from 'entities/card-item';
 import { useDashboard } from 'entities/dashboard';
 import { Dimensions } from './dimensions';
 import { useCompany } from 'entities/company';
 import { Indents } from './indents';
 import { Borders } from './borders';
 import { Colors } from './colors';
+import { Box } from '@mui/material';
+import { f } from 'app/styles';
 
 
 
-interface Props {
-  isOpen   : boolean
-  selected : CardItem | undefined
-  onClose  : () => void
-}
-
-export const CardItemConfigurator: FC<Props> = memo(({ isOpen, selected = {} as CardItem, onClose }) => {
+export const CardItemConfigurator = memo(() => {
   const { companyId } = useCompany();
-  const { id, styles } = selected;
-  const { changeSelectedStyle } = useDashboard();
+  const { editMode, selectedId, setEditMode, changeSelectedStyle } = useDashboard();
 
   const handleChange = useCallback((field: ItemStylesField, value: number | string) => {
-    changeSelectedStyle({ companyId, selectedId: id, field, value });
-  }, [selected, changeSelectedStyle]);
+    changeSelectedStyle({ companyId, selectedId, field, value });
+  }, [selectedId, changeSelectedStyle]);
 
-
-  const handleClose = () => onClose();
-
-
-  if (! isOpen || ! selected) return null
 
   return (
+    // @ts-ignore
     <DrawerStyled
       anchor     = 'right'
-      onClose    = {handleClose}
-      open       = {isOpen}
+      variant    = 'permanent'
       // @ts-ignore
-      ownerState = {{ isOpen }}
+      ownerState = {{ editMode }}
     >
-      <MainHeader onClose={handleClose} />
+      <MainHeader onClose={() => setEditMode(false)} />
+      {
+        selectedId
+          ? <>
+              <Dimensions cardItemId={selectedId} onChange={handleChange} />
+              <Indents cardItemId={selectedId} />
 
-      <Dimensions styles={styles} onChange={handleChange} />
-      <Indents cardItemId={id} />
+              {/* <SubHeader title='Выравнивание внутреннего содержимого' /> */}
+              {/* display - flex, block, inline ... */}
+              {/* flex-direction */}
+              {/* flex-wrap */}
+              {/* align-items */}
+              {/* justify-content */}
+              {/* <MDDivider /> */}
 
-      {/* <SubHeader title='Выравнивание внутреннего содержимого' /> */}
-      {/* display - flex, block, inline ... */}
-      {/* flex-direction */}
-      {/* flex-wrap */}
-      {/* align-items */}
-      {/* justify-content */}
-      {/* <MDDivider /> */}
+              <Borders cardItemId={selectedId} onChange={handleChange} />
+              <Colors cardItemId={selectedId} onChange={handleChange} />
 
-      <Borders styles={styles} onChange={handleChange} />
-      <Colors styles={styles} onChange={handleChange} />
+              {/* <SubHeader title='Текст'/> */}
+              {/* font-size */}
+              {/* font-weight */}
+              {/* font-style */}
+              {/* font-family */}
 
-      {/* <SubHeader title='Текст'/> */}
-      {/* font-size */}
-      {/* font-weight */}
-      {/* font-style */}
-      {/* font-family */}
-
-      {/* <SubHeader title='Управление'/> */}
-      {/* DisplayShow - показать/скрыть элемент, "скрытый" - показывается только в режиме редактирования */}
-      {/* Добавить новый элемент выше */}
-      {/* Добавить новый элемент ниже */}
-      {/* Удалить */}
-
+              {/* <SubHeader title='Управление'/> */}
+              {/* DisplayShow - показать/скрыть элемент, "скрытый" - показывается только в режиме редактирования */}
+              {/* Добавить новый элемент выше */}
+              {/* Добавить новый элемент ниже */}
+              {/* Удалить */}
+            </>
+          : <Box sx={{ ...f('-c-c'), mt: 8 }}>
+            Выберите элемент для редактирования
+          </Box>
+      }
     </DrawerStyled>
   )
 });

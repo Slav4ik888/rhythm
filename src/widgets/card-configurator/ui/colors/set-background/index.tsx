@@ -1,26 +1,33 @@
-import { FC, memo, useMemo, useState } from 'react';
+import { FC, memo, useEffect, useMemo, useState } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { ItemStylesField } from 'entities/card-item';
+import { CardItemId, ItemStylesField } from 'entities/card-item';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { Checkbox } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
 import { splitGradinet } from './split-gradient';
 import { SetLinearGradient } from './background';
+import { useDashboard } from 'entities/dashboard';
 
 
 
 interface Props {
-  defaultValue : number | string | undefined
-  onChange     : (field: ItemStylesField, value: number | string) => void
+  cardItemId : CardItemId
+  onChange   : (field: ItemStylesField, value: number | string) => void
 }
 
 
 /** background */
-export const SetBackground: FC<Props> = memo(({ defaultValue = '', onChange }) => {
-  const gradients = useMemo(() => splitGradinet(defaultValue as string), []);
+export const SetBackground: FC<Props> = memo(({ cardItemId, onChange }) => {
+  const { styleValueByField } = useDashboard({ cardItemId, field: 'background' });
+
+  const gradients = useMemo(() => splitGradinet(styleValueByField as string), [styleValueByField]);
 
   const [checked, setChecked] = useState(gradients.length === 3); // if 'linear-gradient(195deg, #bbdefb, #64b5f6)';
   const handleToggle = () => setChecked(! checked);
+  
+  useEffect(() => {
+    setChecked(gradients.length === 3);
+  }, [styleValueByField]);
   
   const handleBackground = (value: string) => onChange('background', value);
 
@@ -43,12 +50,12 @@ export const SetBackground: FC<Props> = memo(({ defaultValue = '', onChange }) =
       {
         checked
           ? <SetLinearGradient
-              defaultValue = {defaultValue}
+              defaultValue = {styleValueByField}
               gradients    = {gradients}
               onChange     = {onChange}
             />
           : <ColorPicker
-              defaultColor = {defaultValue as string}
+              defaultColor = {styleValueByField as string}
               onChange     = {handleBackground}
             />
       }

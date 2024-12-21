@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { Box, Typography } from '@mui/material';
 import { CardItemId, ItemStylesField } from 'entities/card-item';
 import { f } from 'app/styles';
@@ -26,24 +26,35 @@ const useStyles = (theme: CustomTheme) => ({
 
 
 interface Props {
-  title      : string
-  field      : ItemStylesField
-  cardItemId : CardItemId
-  onSubmit   : (field: ItemStylesField, value: number) => void
+  title?      : string
+  field       : ItemStylesField
+  disabled?   : boolean
+  cardItemId  : CardItemId
+  onCallback? : (field: ItemStylesField, value: number) => void
+  onSubmit    : (field: ItemStylesField, value: number) => void
 }
 
 
-export const ChangeStyleTextfieldNumberItem: FC<Props> = memo(({ title, field, cardItemId, onSubmit }) => {
+export const ChangeStyleTextfieldNumberItem: FC<Props> = memo(({ title, field, disabled, cardItemId, onCallback, onSubmit }) => {
   const sx = useStyles(useTheme());
-  const { styleByField } = useDashboard({ cardItemId, field });
+  const { styleValueByField } = useDashboard({ cardItemId, field });
   const hookOpen = useValue();
   
-  const handleOpen = () => hookOpen.setOpen();
+  const handleOpen = () => {
+    if (disabled) return;
+    hookOpen.setOpen();
+  };
 
-  const handleClose = (field: ItemStylesField, value: number) => {
+  const handleCloseCallback = useCallback((field: ItemStylesField, value: number) => {
+    if (onCallback) {
+      onCallback(field, value);
+    }
+  },[field, onCallback]);
+
+  const handleCloseSubmit = useCallback((field: ItemStylesField, value: number) => {
     onSubmit(field, value);
     hookOpen.setClose();
-  };
+  },[field, hookOpen.setClose, onSubmit]);
   
 
   return (
@@ -54,15 +65,18 @@ export const ChangeStyleTextfieldNumberItem: FC<Props> = memo(({ title, field, c
               sx      = {sx.textBox}
               onClick = {handleOpen}
             >
-              {styleByField}
+              {styleValueByField}
             </Box>
           : <TextfieldItemComponent
               field        = {field}
-              defaultValue = {styleByField as number}
-              onSubmit     = {handleClose}
+              defaultValue = {styleValueByField as number}
+              onCallback   = {handleCloseCallback}
+              onSubmit     = {handleCloseSubmit}
             />
       }
-      <Typography sx={sx.smallTitle}>{title}</Typography>
+      {
+        title && <Typography sx={sx.smallTitle}>{title}</Typography>
+      }
     </StyleItemWrapper>
   )
 });

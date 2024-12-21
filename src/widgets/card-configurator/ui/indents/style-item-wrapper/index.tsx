@@ -13,7 +13,7 @@ export const StyleItemWrapper: FC<Props> = memo(({ children }) => (
   <Box
     sx={{
       ...f('c-c-fs'),
-      width: '80px',
+      width: '70px',
     }}
   >
     {
