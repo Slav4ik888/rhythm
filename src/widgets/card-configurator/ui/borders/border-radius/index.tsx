@@ -1,6 +1,4 @@
 import { FC, memo } from 'react';
-import { Box, Typography } from '@mui/material';
-import { f } from 'app/styles';
 import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { CardItemId, ItemStylesField } from 'entities/card-item';
 import { useDashboard } from 'entities/dashboard';
@@ -21,16 +19,13 @@ export const BorderRadius: FC<Props> = memo(({ cardItemId, onChange }) => {
     <RowWrapper>
       <ConfiguratorTextTitle title='border-radius' toolTitle='border-radius' bold />
 
-      <Box sx={{ ...f('-c') }}>
-        <ChangeStyleItem
-          value      = {styleValueByField as number}
-          field      = 'borderRadius'
-          width      = '3rem'
-          onCallback = {onChange}
-          onSubmit   = {onChange}
-        />
-        <Typography ml={1}>px</Typography>
-      </Box>
+      <ChangeStyleItem
+        value      = {styleValueByField as number}
+        field      = 'borderRadius'
+        width      = '3rem'
+        onCallback = {onChange}
+        onSubmit   = {onChange}
+      />
     </RowWrapper>
   )
 });

@@ -19,12 +19,12 @@ interface Props {
 /** Отступы */
 export const Indents: FC<Props> = memo(({ cardItemId }) => {
   const { companyId } = useCompany();
-  const { stylesByCardItemId, setSelectedStyle } = useDashboard({ cardItemId });
+  const { stylesByCardItemId, serviceSetSelectedStyles } = useDashboard({ cardItemId });
 
 
   const handleSubmit = (field: ItemStylesField, value: number) => {
     // @ts-ignore
-    if (isUndefined(value) || value === '') return;
+    // if (isUndefined(value) || value === '') return;
 
     const getFields = (arr: string[]) => arr.map(item => field[0] + item) as ItemStylesField[]
     const newStyles = {
@@ -56,7 +56,7 @@ export const Indents: FC<Props> = memo(({ cardItemId }) => {
     }
     
     deleteFields(newStyles, fields);
-    setSelectedStyle({ companyId, selectedId: cardItemId, styles: newStyles });
+    serviceSetSelectedStyles({ companyId, selectedId: cardItemId, styles: newStyles });
   };
 
 

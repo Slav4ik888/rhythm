@@ -6,11 +6,14 @@ import { getPayloadError as getError } from 'shared/lib/errors';
 import { DashboardPeriodType } from '../config';
 import { getEntitiesByPeriod } from '../utils';
 import { StateSchemaDashboard } from './state-schema';
-import { ResGetGoogleData, calculateStartDate, getData } from 'features/dashboard';
-import { ChangeSelectedStyle, SetActivePeriod, SetDashboardView, SetSelectedPeriod, SetSelectedStyle } from './types';
+import {
+  ResGetGoogleData, calculateStartDate, getData, changeSelectedStyle, ChangeSelectedStyle, SetSelectedStyles
+ } from 'features/dashboard';
+import { SetActivePeriod, SetDashboardView, SetSelectedPeriod } from './types';
 import { CardItem, CardItemId } from 'entities/card-item';
 import { addEntities } from 'entities/base';
-import { AddNewCard, addNewCard } from 'features/dashboard/add-new-card';
+import { AddNewCard, addNewCard, setSelectedStyles } from 'features/dashboard';
+import {  } from 'features/dashboard';
 
 
 
@@ -91,22 +94,6 @@ export const slice = createSlice({
       state.selectedId = payload;
     },
 
-    /** Изменяем 1 выбранный стиль у элемента */
-    changeSelectedStyle: (state, { payload }: PayloadAction<ChangeSelectedStyle>) => {
-      const { selectedId, field, value, companyId } = payload;
-      // @ts-ignore
-      state.viewEntities[selectedId].styles[field] = value;
-
-      LS.setDashboardView(companyId, state.viewEntities); // Save viewEntities to local storage
-    },
-
-    /** Заменяем весь стиль у выбранного элемента */
-    setSelectedStyle: (state, { payload }: PayloadAction<SetSelectedStyle>) => {
-      const { selectedId, styles, companyId } = payload;
-      state.viewEntities[selectedId].styles = styles;
-
-      LS.setDashboardView(companyId, state.viewEntities); // Save viewEntities to local storage
-    },
 
     // DATA
     setActivePeriod: (state, { payload }: PayloadAction<SetActivePeriod>) => {
@@ -197,6 +184,46 @@ export const slice = createSlice({
         LS.setDashboardView(payload.companyId, state.viewEntities); // Save viewEntities to local storage
       })
       .addCase(addNewCard.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
+        state.loading = false;
+      }),
+
+    // CHANGE-SELECTED-STYLE Изменяем 1 выбранный стиль у элемента
+    builder
+      .addCase(changeSelectedStyle.pending, (state) => {
+        state.loading = true;
+        state.errors  = {};
+      })
+      .addCase(changeSelectedStyle.fulfilled, (state, { payload }: PayloadAction<ChangeSelectedStyle>) => {
+        const { selectedId, field, value, companyId } = payload;
+        // @ts-ignore
+        state.viewEntities[selectedId].styles[field] = value;
+
+        state.loading = false;
+        state.errors  = {};
+        
+        LS.setDashboardView(companyId, state.viewEntities); // Save viewEntities to local storage
+      })
+      .addCase(changeSelectedStyle.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
+        state.loading = false;
+      }),
+    
+    // SET-SELECTED-STYLES Заменяем весь стиль у выбранного элемента
+    builder
+      .addCase(setSelectedStyles.pending, (state) => {
+        state.loading = true;
+        state.errors  = {};
+      })
+      .addCase(setSelectedStyles.fulfilled, (state, { payload }: PayloadAction<SetSelectedStyles>) => {
+        const { selectedId, styles, companyId } = payload;
+        state.viewEntities[selectedId].styles = styles;
+        state.loading = false;
+        state.errors  = {};
+
+        LS.setDashboardView(companyId, state.viewEntities); // Save viewEntities to local storage
+      })
+      .addCase(setSelectedStyles.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       })

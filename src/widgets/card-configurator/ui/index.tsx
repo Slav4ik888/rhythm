@@ -17,11 +17,15 @@ import { Alignment } from './alignment';
 
 export const CardItemConfigurator = memo(() => {
   const { companyId } = useCompany();
-  const { editMode, selectedId, setEditMode, changeSelectedStyle } = useDashboard();
+  const { editMode, selectedId, viewEntities, setEditMode, serviceChangeSelectedStyle } = useDashboard();
 
   const handleChange = useCallback((field: ItemStylesField, value: number | string) => {
-    changeSelectedStyle({ companyId, selectedId, field, value });
-  }, [selectedId, changeSelectedStyle]);
+    const styleByField = viewEntities[selectedId].styles[field];
+
+    if (styleByField === value) return
+
+    serviceChangeSelectedStyle({ companyId, selectedId, field, value });
+  }, [selectedId, serviceChangeSelectedStyle]);
 
 
   return (

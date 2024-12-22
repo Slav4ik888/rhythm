@@ -3,13 +3,12 @@ import { actions as a } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
-import {  } from '../../types';
 import { StateSchemaDashboard } from '../../slice/state-schema';
-import { ChangeSelectedStyle, SetActivePeriod, SetSelectedPeriod, SetSelectedStyle } from '../../slice/types';
-import { getData } from 'features/dashboard';
+import { SetActivePeriod, SetSelectedPeriod,  } from '../../slice/types';
+import { changeSelectedStyle, getData, setSelectedStyles, SetSelectedStyles, ChangeSelectedStyle } from 'features/dashboard';
 import { ActivatedCompanyId, Company } from 'entities/company';
 import { CardItem, CardItemId, ItemStylesField } from 'entities/card-item';
-import { addNewCard } from 'features/dashboard/add-new-card';
+import { addNewCard } from 'features/dashboard/views/add-new-card';
 import { StateSchema } from 'app/providers/store';
 
 
@@ -38,13 +37,14 @@ export const useDashboard = (config: Config = {}) => {
     setSelectedId       = (id: CardItemId) => dispatch(a.setSelectedId(id)),
     
     serviceAddNewCard   = (companyId: ActivatedCompanyId, cardItem: CardItem) => dispatch(addNewCard({ companyId, cardItem })),
-    viewEntities        = useSelector(s.selectViewEntitiesEntities),
+    viewEntities        = useSelector(s.selectViewEntities),
     cardItems           = useSelector(s.selectCardItems),
     parentsCardItems    = useSelector(s.selectParentsCardItems),
     childrenCardItems   = useSelector((state: StateSchema) => s.selectChildrenCardItems(state, parentId as CardItemId)),
 
-    changeSelectedStyle = (data: ChangeSelectedStyle) => dispatch(a.changeSelectedStyle(data)),
-    setSelectedStyle    = (data: SetSelectedStyle) => dispatch(a.setSelectedStyle(data)),
+    serviceChangeSelectedStyle = (data: ChangeSelectedStyle) => dispatch(changeSelectedStyle(data)),
+    serviceSetSelectedStyles   = (data: SetSelectedStyles) => dispatch(setSelectedStyles(data)),
+
     stylesByCardItemId  = useSelector((state: StateSchema) => s.selectCardItemStyle(state, cardItemId as CardItemId)),
     styleValueByField   = useSelector((state: StateSchema) => s.selectStyleByField(state, cardItemId as CardItemId, field as ItemStylesField)),
     
@@ -90,8 +90,9 @@ export const useDashboard = (config: Config = {}) => {
     parentsCardItems,
     childrenCardItems,
     serviceAddNewCard,
-    changeSelectedStyle, 
-    setSelectedStyle,
+    serviceChangeSelectedStyle,
+    serviceSetSelectedStyles,
+
     stylesByCardItemId,
     styleValueByField,
     selectedId,

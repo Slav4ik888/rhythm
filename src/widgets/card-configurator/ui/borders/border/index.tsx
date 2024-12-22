@@ -27,16 +27,13 @@ export const Border: FC<Props> = memo(({ cardItemId, borderColor = 'none', onCha
       <ConfiguratorTextTitle title='border' toolTitle='border' bold />
 
       <Box sx={{ ...f('-c-fe') }}>
-        <Box sx={{ ...f('-c-fe') }}>
-          <ChangeStyleItem
-            value      = {styleValueByField as number}
-            field      = 'borderWidth'
-            width      = '2.5rem'
-            onCallback = {onChange}
-            onSubmit   = {onChange}
-          />
-          <Typography ml={1}>px</Typography>
-        </Box>
+        <ChangeStyleItem
+          value      = {styleValueByField as number}
+          field      = 'borderWidth'
+          width      = '2.5rem'
+          onCallback = {onChange}
+          onSubmit   = {onChange}
+        />
         
         <BorderStyle
           cardItemId = {cardItemId}

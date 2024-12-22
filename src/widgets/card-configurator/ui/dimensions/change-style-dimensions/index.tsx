@@ -25,6 +25,7 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ field, bold, toolTit
 
   useEffect(() => {
     setSelectedValue(getDimension(value));
+    setIsValuerNumber(isNum(value) || isUndefined(value));
   }, [value]);
 
 
@@ -44,7 +45,7 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ field, bold, toolTit
       <Box sx={{ ...f('-c') }}>
         {/* In px */}
         <ChangeStyleItem
-          value      = {(isValueNumber ? value : '') as number} // чтобы выводились только числа
+          value      = {'' || (isValueNumber && value) as number} // чтобы выводились только числа
           field      = {field}
           width      = '4rem'
           disabled   = {! isValueNumber}

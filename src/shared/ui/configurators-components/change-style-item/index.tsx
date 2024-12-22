@@ -6,7 +6,7 @@ import { useValue } from 'shared/lib/hooks';
 import { CustomTheme, SxCard, useTheme } from 'app/providers/theme';
 import { ConfiguratorTextfieldItem } from 'shared/ui/configurators-components';
 import { Tooltip } from 'shared/ui/tooltip';
-
+import ClearIcon from '@mui/icons-material/Clear';
 
 
 const useStyles = (theme: CustomTheme, sx?: SxCard, width?: string) => ({
@@ -14,6 +14,10 @@ const useStyles = (theme: CustomTheme, sx?: SxCard, width?: string) => ({
     ...f('c-c-fs'),
     width: width || '2.5rem',
     ...sx?.root,
+  },
+  valueBox: {
+    ...f('-fs'),
+    width: '100%',
   },
   textBox: {
     ...f('c-c-c'),
@@ -34,7 +38,12 @@ const useStyles = (theme: CustomTheme, sx?: SxCard, width?: string) => ({
     field: {
       width : sx?.root?.width || width || '2.5rem',
     }
-  }
+  },
+  clearBtn: {
+    cursor   : 'pointer',
+    fontSize : '0.9rem',
+    color    : theme.palette.dark.light,
+  },
 });
 
 
@@ -64,36 +73,46 @@ export const ChangeStyleItem: FC<Props> = memo(({ sx: style, value, width, field
     hookOpen.setOpen();
   };
 
-  const handleCloseCallback = useCallback((e: MouseEvent, _value: number | string) => {
+  const handleCallback = useCallback((e: MouseEvent, _value: number | string) => {
     if (onCallback) {
       onCallback(field as ItemStylesField, _value as number);
     }
   },[value, field, onCallback]);
 
-  const handleCloseSubmit = useCallback((e: MouseEvent, _value: number | string) => {
+  const handleSubmit = useCallback((e: MouseEvent, _value: number | string) => {
     onSubmit(field as ItemStylesField, _value as number);
     hookOpen.setClose();
   },[value, field, hookOpen.setClose, onSubmit]);
   
+  const handleClear = () => {
+    onSubmit(field as ItemStylesField, '' as unknown as number);
+    hookOpen.setClose();
+  };
+
 
   return (
     <Box sx={sx.wrapper}>
-      {
-        ! hookOpen.open
-          ? <Tooltip title={toolTitle} sxSpan={{ width: '100%' }}>
-              <Box sx={sx.textBox} onClick={handleOpen}>
-                {value}
-              </Box>
-            </Tooltip>
+      <Box sx={sx.valueBox}>
+        {
+          ! hookOpen.open
+            ? <Tooltip title={toolTitle} sxSpan={{ width: '100%' }}>
+                <Box sx={sx.textBox} onClick={handleOpen}>
+                  {value}
+                </Box>
+              </Tooltip>
 
-          : <ConfiguratorTextfieldItem
-              type         = 'number'
-              defaultValue = {value as number}
-              sx           = {sx.item}
-              onCallback   = {handleCloseCallback}
-              onSubmit     = {handleCloseSubmit}
-            />
-      }
+            : <ConfiguratorTextfieldItem
+                type         = 'number'
+                defaultValue = {value as number}
+                sx           = {sx.item}
+                onCallback   = {handleCallback}
+                onSubmit     = {handleSubmit}
+              />
+        }
+        {
+          value ? <ClearIcon sx={sx.clearBtn} onClick={handleClear} /> : ''
+        }
+      </Box>
       {
         title && <Typography sx={sx.smallTitle}>{title}</Typography>
       }
