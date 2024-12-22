@@ -10,6 +10,8 @@ import { Borders } from './borders';
 import { Colors } from './colors';
 import { Box } from '@mui/material';
 import { f } from 'app/styles';
+import { CardId } from './id';
+import { Alignment } from './alignment';
 
 
 
@@ -34,17 +36,10 @@ export const CardItemConfigurator = memo(() => {
       {
         selectedId
           ? <>
+              <CardId cardItemId={selectedId} />
+              <Alignment cardItemId={selectedId} onChange={handleChange} />
               <Dimensions cardItemId={selectedId} onChange={handleChange} />
               <Indents cardItemId={selectedId} />
-
-              {/* <SubHeader title='Выравнивание внутреннего содержимого' /> */}
-              {/* display - flex, block, inline ... */}
-              {/* flex-direction */}
-              {/* flex-wrap */}
-              {/* align-items */}
-              {/* justify-content */}
-              {/* <MDDivider /> */}
-
               <Borders cardItemId={selectedId} onChange={handleChange} />
               <Colors cardItemId={selectedId} onChange={handleChange} />
 

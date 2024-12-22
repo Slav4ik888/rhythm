@@ -1,11 +1,11 @@
 import { FC, memo } from 'react';
 import { Box, Typography } from '@mui/material';
 import { f } from 'app/styles';
-import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
+import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { ItemStylesField, CardItemId } from 'entities/card-item';
 import { ColorPicker } from 'shared/lib/colors-picker';
-import { ChangeStyleTextfieldNumberItem } from '../../indents/textfield-number-item';
 import { BorderStyle } from './border-style';
+import { useDashboard } from 'entities/dashboard';
 
 
 
@@ -17,8 +17,8 @@ interface Props {
 
 /** border: width style color */
 export const Border: FC<Props> = memo(({ cardItemId, borderColor = 'none', onChange }) => {
+  const { styleValueByField } = useDashboard({ cardItemId, field: 'borderWidth' });
 
-  const handleSubmitWidth = (field: ItemStylesField, value: number | string) => onChange('borderWidth', value);
   const handleSubmitColor = (value: string) => onChange('borderColor', value);
 
 
@@ -28,11 +28,12 @@ export const Border: FC<Props> = memo(({ cardItemId, borderColor = 'none', onCha
 
       <Box sx={{ ...f('-c-fe') }}>
         <Box sx={{ ...f('-c-fe') }}>
-          <ChangeStyleTextfieldNumberItem
-            field        = 'borderWidth'
-            cardItemId   = {cardItemId}
-            onCallback   = {handleSubmitWidth}
-            onSubmit     = {handleSubmitWidth}
+          <ChangeStyleItem
+            value      = {styleValueByField as number}
+            field      = 'borderWidth'
+            width      = '2.5rem'
+            onCallback = {onChange}
+            onSubmit   = {onChange}
           />
           <Typography ml={1}>px</Typography>
         </Box>

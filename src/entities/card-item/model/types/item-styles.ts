@@ -2,6 +2,12 @@
 export type BorderStyleType = 'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'ridge' | 'inset' | 'outset' | 'none';
 export const arrayBorderStyles = ['solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset', 'none'];
 
+export type FlexDirectionType  = 'row' | 'column' | 'row-reverse' | 'column-reverse'
+export type FlexWrapType       = 'wrap' | 'nowrap'
+export type AlignItemsType     = 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch'
+export type JustifyContentType = 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'space-between' | 'space-around' | 'space-evenly' | 'stretch'
+
+
 export interface ItemStyles {
   width?     : number | string // In px | '100%' | 'auto' | 'max-content' | 'min-content'
   minWidth?  : number | string
@@ -11,6 +17,12 @@ export interface ItemStyles {
   minHeight? : number | string
   maxHeight? : number | string
   
+  display?        : 'flex'
+  flexDirection?  : FlexDirectionType
+  flexWrap?       : FlexWrapType
+  alignItems?     : AlignItemsType
+  justifyContent? : JustifyContentType
+
 
   // padding - 1 === 8px
   p? : number

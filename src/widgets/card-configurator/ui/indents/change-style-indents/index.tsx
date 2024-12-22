@@ -2,9 +2,8 @@ import { FC, memo } from 'react';
 import { Box } from '@mui/material';
 import { CardItemId, ItemStylesField } from 'entities/card-item';
 import { f } from 'app/styles';
-import { ChangeStyleTextfieldNumberItem as NumberItem } from '../textfield-number-item';
-import { StyleItemWrapper } from '../style-item-wrapper';
-import { ConfiguratorTextTitle } from 'shared/ui/configurators-components';
+import { ChangeStyleItem, ConfiguratorTextTitle } from 'shared/ui/configurators-components';
+import { useDashboard } from 'entities/dashboard';
 
 
 
@@ -32,58 +31,66 @@ interface Props {
 /** Отступы */
 export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTitle, title, cardItemId, onChange }) => {
   const sx = useStyles();
+  const { stylesByCardItemId } = useDashboard({ cardItemId });
 
 
   return (
     <Box sx={sx.root}>
       <Box sx={sx.row}>
-        <StyleItemWrapper>
+        <Box sx={{ ...f('c-c-fs') }}>
           <ConfiguratorTextTitle title={title} toolTitle={toolTitle} bold={bold} />
-        </StyleItemWrapper>
+        </Box>
 
-        <NumberItem
+        <ChangeStyleItem
           title      = 'Сверху'
+          width      = '4rem'
           field      = {baseField + 't' as ItemStylesField}
-          cardItemId = {cardItemId}
+          value      = {stylesByCardItemId[baseField + 't' as ItemStylesField] as number}
           onSubmit   = {onChange}
         />
-        <NumberItem
+        <ChangeStyleItem
           title      = 'Общие'
+          width      = '4rem'
           field      = {baseField}
-          cardItemId = {cardItemId}
+          value      = {stylesByCardItemId[baseField] as number}
           onSubmit   = {onChange}
         />
-        <NumberItem
+        <ChangeStyleItem
           title      = 'Верх/низ'
+          width      = '4rem'
           field      = {baseField + 'y' as ItemStylesField}
-          cardItemId = {cardItemId}
+          value      = {stylesByCardItemId[baseField + 'y' as ItemStylesField] as number}
           onSubmit   = {onChange}
         />
       </Box>
 
       <Box sx={sx.row}>
-        <NumberItem
+        <ChangeStyleItem
           title      = 'Слева'
+          width      = '4rem'
           field      = {baseField + 'l' as ItemStylesField}
-          cardItemId = {cardItemId}
+          value      = {stylesByCardItemId[baseField + 'l' as ItemStylesField] as number}
           onSubmit   = {onChange}
         />
-        <NumberItem
+        <ChangeStyleItem
           title      = 'Снизу'
+          width      = '4rem'
           field      = {baseField + 'b' as ItemStylesField}
-          cardItemId = {cardItemId}
+          value      = {stylesByCardItemId[baseField + 'b' as ItemStylesField] as number}
           onSubmit   = {onChange}
         />
-        <NumberItem
+        <ChangeStyleItem
           title      = 'Справа'
+          width      = '4rem'
           field      = {baseField + 'r' as ItemStylesField}
-          cardItemId = {cardItemId}
+          value      = {stylesByCardItemId[baseField + 'r' as ItemStylesField] as number}
           onSubmit   = {onChange}
         />
-        <NumberItem
+        <ChangeStyleItem
           title      = 'Прав/лев'
+          width      = '4rem'
           field      = {baseField + 'x' as ItemStylesField}
-          cardItemId = {cardItemId}
+          value      = {stylesByCardItemId[baseField + 'x' as ItemStylesField] as number}
           onSubmit   = {onChange}
         />
       </Box>

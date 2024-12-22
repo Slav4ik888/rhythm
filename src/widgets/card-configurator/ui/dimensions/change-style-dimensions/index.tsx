@@ -1,36 +1,32 @@
-import { FC, memo, MouseEvent, useEffect, useState } from 'react';
+import { FC, memo, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
-import { CardItemId, ItemStylesField } from 'entities/card-item';
+import { ItemStylesField } from 'entities/card-item';
 import { f } from 'app/styles';
-import { isNum, isStr, isUndefined } from 'shared/lib/validators';
+import { isNum, isUndefined } from 'shared/lib/validators';
 import { SelectValue } from '../../../../../shared/ui/configurators-components/select';
-import { ConfiguratorTextTitle, ConfiguratorTextfieldItem, RowWrapper } from 'shared/ui/configurators-components';
+import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { getDimension } from './get-dimension';
-import { ChangeStyleTextfieldNumberItem } from '../../indents/textfield-number-item';
 
 
 
 interface Props {
   title        : string
-  cardItemId   : CardItemId
   bold?        : boolean
   toolTitle    : string
   field        : ItemStylesField
-  defaultValue : number | string | undefined
+  value        : number | string | undefined
   onChange     : (field: ItemStylesField, value: number | string) => void
 }
 
 /** Размеры */
-export const ChangeStyleItemDimensions: FC<Props> = memo(({ field, cardItemId, bold, toolTitle, title, defaultValue = '', onChange }) => {
+export const ChangeStyleItemDimensions: FC<Props> = memo(({ field, bold, toolTitle, title, value = '', onChange }) => {
   const [selectedValue, setSelectedValue] = useState<string>(''); // Если не строка или она пуста то это число
-  const [isValueNumber, setIsValuerNumber] = useState(isNum(defaultValue) || isUndefined(defaultValue));
+  const [isValueNumber, setIsValuerNumber] = useState(isNum(value) || isUndefined(value));
 
   useEffect(() => {
-    setSelectedValue(getDimension(defaultValue));
-  }, [defaultValue]);
+    setSelectedValue(getDimension(value));
+  }, [value]);
 
-
-  const handleSubmit = (field: ItemStylesField, value: number | string) => onChange(field, value);
 
   const handleSelectedValue = (selected: string) => {
     setSelectedValue(selected);
@@ -47,19 +43,13 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ field, cardItemId, b
 
       <Box sx={{ ...f('-c') }}>
         {/* In px */}
-        <ChangeStyleTextfieldNumberItem
-          title      = {title}
+        <ChangeStyleItem
+          value      = {(isValueNumber ? value : '') as number} // чтобы выводились только числа
           field      = {field}
+          width      = '4rem'
           disabled   = {! isValueNumber}
-          cardItemId = {cardItemId}
-          onSubmit   = {handleSubmit}
+          onSubmit   = {onChange}
         />
-        {/* <ConfiguratorTextfieldItem
-          type         = 'number'
-          defaultValue = {defaultValue}
-          disabled     = {! isValueNumber}
-          onSubmit     = {handleSubmit}
-        /> */}
 
         {/* In text */}
         <SelectValue

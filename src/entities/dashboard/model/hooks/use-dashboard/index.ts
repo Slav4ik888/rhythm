@@ -16,12 +16,13 @@ import { StateSchema } from 'app/providers/store';
 
 interface Config {
   cardItemId? : CardItemId
+  parentId?   : CardItemId
   field?      : ItemStylesField
 }
 
 export const useDashboard = (config: Config = {}) => {
   const
-    { cardItemId, field } = config,
+    { cardItemId, field, parentId } = config,
     dispatch = useAppDispatch(),
 
     loading             = useSelector(s.selectLoading),
@@ -33,13 +34,15 @@ export const useDashboard = (config: Config = {}) => {
     // VIEW
     editMode            = useSelector(s.selectEditMode),
     setEditMode         = (editMode: boolean) => dispatch(a.setEditMode(editMode)),
-    selectedId          = useSelector(s.selectElectedId),
+    selectedId          = useSelector(s.selectSelectedId),
     setSelectedId       = (id: CardItemId) => dispatch(a.setSelectedId(id)),
     
     serviceAddNewCard   = (companyId: ActivatedCompanyId, cardItem: CardItem) => dispatch(addNewCard({ companyId, cardItem })),
     viewEntities        = useSelector(s.selectViewEntitiesEntities),
     cardItems           = useSelector(s.selectCardItems),
     parentsCardItems    = useSelector(s.selectParentsCardItems),
+    childrenCardItems   = useSelector((state: StateSchema) => s.selectChildrenCardItems(state, parentId as CardItemId)),
+
     changeSelectedStyle = (data: ChangeSelectedStyle) => dispatch(a.changeSelectedStyle(data)),
     setSelectedStyle    = (data: SetSelectedStyle) => dispatch(a.setSelectedStyle(data)),
     stylesByCardItemId  = useSelector((state: StateSchema) => s.selectCardItemStyle(state, cardItemId as CardItemId)),
@@ -85,6 +88,7 @@ export const useDashboard = (config: Config = {}) => {
     viewEntities,
     cardItems,
     parentsCardItems,
+    childrenCardItems,
     serviceAddNewCard,
     changeSelectedStyle, 
     setSelectedStyle,

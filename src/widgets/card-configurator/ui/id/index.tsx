@@ -1,0 +1,25 @@
+import { FC, memo } from 'react';
+import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
+import { CardItemId } from 'entities/card-item';
+import { IdTitle } from './id-title';
+import { DashboardAddNewCardBtn } from 'features/dashboard';
+
+
+
+export type BorderStyle = 'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'ridge' | 'inset' | 'outset' | 'none';
+
+
+interface Props {
+  cardItemId: CardItemId
+}
+
+/** CardId */
+export const CardId: FC<Props> = memo(({ cardItemId }) => {
+
+  return (
+    <SubHeader title='Элемент'>
+      <IdTitle cardItemId={cardItemId} />
+      <DashboardAddNewCardBtn parentId={cardItemId} />
+    </SubHeader>
+  )
+});

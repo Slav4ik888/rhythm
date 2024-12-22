@@ -5,7 +5,11 @@ export interface ParentsCardItems {
   [parentId: string]: CardItem[]
 }
 
-/** Returns ParentsCardItem */
+/**
+ * Returns object ParentsCardItem {
+ *   [parentId: string]: CardItem[]
+ * }
+ */
 export const getParents = (items: CardItem[]): ParentsCardItems => {
 
   const parents: ParentsCardItems = {};

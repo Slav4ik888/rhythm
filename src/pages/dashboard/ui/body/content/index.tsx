@@ -21,7 +21,7 @@ export const DashboardBodyContent = memo(() => {
 
       
   return (
-    <Box sx={{ ...f()}}>
+    <Box sx={{ ...f() }}>
       <DashboardBodyContentRender
         parentsCardItems = {parentsCardItems}
         parentId         = 'no_parentId'

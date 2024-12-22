@@ -1,16 +1,14 @@
 import { FC, memo, useEffect, useMemo, useState } from 'react';
 import { Box } from '@mui/material';
 import { f } from 'app/styles';
-import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
+import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { CardItemId, ItemStylesField } from 'entities/card-item';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { useDashboard } from 'entities/dashboard';
-import { ChangeStyleTextfieldBoxShadow } from './textfield-change-component';
+
 
 
 const splitShadow = (value: number | string | undefined = '') => String(value).split('px').map(item => item.trim());
-
-
 
 
 interface Props {
@@ -71,27 +69,35 @@ export const BoxShadow: FC<Props> = memo(({ cardItemId, onChange }) => {
       <ConfiguratorTextTitle
         bold
         title     = 'box-shadow'
-        toolTitle = 'box-shadow => offset-x | offset-y | blur-radius | spread-radius | color 1px 1px 3px 0px rgb(184 184 184)'
+        toolTitle = '1px 1px 3px 0px rgb(184 184 184) => offset-x | offset-y | blur-radius | spread-radius | color'
       />
 
       <Box sx={{ ...f('-c') }}>
-        <ChangeStyleTextfieldBoxShadow
+        <ChangeStyleItem
           value      = {offsetX}
+          toolTitle  = 'offset-x'
+          sx         = {{ root: { mx: 1 }}}
           onCallback = {handleSetOffsetX}
           onSubmit   = {handleSetOffsetX}
         />
-        <ChangeStyleTextfieldBoxShadow
+        <ChangeStyleItem
           value      = {offsetY}
+          toolTitle  = 'offset-y'
+          sx         = {{ root: { mx: 1 }}}
           onCallback = {handleSetOffsetY}
           onSubmit   = {handleSetOffsetY}
         />
-        <ChangeStyleTextfieldBoxShadow
+        <ChangeStyleItem
           value      = {blurRadius}
+          toolTitle  = 'blur-radius'
+          sx         = {{ root: { mx: 1 }}}
           onCallback = {handleSetBlurRadius}
           onSubmit   = {handleSetBlurRadius}
         />
-        <ChangeStyleTextfieldBoxShadow
+        <ChangeStyleItem
           value      = {spreadRadius}
+          toolTitle  = 'spread-radius'
+          sx         = {{ root: { mx: 1 }}}
           onCallback = {handleSetSpreadRadius}
           onSubmit   = {handleSetSpreadRadius}
         />

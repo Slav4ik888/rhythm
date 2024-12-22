@@ -21,24 +21,21 @@ export const Dimensions: FC<Props> = memo(({ cardItemId, onChange }) => {
         field        = 'width'
         title        = 'width'
         toolTitle    = 'Ширина элемента'
-        defaultValue = {styles.width}
-        cardItemId   = {cardItemId}
+        value        = {styles.width}
         onChange     = {onChange}
       />
       <ChangeStyle
         field        = 'minWidth'
         title        = 'minWidth'
         toolTitle    = 'Мин ширина элемента'
-        defaultValue = {styles.minWidth}
-        cardItemId   = {cardItemId}
+        value        = {styles.minWidth}
         onChange     = {onChange}
       />
       <ChangeStyle
         field        = 'maxWidth'
         title        = 'maxWidth'
         toolTitle    = 'Макс ширина элемента'
-        defaultValue = {styles.maxWidth}
-        cardItemId   = {cardItemId}
+        value        = {styles.maxWidth}
         onChange     = {onChange}
       />
       <ChangeStyle
@@ -46,24 +43,21 @@ export const Dimensions: FC<Props> = memo(({ cardItemId, onChange }) => {
         field        = 'height'
         title        = 'height'
         toolTitle    = 'Высота элемента'
-        defaultValue = {styles.height}
-        cardItemId   = {cardItemId}
+        value        = {styles.height}
         onChange     = {onChange}
       />
       <ChangeStyle
         field        = 'minHeight'
         title        = 'minHeight'
         toolTitle    = 'Мин высота элемента'
-        defaultValue = {styles.minHeight}
-        cardItemId   = {cardItemId}
+        value        = {styles.minHeight}
         onChange     = {onChange}
       />
       <ChangeStyle
         field        = 'maxHeight'
         title        = 'maxHeight'
         toolTitle    = 'Макс высота элемента'
-        defaultValue = {styles.maxHeight}
-        cardItemId   = {cardItemId}
+        value        = {styles.maxHeight}
         onChange     = {onChange}
       />
     </SubHeader>

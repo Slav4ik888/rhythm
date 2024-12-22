@@ -1,2 +1,5 @@
-export { CardItem, ItemStyles, CardItemId, ItemStylesField, arrayBorderStyles, BorderStyleType } from './model/types'
-export { stylesToSx, sxToStyles } from './model/utils'
+export {
+  CardItem, ItemStyles, CardItemId, ItemStylesField, arrayBorderStyles, BorderStyleType,
+  FlexDirectionType, FlexWrapType, AlignItemsType, JustifyContentType
+ } from './model/types'
+export { stylesToSx, sxToStyles, createNextOrder } from './model/utils'

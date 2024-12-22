@@ -1,7 +1,7 @@
 import { StateSchema } from 'app/providers/store';
 import { CardItemId, ItemStylesField } from 'entities/card-item';
 import { StateSchemaDashboard } from '../slice/state-schema';
-import { getParents } from '../utils';
+import { getChildren, getParents } from '../utils';
 
 
 export const selectModule               = (state: StateSchema) => state.dashboard || {} as StateSchemaDashboard;
@@ -12,11 +12,11 @@ export const selectIsMounted            = (state: StateSchema) => selectModule(s
 
 // View
 export const selectEditMode             = (state: StateSchema) => selectModule(state).editMode;
-export const selectElectedId            = (state: StateSchema) => selectModule(state).selectedId;
+export const selectSelectedId           = (state: StateSchema) => selectModule(state).selectedId;
 export const selectViewEntitiesEntities = (state: StateSchema) => selectModule(state).viewEntities || {};
 export const selectCardItems            = (state: StateSchema) => Object.values(selectViewEntitiesEntities(state));
 export const selectParentsCardItems     = (state: StateSchema) => getParents(selectCardItems(state));
-
+export const selectChildrenCardItems    = (state: StateSchema, parentId: CardItemId) => getChildren(selectCardItems(state), parentId);
 export const selectCardItemById         = (state: StateSchema, cardItemId: CardItemId) => selectViewEntitiesEntities(state)[cardItemId] || {};
 export const selectCardItemStyle        = (state: StateSchema, cardItemId: CardItemId) => selectCardItemById(state, cardItemId).styles || {};
 export const selectStyleByField         = (state: StateSchema, cardItemId: CardItemId, field: ItemStylesField) => selectCardItemStyle(state, cardItemId)[field];

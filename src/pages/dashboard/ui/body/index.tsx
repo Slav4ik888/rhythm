@@ -5,16 +5,17 @@ import { COMPANIES_CONFIG } from '../../model/config';
 import { CircularProgress } from 'shared/ui/circular-progress';
 import { DashboardBodyWrapper } from './wrapper';
 import { PageLoader } from 'widgets';
-import { DashboardAddNewCardBtn, DashboardSetEditBtn } from 'features/dashboard';
-import { DashboardBody_demo_pecar } from './templates';
+import { DashboardSetEditBtn } from 'features/dashboard';
+// import { DashboardBody_demo_pecar } from './templates';
 import { DashboardBodyContent } from './content';
+import { DashboardBodyPanel } from './panel';
 
 
 
 export const DashboardBody = memo(() => {
   console.log('DashboardBody ');
   const { companyId } = useCompany();
-  const { isMounted, setInitial } = useDashboard();
+  const { isMounted, editMode, setInitial } = useDashboard();
 
 
   useEffect(() => {
@@ -30,7 +31,9 @@ export const DashboardBody = memo(() => {
   return companyId
     ? <DashboardBodyWrapper>
         <DashboardSetEditBtn />
-        <DashboardAddNewCardBtn />
+        {
+          editMode && <DashboardBodyPanel />
+        }
         <DashboardBodyContent />
       
         {COMPANIES_CONFIG[companyId].dashboard}
