@@ -1,5 +1,5 @@
-import { DashboardPeriodDates } from '../../../../types';
-import { getStartIdx } from '..';
+import { DashboardPeriodDates } from '../../../../../types';
+import { getEndIdx } from '..';
 import { DashboardDates } from 'entities/dashboard/model/slice/state-schema';
 
 
@@ -53,30 +53,30 @@ const startDates: DashboardDates = {
 
 
 
-describe('getStartIdx', () => {
+describe('getEndIdx', () => {
   test('valid data', () => {
-    expect(getStartIdx(startDates['мес'], { 
+    expect(getEndIdx(startDates['нед'], { 
       start : 1690491600001, // "2023-07-27T21:00:00.001Z"
-      end   : 1714165200001  // "2024-04-26T21:00:00.001Z"
-    })).toEqual(7);
+      end   : 1714165200001  // "2024-04-27T21:00:00.001Z"
+    })).toEqual(12);
   });
 
   test('period is undefined', () => {
-    expect(getStartIdx(startDates['мес'], undefined as unknown as DashboardPeriodDates)).toEqual(0);
+    expect(getEndIdx(startDates['мес'], undefined as unknown as DashboardPeriodDates)).toEqual(19);
   });
 
-  test('period start -1690491600001', () => {
-    expect(getStartIdx(startDates['мес'], { 
-      start : -1690491600001,
-      end   : 1714165200001  // "2024-04-26T21:00:00.001Z"
+  test('period end -1690491600001', () => {
+    expect(getEndIdx(startDates['мес'], { 
+      start : 1690491600001,
+      end   : -1690491600001
     })).toEqual(0);
   });
-  test('period start is undefined', () => {
-    expect(getStartIdx(startDates['мес'], { 
-      start : undefined,
-      end   : 1714165200001  // "2024-04-26T21:00:00.001Z"
-    })).toEqual(0);
+  test('period end is undefined', () => {
+    expect(getEndIdx(startDates['мес'], { 
+      start : 1690491600001,
+      end   : undefined
+    })).toEqual(19);
   });
 });
 
-// npm run test:unit get-start-idx.test.ts
+// npm run test:unit get-end-idx.test.ts

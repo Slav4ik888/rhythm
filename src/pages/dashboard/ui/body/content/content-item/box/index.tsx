@@ -1,4 +1,4 @@
-import { FC, memo, MouseEventHandler, useCallback } from 'react';
+import { FC, memo, MouseEventHandler, useCallback, useMemo, useState } from 'react';
 import { CardItem, CardItemId, stylesToSx, ItemStyles } from 'entities/card-item';
 import { Box } from '@mui/material';
 import { DashboardBodyContentRender } from '../../render-items';
@@ -6,7 +6,7 @@ import { ParentsCardItems, useDashboard } from 'entities/dashboard';
 
 
 
-const useStyles = (styles: ItemStyles, editMode: boolean) => {
+const useStyles = (styles: ItemStyles, editMode: boolean, hover?: boolean) => {
   const root: any = {
       ...stylesToSx(styles),
   };
@@ -41,10 +41,25 @@ export const DashboardBodyContentItemBox: FC<Props> = memo(({ parentsCardItems, 
   };
 
 
+  // const handleMouseEnter = (e: any) => {
+  //   console.log('Enter: ', item.id);
+  //   e.stopPropagation();
+  //   setHover(true);
+  // };
+
+  // const handleMouseLeave = (e: any) => {
+  //   console.log('Leave: ', item.id);
+  //   e.stopPropagation();
+  //   setHover(false);
+  // };
+
+
   return (
     <Box
       id      = {item.id}
       sx      = {sx.root}
+      // onMouseEnter={handleMouseEnter}
+      // onMouseLeave={handleMouseLeave}
       onClick = {handleClick}
     >
       {/* {

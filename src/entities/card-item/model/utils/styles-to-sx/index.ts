@@ -9,7 +9,9 @@ const getIndents = (v: any) => v ? v / 8 : v;
 
 /**
  * Base format styles transform to sx
+ * 
  * DB => sx
+ * 
  * DB => display user
  */
 export const stylesToSx = (style?: ItemStyles): ItemStyles => {

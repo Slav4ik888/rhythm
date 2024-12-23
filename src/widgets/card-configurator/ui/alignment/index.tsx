@@ -1,8 +1,6 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { CardItemId, ItemStylesField } from 'entities/card-item';
-import { ChangeStyleItemDimensions as ChangeStyle } from '../dimensions/change-style-dimensions';
-import { useDashboard } from 'entities/dashboard';
 import { PanelAlignment } from './panel';
 
 
@@ -14,7 +12,6 @@ interface Props {
 
 /** Выравнивание внутреннего содержимого */
 export const Alignment: FC<Props> = memo(({ cardItemId, onChange }) => {
-  const { stylesByCardItemId: styles } = useDashboard({ cardItemId });
   
   return (
     <SubHeader title='Выравнивание'>

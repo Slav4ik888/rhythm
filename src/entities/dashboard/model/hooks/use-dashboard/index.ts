@@ -5,7 +5,7 @@ import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
 import { StateSchemaDashboard } from '../../slice/state-schema';
 import { SetActivePeriod, SetSelectedPeriod,  } from '../../slice/types';
-import { changeSelectedStyle, getData, setSelectedStyles, SetSelectedStyles, ChangeSelectedStyle } from 'features/dashboard';
+import { changeSelectedStyle, getData, setSelectedStyles, SetSelectedStyles, ChangeSelectedStyle, deleteCard, DeleteCard } from 'features/dashboard';
 import { ActivatedCompanyId, Company } from 'entities/company';
 import { CardItem, CardItemId, ItemStylesField } from 'entities/card-item';
 import { addNewCard } from 'features/dashboard/views/add-new-card';
@@ -48,6 +48,8 @@ export const useDashboard = (config: Config = {}) => {
     stylesByCardItemId  = useSelector((state: StateSchema) => s.selectCardItemStyle(state, cardItemId as CardItemId)),
     styleValueByField   = useSelector((state: StateSchema) => s.selectStyleByField(state, cardItemId as CardItemId, field as ItemStylesField)),
     
+    serviceDeleteCard   = (data: DeleteCard) => dispatch(deleteCard(data)),
+
     // DATA
     setInitial          = (state: StateSchemaDashboard) => dispatch(a.setInitial(state)),
     startEntities       = useSelector(s.selectStartEntities),
@@ -97,6 +99,8 @@ export const useDashboard = (config: Config = {}) => {
     styleValueByField,
     selectedId,
     setSelectedId,
+
+    serviceDeleteCard,
 
     // Data
     setInitial,

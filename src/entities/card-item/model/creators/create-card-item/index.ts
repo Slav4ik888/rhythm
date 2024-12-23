@@ -3,6 +3,7 @@ import { cloneObj } from 'shared/helpers/objects';
 import { CardItem, ItemStyles } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
 import { f } from 'app/styles';
+import { NO_PARENT_ID, NO_SHEET_ID } from '../../consts';
 // import { pxToRem } from 'app/providers/theme';
 
 
@@ -33,8 +34,8 @@ export const createCardItem = (
   userId : string
 ): CardItem => cloneObj({
   id          : cfg.id          || uuidv4(),
-  parentId    : cfg.parentId    || 'no_parentId',
-  sheetId     : cfg.sheetId     || 'no_sheetId',
+  parentId    : cfg.parentId    || NO_PARENT_ID,
+  sheetId     : cfg.sheetId     || NO_SHEET_ID,
 
   type        : cfg.type        || 'box',
   styles      : cfg.styles ? cfg.styles : BASE_SX,

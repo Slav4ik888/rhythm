@@ -4,13 +4,13 @@ import { Errors } from 'shared/lib/validators';
 import { DashboardPeriod } from '../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { DashboardPeriodType } from '../config';
-import { getEntitiesByPeriod } from '../utils';
+import { deleteAllChildrenFromViewEntities, getEntitiesByPeriod } from '../utils';
 import { StateSchemaDashboard } from './state-schema';
 import {
-  ResGetGoogleData, calculateStartDate, getData, changeSelectedStyle, ChangeSelectedStyle, SetSelectedStyles
+  ResGetGoogleData, calculateStartDate, getData, changeSelectedStyle, ChangeSelectedStyle, SetSelectedStyles, deleteCard, DeleteCard
  } from 'features/dashboard';
 import { SetActivePeriod, SetDashboardView, SetSelectedPeriod } from './types';
-import { CardItem, CardItemId } from 'entities/card-item';
+import { CardItem, CardItemId, NO_PARENT_ID } from 'entities/card-item';
 import { addEntities } from 'entities/base';
 import { AddNewCard, addNewCard, setSelectedStyles } from 'features/dashboard';
 import {  } from 'features/dashboard';
@@ -143,6 +143,10 @@ export const slice = createSlice({
   },
 
   extraReducers: builder => {
+    // ----------
+    //    DATA
+    // ----------
+
     // GET-DATA-FROM-GOOGLE
     builder
       .addCase(getData.pending, (state) => {
@@ -170,6 +174,10 @@ export const slice = createSlice({
         state.loading = false;
       }),
 
+    // ------------
+    //    VIEWS
+    // ------------
+
     // ADD-NEW-CARD
     builder
       .addCase(addNewCard.pending, (state) => {
@@ -177,7 +185,12 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(addNewCard.fulfilled, (state, { payload }: PayloadAction<AddNewCard>) => {
-        state.viewEntities = addEntities(state.viewEntities, [payload.cardItem]);
+        const updatedEntities = addEntities(state.viewEntities, [payload.cardItem]);
+        if (payload.cardItem.parentId !== NO_PARENT_ID) {
+          updatedEntities[payload.cardItem.parentId].childrenIds.push(payload.cardItem.id);
+        }
+
+        state.viewEntities = updatedEntities;
         state.loading = false;
         state.errors  = {};
 
@@ -226,7 +239,29 @@ export const slice = createSlice({
       .addCase(setSelectedStyles.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
+      }),
+
+    // DELETE-CARD
+    builder
+      .addCase(deleteCard.pending, (state) => {
+        state.loading = true;
+        state.errors  = {};
       })
+      .addCase(deleteCard.fulfilled, (state, { payload }: PayloadAction<DeleteCard>) => {
+        const { cardItemId, companyId } = payload;
+        deleteAllChildrenFromViewEntities(state.viewEntities, cardItemId);
+        
+        state.selectedId = '';
+        state.loading    = false;
+        state.errors     = {};
+
+        LS.setDashboardView(companyId, state.viewEntities); // Save viewEntities to local storage
+      })
+      .addCase(deleteCard.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
+        state.loading = false;
+      })
+      
   }
 })
 

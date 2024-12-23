@@ -12,6 +12,8 @@ import { Box } from '@mui/material';
 import { f } from 'app/styles';
 import { CardId } from './id';
 import { Alignment } from './alignment';
+import { DangerZone } from './danger-zone';
+import { CustomTheme } from 'app/providers/theme';
 
 
 
@@ -20,12 +22,12 @@ export const CardItemConfigurator = memo(() => {
   const { editMode, selectedId, viewEntities, setEditMode, serviceChangeSelectedStyle } = useDashboard();
 
   const handleChange = useCallback((field: ItemStylesField, value: number | string) => {
-    const styleByField = viewEntities[selectedId].styles[field];
+    const styleByField = viewEntities?.[selectedId]?.styles?.[field];
 
-    if (styleByField === value) return
+    if (styleByField === value || ! styleByField) return
 
     serviceChangeSelectedStyle({ companyId, selectedId, field, value });
-  }, [selectedId, serviceChangeSelectedStyle]);
+  }, [selectedId, viewEntities, serviceChangeSelectedStyle]);
 
 
   return (
@@ -38,31 +40,28 @@ export const CardItemConfigurator = memo(() => {
     >
       <MainHeader onClose={() => setEditMode(false)} />
       {
-        selectedId
-          ? <>
-              <CardId cardItemId={selectedId} />
-              <Alignment cardItemId={selectedId} onChange={handleChange} />
-              <Dimensions cardItemId={selectedId} onChange={handleChange} />
-              <Indents cardItemId={selectedId} />
-              <Borders cardItemId={selectedId} onChange={handleChange} />
-              <Colors cardItemId={selectedId} onChange={handleChange} />
-
-              {/* <SubHeader title='Текст'/> */}
-              {/* font-size */}
-              {/* font-weight */}
-              {/* font-style */}
-              {/* font-family */}
-
-              {/* <SubHeader title='Управление'/> */}
-              {/* DisplayShow - показать/скрыть элемент, "скрытый" - показывается только в режиме редактирования */}
-              {/* Добавить новый элемент выше */}
-              {/* Добавить новый элемент ниже */}
-              {/* Удалить */}
-            </>
-          : <Box sx={{ ...f('-c-c'), mt: 8 }}>
-            Выберите элемент для редактирования
-          </Box>
+        ! selectedId && <Box sx={(theme) => ({ ...f('-c-c'), mt: 8, color: (theme as CustomTheme).palette.error.main })}>
+          Выберите элемент для редактирования
+        </Box>
       }
+
+      <CardId cardItemId={selectedId} />
+      {/* DisplayShow - показать/скрыть элемент, "скрытый" - показывается только в режиме редактирования */}
+      <Alignment cardItemId={selectedId} onChange={handleChange} />
+      <Dimensions cardItemId={selectedId} onChange={handleChange} />
+      <Indents cardItemId={selectedId} />
+      <Borders cardItemId={selectedId} onChange={handleChange} />
+      <Colors cardItemId={selectedId} onChange={handleChange} />
+
+      {/* <SubHeader title='Текст'/> */}
+      {/* font-size */}
+      {/* font-weight */}
+      {/* font-style */}
+      {/* font-family */}
+
+      {/* <SubHeader title='Управление'/> */}
+      
+      <DangerZone cardItemId={selectedId} />
     </DrawerStyled>
   )
 });

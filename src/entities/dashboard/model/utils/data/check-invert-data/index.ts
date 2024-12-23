@@ -1,5 +1,5 @@
-import { ReportsBaseConfig } from '../../../ui/reports'
-import { DashboardStatisticItem } from '../../types'
+import { ReportsBaseConfig } from '../../../../ui/reports'
+import { DashboardStatisticItem } from '../../../types'
 import { invertData } from './invert-data'
 
 

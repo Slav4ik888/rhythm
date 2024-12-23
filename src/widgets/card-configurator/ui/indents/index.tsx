@@ -5,7 +5,6 @@ import { useDashboard } from 'entities/dashboard';
 import { ChangeStyleItemIndents } from './change-style-indents';
 import { useCompany } from 'entities/company';
 import { deleteField } from 'shared/helpers/objects';
-import { isUndefined } from 'shared/lib/validators';
 
 
 
@@ -23,9 +22,6 @@ export const Indents: FC<Props> = memo(({ cardItemId }) => {
 
 
   const handleSubmit = (field: ItemStylesField, value: number) => {
-    // @ts-ignore
-    // if (isUndefined(value) || value === '') return;
-
     const getFields = (arr: string[]) => arr.map(item => field[0] + item) as ItemStylesField[]
     const newStyles = {
       ...stylesByCardItemId,

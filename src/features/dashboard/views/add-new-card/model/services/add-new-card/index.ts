@@ -22,7 +22,7 @@ export const addNewCard = createAsyncThunk<
     const { dispatch, rejectWithValue, extra } = thunkApi;
     
     try {
-      // TODO:
+      // TODO: на сервере предусмотреть сохранение в родителя Id потомка
       // await extra.api.post(paths.dashboard.view.add, { cardItem: data.cardItem });
 
 

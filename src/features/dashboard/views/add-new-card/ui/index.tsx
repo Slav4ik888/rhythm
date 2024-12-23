@@ -9,7 +9,7 @@ import { useCompany } from 'entities/company';
 import { useUser } from 'entities/user';
 import { createCardItem } from 'entities/card-item/model/creators';
 import AddCardIcon from '@mui/icons-material/AddCard';
-import { CardItemId, createNextOrder } from 'entities/card-item';
+import { CardItemId, createNextOrder, NO_SHEET_ID } from 'entities/card-item';
 
 
 
@@ -36,7 +36,7 @@ export const DashboardAddNewCardBtn: FC<Props> = memo(({ parentId }) => {
 
   const handleAdd = useCallback(() => {
     const cardItem = createCardItem({
-      sheetId  : 'no_sheetId',
+      sheetId  : NO_SHEET_ID,
       parentId,
       type     : 'box',
       order    : createNextOrder(childrenCardItems)
@@ -49,18 +49,18 @@ export const DashboardAddNewCardBtn: FC<Props> = memo(({ parentId }) => {
   return (
     <Box>
       <Tooltip title='Добавить новый элемент'>
-        <IconButton onClick={handleAdd}>
+        {/* <IconButton onClick={handleAdd}>
           <AddCardIcon sx={sx.icon} />
-        </IconButton>
-        {/* <MDButton
+        </IconButton> */}
+        <MDButton
           variant   = 'outlined'
           color     = 'dark'
           sx        = {sx.button}
-          startIcon = {<AddIcon sx={sx.icon} />}
+          startIcon = {<AddCardIcon sx={sx.icon} />}
           onClick   = {handleAdd}
         >
-          Добавить карточку
-        </MDButton> */}
+          Добавить
+        </MDButton>
       </Tooltip>
     </Box>
   )
