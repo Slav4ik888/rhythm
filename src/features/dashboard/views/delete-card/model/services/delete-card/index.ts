@@ -7,8 +7,11 @@ import { CardItemId } from 'entities/card-item';
 
 
 export interface DeleteCard {
-  companyId : string
-  cardItemId  : CardItemId
+  companyId         : string
+  cardItemId        : CardItemId   // Id удаляемой карточки
+  parentId          : string
+  parentChildrenIds : CardItemId[] // Итоговые Ids актуальных потомков
+  allIds            : CardItemId[] // Ids всех вложенных элементов
 }
 
 /** Удаляем выбранный элемент */
@@ -23,9 +26,7 @@ export const deleteCard = createAsyncThunk<
     const { dispatch, rejectWithValue, extra } = thunkApi;
     
     try {
-      // TODO: учесть на сервере удаление всех childrenIds, а у них вложенных childrenIds и так далее 
-      // await extra.api.post(paths.dashboard.view.add, { cardItem: data.cardItem });
-
+      await extra.api.post(paths.dashboard.view.add, data);
 
       return data;
     }

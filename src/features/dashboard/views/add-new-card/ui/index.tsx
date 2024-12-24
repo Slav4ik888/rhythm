@@ -28,7 +28,7 @@ interface Props {
 }
 
 export const DashboardAddNewCardBtn: FC<Props> = memo(({ parentId }) => {
-  const { childrenCardItems, serviceAddNewCard } = useDashboard({ parentId });
+  const { childrenCardItems, parentChildrenIds, serviceAddNewCard } = useDashboard({ parentId });
   const { userId } = useUser();
   const { companyId } = useCompany();
   const sx = useStyles(useTheme());
@@ -42,7 +42,7 @@ export const DashboardAddNewCardBtn: FC<Props> = memo(({ parentId }) => {
       order    : createNextOrder(childrenCardItems)
     }, userId);
 
-    serviceAddNewCard(companyId, cardItem);
+    serviceAddNewCard(companyId, cardItem, parentChildrenIds);
   }, [serviceAddNewCard]);
 
 

@@ -1,7 +1,7 @@
 import { FC, memo, useCallback } from 'react';
 import { CardItemId } from 'entities/card-item';
 import { Box } from '@mui/material';
-import { useDashboard } from 'entities/dashboard';
+import { useDashboard, getAllIds } from 'entities/dashboard';
 import { useCompany } from 'entities/company';
 import { DeleteButton } from 'shared/ui/buttons/delete-button';
 import { f } from 'app/styles';
@@ -14,13 +14,17 @@ interface Props {
 
 
 export const DeleteItem: FC<Props> = memo(({ cardItemId }) => {
-const { serviceDeleteCard } = useDashboard();
+  const { selectedItem: { parentId }, viewEntities, serviceDeleteCard } = useDashboard();
   const { companyId } = useCompany();
 
 
   const handleDel = useCallback(() => {
-    serviceDeleteCard({ companyId, cardItemId });
-  }, [cardItemId, serviceDeleteCard]);
+    let allIds: CardItemId[] = []; // Ids всех вложенных элементов
+    getAllIds(viewEntities, cardItemId, allIds);
+
+    const parentChildrenIds = viewEntities[parentId].childrenIds.filter(id => id !== cardItemId);
+    serviceDeleteCard({ companyId, cardItemId, parentId, allIds, parentChildrenIds });
+  }, [cardItemId, parentId, serviceDeleteCard]);
 
 
   return (

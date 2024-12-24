@@ -35,8 +35,15 @@ export const useDashboard = (config: Config = {}) => {
     setEditMode         = (editMode: boolean) => dispatch(a.setEditMode(editMode)),
     selectedId          = useSelector(s.selectSelectedId),
     setSelectedId       = (id: CardItemId) => dispatch(a.setSelectedId(id)),
+    selectedItem        = useSelector(s.selectSelectedItem),
+    parentChildrenIds   = useSelector(s.selectParentChildrenIds),
     
-    serviceAddNewCard   = (companyId: ActivatedCompanyId, cardItem: CardItem) => dispatch(addNewCard({ companyId, cardItem })),
+    serviceAddNewCard = (
+      companyId   : ActivatedCompanyId,
+      cardItem    : CardItem,
+      childrenIds : CardItemId[]
+    ) => dispatch(addNewCard({ companyId, cardItem, childrenIds })),
+
     viewEntities        = useSelector(s.selectViewEntities),
     cardItems           = useSelector(s.selectCardItems),
     parentsCardItems    = useSelector(s.selectParentsCardItems),
@@ -90,6 +97,7 @@ export const useDashboard = (config: Config = {}) => {
     viewEntities,
     cardItems,
     parentsCardItems,
+    parentChildrenIds,
     childrenCardItems,
     serviceAddNewCard,
     serviceChangeSelectedStyle,
@@ -99,7 +107,8 @@ export const useDashboard = (config: Config = {}) => {
     styleValueByField,
     selectedId,
     setSelectedId,
-
+    selectedItem,
+    
     serviceDeleteCard,
 
     // Data

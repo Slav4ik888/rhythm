@@ -4,16 +4,16 @@ import { Errors } from 'shared/lib/validators';
 import { DashboardPeriod } from '../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { DashboardPeriodType } from '../config';
-import { deleteAllChildrenFromViewEntities, getEntitiesByPeriod } from '../utils';
+import { getEntitiesByPeriod } from '../utils';
 import { StateSchemaDashboard } from './state-schema';
 import {
-  ResGetGoogleData, calculateStartDate, getData, changeSelectedStyle, ChangeSelectedStyle, SetSelectedStyles, deleteCard, DeleteCard
+  ResGetGoogleData, calculateStartDate, getData, changeSelectedStyle, ChangeSelectedStyle, SetSelectedStyles,
+  deleteCard, DeleteCard
  } from 'features/dashboard';
 import { SetActivePeriod, SetDashboardView, SetSelectedPeriod } from './types';
-import { CardItem, CardItemId, NO_PARENT_ID } from 'entities/card-item';
+import { CardItemId, NO_PARENT_ID } from 'entities/card-item';
 import { addEntities } from 'entities/base';
 import { AddNewCard, addNewCard, setSelectedStyles } from 'features/dashboard';
-import {  } from 'features/dashboard';
 
 
 
@@ -185,16 +185,18 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(addNewCard.fulfilled, (state, { payload }: PayloadAction<AddNewCard>) => {
-        const updatedEntities = addEntities(state.viewEntities, [payload.cardItem]);
-        if (payload.cardItem.parentId !== NO_PARENT_ID) {
-          updatedEntities[payload.cardItem.parentId].childrenIds.push(payload.cardItem.id);
+        const { cardItem, companyId } = payload;
+        const updatedEntities = addEntities(state.viewEntities, [cardItem]);
+
+        if (cardItem.parentId !== NO_PARENT_ID) {
+          updatedEntities[cardItem.parentId].childrenIds.push(cardItem.id);
         }
 
         state.viewEntities = updatedEntities;
         state.loading = false;
         state.errors  = {};
 
-        LS.setDashboardView(payload.companyId, state.viewEntities); // Save viewEntities to local storage
+        LS.setDashboardView(companyId, state.viewEntities); // Save viewEntities to local storage
       })
       .addCase(addNewCard.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
@@ -248,9 +250,17 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(deleteCard.fulfilled, (state, { payload }: PayloadAction<DeleteCard>) => {
-        const { cardItemId, companyId } = payload;
-        deleteAllChildrenFromViewEntities(state.viewEntities, cardItemId);
-        
+        const { parentChildrenIds, companyId, parentId, allIds } = payload;
+
+        allIds.forEach(id => delete state.viewEntities[id]);
+
+        // deleteAllChildrenFromViewEntities(state.viewEntities, cardItemId);
+
+        // Удаляем у parentId запись из childrenIds
+        if (parentId !== NO_PARENT_ID) {
+          state.viewEntities[parentId].childrenIds = parentChildrenIds;
+        }
+
         state.selectedId = '';
         state.loading    = false;
         state.errors     = {};

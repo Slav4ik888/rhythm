@@ -21,13 +21,11 @@ export const changeSelectedStyle = createAsyncThunk<
 >(
   'features/dashboard/changeSelectedStyle',
   async (data, thunkApi) => {
-
     const { dispatch, rejectWithValue, extra } = thunkApi;
+    const { field, value } = data;
     
     try {
-      // TODO:
-      // await extra.api.post(paths.dashboard.view.add, { cardItem: data.cardItem });
-
+      await extra.api.post(paths.dashboard.view.update, { cardItem: { [field]: value } });
 
       return data;
     }

@@ -1,27 +1,14 @@
 import { CardItemId } from 'entities/card-item';
 import { DashboardViewEntities } from '../../../slice/state-schema';
+import { getAllIds } from '../get-all-ids';
 
 
 
-// Составим список всех вложенных childrenIds
-const getAllIds = (
-  viewEntities : DashboardViewEntities,
-  currentId    : CardItemId,
-  resultArray  : CardItemId[]
-) => {
-  const childrenIds = viewEntities[currentId]?.childrenIds;
-  resultArray.push(currentId);
-
-  if (childrenIds?.length) {
-    childrenIds.forEach(childId => {
-      resultArray.push(childId);
-      getAllIds(viewEntities, childId, resultArray);
-    });
-  }
-};
-
-
-/** Удаляет из viewEntities всё дерево вложенных элементов */
+/**
+ * DEPRECATED
+ * Используется этот же принцип, оставил только из-за работающего теста 
+ * Удаляет из viewEntities всё дерево вложенных элементов
+ */
 export const deleteAllChildrenFromViewEntities = (
   viewEntities : DashboardViewEntities,
   cardItemId   : CardItemId

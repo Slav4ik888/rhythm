@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "add delete btn" && git push -u origin main
+// git add . && git commit -m "start send to DB" && git push -u origin main
