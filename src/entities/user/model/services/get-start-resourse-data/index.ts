@@ -9,6 +9,13 @@ import { User } from '../../types';
 
 
 
+
+export interface ReqGetStartResourseData {
+  pathname? : string
+  sheetId?  : string
+}
+
+
 /** 2024-12-13 */
 interface ResGetStartResourseData {
   userData      : User
@@ -19,16 +26,17 @@ interface ResGetStartResourseData {
 
 export const getStartResourseData = createAsyncThunk <
   User,
-  undefined,
+  ReqGetStartResourseData | undefined,
   ThunkConfig<Errors>
 >(
   'entities/user/getStartResourseData',
-  async (pathname, thunkApi) => {
+  async(data = {}, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
+    const { pathname, sheetId } = data;
     
     try {
       const { data: { userData, companyData, dashboardView } } = await extra.api
-        .get<ResGetStartResourseData>(paths.user.getStartResourseData);
+        .get<ResGetStartResourseData>(`${paths.user.getStartResourseData}/${sheetId}`);
       
       dispatch(actionsCompany.setCompany(companyData));
       dispatch(actionsDashboard.setDashboardView({ companyId: companyData.id, cardItems: dashboardView }));

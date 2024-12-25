@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { AppRouter } from './providers/routes';
 import { useUser } from 'entities/user';
 import 'app/styles/index.scss';
+import { NO_SHEET_ID } from 'entities/card-item';
 
 
 
@@ -11,7 +12,8 @@ export const App: FC = () => {
   const { pathname } = useLocation();
   
   useEffect(() => {
-    serviceGetStartResourseData();
+    // TODO: sheetId подставлять нужный
+    serviceGetStartResourseData({ pathname, sheetId: NO_SHEET_ID });
     // screenResizeListener(setScreenFormat);
   }, []);
 

@@ -22,9 +22,15 @@ export const DeleteItem: FC<Props> = memo(({ cardItemId }) => {
     let allIds: CardItemId[] = []; // Ids всех вложенных элементов
     getAllIds(viewEntities, cardItemId, allIds);
 
-    const parentChildrenIds = viewEntities[parentId].childrenIds.filter(id => id !== cardItemId);
+    // Для обновления сhildrenIds в родительском card, убираем Id данного
+    let parentChildrenIds: CardItemId[] = [];
+
+    if (viewEntities[parentId]) {
+      parentChildrenIds = viewEntities[parentId].childrenIds.filter(id => id !== cardItemId);
+    }
+    
     serviceDeleteCard({ companyId, cardItemId, parentId, allIds, parentChildrenIds });
-  }, [cardItemId, parentId, serviceDeleteCard]);
+  }, [cardItemId, parentId, viewEntities, serviceDeleteCard]);
 
 
   return (

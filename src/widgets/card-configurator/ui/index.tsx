@@ -24,7 +24,7 @@ export const CardItemConfigurator = memo(() => {
   const handleChange = useCallback((field: ItemStylesField, value: number | string) => {
     const styleByField = viewEntities?.[selectedId]?.styles?.[field];
 
-    if (styleByField === value || ! styleByField) return
+    if (styleByField === value || ! selectedId) return
 
     serviceChangeSelectedStyle({ companyId, selectedId, field, value });
   }, [selectedId, viewEntities, serviceChangeSelectedStyle]);

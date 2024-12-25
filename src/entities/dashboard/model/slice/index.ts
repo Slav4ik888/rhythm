@@ -76,10 +76,9 @@ export const slice = createSlice({
 
     // VIEW
     setDashboardView: (state, { payload }: PayloadAction<SetDashboardView>) => {
-      // TODO: Открыть скобки, когда данные будут приходить с сервера, сейчас закрыто чтобы LS не затирались
-      // state.viewEntities = addEntities(state.viewEntities, payload.cardItems);
+      state.viewEntities = addEntities(state.viewEntities, payload.cardItems);
 
-      // LS.setDashboardView(payload.companyId, state.viewEntities); // Save viewEntities to local storage
+      LS.setDashboardView(payload.companyId, state.viewEntities); // Save viewEntities to local storage
     },
 
     setEditMode: (state, { payload }: PayloadAction<boolean>) => {
@@ -106,8 +105,7 @@ export const slice = createSlice({
       state.activeEntities = activeEntities;
       state.activeDates    = activeDates;
 
-      // Save state to local storage
-      LS.setDashboardState(payload.companyId, state);
+      LS.setDashboardState(payload.companyId, state); // Save state to local storage
     },
     setSelectedPeriod: (state, { payload }: PayloadAction<SetSelectedPeriod>) => {
       const calcedStartDate = calculateStartDate(state.selectedPeriod.end, payload.period.type || state.selectedPeriod.type || DashboardPeriodType.NINE_MONTHS);
@@ -143,9 +141,9 @@ export const slice = createSlice({
   },
 
   extraReducers: builder => {
-    // ----------
-    //    DATA
-    // ----------
+    // ------------------------------------
+    //                DATA
+    // ------------------------------------
 
     // GET-DATA-FROM-GOOGLE
     builder
@@ -174,9 +172,9 @@ export const slice = createSlice({
         state.loading = false;
       }),
 
-    // ------------
-    //    VIEWS
-    // ------------
+    // ------------------------------------
+    //               VIEWS
+    // ------------------------------------
 
     // ADD-NEW-CARD
     builder

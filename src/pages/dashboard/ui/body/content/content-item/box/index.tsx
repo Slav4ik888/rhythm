@@ -1,4 +1,4 @@
-import { FC, memo, MouseEventHandler, useCallback, useMemo, useState } from 'react';
+import { FC, memo } from 'react';
 import { CardItem, CardItemId, stylesToSx, ItemStyles } from 'entities/card-item';
 import { Box } from '@mui/material';
 import { DashboardBodyContentRender } from '../../render-items';
@@ -31,7 +31,6 @@ interface Props {
 
 /** Item box */
 export const DashboardBodyContentItemBox: FC<Props> = memo(({ parentsCardItems, item, onSelect }) => {
-  console.log('DashboardBodyContentItemBox id:', item.id);
   const { editMode } = useDashboard();
   const sx = useStyles(item.styles, editMode);
 

@@ -22,6 +22,7 @@ export const paths = {
     view: {
       add    : '/dashboard/view/add',
       update : '/dashboard/view/update',
+      delete : '/dashboard/view/delete',
     }
   },
   transactions: {

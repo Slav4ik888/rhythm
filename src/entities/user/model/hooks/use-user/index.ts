@@ -2,7 +2,7 @@ import * as s from '../../selectors';
 import { actions } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
-import { getStartResourseData } from '../../services';
+import { getStartResourseData, ReqGetStartResourseData } from '../../services';
 // import { User } from '../../types';
 import { Errors } from 'shared/lib/validators';
 import { serviceLogout as logout } from 'features/user';
@@ -26,7 +26,7 @@ export const useUser = () => {
     role           = useSelector(s.selectUserRole),
     companyId      = useSelector(s.selectCompanyId),
 
-    serviceGetStartResourseData = () => dispatch(getStartResourseData()),
+    serviceGetStartResourseData = (data: ReqGetStartResourseData = {}) => dispatch(getStartResourseData(data)),
     // serviceUpdateUser            = (user: Partial<User>) => dispatch(updateUser(user)),
     // serviceDeleteUser            = (companyId: string, userId: string) => dispatch(deleteUser({ companyId, userId })),
     serviceLogout            = () => dispatch(logout());

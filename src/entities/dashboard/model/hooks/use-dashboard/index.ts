@@ -36,7 +36,6 @@ export const useDashboard = (config: Config = {}) => {
     selectedId          = useSelector(s.selectSelectedId),
     setSelectedId       = (id: CardItemId) => dispatch(a.setSelectedId(id)),
     selectedItem        = useSelector(s.selectSelectedItem),
-    parentChildrenIds   = useSelector(s.selectParentChildrenIds),
     
     serviceAddNewCard = (
       companyId   : ActivatedCompanyId,
@@ -48,6 +47,7 @@ export const useDashboard = (config: Config = {}) => {
     cardItems           = useSelector(s.selectCardItems),
     parentsCardItems    = useSelector(s.selectParentsCardItems),
     childrenCardItems   = useSelector((state: StateSchema) => s.selectChildrenCardItems(state, parentId as CardItemId)),
+    parentChildrenIds   = childrenCardItems.map(item => item.id),
 
     serviceChangeSelectedStyle = (data: ChangeSelectedStyle) => dispatch(changeSelectedStyle(data)),
     serviceSetSelectedStyles   = (data: SetSelectedStyles) => dispatch(setSelectedStyles(data)),

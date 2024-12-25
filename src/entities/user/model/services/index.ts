@@ -1,1 +1,1 @@
-export { getStartResourseData } from './get-start-resourse-data'
+export { getStartResourseData, ReqGetStartResourseData } from './get-start-resourse-data'

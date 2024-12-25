@@ -1,6 +1,5 @@
 import { FC, memo, useCallback } from 'react';
-import { Box, IconButton } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import { Box } from '@mui/material';
 import { useDashboard } from 'entities/dashboard';
 import { Tooltip } from 'shared/ui/tooltip';
 import { CustomTheme, useTheme } from 'app/providers/theme';
@@ -41,17 +40,17 @@ export const DashboardAddNewCardBtn: FC<Props> = memo(({ parentId }) => {
       type     : 'box',
       order    : createNextOrder(childrenCardItems)
     }, userId);
+    
+    // Для обновления сhildrenIds в родительском card
+    const ids = [...parentChildrenIds, cardItem.id];
 
-    serviceAddNewCard(companyId, cardItem, parentChildrenIds);
-  }, [serviceAddNewCard]);
+    serviceAddNewCard(companyId, cardItem, ids);
+  }, [parentChildrenIds, childrenCardItems, serviceAddNewCard]);
 
 
   return (
     <Box>
       <Tooltip title='Добавить новый элемент'>
-        {/* <IconButton onClick={handleAdd}>
-          <AddCardIcon sx={sx.icon} />
-        </IconButton> */}
         <MDButton
           variant   = 'outlined'
           color     = 'dark'

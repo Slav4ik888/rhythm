@@ -14,7 +14,6 @@ interface Props {
 
 /** One card item */
 export const DashboardBodyContentItem: FC<Props> = memo(({ item, parentsCardItems, onSelect }) => {
-  console.log('DashboardBodyContentItem');
 
   switch (item.type) {
     case 'box': return <DashboardBodyContentItemBox parentsCardItems={parentsCardItems} item={item} onSelect={onSelect} />;

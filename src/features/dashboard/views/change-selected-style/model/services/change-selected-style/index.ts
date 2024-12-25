@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { Errors } from 'shared/lib/validators';
 import { paths } from 'shared/api';
-import { CardItem, CardItemId, ItemStylesField } from 'entities/card-item';
+import { CardItemId, ItemStylesField } from 'entities/card-item';
 
 
 
@@ -22,10 +22,14 @@ export const changeSelectedStyle = createAsyncThunk<
   'features/dashboard/changeSelectedStyle',
   async (data, thunkApi) => {
     const { dispatch, rejectWithValue, extra } = thunkApi;
-    const { field, value } = data;
-    
+    const { field, value, selectedId } = data;
+    const cardItem = {
+      id     : selectedId,
+      styles : { [field]: value }
+    };
+
     try {
-      await extra.api.post(paths.dashboard.view.update, { cardItem: { [field]: value } });
+      await extra.api.post(paths.dashboard.view.update, { cardItem });
 
       return data;
     }

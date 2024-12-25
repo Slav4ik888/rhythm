@@ -17,7 +17,6 @@ export const getAllIds = (
 
   if (childrenIds?.length) {
     childrenIds.forEach(childId => {
-      resultArray.push(childId);
       getAllIds(viewEntities, childId, resultArray);
     });
   }

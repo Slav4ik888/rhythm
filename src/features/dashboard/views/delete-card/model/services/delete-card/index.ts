@@ -26,7 +26,7 @@ export const deleteCard = createAsyncThunk<
     const { dispatch, rejectWithValue, extra } = thunkApi;
     
     try {
-      await extra.api.post(paths.dashboard.view.add, data);
+      await extra.api.post(paths.dashboard.view.delete, data);
 
       return data;
     }
