@@ -1,8 +1,7 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import DrawerStyled from './styled-paper';
 import { ConfiguratorMainHeader as MainHeader } from 'shared/ui/configurators-components';
-import { ItemStylesField } from 'entities/card-item';
-import { useDashboard } from 'entities/dashboard';
+import { useDashboardView, ItemStylesField } from 'entities/dashboard-view';
 import { Dimensions } from './dimensions';
 import { useCompany } from 'entities/company';
 import { Indents } from './indents';
@@ -14,20 +13,39 @@ import { CardId } from './id';
 import { Alignment } from './alignment';
 import { DangerZone } from './danger-zone';
 import { CustomTheme } from 'app/providers/theme';
+import { getChanges, isEmpty } from 'shared/helpers/objects';
 
 
 
 export const CardItemConfigurator = memo(() => {
   const { companyId } = useCompany();
-  const { editMode, selectedId, viewEntities, setEditMode, serviceChangeSelectedStyle } = useDashboard();
+  const { editMode, selectedId, entities, setEditMode, changeOneStyleField, serviceUpdateChangedStyles } = useDashboardView();
+
+  const lastState = useMemo(() => entities?.[selectedId]?.styles, [selectedId]);
+
 
   const handleChange = useCallback((field: ItemStylesField, value: number | string) => {
-    const styleByField = viewEntities?.[selectedId]?.styles?.[field];
+    const styleByField = entities?.[selectedId]?.styles?.[field];
 
     if (styleByField === value || ! selectedId) return
 
-    serviceChangeSelectedStyle({ companyId, selectedId, field, value });
-  }, [selectedId, viewEntities, serviceChangeSelectedStyle]);
+    changeOneStyleField({ selectedId, field, value });
+  }, [selectedId, entities, changeOneStyleField]);
+
+
+  const handleSaveChanges = useCallback(() => {
+    console.log('handleSaveChanges');
+    setEditMode(false);
+
+    if (! selectedId) return console.log('! selectedId', selectedId); // Например, удалили карточку
+
+    const changedStyles = getChanges(lastState, entities?.[selectedId]?.styles);
+    console.log('changedStyles: ', changedStyles);
+
+    if (isEmpty(changedStyles)) return
+    
+    serviceUpdateChangedStyles({ companyId, changedStyles, selectedId });
+  }, [selectedId, lastState, entities]);
 
 
   return (
@@ -38,7 +56,7 @@ export const CardItemConfigurator = memo(() => {
       // @ts-ignore
       ownerState = {{ editMode }}
     >
-      <MainHeader onClose={() => setEditMode(false)} />
+      <MainHeader onClose={handleSaveChanges} />
       {
         ! selectedId && <Box sx={(theme) => ({ ...f('-c-c'), mt: 8, color: (theme as CustomTheme).palette.error.main })}>
           Выберите элемент для редактирования

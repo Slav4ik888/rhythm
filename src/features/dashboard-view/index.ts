@@ -1,0 +1,6 @@
+export { DashboardAddNewCardBtn, AddNewCard, addNewCard, } from './add-new-card'
+// export { ChangeSelectedStyle, changeSelectedStyle } from './views/change-selected-style'
+// export { SetSelectedStyles, setSelectedStyles } from './views/set-selected-styles'
+export { deleteCard, DeleteCard } from './delete-card'
+export { UpdateChangedStyles, updateChangedStyles } from './update-changed-styles'
+export { DashboardSetEditBtn } from './set-edit-btn'

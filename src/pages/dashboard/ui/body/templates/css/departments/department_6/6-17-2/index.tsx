@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react';
 import { ChartConfig } from 'entities/charts';
-import { DashboardReportContainer, useDashboard, ReportsLineChartConfig, ReportsLineChart, checkInvertData, DashboardStatisticItem } from 'entities/dashboard';
+import { DashboardReportContainer, useDashboardData, ReportsLineChartConfig, ReportsLineChart, checkInvertData, DashboardStatisticItem } from 'entities/dashboard-data';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
 import { getConditionType } from 'entities/condition-type';
@@ -10,7 +10,7 @@ import { pxToRem } from 'app/providers/theme';
 
 /** Badcom - Кол-во новых абонентов (мес) */
 export const DashboardReportContainer6_17_2 = memo(() => {
-  const { activeEntities, activeDates } = useDashboard();
+  const { activeEntities, activeDates } = useDashboardData();
 
   const itemData  = useMemo(() => activeEntities['6-17-2'] as DashboardStatisticItem<number>, [activeEntities]);
   const condition = useMemo(() => getConditionType(activeEntities['6-17-2-C']?.data), [activeEntities]);

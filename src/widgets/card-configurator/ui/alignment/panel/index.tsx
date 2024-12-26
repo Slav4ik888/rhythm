@@ -1,8 +1,9 @@
 import { FC, memo } from 'react';
 import { RowWrapper } from 'shared/ui/configurators-components';
-import { CardItemId, FlexDirectionType, AlignItemsType, ItemStylesField, JustifyContentType } from 'entities/card-item';
+import {
+  CardItemId, FlexDirectionType, AlignItemsType, ItemStylesField, JustifyContentType, useDashboardView
+} from 'entities/dashboard-view';
 import { FlexDirection } from './flex-direction';
-import { useDashboard } from 'entities/dashboard';
 import { AlignItems } from './align-items';
 import { JustifyContent } from './justify-content';
 import { Stack } from '@mui/material';
@@ -15,7 +16,7 @@ interface Props {
 }
 
 export const PanelAlignment: FC<Props> = memo(({ cardItemId, onChange }) => {
-  const { stylesByCardItemId: style } = useDashboard({ cardItemId });
+  const { stylesByCardItemId: style } = useDashboardView({ cardItemId });
 
   return (
     <RowWrapper flexStart>

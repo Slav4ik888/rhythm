@@ -1,6 +1,6 @@
 import { FC, memo, useCallback, MouseEvent } from 'react';
 import { Box, Typography } from '@mui/material';
-import { ItemStylesField } from 'entities/card-item';
+import { ItemStylesField } from 'entities/dashboard-view';
 import { f } from 'app/styles';
 import { useValue } from 'shared/lib/hooks';
 import { CustomTheme, SxCard, useTheme } from 'app/providers/theme';
@@ -73,16 +73,19 @@ export const ChangeStyleItem: FC<Props> = memo(({ sx: style, value, width, field
     hookOpen.setOpen();
   };
 
+
   const handleCallback = useCallback((e: MouseEvent, _value: number | string) => {
     if (onCallback) {
       onCallback(field as ItemStylesField, _value as number);
     }
   },[value, field, onCallback]);
 
+
   const handleSubmit = useCallback((e: MouseEvent, _value: number | string) => {
     onSubmit(field as ItemStylesField, _value as number);
     hookOpen.setClose();
   },[value, field, hookOpen.setClose, onSubmit]);
+  
   
   const handleClear = () => {
     onSubmit(field as ItemStylesField, '' as unknown as number);

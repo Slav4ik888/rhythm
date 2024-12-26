@@ -1,16 +1,18 @@
 import { FC, memo } from 'react';
-import { reducerDashboard } from 'entities/dashboard';
+import { reducerDashboardData } from 'entities/dashboard-data';
 import { Sidebar } from 'widgets/sidebar';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 import { DashboardBody } from './body';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { useInitialEffect } from 'shared/lib/hooks';
 import { setIsSidebar, useUIConfiguratorController } from 'app/providers/theme';
+import { reducerDashboardView } from 'entities/dashboard-view';
 
 
 
 const initialReducers: ReducersList = {
-  dashboard: reducerDashboard
+  dashboardData: reducerDashboardData,
+  dashboardView: reducerDashboardView
 };
 
 

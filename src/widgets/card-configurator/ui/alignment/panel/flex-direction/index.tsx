@@ -1,6 +1,6 @@
 import { FC, memo, MouseEvent } from 'react';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { FlexDirectionType, ItemStylesField } from 'entities/card-item';
+import { FlexDirectionType, ItemStylesField } from 'entities/dashboard-view';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
 import TableRowsIcon from '@mui/icons-material/TableRows';
 import { Tooltip } from 'shared/ui/tooltip';

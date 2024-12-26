@@ -1,5 +1,5 @@
 import { ColorName } from 'app/providers/theme';
-import { SidebarRouteListItem } from 'entities/dashboard';
+import { SidebarRouteListItem } from 'entities/dashboard-data';
 import { Fragment } from 'react/jsx-runtime';
 import { MDDivider } from 'shared/ui/mui-design-components';
 import { SidebarLink } from '../sidebar-items/sidebar-link';

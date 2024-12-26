@@ -1,7 +1,6 @@
 import { FC, memo } from 'react';
 import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { CardItemId, ItemStylesField } from 'entities/card-item';
-import { useDashboard } from 'entities/dashboard';
+import { CardItemId, ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 
 
 
@@ -13,7 +12,7 @@ interface Props {
 
 /** border-radius */
 export const BorderRadius: FC<Props> = memo(({ cardItemId, onChange }) => {
-  const { styleValueByField } = useDashboard({ cardItemId, field: 'borderRadius' });
+  const { styleValueByField } = useDashboardView({ cardItemId, field: 'borderRadius' });
   
   return (
     <RowWrapper>

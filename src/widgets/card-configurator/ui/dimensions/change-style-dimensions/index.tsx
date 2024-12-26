@@ -1,6 +1,6 @@
 import { FC, memo, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
-import { ItemStylesField } from 'entities/card-item';
+import { ItemStylesField } from 'entities/dashboard-view';
 import { f } from 'app/styles';
 import { isNum, isUndefined } from 'shared/lib/validators';
 import { SelectValue } from '../../../../../shared/ui/configurators-components/select';

@@ -22,7 +22,7 @@ import { useUIConfiguratorController, ColorName, setSidebarMini, setIsSidebar, u
 import { SidebarLogoLabel } from '../logo-label';
 import { SidebarUpgradeButton } from '../upgrade-button';
 import { renderRoutes } from '../render-routes';
-import { routesList_css_1d3r8 } from 'entities/dashboard';
+import { routesList_css_1d3r8 } from 'entities/dashboard-data';
 
 
 

@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { CardItemId } from 'entities/card-item';
+import { CardItemId } from 'entities/dashboard-view';
 
 
 

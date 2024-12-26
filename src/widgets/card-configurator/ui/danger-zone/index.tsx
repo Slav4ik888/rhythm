@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { CardItemId } from 'entities/card-item';
+import { CardItemId } from 'entities/dashboard-view';
 import { MDDivider } from 'shared/ui/mui-design-components';
 import { DeleteItem } from './delete-item';
 

@@ -1,10 +1,9 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { CardItemId, ItemStylesField } from 'entities/card-item';
+import { CardItemId, ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { Border } from './border';
 import { BorderRadius } from './border-radius';
 import { BoxShadow } from './box-shadow';
-import { useDashboard } from 'entities/dashboard';
 
 
 
@@ -19,7 +18,7 @@ interface Props {
 
 /** Рамки */
 export const Borders: FC<Props> = memo(({ cardItemId, onChange }) => {
-  const { stylesByCardItemId: styles } = useDashboard({ cardItemId });
+  const { stylesByCardItemId: styles } = useDashboardView({ cardItemId });
 
   return (
     <SubHeader title='Рамка'>

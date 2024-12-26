@@ -1,12 +1,11 @@
 import { FC, memo, useEffect, useMemo, useState } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { CardItemId, ItemStylesField } from 'entities/card-item';
+import { CardItemId, ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { Checkbox } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
 import { splitGradinet } from './split-gradient';
 import { SetLinearGradient } from './background';
-import { useDashboard } from 'entities/dashboard';
 
 
 
@@ -18,7 +17,7 @@ interface Props {
 
 /** background */
 export const SetBackground: FC<Props> = memo(({ cardItemId, onChange }) => {
-  const { styleValueByField } = useDashboard({ cardItemId, field: 'background' });
+  const { styleValueByField } = useDashboardView({ cardItemId, field: 'background' });
 
   const gradients = useMemo(() => splitGradinet(styleValueByField as string), [styleValueByField]);
 

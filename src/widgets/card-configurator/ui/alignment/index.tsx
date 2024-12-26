@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { CardItemId, ItemStylesField } from 'entities/card-item';
+import { CardItemId, ItemStylesField } from 'entities/dashboard-view';
 import { PanelAlignment } from './panel';
 
 

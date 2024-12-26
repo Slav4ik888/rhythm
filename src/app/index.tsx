@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { AppRouter } from './providers/routes';
 import { useUser } from 'entities/user';
 import 'app/styles/index.scss';
-import { NO_SHEET_ID } from 'entities/card-item';
+import { NO_SHEET_ID } from 'entities/dashboard-view';
 
 
 

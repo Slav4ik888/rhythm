@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Box } from '@mui/material';
-import { DashboardAddNewCardBtn } from 'features/dashboard';
+import { DashboardAddNewCardBtn } from 'features/dashboard-view';
 
 
 

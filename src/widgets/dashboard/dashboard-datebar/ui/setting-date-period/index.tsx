@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { MDBox } from 'shared/ui/mui-design-components';
-import { PeriodType, SetPeriodDate } from 'features/dashboard';
+import { PeriodType, SetPeriodDate } from 'features/dashboard-data';
 
 
 

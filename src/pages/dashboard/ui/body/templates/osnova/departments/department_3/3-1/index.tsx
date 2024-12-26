@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react';
 import { ChartConfig } from 'entities/charts';
-import { DashboardReportContainer, ReportsLineChartConfig, ReportsLineChart, useDashboard, checkInvertData, DashboardStatisticItem } from 'entities/dashboard';
+import { DashboardReportContainer, ReportsLineChartConfig, ReportsLineChart, useDashboardData, checkInvertData, DashboardStatisticItem } from 'entities/dashboard-data';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
 
@@ -8,7 +8,7 @@ import { fixPointRadius } from 'entities/charts';
 
 /** Общая сумма поступлений */
 export const DashboardReportContainer3_1 = memo(() => {
-  const { activeEntities, activeDates } = useDashboard();
+  const { activeEntities, activeDates } = useDashboardData();
 
   const itemData = useMemo(() => activeEntities['3-1'] as DashboardStatisticItem<number>, [activeEntities]);
   const dates = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);

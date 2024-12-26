@@ -2,9 +2,8 @@ import { FC, memo, useEffect, useMemo, useState } from 'react';
 import { Box } from '@mui/material';
 import { f } from 'app/styles';
 import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { CardItemId, ItemStylesField } from 'entities/card-item';
+import { CardItemId, ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
-import { useDashboard } from 'entities/dashboard';
 
 
 
@@ -16,9 +15,12 @@ interface Props {
   onChange   : (field: ItemStylesField, value: number | string) => void
 }
 
-/** box-shadow */
+/**
+ * box-shadow
+ * TODO: галочку - показать тень или нет, и если нет то не отрисовывать компонент (как в градиенте для background)
+ */
 export const BoxShadow: FC<Props> = memo(({ cardItemId, onChange }) => {
-  const { styleValueByField } = useDashboard({ cardItemId, field: 'boxShadow' });
+  const { styleValueByField } = useDashboardView({ cardItemId, field: 'boxShadow' });
   const [oX = 1, oY = 1, bR = 3, sR = 0, clr = 'rgb(184 184 184)'] = useMemo(() => splitShadow(styleValueByField), []);
 
   const [offsetX,      setOffsetX]      = useState(Number(oX));

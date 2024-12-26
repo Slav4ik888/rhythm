@@ -1,4 +1,4 @@
-import { DashboardItemType } from 'entities/dashboard';
+import { DashboardItemType } from 'entities/dashboard-data';
 import { DashboardConditionType } from '../types';
 
 

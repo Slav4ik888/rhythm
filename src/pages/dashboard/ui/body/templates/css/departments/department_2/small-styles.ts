@@ -1,6 +1,6 @@
 import { deepPurple, grey } from '@mui/material/colors';
 import { pxToRem } from 'app/providers/theme';
-import { SxSmallContainer } from 'entities/dashboard';
+import { SxSmallContainer } from 'entities/dashboard-data';
 
 
 

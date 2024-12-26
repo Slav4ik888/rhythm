@@ -1,5 +1,5 @@
 import { memo, useMemo } from 'react';
-import { DashboardReportContainer, useDashboard } from 'entities/dashboard';
+import { DashboardReportContainer, useDashboardData } from 'entities/dashboard-data';
 import { Stack } from '@mui/material';
 import { pxToRem } from 'app/providers/theme';
 import { DashboardReportContainer_1_0_2_Details_LeftStack as LeftStack } from './left-stack';
@@ -10,7 +10,7 @@ import { getLastItem } from 'shared/helpers/arrays';
 
 /** Общее кол-во сотрудников */
 export const DashboardReportContainer_1_0_2_Details = memo(() => {
-  const { activeEntities } = useDashboard();
+  const { activeEntities } = useDashboardData();
 
   const itemData_1_1_2  = useMemo(() => getLastItem(activeEntities['1-1-2']?.data) as number, [activeEntities]);
   const itemData_1_1_3  = useMemo(() => getLastItem(activeEntities['1-1-3']?.data) as number, [activeEntities]);

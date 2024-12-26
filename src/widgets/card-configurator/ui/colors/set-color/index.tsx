@@ -1,8 +1,7 @@
 import { FC, memo } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { CardItemId, ItemStylesField } from 'entities/card-item';
+import { CardItemId, ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
-import { useDashboard } from 'entities/dashboard';
 
 
 
@@ -13,7 +12,7 @@ interface Props {
 
 /** color */
 export const SetColor: FC<Props> = memo(({ cardItemId, onChange }) => {
-  const { styleValueByField } = useDashboard({ cardItemId, field: 'color' });
+  const { styleValueByField } = useDashboardView({ cardItemId, field: 'color' });
 
   const handleColor= (value: string) => onChange('color', value);
 

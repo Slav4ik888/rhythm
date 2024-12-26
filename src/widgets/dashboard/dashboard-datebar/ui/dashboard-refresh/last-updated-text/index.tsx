@@ -3,12 +3,12 @@ import { MDTypography } from 'shared/ui/mui-design-components';
 import { pxToRem } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
 import { formatDate, SUB } from 'shared/helpers/dates';
-import { useDashboard } from 'entities/dashboard';
+import { useDashboardData } from 'entities/dashboard-data';
 
 
 
 export const DashboardLastUpdatedText: FC = memo(() => {
-  const { lastUpdated } = useDashboard();
+  const { lastUpdated } = useDashboardData();
 
   return (
     <Tooltip

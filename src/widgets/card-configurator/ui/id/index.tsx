@@ -1,8 +1,8 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { CardItemId } from 'entities/card-item';
+import { CardItemId } from 'entities/dashboard-view';
 import { IdTitle } from './id-title';
-import { DashboardAddNewCardBtn } from 'features/dashboard';
+import { DashboardAddNewCardBtn } from 'features/dashboard-view';
 
 
 

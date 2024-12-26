@@ -1,5 +1,5 @@
 import { FC, memo, MouseEvent } from 'react';
-import { ItemStylesField } from 'entities/card-item';
+import { ItemStylesField } from 'entities/dashboard-view';
 import { ConfiguratorTextfieldItem } from 'shared/ui/configurators-components';
 
 

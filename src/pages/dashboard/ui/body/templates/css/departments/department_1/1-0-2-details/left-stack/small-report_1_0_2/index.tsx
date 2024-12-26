@@ -1,8 +1,8 @@
 import { memo, useMemo } from 'react';
 import {
   DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, SxSmallContainer,
-  checkInvertData, useDashboard, createConfig
-} from 'entities/dashboard';
+  checkInvertData, useDashboardData, createConfig
+} from 'entities/dashboard-data';
 import { orange } from '@mui/material/colors';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { pxToRem } from 'app/providers/theme';
@@ -34,7 +34,7 @@ const useSmallStyles = (): SxSmallContainer => {
 
 export const SmallReport_1_0_2 = memo(() => {
   const sx = useSmallStyles();
-  const { activeEntities, activeDates } = useDashboard();
+  const { activeEntities, activeDates } = useDashboardData();
 
   const itemData  = useMemo(() => activeEntities['1-0-2'] as DashboardStatisticItem<number>, [activeEntities]);
   const dates     = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);

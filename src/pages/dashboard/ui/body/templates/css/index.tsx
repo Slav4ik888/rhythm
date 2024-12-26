@@ -8,7 +8,7 @@ import { DashboardGroupDepartment4 } from './departments/department_4';
 import { DashboardGroupDepartment5 } from './departments/department_5';
 import { DashboardGroupDepartment6 } from './departments/department_6';
 import { DashboardBodyMain } from './main';
-import { CSS_SubRouteName } from 'entities/dashboard/model/config/sidenav-routes-list/css/routes';
+import { CSS_SubRouteName } from 'entities/dashboard-data/model/config/sidenav-routes-list/css/routes';
 
 
 

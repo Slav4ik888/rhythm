@@ -1,6 +1,6 @@
 import { FC, memo, useState, useEffect } from 'react';
 import { ChangeStyleItem } from 'shared/ui/configurators-components';
-import { ItemStylesField } from 'entities/card-item';
+import { ItemStylesField } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { linearGradient } from 'app/providers/theme';
 

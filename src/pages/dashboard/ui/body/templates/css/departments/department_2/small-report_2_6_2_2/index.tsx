@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react';
 import {
-  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, checkInvertData, useDashboard, createConfig
-} from 'entities/dashboard';
+  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, checkInvertData, useDashboardData, createConfig
+} from 'entities/dashboard-data';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { useSmallStyles } from '../small-styles';
 
@@ -10,7 +10,7 @@ import { useSmallStyles } from '../small-styles';
 /** Кол-во клиентов на периодических услугах (Нед) */
 export const SmallReport_2_6_2_2 = memo(() => {
   const sx = useSmallStyles();
-  const { activeEntities, activeDates } = useDashboard();
+  const { activeEntities, activeDates } = useDashboardData();
 
   const itemData  = useMemo(() => activeEntities['2-6-2-2'] as DashboardStatisticItem<number>, [activeEntities]);
   const dates     = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);

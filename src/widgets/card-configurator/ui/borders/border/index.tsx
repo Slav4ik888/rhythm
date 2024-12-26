@@ -1,11 +1,10 @@
 import { FC, memo } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { f } from 'app/styles';
 import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { ItemStylesField, CardItemId } from 'entities/card-item';
+import { ItemStylesField, CardItemId, useDashboardView } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { BorderStyle } from './border-style';
-import { useDashboard } from 'entities/dashboard';
 
 
 
@@ -17,7 +16,7 @@ interface Props {
 
 /** border: width style color */
 export const Border: FC<Props> = memo(({ cardItemId, borderColor = 'none', onChange }) => {
-  const { styleValueByField } = useDashboard({ cardItemId, field: 'borderWidth' });
+  const { styleValueByField } = useDashboardView({ cardItemId, field: 'borderWidth' });
 
   const handleSubmitColor = (value: string) => onChange('borderColor', value);
 

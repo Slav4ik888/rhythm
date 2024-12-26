@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig, errorHandlers, CustomAxiosError } from 'app/providers/store';
-import { CardItem } from 'entities/card-item';
+import { CardItem } from 'entities/dashboard-view';
 import { actionsCompany, Company } from 'entities/company';
-import { actionsDashboard } from 'entities/dashboard';
+import { actionsDashboardView } from 'entities/dashboard-view';
 import { paths } from 'shared/api';
 import { Errors } from 'shared/lib/validators';
 import { User } from '../../types';
@@ -39,7 +39,7 @@ export const getStartResourseData = createAsyncThunk <
         .get<ResGetStartResourseData>(`${paths.user.getStartResourseData}/${sheetId}`);
       
       dispatch(actionsCompany.setCompany(companyData));
-      dispatch(actionsDashboard.setDashboardView({ companyId: companyData.id, cardItems: dashboardView }));
+      dispatch(actionsDashboardView.setDashboardView({ companyId: companyData.id, cardItems: dashboardView }));
       
       return userData;
     }

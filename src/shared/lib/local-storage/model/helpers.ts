@@ -1,6 +1,7 @@
 import { UIConfiguratorProviderState } from 'app/providers/theme';
-import { DashboardViewEntities, StateSchemaDashboard } from 'entities/dashboard';
-import { ResGetData } from 'features/dashboard/get-data/model/types';
+import { StateSchemaDashboardData } from 'entities/dashboard-data';
+import { DashboardViewEntities } from 'entities/dashboard-view';
+import { ResGetData } from 'features/dashboard-data/get-data/model/types';
 import { setStorageData, getStorageData, removeStorageData } from './main';
 import { Names } from './names';
 
@@ -9,8 +10,8 @@ export const setUIConfiguratorState = (state: UIConfiguratorProviderState) => se
 export const getUIConfiguratorState = () => (getStorageData<object>('UIConfiguratorState') || {}) as UIConfiguratorProviderState;
 
 
-export const setDashboardState = (companyId: string, state: StateSchemaDashboard) => setStorageData(`DashboardState-${companyId}`, state);
-export const getDashboardState = (companyId: string) => (getStorageData<object>(`DashboardState-${companyId}`) || {}) as StateSchemaDashboard;
+export const setDashboardState = (companyId: string, state: StateSchemaDashboardData) => setStorageData(`DashboardState-${companyId}`, state);
+export const getDashboardState = (companyId: string) => (getStorageData<object>(`DashboardState-${companyId}`) || {}) as StateSchemaDashboardData;
 
 export const setDashboardView = (companyId: string, view: DashboardViewEntities) => setStorageData(`DashboardView-${companyId}`, view);
 export const getDashboardView = (companyId: string) => (getStorageData<object>(`DashboardView-${companyId}`) || {}) as DashboardViewEntities;

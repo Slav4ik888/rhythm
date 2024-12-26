@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
-import { CardItem, CardItemId } from 'entities/card-item';
+import { CardItem, CardItemId, ParentsCardItems } from 'entities/dashboard-view';
 import { DashboardBodyContentItemBox } from './box';
-import { ParentsCardItems } from 'entities/dashboard';
+import {  } from 'entities/dashboard-data';
 
 
 

@@ -1,8 +1,7 @@
 import { FC, memo } from 'react';
-import { CardItem, CardItemId, stylesToSx, ItemStyles } from 'entities/card-item';
+import { CardItem, CardItemId, stylesToSx, ItemStyles, ParentsCardItems, useDashboardView } from 'entities/dashboard-view';
 import { Box } from '@mui/material';
 import { DashboardBodyContentRender } from '../../render-items';
-import { ParentsCardItems, useDashboard } from 'entities/dashboard';
 
 
 
@@ -31,7 +30,7 @@ interface Props {
 
 /** Item box */
 export const DashboardBodyContentItemBox: FC<Props> = memo(({ parentsCardItems, item, onSelect }) => {
-  const { editMode } = useDashboard();
+  const { editMode } = useDashboardView();
   const sx = useStyles(item.styles, editMode);
 
   const handleClick = (e: any) => {

@@ -1,8 +1,7 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { CardItemId, ItemStylesField } from 'entities/card-item';
+import { CardItemId, ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { ChangeStyleItemDimensions as ChangeStyle } from './change-style-dimensions';
-import { useDashboard } from 'entities/dashboard';
 
 
 
@@ -12,7 +11,7 @@ interface Props {
 }
 
 export const Dimensions: FC<Props> = memo(({ cardItemId, onChange }) => {
-  const { stylesByCardItemId: styles } = useDashboard({ cardItemId });
+  const { stylesByCardItemId: styles } = useDashboardView({ cardItemId });
   
   return (
     <SubHeader title='Размеры'>

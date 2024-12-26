@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { DashboardRefreshButton } from 'features/dashboard';
+import { DashboardRefreshButton } from 'features/dashboard-data';
 import { MDBox } from 'shared/ui/mui-design-components';
 import { DashboardLastUpdatedText } from './last-updated-text';
 

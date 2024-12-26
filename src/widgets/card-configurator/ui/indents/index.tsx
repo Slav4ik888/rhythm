@@ -1,9 +1,7 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { CardItemId, ItemStyles, ItemStylesField } from 'entities/card-item';
-import { useDashboard } from 'entities/dashboard';
+import { CardItemId, ItemStyles, ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { ChangeStyleItemIndents } from './change-style-indents';
-import { useCompany } from 'entities/company';
 import { deleteField } from 'shared/helpers/objects';
 
 
@@ -17,8 +15,7 @@ interface Props {
 
 /** Отступы */
 export const Indents: FC<Props> = memo(({ cardItemId }) => {
-  const { companyId } = useCompany();
-  const { stylesByCardItemId, serviceSetSelectedStyles } = useDashboard({ cardItemId });
+  const { stylesByCardItemId, setSelectedStyles } = useDashboardView({ cardItemId });
 
 
   const handleSubmit = (field: ItemStylesField, value: number) => {
@@ -52,7 +49,8 @@ export const Indents: FC<Props> = memo(({ cardItemId }) => {
     }
     
     deleteFields(newStyles, fields);
-    serviceSetSelectedStyles({ companyId, selectedId: cardItemId, styles: newStyles });
+    setSelectedStyles({ selectedId: cardItemId, styles: newStyles });
+    // serviceSetSelectedStyles({ companyId, selectedId: cardItemId, styles: newStyles });
   };
 
 

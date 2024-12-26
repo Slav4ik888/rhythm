@@ -1,6 +1,6 @@
 import { FC, memo, MouseEvent } from 'react';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { JustifyContentType, ItemStylesField } from 'entities/card-item';
+import { JustifyContentType, ItemStylesField } from 'entities/dashboard-view';
 import { Tooltip } from 'shared/ui/tooltip';
 import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';

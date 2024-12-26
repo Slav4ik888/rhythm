@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react';
 import {
-  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, checkInvertData, useDashboard, createConfig
-} from 'entities/dashboard';
+  DashboardStatisticItem, ReportsResultChangesConfig, ReportContainer_Small, checkInvertData, useDashboardData, createConfig
+} from 'entities/dashboard-data';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { useSmallStyles } from '../small-styles';
 import { getConditionType } from 'entities/condition-type';
@@ -11,7 +11,7 @@ import { getConditionType } from 'entities/condition-type';
 /** Обороты (Таюрская) */
 export const SmallReport_2_tay_ob = memo(() => {
   const sx = useSmallStyles();
-  const { activeEntities, activeDates } = useDashboard();
+  const { activeEntities, activeDates } = useDashboardData();
 
   const itemData  = useMemo(() => activeEntities['2_tay_ob'] as DashboardStatisticItem<number>, [activeEntities]);
   const condition = useMemo(() => getConditionType(activeEntities['2_tay_ob-C']?.data), [activeEntities]);

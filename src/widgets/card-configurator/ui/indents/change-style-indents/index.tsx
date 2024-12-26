@@ -1,9 +1,8 @@
 import { FC, memo } from 'react';
 import { Box } from '@mui/material';
-import { CardItemId, ItemStylesField } from 'entities/card-item';
+import { CardItemId, ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { f } from 'app/styles';
 import { ChangeStyleItem, ConfiguratorTextTitle } from 'shared/ui/configurators-components';
-import { useDashboard } from 'entities/dashboard';
 
 
 
@@ -31,7 +30,7 @@ interface Props {
 /** Отступы */
 export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTitle, title, cardItemId, onChange }) => {
   const sx = useStyles();
-  const { stylesByCardItemId } = useDashboard({ cardItemId });
+  const { stylesByCardItemId } = useDashboardView({ cardItemId });
 
 
   return (

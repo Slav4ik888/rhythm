@@ -1,5 +1,5 @@
 import { memo, useMemo } from 'react';
-import { DashboardReportContainer, useDashboard, ReportsLineChart, ReportsLineChartConfig, DashboardStatisticItem, checkInvertData } from 'entities/dashboard';
+import { DashboardReportContainer, useDashboardData, ReportsLineChart, ReportsLineChartConfig, DashboardStatisticItem, checkInvertData } from 'entities/dashboard-data';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { ChartConfig, fixPointRadius } from 'entities/charts';
 import { getConditionType } from 'entities/condition-type';
@@ -8,7 +8,7 @@ import { getConditionType } from 'entities/condition-type';
 
 /** Счёт организации (все средства в наличии - все текущие обязательства) */
 export const DashboardReportContainer7_0_4 = memo(() => {
-  const { activeEntities, activeDates } = useDashboard();
+  const { activeEntities, activeDates } = useDashboardData();
 
   const itemData  = useMemo(() => activeEntities['7-0-4'] as DashboardStatisticItem<number>, [activeEntities]);
   const condition = useMemo(() => getConditionType(activeEntities['7-0-4-C']?.data), [activeEntities]);

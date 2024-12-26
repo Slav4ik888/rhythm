@@ -6,7 +6,7 @@ import { PageLoader } from 'widgets';
 import { isNoEmptyFields, getAllObjValue } from 'shared/helpers/objects';
 import { MessageBar } from 'widgets/message-bar';
 import { ScrollToTop } from 'shared/ui/pages';
-import { useDashboard } from 'entities/dashboard';
+import { useDashboardData } from 'entities/dashboard-data';
 import { Footer } from "widgets/footer";
 import { UIConfigurator } from 'widgets/ui-configurator';
 import { Navbar } from 'widgets/navbar';
@@ -16,7 +16,7 @@ import { LayoutWrapper } from './wrapper';
 
 export const Layout: FC = memo(() => {
   console.log('Layout');
-  const { loading: dashboardLoading } = useDashboard();
+  const { loading: dashboardLoading } = useDashboardData();
   const { pageLoading, errors, setWarningMessage } = useUI();
   const loading = pageLoading || dashboardLoading || false;
   
