@@ -8,14 +8,14 @@ import { StateSchemaDashboardView } from '../../slice/state-schema';
 export const getInitialState = (companyId: ActivatedCompanyId): StateSchemaDashboardView => {
 
   const initialState: StateSchemaDashboardView = {
-    loading    : false,
-    errors     : {},
-    _isMounted : true,
+    loading      : false,
+    errors       : {},
+    _isMounted   : true,
 
-    // View
-    editMode   : false,
-    selectedId : '',
-    entities   : LS.getDashboardView(companyId) || {},
+    editMode     : false,
+    selectedId   : '',
+    entities     : LS.getDashboardView(companyId) || {},
+    storedStyles : {}, // Начальные значения стилей выбранного элемента
   };
 
   return initialState;

@@ -1,9 +1,8 @@
-import { memo, useCallback, useMemo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import DrawerStyled from './styled-paper';
 import { ConfiguratorMainHeader as MainHeader } from 'shared/ui/configurators-components';
 import { useDashboardView, ItemStylesField } from 'entities/dashboard-view';
 import { Dimensions } from './dimensions';
-import { useCompany } from 'entities/company';
 import { Indents } from './indents';
 import { Borders } from './borders';
 import { Colors } from './colors';
@@ -13,39 +12,28 @@ import { CardId } from './id';
 import { Alignment } from './alignment';
 import { DangerZone } from './danger-zone';
 import { CustomTheme } from 'app/providers/theme';
-import { getChanges, isEmpty } from 'shared/helpers/objects';
 
 
 
-export const CardItemConfigurator = memo(() => {
-  const { companyId } = useCompany();
-  const { editMode, selectedId, entities, setEditMode, changeOneStyleField, serviceUpdateChangedStyles } = useDashboardView();
+interface Props {
+  onSaveIfChanges: () => void
+}
 
-  const lastState = useMemo(() => entities?.[selectedId]?.styles, [selectedId]);
+export const CardItemConfigurator: FC<Props> = memo(({ onSaveIfChanges }) => {
+  const { editMode, selectedId, entities, storedStyles, setEditMode, changeOneStyleField } = useDashboardView();
 
-
+  /** Сохраняем изменения стилей элементов в store */
   const handleChange = useCallback((field: ItemStylesField, value: number | string) => {
-    const styleByField = entities?.[selectedId]?.styles?.[field];
-
-    if (styleByField === value || ! selectedId) return
-
-    changeOneStyleField({ selectedId, field, value });
+    if (entities[selectedId]?.styles?.[field] !== value && selectedId)
+      changeOneStyleField({ selectedId, field, value });
   }, [selectedId, entities, changeOneStyleField]);
 
 
+  /** Сохраняем изменения при закрытии Конфигуратора */
   const handleSaveChanges = useCallback(() => {
-    console.log('handleSaveChanges');
     setEditMode(false);
-
-    if (! selectedId) return console.log('! selectedId', selectedId); // Например, удалили карточку
-
-    const changedStyles = getChanges(lastState, entities?.[selectedId]?.styles);
-    console.log('changedStyles: ', changedStyles);
-
-    if (isEmpty(changedStyles)) return
-    
-    serviceUpdateChangedStyles({ companyId, changedStyles, selectedId });
-  }, [selectedId, lastState, entities]);
+    onSaveIfChanges();
+  }, [selectedId, storedStyles, entities]);
 
 
   return (

@@ -12,9 +12,9 @@ export const selectIsMounted         = (state: StateSchema) => selectModule(stat
 
 export const selectEditMode          = (state: StateSchema) => selectModule(state).editMode;
 export const selectSelectedId        = (state: StateSchema) => selectModule(state).selectedId;
+export const selectStoredStyles      = (state: StateSchema) => selectModule(state).storedStyles;
 export const selectEntities          = (state: StateSchema) => selectModule(state).entities || {};
 export const selectSelectedItem      = (state: StateSchema) => selectEntities(state)[selectSelectedId(state)] || {};
-
 export const selectCardItems         = (state: StateSchema) => Object.values(selectEntities(state));
 export const selectParentsCardItems  = (state: StateSchema) => getParents(selectCardItems(state));
 export const selectChildrenCardItems = (state: StateSchema, parentId: CardItemId) => getChildren(selectCardItems(state), parentId);

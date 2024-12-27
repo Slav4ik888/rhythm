@@ -33,7 +33,9 @@ export const useDashboardView = (config: Config = {}) => {
     editMode            = useSelector(s.selectEditMode),
     setEditMode         = (editMode: boolean) => dispatch(a.setEditMode(editMode)),
     selectedId          = useSelector(s.selectSelectedId),
+    
     setSelectedId       = (id: CardItemId) => dispatch(a.setSelectedId(id)),
+    storedStyles        = useSelector(s.selectStoredStyles),
     selectedItem        = useSelector(s.selectSelectedItem),
     
     serviceAddNewCard = (
@@ -86,6 +88,7 @@ export const useDashboardView = (config: Config = {}) => {
     styleValueByField,
     selectedId,
     setSelectedId,
+    storedStyles,
     selectedItem,
     
     serviceDeleteCard,

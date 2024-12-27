@@ -12,13 +12,14 @@ import { NO_PARENT_ID } from '../consts';
 
 
 const initialState: StateSchemaDashboardView = {
-  loading    : false,
-  errors     : {},
-  _isMounted : true,
+  loading      : false,
+  errors       : {},
+  _isMounted   : true,
 
-  editMode   : false,
-  entities   : {},
-  selectedId : '',
+  editMode     : false,
+  entities     : {},
+  selectedId   : '',
+  storedStyles : {}, // Начальные значения стилей выбранного элемента
 };
 
 
@@ -54,7 +55,8 @@ export const slice = createSlice({
     
     /** Id выбранного элемента (при editMode === true) */
     setSelectedId: (state, { payload }: PayloadAction<CardItemId>) => {
-      state.selectedId = payload;
+      state.selectedId   = payload;
+      state.storedStyles = state.entities[payload]?.styles || {};
     },
 
     // Изменении 1 field в styles

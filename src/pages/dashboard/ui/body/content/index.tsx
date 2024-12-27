@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback } from 'react';
 import { DashboardBodyContentRender } from './render-items';
 import { CardItemConfigurator } from 'widgets/card-configurator';
 import { Box } from '@mui/material';
@@ -12,29 +12,28 @@ import { CardItemId, useDashboardView } from 'entities/dashboard-view';
 export const DashboardBodyContent = memo(() => {
   console.log('DashboardBodyContent');
   const { companyId } = useCompany();
-  const { editMode, selectedId, parentsCardItems, entities, setSelectedId, serviceUpdateChangedStyles } = useDashboardView();
-  const lastState = useMemo(() => entities?.[selectedId]?.styles, [selectedId]);
+  const { editMode, selectedId, parentsCardItems, storedStyles, entities, setSelectedId, serviceUpdateChangedStyles } = useDashboardView();
 
-  
+
   const handleSelect = useCallback((id: CardItemId) => {
     if (! editMode) return
-    console.log('handleSelect');
-    console.log('Selected: ', id);
     setSelectedId(id);
+    handleSaveIfChanges();
+  }, [editMode, selectedId, entities, setSelectedId]);
 
-    // Например, выбрали первый раз или удалили карточку
-    if (! selectedId) return console.log('! selectedId', selectedId);
 
-    const changedStyles = getChanges(lastState, entities?.[selectedId]?.styles);
-    console.log('changedStyles: ', changedStyles);
+  /** Сохраняем изменившиеся стили */
+  const handleSaveIfChanges = useCallback(() => {
+    if (! selectedId) return // Например, выбрали первый раз или удалили карточку
+
+    const changedStyles = getChanges(storedStyles, entities?.[selectedId]?.styles);
     
     if (isEmpty(changedStyles)) return
 
-    // Если редактировался другой элемент, то сохраняем стили
-    serviceUpdateChangedStyles({ companyId, changedStyles: entities[selectedId].styles, selectedId });
-  }, [editMode, selectedId, entities, setSelectedId]);
+    serviceUpdateChangedStyles({ companyId, changedStyles, selectedId });
+  }, [selectedId, storedStyles, entities, serviceUpdateChangedStyles]);
 
-      
+
   return (
     <Box sx={{ ...f() }}>
       <DashboardBodyContentRender
@@ -42,7 +41,7 @@ export const DashboardBodyContent = memo(() => {
         parentId         = 'no_parentId'
         onSelect         = {handleSelect}
       />
-      <CardItemConfigurator />
+      <CardItemConfigurator onSaveIfChanges={handleSaveIfChanges} />
     </Box>
   )
 });

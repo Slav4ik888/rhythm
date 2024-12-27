@@ -1,6 +1,7 @@
-import { FC, memo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { DashboardBodyContentItem } from '../content-item';
 import { ParentsCardItems, CardItemId } from 'entities/dashboard-view';
+import { sortingArr } from 'shared/helpers/sorting';
 
 
 
@@ -13,12 +14,14 @@ interface Props {
 
 export const DashboardBodyContentRender: FC<Props> = memo(({ parentsCardItems, parentId, onSelect }) => {
 
+  const sorted = useMemo(() => sortingArr(parentsCardItems[parentId], 'order'), [parentsCardItems, parentId]);
+  
   if (! parentsCardItems[parentId]) return null;
 
   return (
     <>
       {
-        parentsCardItems[parentId].map(item => <DashboardBodyContentItem
+        sorted.map(item => <DashboardBodyContentItem
           key              = {item.id}
           parentsCardItems = {parentsCardItems}
           item             = {item}

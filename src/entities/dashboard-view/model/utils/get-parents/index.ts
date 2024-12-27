@@ -1,12 +1,13 @@
 import { CardItem } from '../../types';
 
 
+
 export interface ParentsCardItems {
   [parentId: string]: CardItem[]
 }
 
 /**
- * Returns object ParentsCardItem {
+ * Returns object ParentsCardItems {
  *   [parentId: string]: CardItem[]
  * }
  */

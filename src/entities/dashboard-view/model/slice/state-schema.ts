@@ -1,5 +1,5 @@
 import { Errors } from 'shared/lib/validators';
-import { CardItem, CardItemId } from '../types';
+import { CardItem, CardItemId, ItemStyles } from '../types';
 
 
 
@@ -10,11 +10,12 @@ export interface DashboardViewEntities {
 
 // STATE
 export interface StateSchemaDashboardView {
-  loading     : boolean
-  errors      : Errors
-  _isMounted  : boolean // Признак того, что Reducer mounted
+  loading      : boolean
+  errors       : Errors
+  _isMounted   : boolean // Признак того, что Reducer mounted
 
-  editMode    : boolean // Режим редактирования
-  entities    : DashboardViewEntities
-  selectedId  : CardItemId // Id выбранного элемента (при editMode === true)
+  editMode     : boolean // Режим редактирования
+  entities     : DashboardViewEntities
+  selectedId   : CardItemId // Id выбранного элемента (при editMode === true)
+  storedStyles : ItemStyles // Начальные значения стилей выбранного элемента
 }

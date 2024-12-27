@@ -37,7 +37,7 @@ const initialState: StateSchemaDashboardData = {
 
 
 export const slice = createSlice({
-  name: 'entities/dashboardView',
+  name: 'entities/dashboardData',
   initialState,
   reducers: {
     setInitial: (state, { payload }: PayloadAction<StateSchemaDashboardData>) => {

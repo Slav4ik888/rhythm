@@ -1,7 +1,6 @@
 import { FC, memo } from 'react';
 import { CardItem, CardItemId, ParentsCardItems } from 'entities/dashboard-view';
 import { DashboardBodyContentItemBox } from './box';
-import {  } from 'entities/dashboard-data';
 
 
 
