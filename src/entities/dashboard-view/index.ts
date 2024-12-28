@@ -7,4 +7,4 @@ export { DashboardViewEntities, StateSchemaDashboardView } from './model/slice/s
 export { getInitialState, ParentsCardItems, getAllIds, stylesToSx, createNextOrder } from './model/utils'
 export { useDashboardView } from './model/hooks'
 export { createCardItem } from './model/creators/'
-export { NO_SHEET_ID, NO_PARENT_ID } from './model/consts'
+export { NO_SHEET_ID, NO_PARENT_ID, ORDER_STEP } from './model/consts'

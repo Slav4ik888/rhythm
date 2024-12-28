@@ -1,21 +1,19 @@
 import { FC, memo } from 'react';
 import { SelectValue } from 'shared/ui/configurators-components';
-import { BorderStyleType, ItemStylesField, arrayBorderStyles, CardItemId, useDashboardView } from 'entities/dashboard-view';
+import { BorderStyleType, ItemStylesField, arrayBorderStyles, useDashboardView } from 'entities/dashboard-view';
 
 
 
 interface Props {
-  cardItemId : CardItemId
-  onChange   : (field: ItemStylesField, value: number | string) => void
+  onChange: (field: ItemStylesField, value: number | string) => void
 }
 
-export const BorderStyle: FC<Props> = memo(({ cardItemId, onChange }) => {
-  const { styleValueByField } = useDashboardView({ cardItemId, field: 'borderStyle' });
+export const BorderStyle: FC<Props> = memo(({ onChange }) => {
+  const { styleValueByField } = useDashboardView({ field: 'borderStyle' });
 
   const handleSelectedStyle = (selected: BorderStyleType) => {
     onChange('borderStyle', selected);
   };
-
 
   return (
     <SelectValue

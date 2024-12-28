@@ -1,8 +1,9 @@
+import { ORDER_STEP } from '../../consts';
 import { CardItem } from '../../types';
 
 
 export const createNextOrder = (childrenCardItems: CardItem[]): number => {
-  let maxOrder = 1000;
+  let maxOrder = ORDER_STEP;
 
   if (! childrenCardItems || ! childrenCardItems.length) return maxOrder
 
@@ -10,5 +11,5 @@ export const createNextOrder = (childrenCardItems: CardItem[]): number => {
     maxOrder = Math.max(maxOrder, cardItem?.order || 0);
   });
 
-  return maxOrder + 1000;
+  return maxOrder + ORDER_STEP;
 }

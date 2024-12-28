@@ -1,18 +1,16 @@
 import { FC, memo } from 'react';
 import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { CardItemId, ItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 
 
 
 interface Props {
-  cardItemId : CardItemId
-  onChange   : (field: ItemStylesField, value: number | string) => void
+  onChange: (field: ItemStylesField, value: number | string) => void
 }
 
-
 /** border-radius */
-export const BorderRadius: FC<Props> = memo(({ cardItemId, onChange }) => {
-  const { styleValueByField } = useDashboardView({ cardItemId, field: 'borderRadius' });
+export const BorderRadius: FC<Props> = memo(({ onChange }) => {
+  const { styleValueByField } = useDashboardView({ field: 'borderRadius' });
   
   return (
     <RowWrapper>

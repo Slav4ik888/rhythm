@@ -1,21 +1,20 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { CardItemId, ItemStylesField } from 'entities/dashboard-view';
+import { ItemStylesField } from 'entities/dashboard-view';
 import { PanelAlignment } from './panel';
 
 
 
 interface Props {
-  cardItemId : CardItemId
-  onChange   : (field: ItemStylesField, value: number | string) => void
+  onChange: (field: ItemStylesField, value: number | string) => void
 }
 
 /** Выравнивание внутреннего содержимого */
-export const Alignment: FC<Props> = memo(({ cardItemId, onChange }) => {
+export const Alignment: FC<Props> = memo(({ onChange }) => {
   
   return (
     <SubHeader title='Выравнивание'>
-      <PanelAlignment cardItemId={cardItemId} onChange={onChange} />
+      <PanelAlignment onChange={onChange} />
       {/* display - flex, block, inline ... */}
       {/* flex-direction */}
       {/* flex-wrap */}

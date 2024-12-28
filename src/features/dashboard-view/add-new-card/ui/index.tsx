@@ -21,11 +21,11 @@ const useStyles = (theme: CustomTheme) => ({
 });
 
 interface Props {
-  parentId: CardItemId
+  parentId?: CardItemId // if undefined, will get selectedId
 }
 
 export const DashboardAddNewCardBtn: FC<Props> = memo(({ parentId }) => {
-  const { childrenCardItems, parentChildrenIds, serviceAddNewCard } = useDashboardView({ parentId });
+  const { selectedId, childrenCardItems, parentChildrenIds, serviceAddNewCard } = useDashboardView({ parentId });
   const { userId } = useUser();
   const { companyId } = useCompany();
   const sx = useStyles(useTheme());
@@ -34,7 +34,7 @@ export const DashboardAddNewCardBtn: FC<Props> = memo(({ parentId }) => {
   const handleAdd = useCallback(() => {
     const cardItem = createCardItem({
       sheetId  : NO_SHEET_ID,
-      parentId,
+      parentId : parentId || selectedId, // Если нажали из панели то создастся на 1м уровне
       type     : 'box',
       order    : createNextOrder(childrenCardItems)
     }, userId);

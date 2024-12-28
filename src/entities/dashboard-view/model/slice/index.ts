@@ -6,7 +6,7 @@ import { StateSchemaDashboardView } from './state-schema';
 import { deleteCard, DeleteCard, AddNewCard, addNewCard, UpdateCardItem, updateCardItem } from 'features/dashboard-view';
 import { SetDashboardView, SetSelectedStyles, ChangeSelectedStyle } from './types';
 import { addEntities } from 'entities/base';
-import { CardItemId } from '../types';
+import { CardItemId, PartialCardItem } from '../types';
 import { NO_PARENT_ID } from '../consts';
 import { updateObject } from 'shared/helpers/objects';
 
@@ -75,6 +75,10 @@ export const slice = createSlice({
       const { selectedId, styles } = payload;
       state.entities[selectedId].styles = styles;
     },
+
+    updateCardItem: (state, { payload }: PayloadAction<PartialCardItem>) => {
+      state.entities[payload.id] = updateObject(state.entities[payload.id], payload);
+    }
   },
 
   extraReducers: builder => {

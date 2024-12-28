@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { CardItemId, ItemStylesField } from 'entities/dashboard-view';
+import { ItemStylesField } from 'entities/dashboard-view';
 import { SetBackground } from './set-background';
 import { SetColor } from './set-color';
 
@@ -10,23 +10,16 @@ export type BorderStyle = 'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 
 
 
 interface Props {
-  cardItemId: CardItemId
-  onChange : (field: ItemStylesField, value: number | string) => void
+  onChange: (field: ItemStylesField, value: number | string) => void
 }
 
 /** Цвет */
-export const Colors: FC<Props> = memo(({ cardItemId, onChange }) => {
+export const Colors: FC<Props> = memo(({ onChange }) => {
 
   return (
     <SubHeader title='Цвет'>
-      <SetColor
-        cardItemId = {cardItemId}
-        onChange   = {onChange}
-      />
-      <SetBackground
-        cardItemId = {cardItemId}
-        onChange   = {onChange}
-      />
+      <SetColor onChange={onChange} />
+      <SetBackground onChange={onChange} />
       {/* opacity */}
     </SubHeader>
   )

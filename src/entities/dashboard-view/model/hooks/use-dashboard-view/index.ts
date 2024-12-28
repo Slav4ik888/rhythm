@@ -5,22 +5,21 @@ import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
 import { SetSelectedStyles, ChangeSelectedStyle } from '../../slice/types';
 import { ActivatedCompanyId } from 'entities/company';
-import { CardItem, CardItemId, ItemStylesField } from '../../types';
-import { addNewCard, deleteCard, DeleteCard, UpdateCardItem, updateCardItem } from 'features/dashboard-view';
+import { CardItem, CardItemId, ItemStylesField, PartialCardItem } from '../../types';
+import { addNewCard, deleteCard, DeleteCard, UpdateCardItem, updateCardItem as updateCardItemOnServer } from 'features/dashboard-view';
 import { StateSchema } from 'app/providers/store';
 import { StateSchemaDashboardView } from '../../slice/state-schema';
 
 
 
 interface Config {
-  cardItemId? : CardItemId
-  parentId?   : CardItemId
-  field?      : ItemStylesField
+  parentId? : CardItemId
+  field?    : ItemStylesField
 }
 
 export const useDashboardView = (config: Config = {}) => {
   const
-    { cardItemId, field, parentId } = config,
+    { field, parentId } = config,
     dispatch = useAppDispatch(),
 
     loading             = useSelector(s.selectLoading),
@@ -38,12 +37,6 @@ export const useDashboardView = (config: Config = {}) => {
 
     newStoredCard       = useSelector(s.selectNewStoredCard),
     prevStoredCard      = useSelector(s.selectPrevStoredCard),
-    
-    serviceAddNewCard = (
-      companyId   : ActivatedCompanyId,
-      cardItem    : CardItem,
-      childrenIds : CardItemId[]
-    ) => dispatch(addNewCard({ companyId, cardItem, childrenIds })),
 
     entities            = useSelector(s.selectEntities),
     cardItems           = useSelector(s.selectCardItems),
@@ -53,12 +46,20 @@ export const useDashboardView = (config: Config = {}) => {
 
     changeOneStyleField = (data: ChangeSelectedStyle) => dispatch(a.changeOneStyleField(data)),
     setSelectedStyles   = (data: SetSelectedStyles) => dispatch(a.setSelectedStyles(data)),
-    serviceUpdateCardItem = (data: UpdateCardItem) => dispatch(updateCardItem(data)),
 
-    stylesByCardItemId  = useSelector((state: StateSchema) => s.selectCardItemStyle(state, cardItemId as CardItemId)),
-    styleValueByField   = useSelector((state: StateSchema) => s.selectStyleByField(state, cardItemId as CardItemId, field as ItemStylesField)),
+    stylesByCardItemId  = useSelector(s.selectCardItemStyle),
+    styleValueByField   = useSelector((state: StateSchema) => s.selectStyleByField(state, field as ItemStylesField)),
     
-    serviceDeleteCard   = (data: DeleteCard) => dispatch(deleteCard(data));
+    updateCardItem      = (data: PartialCardItem) => dispatch(a.updateCardItem(data)),
+
+    serviceAddNewCard = (
+      companyId   : ActivatedCompanyId,
+      cardItem    : CardItem,
+      childrenIds : CardItemId[]
+    ) => dispatch(addNewCard({ companyId, cardItem, childrenIds })),
+
+    serviceUpdateCardItem = (data: UpdateCardItem) => dispatch(updateCardItemOnServer(data)),
+    serviceDeleteCard     = (data: DeleteCard) => dispatch(deleteCard(data));
 
   
   return {
@@ -76,10 +77,8 @@ export const useDashboardView = (config: Config = {}) => {
     parentsCardItems,
     parentChildrenIds,
     childrenCardItems,
-    serviceAddNewCard,
     changeOneStyleField,
     setSelectedStyles,
-    serviceUpdateCardItem,
 
     stylesByCardItemId,
     styleValueByField,
@@ -88,7 +87,10 @@ export const useDashboardView = (config: Config = {}) => {
     newStoredCard,
     prevStoredCard,
     selectedItem,
+    updateCardItem,
     
+    serviceAddNewCard,
+    serviceUpdateCardItem,
     serviceDeleteCard,
   }
 };

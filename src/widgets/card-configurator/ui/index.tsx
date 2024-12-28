@@ -67,13 +67,13 @@ export const CardItemConfigurator: FC = memo(() => {
         </Box>
       }
 
-      <CardId cardItemId={selectedId} />
+      <CardId />
       {/* DisplayShow - показать/скрыть элемент, "скрытый" - показывается только в режиме редактирования */}
-      <Alignment cardItemId={selectedId} onChange={handleChange} />
-      <Dimensions cardItemId={selectedId} onChange={handleChange} />
-      <Indents cardItemId={selectedId} />
-      <Borders cardItemId={selectedId} onChange={handleChange} />
-      <Colors cardItemId={selectedId} onChange={handleChange} />
+      <Alignment onChange={handleChange} />
+      <Dimensions onChange={handleChange} />
+      <Indents />
+      <Borders onChange={handleChange} />
+      <Colors onChange={handleChange} />
 
       {/* <SubHeader title='Текст'/> */}
       {/* font-size */}
@@ -83,7 +83,7 @@ export const CardItemConfigurator: FC = memo(() => {
 
       {/* <SubHeader title='Управление'/> */}
       
-      <DangerZone cardItemId={selectedId} />
+      <DangerZone />
     </DrawerStyled>
   )
 });

@@ -1,19 +1,24 @@
 import { FC, memo } from 'react';
-import { CardItemId, useDashboardView } from 'entities/dashboard-view';
+import { CardItem, useDashboardView } from 'entities/dashboard-view';
 import { Toward, TowardType } from './toward';
+import { calcNewOrder } from './utils/calc-new-order';
+import { sortingArr } from 'shared/helpers/sorting';
 
 
 
 interface Props {
-  cardItemId : CardItemId
+  cardItem : CardItem
 }
 
 
-export const MoveItemUpdownward: FC<Props> = memo(({ cardItemId }) => {
-  const {  } = useDashboardView();
+export const MoveItemUpdownward: FC<Props> = memo(({ cardItem }) => {
+  const { childrenCardItems, updateCardItem } = useDashboardView({ parentId: cardItem.parentId });
 
   const handleClick = (type: TowardType) => {
-    console.log('type: ', type);
+    updateCardItem({
+      id    : cardItem.id,
+      order : calcNewOrder(type, sortingArr(childrenCardItems, 'order'), cardItem)
+    });
   };
 
   return (

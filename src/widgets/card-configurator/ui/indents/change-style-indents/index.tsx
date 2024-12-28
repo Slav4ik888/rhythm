@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { Box } from '@mui/material';
-import { CardItemId, ItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { f } from 'app/styles';
 import { ChangeStyleItem, ConfiguratorTextTitle } from 'shared/ui/configurators-components';
 
@@ -19,18 +19,17 @@ const useStyles = () => ({
 
 
 interface Props {
-  title      : string
-  bold?      : boolean
-  toolTitle  : string
-  baseField  : 'p' | 'm'
-  cardItemId : CardItemId
-  onChange   : (field: ItemStylesField, value: number) => void
+  title     : string
+  bold?     : boolean
+  toolTitle : string
+  baseField : 'p' | 'm'
+  onChange  : (field: ItemStylesField, value: number) => void
 }
 
 /** Отступы */
-export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTitle, title, cardItemId, onChange }) => {
+export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTitle, title, onChange }) => {
   const sx = useStyles();
-  const { stylesByCardItemId } = useDashboardView({ cardItemId });
+  const { stylesByCardItemId } = useDashboardView();
 
 
   return (

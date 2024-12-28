@@ -7,13 +7,8 @@ import { f } from 'app/styles';
 
 
 
-interface Props {
-  cardItemId : CardItemId
-}
-
-
-export const DeleteItem: FC<Props> = memo(({ cardItemId }) => {
-  const { selectedItem: { parentId }, entities, serviceDeleteCard } = useDashboardView();
+export const DeleteItem: FC = memo(() => {
+  const { selectedItem: { id: cardItemId, parentId }, entities, serviceDeleteCard } = useDashboardView();
   const { companyId } = useCompany();
 
 

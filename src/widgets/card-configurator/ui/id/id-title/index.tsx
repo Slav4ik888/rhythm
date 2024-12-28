@@ -1,15 +1,11 @@
 import { FC, memo } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { CardItemId } from 'entities/dashboard-view';
+import { useDashboardView } from 'entities/dashboard-view';
 
 
 
-interface Props {
-  cardItemId : CardItemId
-}
-
-
-export const IdTitle: FC<Props> = memo(({ cardItemId }) => {
+export const IdTitle: FC = memo(() => {
+  const { selectedId } = useDashboardView();
 
 
   return (
@@ -19,7 +15,7 @@ export const IdTitle: FC<Props> = memo(({ cardItemId }) => {
         title     = 'id'
         toolTitle = 'Item id'
       />
-      {cardItemId}
+      {selectedId}
     </RowWrapper>
   )
 });

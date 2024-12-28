@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { CardItemId, ItemStyles, ItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ItemStyles, ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { ChangeStyleItemIndents } from './change-style-indents';
 import { deleteField } from 'shared/helpers/objects';
 
@@ -9,13 +9,9 @@ import { deleteField } from 'shared/helpers/objects';
 const deleteFields = (styles: ItemStyles, arr: ItemStylesField[]) => arr.forEach(item => deleteField(styles, item));
 
 
-interface Props {
-  cardItemId : CardItemId
-}
-
 /** Отступы */
-export const Indents: FC<Props> = memo(({ cardItemId }) => {
-  const { stylesByCardItemId, setSelectedStyles } = useDashboardView({ cardItemId });
+export const Indents: FC = memo(() => {
+  const { stylesByCardItemId, selectedId, setSelectedStyles } = useDashboardView();
 
 
   const handleSubmit = (field: ItemStylesField, value: number) => {
@@ -49,8 +45,7 @@ export const Indents: FC<Props> = memo(({ cardItemId }) => {
     }
     
     deleteFields(newStyles, fields);
-    setSelectedStyles({ selectedId: cardItemId, styles: newStyles });
-    // serviceSetSelectedStyles({ companyId, selectedId: cardItemId, styles: newStyles });
+    setSelectedStyles({ selectedId, styles: newStyles });
   };
 
 
@@ -61,7 +56,6 @@ export const Indents: FC<Props> = memo(({ cardItemId }) => {
         title      = 'margin'
         toolTitle  = 'Отступ вокруг элемента'
         baseField  = 'm'
-        cardItemId = {cardItemId}
         onChange   = {handleSubmit}
       />
       <ChangeStyleItemIndents
@@ -69,7 +63,6 @@ export const Indents: FC<Props> = memo(({ cardItemId }) => {
         title      = 'padding'
         toolTitle  = 'Отступ внутри элемента'
         baseField  = 'p'
-        cardItemId = {cardItemId}
         onChange   = {handleSubmit}
       />
     </SubHeader>
