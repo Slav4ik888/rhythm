@@ -13,15 +13,15 @@ import { updateObject } from 'shared/helpers/objects';
 
 
 const initialState: StateSchemaDashboardView = {
-  loading      : false,
-  errors       : {},
-  _isMounted   : true,
+  loading        : false,
+  errors         : {},
+  _isMounted     : true,
 
-  editMode     : false,
-  entities     : {},
-  selectedId   : '',
-  storedStyles : {}, // Начальные значения стилей выбранного элемента
-  storedCard   : {},
+  editMode       : false,
+  entities       : {},
+  selectedId     : '',
+  newStoredCard  : {}, // Начальные значения выбранного элемента
+  prevStoredCard : {}, // Начальные значения предыдущего выбранного элемента
 };
 
 
@@ -30,10 +30,12 @@ export const slice = createSlice({
   initialState,
   reducers: {
     setInitial: (state, { payload }: PayloadAction<StateSchemaDashboardView>) => {
-      state.entities   = payload.entities || {},
-      state.selectedId = payload.selectedId,
-      state.loading    = payload.loading;
-      state.errors     = payload.errors;
+      state.entities       = payload.entities       || {},
+      state.selectedId     = payload.selectedId,
+      state.newStoredCard  = payload.newStoredCard  || {},
+      state.prevStoredCard = payload.prevStoredCard || {},
+      state.loading        = payload.loading;
+      state.errors         = payload.errors;
     },
     setErrors: (state, { payload }: PayloadAction<Errors>) => {
       state.errors = getError(payload);
@@ -57,9 +59,9 @@ export const slice = createSlice({
     
     /** Id выбранного элемента (при editMode === true) */
     setSelectedId: (state, { payload }: PayloadAction<CardItemId>) => {
-      state.selectedId   = payload;
-      state.storedStyles = state.entities[payload]?.styles || {};
-      state.storedCard   = state.entities[payload] || {};
+      state.selectedId     = payload;
+      state.prevStoredCard = state.newStoredCard;
+      state.newStoredCard  = state.entities[payload] || {};
     },
 
     // Изменении 1 field в styles
@@ -121,46 +123,6 @@ export const slice = createSlice({
         state.loading = false;
       }),
 
-    // CHANGE-SELECTED-STYLE Изменяем 1 выбранный стиль у элемента
-    // builder
-    //   .addCase(changeSelectedStyle.pending, (state) => {
-    //     state.loading = true;
-    //     state.errors  = {};
-    //   })
-    //   .addCase(changeSelectedStyle.fulfilled, (state, { payload }: PayloadAction<ChangeSelectedStyle>) => {
-    //     const { selectedId, field, value, companyId } = payload;
-    //     // @ts-ignore
-    //     state.entities[selectedId].styles[field] = value;
-
-    //     state.loading = false;
-    //     state.errors  = {};
-        
-    //     LS.setDashboardView(companyId, state.entities); // Save entities to local storage
-    //   })
-    //   .addCase(changeSelectedStyle.rejected, (state, { payload }) => {
-    //     state.errors  = getError(payload);
-    //     state.loading = false;
-    //   }),
-    
-    // SET-SELECTED-STYLES Заменяем весь стиль у выбранного элемента
-    // builder
-    //   .addCase(setSelectedStyles.pending, (state) => {
-    //     state.loading = true;
-    //     state.errors  = {};
-    //   })
-    //   .addCase(setSelectedStyles.fulfilled, (state, { payload }: PayloadAction<SetSelectedStyles>) => {
-    //     const { selectedId, styles, companyId } = payload;
-    //     state.entities[selectedId].styles = styles;
-    //     state.loading = false;
-    //     state.errors  = {};
-
-    //     LS.setDashboardView(companyId, state.entities); // Save entities to local storage
-    //   })
-    //   .addCase(setSelectedStyles.rejected, (state, { payload }) => {
-    //     state.errors  = getError(payload);
-    //     state.loading = false;
-    //   }),
-
     // DELETE-CARD
     builder
       .addCase(deleteCard.pending, (state) => {
@@ -172,16 +134,16 @@ export const slice = createSlice({
 
         allIds.forEach(id => delete state.entities[id]);
 
-        // deleteAllChildrenFromentities(state.entities, cardItemId);
-
         // Удаляем у parentId запись из childrenIds
         if (parentId !== NO_PARENT_ID) {
           state.entities[parentId].childrenIds = parentChildrenIds;
         }
 
-        state.selectedId = '';
-        state.loading    = false;
-        state.errors     = {};
+        state.selectedId     = '';
+        state.newStoredCard  = {};
+        state.prevStoredCard = {};
+        state.loading        = false;
+        state.errors         = {};
 
         LS.setDashboardView(companyId, state.entities); // Save entities to local storage
       })

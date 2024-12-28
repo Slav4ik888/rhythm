@@ -1,7 +1,7 @@
-import { FC, memo, useCallback } from 'react';
+import { FC, memo, useCallback, useEffect } from 'react';
 import DrawerStyled from './styled-paper';
 import { ConfiguratorMainHeader as MainHeader } from 'shared/ui/configurators-components';
-import { useDashboardView, ItemStylesField } from 'entities/dashboard-view';
+import { useDashboardView, ItemStylesField, CardItem } from 'entities/dashboard-view';
 import { Dimensions } from './dimensions';
 import { Indents } from './indents';
 import { Borders } from './borders';
@@ -12,15 +12,31 @@ import { CardId } from './id';
 import { Alignment } from './alignment';
 import { DangerZone } from './danger-zone';
 import { CustomTheme } from 'app/providers/theme';
+import { getChanges, isEmpty } from 'shared/helpers/objects';
+import { useCompany } from 'entities/company';
 
 
 
-interface Props {
-  onSaveIfChanges: () => void
-}
+export const CardItemConfigurator: FC = memo(() => {
+  const { companyId } = useCompany();
+  const { editMode, selectedId, entities, prevStoredCard, setSelectedId, setEditMode, changeOneStyleField, serviceUpdateCardItem } = useDashboardView();
 
-export const CardItemConfigurator: FC<Props> = memo(({ onSaveIfChanges }) => {
-  const { editMode, selectedId, entities, storedStyles, setEditMode, changeOneStyleField } = useDashboardView();
+  /** Сохраняем изменившиеся поля | стили */
+  useEffect(() => {
+    const prevId = (prevStoredCard as CardItem)?.id; // Так как selectedId это уже нововыбранный
+    if (! prevId) return // Например, выбрали первый раз или удалили карточку
+
+    const changedFields = getChanges(prevStoredCard, entities?.[prevId]);
+    
+    if (isEmpty(changedFields)) return
+    const cardItem = {
+      id: prevId,
+      ...changedFields
+    };
+
+    serviceUpdateCardItem({ companyId, cardItem });
+  }, [selectedId]);
+
 
   /** Сохраняем изменения стилей элементов в store */
   const handleChange = useCallback((field: ItemStylesField, value: number | string) => {
@@ -30,10 +46,10 @@ export const CardItemConfigurator: FC<Props> = memo(({ onSaveIfChanges }) => {
 
 
   /** Сохраняем изменения при закрытии Конфигуратора */
-  const handleSaveChanges = useCallback(() => {
+  const handleCloseAndSave = useCallback(() => {
     setEditMode(false);
-    onSaveIfChanges();
-  }, [selectedId, storedStyles, entities]);
+    setSelectedId(''); // Убираем, чтобы prevStoredCard обновился и произошло сохранение
+  }, [selectedId, entities, setEditMode]);
 
 
   return (
@@ -44,7 +60,7 @@ export const CardItemConfigurator: FC<Props> = memo(({ onSaveIfChanges }) => {
       // @ts-ignore
       ownerState = {{ editMode }}
     >
-      <MainHeader onClose={handleSaveChanges} />
+      <MainHeader onClose={handleCloseAndSave} />
       {
         ! selectedId && <Box sx={(theme) => ({ ...f('-c-c'), mt: 8, color: (theme as CustomTheme).palette.error.main })}>
           Выберите элемент для редактирования
