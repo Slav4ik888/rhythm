@@ -13,7 +13,6 @@ import { CardItemId, createNextOrder, NO_SHEET_ID, useDashboardView } from 'enti
 
 const useStyles = (theme: CustomTheme) => ({
   button: {
-    // root: sxNavbarIconButton(theme),
   },
   icon: {
     color    : theme.palette.dark.main,

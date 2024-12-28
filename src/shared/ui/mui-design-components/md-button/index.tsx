@@ -39,7 +39,7 @@ interface Props {
   startIcon? : ReactNode
   endIcon?   : ReactNode
   component? : ElementType
-  children   : ReactNode
+  children?  : ReactNode
   sx?        : SxCard
   onClick?   : () => void
 }

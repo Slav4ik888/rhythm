@@ -3,11 +3,12 @@ import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { StateSchemaDashboardView } from './state-schema';
-import { deleteCard, DeleteCard, AddNewCard, addNewCard, updateChangedStyles, UpdateChangedStyles } from 'features/dashboard-view';
+import { deleteCard, DeleteCard, AddNewCard, addNewCard, UpdateCardItem, updateCardItem } from 'features/dashboard-view';
 import { SetDashboardView, SetSelectedStyles, ChangeSelectedStyle } from './types';
 import { addEntities } from 'entities/base';
 import { CardItemId } from '../types';
 import { NO_PARENT_ID } from '../consts';
+import { updateObject } from 'shared/helpers/objects';
 
 
 
@@ -20,6 +21,7 @@ const initialState: StateSchemaDashboardView = {
   entities     : {},
   selectedId   : '',
   storedStyles : {}, // Начальные значения стилей выбранного элемента
+  storedCard   : {},
 };
 
 
@@ -57,6 +59,7 @@ export const slice = createSlice({
     setSelectedId: (state, { payload }: PayloadAction<CardItemId>) => {
       state.selectedId   = payload;
       state.storedStyles = state.entities[payload]?.styles || {};
+      state.storedCard   = state.entities[payload] || {};
     },
 
     // Изменении 1 field в styles
@@ -98,19 +101,22 @@ export const slice = createSlice({
         state.loading = false;
       }),
     
-    // UPDATE-CHANGED-STYLES Заменяем изменившиеся стили у выбранного элемента
+    // UPDATE-CARD-ITEM
     builder
-      .addCase(updateChangedStyles.pending, (state) => {
+      .addCase(updateCardItem.pending, (state) => {
         state.loading = true;
         state.errors  = {};
       })
-      .addCase(updateChangedStyles.fulfilled, (state, { payload }: PayloadAction<UpdateChangedStyles>) => {
+      .addCase(updateCardItem.fulfilled, (state, { payload }: PayloadAction<UpdateCardItem>) => {
+        const { cardItem } = payload;
+        
+        state.entities[cardItem.id] = updateObject(state.entities[cardItem.id], cardItem);
         state.loading = false;
         state.errors  = {};
 
         LS.setDashboardView(payload.companyId, state.entities); // Save entities to local storage
       })
-      .addCase(updateChangedStyles.rejected, (state, { payload }) => {
+      .addCase(updateCardItem.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       }),

@@ -6,7 +6,7 @@ import { Errors } from 'shared/lib/validators';
 import { SetSelectedStyles, ChangeSelectedStyle } from '../../slice/types';
 import { ActivatedCompanyId } from 'entities/company';
 import { CardItem, CardItemId, ItemStylesField } from '../../types';
-import { addNewCard, deleteCard, DeleteCard, UpdateChangedStyles, updateChangedStyles } from 'features/dashboard-view';
+import { addNewCard, deleteCard, DeleteCard, UpdateCardItem, updateCardItem } from 'features/dashboard-view';
 import { StateSchema } from 'app/providers/store';
 import { StateSchemaDashboardView } from '../../slice/state-schema';
 
@@ -36,6 +36,7 @@ export const useDashboardView = (config: Config = {}) => {
     
     setSelectedId       = (id: CardItemId) => dispatch(a.setSelectedId(id)),
     storedStyles        = useSelector(s.selectStoredStyles),
+    storedCard          = useSelector(s.selectStoredCard),
     selectedItem        = useSelector(s.selectSelectedItem),
     
     serviceAddNewCard = (
@@ -51,10 +52,8 @@ export const useDashboardView = (config: Config = {}) => {
     parentChildrenIds   = childrenCardItems.map(item => item.id),
 
     changeOneStyleField = (data: ChangeSelectedStyle) => dispatch(a.changeOneStyleField(data)),
-    // serviceChangeSelectedStyle = (data: ChangeSelectedStyle) => dispatch(changeSelectedStyle(data)),
     setSelectedStyles   = (data: SetSelectedStyles) => dispatch(a.setSelectedStyles(data)),
-    // serviceSetSelectedStyles   = (data: SetSelectedStyles) => dispatch(setSelectedStyles(data)),
-    serviceUpdateChangedStyles = (data: UpdateChangedStyles) => dispatch(updateChangedStyles(data)),
+    serviceUpdateCardItem = (data: UpdateCardItem) => dispatch(updateCardItem(data)),
 
     stylesByCardItemId  = useSelector((state: StateSchema) => s.selectCardItemStyle(state, cardItemId as CardItemId)),
     styleValueByField   = useSelector((state: StateSchema) => s.selectStyleByField(state, cardItemId as CardItemId, field as ItemStylesField)),
@@ -80,15 +79,14 @@ export const useDashboardView = (config: Config = {}) => {
     serviceAddNewCard,
     changeOneStyleField,
     setSelectedStyles,
-    // serviceChangeSelectedStyle,
-    // serviceSetSelectedStyles,
-    serviceUpdateChangedStyles,
+    serviceUpdateCardItem,
 
     stylesByCardItemId,
     styleValueByField,
     selectedId,
     setSelectedId,
     storedStyles,
+    storedCard,
     selectedItem,
     
     serviceDeleteCard,

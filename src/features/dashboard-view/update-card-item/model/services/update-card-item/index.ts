@@ -2,14 +2,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { Errors } from 'shared/lib/validators';
 import { paths } from 'shared/api';
-import { CardItem, CardItemId, ItemStyles } from 'entities/dashboard-view';
+import { PartialCardItem, CardItemId } from 'entities/dashboard-view';
 
 
 
-export interface UpdateChangedStyles {
-  companyId     : string
-  selectedId    : CardItemId
-  changedStyles : ItemStyles
+export interface UpdateCardItem {
+  companyId : string
+  cardItem  : PartialCardItem
 }
 
 /**
@@ -17,28 +16,23 @@ export interface UpdateChangedStyles {
  * без сохранения изменений в слайс, тк они уже там
  * в слайсе сохраняем в LS
  */
-export const updateChangedStyles = createAsyncThunk<
-  UpdateChangedStyles,
-  UpdateChangedStyles,
+export const updateCardItem = createAsyncThunk<
+  UpdateCardItem,
+  UpdateCardItem,
   ThunkConfig<Errors>
 >(
-  'features/dashboard/updateChangedStyles',
+  'features/dashboard/updateCardItem',
   async (data, thunkApi) => {
-
     const { dispatch, rejectWithValue, extra } = thunkApi;
-    const cardItem: Partial<CardItem> = {
-      id     : data.selectedId,
-      styles : data.changedStyles
-    };
 
     try {
-      await extra.api.post(paths.dashboard.view.update, { cardItem });
+      await extra.api.post(paths.dashboard.view.update, { cardItem: data.cardItem });
 
       return data;
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in features/dashboard/updateChangedStyles' });
+      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in features/dashboard/updateCardItem' });
     }
   }
 );

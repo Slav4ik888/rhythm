@@ -12,7 +12,7 @@ import { CardItemId, useDashboardView } from 'entities/dashboard-view';
 export const DashboardBodyContent = memo(() => {
   console.log('DashboardBodyContent');
   const { companyId } = useCompany();
-  const { editMode, selectedId, parentsCardItems, storedStyles, entities, setSelectedId, serviceUpdateChangedStyles } = useDashboardView();
+  const { editMode, selectedId, parentsCardItems, storedCard, entities, setSelectedId, serviceUpdateCardItem } = useDashboardView();
 
 
   const handleSelect = useCallback((id: CardItemId) => {
@@ -22,16 +22,20 @@ export const DashboardBodyContent = memo(() => {
   }, [editMode, selectedId, entities, setSelectedId]);
 
 
-  /** Сохраняем изменившиеся стили */
+  /** Сохраняем изменившиеся поля | стили */
   const handleSaveIfChanges = useCallback(() => {
     if (! selectedId) return // Например, выбрали первый раз или удалили карточку
 
-    const changedStyles = getChanges(storedStyles, entities?.[selectedId]?.styles);
+    const changedFields = getChanges(storedCard, entities?.[selectedId]);
     
-    if (isEmpty(changedStyles)) return
+    if (isEmpty(changedFields)) return
+    const cardItem = {
+      id: selectedId,
+      ...changedFields
+    };
 
-    serviceUpdateChangedStyles({ companyId, changedStyles, selectedId });
-  }, [selectedId, storedStyles, entities, serviceUpdateChangedStyles]);
+    serviceUpdateCardItem({ companyId, cardItem });
+  }, [selectedId, storedCard, entities, serviceUpdateCardItem]);
 
 
   return (

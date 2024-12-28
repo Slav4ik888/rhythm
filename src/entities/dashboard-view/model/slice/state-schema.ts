@@ -16,6 +16,7 @@ export interface StateSchemaDashboardView {
 
   editMode     : boolean // Режим редактирования
   entities     : DashboardViewEntities
-  selectedId   : CardItemId // Id выбранного элемента (при editMode === true)
-  storedStyles : ItemStyles // Начальные значения стилей выбранного элемента
+  selectedId   : CardItemId    // Id выбранного элемента (при editMode === true)
+  storedStyles : ItemStyles    // Начальные значения стилей выбранного элемента
+  storedCard   : CardItem | {} // Начальные значения выбранного элемента
 }

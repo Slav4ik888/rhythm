@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { CardItemId } from 'entities/dashboard-view';
 import { IdTitle } from './id-title';
-import { DashboardAddNewCardBtn } from 'features/dashboard-view';
+import { ControlRow } from './control';
 
 
 
@@ -19,7 +19,7 @@ export const CardId: FC<Props> = memo(({ cardItemId }) => {
   return (
     <SubHeader title='Элемент'>
       <IdTitle cardItemId={cardItemId} />
-      <DashboardAddNewCardBtn parentId={cardItemId} />
+      <ControlRow cardItemId={cardItemId} />
     </SubHeader>
   )
 });

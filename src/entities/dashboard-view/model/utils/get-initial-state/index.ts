@@ -16,6 +16,7 @@ export const getInitialState = (companyId: ActivatedCompanyId): StateSchemaDashb
     selectedId   : '',
     entities     : LS.getDashboardView(companyId) || {},
     storedStyles : {}, // Начальные значения стилей выбранного элемента
+    storedCard   : {}, // Начальные значения выбранного элемента
   };
 
   return initialState;
