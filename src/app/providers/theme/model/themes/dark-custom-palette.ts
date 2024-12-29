@@ -1,4 +1,5 @@
 import { PaletteMode, Color } from '@mui/material';
+import { orange } from '@mui/material/colors';
 import { CustomPalette } from '../types';
 
 
@@ -104,6 +105,14 @@ export const customPalette: CustomPalette = {
     contrastText: '#000000',
   },
 
+  orange: {
+    light: '',
+    main: orange[500],
+    dark: '',
+    focus: '',
+    contrastText: '#000000',
+  },
+  
   grey: {
     100: '#f8f9fa',
     200: '#f0f2f5',

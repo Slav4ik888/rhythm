@@ -7,21 +7,22 @@ import { deleteCard, DeleteCard, AddNewCard, addNewCard, UpdateCardItem, updateC
 import { SetDashboardView, SetSelectedStyles, ChangeSelectedStyle } from './types';
 import { addEntities } from 'entities/base';
 import { CardItemId, PartialCardItem } from '../types';
-import { NO_PARENT_ID } from '../consts';
+// import { NO_PARENT_ID } from '../consts';
 import { updateObject } from 'shared/helpers/objects';
 
 
 
 const initialState: StateSchemaDashboardView = {
-  loading        : false,
-  errors         : {},
-  _isMounted     : true,
+  loading             : false,
+  errors              : {},
+  _isMounted          : true,
 
-  editMode       : false,
-  entities       : {},
-  selectedId     : '',
-  newStoredCard  : {}, // Начальные значения выбранного элемента
-  prevStoredCard : {}, // Начальные значения предыдущего выбранного элемента
+  editMode            : false,
+  entities            : {},
+  selectedId          : '',
+  newStoredCard       : {}, // Начальные значения выбранного элемента
+  prevStoredCard      : {}, // Начальные значения предыдущего выбранного элемента
+  activatedMovementId : '', // Активированный Id перемещаемого элемента
 };
 
 
@@ -76,10 +77,21 @@ export const slice = createSlice({
       state.entities[selectedId].styles = styles;
     },
 
+    // ПЕРЕМЕЩЕНИЕ ВЫБРАННОГО CARD-ITEM В ДРУГОЙ
+    setActiveMovementId: (state) => {
+      state.activatedMovementId = state.selectedId;
+    },
+    clearActivatedMovementId: (state) => {
+      state.activatedMovementId = '';
+    },
+
+    // UPDATE CARD-ITEM
     updateCardItem: (state, { payload }: PayloadAction<PartialCardItem>) => {
       state.entities[payload.id] = updateObject(state.entities[payload.id], payload);
-    }
+      state.activatedMovementId = '';
+    },
   },
+
 
   extraReducers: builder => {
     // ADD-NEW-CARD
@@ -92,11 +104,12 @@ export const slice = createSlice({
         const { cardItem, companyId } = payload;
         const updatedEntities = addEntities(state.entities, [cardItem]);
 
-        if (cardItem.parentId !== NO_PARENT_ID) {
-          updatedEntities[cardItem.parentId].childrenIds.push(cardItem.id);
-        }
+        // if (cardItem.parentId !== NO_PARENT_ID) {
+        //   updatedEntities[cardItem.parentId].childrenIds.push(cardItem.id);
+        // }
 
         state.entities = updatedEntities;
+        state.activatedMovementId = '';
         state.loading = false;
         state.errors  = {};
 
@@ -117,8 +130,9 @@ export const slice = createSlice({
         const { cardItem } = payload;
         
         state.entities[cardItem.id] = updateObject(state.entities[cardItem.id], cardItem);
-        state.loading = false;
-        state.errors  = {};
+        state.activatedMovementId   = '';
+        state.loading               = false;
+        state.errors                = {};
 
         LS.setDashboardView(payload.companyId, state.entities); // Save entities to local storage
       })
@@ -134,20 +148,21 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(deleteCard.fulfilled, (state, { payload }: PayloadAction<DeleteCard>) => {
-        const { parentChildrenIds, companyId, parentId, allIds } = payload;
+        const { companyId, allIds } = payload;
 
         allIds.forEach(id => delete state.entities[id]);
 
         // Удаляем у parentId запись из childrenIds
-        if (parentId !== NO_PARENT_ID) {
-          state.entities[parentId].childrenIds = parentChildrenIds;
-        }
+        // if (parentId !== NO_PARENT_ID) {
+        //   state.entities[parentId].childrenIds = parentChildrenIds;
+        // }
 
-        state.selectedId     = '';
-        state.newStoredCard  = {};
-        state.prevStoredCard = {};
-        state.loading        = false;
-        state.errors         = {};
+        state.selectedId          = '';
+        state.newStoredCard       = {};
+        state.prevStoredCard      = {};
+        state.activatedMovementId = '';
+        state.loading             = false;
+        state.errors              = {};
 
         LS.setDashboardView(companyId, state.entities); // Save entities to local storage
       })

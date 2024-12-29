@@ -1,8 +1,7 @@
 import { FC, memo } from 'react';
 import { RowWrapper } from 'shared/ui/configurators-components';
 import { useDashboardView } from 'entities/dashboard-view';
-import { DashboardAddNewCardBtn } from 'features/dashboard-view';
-import { MoveItemUpdownward } from './move-item-updownward';
+import { DashboardAddNewCardBtn, MoveToAnotherCard, MoveItemUpdownward } from 'features/dashboard-view';
 
 
 
@@ -12,6 +11,7 @@ export const ControlRow: FC = memo(() => {
 
   return (
     <RowWrapper>
+      <MoveToAnotherCard />
       <MoveItemUpdownward cardItem={selectedItem} />
       <DashboardAddNewCardBtn />
     </RowWrapper>

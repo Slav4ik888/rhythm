@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { MDDivider } from 'shared/ui/mui-design-components';
-import { DeleteItem } from './delete-item';
+import { DeleteItemContainer as DeleteItem } from 'features/dashboard-view';
 
 
 

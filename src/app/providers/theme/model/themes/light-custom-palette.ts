@@ -84,7 +84,7 @@ export const customPalette = {
   error: {
     light: '#000000',
     main: '#F44335',
-    dark: '#000000',
+    dark: '#821414',
     focus: '#f65f53',
     contrastText: '#000000',
   },
@@ -102,6 +102,14 @@ export const customPalette = {
     main: '#a4a4a4',
     dark: '#000000',
     focus: '#232323',
+    contrastText: '#000000',
+  },
+
+  orange: {
+    light: '',
+    main: orange[500],
+    dark: '',
+    focus: '',
     contrastText: '#000000',
   },
 

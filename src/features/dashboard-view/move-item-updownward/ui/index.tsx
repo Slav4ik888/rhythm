@@ -1,16 +1,18 @@
 import { FC, memo } from 'react';
 import { CardItem, useDashboardView } from 'entities/dashboard-view';
 import { Toward, TowardType } from './toward';
-import { calcNewOrder } from './utils/calc-new-order';
+import { calcNewOrder } from '../model/utils/calc-new-order';
 import { sortingArr } from 'shared/helpers/sorting';
 
 
 
 interface Props {
-  cardItem : CardItem
+  cardItem: CardItem
 }
 
-
+/**
+ * Перемещение (изменение order) внутри родителя
+ */
 export const MoveItemUpdownward: FC<Props> = memo(({ cardItem }) => {
   const { childrenCardItems, updateCardItem } = useDashboardView({ parentId: cardItem.parentId });
 

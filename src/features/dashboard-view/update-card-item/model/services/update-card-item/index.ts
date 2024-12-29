@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { Errors } from 'shared/lib/validators';
 import { paths } from 'shared/api';
-import { PartialCardItem, CardItemId } from 'entities/dashboard-view';
+import { PartialCardItem } from 'entities/dashboard-view';
 
 
 
@@ -21,7 +21,7 @@ export const updateCardItem = createAsyncThunk<
   UpdateCardItem,
   ThunkConfig<Errors>
 >(
-  'features/dashboard/updateCardItem',
+  'features/dashboardView/updateCardItem',
   async (data, thunkApi) => {
     const { dispatch, rejectWithValue, extra } = thunkApi;
 
@@ -32,7 +32,7 @@ export const updateCardItem = createAsyncThunk<
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in features/dashboard/updateCardItem' });
+      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in features/dashboardView/updateCardItem' });
     }
   }
 );

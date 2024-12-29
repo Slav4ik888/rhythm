@@ -29,3 +29,5 @@ export const selectChildrenCardItems = (state: StateSchema, parentId?: CardItemI
 export const selectCardItemById  = (state: StateSchema) => selectEntities(state)[selectSelectedId(state)] || {};
 export const selectCardItemStyle = (state: StateSchema) => selectCardItemById(state).styles || {};
 export const selectStyleByField  = (state: StateSchema, field: ItemStylesField) => selectCardItemStyle(state)[field];
+
+export const selectActivatedMovementId = (state: StateSchema) => selectModule(state).activatedMovementId;

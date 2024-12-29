@@ -15,7 +15,7 @@ const useStyles = (theme: CustomTheme) => ({
   button: {
   },
   icon: {
-    color    : theme.palette.dark.main,
+    color    : theme.palette.orange.main,
     fontSize : '20px',
   },
 });
@@ -39,10 +39,7 @@ export const DashboardAddNewCardBtn: FC<Props> = memo(({ parentId }) => {
       order    : createNextOrder(childrenCardItems)
     }, userId);
     
-    // Для обновления сhildrenIds в родительском card
-    const ids = [...parentChildrenIds, cardItem.id];
-
-    serviceAddNewCard(companyId, cardItem, ids);
+    serviceAddNewCard(companyId, cardItem);
   }, [parentChildrenIds, childrenCardItems, serviceAddNewCard]);
 
 
@@ -51,7 +48,7 @@ export const DashboardAddNewCardBtn: FC<Props> = memo(({ parentId }) => {
       <Tooltip title='Добавить новый элемент'>
         <MDButton
           variant   = 'outlined'
-          color     = 'dark'
+          color     = 'orange'
           sx        = {sx.button}
           startIcon = {<AddCardIcon sx={sx.icon} />}
           onClick   = {handleAdd}

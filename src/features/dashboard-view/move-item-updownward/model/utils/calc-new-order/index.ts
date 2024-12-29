@@ -1,5 +1,5 @@
 import { ORDER_STEP } from 'entities/dashboard-view';
-import { TowardType } from '../../toward';
+import { TowardType } from '../../../ui/toward';
 
 
 

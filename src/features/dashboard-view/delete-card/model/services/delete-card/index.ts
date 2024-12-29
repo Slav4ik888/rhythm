@@ -7,11 +7,8 @@ import { CardItemId } from 'entities/dashboard-view';
 
 
 export interface DeleteCard {
-  companyId         : string
-  cardItemId        : CardItemId   // Id удаляемой карточки
-  parentId          : string
-  parentChildrenIds : CardItemId[] // Итоговые Ids актуальных потомков
-  allIds            : CardItemId[] // Ids всех вложенных элементов
+  companyId : string
+  allIds    : CardItemId[] // Ids всех вложенных элементов
 }
 
 /** Удаляем выбранный элемент */
@@ -20,7 +17,7 @@ export const deleteCard = createAsyncThunk<
   DeleteCard,
   ThunkConfig<Errors>
 >(
-  'features/dashboard/deleteCard',
+  'features/dashboardView/deleteCard',
   async (data, thunkApi) => {
 
     const { dispatch, rejectWithValue, extra } = thunkApi;
@@ -32,7 +29,7 @@ export const deleteCard = createAsyncThunk<
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in features/dashboard/deleteCard' });
+      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in features/dashboardView/deleteCard' });
     }
   }
 );

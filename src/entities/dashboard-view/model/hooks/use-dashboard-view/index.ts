@@ -50,13 +50,17 @@ export const useDashboardView = (config: Config = {}) => {
     stylesByCardItemId  = useSelector(s.selectCardItemStyle),
     styleValueByField   = useSelector((state: StateSchema) => s.selectStyleByField(state, field as ItemStylesField)),
     
+    activatedMovementId      = useSelector(s.selectActivatedMovementId),
+    setActiveMovementId      = () => dispatch(a.setActiveMovementId()),
+    clearActivatedMovementId = () => dispatch(a.clearActivatedMovementId()),
+
     updateCardItem      = (data: PartialCardItem) => dispatch(a.updateCardItem(data)),
 
     serviceAddNewCard = (
       companyId   : ActivatedCompanyId,
       cardItem    : CardItem,
-      childrenIds : CardItemId[]
-    ) => dispatch(addNewCard({ companyId, cardItem, childrenIds })),
+      // childrenIds : CardItemId[]
+    ) => dispatch(addNewCard({ companyId, cardItem })),
 
     serviceUpdateCardItem = (data: UpdateCardItem) => dispatch(updateCardItemOnServer(data)),
     serviceDeleteCard     = (data: DeleteCard) => dispatch(deleteCard(data));
@@ -87,6 +91,11 @@ export const useDashboardView = (config: Config = {}) => {
     newStoredCard,
     prevStoredCard,
     selectedItem,
+
+    activatedMovementId,
+    setActiveMovementId,
+    clearActivatedMovementId,
+
     updateCardItem,
     
     serviceAddNewCard,

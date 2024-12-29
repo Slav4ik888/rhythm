@@ -53,6 +53,7 @@ export type BaseColorName =
   | 'inherit'
   | 'text' | 'transparent' | 'white' | 'black'
   | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'light' | 'dark'
+  | 'orange'
   | 'reportsChartTitle' | 'comparisonIndicators_1' | 'comparisonIndicators_2'
   | 'growth'  | 'fall' | 'unchanged'
   // | 'department_7'       | 'department_6'       | 'department_5'       | 'department_4'       | 'department_3'       | 'department_2'       | 'department_1'

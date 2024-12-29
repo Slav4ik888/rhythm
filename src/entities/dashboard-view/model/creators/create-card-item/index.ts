@@ -3,8 +3,8 @@ import { cloneObj } from 'shared/helpers/objects';
 import { CardItem, ItemStyles } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
 import { f } from 'app/styles';
-import { NO_PARENT_ID, NO_SHEET_ID } from '../../consts';
-// import { pxToRem } from 'app/providers/theme';
+import { NO_PARENT_ID, NO_SHEET_ID, ORDER_STEP } from '../../consts';
+
 
 
 const BASE_SX: ItemStyles = {
@@ -24,10 +24,6 @@ const BASE_SX: ItemStyles = {
   p            : 24,
 }
 
-// const BASE_CONTENT_SX: ItemStyles = {
-//   fontSize: pxToRem(14),
-// }
-
 
 export const createCardItem = (
   cfg    : Partial<CardItem> = {} as CardItem,
@@ -39,9 +35,8 @@ export const createCardItem = (
 
   type        : cfg.type        || 'box',
   styles      : cfg.styles ? cfg.styles : BASE_SX,
-  childrenIds : cfg.childrenIds || [],
 
-  order       : cfg.order       || 1000,
+  order       : cfg.order       || ORDER_STEP,
 
   createdAt   : cfg.createdAt   || creatorFixDate(userId),
   lastChange  : cfg.lastChange  || creatorFixDate(userId)
