@@ -33,10 +33,7 @@ const useStyles = (theme: CustomTheme, editMode: boolean) => ({
 export const DashboardSetEditBtn = memo(() => {
   const { editMode, setEditMode } = useDashboardView();
   const sx = useStyles(useTheme(), editMode);
-
   const [text, setText] = useState<string>('');
-
-  console.log('editMode: ', editMode);
 
   useEffect(() => {
     setText(editMode ? 'Выключить режим редактирования' : 'Включить режим редактирования');
@@ -46,10 +43,7 @@ export const DashboardSetEditBtn = memo(() => {
 
 
   return (
-    <Box
-      sx      = {sx.root}
-      onClick = {handleToggle}
-    >
+    <Box sx={sx.root} onClick={handleToggle}>
       <Tooltip title={text}>
         <IconButton
           color = {editMode ? 'primary' : 'inherit'}

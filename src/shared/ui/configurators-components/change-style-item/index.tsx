@@ -105,6 +105,7 @@ export const ChangeStyleItem: FC<Props> = memo(({ sx: style, value, width, field
               </Tooltip>
 
             : <ConfiguratorTextfieldItem
+                autoFocus
                 type         = 'number'
                 defaultValue = {value as number}
                 sx           = {sx.item}

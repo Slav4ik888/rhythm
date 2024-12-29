@@ -23,6 +23,7 @@ export const DashboardBodyContent = memo(() => {
     if (activatedMovementId) {
       if (selectedId === id) return // Нажали на этот же элемент
       if (activatedMovementId === selectedItem.parentId) return // Нажали на родительский элемент
+      if (entities[id].type !== 'box') return // Перемещать можно только в Box
 
       // У activatedMovementId изменяем parentId на выбранный id
       const cardItem: PartialCardItem = {

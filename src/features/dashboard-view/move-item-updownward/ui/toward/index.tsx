@@ -9,10 +9,8 @@ import { CustomTheme, useTheme } from 'app/providers/theme';
 
 
 const useStyles = (theme: CustomTheme) => ({
-  button: {
-    root: {
-      mr: 2
-    }
+  root: {
+    ml: 2
   },
   icon: {
     color    : theme.palette.dark.main,
@@ -35,15 +33,15 @@ export const Toward: FC<Props> = memo(({ type, onClick }) => {
 
 
   return (
-    <Box>
+    <Box sx={sx.root}>
       <Tooltip title={`Переместить элемент ${up ? 'вверх' : 'вниз'}`}>
         <MDButton
-          variant   = 'outlined'
-          color     = 'dark'
-          sx        = {sx.button}
-          startIcon = {up ? <UpwardIcon sx={sx.icon} /> : <DownwardIcon sx={sx.icon} />}
-          onClick   = {() => onClick(type)}
-        />
+          variant = 'outlined'
+          color   = 'dark'
+          onClick = {() => onClick(type)}
+        >
+          {up ? <UpwardIcon sx={sx.icon} /> : <DownwardIcon sx={sx.icon} />}
+        </MDButton>
       </Tooltip>
     </Box>
   )

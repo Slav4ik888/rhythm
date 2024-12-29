@@ -5,19 +5,30 @@ import { DashboardBodyContentRender } from '../../render-items';
 
 
 
-const useStyles = (styles: ItemStyles, editMode: boolean, hover?: boolean) => {
+const useStyles = (styles: ItemStyles, editMode: boolean) => {
+
   const root: any = {
-      ...stylesToSx(styles),
+    position: 'relative',
+    ...stylesToSx(styles)
+  };
+
+  const hover: any = {
+    position : 'absolute',
+    top      : '-1px',
+    bottom   : '-1px',
+    left     : '-1px',
+    right    : '-1px',
+    zIndex   : 1000,
   };
 
   if (editMode) {
-    root['&:hover'] = {
-       border: '3px solid rgb(62 255 10)'
+    hover['&:hover'] = {
+      border: '3px solid rgb(62 255 10)'
     }
   }
 
   return {
-    root
+    root, hover
   }
 };
 
@@ -39,39 +50,22 @@ export const DashboardBodyContentItemBox: FC<Props> = memo(({ parentsCardItems, 
   };
 
 
-  // const handleMouseEnter = (e: any) => {
-  //   console.log('Enter: ', item.id);
-  //   e.stopPropagation();
-  //   setHover(true);
-  // };
-
-  // const handleMouseLeave = (e: any) => {
-  //   console.log('Leave: ', item.id);
-  //   e.stopPropagation();
-  //   setHover(false);
-  // };
-
-
   return (
     <Box
       id      = {item.id}
       sx      = {sx.root}
-      // onMouseEnter={handleMouseEnter}
-      // onMouseLeave={handleMouseLeave}
       onClick = {handleClick}
     >
-      {/* {
-        item.content && <DashboardBodyContentItemBoxContent
-          content = {item.content}
-          sx      = {item.contentSx}
-        />
-      } */}
-
-      <DashboardBodyContentRender
-        parentsCardItems = {parentsCardItems}
-        parentId         = {item.id}
-        onSelect         = {onSelect}
-      />
+      <Box sx={sx.hover} />
+      {
+        item.label
+          ? <>{item.label}</>
+          : <DashboardBodyContentRender
+              parentsCardItems = {parentsCardItems}
+              parentId         = {item.id}
+              onSelect         = {onSelect}
+            />
+      }
     </Box>
   )
 });

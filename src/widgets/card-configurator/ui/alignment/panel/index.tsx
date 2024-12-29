@@ -7,6 +7,7 @@ import { FlexDirection } from './flex-direction';
 import { AlignItems } from './align-items';
 import { JustifyContent } from './justify-content';
 import { Stack } from '@mui/material';
+import { f } from 'app/styles';
 
 
 
@@ -18,7 +19,7 @@ export const PanelAlignment: FC<Props> = memo(({ onChange }) => {
   const { stylesByCardItemId: style } = useDashboardView();
 
   return (
-    <RowWrapper flexStart>
+    <RowWrapper sx={f('-fs-sb')}>
       <FlexDirection
         value    = {style.flexDirection as FlexDirectionType}
         onChange = {onChange}

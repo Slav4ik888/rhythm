@@ -14,6 +14,7 @@ import { DangerZone } from './danger-zone';
 import { CustomTheme } from 'app/providers/theme';
 import { getChanges, isEmpty } from 'shared/helpers/objects';
 import { useCompany } from 'entities/company';
+import { CardLabel } from './label';
 
 
 
@@ -68,6 +69,7 @@ export const CardItemConfigurator: FC = memo(() => {
       }
 
       <CardId />
+      <CardLabel />
       {/* DisplayShow - показать/скрыть элемент, "скрытый" - показывается только в режиме редактирования */}
       <Alignment onChange={handleChange} />
       <Dimensions onChange={handleChange} />

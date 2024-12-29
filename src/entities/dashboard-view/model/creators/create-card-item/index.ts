@@ -13,12 +13,12 @@ const BASE_SX: ItemStyles = {
   minWidth     : 10,
   height       : 'max-content',
   minHeight    : 10,
-  // borderStyle  : 'solid',
-  // borderWidth  : 1,
-  // borderColor  : 'rgb(146, 146, 146)',
+  borderStyle  : 'solid',
+  borderWidth  : 1,
+  borderColor  : 'rgb(146, 146, 146)',
   borderRadius : 4,
-  boxShadow    : '1px 1px 3px 0px rgb(184 184 184);',
-  background   : 'white',
+  // boxShadow    : '1px 1px 3px 0px rgb(184 184 184);',
+  background   : 'transparent',
   color        : 'black',
   m            : 0,
   p            : 24,
@@ -28,16 +28,22 @@ const BASE_SX: ItemStyles = {
 export const createCardItem = (
   cfg    : Partial<CardItem> = {} as CardItem,
   userId : string
-): CardItem => cloneObj({
-  id          : cfg.id          || uuidv4(),
-  parentId    : cfg.parentId    || NO_PARENT_ID,
-  sheetId     : cfg.sheetId     || NO_SHEET_ID,
+): CardItem => {
+  const cardItem: CardItem = cloneObj({
+    id          : cfg.id          || uuidv4(),
+    parentId    : cfg.parentId    || NO_PARENT_ID,
+    sheetId     : cfg.sheetId     || NO_SHEET_ID,
 
-  type        : cfg.type        || 'box',
-  styles      : cfg.styles ? cfg.styles : BASE_SX,
+    type        : cfg.type        || 'box',
+    styles      : cfg.styles ? cfg.styles : BASE_SX,
 
-  order       : cfg.order       || ORDER_STEP,
+    order       : cfg.order       || ORDER_STEP,
 
-  createdAt   : cfg.createdAt   || creatorFixDate(userId),
-  lastChange  : cfg.lastChange  || creatorFixDate(userId)
-});
+    createdAt   : cfg.createdAt   || creatorFixDate(userId),
+    lastChange  : cfg.lastChange  || creatorFixDate(userId)
+  });
+
+  if (cfg.type === 'text') cardItem.label = 'Введите заголовок'
+  
+  return cardItem;
+}

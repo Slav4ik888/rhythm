@@ -4,21 +4,22 @@ import { f } from 'app/styles';
 
 
 
-const useStyles = (flexStart?: boolean) => ({
+const useStyles = (style?: any) => ({
   root: {
-    ...f(flexStart ? '-fs-sb' : '-c-sb'),
+    ...f('-c-sb'),
     py : 0.5,
+    ...style
   }
 });
 
 
 interface Props {
-  flexStart? : boolean
-  children   : ReactNode
+  sx?      : any
+  children : ReactNode
 }
 
-export const RowWrapper: FC<Props> = memo(({ children, flexStart }) => {
-  const sx = useStyles(flexStart);
+export const RowWrapper: FC<Props> = memo(({ children, sx: style }) => {
+  const sx = useStyles(style);
 
 
   return (

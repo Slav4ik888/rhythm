@@ -1,11 +1,10 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
+import { AddRow } from './add-row';
 import { IdTitle } from './id-title';
-import { ControlRow } from './control';
+import { MovementRow } from './movement-row';
+import { TypeRow } from './type-row';
 
-
-
-export type BorderStyle = 'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'ridge' | 'inset' | 'outset' | 'none';
 
 
 /** CardId */
@@ -14,7 +13,9 @@ export const CardId: FC = memo(() => {
   return (
     <SubHeader title='Элемент'>
       <IdTitle />
-      <ControlRow />
+      <TypeRow />
+      <MovementRow />
+      <AddRow />
     </SubHeader>
   )
 });

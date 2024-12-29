@@ -39,7 +39,7 @@ export const ConfiguratorTextfieldItem: FC<Props> = memo(({ defaultValue = '', t
   const sx = useStyles(style, width);
 
   return (
-    <Tooltip title={toolTitle}>
+    <Tooltip title={toolTitle} sxSpan={{ width: '100%' }}>
       <TextField
         small
         type         = {type}

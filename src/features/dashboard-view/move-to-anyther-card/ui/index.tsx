@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useDashboardView } from 'entities/dashboard-view';
 import { Box } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
@@ -33,7 +33,12 @@ const useStyles = (theme: CustomTheme) => ({
  */
 export const MoveToAnotherCard: FC = memo(() => {
   const sx = useStyles(useTheme());
-  const { selectedId, activatedMovementId, setActiveMovementId } = useDashboardView();
+  const { selectedId, activatedMovementId, setActiveMovementId, clearActivatedMovementId } = useDashboardView();
+
+  const handleToggleActiveMovement = useCallback(() => {
+    if (activatedMovementId) clearActivatedMovementId()
+    else setActiveMovementId()
+  }, [activatedMovementId]);
 
 
   return (
@@ -49,9 +54,10 @@ export const MoveToAnotherCard: FC = memo(() => {
         <MDButton
           variant   = 'outlined'
           color     = 'dark'
-          startIcon = {<MoveIcon sx={sx.icon} />}
-          onClick   = {setActiveMovementId}
-        />
+          onClick   = {handleToggleActiveMovement}
+        >
+          <MoveIcon sx={sx.icon} />
+        </MDButton>
       </Tooltip>
     </Box>
   )
