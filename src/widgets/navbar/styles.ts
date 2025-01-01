@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 import { CustomTheme } from 'app/providers/theme';
-import { getBoxShadows, rgba, pxToRem } from 'app/providers/theme';
+import { getBoxShadows, rgbaFromHex, pxToRem } from 'app/providers/theme';
 import { f } from 'app/styles';
 
 
@@ -40,7 +40,7 @@ export function sxNavbar(theme: CustomTheme, ownerState: OwnerState) {
     backgroundColor :
       navbarTransparent || absolute
         ? `${transparent.main} !important`
-        : rgba(darkMode ? background.default : white.main, 0.8),
+        : rgbaFromHex(darkMode ? background.default : white.main, 0.8),
 
     color: () => {
       let color;

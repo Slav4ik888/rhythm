@@ -31,16 +31,19 @@ export const useDashboardView = (config: Config = {}) => {
     setInitial          = (state: StateSchemaDashboardView) => dispatch(a.setInitial(state)),
     editMode            = useSelector(s.selectEditMode),
     setEditMode         = (editMode: boolean) => dispatch(a.setEditMode(editMode)),
+    entities            = useSelector(s.selectEntities),
+    cardItems           = useSelector(s.selectCardItems),
+    parentsCardItems    = useSelector(s.selectParentsCardItems),
+
     selectedId          = useSelector(s.selectSelectedId),
     setSelectedId       = (id: CardItemId) => dispatch(a.setSelectedId(id)),
     selectedItem        = useSelector(s.selectSelectedItem),
+    isChanges           = useSelector(s.selectIsChanges),
 
     newStoredCard       = useSelector(s.selectNewStoredCard),
     prevStoredCard      = useSelector(s.selectPrevStoredCard),
 
-    entities            = useSelector(s.selectEntities),
-    cardItems           = useSelector(s.selectCardItems),
-    parentsCardItems    = useSelector(s.selectParentsCardItems),
+    
     childrenCardItems   = useSelector((state: StateSchema) => s.selectChildrenCardItems(state, parentId as CardItemId)),
     parentChildrenIds   = childrenCardItems.map(item => item.id),
 
@@ -80,17 +83,22 @@ export const useDashboardView = (config: Config = {}) => {
     cardItems,
     parentsCardItems,
     parentChildrenIds,
+
+    selectedId,
+    setSelectedId,
+    selectedItem,
+    isChanges,
+    newStoredCard,
+    prevStoredCard,
     childrenCardItems,
+
+    
     changeOneStyleField,
     setSelectedStyles,
 
     stylesByCardItemId,
     styleValueByField,
-    selectedId,
-    setSelectedId,
-    newStoredCard,
-    prevStoredCard,
-    selectedItem,
+    
 
     activatedMovementId,
     setActiveMovementId,

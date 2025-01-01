@@ -1,4 +1,4 @@
-import { CustomTheme, getTypography, rgba } from 'app/providers/theme';
+import { CustomTheme, getTypography, rgbaFromHex } from 'app/providers/theme';
 
 
 
@@ -39,7 +39,7 @@ export const sxNavbarIconsStyle = (
       let colorValue = light || darkMode ? white.main : dark.main;
 
       if (navbarTransparent && ! light) {
-        colorValue = darkMode ? rgba(text.main, 0.6) : text.main;
+        colorValue = darkMode ? rgbaFromHex(text.main, 0.6) : text.main;
       }
 
       return colorValue;

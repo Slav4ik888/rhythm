@@ -1,23 +1,25 @@
 import { FC, memo, useEffect, useState } from 'react';
 import { PopoverColorsPicker } from './popover-colors-picker';
 import { useDebouncyEffect } from 'use-debouncy';
+import { RgbaString } from 'entities/dashboard-view';
+import { rgba, rgbaStringToRgba } from './utils';
 
 
 
 interface Props {
-  defaultColor : string
-  onChange     : (color: string) => void
+  defaultColor : RgbaString
+  onChange     : (color: RgbaString) => void
 }
 
 
 export const ColorPicker: FC<Props> = memo(({ defaultColor, onChange }) => {
-  const [color, setColor] = useState(defaultColor);
+  const [color, setColor] = useState(() => rgbaStringToRgba(defaultColor));
 
   useEffect(() => {
-    setColor(defaultColor);
+    setColor(rgbaStringToRgba(defaultColor));
   }, [defaultColor]);
 
-  useDebouncyEffect(() => onChange(color), 100, [color]);
+  useDebouncyEffect(() => onChange(rgba(color)), 50, [color]);
   
 
   return <PopoverColorsPicker color={color} onChange={setColor} />;

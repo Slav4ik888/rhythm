@@ -5,7 +5,7 @@ import { useDashboardView, ItemStylesField, CardItem } from 'entities/dashboard-
 import { Dimensions } from './dimensions';
 import { Indents } from './indents';
 import { Borders } from './borders';
-import { Colors } from './colors';
+import { Background } from './background';
 import { Box } from '@mui/material';
 import { f } from 'app/styles';
 import { CardId } from './id';
@@ -41,8 +41,7 @@ export const CardItemConfigurator: FC = memo(() => {
 
   /** Сохраняем изменения стилей элементов в store */
   const handleChange = useCallback((field: ItemStylesField, value: number | string) => {
-    if (entities[selectedId]?.styles?.[field] !== value && selectedId)
-      changeOneStyleField({ selectedId, field, value });
+    if (entities[selectedId]?.styles?.[field] !== value && selectedId) changeOneStyleField({ selectedId, field, value });
   }, [selectedId, entities, changeOneStyleField]);
 
 
@@ -67,21 +66,15 @@ export const CardItemConfigurator: FC = memo(() => {
           Выберите элемент для редактирования
         </Box>
       }
-
       <CardId />
-      <CardLabel />
+      <CardLabel onChange={handleChange} />
+      <Background onChange={handleChange} />
       {/* DisplayShow - показать/скрыть элемент, "скрытый" - показывается только в режиме редактирования */}
       <Alignment onChange={handleChange} />
       <Dimensions onChange={handleChange} />
       <Indents />
       <Borders onChange={handleChange} />
-      <Colors onChange={handleChange} />
 
-      {/* <SubHeader title='Текст'/> */}
-      {/* font-size */}
-      {/* font-weight */}
-      {/* font-style */}
-      {/* font-family */}
 
       {/* <SubHeader title='Управление'/> */}
       

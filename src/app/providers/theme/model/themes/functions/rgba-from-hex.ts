@@ -22,6 +22,6 @@ Coded by www.creative-tim.com
 import { hexToRgb } from "./hexToRgb";
 
 
-export function rgba(color: string, opacity: number) {
+export function rgbaFromHex(color: string, opacity: number) {
   return `rgba(${hexToRgb(color)}, ${opacity})`;
 }

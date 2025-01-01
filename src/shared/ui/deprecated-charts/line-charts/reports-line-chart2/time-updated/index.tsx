@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { MDBox, MDTypography } from "shared/ui/mui-design-components";
-import { CustomTheme, pxToRem, rgba, useUIConfiguratorController } from 'app/providers/theme';
+import { CustomTheme, pxToRem, rgbaFromHex, useUIConfiguratorController } from 'app/providers/theme';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 
@@ -27,7 +27,7 @@ export const TimeUpdated: FC<Props> = ({ light = false, date }) => {
       let colorValue = light || darkMode ? white.main : dark.main;
 
       if (! light) {
-        colorValue = darkMode ? rgba(text.main, 0.6) : text.main;
+        colorValue = darkMode ? rgbaFromHex(text.main, 0.6) : text.main;
       }
 
       return colorValue;

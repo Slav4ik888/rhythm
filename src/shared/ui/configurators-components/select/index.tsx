@@ -1,4 +1,4 @@
-import { FC, memo, useState } from 'react';
+import { memo, useState } from 'react';
 import { pxToRem, SxCard } from 'app/providers/theme';
 import { Chip, FormControl, MenuItem } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';

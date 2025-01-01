@@ -3,7 +3,7 @@
  * background: 'linear-gradient(195deg, #bbdefb, #64b5f6)';
  *  => ['195', '#bbdefb', '#64b5f6']
  */
-export const splitGradinet = (str: string): string[] => {
+export const splitGradinetHex = (str: string): string[] => {
   let result: string[] = [];
   if (! str || ! str.startsWith('linear-gradient')) return result
   

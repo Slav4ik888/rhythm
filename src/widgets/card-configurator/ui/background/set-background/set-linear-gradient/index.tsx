@@ -1,14 +1,15 @@
 import { FC, memo, useState, useEffect } from 'react';
 import { ChangeStyleItem } from 'shared/ui/configurators-components';
-import { ItemStylesField } from 'entities/dashboard-view';
+import { ItemStylesField, RgbaString } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { linearGradient } from 'app/providers/theme';
+import { SplittedLinerGradient } from '../utils';
 
 
 
 interface Props {
-  defaultValue : number | string | undefined
-  gradients    : string[]
+  defaultValue : RgbaString
+  gradients    : SplittedLinerGradient
   onChange     : (field: ItemStylesField, value: number | string) => void
 }
 
@@ -44,7 +45,7 @@ export const SetLinearGradient: FC<Props> = memo(({ defaultValue = '', gradients
   return (
     <>
       <ChangeStyleItem
-        field      = 'background'
+        // field      = 'background'
         value      = {deg}
         width      = '4rem'
         toolTitle  = 'Угол поворота градиента'

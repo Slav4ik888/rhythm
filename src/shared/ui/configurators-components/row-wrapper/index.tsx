@@ -7,6 +7,7 @@ import { f } from 'app/styles';
 const useStyles = (style?: any) => ({
   root: {
     ...f('-c-sb'),
+    position: 'relative',
     py : 0.5,
     ...style
   }

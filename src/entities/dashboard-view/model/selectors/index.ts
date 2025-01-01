@@ -1,7 +1,8 @@
 import { StateSchema } from 'app/providers/store';
-import { CardItemId, ItemStylesField } from '../types';
+import { CardItem, CardItemId, ItemStylesField } from '../types';
 import { StateSchemaDashboardView } from '../slice/state-schema';
 import { getChildren, getParents } from '../utils';
+import { getChanges, isNotEmpty } from 'shared/helpers/objects';
 
 
 export const selectModule         = (state: StateSchema) => state.dashboardView || {} as StateSchemaDashboardView;
@@ -11,12 +12,13 @@ export const selectErrors         = (state: StateSchema) => selectModule(state).
 export const selectIsMounted      = (state: StateSchema) => selectModule(state)._isMounted;
 
 export const selectEditMode       = (state: StateSchema) => selectModule(state).editMode;
+export const selectEntities       = (state: StateSchema) => selectModule(state).entities || {};
+
 export const selectSelectedId     = (state: StateSchema) => selectModule(state).selectedId;
+export const selectSelectedItem   = (state: StateSchema) => selectEntities(state)[selectSelectedId(state)] || {};
 export const selectNewStoredCard  = (state: StateSchema) => selectModule(state).newStoredCard;
 export const selectPrevStoredCard = (state: StateSchema) => selectModule(state).prevStoredCard;
 
-export const selectEntities       = (state: StateSchema) => selectModule(state).entities || {};
-export const selectSelectedItem   = (state: StateSchema) => selectEntities(state)[selectSelectedId(state)] || {};
 export const selectCardItems      = (state: StateSchema) => Object.values(selectEntities(state));
 
 /** Returns object ParentsCardItems { [parentId: string]: CardItem[] } */
@@ -31,3 +33,15 @@ export const selectCardItemStyle = (state: StateSchema) => selectCardItemById(st
 export const selectStyleByField  = (state: StateSchema, field: ItemStylesField) => selectCardItemStyle(state)[field];
 
 export const selectActivatedMovementId = (state: StateSchema) => selectModule(state).activatedMovementId;
+
+/** Есть ли не сохранённые изменения в SelectedItem */
+export const selectIsChanges = (state: StateSchema) => {
+  if (! selectSelectedId(state)) return false
+  
+  const stored           = selectNewStoredCard(state) as CardItem;
+  const currentCardState = selectEntities(state)?.[stored?.id];
+  const changedFields    = getChanges(stored, currentCardState);
+  
+  return isNotEmpty(changedFields);
+};
+  

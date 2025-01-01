@@ -18,7 +18,7 @@ Coded by www.creative-tim.com
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import {
-  linearGradient, CustomTheme, ColorName, getBoxShadows, pxToRem, rgba, boxShadow, ColoredShadowsName, GradientColorName, SxCard
+  linearGradient, CustomTheme, ColorName, getBoxShadows, pxToRem, rgbaFromHex, boxShadow, ColoredShadowsName, GradientColorName, SxCard
 } from 'app/providers/theme';
 
 
@@ -115,7 +115,7 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
   // styles for the button with variant="outlined"
   const outliedStyles = () => {
     // background color value
-    const backgroundValue = color === "white" ? rgba(white.main, 0.1) : transparent.main;
+    const backgroundValue = color === "white" ? rgbaFromHex(white.main, 0.1) : transparent.main;
 
     // color value
     const colorValue = palette[color] ? palette[color].main : white.main;
@@ -126,10 +126,10 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
       : boxShadow([0, 0], [0, 3.2], white.main, 0.5);
 
     // border color value
-    let borderColorValue = palette[color] ? palette[color].main : rgba(white.main, 0.75);
+    let borderColorValue = palette[color] ? palette[color].main : rgbaFromHex(white.main, 0.75);
 
     if (color === "white") {
-      borderColorValue = rgba(white.main, 0.75);
+      borderColorValue = rgbaFromHex(white.main, 0.75);
     }
 
     return {
@@ -230,7 +230,7 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
   // styles for the button with variant="text"
   const textStyles = () => {
     const colorValue = palette[color] ? palette[color].main : white.main;
-    const backgroundValue = rgba(palette[color] ? palette[color].main : dark.main, 0.08);
+    const backgroundValue = rgbaFromHex(palette[color] ? palette[color].main : dark.main, 0.08);
 
     // color value when button is focused
     const focusedColorValue = palette[color] ? palette[color].focus : white.focus;

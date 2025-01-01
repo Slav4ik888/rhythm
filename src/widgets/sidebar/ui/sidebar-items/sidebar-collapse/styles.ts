@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { CustomTheme, getBoxShadows, getTypography, linearGradient, pxToRem, rgba } from 'app/providers/theme';
+import { CustomTheme, getBoxShadows, getTypography, linearGradient, pxToRem, rgbaFromHex } from 'app/providers/theme';
 
 
 interface OwnerStateItem {
@@ -61,8 +61,8 @@ const collapseItem = (theme: CustomTheme, ownerState: OwnerStateItem) => {
 
         if (! active) {
           backgroundValue = ! darkMode
-            ? rgba(dark.main, 0.7)
-            : rgba(white.main, 0.2);
+            ? rgbaFromHex(dark.main, 0.7)
+            : rgbaFromHex(white.main, 0.2);
         }
 
         return backgroundValue;

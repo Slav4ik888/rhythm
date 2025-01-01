@@ -18,9 +18,9 @@ Coded by www.creative-tim.com
  */
 
 // Material Dashboard 2 React helper functions
-import { rgba } from "./rgba";
 import { pxToRem } from "./pxToRem";
 import { Offset, Radius } from '../../types';
+import { rgbaFromHex } from './rgba-from-hex';
 
 
 export function boxShadow(
@@ -33,7 +33,7 @@ export function boxShadow(
   const [x, y] = offset;
   const [blur, spread] = radius;
 
-  return `${inset} ${pxToRem(x)} ${pxToRem(y)} ${pxToRem(blur)} ${pxToRem(spread)} ${rgba(
+  return `${inset} ${pxToRem(x)} ${pxToRem(y)} ${pxToRem(blur)} ${pxToRem(spread)} ${rgbaFromHex(
     color,
     opacity
   )}`;

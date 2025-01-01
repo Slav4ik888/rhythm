@@ -14,14 +14,14 @@ const getIndents = (v: any) => v ? v / 8 : v;
  * 
  * DB => display user
  */
-export const stylesToSx = (style?: ItemStyles): ItemStyles => {
-  const sx = { ...style };
+export const stylesToSx = (style?: ItemStyles): any => {
+  const sx = { ...style } as any;
 
   if (! style) return sx;
 
   const {
     width, minWidth, maxWidth, height, minHeight, maxHeight,
-    borderWidth, borderRadius,
+    borderWidth, borderRadius, fontSize,
     p, px, py, pt, pb, pr, pl,
     m, mx, my, mt, mb, mr, ml,
    } = style;
@@ -58,6 +58,8 @@ export const stylesToSx = (style?: ItemStyles): ItemStyles => {
   if (is(borderWidth))  sx.borderWidth  = borderWidth  + 'px';
   if (is(borderRadius)) sx.borderRadius = borderRadius + 'px';
 
+  // font-size
+  if (is(fontSize)) sx.fontSize = fontSize + 'px';
 
   return sx
 }

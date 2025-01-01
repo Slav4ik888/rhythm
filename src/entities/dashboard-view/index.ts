@@ -1,6 +1,6 @@
 export {
   CardItemId, CardItem, BorderStyleType, arrayBorderStyles, FlexDirectionType, FlexWrapType,
-  AlignItemsType, JustifyContentType, ItemStyles, ItemStylesField, PartialCardItem
+  AlignItemsType, JustifyContentType, ItemStyles, ItemStylesField, PartialCardItem, RgbaString
 } from './model/types'
 export { actions as actionsDashboardView, reducer as reducerDashboardView } from './model/slice'
 export { DashboardViewEntities, StateSchemaDashboardView } from './model/slice/state-schema'

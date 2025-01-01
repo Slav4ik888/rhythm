@@ -8,6 +8,6 @@ export {
   Offset, Radius, RadiusName, Shadows, ColorsConfig, Borders, SxCard, MUIColors
 } from './model/types'
 export {
-  getBoxShadows, boxShadow, rgba, pxToRem, getTypography, linearGradient
+  getBoxShadows, boxShadow, pxToRem, getTypography, linearGradient, rgbaFromHex
  } from './model/themes/functions'
 export { useTheme } from './model/lib/use-theme'

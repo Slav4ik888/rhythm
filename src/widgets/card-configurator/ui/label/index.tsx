@@ -1,15 +1,18 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { useDashboardView } from 'entities/dashboard-view';
+import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { LabelRow } from './label-row';
+import { SetColor } from './set-color';
+import { FontSizeRow } from './font-size-row';
 
 
 
-export type BorderStyle = 'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'ridge' | 'inset' | 'outset' | 'none';
-
+interface Props {
+  onChange: (field: ItemStylesField, value: number | string) => void
+}
 
 /** Card text label */
-export const CardLabel: FC = memo(() => {
+export const CardLabel: FC<Props> = memo(({ onChange }) => {
   const { selectedItem: { type } } = useDashboardView();
 
   if (type !== 'text') return null
@@ -17,6 +20,11 @@ export const CardLabel: FC = memo(() => {
   return (
     <SubHeader title='Текст'>
       <LabelRow />
+      <FontSizeRow onChange={onChange} />
+      {/* font-weight */}
+      {/* font-style */}
+      {/* font-family */}
+      <SetColor onChange={onChange} />
     </SubHeader>
   )
 });

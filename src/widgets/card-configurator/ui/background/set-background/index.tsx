@@ -1,11 +1,11 @@
 import { FC, memo, useEffect, useMemo, useState } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ItemStylesField, RgbaString, useDashboardView } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { Checkbox } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
-import { splitGradinet } from './split-gradient';
-import { SetLinearGradient } from './background';
+import { splitGradinetRgba } from './utils';
+import { SetLinearGradient } from './set-linear-gradient';
 
 
 
@@ -18,7 +18,7 @@ interface Props {
 export const SetBackground: FC<Props> = memo(({ onChange }) => {
   const { styleValueByField } = useDashboardView({ field: 'background' });
 
-  const gradients = useMemo(() => splitGradinet(styleValueByField as string), [styleValueByField]);
+  const gradients = useMemo(() => splitGradinetRgba(styleValueByField as string), [styleValueByField]);
 
   const [checked, setChecked] = useState(gradients.length === 3); // if 'linear-gradient(195deg, #bbdefb, #64b5f6)';
   const handleToggle = () => setChecked(! checked);
@@ -27,7 +27,7 @@ export const SetBackground: FC<Props> = memo(({ onChange }) => {
     setChecked(gradients.length === 3);
   }, [styleValueByField]);
   
-  const handleBackground = (value: string) => onChange('background', value);
+  const handleBackground = (value: string) => onChange('background', value as unknown as string);
 
 
   return (
@@ -48,12 +48,12 @@ export const SetBackground: FC<Props> = memo(({ onChange }) => {
       {
         checked
           ? <SetLinearGradient
-              defaultValue = {styleValueByField}
+              defaultValue = {styleValueByField as RgbaString}
               gradients    = {gradients}
               onChange     = {onChange}
             />
           : <ColorPicker
-              defaultColor = {styleValueByField as string}
+              defaultColor = {styleValueByField as RgbaString}
               onChange     = {handleBackground}
             />
       }
