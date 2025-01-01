@@ -18,7 +18,7 @@ interface Props {
  * box-shadow
  * TODO: галочку - показать тень или нет, и если нет то не отрисовывать компонент (как в градиенте для background)
  */
-export const BoxShadow: FC<Props> = memo(({ onChange }) => {
+export const BoxShadowRow: FC<Props> = memo(({ onChange }) => {
   const { styleValueByField } = useDashboardView({ field: 'boxShadow' });
   const [oX = 1, oY = 1, bR = 3, sR = 0, clr = 'rgb(184 184 184)'] = useMemo(() => splitShadow(styleValueByField), []);
 

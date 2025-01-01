@@ -4,7 +4,7 @@ import { f } from 'app/styles';
 import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
-import { BorderStyle } from './border-style';
+import { SelectBorderStyle } from './select-border-style';
 
 
 
@@ -14,7 +14,7 @@ interface Props {
 }
 
 /** border: width style color */
-export const Border: FC<Props> = memo(({ borderColor = 'none', onChange }) => {
+export const BorderRow: FC<Props> = memo(({ borderColor = 'none', onChange }) => {
   const { styleValueByField } = useDashboardView({ field: 'borderWidth' });
 
   const handleSubmitColor = (value: string) => onChange('borderColor', value);
@@ -33,7 +33,7 @@ export const Border: FC<Props> = memo(({ borderColor = 'none', onChange }) => {
           onSubmit   = {onChange}
         />
         
-        <BorderStyle onChange={onChange} />
+        <SelectBorderStyle onChange={onChange} />
 
         <ColorPicker
           defaultColor = {borderColor}

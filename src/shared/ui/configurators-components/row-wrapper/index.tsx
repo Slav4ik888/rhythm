@@ -1,14 +1,16 @@
 import { FC, memo, ReactNode } from 'react';
 import { Box } from '@mui/material';
 import { f } from 'app/styles';
+import { pxToRem } from 'app/providers/theme';
 
 
 
 const useStyles = (style?: any) => ({
   root: {
     ...f('-c-sb'),
-    position: 'relative',
-    py : 0.5,
+    position  : 'relative',
+    minHeight : pxToRem(46),
+    py        : 0.5,
     ...style
   }
 });

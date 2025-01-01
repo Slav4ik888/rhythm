@@ -2,7 +2,6 @@ import { Box, Typography } from '@mui/material';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { f } from 'app/styles';
 import { FC, memo, ReactNode } from 'react';
-import { MDDivider } from 'shared/ui/mui-design-components';
 
 
 
@@ -13,9 +12,10 @@ const useStyles = (theme: CustomTheme) => ({
   },
   title: {
     ...f('-c-c'),
-    fontSize : '1.3rem',
-    color    : theme.palette.dark.main,
-    my       : 3,
+    fontSize   : '1.3rem',
+    color      : theme.palette.subHeader.main,
+    textShadow : `0px 0px 3px ${theme.palette.subHeader.light}`,
+    my         : 3,
   },
 });
 
@@ -34,7 +34,6 @@ export const ConfiguratorSubHeader: FC<Props> = memo(({ title, children }) => {
       <Typography sx={sx.title}>
         {title}
       </Typography>
-      {/* <MDDivider mt={1} mb={2} /> */}
       {
         children
       }

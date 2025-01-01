@@ -9,7 +9,7 @@ interface Props {
 }
 
 /** border-radius */
-export const BorderRadius: FC<Props> = memo(({ onChange }) => {
+export const BorderRadiusRow: FC<Props> = memo(({ onChange }) => {
   const { styleValueByField } = useDashboardView({ field: 'borderRadius' });
   
   return (

@@ -8,7 +8,7 @@ interface Props {
   onChange: (field: ItemStylesField, value: number | string) => void
 }
 
-export const BorderStyle: FC<Props> = memo(({ onChange }) => {
+export const SelectBorderStyle: FC<Props> = memo(({ onChange }) => {
   const { styleValueByField } = useDashboardView({ field: 'borderStyle' });
 
   const handleSelectedStyle = (selected: BorderStyleType) => onChange('borderStyle', selected);

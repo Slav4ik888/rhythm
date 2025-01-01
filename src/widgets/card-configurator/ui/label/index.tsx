@@ -4,6 +4,8 @@ import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { LabelRow } from './label-row';
 import { SetColor } from './set-color';
 import { FontSizeRow } from './font-size-row';
+import { FontWeightRow } from './font-weight-row';
+import { FontStyleRow } from './font-style-row';
 
 
 
@@ -20,9 +22,10 @@ export const CardLabel: FC<Props> = memo(({ onChange }) => {
   return (
     <SubHeader title='Текст'>
       <LabelRow />
-      <FontSizeRow onChange={onChange} />
-      {/* font-weight */}
-      {/* font-style */}
+      <FontSizeRow   onChange={onChange} />
+      <FontStyleRow  onChange={onChange} />
+      <FontWeightRow onChange={onChange} />
+      
       {/* font-family */}
       <SetColor onChange={onChange} />
     </SubHeader>

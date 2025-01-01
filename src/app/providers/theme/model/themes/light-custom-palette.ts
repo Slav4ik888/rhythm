@@ -125,6 +125,14 @@ export const customPalette = {
     900: '#212529',
   } as Color,
   
+  subHeader: {
+    light: '#6c925a', // shaddow
+    main: '#2a6c0b',  // color
+    dark: '',
+    focus: '',
+    contrastText: '#000000',
+  },
+
   // Заголовок в ReportsLineChart
   reportsChartTitle: {
     main: '#7a7a7a',

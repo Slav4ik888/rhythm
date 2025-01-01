@@ -19,7 +19,7 @@ export const FontSizeRow: FC<Props> = memo(({ onChange }) => {
       <ChangeStyleItem
         value      = {styleValueByField as number}
         field      = 'fontSize'
-        width      = '3rem'
+        width      = '5rem'
         onCallback = {onChange}
         onSubmit   = {onChange}
       />
