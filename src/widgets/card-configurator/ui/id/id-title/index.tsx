@@ -1,9 +1,10 @@
-import { FC, memo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { useDashboardView } from 'entities/dashboard-view';
 import { Box } from '@mui/material';
 import { CustomTheme, pxToRem, useTheme } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
+import { isChanges as isChangesFunc } from 'shared/helpers/objects';
 
 
 
@@ -24,8 +25,16 @@ const useStyles = (theme: CustomTheme) => ({
 
 export const IdTitle: FC = memo(() => {
   const sx = useStyles(useTheme());
-  const { selectedId, isChanges } = useDashboardView();
+  const { selectedId, newStoredCard, entities } = useDashboardView();
 
+  /** Есть ли не сохранённые изменения в SelectedItem */
+  const isChanges = useMemo(() => {
+    if (! selectedId) return false
+  
+    const currentCardState = entities[selectedId];
+    return isChangesFunc(newStoredCard, currentCardState);
+  }, [selectedId, newStoredCard, entities]);
+  
 
   return (
     <RowWrapper>

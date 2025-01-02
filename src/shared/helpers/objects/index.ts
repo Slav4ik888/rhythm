@@ -1,4 +1,4 @@
-// v.2024-12-15
+// v.2025-01-02
 export * from './arr-from-obj-with-key';
 export * from './is-changes';
 export * from './filter-ents-by-field';
@@ -6,6 +6,7 @@ export * from './get-all-obj-value';
 export * from './get-changes';
 export * from './convert-to-dot';
 export * from './delete-field';            // v.2024-12-15
+export * from './delete-fields';           // v.2025-01-02
 export * from './get-first-field-key';
 export * from './get-key-by-value';
 export { getValuePosition, getMajorStatus } from './get-major-status'; // v.2023-07-15

@@ -15,6 +15,7 @@ import { CustomTheme } from 'app/providers/theme';
 import { getChanges, isEmpty } from 'shared/helpers/objects';
 import { useCompany } from 'entities/company';
 import { CardLabel } from './label';
+import { useUser } from 'entities/user';
 
 
 
@@ -45,11 +46,11 @@ export const CardItemConfigurator: FC = memo(() => {
   }, [selectedId, entities, changeOneStyleField]);
 
 
-  /** Сохраняем изменения при закрытии Конфигуратора */
-  const handleCloseAndSave = useCallback(() => {
+  /** Закрываем конфигуратор */
+  const handleClose = useCallback(() => {
     setEditMode(false);
     setSelectedId(''); // Убираем, чтобы prevStoredCard обновился и произошло сохранение
-  }, [selectedId, entities, setEditMode]);
+  }, [selectedId, setEditMode, setSelectedId]);
 
 
   return (
@@ -60,7 +61,7 @@ export const CardItemConfigurator: FC = memo(() => {
       // @ts-ignore
       ownerState = {{ editMode }}
     >
-      <MainHeader onClose={handleCloseAndSave} />
+      <MainHeader onClose={handleClose} />
       {
         ! selectedId && <Box sx={(theme) => ({ ...f('-c-c'), mt: 8, color: (theme as CustomTheme).palette.error.main })}>
           Выберите элемент для редактирования

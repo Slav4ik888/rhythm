@@ -17,7 +17,7 @@ const BASE_SX: ItemStyles = {
   borderWidth  : 1,
   borderColor  : 'rgba(146, 146, 146, 1)',
   borderRadius : 4,
-  // boxShadow    : '1px 1px 3px 0px rgb(184 184 184);',
+  // boxShadow    : '1px 1px 3px 0px rgba(184, 184, 184, 1)',
   background   : 'rgba(255, 255, 255, 1)',
   color        : 'rgba(70, 70, 70, 1)',
   m            : 0,

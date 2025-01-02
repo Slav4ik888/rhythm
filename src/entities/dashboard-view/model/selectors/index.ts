@@ -1,8 +1,7 @@
 import { StateSchema } from 'app/providers/store';
-import { CardItem, CardItemId, ItemStylesField } from '../types';
+import { CardItemId, ItemStylesField } from '../types';
 import { StateSchemaDashboardView } from '../slice/state-schema';
 import { getChildren, getParents } from '../utils';
-import { getChanges, isNotEmpty } from 'shared/helpers/objects';
 
 
 export const selectModule         = (state: StateSchema) => state.dashboardView || {} as StateSchemaDashboardView;
@@ -34,14 +33,4 @@ export const selectStyleByField  = (state: StateSchema, field: ItemStylesField) 
 
 export const selectActivatedMovementId = (state: StateSchema) => selectModule(state).activatedMovementId;
 
-/** Есть ли не сохранённые изменения в SelectedItem */
-export const selectIsChanges = (state: StateSchema) => {
-  if (! selectSelectedId(state)) return false
-  
-  const stored           = selectNewStoredCard(state) as CardItem;
-  const currentCardState = selectEntities(state)?.[stored?.id];
-  const changedFields    = getChanges(stored, currentCardState);
-  
-  return isNotEmpty(changedFields);
-};
   

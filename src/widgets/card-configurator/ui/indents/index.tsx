@@ -1,17 +1,14 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { ItemStyles, ItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { ChangeStyleItemIndents } from './change-style-indents';
-import { deleteField } from 'shared/helpers/objects';
+import { deleteFields } from 'shared/helpers/objects';
 
-
-
-const deleteFields = (styles: ItemStyles, arr: ItemStylesField[]) => arr.forEach(item => deleteField(styles, item));
 
 
 /** Отступы */
 export const Indents: FC = memo(() => {
-  const { stylesByCardItemId, selectedId, setSelectedStyles } = useDashboardView();
+  const { stylesByCardItemId, setSelectedStyles } = useDashboardView();
 
 
   const handleSubmit = (field: ItemStylesField, value: number) => {
@@ -45,7 +42,7 @@ export const Indents: FC = memo(() => {
     }
     
     deleteFields(newStyles, fields);
-    setSelectedStyles({ selectedId, styles: newStyles });
+    setSelectedStyles(newStyles);
   };
 
 

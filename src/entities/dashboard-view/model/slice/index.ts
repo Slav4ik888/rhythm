@@ -4,9 +4,9 @@ import { Errors } from 'shared/lib/validators';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { StateSchemaDashboardView } from './state-schema';
 import { deleteCard, DeleteCard, AddNewCard, addNewCard, UpdateCardItem, updateCardItem } from 'features/dashboard-view';
-import { SetDashboardView, SetSelectedStyles, ChangeSelectedStyle } from './types';
+import { SetDashboardView, ChangeSelectedStyle } from './types';
 import { addEntities } from 'entities/base';
-import { CardItemId, PartialCardItem } from '../types';
+import { CardItemId, ItemStyles, PartialCardItem } from '../types';
 // import { NO_PARENT_ID } from '../consts';
 import { updateObject } from 'shared/helpers/objects';
 
@@ -72,9 +72,8 @@ export const slice = createSlice({
       state.entities[selectedId].styles[field] = value;
     },
 
-    setSelectedStyles: (state, { payload }: PayloadAction<SetSelectedStyles>) => {
-      const { selectedId, styles } = payload;
-      state.entities[selectedId].styles = styles;
+    setSelectedStyles: (state, { payload }: PayloadAction<ItemStyles>) => {
+      state.entities[state.selectedId].styles = payload;
     },
 
     // ПЕРЕМЕЩЕНИЕ ВЫБРАННОГО CARD-ITEM В ДРУГОЙ
@@ -127,14 +126,14 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(updateCardItem.fulfilled, (state, { payload }: PayloadAction<UpdateCardItem>) => {
-        const { cardItem } = payload;
+        const { cardItem, companyId } = payload;
         
         state.entities[cardItem.id] = updateObject(state.entities[cardItem.id], cardItem);
         state.activatedMovementId   = '';
         state.loading               = false;
         state.errors                = {};
 
-        LS.setDashboardView(payload.companyId, state.entities); // Save entities to local storage
+        LS.setDashboardView(companyId, state.entities); // Save entities to local storage
       })
       .addCase(updateCardItem.rejected, (state, { payload }) => {
         state.errors  = getError(payload);

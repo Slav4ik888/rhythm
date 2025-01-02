@@ -3,9 +3,9 @@ import { actions as a } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
-import { SetSelectedStyles, ChangeSelectedStyle } from '../../slice/types';
+import { ChangeSelectedStyle } from '../../slice/types';
 import { ActivatedCompanyId } from 'entities/company';
-import { CardItem, CardItemId, ItemStylesField, PartialCardItem } from '../../types';
+import { CardItem, CardItemId, ItemStyles, ItemStylesField, PartialCardItem } from '../../types';
 import { addNewCard, deleteCard, DeleteCard, UpdateCardItem, updateCardItem as updateCardItemOnServer } from 'features/dashboard-view';
 import { StateSchema } from 'app/providers/store';
 import { StateSchemaDashboardView } from '../../slice/state-schema';
@@ -38,7 +38,6 @@ export const useDashboardView = (config: Config = {}) => {
     selectedId          = useSelector(s.selectSelectedId),
     setSelectedId       = (id: CardItemId) => dispatch(a.setSelectedId(id)),
     selectedItem        = useSelector(s.selectSelectedItem),
-    isChanges           = useSelector(s.selectIsChanges),
 
     newStoredCard       = useSelector(s.selectNewStoredCard),
     prevStoredCard      = useSelector(s.selectPrevStoredCard),
@@ -48,7 +47,7 @@ export const useDashboardView = (config: Config = {}) => {
     parentChildrenIds   = childrenCardItems.map(item => item.id),
 
     changeOneStyleField = (data: ChangeSelectedStyle) => dispatch(a.changeOneStyleField(data)),
-    setSelectedStyles   = (data: SetSelectedStyles) => dispatch(a.setSelectedStyles(data)),
+    setSelectedStyles   = (data: ItemStyles) => dispatch(a.setSelectedStyles(data)),
 
     stylesByCardItemId  = useSelector(s.selectCardItemStyle),
     styleValueByField   = useSelector((state: StateSchema) => s.selectStyleByField(state, field as ItemStylesField)),
@@ -87,7 +86,6 @@ export const useDashboardView = (config: Config = {}) => {
     selectedId,
     setSelectedId,
     selectedItem,
-    isChanges,
     newStoredCard,
     prevStoredCard,
     childrenCardItems,

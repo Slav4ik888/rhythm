@@ -1,4 +1,4 @@
-import { CardItem, CardItemId, ItemStyles, ItemStylesField } from '../types';
+import { CardItem, CardItemId, ItemStylesField } from '../types';
 
 
 
@@ -11,9 +11,4 @@ export interface ChangeSelectedStyle {
   selectedId : CardItemId
   field      : ItemStylesField
   value      : number | string
-}
-
-export interface SetSelectedStyles {
-  selectedId : CardItemId
-  styles     : ItemStyles
 }
