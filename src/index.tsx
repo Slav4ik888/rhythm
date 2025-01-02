@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "remove dashboardBodyContent to widjets" && git push -u origin main
+// git add . && git commit -m "remove DashboardSetEditBtn to navbar" && git push -u origin main

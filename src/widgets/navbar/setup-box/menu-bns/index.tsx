@@ -4,6 +4,7 @@ import { OpenNotificationMenuBtn, OpenUIConfiguratorBtn } from 'features/ui';
 import { CustomTheme } from 'app/providers/theme';
 import { sxNavbarRow } from 'widgets/navbar/styles';
 import { ProfilesMenuRoot } from 'widgets/profiles-menu';
+import { DashboardSetEditBtn } from 'features/dashboard-view';
 
 
 
@@ -18,20 +19,8 @@ export const MenuBtns: FC<Props> = ({ light, isMini = false }) => {
   return (
     <MDBox sx={(theme: CustomTheme) => sxNavbarRow(theme, isMini)}>
       <MDBox display="flex" alignItems="center" color={light ? "white" : "inherit"}>
+        <DashboardSetEditBtn light={light} />
         <OpenNotificationMenuBtn light={light} />
-        
-        {/* <MDBox>
-          <MDButton
-            variant="gradient"
-            color="info"
-            fullWidth
-            type="button"
-            onClick={handleLogOut}
-          >
-            Log Out
-          </MDButton>
-        </MDBox> */}
-          
         <OpenUIConfiguratorBtn light={light} />
         <ProfilesMenuRoot />
       </MDBox>
