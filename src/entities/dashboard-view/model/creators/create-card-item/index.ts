@@ -6,13 +6,20 @@ import { f } from 'app/styles';
 import { NO_PARENT_ID, NO_SHEET_ID, ORDER_STEP } from '../../consts';
 
 
-
+/** Base style for all items (box|text|divider) */
 const BASE_SX: ItemStyles = {
   ...f('c'),
-  width        : 'max-content',
+  width        : '100%',
   minWidth     : 10,
   height       : 'max-content',
   minHeight    : 10,
+  m            : 0,
+  p            : 24,
+};
+
+/** Additional style for box|text items */
+const ADDI_SX: ItemStyles = {
+  width        : 'max-content',
   borderStyle  : 'solid',
   borderWidth  : 1,
   borderColor  : 'rgba(146, 146, 146, 1)',
@@ -20,9 +27,7 @@ const BASE_SX: ItemStyles = {
   // boxShadow    : '1px 1px 3px 0px rgba(184, 184, 184, 1)',
   background   : 'rgba(255, 255, 255, 1)',
   color        : 'rgba(70, 70, 70, 1)',
-  m            : 0,
-  p            : 24,
-}
+};
 
 
 export const createCardItem = (
@@ -44,6 +49,12 @@ export const createCardItem = (
   });
 
   if (cfg.type === 'text') cardItem.label = 'Введите заголовок'
+  if (cfg.type === 'box' || cfg.type === 'text') {
+    cardItem.styles = {
+      ...cardItem.styles,
+      ...ADDI_SX
+    }
+  }
   
   return cardItem;
 }

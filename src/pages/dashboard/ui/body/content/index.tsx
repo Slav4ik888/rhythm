@@ -1,5 +1,5 @@
 import { memo, useCallback } from 'react';
-import { DashboardBodyContentRender } from './render-items';
+import { ContentRender } from './render-items';
 import { Box } from '@mui/material';
 import { f } from 'app/styles';
 import { CardItemId, PartialCardItem, useDashboardView } from 'entities/dashboard-view';
@@ -9,10 +9,8 @@ import { useCompany } from 'entities/company';
 
 export const DashboardBodyContent = memo(() => {
   const { companyId } = useCompany();
-  const {
-    editMode, selectedId, selectedItem, activatedMovementId, parentsCardItems, entities,
-    setSelectedId, updateCardItem, serviceUpdateCardItem
-  } = useDashboardView();
+  const { editMode, selectedId, selectedItem, activatedMovementId, parentsCardItems, entities,
+    setSelectedId, updateCardItem, serviceUpdateCardItem } = useDashboardView();
 
 
   const handleSelectCardItem = useCallback((id: CardItemId) => {
@@ -41,7 +39,7 @@ export const DashboardBodyContent = memo(() => {
 
   return (
     <Box sx={{ ...f('c') }}>
-      <DashboardBodyContentRender
+      <ContentRender
         parentsCardItems = {parentsCardItems}
         parentId         = 'no_parentId'
         onSelect         = {handleSelectCardItem}

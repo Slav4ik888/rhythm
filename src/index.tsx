@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refact boxShadow" && git push -u origin main
+// git add . && git commit -m "add dividerItem" && git push -u origin main

@@ -16,7 +16,7 @@ interface Props {
 
 /** background */
 export const SetBackground: FC<Props> = memo(({ onChange }) => {
-  const { styleValueByField } = useDashboardView({ field: 'background' });
+  const { styleValueByField = 'rgba(255, 255, 255, 0)' } = useDashboardView({ field: 'background' });
 
   const gradients = useMemo(() => splitGradinetRgba(styleValueByField as string), [styleValueByField]);
 

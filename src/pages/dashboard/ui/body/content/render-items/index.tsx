@@ -12,7 +12,7 @@ interface Props {
 }
 
 
-export const DashboardBodyContentRender: FC<Props> = memo(({ parentsCardItems, parentId, onSelect }) => {
+export const ContentRender: FC<Props> = memo(({ parentsCardItems, parentId, onSelect }) => {
 
   const sorted = useMemo(() => sortingArr(parentsCardItems[parentId], 'order'), [parentsCardItems, parentId]);
   

@@ -15,7 +15,6 @@ import { CustomTheme } from 'app/providers/theme';
 import { getChanges, isEmpty } from 'shared/helpers/objects';
 import { useCompany } from 'entities/company';
 import { CardLabel } from './label';
-import { useUser } from 'entities/user';
 
 
 

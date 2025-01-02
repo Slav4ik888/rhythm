@@ -1,7 +1,7 @@
 import { ItemBase } from 'entities/base'
 import { ItemStyles } from './item-styles'
 
-export type CardItemType = 'box' | 'text'
+export type CardItemType = 'box' | 'text' | 'divider'
 
 export type CardItemId = string
 

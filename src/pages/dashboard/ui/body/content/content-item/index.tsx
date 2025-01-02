@@ -1,6 +1,7 @@
 import { FC, memo } from 'react';
 import { CardItem, CardItemId, ParentsCardItems } from 'entities/dashboard-view';
-import { DashboardBodyContentItemBox } from './box';
+import { ItemBox } from './box';
+import { ItemDivider } from './divider';
 
 
 
@@ -16,8 +17,9 @@ export const DashboardBodyContentItem: FC<Props> = memo(({ item, parentsCardItem
 
   switch (item.type) {
     case 'box':
-    case 'text': return <DashboardBodyContentItemBox parentsCardItems={parentsCardItems} item={item} onSelect={onSelect} />;
+    case 'text':    return <ItemBox parentsCardItems={parentsCardItems} item={item} onSelect={onSelect} />;
+    case 'divider': return <ItemDivider item={item} onSelect={onSelect} />;
 
-    default: return <DashboardBodyContentItemBox parentsCardItems={parentsCardItems} item={item} onSelect={onSelect} />;
+    default: return <ItemBox parentsCardItems={parentsCardItems} item={item} onSelect={onSelect} />;
   }
 });
