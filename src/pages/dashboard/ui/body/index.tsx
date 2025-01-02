@@ -6,10 +6,8 @@ import { CircularProgress } from 'shared/ui/circular-progress';
 import { DashboardBodyWrapper } from './wrapper';
 import { PageLoader } from 'widgets';
 import { DashboardSetEditBtn } from 'features/dashboard-view';
-import { DashboardBodyContent } from './content';
-import { DashboardBodyPanel } from './panel';
+import { DashboardBodyPanel, CardItemConfigurator, DashboardBodyContent } from 'widgets/dashboard-view';
 import { getInitialState as getInitialStateView, useDashboardView } from 'entities/dashboard-view';
-import { CardItemConfigurator } from 'widgets/card-configurator';
 // import { DashboardBody_demo_pecar } from './templates';
 
 
