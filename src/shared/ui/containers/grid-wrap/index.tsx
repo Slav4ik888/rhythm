@@ -1,5 +1,5 @@
 import { FC, memo, ReactNode } from 'react';
-import { GridSize, Grid } from "@mui/material";
+import { GridSize, Grid2 as Grid } from "@mui/material";
 
 
 
@@ -20,17 +20,18 @@ type Props = {
 }
 
 /**
- * v.2024-11-09
+ * v.2025-01-03
  */
 export const GridWrap: FC<Props> = memo(({ grid, children, sx, onClick }) => (
   <Grid
-    item
-    lg      = {grid?.lg || 12}
-    md      = {grid?.md || 12}
-    sm      = {grid?.sm || 3}
-    xl      = {grid?.xl || 12}
-    xs      = {grid?.xs || 12}
-    sx      = {sx?.root}
+    sx={{
+      ...sx?.root,
+      lg : grid?.lg || 12,
+      md : grid?.md || 12,
+      sm : grid?.sm || 3,
+      xl : grid?.xl || 12,
+      xs : grid?.xs || 12,
+    }}
     onClick = {onClick}
   >
     {

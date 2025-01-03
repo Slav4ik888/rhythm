@@ -2,6 +2,8 @@
 import { InteractionMode } from 'node_modules/chart.js/dist/types/index.d.ts';
 
 
+export type ChartType = 'line' | 'bar' | 'pie' | 'doughnut'
+
 
 export interface ChartConfig {
   labels   : any[] // Dates (метки на оси X)

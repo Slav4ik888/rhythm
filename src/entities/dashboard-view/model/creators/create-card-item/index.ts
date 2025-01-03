@@ -58,5 +58,10 @@ export const createCardItem = (
     }
   }
 
+  if (cfg.type === 'chart') {
+    cardItem.settings = {};
+    cardItem.settings.chartType = cfg?.settings?.chartType || 'line';
+  }
+
   return cardItem;
 }

@@ -1,4 +1,5 @@
 import { ItemBase } from 'entities/base'
+import { ChartType } from 'entities/charts'
 import { ItemStyles } from './item-styles'
 
 export type CardItemType = 'box' | 'text' | 'divider' | 'chart'
@@ -6,9 +7,13 @@ export type CardItemType = 'box' | 'text' | 'divider' | 'chart'
 export type CardItemId = string
 
 
-// export interface CardItemHeader {
-//   sx?: ItemStyles
-// }
+export interface CardItemSettings {
+  // Chart settings
+  chartType?: ChartType
+
+  // Chips settings
+  // Other settings
+}
 
 
 // export interface CardItemBody {
@@ -23,9 +28,8 @@ export interface CardItem extends ItemBase {
 
   type         : CardItemType
   styles       : ItemStyles
-  // content?     : string
-  // contentSx?   : ItemStyles
-  // childrenIds  : CardItemId[] // TODO: надо понять зачем? где используется
+
+  settings?    : CardItemSettings
 }
 
 export type PartialCardItem = Partial<CardItem> & { id: CardItemId }

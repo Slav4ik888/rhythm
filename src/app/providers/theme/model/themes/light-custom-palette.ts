@@ -21,13 +21,13 @@ export const customPalette = {
   },
 
   inherit: {
-    main: 'inherit',
-    focus: 'inherit',
+    main: '#000000',
+    focus: '#000000',
   },
 
   transparent: {
-    main: 'transparent',
-    focus: 'transparent',
+    main: 'rgba(255, 255, 255, 0)',
+    focus: 'rgba(255, 255, 255, 0)',
   },
 
   white: {

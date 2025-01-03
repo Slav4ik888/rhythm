@@ -34,7 +34,9 @@ export const AddRows: FC = memo(() => {
       <RowWrapper sx={f('-c-fe')}>
         <AddCardElementBtns onClick={handleAdd} />
       </RowWrapper>
+
       <RowWrapper sx={f('-c-fe')}>
+        {/* TODO: select chart type: line | bar ... */}
         <AddCardChartBtns onClick={handleAdd} />
       </RowWrapper>
     </>

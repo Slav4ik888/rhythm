@@ -32,7 +32,7 @@ export const ProfilesMenuRoot: FC<Props> = ({ light }) => {
         aria-label    = 'account of current user'
         aria-controls = {menuId}
         aria-haspopup = 'true'
-        color         = 'inherit'
+        // color         = 'inherit'
         edge          = 'end' 
         sx            = {(theme) => sxNavbarIconButton(theme as CustomTheme)} 
         onClick       = {handleProfilesMenuOpen}

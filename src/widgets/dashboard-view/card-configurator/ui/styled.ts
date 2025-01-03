@@ -20,10 +20,14 @@ import { CustomTheme, getBoxShadows, pxToRem } from 'app/providers/theme';
 
 
 
+interface OwnerState {
+  editMode: boolean
+}
+
 // @ts-ignore
-export default styled(Drawer)(({ theme, ownerState }) => {
-  const { transitions } = theme;
-  const { isOpen } = ownerState;
+export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
+  const { transitions, borders: { borderRadius } } = theme;
+  const { editMode } = ownerState;
 
   const configuratorWidth = 460;
 
@@ -49,19 +53,18 @@ export default styled(Drawer)(({ theme, ownerState }) => {
 
   return {
     '& .MuiDrawer-paper': {
-      height        : '100%', // 'max-content', // '100vh',
+      height        : 'calc(100vh - 2rem)',
       left          : 'initial',
-      margin        : 0,
+      margin        : '1rem 1rem 1rem 0 !important',
+      background    : '#e1e1e1',
       padding       : `0 ${pxToRem(24)}`,
       paddingBottom : pxToRem(60),
-      borderRadius  : 0,
+      borderRadius  : borderRadius.xl,
       boxShadow     : getBoxShadows(theme as CustomTheme).lg,
       overflowY     : 'auto',
-      ...(isOpen ? drawerOpenStyles() : drawerCloseStyles()),
-    },
-    '& .MuiModal-backdrop': {
-      backgroundColor: 'transparent',
+      transform     : editMode ? 'translateX(0)' : `translateX(${pxToRem(450)})`,
+
+      ...(editMode ? drawerOpenStyles() : drawerCloseStyles()),
     }
-    // '..css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop'
   };
 });

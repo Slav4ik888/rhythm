@@ -80,7 +80,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
       >
         <Toolbar sx={(theme) => sxNavbarContainer(theme as CustomTheme)}>
           <NavbarControlBox light={light} isMini={isMini} />
-          <NavbarSetupBox   isMini={isMini} />
+          <NavbarSetupBox   isMini={isMini} /> 
         </Toolbar>
       </AppBar>
     </SidebarRegulatorWrapper>
