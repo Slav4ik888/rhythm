@@ -1,4 +1,4 @@
-export { DashboardAddNewCardBtn, AddNewCard, addNewCard, } from './add-new-card'
+export { PanelAddCardBtns, AddNewCard, addNewCard, AddCardElementBtns, AddCardChartBtns } from './add-new-card'
 export { MoveToAnotherCard } from './move-to-anyther-card'
 export { UpdateCardItem, updateCardItem } from './update-card-item'
 export { DashboardSetEditBtn } from './set-edit-btn'

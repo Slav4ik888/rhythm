@@ -43,7 +43,7 @@ interface Props {
 }
 
 /** For Panel */
-export const DashboardAddNewCardBtn: FC<Props> = memo(({ parentId }) => {
+export const PanelAddCardBtns: FC<Props> = memo(({ parentId }) => {
   const { selectedId, childrenCardItems, parentChildrenIds, serviceAddNewCard } = useDashboardView({ parentId });
   const { userId } = useUser();
   const { companyId } = useCompany();

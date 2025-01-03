@@ -6,6 +6,7 @@ import { f } from 'app/styles';
 import { NO_PARENT_ID, NO_SHEET_ID, ORDER_STEP } from '../../consts';
 
 
+
 /** Base style for all items (box|text|divider) */
 const BASE_SX: ItemStyles = {
   ...f('c'),
@@ -16,6 +17,7 @@ const BASE_SX: ItemStyles = {
   m            : 0,
   p            : 24,
 };
+
 
 /** Additional style for box|text items */
 const ADDI_SX: ItemStyles = {
@@ -55,6 +57,6 @@ export const createCardItem = (
       ...ADDI_SX
     }
   }
-  
+
   return cardItem;
 }

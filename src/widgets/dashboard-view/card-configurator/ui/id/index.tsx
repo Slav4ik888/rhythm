@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { AddRow } from './add-row';
+import { AddRows } from './add-row';
 import { IdTitle } from './id-title';
 import { MovementRow } from './movement-row';
 import { TypeRow } from './type-row';
@@ -15,7 +15,7 @@ export const CardId: FC = memo(() => {
       <IdTitle />
       <TypeRow />
       <MovementRow />
-      <AddRow />
+      <AddRows />
     </SubHeader>
   )
 });
