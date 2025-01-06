@@ -10,7 +10,7 @@ interface Props {
 }
 
 /** Row with chart elements btns */
-export const AddCardChartBtns: FC<Props> = memo(({ onClick }) => {
+export const AddCardElementBtns: FC<Props> = memo(({ onClick }) => {
   return (
     <>
       <AddBtn

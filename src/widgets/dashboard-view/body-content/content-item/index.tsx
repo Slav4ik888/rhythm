@@ -20,7 +20,7 @@ export const DashboardBodyContentItem: FC<Props> = memo(({ item, parentsCardItem
     case 'box':
     case 'text':    return <ItemBox parentsCardItems={parentsCardItems} item={item} onSelect={onSelect} />;
     case 'divider': return <ItemDivider item={item} onSelect={onSelect} />;
-    case 'chart':   return <ItemChart item={item} onSelect={onSelect} />;
+    case 'chart':   return <ItemChart items={[item]} onSelect={onSelect} />;
 
     default: return <ItemBox parentsCardItems={parentsCardItems} item={item} onSelect={onSelect} />;
   }

@@ -11,6 +11,7 @@ import { CardLabel } from './label';
 
 
 
+/** Вкладка Styles */
 export const CardItemStylesConfigurator: FC = memo(() => {
   const { selectedId, entities, changeOneStyleField } = useDashboardView();
 

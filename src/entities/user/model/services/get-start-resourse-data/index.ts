@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig, errorHandlers, CustomAxiosError } from 'app/providers/store';
-import { CardItem } from 'entities/dashboard-view';
+import { CardItem, NO_SHEET_ID } from 'entities/dashboard-view';
 import { actionsCompany, Company } from 'entities/company';
 import { actionsDashboardView } from 'entities/dashboard-view';
 import { paths } from 'shared/api';
@@ -32,7 +32,7 @@ export const getStartResourseData = createAsyncThunk <
   'entities/user/getStartResourseData',
   async(data = {}, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
-    const { pathname, sheetId } = data;
+    const { pathname, sheetId = NO_SHEET_ID } = data;
     
     try {
       const { data: { userData, companyData, dashboardView } } = await extra.api

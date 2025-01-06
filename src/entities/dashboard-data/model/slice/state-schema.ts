@@ -24,8 +24,8 @@ export interface StateSchemaDashboardData {
   lastUpdated    : number | undefined // Дата последнего обновления (загрузки из гугл)
 
   // Отфильтрованные по периоду дат activePeriod
-  selectedPeriod : DashboardPeriod // Выбранный на панели, но не активированный период дат
-  activePeriod   : DashboardPeriod // Текущий период, по которому отрисованы графики
+  selectedPeriod : DashboardPeriod       // Выбранный на панели, но не активированный период дат
+  activePeriod   : DashboardPeriod       // Текущий период, по которому отрисованы графики
   activeEntities : DashboardDataEntities
-  activeDates    : DashboardDataDates
+  activeDates    : DashboardDataDates    // 
 }

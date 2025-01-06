@@ -4,9 +4,9 @@ import { Errors } from 'shared/lib/validators';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { StateSchemaDashboardView } from './state-schema';
 import { deleteCard, DeleteCard, AddNewCard, addNewCard, UpdateCardItem, updateCardItem } from 'features/dashboard-view';
-import { SetDashboardView, ChangeSelectedStyle } from './types';
+import { SetDashboardView, ChangeSelectedStyle, ChangeOneSettingsField } from './types';
 import { addEntities } from 'entities/base';
-import { CardItemId, ItemStyles, PartialCardItem } from '../types';
+import { CardItemId, CardItemSettings, ItemStyles, PartialCardItem } from '../types';
 // import { NO_PARENT_ID } from '../consts';
 import { updateObject } from 'shared/helpers/objects';
 
@@ -64,8 +64,22 @@ export const slice = createSlice({
       state.prevStoredCard = state.newStoredCard;
       state.newStoredCard  = state.entities[payload] || {};
     },
+    
+    // Перемещение выбранного Card-item в другой
+    setActiveMovementId: (state) => {
+      state.activatedMovementId = state.selectedId;
+    },
+    clearActivatedMovementId: (state) => {
+      state.activatedMovementId = '';
+    },
 
-    // Изменении 1 field в styles
+    // Update Card-item
+    updateCardItem: (state, { payload }: PayloadAction<PartialCardItem>) => {
+      state.entities[payload.id] = updateObject(state.entities[payload.id], payload);
+      state.activatedMovementId = '';
+    },
+
+    // Изменение 1 field в styles
     changeOneStyleField: (state, { payload }: PayloadAction<ChangeSelectedStyle>) => {
       const { selectedId, field, value } = payload;
       // @ts-ignore
@@ -76,18 +90,17 @@ export const slice = createSlice({
       state.entities[state.selectedId].styles = payload;
     },
 
-    // ПЕРЕМЕЩЕНИЕ ВЫБРАННОГО CARD-ITEM В ДРУГОЙ
-    setActiveMovementId: (state) => {
-      state.activatedMovementId = state.selectedId;
-    },
-    clearActivatedMovementId: (state) => {
-      state.activatedMovementId = '';
-    },
+    // Изменение 1 field в settings
+    changeOneSettingsField: (state, { payload }: PayloadAction<ChangeOneSettingsField>) => {
+      const { field, value } = payload;
+      const selectedId = state.selectedId;
+      
+      if (! state.entities[selectedId].settings) {
+        state.entities[selectedId].settings = {};
+      }
 
-    // UPDATE CARD-ITEM
-    updateCardItem: (state, { payload }: PayloadAction<PartialCardItem>) => {
-      state.entities[payload.id] = updateObject(state.entities[payload.id], payload);
-      state.activatedMovementId = '';
+      // @ts-ignore
+      state.entities[selectedId].settings[field] = value;
     },
   },
 

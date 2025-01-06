@@ -28,6 +28,7 @@ export const useDashboardData = (config: Config = {}) => {
     startEntities       = useSelector(s.selectStartEntities),
     // getStartEntity      = (kod: string) => startEntities[kod],
     startDates          = useSelector(s.selectStartDates),
+    kods                = useSelector(s.selectKods),
 
     activeEntities      = useSelector(s.selectActiveEntities),
     // getActiveEntity     = (kod: string) => activeEntities[kod],
@@ -60,6 +61,7 @@ export const useDashboardData = (config: Config = {}) => {
     setInitial,
     startEntities,
     startDates,
+    kods,
     
     activeEntities,
     activeDates,

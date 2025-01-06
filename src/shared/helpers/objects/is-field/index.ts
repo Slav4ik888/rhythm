@@ -1,6 +1,7 @@
 import { isNotObj, isNotStr } from 'shared/lib/validators';
 
 
+
 export function isField<T>(obj: T, field: string): boolean {
   if (! obj || isNotObj(obj) || ! field || isNotStr(field)) return false;
 

@@ -11,6 +11,7 @@ import { CardItemStylesConfigurator } from './styles';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import { CardItemSettingsConfigurator } from './settings';
 
 
 
@@ -55,17 +56,17 @@ export const CardItemConfigurator: FC = memo(() => {
         </Box>
       }
       <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Box sx={{ mt: 2, borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             <Tab label="Styles" value="1" />
             <Tab label="Settings" value="2" />
           </TabList>
         </Box>
-        <TabPanel value="1">
+        <TabPanel value="1" keepMounted sx={{ p: 0 }}>
           <CardItemStylesConfigurator />
         </TabPanel>
-        <TabPanel value="2">
-          Settings
+        <TabPanel value="2" keepMounted sx={{ p: 0 }}>
+          <CardItemSettingsConfigurator />
         </TabPanel>
       </TabContext>
     </DrawerStyled>

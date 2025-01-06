@@ -1,6 +1,8 @@
 import { ItemBase } from 'entities/base'
-import { ChartType } from 'entities/charts'
+import { ChartConfigDatasets, ChartType } from 'entities/charts'
 import { ItemStyles } from './item-styles'
+
+
 
 export type CardItemType = 'box' | 'text' | 'divider' | 'chart'
 
@@ -8,17 +10,20 @@ export type CardItemId = string
 
 
 export interface CardItemSettings {
+  // Global settings
+  kod?            : string
+  inverted?       : boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
+  unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
+
   // Chart settings
-  chartType?: ChartType
+  chartType? : ChartType
+  datasets?  : ChartConfigDatasets
 
   // Chips settings
   // Other settings
 }
 
-
-// export interface CardItemBody {
-//   sx?: ItemStyles
-// }
+export type CardItemSettingsField = keyof CardItemSettings;
 
 
 export interface CardItem extends ItemBase {

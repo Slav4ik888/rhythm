@@ -20,7 +20,7 @@ import { sxNavbar, sxNavbarContainer } from "./styles";
 import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { NavbarControlBox } from './control-box';
-import { NavbarSetupBox } from './setup-box/index.';
+import { NavbarSetupBox } from './setup-box';
 import { useLocation } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
 
