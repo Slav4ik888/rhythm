@@ -13,10 +13,10 @@ interface Props {
   blurRadius        : number
   spreadRadius      : number
   color             : string
-  onSetOffsetX      : (field: ItemStylesField, value: number) => void
-  onSetOffsetY      : (field: ItemStylesField, value: number) => void
-  onSetBlurRadius   : (field: ItemStylesField, value: number) => void
-  onSetSpreadRadius : (field: ItemStylesField, value: number) => void
+  onSetOffsetX      : (field: ItemStylesField, value: number | string) => void
+  onSetOffsetY      : (field: ItemStylesField, value: number | string) => void
+  onSetBlurRadius   : (field: ItemStylesField, value: number | string) => void
+  onSetSpreadRadius : (field: ItemStylesField, value: number | string) => void
   onSetColor        : (value: string) => void
 }
 
@@ -32,6 +32,7 @@ export const BoxShadowSetupComponent: FC<Props> = memo(({
   return (
     <Box sx={{ ...f('-c') }}>
       <ChangeStyleItem
+        type       = 'number'
         value      = {offsetX}
         toolTitle  = 'offset-x'
         sx         = {{ root: { mx: 1 }}}
@@ -39,6 +40,7 @@ export const BoxShadowSetupComponent: FC<Props> = memo(({
         onSubmit   = {onSetOffsetX}
       />
       <ChangeStyleItem
+        type       = 'number'
         value      = {offsetY}
         toolTitle  = 'offset-y'
         sx         = {{ root: { mx: 1 }}}
@@ -46,6 +48,7 @@ export const BoxShadowSetupComponent: FC<Props> = memo(({
         onSubmit   = {onSetOffsetY}
       />
       <ChangeStyleItem
+        type       = 'number'
         value      = {blurRadius}
         toolTitle  = 'blur-radius'
         sx         = {{ root: { mx: 1 }}}
@@ -53,6 +56,7 @@ export const BoxShadowSetupComponent: FC<Props> = memo(({
         onSubmit   = {onSetBlurRadius}
       />
       <ChangeStyleItem
+        type       = 'number'
         value      = {spreadRadius}
         toolTitle  = 'spread-radius'
         sx         = {{ root: { mx: 1 }}}

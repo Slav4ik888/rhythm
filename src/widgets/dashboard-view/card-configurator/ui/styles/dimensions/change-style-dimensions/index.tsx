@@ -45,6 +45,7 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ field, bold, toolTit
       <Box sx={{ ...f('-c') }}>
         {/* In px */}
         <ChangeStyleItem
+          type     = 'number'
           value    = {(isValueNumber && value || '') as number} // чтобы выводились только числа
           field    = {field}
           width    = '4rem'

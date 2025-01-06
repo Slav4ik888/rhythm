@@ -26,8 +26,8 @@ export const SetLinearGradient: FC<Props> = memo(({ defaultValue = '', gradients
     setState (gradients[2] || defaultValue as string);
   }, [defaultValue, gradients]);
 
-  const handleDeg = (field: ItemStylesField, value: number) => {
-    setDeg(value);
+  const handleDeg = (field: ItemStylesField, value: number | string) => {
+    setDeg(value as number);
     onChange('background', linearGradient(main, state, value as number));
   };
 
@@ -45,7 +45,7 @@ export const SetLinearGradient: FC<Props> = memo(({ defaultValue = '', gradients
   return (
     <>
       <ChangeStyleItem
-        // field      = 'background'
+        type       = 'number'
         value      = {deg}
         width      = '4rem'
         toolTitle  = 'Угол поворота градиента'

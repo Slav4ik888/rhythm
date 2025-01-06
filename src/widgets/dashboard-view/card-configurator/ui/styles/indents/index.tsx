@@ -11,7 +11,7 @@ export const Indents: FC = memo(() => {
   const { stylesByCardItemId, setSelectedStyles } = useDashboardView();
 
 
-  const handleSubmit = (field: ItemStylesField, value: number) => {
+  const handleSubmit = (field: ItemStylesField, value: number | string) => {
     const getFields = (arr: string[]) => arr.map(item => field[0] + item) as ItemStylesField[]
     const newStyles = {
       ...stylesByCardItemId,

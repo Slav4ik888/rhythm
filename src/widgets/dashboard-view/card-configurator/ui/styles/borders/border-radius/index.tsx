@@ -17,6 +17,7 @@ export const BorderRadiusRow: FC<Props> = memo(({ onChange }) => {
       <ConfiguratorTextTitle title='border-radius' toolTitle='border-radius' bold />
 
       <ChangeStyleItem
+        type       = 'number'
         value      = {styleValueByField as number}
         field      = 'borderRadius'
         width      = '3rem'

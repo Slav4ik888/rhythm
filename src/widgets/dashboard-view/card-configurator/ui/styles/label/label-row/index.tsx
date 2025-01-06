@@ -1,6 +1,6 @@
-import { FC, memo, MouseEvent } from 'react';
-import { useDashboardView } from 'entities/dashboard-view';
-import { ConfiguratorTextfieldItem, RowWrapper } from 'shared/ui/configurators-components';
+import { FC, memo } from 'react';
+import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ChangeStyleItem, RowWrapper } from 'shared/ui/configurators-components';
 import { pxToRem } from 'app/providers/theme';
 
 
@@ -9,21 +9,20 @@ import { pxToRem } from 'app/providers/theme';
 export const LabelRow: FC = memo(() => {
   const { selectedItem: { id, label }, updateCardItem } = useDashboardView();
 
-  const handleChange = (e: MouseEvent, value: number | string) => {
+  const handleChange = (field: ItemStylesField, value: number | string) => {
     updateCardItem({ id, label: value as string });
   };
 
 
   return (
     <RowWrapper>
-      {/* TODO: сделать изменяющееся поле, при нажатии переходит в Textfield */}
-      <ConfiguratorTextfieldItem
-        type         = 'text'
-        defaultValue = {label}
-        toolTitle    = 'Заголовок'
-        width        = '100%'
-        sx           = {{ field: { height: pxToRem(40)}}}
-        onSubmit     = {handleChange}
+      <ChangeStyleItem
+        type       = 'text'
+        toolTitle  = 'Заголовок'
+        value      = {label as string}
+        width      = '100%'
+        sx         = {{ field: { height: pxToRem(40)}}}
+        onSubmit   = {handleChange}
       />
     </RowWrapper>
   )

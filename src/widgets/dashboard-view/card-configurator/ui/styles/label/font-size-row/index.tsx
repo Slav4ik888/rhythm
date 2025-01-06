@@ -17,6 +17,7 @@ export const FontSizeRow: FC<Props> = memo(({ onChange }) => {
       <ConfiguratorTextTitle title='font-size' toolTitle='font-size' bold />
 
       <ChangeStyleItem
+        type       = 'number'
         value      = {styleValueByField as number}
         field      = 'fontSize'
         width      = '5rem'

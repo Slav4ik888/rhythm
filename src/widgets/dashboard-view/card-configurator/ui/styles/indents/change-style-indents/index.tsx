@@ -23,7 +23,7 @@ interface Props {
   bold?     : boolean
   toolTitle : string
   baseField : 'p' | 'm'
-  onChange  : (field: ItemStylesField, value: number) => void
+  onChange  : (field: ItemStylesField, value: number | string) => void
 }
 
 /** Отступы */
@@ -40,6 +40,7 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTi
         </Box>
 
         <ChangeStyleItem
+          type       = 'number'
           title      = 'Сверху'
           width      = '4rem'
           field      = {baseField + 't' as ItemStylesField}
@@ -47,6 +48,7 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTi
           onSubmit   = {onChange}
         />
         <ChangeStyleItem
+          type       = 'number'
           title      = 'Общие'
           width      = '4rem'
           field      = {baseField}
@@ -54,6 +56,7 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTi
           onSubmit   = {onChange}
         />
         <ChangeStyleItem
+          type       = 'number'
           title      = 'Верх/низ'
           width      = '4rem'
           field      = {baseField + 'y' as ItemStylesField}
@@ -64,6 +67,7 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTi
 
       <Box sx={sx.row}>
         <ChangeStyleItem
+          type       = 'number'
           title      = 'Слева'
           width      = '4rem'
           field      = {baseField + 'l' as ItemStylesField}
@@ -71,6 +75,7 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTi
           onSubmit   = {onChange}
         />
         <ChangeStyleItem
+          type       = 'number'
           title      = 'Снизу'
           width      = '4rem'
           field      = {baseField + 'b' as ItemStylesField}
@@ -78,6 +83,7 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTi
           onSubmit   = {onChange}
         />
         <ChangeStyleItem
+          type       = 'number'
           title      = 'Справа'
           width      = '4rem'
           field      = {baseField + 'r' as ItemStylesField}
@@ -85,6 +91,7 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTi
           onSubmit   = {onChange}
         />
         <ChangeStyleItem
+          type       = 'number'
           title      = 'Прав/лев'
           width      = '4rem'
           field      = {baseField + 'x' as ItemStylesField}

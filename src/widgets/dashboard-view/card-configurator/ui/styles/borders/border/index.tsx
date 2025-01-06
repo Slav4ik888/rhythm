@@ -26,6 +26,7 @@ export const BorderRow: FC<Props> = memo(({ borderColor = 'none', onChange }) =>
 
       <Box sx={{ ...f('-c-fe') }}>
         <ChangeStyleItem
+          type       = 'number'
           value      = {styleValueByField as number}
           field      = 'borderWidth'
           width      = '2.5rem'

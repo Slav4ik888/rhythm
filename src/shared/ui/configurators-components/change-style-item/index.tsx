@@ -26,6 +26,7 @@ const useStyles = (theme: CustomTheme, sx?: SxCard, width?: string) => ({
     height       : '1.4375em;',
     border       : `1px solid ${theme.palette.dark.light}`,
     borderRadius : '4px',
+    ...sx?.field
   },
   smallTitle: {
     fontSize   : '0.9rem',
@@ -38,6 +39,7 @@ const useStyles = (theme: CustomTheme, sx?: SxCard, width?: string) => ({
     },
     field: {
       width : sx?.root?.width || width || '2.5rem',
+      ...sx?.field
     }
   },
   clearBtn: {
@@ -49,15 +51,16 @@ const useStyles = (theme: CustomTheme, sx?: SxCard, width?: string) => ({
 
 
 interface Props {
-  value       : number
+  type        : 'number' | 'text'
+  value       : number | string
   field?      : ItemStylesField
   width?      : string // in rem
   title?      : string
   toolTitle?  : string
   disabled?   : boolean
   sx?         : SxCard
-  onCallback? : (field: ItemStylesField, value: number) => void
-  onSubmit    : (field: ItemStylesField, value: number) => void
+  onCallback? : (field: ItemStylesField, value: number | string) => void
+  onSubmit    : (field: ItemStylesField, value: number | string) => void
 }
 
 /**
@@ -65,7 +68,7 @@ interface Props {
  * для того, чтобы при изменении входных значений в открывающемся TextField
  * появлялись новые значения
  */
-export const ChangeStyleItem: FC<Props> = memo(({ sx: style, value, width, field, title, toolTitle, disabled, onCallback, onSubmit }) => {
+export const ChangeStyleItem: FC<Props> = memo(({ type, sx: style, value, width, field, title, toolTitle, disabled, onCallback, onSubmit }) => {
   const sx = useStyles(useTheme(), style, width);
   const hookOpen = useValue();
   
@@ -107,8 +110,8 @@ export const ChangeStyleItem: FC<Props> = memo(({ sx: style, value, width, field
 
             : <ConfiguratorTextfieldItem
                 autoFocus
-                type         = 'number'
-                defaultValue = {value as number}
+                type         = {type}
+                defaultValue = {value}
                 sx           = {sx.item}
                 onCallback   = {handleCallback}
                 onSubmit     = {handleSubmit}
