@@ -60,7 +60,8 @@ export const createCardItem = (
 
   if (cfg.type === 'chart') {
     cardItem.settings = {};
-    cardItem.settings.chartType = cfg?.settings?.chartType || 'line';
+    cardItem.settings.charts = [];
+    cardItem.settings.charts.push({ chartType: cfg.settings?.charts?.[0]?.chartType || 'line' });
   }
 
   return cardItem;

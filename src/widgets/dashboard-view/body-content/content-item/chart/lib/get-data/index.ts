@@ -4,22 +4,22 @@ import { CardItem } from 'entities/dashboard-view';
 import { setValue } from 'shared/lib/charts';
 
 
+
 export const getData = (
   dates     : string[],
   itemsData : DashboardStatisticItem<number>[],
-  items     : CardItem[]
+  item      : CardItem
 ) => {
   
   return {
     labels   : dates, // any[] // Dates (метки на оси X)
     datasets : [      // ChartConfigDatasets[]
-      ...itemsData.map((item, idx) => {
-        const settings = items[idx]?.settings || {};
-        const datasets = settings?.datasets || {};
+      ...itemsData.map((itemData, idx) => {
+        const datasets = item?.settings?.charts?.[idx].datasets || {};
 
         return {
           label                : datasets.label,
-          data                 : checkInvertData(settings, item),
+          data                 : checkInvertData(item?.settings, itemData),
           tension              : 0,
           pointRadius          : setValue(datasets.pointRadius, fixPointRadius(dates)), // Толщика точки (круглешков)
           pointBorderColor     : 'transparent',

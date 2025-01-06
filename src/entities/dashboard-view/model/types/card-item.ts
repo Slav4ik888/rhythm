@@ -9,17 +9,23 @@ export type CardItemType = 'box' | 'text' | 'divider' | 'chart'
 export type CardItemId = string
 
 
+export interface CardItemCharts {
+  kod?       : string
+  chartType? : ChartType
+  datasets?  : ChartConfigDatasets
+}
+
 export interface CardItemSettings {
   // Global settings
-  kod?            : string
   inverted?       : boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
   unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
 
   // Chart settings
-  chartType? : ChartType
-  datasets?  : ChartConfigDatasets
+  charts?: CardItemCharts[]
 
   // Chips settings
+  kod?: string
+
   // Other settings
 }
 
