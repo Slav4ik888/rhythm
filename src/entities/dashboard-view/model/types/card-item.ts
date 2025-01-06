@@ -15,6 +15,9 @@ export interface CardItemCharts {
   datasets?  : ChartConfigDatasets
 }
 
+export type CardItemChartsField = keyof CardItemCharts;
+
+
 export interface CardItemSettings {
   // Global settings
   inverted?       : boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост

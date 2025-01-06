@@ -3,6 +3,7 @@ import { CardItem, CardItemSettingsField } from 'entities/dashboard-view';
 import { SelectValue } from '../../../../../../shared/ui/configurators-components/select';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { useDashboardData } from 'entities/dashboard-data';
+import { arrChartType, ChartType } from 'entities/charts';
 import { updateChartsItem } from '../libs';
 
 
@@ -13,29 +14,29 @@ interface Props {
   onChange : (field: CardItemSettingsField, value: any) => void
 }
 
-/** Выбор кода */
-export const SelectKod: FC<Props> = memo(({ index, item, onChange }) => {
-  const { kods } = useDashboardData();
-  const [selectedValue, setSelectedValue] = useState<string>('');
+/** Выбор типа графика */
+export const SelectChartType: FC<Props> = memo(({ index, item, onChange }) => {
+
+  const [selectedValue, setSelectedValue] = useState<ChartType>(item.settings?.charts?.[index]?.chartType || 'line');
 
   useEffect(() => {
-    setSelectedValue(item.settings?.charts?.[index]?.kod || '');
-  }, [item.settings?.charts?.[index]?.kod]);
+    setSelectedValue(item.settings?.charts?.[index]?.chartType || 'line');
+  }, [item.settings?.charts?.[index]?.chartType]);
 
 
   const handleSelectedValue = (selected: string) => {
-    setSelectedValue(selected);
-    onChange('charts', updateChartsItem(item, 'kod', index, selected));
+    setSelectedValue(selected as ChartType);
+    onChange('charts', updateChartsItem(item, 'chartType', index, selected));
   };
 
 
   return (
     <RowWrapper>
-      <ConfiguratorTextTitle bold title='Код' toolTitle='Укажите код статистики для графика' />
+      <ConfiguratorTextTitle bold title='ChartType' toolTitle='Выберите тип графика' />
 
       <SelectValue
         selectedValue = {selectedValue}
-        array         = {kods}
+        array         = {arrChartType}
         onSelect      = {handleSelectedValue}
       />
     </RowWrapper>

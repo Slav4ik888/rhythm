@@ -1,6 +1,8 @@
 import { FC, memo, useCallback } from 'react';
 import { useDashboardView, CardItemSettingsField } from 'entities/dashboard-view';
 import { SelectKod } from './select-kod';
+import { SelectChartType } from './select-chart-type';
+import { SelectChartLabel } from './select-chart-label';
 
 
 
@@ -21,7 +23,9 @@ export const CardItemSettingsConfigurator: FC = memo(() => {
       {/* Выбрать период дат: общий или уникальный */}
 
       {/* Настройки графика */}
-      {/*   - Выбор типа графика */}
+      <SelectChartType index={0} item={selectedItem} onChange={handleChange} />
+      <SelectChartLabel index={0} item={selectedItem} onChange={handleChange} />
+
       {/*   - Настройки осей */}
     </>
   )

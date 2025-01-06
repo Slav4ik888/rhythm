@@ -1,6 +1,7 @@
 import { ChartConfigOptions } from 'entities/charts';
 // @ts-ignore
 import { InteractionMode } from 'node_modules/chart.js/dist/types/index.d.ts';
+import { updateObject } from 'shared/helpers/objects';
 import { setValue } from 'shared/lib/charts';
 
 
@@ -8,7 +9,7 @@ import { setValue } from 'shared/lib/charts';
 export const getLineOptions = (options = {} as ChartConfigOptions): ChartConfigOptions => {
   const { scales } = options;
 
-  return {
+  return updateObject({
     responsive          : true,
     maintainAspectRatio : false,
     plugins: {
@@ -73,5 +74,5 @@ export const getLineOptions = (options = {} as ChartConfigOptions): ChartConfigO
         },
       },
     },
-  }
+  }, options);
 }

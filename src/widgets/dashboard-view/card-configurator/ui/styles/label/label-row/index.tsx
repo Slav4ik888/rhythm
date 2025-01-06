@@ -16,6 +16,7 @@ export const LabelRow: FC = memo(() => {
 
   return (
     <RowWrapper>
+      {/* TODO: сделать изменяющееся поле, при нажатии переходит в Textfield */}
       <ConfiguratorTextfieldItem
         type         = 'text'
         defaultValue = {label}

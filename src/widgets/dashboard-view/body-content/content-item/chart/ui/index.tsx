@@ -10,7 +10,7 @@ import { getData, getOptions } from '../lib';
 
 
 interface Props {
-  item    : CardItem
+  item     : CardItem
   onSelect : (id: CardItemId) => void
 }
 
