@@ -1,14 +1,14 @@
 import { FC, memo, useCallback, useState } from 'react';
 import { Box, FormControl, MenuItem } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
-import { CustomTheme, pxToRem, useTheme } from 'app/providers/theme';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 import { MDButton } from 'shared/ui/mui-design-components';
 import { useCompany } from 'entities/company';
 import { useUser } from 'entities/user';
 import { createCardItem } from 'entities/dashboard-view/model/creators';
 import AddCardIcon from '@mui/icons-material/AddCard';
 import { CardItemId, createNextOrder, NO_SHEET_ID, useDashboardView } from 'entities/dashboard-view';
-import { f } from 'app/styles';
+import { f, pxToRem } from 'shared/styles';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { CardItemType } from 'entities/dashboard-view/model/types';
 

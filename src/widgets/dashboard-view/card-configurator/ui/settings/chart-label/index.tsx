@@ -1,27 +1,32 @@
 import { FC, memo, useCallback } from 'react';
-import { CardItem, CardItemSettingsField, ItemStylesField } from 'entities/dashboard-view';
+import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { updateChartsItem } from '../libs';
-import { pxToRem } from 'app/providers/theme';
 import { cloneObj } from 'shared/helpers/objects';
+import { pxToRem } from 'shared/styles';
 
 
 
 interface Props {
-  index    : number // Index charts in settings.charts
-  item     : CardItem
-  onChange : (field: CardItemSettingsField, value: any) => void
+  index: number // Index charts in settings.charts
 }
 
-/** Выбор Label графика */
-export const SelectChartLabel: FC<Props> = memo(({ index, item, onChange }) => {
+/** Выбор legend label графика */
+export const ChartLabel: FC<Props> = memo(({ index }) => {
+  const { selectedItem, changeOneSettingsField } = useDashboardView();
 
   const handleChange = useCallback((field: ItemStylesField, value: string | number) => {
-    const datasets = cloneObj(item.settings?.charts?.[index]?.datasets || {});
+    const datasets = cloneObj(selectedItem.settings?.charts?.[index]?.datasets || {});
     datasets.label = value as string;
-    onChange('charts', updateChartsItem(item, 'datasets', index, datasets));
-  }, [item]);
 
+    changeOneSettingsField({
+      field: 'charts',
+      value: updateChartsItem(selectedItem, 'datasets', index, datasets)
+    });
+  }, [selectedItem, changeOneSettingsField]);
+
+  
+  if (! Boolean(selectedItem.settings?.chartOptions?.plugins?.legend?.display)) return null
 
   return (
     <RowWrapper>
@@ -29,7 +34,7 @@ export const SelectChartLabel: FC<Props> = memo(({ index, item, onChange }) => {
       <ChangeStyleItem
         type       = 'text'
         toolTitle  = 'Label графика'
-        value      = {item.settings?.charts?.[index]?.datasets?.label as string}
+        value      = {selectedItem.settings?.charts?.[index]?.datasets?.label as string}
         width      = '100%'
         sx         = {{ field: { height: pxToRem(40)}}}
         onSubmit   = {handleChange}

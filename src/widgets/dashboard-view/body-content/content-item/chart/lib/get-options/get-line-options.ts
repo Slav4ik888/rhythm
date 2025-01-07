@@ -14,7 +14,7 @@ export const getLineOptions = (options = {} as ChartConfigOptions): ChartConfigO
     maintainAspectRatio : false,
     plugins: {
       legend: { // Легенда на графике
-        display: false,
+        display: setValue(options.plugins?.legend?.display, false),
       },
     },
     interaction: {

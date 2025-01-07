@@ -1,5 +1,5 @@
 import { deepPurple, grey } from '@mui/material/colors';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 import { SxSmallContainer } from 'entities/dashboard-data';
 
 

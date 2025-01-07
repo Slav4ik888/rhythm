@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { Stack } from '@mui/material';
 import { deepPurple, green, orange } from '@mui/material/colors';
 import { ReportSmallItemBox, SxSmallContainer } from 'entities/dashboard-data';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 
 
 

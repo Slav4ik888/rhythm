@@ -7,7 +7,7 @@ import { FlexDirection } from './flex-direction';
 import { AlignItems } from './align-items';
 import { JustifyContent } from './justify-content';
 import { Stack } from '@mui/material';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 
 
 

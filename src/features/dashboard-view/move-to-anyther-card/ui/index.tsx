@@ -3,8 +3,9 @@ import { useDashboardView } from 'entities/dashboard-view';
 import { Box } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
 import { MDButton } from 'shared/ui/mui-design-components';
-import { CustomTheme, pxToRem, useTheme } from 'app/providers/theme';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 import MoveIcon from '@mui/icons-material/MoveUp';
+import { pxToRem } from 'shared/styles';
 
 
 

@@ -16,7 +16,8 @@ Coded by www.creative-tim.com
 // @mui material components
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
-import { CustomTheme, pxToRem } from 'app/providers/theme';
+import { CustomTheme } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 
 
 

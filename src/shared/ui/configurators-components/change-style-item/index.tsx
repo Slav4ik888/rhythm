@@ -1,9 +1,9 @@
 import { FC, memo, useCallback, MouseEvent } from 'react';
 import { Box, Typography } from '@mui/material';
 import { ItemStylesField } from 'entities/dashboard-view';
-import { f } from 'app/styles';
+import { f, SxCard } from 'shared/styles';
 import { useValue } from 'shared/lib/hooks';
-import { CustomTheme, SxCard, useTheme } from 'app/providers/theme';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 import { ConfiguratorTextfieldItem } from 'shared/ui/configurators-components';
 import { Tooltip } from 'shared/ui/tooltip';
 import ClearIcon from '@mui/icons-material/Clear';

@@ -3,12 +3,11 @@ import { ChartConfig } from 'entities/charts';
 import {
   DashboardStatisticItem, ReportSmallContainerWrapper, ReportsResultChangesConfig, SxSmallContainer
 } from 'entities/dashboard-data';
-import { f } from 'app/styles';
+import { f, pxToRem } from 'shared/styles';
 import { DashboardConditionType } from 'entities/condition-type';
 import { DashboardStatisticType } from 'entities/statistic-type';
 import { ReportContainer_SmallItem } from './item-component';
 import { getDigit } from 'shared/helpers/numbers';
-import { pxToRem } from 'app/providers/theme';
 
 
 

@@ -1,4 +1,4 @@
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 import { FC, memo, ReactNode } from 'react';
 import { MDBox } from 'shared/ui/mui-design-components';
 

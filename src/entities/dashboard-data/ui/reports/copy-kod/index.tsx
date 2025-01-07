@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 import { Tooltip } from 'shared/ui/tooltip';
 import { Box } from '@mui/material';
 import { useUI } from 'entities/ui';

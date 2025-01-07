@@ -6,7 +6,7 @@ import { PolicyDescription } from './policy-description';
 import { ErrorBox } from 'shared/ui/containers';
 import { UseGroup } from 'shared/lib/hooks';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 
 
 

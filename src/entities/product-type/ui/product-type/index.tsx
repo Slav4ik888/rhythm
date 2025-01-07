@@ -1,10 +1,9 @@
 import { FC, memo } from 'react';
 import { Chip } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
-import { pxToRem } from 'app/providers/theme';
 import { PRODUCT_COLORS_CONFIG } from '../../model/config';
 import { ActivatedCompanyId } from 'entities/company';
-import { f } from 'app/styles';
+import { f, pxToRem } from 'shared/styles';
 
 
 

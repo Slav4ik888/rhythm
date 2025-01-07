@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { DashboardBoxContainer } from 'entities/blocks';
 import { DashboardReportContainer4_0_2 } from './4-0-2';
 import { Stack } from '@mui/material';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 import { SmallReport_4_tru_b } from './10-otdel/small-report_4_tru_b';
 import { SmallReport_4_pro_b } from './10-otdel/small-report_4_pro_b';
 import { SmallReport_4_11А_5 } from './11-otdel/small-report_4_11А_5';

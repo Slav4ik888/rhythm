@@ -1,10 +1,10 @@
 import { FC, memo } from 'react';
 import { Tooltip } from 'shared/ui/tooltip';
-import { pxToRem } from 'app/providers/theme';
 import { MDButton } from 'shared/ui/mui-design-components';
 import AddCardIcon from '@mui/icons-material/AddCard';
 import { CardItemType } from 'entities/dashboard-view/model/types';
 import { capitalizeFirst } from 'shared/helpers/strings';
+import { pxToRem } from 'shared/styles';
 
 
 

@@ -16,7 +16,8 @@ Coded by www.creative-tim.com
 // @mui material components
 import Drawer from '@mui/material/Drawer';
 import { styled } from '@mui/material/styles';
-import { CustomTheme, getBoxShadows, linearGradient, pxToRem } from 'app/providers/theme';
+import { CustomTheme  } from 'app/providers/theme';
+import { getBoxShadows, linearGradient, pxToRem } from 'shared/styles';
 
 
 

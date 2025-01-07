@@ -4,8 +4,7 @@ import {
   DashboardStatisticItem, ReportsResultChangesConfig,
   ComparisonIndicators, GrowthResult
 } from 'entities/dashboard-data';
-import { pxToRem } from 'app/providers/theme';
-import { f } from 'app/styles';
+import { f, pxToRem } from 'shared/styles';
 import { DashboardConditionType } from 'entities/condition-type';
 import { DashboardStatisticType } from 'entities/statistic-type';
 import { ChipsContainer } from '../../../items';

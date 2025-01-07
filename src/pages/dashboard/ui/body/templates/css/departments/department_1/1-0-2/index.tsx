@@ -4,7 +4,7 @@ import { ReportsLineChart, ReportsLineChartConfig, useDashboardData, DashboardRe
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
 import { getConditionType } from 'entities/condition-type';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 
 
 

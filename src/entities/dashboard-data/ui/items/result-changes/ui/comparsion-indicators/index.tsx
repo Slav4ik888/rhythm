@@ -5,7 +5,7 @@ import { ReportsResultChangesConfig } from '../../../../reports';
 import { getComparisonValues } from './utils';
 import { getReversedIndicators } from '../../model/utils';
 import { Tooltip } from 'shared/ui/tooltip';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 
 
 /* Returns tooltip title for 1 & 2 indexes */

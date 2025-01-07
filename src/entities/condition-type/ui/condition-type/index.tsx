@@ -1,10 +1,10 @@
 import { FC, memo } from 'react';
 import { Chip } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
-import { CustomTheme, pxToRem, useTheme } from 'app/providers/theme';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 import { CONDITION_TYPE } from '../../model/config';
 import { DashboardConditionType } from '../../model/types';
-import { f } from 'app/styles';
+import { f, pxToRem } from 'shared/styles';
 
 
 

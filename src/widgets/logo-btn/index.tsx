@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { RoutePath } from 'app/providers/routes';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 
 
 export enum LogoBtnType {

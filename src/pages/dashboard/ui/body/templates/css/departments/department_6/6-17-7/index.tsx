@@ -3,7 +3,7 @@ import { ChartConfig } from 'entities/charts';
 import { DashboardReportContainer, useDashboardData, ReportsLineChartConfig, ReportsLineChart, checkInvertData, DashboardStatisticItem } from 'entities/dashboard-data';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { fixPointRadius } from 'entities/charts';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 
 
 

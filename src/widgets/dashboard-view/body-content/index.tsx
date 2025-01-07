@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react';
 import { ContentRender } from './render-items';
 import { Box } from '@mui/material';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 import { CardItemId, PartialCardItem, useDashboardView } from 'entities/dashboard-view';
 import { useCompany } from 'entities/company';
 

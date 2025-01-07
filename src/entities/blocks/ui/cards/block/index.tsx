@@ -1,9 +1,9 @@
 import { FC, memo } from 'react';
 import { Box, Card } from '@mui/material';
-import { GradientColorName, CustomTheme, linearGradient, useTheme, pxToRem, ColorName } from 'app/providers/theme';
+import { GradientColorName, CustomTheme, useTheme, ColorName } from 'app/providers/theme';
 import { isStr } from 'shared/lib/validators';
 import { MDTypography } from 'shared/ui/mui-design-components';
-import { f } from 'app/styles';
+import { f, linearGradient, pxToRem } from 'shared/styles';
 
 
 

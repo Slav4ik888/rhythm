@@ -16,7 +16,8 @@ Coded by www.creative-tim.com
 // @mui material components
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
-import { CustomTheme, ColorName, linearGradient, GradientColorName, getTypography } from 'app/providers/theme';
+import { CustomTheme, ColorName, GradientColorName } from 'app/providers/theme';
+import { linearGradient, getTypography } from 'shared/styles';
 
 
 type FontWeight = 'light' | 'regular' | 'medium' | 'bold';

@@ -13,7 +13,8 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { CustomTheme, getTypography, pxToRem } from 'app/providers/theme';
+import { CustomTheme } from 'app/providers/theme';
+import { getTypography, pxToRem } from 'shared/styles';
 
 
 interface OwnerState {

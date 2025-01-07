@@ -1,6 +1,6 @@
-import { pxToRem } from 'app/providers/theme';
 import { FC, memo } from 'react';
 import { MDButton } from 'shared/ui/mui-design-components';
+import { pxToRem } from 'shared/styles';
 
 
 

@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 import { FC, memo, ReactNode } from 'react';
 
 

@@ -1,7 +1,6 @@
 import { FC, memo, ReactNode } from 'react';
 import { Box } from '@mui/material';
-import { f } from 'app/styles';
-import { pxToRem } from 'app/providers/theme';
+import { f, pxToRem } from 'shared/styles';
 
 
 

@@ -3,8 +3,7 @@ import { Box, IconButton } from '@mui/material';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import { useDashboardView } from 'entities/dashboard-view';
 import { Tooltip } from 'shared/ui/tooltip';
-import { CustomTheme, pxToRem, useTheme, useUIConfiguratorController } from 'app/providers/theme';
-import { f } from 'app/styles';
+import { CustomTheme, useTheme, useUIConfiguratorController } from 'app/providers/theme';
 import { sxNavbarIconButton, sxNavbarIconsStyle } from 'shared/lib/styles/navbar';
 
 

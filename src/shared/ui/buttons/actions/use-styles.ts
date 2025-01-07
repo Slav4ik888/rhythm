@@ -1,4 +1,4 @@
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 
 
 export const useStyles = () => ({

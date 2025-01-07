@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { RowWrapper } from 'shared/ui/configurators-components';
 import { useDashboardView } from 'entities/dashboard-view';
 import { MoveToAnotherCard, MoveItemUpdownward } from 'features/dashboard-view';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 
 
 

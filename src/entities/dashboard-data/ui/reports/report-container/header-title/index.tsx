@@ -3,8 +3,7 @@ import { MDTypography } from 'shared/ui/mui-design-components';
 import { ReportsBaseConfig } from '../../reports-line-chart/types';
 import { MDDivider } from 'shared/ui/mui-design-components';
 import { Box } from '@mui/material';
-import { pxToRem } from 'app/providers/theme';
-import { f } from 'app/styles';
+import { pxToRem, f } from 'shared/styles';
 import { CopyToClipboard } from '../../copy-kod';
 
 

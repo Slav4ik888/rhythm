@@ -2,32 +2,36 @@ import { FC, memo, useCallback } from 'react';
 import { useDashboardView, CardItemSettingsField } from 'entities/dashboard-view';
 import { SelectKod } from './select-kod';
 import { SelectChartType } from './select-chart-type';
-import { SelectChartLabel } from './select-chart-label';
+import { ChartLegends } from './chart-legends';
+import { ChartLabel } from './chart-label';
 
 
 
 /** Вкладка Settings */
 export const CardItemSettingsConfigurator: FC = memo(() => {
-  const { selectedId, selectedItem, entities, changeOneSettingsField } = useDashboardView();
+  // const { selectedId, selectedItem, entities, changeOneSettingsField } = useDashboardView();
 
   /** Сохраняем изменения settings элементов в store */
-  const handleChange = useCallback((field: CardItemSettingsField, value: any) => {
-    changeOneSettingsField({ field, value });
-  }, [selectedId, entities, changeOneSettingsField]);
+  // const handleChange = useCallback((field: CardItemSettingsField, value: any) => {
+  //   changeOneSettingsField({ field, value });
+  // }, [selectedId, entities, changeOneSettingsField]);
 
 
   return (
     <>
+      {/* Global settings */}
+      <ChartLegends />
+      {/*   - Настройки осей */}
+
+      {/* Individual charts settings */}
       {/* TODO: возможность добавлять графики */}
-      <SelectKod index={0} item={selectedItem} onChange={handleChange} />
+      <SelectKod index={0} />
       {/* Выбрать период дат: общий или уникальный */}
 
       {/* Настройки графика */}
-      <SelectChartType index={0} item={selectedItem} onChange={handleChange} />
-      <SelectChartLabel index={0} item={selectedItem} onChange={handleChange} />
+      <SelectChartType index={0} />
+      <ChartLabel index={0} />
 
-      {/*   - Настройки осей */}
     </>
   )
 });
-``

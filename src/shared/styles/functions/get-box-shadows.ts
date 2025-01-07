@@ -20,7 +20,7 @@ Coded by www.creative-tim.com
  */
 
 // Material Dashboard 2 React Helper Functions
-import { CustomTheme } from '../../types';
+import { CustomTheme } from '../../../app/providers/theme/model/types';
 import { boxShadow } from "./boxShadow";
 
 

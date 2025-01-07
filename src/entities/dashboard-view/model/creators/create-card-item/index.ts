@@ -2,7 +2,7 @@ import { creatorFixDate } from 'entities/base/model/creators';
 import { cloneObj } from 'shared/helpers/objects';
 import { CardItem, ItemStyles } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 import { NO_PARENT_ID, NO_SHEET_ID, ORDER_STEP } from '../../consts';
 
 

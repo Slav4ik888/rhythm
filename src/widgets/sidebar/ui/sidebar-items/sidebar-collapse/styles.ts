@@ -13,7 +13,9 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { CustomTheme, getBoxShadows, getTypography, linearGradient, pxToRem, rgbaFromHex } from 'app/providers/theme';
+import { CustomTheme,  } from 'app/providers/theme';
+import { getBoxShadows, getTypography, linearGradient, pxToRem, rgbaFromHex } from 'shared/styles';
+
 
 
 interface OwnerStateItem {

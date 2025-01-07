@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react';
 import { DashboardReportContainer, useDashboardData } from 'entities/dashboard-data';
 import { Stack } from '@mui/material';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 import { DashboardReportContainer_1_0_2_Details_LeftStack as LeftStack } from './left-stack';
 import { DashboardReportContainer_1_0_2_Details_RightStack as RightStack } from './right-stack';
 import { getLastItem } from 'shared/helpers/arrays';

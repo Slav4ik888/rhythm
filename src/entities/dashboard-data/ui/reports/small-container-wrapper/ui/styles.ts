@@ -1,5 +1,5 @@
-import { CustomTheme, pxToRem } from 'app/providers/theme';
-import { f } from 'app/styles';
+import { CustomTheme } from 'app/providers/theme';
+import { f, pxToRem } from 'shared/styles';
 import { Props } from '.';
 
 

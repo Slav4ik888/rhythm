@@ -5,7 +5,7 @@ import {
 } from 'entities/dashboard-data';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { useSmallStyles } from '../small-styles';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 
 
 

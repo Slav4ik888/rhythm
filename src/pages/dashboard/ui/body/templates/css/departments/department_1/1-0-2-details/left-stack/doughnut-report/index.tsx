@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { ChartConfig, ChartContainer, DoughnutChart } from 'entities/charts';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 
 
 

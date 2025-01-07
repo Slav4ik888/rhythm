@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { MDBox, MDTypography } from "shared/ui/mui-design-components";
-import { pxToRem, useUIConfiguratorController } from 'app/providers/theme';
+import { useUIConfiguratorController } from 'app/providers/theme';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { pxToRem } from 'shared/styles';
 
 
 

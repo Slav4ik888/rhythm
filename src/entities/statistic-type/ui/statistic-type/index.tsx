@@ -3,8 +3,8 @@ import { Chip } from '@mui/material';
 import { STATISTIC_TYPE } from '../../model/config';
 import { DashboardStatisticType } from '../../model/types';
 import { Tooltip } from 'shared/ui/tooltip';
-import { CustomTheme, pxToRem, useTheme } from 'app/providers/theme';
-import { f } from 'app/styles';
+import { CustomTheme, useTheme } from 'app/providers/theme';
+import { f, pxToRem } from 'shared/styles';
 
 
 

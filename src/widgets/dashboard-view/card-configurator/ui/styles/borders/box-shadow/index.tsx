@@ -27,7 +27,7 @@ export const BoxShadowRow: FC<Props> = memo(({ onChange }) => {
       onChange('boxShadow', '1px 1px 3px 0px rgba(184, 184, 184, 1)');
       setChecked(true);
     }
-  }
+  };
   
   useEffect(() => {
     setChecked(Boolean(styleValueByField));

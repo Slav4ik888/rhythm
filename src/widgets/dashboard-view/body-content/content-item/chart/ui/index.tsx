@@ -26,7 +26,9 @@ export const ItemChart: FC<Props> = memo(({ item, onSelect }) => {
  
   const type    = item?.settings?.charts?.[0]?.chartType || 'line';
   const data    = getData(dates, itemsData || [], item);
-  const options = getOptions(type, {});
+  const options = getOptions(type, item.settings?.chartOptions || {});
+  console.log('data: ', data);
+  console.log('options: ', options);
 
 
   return (

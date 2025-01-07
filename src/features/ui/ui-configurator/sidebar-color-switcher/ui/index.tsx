@@ -1,8 +1,9 @@
 import { memo } from 'react';
-import { pxToRem, setSidebarColor, useUIConfiguratorController } from 'app/providers/theme';
+import { setSidebarColor, useUIConfiguratorController } from 'app/providers/theme';
 import { SidebarColorName, sidebarThemes } from 'app/providers/theme/model/themes/light-sidebar';
 import { MDBox } from 'shared/ui/mui-design-components';
 import { UIConfiguratorItemWrapper } from '../../components/ui-configurator-item-wrapper';
+import { pxToRem } from 'shared/styles';
 
 
 

@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { ChangeStyleItem, RowWrapper } from 'shared/ui/configurators-components';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 
 
 

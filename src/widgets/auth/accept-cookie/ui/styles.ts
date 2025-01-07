@@ -1,5 +1,5 @@
 import { CustomTheme } from 'app/providers/theme';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 
 
 

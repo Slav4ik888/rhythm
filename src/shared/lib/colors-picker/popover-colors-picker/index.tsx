@@ -1,9 +1,9 @@
 import { FC, memo, useState, useRef, useCallback } from 'react';
 import { Box } from '@mui/material';
-import { f } from 'app/styles';
+import { f, pxToRem } from 'shared/styles';
 import { useClickOutside } from 'shared/lib/hooks';
-import { HexColorPicker, HexColorInput, RgbaColorPicker, RgbaColor } from 'react-colorful';
-import { CustomTheme, pxToRem, useTheme } from 'app/providers/theme';
+import { HexColorInput, RgbaColorPicker, RgbaColor } from 'react-colorful';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 import s from './index.module.scss';
 import { MDButton } from 'shared/ui/mui-design-components';
 import { hexToRgba, rgba } from '../utils';

@@ -1,7 +1,6 @@
 import { FC, memo, ReactNode } from 'react';
 import { Card } from '@mui/material';
-import { pxToRem, SxCard } from 'app/providers/theme';
-import { f } from 'app/styles';
+import { pxToRem, f, SxCard } from 'shared/styles';
 import { ReportsHeaderTitle } from './header-title';
 import { ReportsBaseConfig } from '../reports-line-chart/types';
 

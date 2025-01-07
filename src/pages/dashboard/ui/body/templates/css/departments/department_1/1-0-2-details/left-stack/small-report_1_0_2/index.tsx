@@ -5,7 +5,7 @@ import {
 } from 'entities/dashboard-data';
 import { orange } from '@mui/material/colors';
 import { formatDate, SUB } from 'shared/helpers/dates';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 
 
 

@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
-import { SxCard } from 'app/providers/theme';
 import { Card } from '@mui/material';
+import { SxCard } from 'shared/styles';
 
 
 

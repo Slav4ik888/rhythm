@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, memo, MutableRefObject, useEffect, useMemo, useRef } from 'react';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 import { TextField } from '@mui/material';
 import { calculateStartDate, getMsFromRef } from './utils';
 import { DashboardPeriodType, useDashboardData } from 'entities/dashboard-data';

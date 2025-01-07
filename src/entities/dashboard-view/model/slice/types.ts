@@ -15,5 +15,5 @@ export interface ChangeSelectedStyle {
 
 export interface ChangeOneSettingsField {
   field      : CardItemSettingsField
-  value      : string
+  value      : any
 }

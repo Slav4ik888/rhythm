@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { pxToRem } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 import { DASHBOARD_PERIOD_TEXT, useDashboardData } from 'entities/dashboard-data';
 import { Chip } from '@mui/material';
 

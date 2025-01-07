@@ -3,7 +3,7 @@ import DrawerStyled from './styled';
 import { ConfiguratorMainHeader as MainHeader } from 'shared/ui/configurators-components';
 import { useDashboardView, CardItem } from 'entities/dashboard-view';
 import { Box, Tab } from '@mui/material';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 import { CustomTheme } from 'app/providers/theme';
 import { getChanges, isEmpty } from 'shared/helpers/objects';
 import { useCompany } from 'entities/company';
@@ -12,6 +12,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { CardItemSettingsConfigurator } from './settings';
+import { UnsavedChanges } from './unsaved-changes';
 
 
 
@@ -50,6 +51,7 @@ export const CardItemConfigurator: FC = memo(() => {
     // @ts-ignore
     <DrawerStyled anchor='right' variant='permanent' ownerState={{ editMode }}>
       <MainHeader onClose={handleClose} />
+      <UnsavedChanges />
       {
         ! selectedId && <Box sx={(theme) => ({ ...f('-c-c'), mt: 8, color: (theme as CustomTheme).palette.error.main })}>
           Выберите элемент для редактирования

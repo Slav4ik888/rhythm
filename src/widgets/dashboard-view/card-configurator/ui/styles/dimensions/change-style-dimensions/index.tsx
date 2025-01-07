@@ -1,7 +1,7 @@
 import { FC, memo, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import { ItemStylesField } from 'entities/dashboard-view';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 import { SelectValue } from '../../../../../../../shared/ui/configurators-components/select';
 import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { getDimension, isPx } from './utils';

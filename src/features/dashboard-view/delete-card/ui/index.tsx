@@ -3,7 +3,7 @@ import { CardItemId, useDashboardView } from 'entities/dashboard-view';
 import { Box } from '@mui/material';
 import { useCompany } from 'entities/company';
 import { DeleteButton } from 'shared/ui/buttons/delete-button';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 import { getAllChildrenIds } from '../model/utils/get-all-children-ids';
 
 

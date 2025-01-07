@@ -1,5 +1,5 @@
 import { ItemBase } from 'entities/base'
-import { ChartConfigDatasets, ChartType } from 'entities/charts'
+import { ChartConfigDatasets, ChartConfigOptions, ChartType } from 'entities/charts'
 import { ItemStyles } from './item-styles'
 
 
@@ -24,7 +24,8 @@ export interface CardItemSettings {
   unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
 
   // Chart settings
-  charts?: CardItemCharts[]
+  charts?       : CardItemCharts[]
+  chartOptions? : ChartConfigOptions
 
   // Chips settings
   kod?: string

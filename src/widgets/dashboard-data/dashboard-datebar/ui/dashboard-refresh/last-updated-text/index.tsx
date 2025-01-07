@@ -1,9 +1,9 @@
 import { FC, memo } from 'react';
 import { MDTypography } from 'shared/ui/mui-design-components';
-import { pxToRem } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { useDashboardData } from 'entities/dashboard-data';
+import { pxToRem } from 'shared/styles';
 
 
 

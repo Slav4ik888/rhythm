@@ -8,7 +8,7 @@ import { GrowthChange } from './growth-change';
 import { GrowthIcon } from './growth-icon';
 import { getFixedFraction } from 'shared/helpers/numbers';
 import { ReportsResultChangesConfig, SxSmallContainer } from 'entities/dashboard-data';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 
 
 

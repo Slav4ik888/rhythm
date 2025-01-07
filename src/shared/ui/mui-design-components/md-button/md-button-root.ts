@@ -17,9 +17,8 @@ Coded by www.creative-tim.com
 // @mui material components
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
-import {
-  linearGradient, CustomTheme, ColorName, getBoxShadows, pxToRem, rgbaFromHex, boxShadow, ColoredShadowsName, GradientColorName, SxCard
-} from 'app/providers/theme';
+import { CustomTheme, ColorName, ColoredShadowsName, GradientColorName } from 'app/providers/theme';
+import { SxCard, getBoxShadows, pxToRem, rgbaFromHex, boxShadow, linearGradient } from 'shared/styles';
 
 
 interface OwnerState {

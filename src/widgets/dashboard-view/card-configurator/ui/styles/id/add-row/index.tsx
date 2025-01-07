@@ -2,7 +2,7 @@ import { FC, memo, useCallback } from 'react';
 import { RowWrapper } from 'shared/ui/configurators-components';
 import { createCardItem, createNextOrder, NO_SHEET_ID, useDashboardView } from 'entities/dashboard-view';
 import { AddCardElementBtns, AddCardChartBtns } from 'features/dashboard-view';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 import { useUser } from 'entities/user';
 import { useCompany } from 'entities/company';
 import { CardItemType } from 'entities/dashboard-view/model/types';

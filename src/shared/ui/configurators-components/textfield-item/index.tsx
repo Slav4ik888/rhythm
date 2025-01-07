@@ -1,5 +1,5 @@
-import { SxCard } from 'app/providers/theme';
 import { FC, memo, MouseEvent } from 'react';
+import { SxCard } from 'shared/styles';
 import { TextField } from 'shared/ui/containers';
 import { Tooltip } from 'shared/ui/tooltip';
 

@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { Box } from '@mui/material';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 // import s from './styles.module.scss';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 

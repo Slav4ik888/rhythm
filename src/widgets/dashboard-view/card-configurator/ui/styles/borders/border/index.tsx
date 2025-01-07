@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { Box } from '@mui/material';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';

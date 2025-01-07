@@ -1,8 +1,7 @@
 import { memo, useState } from 'react';
-import { pxToRem, SxCard } from 'app/providers/theme';
 import { Chip, FormControl, MenuItem } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { f } from 'app/styles';
+import { f, SxCard, pxToRem } from 'shared/styles';
 
 
 

@@ -2,8 +2,8 @@ import { FC, memo, useState, useEffect } from 'react';
 import { ChangeStyleItem } from 'shared/ui/configurators-components';
 import { ItemStylesField, RgbaString } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
-import { linearGradient } from 'app/providers/theme';
 import { SplittedLinerGradient } from '../utils';
+import { linearGradient } from 'shared/styles';
 
 
 

@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { Box } from '@mui/material';
 import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
-import { f } from 'app/styles';
+import { f } from 'shared/styles';
 import { ChangeStyleItem, ConfiguratorTextTitle } from 'shared/ui/configurators-components';
 
 

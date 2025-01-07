@@ -19,8 +19,9 @@ import { forwardRef, FC, ElementType, ReactNode } from 'react';
 import MDButtonRoot from './md-button-root';
 
 // Material Dashboard 2 React contexts
-import { ColorName, SxCard, useUIConfiguratorController } from 'app/providers/theme';
+import { ColorName, useUIConfiguratorController } from 'app/providers/theme';
 import { CircularProgress } from 'shared/ui/circular-progress';
+import { SxCard } from 'shared/styles';
 
 
 interface Props {

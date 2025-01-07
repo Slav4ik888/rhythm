@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { MDTypography } from 'shared/ui/mui-design-components';
-import { CustomTheme, useTheme, pxToRem } from 'app/providers/theme';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 import { ReportSmallContainerWrapper, SxSmallContainer } from '../../reports';
+import { pxToRem } from 'shared/styles';
 
 
 

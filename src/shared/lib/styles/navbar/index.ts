@@ -1,4 +1,5 @@
-import { CustomTheme, getTypography, rgbaFromHex } from 'app/providers/theme';
+import { CustomTheme } from 'app/providers/theme';
+import { getTypography, rgbaFromHex } from 'shared/styles';
 
 
 

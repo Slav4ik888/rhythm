@@ -17,7 +17,8 @@ import { FC, ReactNode } from 'react';
 // import { useLocation } from 'react-router-dom';
 import { useUIConfiguratorController } from 'app/providers/theme';
 import MDBox from 'shared/ui/mui-design-components/md-box';
-import { CustomTheme, pxToRem } from 'app/providers/theme';
+import { CustomTheme } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 
 
 
