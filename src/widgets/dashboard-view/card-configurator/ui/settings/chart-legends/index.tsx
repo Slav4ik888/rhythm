@@ -40,16 +40,18 @@ export const ChartLegends: FC = memo(() => {
     }
   }, [selectedItem, changeOneSettingsField]);
 
+  const toolTitle = 'Выберите метку для графика';
+
 
   return (
     <RowWrapper>
-      <ConfiguratorTextTitle bold title='Chart label' toolTitle='Выберите метку для графика' />
+      <ConfiguratorTextTitle bold title='Chart label' toolTitle={toolTitle} />
       
-      <Tooltip title = 'background gradient'>
+      <Tooltip title = {toolTitle}>
         <Checkbox
           size       = 'small'
           checked    = {checked}
-          inputProps = {{ 'aria-label': 'background' }}
+          inputProps = {{ 'aria-label': 'Chart label' }}
           onChange   = {handleToggle}
         />
       </Tooltip>

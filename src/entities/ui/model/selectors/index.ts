@@ -1,17 +1,21 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/store';
+import { StateSchemaUI } from '../types';
 
 
-export const selectModule         = (state: StateSchema) => state.ui;
-export const selectLoading        = (state: StateSchema) => selectModule(state).loading;
-export const selectPageLoading    = (state: StateSchema) => selectModule(state).pageLoading;
+export const selectModule  = createSelector([(state: StateSchema) => state.ui || {} as StateSchemaUI], (state: StateSchemaUI) => state);
 
-export const selectErrors         = (state: StateSchema) => selectModule(state).errors;
-export const selectErrorStatus    = (state: StateSchema) => selectModule(state).errorStatus;
+export const selectLoading = createSelector(selectModule, (state: StateSchemaUI) => state.loading);
+export const selectErrors  = createSelector(selectModule, (state: StateSchemaUI) => state.errors);
 
-export const selectMessage        = (state: StateSchema) => selectModule(state).message;
+export const selectPageLoading = createSelector(selectModule, (state: StateSchemaUI) => state.pageLoading);
 
-export const selectScreenFormats  = (state: StateSchema) => selectModule(state).screenFormats;
-export const selectScreenSize     = (state: StateSchema) => selectModule(state).screenSize;
+export const selectErrorStatus = createSelector(selectModule, (state: StateSchemaUI) => state.errorStatus);
 
-export const selectAcceptedCookie = (state: StateSchema) => selectModule(state).acceptedCookie;
-export const selectReplacePath    = (state: StateSchema) => selectModule(state).replacePath;
+export const selectMessage = createSelector(selectModule, (state: StateSchemaUI) => state.message);
+
+export const selectScreenFormats = createSelector(selectModule, (state: StateSchemaUI) => state.screenFormats);
+export const selectScreenSize = createSelector(selectModule, (state: StateSchemaUI) => state.screenSize);
+
+export const selectAcceptedCookie = createSelector(selectModule, (state: StateSchemaUI) => state.acceptedCookie);
+export const selectReplacePath = createSelector(selectModule, (state: StateSchemaUI) => state.replacePath);

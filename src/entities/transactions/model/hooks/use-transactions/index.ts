@@ -17,8 +17,8 @@ export const useTransactions = (config: Config = {}) => {
     { } = config,
     dispatch    = useAppDispatch(),
 
-    loading     = useSelector(s.selectLoading),
-    errors      = useSelector(s.selectErrors),
+    // loading     = useSelector(s.selectLoading),
+    // errors      = useSelector(s.selectErrors),
     setErrors   = (errors: Errors) => dispatch(a.setErrors(errors)),
     clearErrors = () => dispatch(a.setErrors({})),
     
@@ -27,8 +27,8 @@ export const useTransactions = (config: Config = {}) => {
 
   
   return {
-    loading,
-    errors,
+    // loading,
+    // errors,
     setErrors,
     clearErrors,
 

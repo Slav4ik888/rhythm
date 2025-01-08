@@ -8,7 +8,7 @@ import { StateSchemaUser } from 'entities/user';
 import { StateSchemaSignupPage } from 'pages/signup';
 import { StateSchemaLoginPage } from 'pages/login';
 import { StateSchemaDocs } from 'entities/docs';
-import { StateSchemaTransactions } from 'entities/transactions';
+// import { StateSchemaTransactions } from 'entities/transactions';
 import { StateSchemaDashboardView } from 'entities/dashboard-view';
 
 
@@ -18,7 +18,7 @@ export interface StateSchema {
   ui           : StateSchemaUI
   user         : StateSchemaUser
   company      : StateSchemaCompany
-  transactions : StateSchemaTransactions
+  // transactions : StateSchemaTransactions
 
   // Features
 

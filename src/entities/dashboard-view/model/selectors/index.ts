@@ -1,36 +1,49 @@
 import { StateSchema } from 'app/providers/store';
-import { CardItemId, ItemStylesField } from '../types';
-import { StateSchemaDashboardView } from '../slice/state-schema';
+import { CardItem, CardItemId, ItemStylesField } from '../types';
+import { DashboardViewEntities, StateSchemaDashboardView } from '../slice/state-schema';
 import { getChildren, getParents } from '../utils';
+import { createSelector } from '@reduxjs/toolkit';
 
 
-export const selectModule         = (state: StateSchema) => state.dashboardView || {} as StateSchemaDashboardView;
+export const selectModule       = createSelector([(state: StateSchema) => state.dashboardView || {} as StateSchemaDashboardView], (state: StateSchemaDashboardView) => state);
 
-export const selectLoading        = (state: StateSchema) => selectModule(state).loading;
-export const selectErrors         = (state: StateSchema) => selectModule(state).errors;
-export const selectIsMounted      = (state: StateSchema) => selectModule(state)._isMounted;
+export const selectLoading      = createSelector(selectModule, (state: StateSchemaDashboardView) => state.loading);
+export const selectErrors       = createSelector(selectModule, (state: StateSchemaDashboardView) => state.errors);
+export const selectIsMounted    = createSelector(selectModule, (state: StateSchemaDashboardView) => state._isMounted);
 
-export const selectEditMode       = (state: StateSchema) => selectModule(state).editMode;
-export const selectEntities       = (state: StateSchema) => selectModule(state).entities || {};
+export const selectEditMode     = createSelector(selectModule, (state: StateSchemaDashboardView) => state.editMode);
+export const selectEntities     = createSelector(selectModule, (state: StateSchemaDashboardView) => state.entities || {});
 
-export const selectSelectedId     = (state: StateSchema) => selectModule(state).selectedId;
-export const selectSelectedItem   = (state: StateSchema) => selectEntities(state)[selectSelectedId(state)] || {};
-export const selectNewStoredCard  = (state: StateSchema) => selectModule(state).newStoredCard;
-export const selectPrevStoredCard = (state: StateSchema) => selectModule(state).prevStoredCard;
+export const selectSelectedId   = createSelector(selectModule, (state: StateSchemaDashboardView) => state.selectedId);
+export const selectSelectedItem = createSelector(selectEntities, selectSelectedId,
+  (entities: DashboardViewEntities, selectedId: string) => entities[selectedId] || {});
 
-export const selectCardItems      = (state: StateSchema) => Object.values(selectEntities(state));
+export const selectNewStoredCard  = createSelector(selectModule, (state: StateSchemaDashboardView) => state.newStoredCard);
+export const selectPrevStoredCard = createSelector(selectModule, (state: StateSchemaDashboardView) => state.prevStoredCard);
+
+export const selectCardItems = createSelector(selectEntities,
+  (entities: DashboardViewEntities) => Object.values(entities));
 
 /** Returns object ParentsCardItems { [parentId: string]: CardItem[] } */
-export const selectParentsCardItems = (state: StateSchema) => getParents(selectCardItems(state));
+export const selectParentsCardItems = createSelector(selectCardItems, (items: CardItem[]) => getParents(items));
 
 /** Parent`s children by parentId  */
-export const selectChildrenCardItems = (state: StateSchema, parentId?: CardItemId) =>
-  getChildren(selectCardItems(state), parentId || selectSelectedId(state));
+export const makeSelectChildrenCardItems = (parentId?: CardItemId) => createSelector(
+  [selectCardItems, selectSelectedId],
+  (items: CardItem[], selectedId: string) => getChildren(items, parentId || selectedId)
+);
 
-export const selectCardItemById  = (state: StateSchema) => selectEntities(state)[selectSelectedId(state)] || {};
-export const selectCardItemStyle = (state: StateSchema) => selectCardItemById(state).styles || {};
-export const selectStyleByField  = (state: StateSchema, field: ItemStylesField) => selectCardItemStyle(state)[field];
+export const selectCardItemById = createSelector(selectEntities, selectSelectedId,
+  (entities: DashboardViewEntities, selectedId: string) => entities[selectedId] || {});
 
-export const selectActivatedMovementId = (state: StateSchema) => selectModule(state).activatedMovementId;
+export const selectCardItemStyle = createSelector(selectEntities, selectSelectedId,
+  (entities: DashboardViewEntities, selectedId: string) => entities[selectedId]?.styles || {});
 
+export const makeSelectStyleByField = (field: ItemStylesField) => createSelector(
+  [selectEntities, selectSelectedId],
+  (entities: DashboardViewEntities, selectedId: string) => 
+    entities[selectedId]?.styles?.[field]
+);
+
+export const selectActivatedMovementId = createSelector(selectModule, (state: StateSchemaDashboardView) => state.activatedMovementId);
   

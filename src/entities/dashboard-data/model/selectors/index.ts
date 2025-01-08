@@ -4,7 +4,7 @@ import { StateSchemaDashboardData, DashboardDataEntities } from '../slice/state-
 
 
 
-export const selectModule         = (state: StateSchema) => state.dashboardData || {} as StateSchemaDashboardData;
+export const selectModule         = createSelector([(state: StateSchema) => state.dashboardData || {} as StateSchemaDashboardData], (state: StateSchemaDashboardData) => state);
 
 export const selectLoading        = createSelector(selectModule, (state: StateSchemaDashboardData) => state.loading);
 export const selectErrors         = createSelector(selectModule, (state: StateSchemaDashboardData) => state.errors);

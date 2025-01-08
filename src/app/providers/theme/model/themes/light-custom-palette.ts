@@ -106,10 +106,10 @@ export const customPalette = {
   },
 
   orange: {
-    light: '',
+    light: '#000000',
     main: orange[500],
-    dark: '',
-    focus: '',
+    dark: '#000000',
+    focus: '#000000',
     contrastText: '#000000',
   },
 
@@ -128,8 +128,8 @@ export const customPalette = {
   subHeader: {
     light: '#6c925a', // shaddow
     main: '#2a6c0b',  // color
-    dark: '',
-    focus: '',
+    dark: '#000000',
+    focus: '#000000',
     contrastText: '#000000',
   },
 

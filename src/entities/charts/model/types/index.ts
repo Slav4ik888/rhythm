@@ -27,6 +27,8 @@ export interface ChartConfigDatasets {
   maxBarThickness?      : number
 }
 
+export type ChartConfigDatasetsField = keyof ChartConfigDatasets;
+
 
 export type FontStyle = 'normal' | 'italic' | 'oblique' | 'initial' | 'inherit'
 

@@ -3,11 +3,10 @@ import { actions as a } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
-import { ChangeOneSettingsField, ChangeSelectedStyle } from '../../slice/types';
+import { ChangeOneSettingsField, ChangeSelectedStyle, ChangeOneDatasetsItem, ChangeOneChartsItem } from '../../slice/types';
 import { ActivatedCompanyId } from 'entities/company';
-import { CardItem, CardItemId, CardItemSettings, ItemStyles, ItemStylesField, PartialCardItem } from '../../types';
+import { CardItem, CardItemId, ItemStyles, ItemStylesField, PartialCardItem } from '../../types';
 import { addNewCard, deleteCard, DeleteCard, UpdateCardItem, updateCardItem as updateCardItemOnServer } from 'features/dashboard-view';
-import { StateSchema } from 'app/providers/store';
 import { StateSchemaDashboardView } from '../../slice/state-schema';
 
 
@@ -49,7 +48,8 @@ export const useDashboardView = (config: Config = {}) => {
     newStoredCard       = useSelector(s.selectNewStoredCard),
     prevStoredCard      = useSelector(s.selectPrevStoredCard),
 
-    childrenCardItems   = useSelector((state: StateSchema) => s.selectChildrenCardItems(state, parentId as CardItemId)),
+    selectChildrenCardItems = s.makeSelectChildrenCardItems(parentId as CardItemId),
+    childrenCardItems   = useSelector(selectChildrenCardItems),
     parentChildrenIds   = childrenCardItems.map(item => item.id),
 
     // Styles
@@ -57,10 +57,15 @@ export const useDashboardView = (config: Config = {}) => {
     setSelectedStyles   = (data: ItemStyles) => dispatch(a.setSelectedStyles(data)),
 
     stylesByCardItemId  = useSelector(s.selectCardItemStyle),
-    styleValueByField   = useSelector((state: StateSchema) => s.selectStyleByField(state, field as ItemStylesField)),
+    
+    selectStyleByField  = s.makeSelectStyleByField(field as ItemStylesField),
+    styleValueByField   = useSelector(selectStyleByField),
  
     // Settings
     changeOneSettingsField = (data: ChangeOneSettingsField) => dispatch(a.changeOneSettingsField(data)),
+    changeOneChartsItem = (data: ChangeOneChartsItem) => dispatch(a.changeOneChartsItem(data)),
+    // Изменение 1 field в settings.charts[index].datasets
+    changeOneDatasetsItem = (data: ChangeOneDatasetsItem) => dispatch(a.changeOneDatasetsItem(data)),
 
     // Services
     serviceAddNewCard = (
@@ -110,6 +115,8 @@ export const useDashboardView = (config: Config = {}) => {
 
     // Settings
     changeOneSettingsField,
+    changeOneChartsItem,
+    changeOneDatasetsItem,
 
     // Services
     serviceAddNewCard,

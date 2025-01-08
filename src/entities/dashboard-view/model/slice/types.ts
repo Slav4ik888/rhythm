@@ -1,4 +1,5 @@
-import { CardItem, CardItemId, ItemStylesField, CardItemSettingsField } from '../types';
+import { ChartConfigDatasetsField } from 'entities/charts';
+import { CardItem, CardItemId, ItemStylesField, CardItemSettingsField, CardItemChartsField } from '../types';
 
 
 
@@ -15,5 +16,17 @@ export interface ChangeSelectedStyle {
 
 export interface ChangeOneSettingsField {
   field      : CardItemSettingsField
+  value      : any
+}
+
+export interface ChangeOneChartsItem {
+  field      : CardItemChartsField
+  index      : number // № графика
+  value      : any
+}
+
+export interface ChangeOneDatasetsItem {
+  field      : ChartConfigDatasetsField
+  index      : number // № графика
   value      : any
 }

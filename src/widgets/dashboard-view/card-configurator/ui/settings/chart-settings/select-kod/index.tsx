@@ -1,9 +1,8 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { useDashboardView } from 'entities/dashboard-view';
-import { SelectValue } from '../../../../../../shared/ui/configurators-components/select';
+import { SelectValue } from '../../../../../../../shared/ui/configurators-components/select';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { useDashboardData } from 'entities/dashboard-data';
-import { updateChartsItem } from '../libs';
 
 
 
@@ -14,7 +13,7 @@ interface Props {
 /** Выбор кода */
 export const SelectKod: FC<Props> = memo(({ index }) => {
   const { kods } = useDashboardData();
-  const { selectedItem, changeOneSettingsField } = useDashboardView();
+  const { selectedItem, changeOneChartsItem } = useDashboardView();
   const [selectedValue, setSelectedValue] = useState<string>('');
 
 
@@ -23,13 +22,10 @@ export const SelectKod: FC<Props> = memo(({ index }) => {
   }, [selectedItem.settings?.charts?.[index]?.kod]);
 
 
-  const handleSelectedValue = useCallback((selected: string) => {
-    setSelectedValue(selected);
-    changeOneSettingsField({
-      field: 'charts',
-      value: updateChartsItem(selectedItem, 'kod', index, selected)
-    });
-  }, [selectedItem, changeOneSettingsField]);
+  const handleSelectedValue = useCallback((value: string) => {
+    setSelectedValue(value);
+    changeOneChartsItem({ field: 'kod', value, index });
+  }, [selectedItem, changeOneChartsItem]);
 
 
   return (

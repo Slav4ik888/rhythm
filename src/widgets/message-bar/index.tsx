@@ -48,7 +48,6 @@ const useStyles = () => ({
     pb: { xs: 1, sm: 2 },
     pl: { xs: 3, sm: 4 },
     // backgroundColor: theme.palette.secondary.light,
-    // color: theme.palette.primary.main,
     width: { xs: '100%', sm: '600px' },
     zIndex: 2000,
   }
@@ -69,9 +68,9 @@ export const MessageBar: FC = memo(() => {
     clearMessage();
     setIsSnack(false);
   };
+  
 
-
-  if (!message?.message) return null;
+  if (! message?.message) return null;
 
 
   return (

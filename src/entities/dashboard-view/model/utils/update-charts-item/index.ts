@@ -3,8 +3,8 @@ import { CardItem, CardItemCharts, CardItemChartsField } from 'entities/dashboar
 
 export const updateChartsItem = (
   item        : CardItem,
-  fieldItem   : CardItemChartsField,
   index       : number,
+  fieldItem   : CardItemChartsField,
   updatedItem : any
 ): CardItemCharts[] => {
   
