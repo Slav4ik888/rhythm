@@ -40,7 +40,7 @@ export const getLineOptions = (options = {} as ChartConfigOptions): ChartConfigO
           font    : {
             size       : setValue(scales?.y?.ticks?.font?.size, 10),
             weight     : 300,
-            family     : 'Roboto', // Arial
+            family     : 'Arial', // 'Roboto'
             style      : 'normal',
             lineHeight : 2,
           },
@@ -67,7 +67,7 @@ export const getLineOptions = (options = {} as ChartConfigOptions): ChartConfigO
           font    : {
             size       : setValue(scales?.x?.ticks?.font?.size, 10),
             weight     : 300,
-            family     : 'Roboto',
+            family     : 'Arial', // 'Roboto'
             style      : 'normal',
             lineHeight : 2,
           },

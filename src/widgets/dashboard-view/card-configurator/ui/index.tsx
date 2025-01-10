@@ -11,14 +11,14 @@ import { CardItemStylesConfigurator } from './styles';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { CardItemSettingsConfigurator } from './settings';
+import { CardItemChartSettingsConfigurator } from './settings';
 import { UnsavedChanges } from './unsaved-changes';
 
 
 
 export const CardItemConfigurator: FC = memo(() => {
   const { companyId } = useCompany();
-  const { editMode, selectedId, entities, prevStoredCard, setSelectedId, setEditMode, serviceUpdateCardItem } = useDashboardView();
+  const { editMode, selectedId, selectedItem, entities, prevStoredCard, setSelectedId, setEditMode, serviceUpdateCardItem } = useDashboardView();
   const [value, setValue] = useState('1');
 
   const handleChange = (event: SyntheticEvent, newValue: string) => setValue(newValue);
@@ -37,11 +37,13 @@ export const CardItemConfigurator: FC = memo(() => {
     };
 
     serviceUpdateCardItem({ companyId, cardItem });
+    setValue('1');
   }, [selectedId]);
 
 
   /** Закрываем конфигуратор */
   const handleClose = useCallback(() => {
+    setValue('1');
     setEditMode(false);
     setSelectedId(''); // Убираем, чтобы prevStoredCard обновился и произошло сохранение
   }, [selectedId, setEditMode, setSelectedId]);
@@ -61,15 +63,23 @@ export const CardItemConfigurator: FC = memo(() => {
         <Box sx={{ mt: 2, borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             <Tab label="Styles" value="1" />
-            <Tab label="Settings" value="2" />
+            {
+              selectedItem?.type === 'chart'
+                ? <Tab label="Settings" value="2" />
+                : null
+            }
           </TabList>
         </Box>
         <TabPanel value="1" keepMounted sx={{ p: 0 }}>
           <CardItemStylesConfigurator />
         </TabPanel>
-        <TabPanel value="2" keepMounted sx={{ p: 0 }}>
-          <CardItemSettingsConfigurator />
-        </TabPanel>
+        {
+          selectedItem?.type === 'chart'
+            ? <TabPanel value="2" keepMounted sx={{ p: 0 }}>
+                <CardItemChartSettingsConfigurator />
+              </TabPanel>
+            : null
+        }
       </TabContext>
     </DrawerStyled>
   )

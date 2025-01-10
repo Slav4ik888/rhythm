@@ -6,7 +6,7 @@ import { StateSchemaDashboardView } from './state-schema';
 import { deleteCard, DeleteCard, AddNewCard, addNewCard, UpdateCardItem, updateCardItem } from 'features/dashboard-view';
 import { SetDashboardView, ChangeSelectedStyle, ChangeOneSettingsField, ChangeOneDatasetsItem, ChangeOneChartsItem } from './types';
 import { addEntities } from 'entities/base';
-import { CardItemId, CardItemSettings, ItemStyles, PartialCardItem } from '../types';
+import { CardItem, CardItemId, CardItemSettings, ItemStyles, PartialCardItem } from '../types';
 // import { NO_PARENT_ID } from '../consts';
 import { cloneObj, updateObject } from 'shared/helpers/objects';
 import { updateChartsItem } from '../utils';
@@ -96,12 +96,10 @@ export const slice = createSlice({
       const { field, value } = payload;
       const selectedId = state.selectedId;
       
-      if (! state.entities[selectedId].settings) {
-        state.entities[selectedId].settings = {};
+      if (state.entities[selectedId]) {
+        if (! state.entities[selectedId]?.settings) state.entities[selectedId].settings = {};
+        (state.entities[selectedId].settings as CardItemSettings)[field] = value;
       }
-
-      // @ts-ignore
-      state.entities[selectedId].settings[field] = value;
     },
 
     // Изменение 1 field в settings.charts[index]
@@ -110,12 +108,10 @@ export const slice = createSlice({
       const selectedId   = state.selectedId;
       const selectedItem = state.entities[selectedId];
 
-      if (! state.entities[selectedId].settings) {
-        state.entities[selectedId].settings = {};
+      if (state.entities[selectedId]) {
+        if (!state.entities[selectedId]?.settings) state.entities[selectedId].settings = {};
+        (state.entities[selectedId].settings as CardItemSettings).charts = updateChartsItem(selectedItem, index, field, value);
       }
-
-      // @ts-ignore
-      state.entities[selectedId].settings?.charts = updateChartsItem(selectedItem, index, field, value);
     },
 
     // Изменение 1 field в settings.charts[index].datasets
@@ -123,15 +119,13 @@ export const slice = createSlice({
       const { field, index, value } = payload;
       const selectedId   = state.selectedId;
       const selectedItem = state.entities[selectedId];
-      const datasets     = cloneObj(selectedItem.settings?.charts?.[index]?.datasets || {});
+      const datasets     = cloneObj(selectedItem?.settings?.charts?.[index]?.datasets || {});
       datasets[field] = value;
 
-      if (! state.entities[selectedId].settings) {
-        state.entities[selectedId].settings = {};
+      if (state.entities[selectedId]) {
+        if (! state.entities[selectedId]?.settings) state.entities[selectedId].settings = {};
+        (state.entities[selectedId].settings as CardItemSettings).charts = updateChartsItem(selectedItem, index, 'datasets', datasets);
       }
-
-      // @ts-ignore
-      state.entities[selectedId].settings?.charts = updateChartsItem(selectedItem, index, 'datasets', datasets);
     },
     
   },

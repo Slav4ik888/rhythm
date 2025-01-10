@@ -6,11 +6,17 @@ import { ChartLegends } from './chart-legends';
 import { ChartLabel } from './chart-settings/chart-label';
 import { ConfiguratorSubBoxWrapper } from 'shared/ui/configurators-components';
 import { InvertedData } from './Inverted-data';
+import { ChartPointRadius } from './chart-settings/point-radius';
+import { ChartPointBackgroundColor } from './chart-settings/point-background-color';
+import { ChartBorderColor } from './chart-settings/border-сolor';
+import { ChartBackgroundColor } from './chart-settings/background-сolor';
+import { ChartBorderWidth } from './chart-settings/border-width';
+import { ChartYGridDisplay } from './scales/y-grid-display';
 
 
 
-/** Вкладка Settings */
-export const CardItemSettingsConfigurator: FC = memo(() => {
+/** Вкладка Settings для графиков */
+export const CardItemChartSettingsConfigurator: FC = memo(() => {
   // const { selectedId, selectedItem, entities, changeOneSettingsField } = useDashboardView();
 
   /** Сохраняем изменения settings элементов в store */
@@ -33,9 +39,19 @@ export const CardItemSettingsConfigurator: FC = memo(() => {
         {/* Выбрать период дат: общий или уникальный */}
 
         {/* Настройки графика */}
-        <SelectChartType index={0} />
-        <ChartLabel index={0} />
+        <SelectChartType                 index={0} />
+        <ChartLabel                      index={0} />
+        {/* Круглешки */}
+        <ChartPointRadius                index={0} />
+        <ChartPointBackgroundColor index={0} />
+        {/* Линия графика */}
+        <ChartBorderWidth                index={0} />
+        <ChartBorderColor                index={0} />
+        <ChartBackgroundColor            index={0} />
       </ConfiguratorSubBoxWrapper>
+
+      {/* Настройки Оси Y */}
+      <ChartYGridDisplay />
     </>
   )
 });

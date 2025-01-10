@@ -16,7 +16,7 @@ export function createReduxStore(initialState: DeepPartial<StateSchema>) {
       ui           : reducerUI,
       user         : reducerUser,
       company      : reducerCompany,
-      transactions : reducerTransactions,
+      // transactions : reducerTransactions,
       // Features
     },
     reducerManager = createReducerManager(rootReducers),

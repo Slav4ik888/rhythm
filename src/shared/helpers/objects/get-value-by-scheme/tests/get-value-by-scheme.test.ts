@@ -74,10 +74,10 @@ describe('getValueByScheme', () => {
       .toEqual(undefined);
   });
 
-  test('scheme length > max depth', () => {
+  test('scheme is invalid, without goal', () => {
     expect(getValueByScheme(MOCK, 'first.second.third.fourth.fifth.sixs.sevens.eights.nines'))
       .toEqual(undefined);
   });
 });
 
-// npm run test:utils get-value-by-scheme.test.ts
+// npm run test:unit get-value-by-scheme.test.ts

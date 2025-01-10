@@ -70,7 +70,7 @@ export interface ChartConfigOptions {
         font?: {
           size?: number
           weight?: number
-          family?: 'Roboto'
+          family?: 'Roboto' | 'Arial'
           style?: FontStyle
           lineHeight?: number
         }
@@ -100,7 +100,7 @@ export interface ChartConfigOptions {
         font?: {
           size?: number
           weight?: number
-          family?: 'Roboto'
+          family?: 'Roboto' | 'Arial'
           style?: FontStyle
           lineHeight?: number
         }

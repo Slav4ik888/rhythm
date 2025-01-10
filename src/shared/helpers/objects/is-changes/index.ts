@@ -39,12 +39,16 @@ function checkIsChanges<T>(first: T, second: T) {
  * @param newObj  - новый объект
  */
 export function isChanges<T>(prevObj: T, newObj: T): boolean {
-  // console.log('newObj: ', newObj);
-  // console.log('prevObj: ', prevObj);
+  
   const result1 = checkIsChanges(prevObj, newObj);
-  // console.log('result1: ', result1);
   const result2 = checkIsChanges(newObj, prevObj);
-  // console.log('result2: ', result2);
+
+  // if (result1 || result2) {
+  //   console.log('newObj: ', newObj);
+  //   console.log('prevObj: ', prevObj);
+  //   console.log('result1: ', result1);
+  //   console.log('result2: ', result2);
+  // }
 
   return result1 || result2;
 };
