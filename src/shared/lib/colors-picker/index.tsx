@@ -19,7 +19,12 @@ export const ColorPicker: FC<Props> = memo(({ defaultColor, onChange }) => {
     setColor(rgbaStringToRgba(defaultColor));
   }, [defaultColor]);
 
-  useDebouncyEffect(() => onChange(rgba(color)), 50, [color]);
+  useDebouncyEffect(() => {
+    // Не обновлять значение, если в компоненте оно ещё не существует (например, его ещё ни сразу не устанавливали)
+    if (defaultColor === undefined) return;
+    
+    onChange(rgba(color));
+  }, 50, [color]);
   
 
   return <PopoverColorsPicker color={color} onChange={setColor} />;

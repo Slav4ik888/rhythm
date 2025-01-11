@@ -25,16 +25,16 @@ export const getLineOptions = (options = {} as ChartConfigOptions): ChartConfigO
       y: {
         // Горизонтальные линии от оси Y
         grid: {
-          display         : setValue(scales?.y?.grid?.display, true),
-          drawBorder      : false,
-          drawOnChartArea : true,
-          drawTicks       : false, // Насечки на оси
+          display         : setValue(scales?.y?.grid?.display,         true),
+          drawBorder      : setValue(scales?.y?.grid?.drawBorder,      false),
+          drawOnChartArea : setValue(scales?.y?.grid?.drawOnChartArea, true),
+          drawTicks       : setValue(scales?.y?.grid?.drawTicks,       false), // Насечки на оси
           borderDash      : [5, 5],
           color           : setValue(scales?.y?.grid?.color, '#dadada'), // 'rgba(255, 255, 255, .2)'),
         },
         // Подпись оси
         ticks: {
-          display : true,
+          display : setValue(scales?.y?.ticks?.display, true),
           color   : setValue(scales?.y?.ticks?.color, 'rgba(0, 0, 0, .8)'), // '#f8f9fa'),
           padding : 10,
           font    : {
@@ -52,16 +52,16 @@ export const getLineOptions = (options = {} as ChartConfigOptions): ChartConfigO
       x: {
         // Вертикальные линии от оси X
         grid: {
-          display         : setValue(scales?.x?.grid?.display, true),
-          drawBorder      : true,
-          drawOnChartArea : false,
-          drawTicks       : false, // Насечки на оси
+          display         : setValue(scales?.x?.grid?.display,         true),
+          drawBorder      : setValue(scales?.x?.grid?.drawBorder,      true),
+          drawOnChartArea : setValue(scales?.x?.grid?.drawOnChartArea, false),
+          drawTicks       : setValue(scales?.x?.grid?.drawTicks,       false), // Насечки на оси
           borderDash      : [5, 5],
           color           : setValue(scales?.x?.grid?.color, '#dadada'), // 'rgba(255, 255, 255, .2)'),
         },
         // Подпись оси
         ticks: {
-          display : true,
+          display : setValue(scales?.x?.ticks?.display, true),
           color   : setValue(scales?.x?.ticks?.color, 'rgba(0, 0, 0, .8)'), // '#f8f9fa'),
           padding : 10,
           font    : {

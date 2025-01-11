@@ -8,7 +8,7 @@ const useStyles = (style?: any) => ({
   root: {
     ...f('-c-sb'),
     position  : 'relative',
-    minHeight : pxToRem(46),
+    // minHeight : pxToRem(46),
     py        : 0.5,
     ...style
   }

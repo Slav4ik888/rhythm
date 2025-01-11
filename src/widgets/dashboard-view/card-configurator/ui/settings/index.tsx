@@ -1,5 +1,4 @@
-import { FC, memo, useCallback } from 'react';
-import { useDashboardView, CardItemSettingsField } from 'entities/dashboard-view';
+import { FC, memo } from 'react';
 import { SelectKod } from './chart-settings/select-kod';
 import { SelectChartType } from './chart-settings/select-chart-type';
 import { ChartLegends } from './chart-legends';
@@ -11,20 +10,15 @@ import { ChartPointBackgroundColor } from './chart-settings/point-background-col
 import { ChartBorderColor } from './chart-settings/border-сolor';
 import { ChartBackgroundColor } from './chart-settings/background-сolor';
 import { ChartBorderWidth } from './chart-settings/border-width';
-import { ChartYGridDisplay } from './scales/y-grid-display';
+import { ConfiguratorSubTitle } from 'shared/ui/configurators-components/sub-title';
+import { ChartGridDisplay } from './scales/grid/display';
+import { ChartFlagByScheme } from './flag-by-scheme';
+import { ChartSetColorByScheme } from './set-сolor';
 
 
 
 /** Вкладка Settings для графиков */
 export const CardItemChartSettingsConfigurator: FC = memo(() => {
-  // const { selectedId, selectedItem, entities, changeOneSettingsField } = useDashboardView();
-
-  /** Сохраняем изменения settings элементов в store */
-  // const handleChange = useCallback((field: CardItemSettingsField, value: any) => {
-  //   changeOneSettingsField({ field, value });
-  // }, [selectedId, entities, changeOneSettingsField]);
-
-
   return (
     <>
       {/* Global settings */}
@@ -50,8 +44,94 @@ export const CardItemChartSettingsConfigurator: FC = memo(() => {
         <ChartBackgroundColor            index={0} />
       </ConfiguratorSubBoxWrapper>
 
-      {/* Настройки Оси Y */}
-      <ChartYGridDisplay />
+      {/* НАСТРОЙКИ ОСИ Y */}
+      <ConfiguratorSubTitle title='Ось Y' type='title' />
+
+      {/* Grid */}
+      <ConfiguratorSubTitle title='Grid' type='subtitle' />
+      <ChartFlagByScheme
+        scheme    = 'settings.chartOptions.scales.y.grid.display'
+        title     = 'display'
+        toolTitle = 'Показать/скрыть ось Y'
+      />
+      <ChartFlagByScheme
+        scheme    = 'settings.chartOptions.scales.y.grid.drawBorder'
+        title     = 'drawBorder'
+        toolTitle = 'Показать/скрыть'
+      />
+      <ChartFlagByScheme
+        scheme    = 'settings.chartOptions.scales.y.grid.drawOnChartArea'
+        title     = 'drawOnChartArea'
+        toolTitle = 'Показать/скрыть'
+      />
+      <ChartFlagByScheme
+        scheme    = 'settings.chartOptions.scales.y.grid.drawTicks'
+        title     = 'drawTicks'
+        toolTitle = 'Показать/скрыть'
+      />
+      <ChartSetColorByScheme
+        scheme    = 'settings.chartOptions.scales.y.grid.color'
+        title     = 'color'
+        toolTitle = 'Настроить цвет'
+      />
+
+      {/* Ticks */}
+      <ConfiguratorSubTitle title='Ticks' type='subtitle' />
+      <ChartFlagByScheme
+        scheme    = 'settings.chartOptions.scales.y.ticks.display'
+        title     = 'display'
+        toolTitle = 'Показать/скрыть'
+      />
+      <ChartSetColorByScheme
+        scheme    = 'settings.chartOptions.scales.y.ticks.color'
+        title     = 'color'
+        toolTitle = 'Настроить цвет'
+      />
+    
+      
+      {/* НАСТРОЙКИ ОСИ X */}
+      <ConfiguratorSubTitle title='Ось X' type='title' />
+
+      {/* Grid */}
+      <ConfiguratorSubTitle title='Grid' type='subtitle' />
+      <ChartFlagByScheme
+        scheme    = 'settings.chartOptions.scales.x.grid.display'
+        title     = 'display'
+        toolTitle = 'Показать/скрыть ось X'
+      />
+      <ChartFlagByScheme
+        scheme    = 'settings.chartOptions.scales.x.grid.drawBorder'
+        title     = 'drawBorder'
+        toolTitle = 'Показать/скрыть'
+      />
+      <ChartFlagByScheme
+        scheme    = 'settings.chartOptions.scales.x.grid.drawOnChartArea'
+        title     = 'drawOnChartArea'
+        toolTitle = 'Показать/скрыть'
+      />
+      <ChartFlagByScheme
+        scheme    = 'settings.chartOptions.scales.x.grid.drawTicks'
+        title     = 'drawTicks'
+        toolTitle = 'Показать/скрыть'
+      />
+      <ChartSetColorByScheme
+        scheme    = 'settings.chartOptions.scales.y.grid.color'
+        title     = 'color'
+        toolTitle = 'Настроить цвет'
+      />
+
+      {/* Ticks */}
+      <ConfiguratorSubTitle title='Ticks' type='subtitle' />
+      <ChartFlagByScheme
+        scheme    = 'settings.chartOptions.scales.x.ticks.display'
+        title     = 'display'
+        toolTitle = 'Показать/скрыть'
+      />
+      <ChartSetColorByScheme
+        scheme    = 'settings.chartOptions.scales.x.ticks.color'
+        title     = 'color'
+        toolTitle = 'Настроить цвет'
+      />
     </>
   )
 });
