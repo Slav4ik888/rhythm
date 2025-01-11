@@ -18,7 +18,7 @@ export interface StateSchemaDashboardView {
   entities            : DashboardViewEntities
   selectedId          : CardItemId    // Id выбранного элемента (при editMode === true)
   // Начальные значения выбранного элемента, чтобы затем перевести его в статус prevStoredCard
-  // само по себе, вроде как нигде не используется, только для промежуточного хранения
+  // само по себе используется только в UnsavedChanges, а также для промежуточного хранения
   newStoredCard       : CardItem | {}
   // Начальные значения предыдущего выбранного элемента, которое можно сравнивать для сохранения изменений
   // Используется при смене selectedId

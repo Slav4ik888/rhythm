@@ -47,6 +47,7 @@ export const useDashboardView = (config: Config = {}) => {
 
     newStoredCard       = useSelector(s.selectNewStoredCard),
     prevStoredCard      = useSelector(s.selectPrevStoredCard),
+    updateNewStoredCard = (data: PartialCardItem) => dispatch(a.updateNewStoredCard(data)),
 
     selectChildrenCardItems = s.makeSelectChildrenCardItems(parentId as CardItemId),
     childrenCardItems   = useSelector(selectChildrenCardItems),
@@ -100,6 +101,7 @@ export const useDashboardView = (config: Config = {}) => {
     selectedItem,
     newStoredCard,
     prevStoredCard,
+    updateNewStoredCard,
     childrenCardItems,
 
     // Movement

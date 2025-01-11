@@ -1,4 +1,5 @@
 import { isObj } from 'shared/lib/validators';
+import { deepEqual } from '../deep-equal';
 
 
 function checkIsChanges<T>(first: T, second: T) {
@@ -34,14 +35,16 @@ function checkIsChanges<T>(first: T, second: T) {
 
 
 /**
+ * v.2025-01-11
  * Проверяет были ли изменения в новом объекте
  * @param prevObj - первоначальный объект
  * @param newObj  - новый объект
  */
 export function isChanges<T>(prevObj: T, newObj: T): boolean {
+  return ! deepEqual(prevObj, newObj);
   
-  const result1 = checkIsChanges(prevObj, newObj);
-  const result2 = checkIsChanges(newObj, prevObj);
+  // const result1 = checkIsChanges(prevObj, newObj);
+  // const result2 = checkIsChanges(newObj, prevObj);
 
   // if (result1 || result2) {
   //   console.log('newObj: ', newObj);
@@ -50,5 +53,5 @@ export function isChanges<T>(prevObj: T, newObj: T): boolean {
   //   console.log('result2: ', result2);
   // }
 
-  return result1 || result2;
+  // return result1 || result2;
 };

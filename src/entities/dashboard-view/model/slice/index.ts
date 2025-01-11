@@ -65,6 +65,11 @@ export const slice = createSlice({
       state.prevStoredCard = state.newStoredCard;
       state.newStoredCard  = state.entities[payload] || {};
     },
+
+    /** Обновление изменившихся полей, при сохранении через UnsavedChanges */
+    updateNewStoredCard: (state, { payload }: PayloadAction<PartialCardItem>) => {
+      state.newStoredCard = updateObject(state.newStoredCard, payload);
+    },
     
     // Перемещение выбранного Card-item в другой
     setActiveMovementId: (state) => {

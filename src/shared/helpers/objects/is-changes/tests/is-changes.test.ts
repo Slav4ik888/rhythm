@@ -1,5 +1,5 @@
-import {isChanges} from ".."
-import { Mocks } from "./types"
+import {isChanges} from '..'
+import { Mocks } from './types'
 
 const mocks: Mocks = [
   [{ prevObj: {},        newObj: {} },        false],
@@ -7,8 +7,8 @@ const mocks: Mocks = [
   [{ prevObj: undefined, newObj: {} },        true],
   [{ prevObj: { id: 1 }, newObj: {} },        true],
   
-  [{ prevObj: { id: 1, obj: { f: { str: `1`} } }, newObj: { id: 1, obj: { f: { str: `1`} } } },  false],
-  [{ prevObj: { id: 1, obj: { f: { str: `1`} } }, newObj: { id: 1, obj: { f: { str: `11`} } } }, true],
+  [{ prevObj: { id: 1, obj: { f: { str: '1'} } }, newObj: { id: 1, obj: { f: { str: '1'} } } },  false],
+  [{ prevObj: { id: 1, obj: { f: { str: '1'} } }, newObj: { id: 1, obj: { f: { str: '11'} } } }, true],
 ];
 
 
