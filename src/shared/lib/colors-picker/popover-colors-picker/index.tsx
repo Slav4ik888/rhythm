@@ -11,7 +11,7 @@ console.log('MODULE STYLE: ', s);
 
 
 
-const useStyles = (theme: CustomTheme, backgroundColor: RgbaColor) => ({
+const useStyles = (theme: CustomTheme, backgroundColor: RgbaColor | undefined) => ({
   root: {
     position: 'relative',
   },
@@ -52,7 +52,7 @@ const useStyles = (theme: CustomTheme, backgroundColor: RgbaColor) => ({
 
 
 interface Props {
-  color    : RgbaColor
+  color    : RgbaColor | undefined
   onChange : (color: RgbaColor) => void
 }
 

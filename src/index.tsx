@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "add ChartSetColorByScheme" && git push -u origin main
+// git add . && git commit -m "fix ChartSetColorByScheme" && git push -u origin main

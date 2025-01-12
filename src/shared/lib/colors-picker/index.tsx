@@ -21,7 +21,7 @@ export const ColorPicker: FC<Props> = memo(({ defaultColor, onChange }) => {
 
   useDebouncyEffect(() => {
     // Не обновлять значение, если в компоненте оно ещё не существует (например, его ещё ни сразу не устанавливали)
-    if (defaultColor === undefined) return;
+    if (defaultColor === undefined && color === undefined) return;
     
     onChange(rgba(color));
   }, 50, [color]);

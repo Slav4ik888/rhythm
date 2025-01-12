@@ -15,7 +15,6 @@ interface Props {
 /** Установка цвета элементам графика (by scheme) */
 export const ChartSetColorByScheme: FC<Props> = memo(({ scheme, title, toolTitle }) => {
   const { selectedItem, changeOneSettingsField } = useDashboardView();
-  ;
 
   const handleChange = useCallback((value: string | number) => {
     const result = {};

@@ -13,9 +13,9 @@ const useStyles = (theme: CustomTheme, type: Type) => {
   return {
     root: {
       ...f('-c'),
-      jusifyContent : title ? 'center' : 'flexStart',
-      fontSize      : title ? '1.2rem' : '1.1rem',
-      color         : theme.palette.dark.main,
+      justifyContent : title ? 'center' : 'flexStart',
+      fontSize       : title ? '1.2rem' : '1.1rem',
+      color          : theme.palette.dark.main,
       // textShadow : `0px 0px 3px ${theme.palette.dark.main}`,
     },
   }

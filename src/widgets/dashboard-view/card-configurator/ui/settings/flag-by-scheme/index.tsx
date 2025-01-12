@@ -38,7 +38,6 @@ export const ChartFlagByScheme: FC<Props> = memo(({ scheme, title, toolTitle }) 
         result
       )
     });
-
   }, [selectedItem, changeOneSettingsField]);
 
 

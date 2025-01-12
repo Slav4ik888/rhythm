@@ -115,7 +115,7 @@ export const CardItemChartSettingsConfigurator: FC = memo(() => {
         toolTitle = 'Показать/скрыть'
       />
       <ChartSetColorByScheme
-        scheme    = 'settings.chartOptions.scales.y.grid.color'
+        scheme    = 'settings.chartOptions.scales.x.grid.color'
         title     = 'color'
         toolTitle = 'Настроить цвет'
       />
