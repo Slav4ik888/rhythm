@@ -15,6 +15,7 @@ import { ChartGridDisplay } from './scales/grid/display';
 import { ChartFlagByScheme } from './flag-by-scheme';
 import { ChartSetColorByScheme } from './set-сolor';
 import { ChartNumberByScheme } from './number-by-scheme';
+import { ChartKodLabel } from './chart-settings/kod-label';
 
 
 
@@ -30,7 +31,8 @@ export const CardItemChartSettingsConfigurator: FC = memo(() => {
       {/* Individual charts settings */}
       {/* TODO: возможность добавлять графики */}
       <ConfiguratorSubBoxWrapper title='График 1'>
-        <SelectKod index={0} />
+        <SelectKod     index={0} />
+        <ChartKodLabel index={0} />
         {/* Выбрать период дат: общий или уникальный */}
 
         {/* Настройки графика */}
