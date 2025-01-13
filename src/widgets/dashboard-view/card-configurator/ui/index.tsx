@@ -61,21 +61,21 @@ export const CardItemConfigurator: FC = memo(() => {
       }
       <TabContext value={value}>
         <Box sx={{ mt: 2, borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="Styles" value="1" />
+          <TabList onChange={handleChange} aria-label='lab API tabs example'>
+            <Tab label='Styles' value='1' />
             {
               selectedItem?.type === 'chart'
-                ? <Tab label="Settings" value="2" />
+                ? <Tab label='Settings' value='2' />
                 : null
             }
           </TabList>
         </Box>
-        <TabPanel value="1" keepMounted sx={{ p: 0 }}>
+        <TabPanel value='1' keepMounted sx={{ p: 0 }}>
           <CardItemStylesConfigurator />
         </TabPanel>
         {
           selectedItem?.type === 'chart'
-            ? <TabPanel value="2" keepMounted sx={{ p: 0 }}>
+            ? <TabPanel value='2' keepMounted sx={{ p: 0 }}>
                 <CardItemChartSettingsConfigurator />
               </TabPanel>
             : null

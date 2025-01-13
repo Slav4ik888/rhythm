@@ -14,6 +14,7 @@ import { ConfiguratorSubTitle } from 'shared/ui/configurators-components/sub-tit
 import { ChartGridDisplay } from './scales/grid/display';
 import { ChartFlagByScheme } from './flag-by-scheme';
 import { ChartSetColorByScheme } from './set-сolor';
+import { ChartNumberByScheme } from './number-by-scheme';
 
 
 
@@ -46,6 +47,29 @@ export const CardItemChartSettingsConfigurator: FC = memo(() => {
 
       {/* НАСТРОЙКИ ОСИ Y */}
       <ConfiguratorSubTitle title='Ось Y' type='title' />
+
+      {/* Min | max */}
+      <ConfiguratorSubTitle title='Min | max' type='subtitle' />
+      <ChartNumberByScheme
+        scheme    = 'settings.chartOptions.scales.y.min'
+        title     = 'min'
+        toolTitle = 'Изменить min'
+      />
+      <ChartNumberByScheme
+        scheme    = 'settings.chartOptions.scales.y.max'
+        title     = 'max'
+        toolTitle = 'Изменить max'
+      />
+      <ChartNumberByScheme
+        scheme    = 'settings.chartOptions.scales.y.suggestedMin'
+        title     = 'suggestedMin'
+        toolTitle = 'Изменить suggestedMin'
+      />
+      <ChartNumberByScheme
+        scheme    = 'settings.chartOptions.scales.y.suggestedMax'
+        title     = 'suggestedMax'
+        toolTitle = 'Изменить suggestedMax'
+      />
 
       {/* Grid */}
       <ConfiguratorSubTitle title='Grid' type='subtitle' />
@@ -87,8 +111,8 @@ export const CardItemChartSettingsConfigurator: FC = memo(() => {
         title     = 'color'
         toolTitle = 'Настроить цвет'
       />
-    
-      
+
+
       {/* НАСТРОЙКИ ОСИ X */}
       <ConfiguratorSubTitle title='Ось X' type='title' />
 

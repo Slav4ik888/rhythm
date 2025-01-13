@@ -14,7 +14,7 @@ interface Props {
 }
 
 /**
- * По схеме сохраняет изменения в selectedItem.settings?.chartOptions
+ * По схеме сохраняет изменени flags в selectedItem.settings?.chartOptions
  */
 export const ChartFlagByScheme: FC<Props> = memo(({ scheme, title, toolTitle }) => {
   const { selectedItem, changeOneSettingsField } = useDashboardView();

@@ -2,7 +2,7 @@ import { FC, memo, useState, useRef, useCallback } from 'react';
 import { Box } from '@mui/material';
 import { f, pxToRem } from 'shared/styles';
 import { useClickOutside } from 'shared/lib/hooks';
-import { HexColorInput, RgbaColorPicker, RgbaColor } from 'react-colorful';
+import { HexColorInput, RgbaColorPicker, RgbaColor  } from 'react-colorful';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import s from './index.module.scss';
 import { MDButton } from 'shared/ui/mui-design-components';
@@ -84,7 +84,7 @@ export const PopoverColorsPicker: FC<Props> = memo(({ color, onChange }) => {
           />
           <Box sx={sx.control}>
             <HexColorInput
-              alpha
+              // alpha
               prefixed
               color    = {rgba(color)}
               style    = {{ width: 100 }}

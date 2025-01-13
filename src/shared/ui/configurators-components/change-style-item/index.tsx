@@ -59,16 +59,17 @@ interface Props {
   toolTitle?  : string
   disabled?   : boolean
   sx?         : SxCard
+  onClear?    : () => void // Для очистки значения если нужно чтобы было не пустая строка ''
   onCallback? : (field: ItemStylesField, value: number | string) => void
   onSubmit    : (field: ItemStylesField, value: number | string) => void
-}
+}``
 
 /**
  * Изначально Box, при клике меняется на TextField,
  * для того, чтобы при изменении входных значений в открывающемся TextField
  * появлялись новые значения
  */
-export const ChangeStyleItem: FC<Props> = memo(({ type, sx: style, value, width, field, title, toolTitle, disabled, onCallback, onSubmit }) => {
+export const ChangeStyleItem: FC<Props> = memo(({ type, sx: style, value, width, field, title, toolTitle, disabled, onClear, onCallback, onSubmit }) => {
   const sx = useStyles(useTheme(), style, width);
   const hookOpen = useValue();
   
@@ -92,7 +93,9 @@ export const ChangeStyleItem: FC<Props> = memo(({ type, sx: style, value, width,
   
   
   const handleClear = () => {
-    onSubmit(field as ItemStylesField, '' as unknown as number);
+    if (onClear) onClear()
+    else onSubmit(field as ItemStylesField, '' as unknown as number)
+    
     hookOpen.setClose();
   };
 
