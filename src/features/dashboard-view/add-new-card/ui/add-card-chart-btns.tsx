@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { CardItemType } from 'entities/dashboard-view/model/types';
-import { grey } from '@mui/material/colors';
+import { blueGrey, grey } from '@mui/material/colors';
 import { AddBtn } from './add-btn';
 
 
@@ -16,6 +16,11 @@ export const AddCardChartBtns: FC<Props> = memo(({ onClick }) => {
       <AddBtn
         type    = 'chart'
         color   = {grey[900]}
+        onClick = {onClick}
+      />
+      <AddBtn
+        type    = 'chip'
+        color   = {blueGrey[700]}
         onClick = {onClick}
       />
     </>

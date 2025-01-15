@@ -33,7 +33,7 @@ export const InvertedData: FC = memo(() => {
 
 
   return (
-    <RowWrapper>
+    <RowWrapper sx={{ mt: 2 }}>
       <ConfiguratorTextTitle bold title='Inverted' toolTitle={toolTitle} />
       
       <Tooltip title = {toolTitle}>

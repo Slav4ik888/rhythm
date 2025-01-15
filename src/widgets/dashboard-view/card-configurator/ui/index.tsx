@@ -11,8 +11,10 @@ import { CardItemStylesConfigurator } from './styles';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { CardItemChartSettingsConfigurator } from './settings';
 import { UnsavedChanges } from './unsaved-changes';
+import { CardItemConfiguratorSettings } from './settings';
+import { CardItemControlConfigurator } from './control';
+import { InfoBlock } from './info-block';
 
 
 
@@ -59,27 +61,30 @@ export const CardItemConfigurator: FC = memo(() => {
           Выберите элемент для редактирования
         </Box>
       }
+      <InfoBlock />
+      
       <TabContext value={value}>
         <Box sx={{ mt: 2, borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label='lab API tabs example'>
-            <Tab label='Styles' value='1' />
+            <Tab label='Control' value='1' />
+            <Tab label='Styles'  value='2' />
             {
-              selectedItem?.type === 'chart'
-                ? <Tab label='Settings' value='2' />
+              selectedItem?.type === 'chart' || selectedItem?.type === 'chip'
+                ? <Tab label='Settings' value='3' />
                 : null
             }
           </TabList>
         </Box>
+
         <TabPanel value='1' keepMounted sx={{ p: 0 }}>
+          <CardItemControlConfigurator />
+        </TabPanel>
+        <TabPanel value='2' keepMounted sx={{ p: 0 }}>
           <CardItemStylesConfigurator />
         </TabPanel>
-        {
-          selectedItem?.type === 'chart'
-            ? <TabPanel value='2' keepMounted sx={{ p: 0 }}>
-                <CardItemChartSettingsConfigurator />
-              </TabPanel>
-            : null
-        }
+        <TabPanel value='3' keepMounted sx={{ p: 0 }}>
+          <CardItemConfiguratorSettings />
+        </TabPanel>
       </TabContext>
     </DrawerStyled>
   )

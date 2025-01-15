@@ -4,7 +4,7 @@ import { ItemStyles } from './item-styles'
 
 
 
-export type CardItemType = 'box' | 'text' | 'divider' | 'chart'
+export type CardItemType = 'box' | 'text' | 'divider' | 'chart' | 'chip'
 
 export type CardItemId = string
 
@@ -17,8 +17,12 @@ export interface CardItemCharts {
 
 export type CardItemChartsField = keyof CardItemCharts;
 
+export type ChipType       =  'statistic' | 'companyType' | 'productType' | 'custom';
+export const arrayChipType = ['Состояние',  'Компания',     'Продукт',      'Без привязки'];
+
 
 export interface CardItemSettings {
+  [key: string]   : any     // Вспомогательный тип, чтобы не ругалось в компонентах
   // Global settings
   inverted?       : boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
   unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
@@ -28,7 +32,8 @@ export interface CardItemSettings {
   chartOptions? : ChartConfigOptions
 
   // Chips settings
-  kod?: string
+  kod?      : string
+  chipType? : ChipType
 
   // Other settings
 }

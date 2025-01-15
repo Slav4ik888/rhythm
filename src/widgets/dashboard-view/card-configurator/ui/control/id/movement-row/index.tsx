@@ -11,7 +11,7 @@ export const MovementRow: FC = memo(() => {
 
 
   return (
-    <RowWrapper sx={f('-c-fe')}>
+    <RowWrapper sx={{ ...f('-c-fe'), mt: 3 }}>
       <MoveToAnotherCard />
       <MoveItemUpdownward cardItem={selectedItem} />
     </RowWrapper>
