@@ -1,5 +1,5 @@
 import { DashboardDataEntities, DashboardDataDates, DashboardItemData, DashboardStatisticItem } from 'entities/dashboard-data';
-import { DashboardStatisticType } from 'entities/statistic-type';
+import { StatisticPeriodType } from 'entities/statistic-type';
 import { GoogleSheetData, ResGetData, StartEntitiesData } from '../../../../types';
 
 
@@ -16,7 +16,7 @@ export const getEntities = (data: ResGetData): StartEntitiesData => {
       const allSheetData = transformGSData(data[key]);
 
       // Определяем индексы констант по 1й колонке
-      const { kodIdx, statisticTypeIdx, companyTypeIdx, productTypeIdx, titleIdx } = getIdxAnchors(allSheetData);
+      const { kodIdx, periodTypeIdx, companyTypeIdx, productTypeIdx, titleIdx } = getIdxAnchors(allSheetData);
       const sheetStatisticType = allSheetData[1][0] as string; // В ячейке B1 находится #sheet_type - тип статистики вкладки: мес | нед | мес (кален)
       const dataRow = allSheetData[1][1] as number; // В ячейке B2 находится № строки с которой начинаются данные
         
@@ -24,18 +24,18 @@ export const getEntities = (data: ResGetData): StartEntitiesData => {
       // Добавляем в entities
       allSheetData.forEach((columnData: DashboardItemData<string | number>, idx) => {
         const kod = columnData[kodIdx] as string;
-        const currentStatisticType = columnData[statisticTypeIdx] as DashboardStatisticType;
-        const validStatisticType = currentStatisticType === sheetStatisticType;
+        const currentPeriodType = columnData[periodTypeIdx] as StatisticPeriodType;
+        const validPeriodType = currentPeriodType === sheetStatisticType;
 
         // Проверить есть ли код, соответствует ли statisticType данной вкладке и idx !== 0 (это колонка с датой)
-        if (kod && idx && validStatisticType) {
-          startEntities[kod]               = {} as DashboardStatisticItem;
-          startEntities[kod].kod           = kod;
-          startEntities[kod].statisticType = currentStatisticType;
-          startEntities[kod].companyType   = columnData[companyTypeIdx] as string;
-          startEntities[kod].productType   = columnData[productTypeIdx] as string;
-          startEntities[kod].title         = columnData[titleIdx] as string;
-          startEntities[kod].data          = columnData.slice(dataRow - 1);
+        if (kod && idx && validPeriodType) {
+          startEntities[kod]             = {} as DashboardStatisticItem;
+          startEntities[kod].kod         = kod;
+          startEntities[kod].periodType  = currentPeriodType;
+          startEntities[kod].companyType = columnData[companyTypeIdx] as string;
+          startEntities[kod].productType = columnData[productTypeIdx] as string;
+          startEntities[kod].title       = columnData[titleIdx] as string;
+          startEntities[kod].data        = columnData.slice(dataRow - 1);
         }
       });
 
@@ -58,11 +58,11 @@ function getIdxAnchors(allSheetData: DashboardItemData<string | number>[]) {
   const getIdxByKod = (label: string): number => allSheetData[0].findIndex(value => value === label);
 
   return {
-    kodIdx           : getIdxByKod('#kod'),
-    statisticTypeIdx : getIdxByKod('#statisticType'),
-    companyTypeIdx   : getIdxByKod('#companyType'),
-    productTypeIdx   : getIdxByKod('#productType'),
-    titleIdx         : getIdxByKod('#title')
+    kodIdx         : getIdxByKod('#kod'),
+    periodTypeIdx  : getIdxByKod('#periodType'),
+    companyTypeIdx : getIdxByKod('#companyType'),
+    productTypeIdx : getIdxByKod('#productType'),
+    titleIdx       : getIdxByKod('#title')
   }
 }
 

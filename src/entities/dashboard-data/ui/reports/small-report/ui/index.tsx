@@ -5,9 +5,8 @@ import {
 } from 'entities/dashboard-data';
 import { f, pxToRem } from 'shared/styles';
 import { DashboardConditionType } from 'entities/condition-type';
-import { DashboardStatisticType } from 'entities/statistic-type';
+import { StatisticPeriodType } from 'entities/statistic-type';
 import { ReportContainer_SmallItem } from './item-component';
-import { getDigit } from 'shared/helpers/numbers';
 
 
 
@@ -27,7 +26,7 @@ interface Props {
   chartData2?    : ChartConfig
 
   condition?     : DashboardConditionType
-  statisticType? : DashboardStatisticType
+  periodType?    : StatisticPeriodType
   companyType?   : string
   productType?   : string
 
@@ -36,7 +35,7 @@ interface Props {
 
 
 export const ReportContainer_Small: FC<Props> = memo(({
-  chartType, condition, itemData, itemData2, statisticType, companyType, productType, title, chartData,
+  chartType, condition, itemData, itemData2, periodType, companyType, productType, title, chartData,
   reportConfig, reportConfig2, sx: style, chartData2
 }) => {
   const sx = {
@@ -73,7 +72,7 @@ export const ReportContainer_Small: FC<Props> = memo(({
         reportConfig  = {reportConfig}
         chartData     = {chartData}
         condition     = {condition}
-        statisticType = {statisticType}
+        periodType    = {periodType}
         productType   = {productType}
         companyType   = {companyType}
         sx            = {{ root: { height }}}
@@ -86,7 +85,7 @@ export const ReportContainer_Small: FC<Props> = memo(({
             reportConfig  = {reportConfig2}
             chartData     = {chartData2}
             condition     = {condition}
-            statisticType = {statisticType}
+            periodType    = {periodType}
             productType   = {productType}
             companyType   = {companyType}
             sx            = {{ root: { height }}}

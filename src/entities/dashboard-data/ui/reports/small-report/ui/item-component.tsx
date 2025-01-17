@@ -6,7 +6,7 @@ import {
 } from 'entities/dashboard-data';
 import { f, pxToRem } from 'shared/styles';
 import { DashboardConditionType } from 'entities/condition-type';
-import { DashboardStatisticType } from 'entities/statistic-type';
+import { StatisticPeriodType } from 'entities/statistic-type';
 import { ChipsContainer } from '../../../items';
 import { Box } from '@mui/material';
 import { ChartType } from '.';
@@ -55,7 +55,7 @@ const useStyles = (styles: { root: { height: string } }) => {
 interface Props {
   chartType?     : ChartType
   condition?     : DashboardConditionType
-  statisticType? : DashboardStatisticType
+  periodType? : StatisticPeriodType
   companyType?   : string
   productType?   : string
   itemData       : DashboardStatisticItem
@@ -67,7 +67,7 @@ interface Props {
 
 export const ReportContainer_SmallItem: FC<Props> = memo(({
   chartType = 'bar',
-  condition, itemData, statisticType, companyType, productType, chartData, reportConfig, sx: styles
+  condition, itemData, periodType, companyType, productType, chartData, reportConfig, sx: styles
 }) => {
   const sx = useStyles(styles);
 
@@ -84,7 +84,7 @@ export const ReportContainer_SmallItem: FC<Props> = memo(({
           item      = {itemData}
           condition = {condition}
           config    = {{ chips: {
-            statisticType : Boolean(statisticType),
+            periodType    : Boolean(periodType),
             productType   : Boolean(productType),
             companyType   : Boolean(companyType),
             conditionType : Boolean(condition),

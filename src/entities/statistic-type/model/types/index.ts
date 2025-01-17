@@ -1,2 +1,2 @@
 
-export type DashboardStatisticType = 'day' | 'week' | 'month' | 'month_cal'
+export type StatisticPeriodType = 'day' | 'week' | 'month' | 'month_cal'

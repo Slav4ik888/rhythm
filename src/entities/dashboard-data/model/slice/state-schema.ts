@@ -8,7 +8,7 @@ export interface DashboardDataEntities {
 }
 
 export interface DashboardDataDates {
-  [statisticType: string]: number[]
+  [periodType: string]: number[]
 }
 
 

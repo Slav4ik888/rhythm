@@ -15,7 +15,7 @@ export const SmallReport_4_tru_b = memo(() => {
 
   const itemData  = useMemo(() => activeEntities['4_tru_b'] as DashboardStatisticItem<number>, [activeEntities]);
   const condition = useMemo(() => getConditionType(activeEntities['4_tru_b-C']?.data), [activeEntities]);
-  const dates     = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
+  const dates     = useMemo(() => activeDates[itemData?.periodType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
   
   const reportConfig: ReportsResultChangesConfig = {
@@ -77,7 +77,7 @@ export const SmallReport_4_tru_b = memo(() => {
       title         = 'Трушков (баллы)'
       // companyType   = {itemData?.companyType}
       // productType   = {productType}
-      statisticType = {itemData?.statisticType}
+      periodType    = {itemData?.periodType}
       condition     = {condition}
       itemData      = {itemData}
       reportConfig  = {reportConfig}

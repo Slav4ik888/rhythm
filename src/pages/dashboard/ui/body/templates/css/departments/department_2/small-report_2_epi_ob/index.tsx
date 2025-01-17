@@ -15,7 +15,7 @@ export const SmallReport_2_epi_ob = memo(() => {
 
   const itemData  = useMemo(() => activeEntities['2_epi_ob'] as DashboardStatisticItem<number>, [activeEntities]);
   const condition = useMemo(() => getConditionType(activeEntities['2_epi_ob-C']?.data), [activeEntities]);
-  const dates     = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
+  const dates     = useMemo(() => activeDates[itemData?.periodType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
   
   const reportConfig: ReportsResultChangesConfig = {
@@ -83,7 +83,7 @@ export const SmallReport_2_epi_ob = memo(() => {
       title         = 'Обороты (Епифанова)'
       // companyType   = {itemData?.companyType}
       // productType   = {productType}
-      statisticType = {itemData?.statisticType}
+      periodType    = {itemData?.periodType}
       condition     = {condition}
       itemData      = {itemData}
       reportConfig  = {reportConfig}

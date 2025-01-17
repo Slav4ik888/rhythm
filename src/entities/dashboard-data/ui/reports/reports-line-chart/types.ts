@@ -46,7 +46,7 @@ export interface ReportsLineChartConfig extends ReportsResultChangesConfig {
 
   // Chips - показывать или не показывать
   chips?: {
-    statisticType? : boolean
+    periodType?    : boolean
     productType?   : boolean
     companyType?   : boolean
     conditionType? : boolean

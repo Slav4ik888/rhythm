@@ -12,14 +12,14 @@ export const DashboardReportContainer7_0_4 = memo(() => {
 
   const itemData  = useMemo(() => activeEntities['7-0-4'] as DashboardStatisticItem<number>, [activeEntities]);
   const condition = useMemo(() => getConditionType(activeEntities['7-0-4-C']?.data), [activeEntities]);
-  const dates     = useMemo(() => activeDates[itemData?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
+  const dates     = useMemo(() => activeDates[itemData?.periodType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC)), [activeDates, itemData]);
 
 
   if (! itemData) return null;
 
   const reportConfig: ReportsLineChartConfig = {
     chips: {
-      statisticType : true,
+      periodType    : true,
       companyType   : true,
       conditionType : true,
     },

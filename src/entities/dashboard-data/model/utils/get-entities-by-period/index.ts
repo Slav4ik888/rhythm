@@ -23,16 +23,16 @@ export function getEntitiesByPeriod(
   
 
   // Обрабатываем каждую вкладку 
-  for (const statisticType in startDates) {
-    if (Object.prototype.hasOwnProperty.call(startDates, statisticType)) {
-      const startIdx = getStartIdx(startDates[statisticType], period);
-      const endIdx   = getEndIdx(startDates[statisticType], period);
-      activeDates[statisticType] = [...startDates[statisticType].slice(startIdx, endIdx + 1)];
+  for (const periodType in startDates) {
+    if (Object.prototype.hasOwnProperty.call(startDates, periodType)) {
+      const startIdx = getStartIdx(startDates[periodType], period);
+      const endIdx   = getEndIdx(startDates[periodType], period);
+      activeDates[periodType] = [...startDates[periodType].slice(startIdx, endIdx + 1)];
 
-      // Перебрать все startEntities и для текущего statisticType обрезать нужный период дат
+      // Перебрать все startEntities и для текущего periodType обрезать нужный период дат
       for (const kod in startEntities) {
         if (Object.prototype.hasOwnProperty.call(startEntities, kod)) {
-          if (startEntities[kod].statisticType === statisticType) {
+          if (startEntities[kod].periodType === periodType) {
             activeEntities[kod] = {} as DashboardStatisticItem;
             activeEntities[kod] = { ...startEntities[kod] };
             activeEntities[kod].data = [...startEntities[kod].data.slice(startIdx, endIdx + 1)];

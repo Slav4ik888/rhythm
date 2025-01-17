@@ -1,9 +1,9 @@
 import { DashboardItemType } from 'entities/dashboard-data';
-import { DashboardStatisticType } from '../types';
+import { StatisticPeriodType } from '../types';
 
 
 
-export const STATISTIC_TYPE: Record<DashboardStatisticType, DashboardItemType> = {
+export const STATISTIC_PERIOD_TYPE: Record<StatisticPeriodType, DashboardItemType> = {
   ['day']: {
     label       : 'Ден',
     description : 'Ежедневная статистика'
@@ -22,5 +22,5 @@ export const STATISTIC_TYPE: Record<DashboardStatisticType, DashboardItemType> =
   }
 }
 
-// export const arrayDashboardStatisticType = Array.from(Object.values(DashboardStatisticType));
-export const arrayDashboardStatisticType = Array.from(Object.keys(STATISTIC_TYPE));
+// export const arrayStatisticPeriodType = Array.from(Object.values(StatisticPeriodType));
+export const arrayStatisticPeriodType = Array.from(Object.keys(STATISTIC_PERIOD_TYPE));

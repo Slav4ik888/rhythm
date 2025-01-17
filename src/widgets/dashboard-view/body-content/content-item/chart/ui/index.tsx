@@ -21,7 +21,7 @@ export const ItemChart: FC<Props> = memo(({ item, onSelect }) => {
   const itemsData = useMemo(() => item.settings?.charts?.map(chart => activeEntities[chart?.kod || ''] as DashboardStatisticItem<number>), [activeEntities, item]);
   
   const dates = useMemo(() => itemsData
-    ? activeDates[itemsData?.[0]?.statisticType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC))
+    ? activeDates[itemsData?.[0]?.periodType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC))
     : [], [activeDates, itemsData]);
  
   const type    = item?.settings?.charts?.[0]?.chartType || 'line';

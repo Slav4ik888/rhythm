@@ -290,8 +290,8 @@ export const customPalette: CustomPalette = {
     },
   },
 
-  // DashboardStatisticType
-  statisticTypeChip: {
+  // StatisticPeriodType
+  statisticPeriodTypeChip: {
     day: {
       color      : '#dadada',
       background : 'braun',

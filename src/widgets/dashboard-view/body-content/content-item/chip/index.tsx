@@ -19,9 +19,9 @@ export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
   return (
     <ItemWrapper item={item} onSelect={onSelect}>
       <ChipContainer
-        label='Test label'
-        description='Test description'
-        sx={{ color: '#fff', background: 'red' }}
+        label       = 'Test label'
+        description = 'Test description'
+        sx          = {{ color: '#fff', background: 'red' }}
       />
     </ItemWrapper>
   )

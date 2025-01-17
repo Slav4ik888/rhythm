@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { DashboardStatisticItem } from 'entities/dashboard-data';
 import { ReportsLineChartConfig } from '../../reports/reports-line-chart/types';
 import { ConditionTypeChip, DashboardConditionType } from 'entities/condition-type';
-import { StatisticTypeChip } from 'entities/statistic-type';
+import { StatisticPeriodTypeChip } from 'entities/statistic-type';
 import { ProductTypeChip } from 'entities/product-type';
 import { CompanyTypeChip } from 'entities/company-type';
 import { Stack } from '@mui/material';
@@ -17,7 +17,7 @@ interface Props {
 
 
 export const ChipsContainer: FC<Props> = memo(({ item = {}, config, condition }) => {
-  const { companyType, productType, statisticType } = item;
+  const { companyType, productType, periodType } = item;
 
 
   return (
@@ -29,7 +29,7 @@ export const ChipsContainer: FC<Props> = memo(({ item = {}, config, condition })
         config?.chips?.productType && <ProductTypeChip type={productType} />
       }
       {
-        config?.chips?.statisticType && <StatisticTypeChip type={statisticType} />
+        config?.chips?.periodType && <StatisticPeriodTypeChip type={periodType} />
       }
       {
         config?.chips?.conditionType && <ConditionTypeChip condition={condition} />

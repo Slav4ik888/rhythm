@@ -17,8 +17,8 @@ export interface CardItemCharts {
 
 export type CardItemChartsField = keyof CardItemCharts;
 
-export type ChipType       =  'statistic' | 'companyType' | 'productType' | 'custom';
-export const arrayChipType = ['Состояние',  'Компания',     'Продукт',      'Без привязки'];
+export type ChipType       =  'condition' | 'period' |       'company' | 'product' | 'custom';
+export const arrayChipType = ['Состояние',  'Периодичность', 'Компания', 'Продукт',  'Без привязки'];
 
 
 export interface CardItemSettings {
