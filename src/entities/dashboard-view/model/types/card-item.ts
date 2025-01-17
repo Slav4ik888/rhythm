@@ -17,8 +17,16 @@ export interface CardItemCharts {
 
 export type CardItemChartsField = keyof CardItemCharts;
 
-export type ChipType       =  'condition' | 'period' |       'company' | 'product' | 'custom';
-export const arrayChipType = ['Состояние',  'Периодичность', 'Компания', 'Продукт',  'Без привязки'];
+export type ChipType = 'condition' | 'period' | 'company' | 'product' | 'custom';
+
+export const chipOptions: Record<ChipType, { label: string; value: ChipType }> = {
+  'condition' : { label: 'Состояние',     value: 'condition' },
+  'period'    : { label: 'Периодичность', value: 'period' },
+  'company'   : { label: 'Компания',      value: 'company' },
+  'product'   : { label: 'Продукт',       value: 'product' },
+  'custom'    : { label: 'Без привязки',  value: 'custom' },
+};
+export const arrayChipLabel = Object.values(chipOptions).map(item => item.label);
 
 
 export interface CardItemSettings {

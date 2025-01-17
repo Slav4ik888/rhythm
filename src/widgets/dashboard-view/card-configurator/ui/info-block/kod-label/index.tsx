@@ -3,19 +3,15 @@ import { useDashboardView } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { useDashboardData } from 'entities/dashboard-data';
 import { Box } from '@mui/material';
+import { getKod } from '../kod';
 
 
 
-interface Props {
-  index: number // Index charts in settings.charts
-}
-
-/** Label графика как в гугл таблице */
-export const ChartKodLabel: FC<Props> = memo(({ index }) => {
+/** Label item как в гугл таблице */
+export const KodLabel: FC = memo(() => {
   const { startEntities } = useDashboardData();
   const { selectedItem } = useDashboardView();
-  const title = useMemo(() => startEntities[selectedItem.settings?.charts?.[index]?.kod || '']?.title || ''
-    , [selectedItem, startEntities]);
+  const title = useMemo(() => startEntities[getKod(selectedItem)]?.title || '', [selectedItem, startEntities]);
 
 
   return (

@@ -1,25 +1,26 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { useDashboardView, arrayChipType, ChipType } from 'entities/dashboard-view';
+import { useDashboardView, arrayChipLabel, chipOptions } from 'entities/dashboard-view';
 import { SelectValue } from 'shared/ui/configurators-components/select';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 
 
 
-/** Выбор chipType */
+/** Выбор ChipType */
 export const SelectChipType: FC = memo(() => {
   const { selectedItem, changeOneSettingsField } = useDashboardView();
-  const [selectedValue, setSelectedValue] = useState<ChipType>('custom');
+  const [selectedValue, setSelectedValue] = useState(() => chipOptions[selectedItem?.settings?.chipType || 'condition'].label);
 
   useEffect(() => {
-    setSelectedValue(selectedItem.settings?.chipType || 'custom');
+    setSelectedValue(chipOptions[selectedItem?.settings?.chipType || 'condition'].label);
   }, [selectedItem.settings?.chipType]);
 
 
-  const handleSelectedValue = useCallback((value: string) => {
-    setSelectedValue(value as ChipType);
+  const handleSelectedValue = useCallback((label: string) => {
+    const value = Object.values(chipOptions).find(item => item.label === label)?.value || '';
+    setSelectedValue(value);
     changeOneSettingsField({ field: 'chipType', value });
   }, [selectedItem, changeOneSettingsField]);
-
+        
 
   return (
     <RowWrapper>
@@ -27,7 +28,7 @@ export const SelectChipType: FC = memo(() => {
 
       <SelectValue
         selectedValue = {selectedValue}
-        array         = {arrayChipType}
+        array         = {arrayChipLabel}
         onSelect      = {handleSelectedValue}
       />
     </RowWrapper>

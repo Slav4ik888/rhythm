@@ -12,7 +12,7 @@ export const TypeRow: FC = memo(() => {
     <RowWrapper>
       <ConfiguratorTextTitle
         bold
-        title     = 'type'
+        title     = 'Type'
         toolTitle = 'Item type'
       />
       {selectedItem.type}

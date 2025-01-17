@@ -6,10 +6,11 @@ import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-compo
 
 
 interface Props {
-  field     : string
-  title     : string
-  toolTitle : string
-  array     : string[]
+  field      : string
+  title      : string
+  toolTitle  : string
+  array      : string[]
+  transform? : (value: string) => string
 }
 
 /** Выбор ByField */

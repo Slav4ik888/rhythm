@@ -68,11 +68,11 @@ export const CardItemConfigurator: FC = memo(() => {
           <TabList onChange={handleChange} aria-label='lab API tabs example'>
             <Tab label='Control' value='1' />
             <Tab label='Styles'  value='2' />
-            {
-              selectedItem?.type === 'chart' || selectedItem?.type === 'chip'
-                ? <Tab label='Settings' value='3' />
-                : null
-            }
+            <Tab
+              label = {selectedItem?.type === 'chart' || selectedItem?.type === 'chip' ? 'Settings' : null}
+              value = '3'
+            />
+            
           </TabList>
         </Box>
 

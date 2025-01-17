@@ -30,21 +30,21 @@ const useStyle = (sx: SxChipContaine) => {
 
 
 interface Props {
-  label       : string
-  description : string
-  sx          : SxChipContaine
+  label     : string
+  toolTitle : string
+  sx        : SxChipContaine
 }
 
 /**
  * Base Chip container
  */
-export const ChipContainer: FC<Props> = memo(({ label, description, sx: style }) => {
+export const ChipContainer: FC<Props> = memo(({ label, toolTitle, sx: style }) => {
   const sx = useStyle(style);
 
   
   return (
     <Tooltip
-      title     = {description}
+      title     = {toolTitle}
       placement = 'top-start'
       sxSpan    = {sx?.tooltip}
     >

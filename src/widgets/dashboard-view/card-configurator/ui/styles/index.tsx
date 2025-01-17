@@ -15,6 +15,7 @@ export const CardItemStylesConfigurator: FC = memo(() => {
 
   /** Сохраняем изменения стилей элементов в store */
   const handleChange = useCallback((field: ItemStylesField, value: number | string) => {
+    console.log('handleChange: ', entities[selectedId]?.styles?.[field], value);
     if (entities[selectedId]?.styles?.[field] !== value && selectedId)
       changeOneStyleField({ selectedId, field, value });
   }, [selectedId, entities, changeOneStyleField]);

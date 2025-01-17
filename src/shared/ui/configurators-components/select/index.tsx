@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Chip, FormControl, MenuItem } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { f, SxCard, pxToRem } from 'shared/styles';
@@ -14,7 +14,7 @@ const useStyles = (sx?: SxCard) => ({
   },
   chip: {
     position : 'absolute',
-    top      : pxToRem(6),
+    top      : pxToRem(-12),
     right    : 0,
     height   : '24px',
   },
@@ -38,7 +38,6 @@ export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, a
   const sx = useStyles(style);
   const [openSelect, setOpenSelect] = useState(false);
 
-
   const handleChange = (e: SelectChangeEvent) => {
     onSelect(e.target.value as T);
     setOpenSelect(false);
@@ -56,23 +55,27 @@ export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, a
         onClick = {handleClickChip}
       />
 
-      <Select
-        variant      = 'standard'
-        open         = {openSelect}
-        defaultValue = ''
-        sx           = {sx.select}
-        onClose      = {handleSelectClose}
-        onChange     = {handleChange}
-      >
-        {
-          array.map((item) => <MenuItem
-            key   = {item}
-            value = {item}
+      {
+        openSelect && (
+          <Select
+            variant      = 'standard'
+            open         = {openSelect}
+            defaultValue = ''
+            sx           = {sx.select}
+            onClose      = {handleSelectClose}
+            onChange     = {handleChange}
           >
-            {item}
-          </MenuItem>)
-        }
-      </Select>
+            {
+              array.map((item) => <MenuItem
+                key   = {item}
+                value = {item}
+              >
+                {item}
+              </MenuItem>)
+            }
+          </Select>
+        )
+      }
     </FormControl>
   )
 });

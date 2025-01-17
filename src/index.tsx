@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "fix refacted periodType" && git push -u origin main
+// git add . && git commit -m "refacted ItemChip" && git push -u origin main

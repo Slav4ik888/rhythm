@@ -9,7 +9,7 @@ export const IdTitle: FC = memo(() => {
 
   return (
     <RowWrapper sx={{ mt: 3 }}>
-      <ConfiguratorTextTitle bold title='id' toolTitle='Item id' />
+      <ConfiguratorTextTitle bold title='Id' toolTitle='Item id' />
       {selectedId}
     </RowWrapper>
   )
