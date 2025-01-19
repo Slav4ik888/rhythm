@@ -15,9 +15,10 @@ export interface CardItemCharts {
   datasets?  : ChartConfigDatasets
 }
 
-export type CardItemChartsField = keyof CardItemCharts;
+export type CardItemChartsField = keyof CardItemCharts
 
-export type ChipType = 'condition' | 'period' | 'company' | 'product' | 'custom';
+export type ChipType = 'condition' | 'period' | 'company' | 'product' | 'custom'
+export type BaseChipType = 'periodType' | 'companyType' | 'productType'
 
 export const chipOptions: Record<ChipType, { label: string; value: ChipType }> = {
   'condition' : { label: 'Состояние',     value: 'condition' },

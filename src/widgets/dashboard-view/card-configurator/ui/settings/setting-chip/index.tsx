@@ -3,8 +3,8 @@ import { InvertedData } from '../inverted-data';
 import { SelectByField } from '../select-by-field';
 import { useDashboardData } from 'entities/dashboard-data';
 import { SelectChipType } from './select-chip';
-import { SetPeriodColors } from './set-period-colors';
 import { useDashboardView } from 'entities/dashboard-view';
+import { SetupChipsColorsByType } from './setup-chips-colors-by-type';
 
 
 
@@ -30,7 +30,17 @@ export const CardItemChipSettingsConfigurator: FC = memo(() => {
 
       {
         selectedItem.settings?.chipType === 'period'
-          ? < SetPeriodColors />
+          ? < SetupChipsColorsByType  type='periodType' />
+          : null
+      }
+      {
+        selectedItem.settings?.chipType === 'company'
+          ? < SetupChipsColorsByType  type='companyType' />
+          : null
+      }
+      {
+        selectedItem.settings?.chipType === 'product'
+          ? < SetupChipsColorsByType  type='productType' />
           : null
       }
     </>

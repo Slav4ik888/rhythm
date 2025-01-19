@@ -23,8 +23,9 @@ root.render(
         </UIConfiguratorProvider>
       </ErrorBoundary>
     </StoreProvider>
+
   </BrowserRouter>
 );
 
 
-// git add . && git commit -m "add chip periodType" && git push -u origin main
+// git add . && git commit -m "add SetupChipsColorsByType" && git push -u origin main

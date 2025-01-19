@@ -39,6 +39,23 @@ export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
       color      = customSettings?.periodType?.[period]?.color      || '#000'; // theme.palette.statisticPeriodTypeChip[period]?.color;
       background = customSettings?.periodType?.[period]?.background || '#eee'; // theme.palette.statisticPeriodTypeChip[period]?.background;
     }
+    else if (type === 'company') {
+      const company = kod ? activeEntities[kod]?.companyType : '' as string;
+      label      = company;
+      toolTitle  = company;
+      color      = customSettings?.companyType?.[company]?.color      || '#000';
+      background = customSettings?.companyType?.[company]?.background || '#eee';
+    }
+    else if (type === 'product') {
+      const product = kod ? activeEntities[kod]?.productType : '' as string;
+      label      = product;
+      toolTitle  = product;
+      color      = customSettings?.productType?.[product]?.color      || '#000';
+      background = customSettings?.productType?.[product]?.background || '#eee';
+    }
+    else if (type === 'custom') {
+      // TODO:
+    }
     
     return { label, toolTitle, color, background };
   }, [item.settings, activeEntities, customSettings]);

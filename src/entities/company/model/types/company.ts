@@ -39,7 +39,9 @@ export interface ColorSettings {
 
 export interface CustomSettings {
   // [key: string]: ColorSettings
-  periodType?: Record<string, ColorSettings>
+  periodType?  : Record<string, ColorSettings>
+  companyType? : Record<string, ColorSettings>
+  productType? : Record<string, ColorSettings>
 }
 
 

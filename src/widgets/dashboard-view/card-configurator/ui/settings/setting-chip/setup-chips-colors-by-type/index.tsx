@@ -1,30 +1,37 @@
 import { FC, memo, useMemo } from 'react';
 import { useDashboardData } from 'entities/dashboard-data';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { SetPeriodColorsItem } from './item';
+import { SetColorsItem } from './item';
+import { BaseChipType } from 'entities/dashboard-view';
 
 
 
-/** chipType = 'period' */
-export const SetPeriodColors: FC = memo(() => {
+interface Props {
+  type: BaseChipType
+}
+
+/** Настройка базовых 'periodType' | 'companyType' | 'productType' */
+export const SetupChipsColorsByType: FC<Props> = memo(({ type }) => {
   const { startEntities } = useDashboardData();
-  const periods = useMemo(() => {
+  const chipValues = useMemo(() => {
     const result = new Set<string>();
 
     Object.values(startEntities).forEach(item => {
-      if (item.periodType) result.add(item.periodType)
+      if (item[type]) result.add(item[type])
     });
     
     return Array.from(result) || [];
   }, [startEntities]);
 
-  console.log('periods', periods);
-
 
   return (
     <SubHeader title='Настройка цветов'>
       {
-        periods.map(period => <SetPeriodColorsItem key={period} period={period} />)
+        chipValues.map(label => <SetColorsItem
+          key   = {label}
+          type  = {type}
+          label = {label}
+        />)
       }
     </SubHeader>
   )
