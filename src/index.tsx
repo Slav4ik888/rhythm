@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "fix select" && git push -u origin main
+// git add . && git commit -m "add chip periodType" && git push -u origin main

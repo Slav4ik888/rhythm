@@ -19,14 +19,21 @@ import { InfoBlock } from './info-block';
 
 
 export const CardItemConfigurator: FC = memo(() => {
-  const { companyId } = useCompany();
+  const { companyId, storedCompany, company, serviceUpdateCompany } = useCompany();
   const { editMode, selectedId, selectedItem, entities, prevStoredCard, setSelectedId, setEditMode, serviceUpdateCardItem } = useDashboardView();
   const [value, setValue] = useState('1');
 
   const handleChange = (event: SyntheticEvent, newValue: string) => setValue(newValue);
 
-  /** Сохраняем изменившиеся поля | стили */
   useEffect(() => {
+    /** Сохраняем изменившиеся customSettings */
+    const changedCompany = getChanges(storedCompany, company);
+    if (! isEmpty(changedCompany)) serviceUpdateCompany({
+      id: companyId,
+      ...changedCompany
+    });
+    
+    /** Сохраняем изменившиеся поля | стили */
     const prevId = (prevStoredCard as CardItem)?.id; // Так как selectedId это уже нововыбранный
     if (! prevId) return // Например, выбрали первый раз или удалили карточку
 
@@ -39,13 +46,13 @@ export const CardItemConfigurator: FC = memo(() => {
     };
 
     serviceUpdateCardItem({ companyId, cardItem });
-    setValue('1');
+    // setValue('1');
   }, [selectedId]);
 
 
   /** Закрываем конфигуратор */
   const handleClose = useCallback(() => {
-    setValue('1');
+    // setValue('1');
     setEditMode(false);
     setSelectedId(''); // Убираем, чтобы prevStoredCard обновился и произошло сохранение
   }, [selectedId, setEditMode, setSelectedId]);

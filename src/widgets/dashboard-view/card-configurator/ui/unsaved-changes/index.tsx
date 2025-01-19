@@ -30,17 +30,28 @@ const useStyles = (theme: CustomTheme) => ({
 
 export const UnsavedChanges: FC = memo(() => {
   const sx = useStyles(useTheme());
-  const { companyId } = useCompany();
+  const { companyId, storedCompany, company, serviceUpdateCompany } = useCompany();
   const { selectedId, newStoredCard, entities, updateNewStoredCard, serviceUpdateCardItem } = useDashboardView();
 
   /** Есть ли не сохранённые изменения в SelectedItem */
-  const isChanges = useMemo(() => selectedId
-    ? isChangesFunc(newStoredCard, entities[selectedId])
-    : false
-  , [selectedId, newStoredCard, entities]);
+  const isChanges = useMemo(() => {
+    if (! selectedId) return false;
+    
+    if (isChangesFunc(storedCompany, company)) return true
+    if (isChangesFunc(newStoredCard, entities[selectedId])) return true
+  }
+  , [selectedId, newStoredCard, entities, storedCompany, company]);
   
 
   const handleClick = useCallback(() => {
+    /** Сохраняем изменившиеся customSettings */
+    const changedCompany = getChanges(storedCompany, company);
+    if (! isEmpty(changedCompany)) serviceUpdateCompany({
+      id: companyId,
+      ...changedCompany
+    });
+
+    /** Сохраняем изменившиеся поля | стили */
     const changedFields = getChanges(newStoredCard, entities?.[selectedId]);
     
     if (isEmpty(changedFields)) return
@@ -51,7 +62,7 @@ export const UnsavedChanges: FC = memo(() => {
 
     serviceUpdateCardItem({ companyId, cardItem });
     updateNewStoredCard(cardItem);
-  }, [selectedId, newStoredCard, entities]);
+  }, [selectedId, newStoredCard, entities, storedCompany, company]);
 
 
   if (! isChanges) return null;

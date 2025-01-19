@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Errors } from 'shared/lib/validators';
-import { Company } from '../types';
+import { Company, CustomSettings } from '../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { StateSchemaCompany } from 'entities/company';
 import { updateCompany } from 'features/company';
@@ -9,9 +9,10 @@ import { updateObject } from 'shared/helpers/objects';
 
 
 const initialState: StateSchemaCompany = {
-  loading : false,
-  errors  : {},
-  company : {} as Company,
+  loading       : false,
+  errors        : {},
+  company       : {} as Company,
+  storedCompany : {} as Company,
 };
 
 
@@ -26,8 +27,13 @@ const slice = createSlice({
       state.errors = {};
     },
     setCompany: (state, { payload }: PayloadAction<Company> ) => {
-      state.company = payload;
+      state.company       = payload;
+      state.storedCompany = payload;
     },
+    updateCustomSettings: (state, { payload }: PayloadAction<Partial<CustomSettings>>) => {
+      if (! state.company.customSettings) state.company.customSettings = {};
+      state.company.customSettings = updateObject(state.company.customSettings, payload);
+    }
   },
 
   extraReducers: builder => {
@@ -38,9 +44,10 @@ const slice = createSlice({
         state.errors = {};
       })
       .addCase(updateCompany.fulfilled, (state, { payload }: PayloadAction<Partial<Company>>) => {
-        state.company =  updateObject(state.company, payload);
-        state.loading = false;
-        state.errors  = {};
+        state.company       = updateObject(state.company, payload);
+        state.storedCompany = state.company;
+        state.loading       = false;
+        state.errors        = {};
       })
       .addCase(updateCompany.rejected, (state, { payload }) => {
         state.errors  = getError(payload);

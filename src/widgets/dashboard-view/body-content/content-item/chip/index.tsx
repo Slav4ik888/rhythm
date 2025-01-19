@@ -5,6 +5,7 @@ import { CONDITION_TYPE, DashboardConditionType, getConditionType } from 'entiti
 import { useDashboardData } from 'entities/dashboard-data';
 import { useTheme } from 'app/providers/theme';
 import { StatisticPeriodType } from 'entities/statistic-type';
+import { useCompany } from 'entities/company';
 
 
 
@@ -16,7 +17,8 @@ interface Props {
 /** Item chip */
 export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
   const theme = useTheme();
-  const { activeEntities, activeDates } = useDashboardData();
+  const { customSettings } = useCompany();
+  const { activeEntities } = useDashboardData();
 
   const { label, toolTitle, color, background } = useMemo(() => { 
     const kod  = item.settings?.kod || '';
@@ -34,12 +36,12 @@ export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
       const period = kod ? activeEntities[kod]?.periodType : '' as StatisticPeriodType;
       label      = period;
       toolTitle  = period;
-      color      = theme.palette.statisticPeriodTypeChip[period]?.color;
-      background = theme.palette.statisticPeriodTypeChip[period]?.background;
+      color      = customSettings?.periodType?.[period]?.color      || '#000'; // theme.palette.statisticPeriodTypeChip[period]?.color;
+      background = customSettings?.periodType?.[period]?.background || '#eee'; // theme.palette.statisticPeriodTypeChip[period]?.background;
     }
     
     return { label, toolTitle, color, background };
-  }, [item.settings, activeEntities]);
+  }, [item.settings, activeEntities, customSettings]);
 
 
   return (
