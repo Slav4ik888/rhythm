@@ -10,11 +10,12 @@ const useStyles = (sx?: SxCard) => ({
     ...f(),
     position : 'relative',
     width    : '110px',
+    height   : pxToRem(24),
     ...sx?.root
   },
   chip: {
     position : 'absolute',
-    top      : pxToRem(-12),
+    top      : 0,
     right    : 0,
     height   : '24px',
   },
@@ -56,7 +57,7 @@ export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, a
       />
 
       {
-        openSelect && (
+        openSelect && 
           <Select
             variant      = 'standard'
             open         = {openSelect}
@@ -74,7 +75,6 @@ export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, a
               </MenuItem>)
             }
           </Select>
-        )
       }
     </FormControl>
   )

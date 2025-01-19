@@ -22,5 +22,4 @@ export const STATISTIC_PERIOD_TYPE: Record<StatisticPeriodType, DashboardItemTyp
   }
 }
 
-// export const arrayStatisticPeriodType = Array.from(Object.values(StatisticPeriodType));
 export const arrayStatisticPeriodType = Array.from(Object.keys(STATISTIC_PERIOD_TYPE));

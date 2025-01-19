@@ -4,6 +4,7 @@ import { ItemWrapper } from '../wrapper-item';
 import { CONDITION_TYPE, DashboardConditionType, getConditionType } from 'entities/condition-type';
 import { useDashboardData } from 'entities/dashboard-data';
 import { useTheme } from 'app/providers/theme';
+import { StatisticPeriodType } from 'entities/statistic-type';
 
 
 
@@ -28,6 +29,13 @@ export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
       toolTitle  = CONDITION_TYPE[condition].description;
       color      = theme.palette.conditionTypeChip[condition]?.color;
       background = theme.palette.conditionTypeChip[condition]?.background;
+    }
+    else if (type === 'period') {
+      const period = kod ? activeEntities[kod]?.periodType : '' as StatisticPeriodType;
+      label      = period;
+      toolTitle  = period;
+      color      = theme.palette.statisticPeriodTypeChip[period]?.color;
+      background = theme.palette.statisticPeriodTypeChip[period]?.background;
     }
     
     return { label, toolTitle, color, background };
