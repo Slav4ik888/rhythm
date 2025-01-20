@@ -51,7 +51,7 @@ export const createCardItem = (
   });
 
   if (cfg.type === 'text') cardItem.label = 'Введите заголовок'
-  if (cfg.type === 'box' || cfg.type === 'text') {
+  if (cfg.type === 'box' || cfg.type === 'text' || cfg.type === 'growthIcon') {
     cardItem.styles = {
       ...cardItem.styles,
       ...ADDI_SX

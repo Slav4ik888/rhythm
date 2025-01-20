@@ -4,7 +4,7 @@ import { ItemStyles } from './item-styles'
 
 
 
-export type CardItemType = 'box' | 'text' | 'divider' | 'chart' | 'chip'
+export type CardItemType = 'box' | 'text' | 'divider' | 'chart' | 'chip' | 'growthIcon'
 
 export type CardItemId = string
 
@@ -33,18 +33,24 @@ export const arrayChipLabel = Object.values(chipOptions).map(item => item.label)
 export interface CardItemSettings {
   [key: string]   : any     // Вспомогательный тип, чтобы не ругалось в компонентах
   // Global settings
+  display?        : boolean // Показывать ли элемент
+  kod?            : string  // Код для одиночного элемента Chip | GrowthItem |
   inverted?       : boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
   unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
-
+  fractionDigits? : number  // Количество знаков после запятой
+  addZero?        : boolean // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+  
   // Chart settings
-  charts?       : CardItemCharts[]
-  chartOptions? : ChartConfigOptions
+  charts?         : CardItemCharts[]
+  chartOptions?   : ChartConfigOptions
 
   // Chips settings
-  kod?      : string
-  chipType? : ChipType
+  chipType?       : ChipType
 
-  // Other settings
+  // GrowthItem settings
+  scale?          : number
+  isLeft?         : boolean // При отсутствии изменений чёрный треугольник повернуть влево
+
 }
 
 export type CardItemSettingsField = keyof CardItemSettings;

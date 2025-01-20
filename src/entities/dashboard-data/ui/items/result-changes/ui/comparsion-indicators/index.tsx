@@ -3,9 +3,9 @@ import { Box } from '@mui/material';
 import { MDTypography } from 'shared/ui/mui-design-components';
 import { ReportsResultChangesConfig } from '../../../../reports';
 import { getComparisonValues } from './utils';
-import { getReversedIndicators } from '../../model/utils';
 import { Tooltip } from 'shared/ui/tooltip';
 import { f } from 'shared/styles';
+import { getReversedIndicators } from 'widgets/dashboard-view/body-content/content-item/growth-icon/model/utils';
 
 
 /* Returns tooltip title for 1 & 2 indexes */

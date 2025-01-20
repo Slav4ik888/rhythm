@@ -1,4 +1,4 @@
-import { Increased } from '../../../../../../model/types';
+import { Increased } from 'entities/dashboard-data';
 
 
 type GrowIconType = 'growth' | 'fall' | 'unchanged'

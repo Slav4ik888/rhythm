@@ -1,5 +1,5 @@
 import { CustomTheme } from 'app/providers/theme';
-import { Increased } from '../../../../../../model/types';
+import { Increased } from 'entities/dashboard-data';
 import { getGrowIconTypeByIncreased } from '../get-grow-icon-type-by-increased';
 
 

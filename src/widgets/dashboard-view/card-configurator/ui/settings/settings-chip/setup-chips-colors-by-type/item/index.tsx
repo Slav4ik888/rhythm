@@ -39,6 +39,7 @@ export const SetColorsItem: FC<Props> = memo(({ type, label }) => {
       <Box sx={f()}>
         <ColorPicker
           defaultColor = {color}
+          sx           = {{ root: { mr: 1 }}}
           onChange     = {(value: string) => handleChangeColor('color', value)}
         />
         <ColorPicker

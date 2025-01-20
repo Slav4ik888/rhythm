@@ -1,16 +1,13 @@
 import { FC, memo, useMemo } from 'react';
 import { Box } from '@mui/material';
-import { Increased } from '../../../../../../model/types';
 import GrowIcon from './assets/triangle-growth.svg';
 import FallIcon from './assets/triangle-fall.svg';
 import UnchangedLeftIcon from './assets/triangle-unchanged-left.svg';
 import UnchangedRightIcon from './assets/triangle-unchanged-right.svg';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-import { pxToRem } from 'shared/styles';
-import { SxSmallContainer } from 'entities/dashboard-data';
-import { isNotUndefined } from 'shared/lib/validators';
-import { cloneObj } from 'shared/helpers/objects';
-import { getColorByIncreased } from 'widgets/dashboard-view/body-content/content-item/growth-icon/model/utils';
+import { pxToRem, SxCard } from 'shared/styles';
+import { getColorByIncreased } from '../model/utils';
+import { Increased } from 'entities/dashboard-data';
 
 
 
@@ -18,21 +15,20 @@ const useStyles = (
   theme           : CustomTheme,
   increased       : Increased,
   unchangedBlack? : boolean,
-  sx?             : SxSmallContainer
+  scaleValue?     : number,
+  sx?             : SxCard
 ) => {
   const color = getColorByIncreased(theme, increased, unchangedBlack);
-  const root  = cloneObj(sx?.growthResult?.growthIcon);
-  const scale = `scale(${root?.scale || 1.5})`;
+  const scale = `scale(${scaleValue || 1.5})`;
 
-  if (isNotUndefined(root?.scale)) delete root?.scale;
   
   return {
     root: {
       display : 'flex',
-      pt      : pxToRem(5),
+      // pt      : pxToRem(5),
       // justifyContent : 'center',
       // alignItems     : 'center',
-      ...root
+      ...sx?.root
     },
     svg: {
       transform       : scale,
@@ -47,16 +43,17 @@ const useStyles = (
 
 interface Props {
   increased       : Increased
-  unchangedBlack? : boolean  // При отсутствии изменений в результатах красить чёрным цветом
-  isLeft?         : boolean  // При отсутствии изменений чёрный треугольник повернуть влево
-  value           : string   // '' если нет предыдущего значение, то результат не выводим
-  sx?             : SxSmallContainer
+  unchangedBlack  : boolean | undefined  // При отсутствии изменений в результатах красить чёрным цветом
+  isLeft          : boolean | undefined  // При отсутствии изменений чёрный треугольник повернуть влево
+  scaleValue      : number  | undefined
+  // value           : string   // '' если нет предыдущего значение, то результат не выводим
+  sx              : SxCard
 }
 
 
 /** Иконка вверх вниз на месте, показывает положительные или отрицательные изменения */
-export const GrowthIcon: FC<Props> = memo(({ value, increased, unchangedBlack, isLeft, sx: style }) => {
-  const sx = useStyles(useTheme(), increased, unchangedBlack, style);
+export const GrowthIconComponent: FC<Props> = memo(({ increased, unchangedBlack, isLeft, scaleValue, sx: style }) => {
+  const sx = useStyles(useTheme(), increased, unchangedBlack, scaleValue, style);
   
   const icon = useMemo(() => {
     switch (increased) {
@@ -74,7 +71,7 @@ export const GrowthIcon: FC<Props> = memo(({ value, increased, unchangedBlack, i
   }, [increased, unchangedBlack, isLeft]);
   
 
-  if (! value) return null;
+  // if (! value) return null;
   
   return (
     <Box sx={sx.root}>

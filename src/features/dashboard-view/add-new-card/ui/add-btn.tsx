@@ -31,7 +31,6 @@ interface Props {
 
 /** Btn component */
 export const AddBtn: FC<Props> = memo(({ type, color, onClick }) => {
-  console.log('type: ', type);
   const sx = useStyles(color);
   const title = capitalizeFirst(type);
 

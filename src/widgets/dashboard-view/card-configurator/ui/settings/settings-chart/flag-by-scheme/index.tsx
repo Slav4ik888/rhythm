@@ -14,6 +14,8 @@ interface Props {
 }
 
 /**
+ * TODO: изменить не только для chartOptions а в selectedItem.settings
+ * TODO: применить в unchangedBlack isLeft
  * По схеме сохраняет изменени flags в selectedItem.settings?.chartOptions
  */
 export const ChartFlagByScheme: FC<Props> = memo(({ scheme, title, toolTitle }) => {

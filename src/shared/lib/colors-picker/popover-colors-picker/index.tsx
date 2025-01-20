@@ -1,6 +1,6 @@
 import { FC, memo, useState, useRef, useCallback } from 'react';
 import { Box } from '@mui/material';
-import { f, pxToRem } from 'shared/styles';
+import { f, pxToRem, SxCard } from 'shared/styles';
 import { useClickOutside } from 'shared/lib/hooks';
 import { HexColorInput, RgbaColorPicker, RgbaColor  } from 'react-colorful';
 import { CustomTheme, useTheme } from 'app/providers/theme';
@@ -11,9 +11,10 @@ console.log('MODULE STYLE: ', s);
 
 
 
-const useStyles = (theme: CustomTheme, backgroundColor: RgbaColor | undefined) => ({
+const useStyles = (theme: CustomTheme, sx: SxCard | undefined, backgroundColor: RgbaColor | undefined) => ({
   root: {
     position: 'relative',
+    ...sx?.root,
   },
 
   swatch: {
@@ -53,12 +54,13 @@ const useStyles = (theme: CustomTheme, backgroundColor: RgbaColor | undefined) =
 
 interface Props {
   color    : RgbaColor | undefined
+  sx?      : SxCard
   onChange : (color: RgbaColor) => void
 }
 
 
-export const PopoverColorsPicker: FC<Props> = memo(({ color, onChange }) => {
-  const sx = useStyles(useTheme(), color);
+export const PopoverColorsPicker: FC<Props> = memo(({ sx: style, color, onChange }) => {
+  const sx = useStyles(useTheme(), style, color);
   const popoverRef = useRef();
   const [isOpen, toggle] = useState(false);
 

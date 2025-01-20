@@ -1,14 +1,13 @@
 import { FC, memo } from 'react';
 import { Box } from '@mui/material';
 import { Increased } from '../../../../../model/types';
-import { calcIncreased } from '../../model/utils/calc-increased';
-import { calcGrowthChange, getGrowIconTypeByIncreased, getReversedIndicators, getValueAndPrefix } from '../../model/utils';
 import { MeasurementIcon } from './measurement-icon';
 import { GrowthChange } from './growth-change';
 import { GrowthIcon } from './growth-icon';
 import { getFixedFraction } from 'shared/helpers/numbers';
 import { ReportsResultChangesConfig, SxSmallContainer } from 'entities/dashboard-data';
 import { f } from 'shared/styles';
+import { calcGrowthChange, calcIncreased, getGrowIconTypeByIncreased, getReversedIndicators, getValueAndPrefix } from 'widgets/dashboard-view/body-content/content-item/growth-icon/model/utils';
 
 
 

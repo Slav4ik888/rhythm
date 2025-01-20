@@ -1,5 +1,6 @@
+import { getValueAndPrefix, ValueAndPrefix } from 'widgets/dashboard-view/body-content/content-item/growth-icon/model/utils';
 import { ReportsResultChangesConfig } from '../../../../../../reports';
-import { getValueAndPrefix, ValueAndPrefix } from '../../../../model/utils';
+
 
 
 

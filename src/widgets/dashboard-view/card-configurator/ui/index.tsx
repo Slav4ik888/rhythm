@@ -5,7 +5,7 @@ import { useDashboardView, CardItem } from 'entities/dashboard-view';
 import { Box, Tab } from '@mui/material';
 import { f } from 'shared/styles';
 import { CustomTheme } from 'app/providers/theme';
-import { getChanges, isEmpty } from 'shared/helpers/objects';
+import { getChanges, isEmpty, isNotEmpty } from 'shared/helpers/objects';
 import { useCompany } from 'entities/company';
 import { CardItemStylesConfigurator } from './styles';
 import TabContext from '@mui/lab/TabContext';
@@ -28,31 +28,24 @@ export const CardItemConfigurator: FC = memo(() => {
   useEffect(() => {
     /** Сохраняем изменившиеся customSettings */
     const changedCompany = getChanges(storedCompany, company);
-    if (! isEmpty(changedCompany)) serviceUpdateCompany({
-      id: companyId,
-      ...changedCompany
-    });
+    if (isNotEmpty(changedCompany)) serviceUpdateCompany({ id: companyId, ...changedCompany });
     
     /** Сохраняем изменившиеся поля | стили */
     const prevId = (prevStoredCard as CardItem)?.id; // Так как selectedId это уже нововыбранный
     if (! prevId) return // Например, выбрали первый раз или удалили карточку
 
     const changedFields = getChanges(prevStoredCard, entities?.[prevId]);
-    
     if (isEmpty(changedFields)) return
-    const cardItem = {
-      id: prevId,
-      ...changedFields
-    };
 
+    const cardItem = { id: prevId, ...changedFields };
     serviceUpdateCardItem({ companyId, cardItem });
-    // setValue('1');
+    setValue('1');
   }, [selectedId]);
 
 
   /** Закрываем конфигуратор */
   const handleClose = useCallback(() => {
-    // setValue('1');
+    setValue('1');
     setEditMode(false);
     setSelectedId(''); // Убираем, чтобы prevStoredCard обновился и произошло сохранение
   }, [selectedId, setEditMode, setSelectedId]);
