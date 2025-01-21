@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useEffect, useState, SyntheticEvent } from 'react';
+import { FC, memo, useCallback, useEffect, useState, SyntheticEvent, useMemo } from 'react';
 import DrawerStyled from './styled';
 import { ConfiguratorMainHeader as MainHeader } from 'shared/ui/configurators-components';
 import { useDashboardView, CardItem } from 'entities/dashboard-view';
@@ -22,10 +22,16 @@ export const CardItemConfigurator: FC = memo(() => {
   const { companyId, storedCompany, company, serviceUpdateCompany } = useCompany();
   const { editMode, selectedId, selectedItem, entities, prevStoredCard, setSelectedId, setEditMode, serviceUpdateCardItem } = useDashboardView();
   const [value, setValue] = useState('1');
-
+  const isSettings = useMemo(() =>
+    selectedItem?.type === 'chart' ||
+    selectedItem?.type === 'chip'  ||
+    selectedItem?.type === 'growthIcon', [selectedItem]);
+  
   const handleChange = (event: SyntheticEvent, newValue: string) => setValue(newValue);
 
   useEffect(() => {
+    if (value === '3' && ! isSettings) setValue('1');
+
     /** Сохраняем изменившиеся customSettings */
     const changedCompany = getChanges(storedCompany, company);
     if (isNotEmpty(changedCompany)) serviceUpdateCompany({ id: companyId, ...changedCompany });
@@ -39,7 +45,6 @@ export const CardItemConfigurator: FC = memo(() => {
 
     const cardItem = { id: prevId, ...changedFields };
     serviceUpdateCardItem({ companyId, cardItem });
-    setValue('1');
   }, [selectedId]);
 
 
@@ -69,12 +74,7 @@ export const CardItemConfigurator: FC = memo(() => {
             <Tab label='Control' value='1' />
             <Tab label='Styles'  value='2' />
             <Tab
-              label={
-                selectedItem?.type === 'chart' ||
-                selectedItem?.type === 'chip'  ||
-                selectedItem?.type === 'growthIcon'
-                  ? 'Settings' : null
-              }
+              label = {isSettings ? 'Settings' : null}
               value = '3'
             />
             

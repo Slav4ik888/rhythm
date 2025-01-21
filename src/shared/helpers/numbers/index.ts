@@ -9,6 +9,6 @@ export * from './get-rest';                  // v.2024-09-28
 export * from './get-str-number';
 export * from './get-thousand-and-rest';
 export * from './replacers';
-export * from './to-number';
+export * from './to-number';                 // v.2025-01-21
 
-// v.2024-09-28
+/** v.2025-01-21 */

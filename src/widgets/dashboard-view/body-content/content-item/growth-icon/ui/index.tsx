@@ -7,7 +7,6 @@ import { calcIncreased, getReversedIndicators } from '../model/utils';
 
 
 
-
 interface Props {
   item     : CardItem
   onSelect : (id: CardItemId) => void
@@ -23,10 +22,6 @@ export const ItemGrowthIcon: FC<Props> = memo(({ item, onSelect }) => {
     return getReversedIndicators(data)
   }, [activeEntities]);
 
-  // Persent
-  // const growthPersent = getFixedFraction(calcGrowthChange(lastValue, prevValue), { fractionDigits, addZero });
-  
-  // Increased
   const increased: Increased = calcIncreased(lastValue, prevValue, item.settings?.inverted);
   
 
@@ -36,8 +31,7 @@ export const ItemGrowthIcon: FC<Props> = memo(({ item, onSelect }) => {
         increased      = {increased}
         unchangedBlack = {item.settings?.unchangedBlack}
         isLeft         = {item.settings?.isLeft}
-        scaleValue     = {item.settings?.scaleValue}
-        // value          = {growthPersent}
+        scale          = {item.settings?.scale}
         sx             = {{}}
       />
     </ItemWrapper>

@@ -1,12 +1,12 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { useDashboardView, ChipType } from 'entities/dashboard-view';
+import { useDashboardView, ChipType, CardItemSettingsField } from 'entities/dashboard-view';
 import { SelectValue } from 'shared/ui/configurators-components/select';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 
 
 
 interface Props {
-  field      : string
+  field      : CardItemSettingsField
   title      : string
   toolTitle  : string
   array      : string[]
@@ -16,10 +16,10 @@ interface Props {
 /** Выбор ByField */
 export const SelectByField: FC<Props> = memo(({ field, title, toolTitle, array }) => {
   const { selectedItem, changeOneSettingsField } = useDashboardView();
-  const [selectedValue, setSelectedValue] = useState(selectedItem?.settings?.[field] || '');
+  const [selectedValue, setSelectedValue] = useState(selectedItem?.settings?.[field] as string || '');
 
   useEffect(() => {
-    setSelectedValue(selectedItem.settings?.[field] || '');
+    setSelectedValue(selectedItem.settings?.[field] as string || '');
   }, [selectedItem.settings?.[field]]);
 
 

@@ -31,7 +31,6 @@ export const arrayChipLabel = Object.values(chipOptions).map(item => item.label)
 
 
 export interface CardItemSettings {
-  [key: string]   : any     // Вспомогательный тип, чтобы не ругалось в компонентах
   // Global settings
   display?        : boolean // Показывать ли элемент
   kod?            : string  // Код для одиночного элемента Chip | GrowthItem |
@@ -48,7 +47,7 @@ export interface CardItemSettings {
   chipType?       : ChipType
 
   // GrowthItem settings
-  scale?          : number
+  scale?          : number  // Изменение размера треуголька
   isLeft?         : boolean // При отсутствии изменений чёрный треугольник повернуть влево
 
 }
