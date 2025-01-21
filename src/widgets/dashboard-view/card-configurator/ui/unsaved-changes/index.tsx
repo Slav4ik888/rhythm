@@ -3,7 +3,7 @@ import { useDashboardView } from 'entities/dashboard-view';
 import { Box, Typography } from '@mui/material';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
-import { getChanges, isChanges as isChangesFunc, isEmpty, isNotEmpty } from 'shared/helpers/objects';
+import { getChanges, isEmpty, isNotEmpty } from 'shared/helpers/objects';
 import { pxToRem } from 'shared/styles';
 import { useCompany } from 'entities/company';
 
@@ -42,13 +42,8 @@ export const UnsavedChanges: FC = memo(() => {
   /** Есть ли не сохранённые изменения в SelectedItem */
   const isChanges = useMemo(() => {
     if (! selectedId) return false;
-    
-    // const changedCompany = getChanges(storedCompany, company);
     if (isNotEmpty(changedCompany)) return true
-
-    // const changedStyles = getChanges(newStoredCard, entities?.[selectedId]);
     if (isNotEmpty(changedStyles)) return true
-
     return false
   }
   , [selectedId, changedCompany, changedStyles]);
@@ -56,12 +51,9 @@ export const UnsavedChanges: FC = memo(() => {
 
   const handleClick = useCallback(() => {
     /** Сохраняем изменившиеся customSettings */
-    // const changedCompany = getChanges(storedCompany, company);
     if (isNotEmpty(changedCompany)) serviceUpdateCompany({ id: companyId, ...changedCompany });
 
     /** Сохраняем изменившиеся поля | стили */
-    // const changedStyles = getChanges(newStoredCard, entities?.[selectedId]);
-    
     if (isEmpty(changedStyles)) return
 
     const cardItem = { id: selectedId, ...changedStyles };

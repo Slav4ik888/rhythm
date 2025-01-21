@@ -1,11 +1,13 @@
 import { FC, memo } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { useDashboardView } from 'entities/dashboard-view';
 
 
 
-export const IdTitle: FC = memo(() => {
-  const { selectedId } = useDashboardView();
+interface Props {
+  selectedId: string
+}
+
+export const IdTitle: FC<Props> = memo(({ selectedId }) => {
 
   return (
     <RowWrapper sx={{ mt: 3 }}>

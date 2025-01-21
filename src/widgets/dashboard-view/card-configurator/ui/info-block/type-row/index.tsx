@@ -1,13 +1,13 @@
 import { FC, memo } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { useDashboardView } from 'entities/dashboard-view';
 
 
 
-export const TypeRow: FC = memo(() => {
-  const { selectedItem } = useDashboardView();
+interface Props {
+  type: string
+}
 
-
+export const TypeRow: FC<Props> = memo(({ type }) => {
   return (
     <RowWrapper>
       <ConfiguratorTextTitle
@@ -15,7 +15,7 @@ export const TypeRow: FC = memo(() => {
         title     = 'Type'
         toolTitle = 'Item type'
       />
-      {selectedItem.type}
+      {type}
     </RowWrapper>
   )
 });

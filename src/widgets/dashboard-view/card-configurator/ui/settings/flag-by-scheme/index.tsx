@@ -1,25 +1,23 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { useDashboardView } from 'entities/dashboard-view';
+import { PartialCardItem, useDashboardView } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { getValueByScheme, setValueByScheme, updateObject } from 'shared/helpers/objects';
+import { getValueByScheme, setValueByScheme } from 'shared/helpers/objects';
 import { Tooltip } from 'shared/ui/tooltip';
 import { Checkbox } from '@mui/material';
 
 
 
 interface Props {
-  scheme    : string
+  scheme    : string // начиная с 1го уровня
   title     : string
   toolTitle : string
 }
 
 /**
- * TODO: изменить не только для chartOptions а в selectedItem.settings
- * TODO: применить в unchangedBlack isLeft
- * По схеме сохраняет изменени flags в selectedItem.settings?.chartOptions
+ * По схеме сохраняет изменени flags в selectedItem
  */
-export const ChartFlagByScheme: FC<Props> = memo(({ scheme, title, toolTitle }) => {
-  const { selectedItem, changeOneSettingsField } = useDashboardView();
+export const FlagByScheme: FC<Props> = memo(({ scheme, title, toolTitle }) => {
+  const { selectedItem, updateCardItem } = useDashboardView();
   const [checked, setChecked] = useState(() => Boolean(getValueByScheme(selectedItem, scheme)));
 
   useEffect(() => {
@@ -28,19 +26,15 @@ export const ChartFlagByScheme: FC<Props> = memo(({ scheme, title, toolTitle }) 
 
 
   const handleToggle = useCallback(() => {
-    const result = {};
-    const chartOptionsScheme = scheme.split('.').slice(2).join('.'); // Убираем вступление
-    const resultValue = ! Boolean(getValueByScheme(selectedItem, scheme));
-    setValueByScheme(result, chartOptionsScheme, resultValue);
+    const result: PartialCardItem = {
+      id: selectedItem.id
+    };
 
-    changeOneSettingsField({
-      field: 'chartOptions',
-      value: updateObject(
-        selectedItem.settings?.chartOptions || {},
-        result
-      )
-    });
-  }, [selectedItem, changeOneSettingsField]);
+    const resultValue = ! Boolean(getValueByScheme(selectedItem, scheme));
+    setValueByScheme(result, scheme, resultValue);
+
+    updateCardItem(result);
+  }, [selectedItem, updateCardItem]);
 
 
   return (

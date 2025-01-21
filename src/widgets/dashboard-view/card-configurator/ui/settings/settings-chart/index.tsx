@@ -11,11 +11,10 @@ import { ChartBorderColor } from './chart-settings/border-сolor';
 import { ChartBackgroundColor } from './chart-settings/background-сolor';
 import { ChartBorderWidth } from './chart-settings/border-width';
 import { ConfiguratorSubTitle } from 'shared/ui/configurators-components/sub-title';
-import { ChartFlagByScheme } from './flag-by-scheme';
 import { ChartSetColorByScheme } from './set-сolor';
 import { ChartNumberByScheme } from './number-by-scheme';
 import { ChartKodLabel } from './chart-settings/kod-label';
-import {  } from 'shared/ui/configurators-components';
+import { FlagByScheme } from '../flag-by-scheme';
 
 
 
@@ -39,7 +38,7 @@ export const CardItemChartSettingsConfigurator: FC = memo(() => {
         <ChartLabel                      index={0} />
         {/* Круглешки */}
         <ChartPointRadius                index={0} />
-        <ChartPointBackgroundColor index={0} />
+        <ChartPointBackgroundColor       index={0} />
         {/* Линия графика */}
         <ChartBorderWidth                index={0} />
         <ChartBorderColor                index={0} />
@@ -73,22 +72,22 @@ export const CardItemChartSettingsConfigurator: FC = memo(() => {
 
         {/* Grid */}
         <ConfiguratorSubTitle title='Grid' type='title' />
-        <ChartFlagByScheme
+        <FlagByScheme
           scheme    = 'settings.chartOptions.scales.y.grid.display'
           title     = 'display'
           toolTitle = 'Показать/скрыть ось Y'
         />
-        <ChartFlagByScheme
+        <FlagByScheme
           scheme    = 'settings.chartOptions.scales.y.grid.drawBorder'
           title     = 'drawBorder'
           toolTitle = 'Показать/скрыть'
         />
-        <ChartFlagByScheme
+        <FlagByScheme
           scheme    = 'settings.chartOptions.scales.y.grid.drawOnChartArea'
           title     = 'drawOnChartArea'
           toolTitle = 'Показать/скрыть'
         />
-        <ChartFlagByScheme
+        <FlagByScheme
           scheme    = 'settings.chartOptions.scales.y.grid.drawTicks'
           title     = 'drawTicks'
           toolTitle = 'Показать/скрыть'
@@ -101,7 +100,7 @@ export const CardItemChartSettingsConfigurator: FC = memo(() => {
 
         {/* Ticks */}
         <ConfiguratorSubTitle title='Ticks' type='title' />
-        <ChartFlagByScheme
+        <FlagByScheme
           scheme    = 'settings.chartOptions.scales.y.ticks.display'
           title     = 'display'
           toolTitle = 'Показать/скрыть'
@@ -118,22 +117,22 @@ export const CardItemChartSettingsConfigurator: FC = memo(() => {
       <SubHeader title='Ось X'>
         {/* Grid */}
         <ConfiguratorSubTitle title='Grid' type='title' />
-        <ChartFlagByScheme
+        <FlagByScheme
           scheme    = 'settings.chartOptions.scales.x.grid.display'
           title     = 'display'
           toolTitle = 'Показать/скрыть ось X'
         />
-        <ChartFlagByScheme
+        <FlagByScheme
           scheme    = 'settings.chartOptions.scales.x.grid.drawBorder'
           title     = 'drawBorder'
           toolTitle = 'Показать/скрыть'
         />
-        <ChartFlagByScheme
+        <FlagByScheme
           scheme    = 'settings.chartOptions.scales.x.grid.drawOnChartArea'
           title     = 'drawOnChartArea'
           toolTitle = 'Показать/скрыть'
         />
-        <ChartFlagByScheme
+        <FlagByScheme
           scheme    = 'settings.chartOptions.scales.x.grid.drawTicks'
           title     = 'drawTicks'
           toolTitle = 'Показать/скрыть'
@@ -146,7 +145,7 @@ export const CardItemChartSettingsConfigurator: FC = memo(() => {
 
         {/* Ticks */}
         <ConfiguratorSubTitle title='Ticks' type='title' />
-        <ChartFlagByScheme
+        <FlagByScheme
           scheme    = 'settings.chartOptions.scales.x.ticks.display'
           title     = 'display'
           toolTitle = 'Показать/скрыть'

@@ -69,7 +69,12 @@ export const CardItemConfigurator: FC = memo(() => {
             <Tab label='Control' value='1' />
             <Tab label='Styles'  value='2' />
             <Tab
-              label = {selectedItem?.type === 'chart' || selectedItem?.type === 'chip' ? 'Settings' : null}
+              label={
+                selectedItem?.type === 'chart' ||
+                selectedItem?.type === 'chip'  ||
+                selectedItem?.type === 'growthIcon'
+                  ? 'Settings' : null
+              }
               value = '3'
             />
             

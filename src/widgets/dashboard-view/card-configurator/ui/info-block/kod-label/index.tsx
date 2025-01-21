@@ -1,19 +1,15 @@
-import { FC, memo, useMemo } from 'react';
-import { useDashboardView } from 'entities/dashboard-view';
+import { FC, memo } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { useDashboardData } from 'entities/dashboard-data';
 import { Box } from '@mui/material';
-import { getKod } from '../kod';
 
 
+
+interface Props {
+  title: string
+}
 
 /** Label item как в гугл таблице */
-export const KodLabel: FC = memo(() => {
-  const { startEntities } = useDashboardData();
-  const { selectedItem } = useDashboardView();
-  const title = useMemo(() => startEntities[getKod(selectedItem)]?.title || '', [selectedItem, startEntities]);
-
-
+export const KodLabel: FC<Props> = memo(({ title }) => {
   return (
     <RowWrapper>
       <ConfiguratorTextTitle bold title='Kod label' toolTitle='Так записано название статистики в гугл файле' />
