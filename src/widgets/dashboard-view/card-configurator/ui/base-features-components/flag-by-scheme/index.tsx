@@ -1,6 +1,5 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { PartialCardItem, useDashboardView } from 'entities/dashboard-view';
-import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { getValueByScheme, setValueByScheme } from 'shared/helpers/objects';
 import { Tooltip } from 'shared/ui/tooltip';
 import { Checkbox } from '@mui/material';
@@ -38,17 +37,13 @@ export const FlagByScheme: FC<Props> = memo(({ scheme, title, toolTitle }) => {
 
 
   return (
-    <RowWrapper>
-      <ConfiguratorTextTitle bold title={title} toolTitle={toolTitle} />
-      
-      <Tooltip title = {toolTitle}>
-        <Checkbox
-          size       = 'small'
-          checked    = {checked}
-          inputProps = {{ 'aria-label': title }}
-          onChange   = {handleToggle}
-        />
-      </Tooltip>
-    </RowWrapper>
+    <Tooltip title = {toolTitle}>
+      <Checkbox
+        size       = 'small'
+        checked    = {checked}
+        inputProps = {{ 'aria-label': title }}
+        onChange   = {handleToggle}
+      />
+    </Tooltip>
   )
 });

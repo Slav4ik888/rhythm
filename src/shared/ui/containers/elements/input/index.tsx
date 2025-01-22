@@ -9,7 +9,7 @@ import { getStrNumber, toNumber } from 'shared/helpers/numbers';
 
 
 
-type Type = 'text' | 'number' | 'password' | 'email';
+export type InputType = 'text' | 'number' | 'password' | 'email';
 type Value = string | number;
 
 
@@ -19,7 +19,7 @@ const prepareValue = (typeNum: boolean, defaultValue: Value): string => typeNum
 
 
   
-interface SxTextfield {
+export interface SxTextfield {
   bg?    : any
   field? : any
   input? : any
@@ -50,7 +50,7 @@ interface Props {
   sx?           : SxTextfield
   toolTitle?    : string
   label?        : string // The label content
-  type?         : Type
+  type?         : InputType
   name?         : string
   small?        : boolean
   shrink?       : boolean
@@ -67,6 +67,7 @@ interface Props {
   onTransform?  : <T, V>(v: T) => V // Transform default value
   onPrepeare?   : (v: Value) => void // Transform input value before save
   onClick?      : () => void
+  onChange?     : (e: MouseEvent, v: Value) => void // Если нужно на каждое изменение
   onBlur?       : (e: MouseEvent, v: Value) => void
   onCallback?   : (e: MouseEvent, v: Value) => void // Calls in handlerChange
   onSubmit?     : (e: MouseEvent, v: Value) => void
@@ -84,7 +85,7 @@ export const Input: FC<Props> = memo((props) => {
     changesValue = '',
     errorField   = '',
     sx: sxTextfield,
-    onPrepeare, onClick, onBlur, onCallback, onSubmit, onTransform
+    onPrepeare, onClick, onBlur, onCallback, onSubmit, onChange, onTransform
   } = props;
 
   const sx = useStyles(sxTextfield);
@@ -118,6 +119,8 @@ export const Input: FC<Props> = memo((props) => {
     setValue(prepareValue(typeNum, valuePrep));
 
     onCallback && onCallback(e, typeNum ? toNumber(valuePrep) : valuePrep);
+    onChange && onChange(e, typeNum ? toNumber(valuePrep) : valuePrep);
+    
     if (e.keyCode === 13) {
       onSubmit && onSubmit(e, typeNum ? toNumber(value) : value);
     }

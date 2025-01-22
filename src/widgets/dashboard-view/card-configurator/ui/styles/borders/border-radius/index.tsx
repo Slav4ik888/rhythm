@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
-import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ItemStylesField } from 'entities/dashboard-view';
+import { RowInputByScheme } from '../../../base-features-components';
 
 
 
@@ -10,20 +10,13 @@ interface Props {
 
 /** border-radius */
 export const BorderRadiusRow: FC<Props> = memo(({ onChange }) => {
-  const { styleValueByField } = useDashboardView({ field: 'borderRadius' });
-  
   return (
-    <RowWrapper>
-      <ConfiguratorTextTitle title='border-radius' toolTitle='border-radius' bold />
-
-      <ChangeStyleItem
-        type       = 'number'
-        value      = {styleValueByField as number}
-        field      = 'borderRadius'
-        width      = '3rem'
-        onCallback = {onChange}
-        onSubmit   = {onChange}
-      />
-    </RowWrapper>
+    <RowInputByScheme
+      scheme    = 'styles.borderRadius'
+      type      = 'number'
+      title     = 'Border-radius' 
+      toolTitle = 'Border-radius' 
+      width     = '3rem'
+    />
   )
 });
