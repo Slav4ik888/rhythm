@@ -1,10 +1,11 @@
 import { FC, memo } from 'react';
 import { Box } from '@mui/material';
 import { f } from 'shared/styles';
-import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
+import { ItemStylesField } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { SelectBorderStyle } from './select-border-style';
+import { InputByScheme } from '../../../base-features-components';
 
 
 
@@ -15,7 +16,6 @@ interface Props {
 
 /** border: width style color */
 export const BorderRow: FC<Props> = memo(({ borderColor = 'none', onChange }) => {
-  const { styleValueByField } = useDashboardView({ field: 'borderWidth' });
 
   const handleSubmitColor = (value: string) => onChange('borderColor', value);
 
@@ -25,13 +25,10 @@ export const BorderRow: FC<Props> = memo(({ borderColor = 'none', onChange }) =>
       <ConfiguratorTextTitle title='border' toolTitle='border' bold />
 
       <Box sx={{ ...f('-c-fe') }}>
-        <ChangeStyleItem
-          type       = 'number'
-          value      = {styleValueByField as number}
-          field      = 'borderWidth'
-          width      = '2.5rem'
-          onCallback = {onChange}
-          onSubmit   = {onChange}
+        <InputByScheme
+          type   = 'number'
+          scheme = 'styles.borderWidth'
+          width  = '2.5rem'
         />
         
         <SelectBorderStyle onChange={onChange} />

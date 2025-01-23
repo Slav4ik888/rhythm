@@ -1,72 +1,81 @@
-import { FC, memo } from 'react';
+import { FC, memo, MouseEvent } from 'react';
 import { Box } from '@mui/material';
 import { f } from 'shared/styles';
-import { ChangeStyleItem } from 'shared/ui/configurators-components';
-import { ItemStylesField } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
+import { InputByScheme } from '../../../../base-features-components';
+import { getBoxShadowValue } from './utils';
 
+
+
+const sx = {
+  wrapper: {
+    mx: 1,
+  },
+  field: {
+    width: '2rem',
+  },
+  input: {
+    textAlign : 'center',
+    padding   : '2px 4px',
+  }
+};
 
 
 interface Props {
-  offsetX           : number
-  offsetY           : number
-  blurRadius        : number
-  spreadRadius      : number
-  color             : string
-  onSetOffsetX      : (field: ItemStylesField, value: number | string) => void
-  onSetOffsetY      : (field: ItemStylesField, value: number | string) => void
-  onSetBlurRadius   : (field: ItemStylesField, value: number | string) => void
-  onSetSpreadRadius : (field: ItemStylesField, value: number | string) => void
-  onSetColor        : (value: string) => void
+  color    : string
+  onChange : (value: string | number, index: number) => void
 }
 
 /**
  * box-shadow component
  */
-export const BoxShadowSetupComponent: FC<Props> = memo(({
-  offsetX, offsetY, blurRadius, spreadRadius, color,
-  onSetOffsetX, onSetOffsetY, onSetBlurRadius, onSetSpreadRadius, onSetColor
-}) => {
-   
-
+export const BoxShadowSetupComponent: FC<Props> = memo(({ color, onChange }) => {
   return (
     <Box sx={{ ...f('-c') }}>
-      <ChangeStyleItem
-        type       = 'number'
-        value      = {offsetX}
-        toolTitle  = 'offset-x'
-        sx         = {{ root: { mx: 1 }}}
-        onCallback = {onSetOffsetX}
-        onSubmit   = {onSetOffsetX}
+      <InputByScheme
+        type      = 'number'
+        scheme    = 'styles.boxShadow'
+        width     = '2rem'
+        toolTitle = 'offset-x'
+        clear     = {0}
+        sx        = {sx}
+        transform = {(v: string | number) => getBoxShadowValue(v, 0)}
+        onChange  = {(e: MouseEvent, v: string | number) => onChange(v, 0)}
       />
-      <ChangeStyleItem
-        type       = 'number'
-        value      = {offsetY}
-        toolTitle  = 'offset-y'
-        sx         = {{ root: { mx: 1 }}}
-        onCallback = {onSetOffsetY}
-        onSubmit   = {onSetOffsetY}
+      <InputByScheme
+        type      = 'number'
+        scheme    = 'styles.boxShadow'
+        width     = '2rem'
+        toolTitle = 'offset-y'
+        clear     = {0}
+        sx        = {sx}
+        transform = {(v: string | number) => getBoxShadowValue(v, 1)}
+        onChange  = {(e: MouseEvent, v: string | number) => onChange(v, 1)}
       />
-      <ChangeStyleItem
-        type       = 'number'
-        value      = {blurRadius}
-        toolTitle  = 'blur-radius'
-        sx         = {{ root: { mx: 1 }}}
-        onCallback = {onSetBlurRadius}
-        onSubmit   = {onSetBlurRadius}
+      <InputByScheme
+        type      = 'number'
+        scheme    = 'styles.boxShadow'
+        width     = '2rem'
+        toolTitle = 'blur-radius'
+        clear     = {0}
+        sx        = {sx}
+        transform = {(v: string | number) => getBoxShadowValue(v, 2)}
+        onChange  = {(e: MouseEvent, v: string | number) => onChange(v, 2)}
       />
-      <ChangeStyleItem
-        type       = 'number'
-        value      = {spreadRadius}
-        toolTitle  = 'spread-radius'
-        sx         = {{ root: { mx: 1 }}}
-        onCallback = {onSetSpreadRadius}
-        onSubmit   = {onSetSpreadRadius}
+      <InputByScheme
+        type      = 'number'
+        scheme    = 'styles.boxShadow'
+        width     = '2rem'
+        toolTitle = 'spread-radius'
+        clear     = {0}
+        sx        = {sx}
+        transform = {(v: string | number) => getBoxShadowValue(v, 3)}
+        onChange  = {(e: MouseEvent, v: string | number) => onChange(v, 3)}
       />
 
       <ColorPicker
         defaultColor = {color}
-        onChange     = {onSetColor}
+        onChange     = {(v: string | number) => onChange(v, 4)}
       />
     </Box>
   )

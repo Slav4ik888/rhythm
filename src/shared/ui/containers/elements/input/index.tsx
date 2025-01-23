@@ -20,7 +20,7 @@ const prepareValue = (typeNum: boolean, defaultValue: Value): string => typeNum
 
   
 export interface SxTextfield {
-  bg?    : any
+  root?  : any
   field? : any
   input? : any
 }
@@ -29,7 +29,7 @@ export interface SxTextfield {
 const useStyles = (sx?: SxTextfield) => ({
   textField: {
     // backgroundColor: '#ffffff',
-    ...sx?.bg,
+    ...sx?.root,
 
     '& .MuiInputBase-root': {
       // backgroundColor: '#ffffff',
@@ -64,6 +64,7 @@ interface Props {
   errors?       : Errors
   autoFocus?    : boolean
   tabIndex?     : number
+  helperText?   : string
   onTransform?  : <T, V>(v: T) => V // Transform default value
   onPrepeare?   : (v: Value) => void // Transform input value before save
   onClick?      : () => void
@@ -79,7 +80,7 @@ interface Props {
  */
 export const Input: FC<Props> = memo((props) => {
   const {
-    grid, toolTitle, label, errors, name, tabIndex, autoFocus, small, placeholder, shrink, disabled, fullWidth,
+    grid, toolTitle, label, errors, name, tabIndex, autoFocus, small, placeholder, shrink, disabled, fullWidth, helperText,
     type         = 'text',
     defaultValue = '',
     changesValue = '',
@@ -166,7 +167,7 @@ export const Input: FC<Props> = memo((props) => {
           onBlur          = {handlerBlur}
           slotProps       = {{ inputLabel: { shrink } }}
           error           = {errors?.[errorField] ? true : false}
-          helperText      = {errors?.[errorField]}
+          helperText      = {errors?.[errorField] || helperText}
         />
       </Tooltip>
     </Wrap>

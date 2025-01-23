@@ -22,7 +22,7 @@ export const Borders: FC<Props> = memo(({ onChange }) => {
         borderColor = {styles.borderColor}
         onChange    = {onChange}
       />
-      <BorderRadiusRow onChange={onChange} />
+      <BorderRadiusRow />
       <BoxShadowRow onChange={onChange} />
     </SubHeader>
   )
