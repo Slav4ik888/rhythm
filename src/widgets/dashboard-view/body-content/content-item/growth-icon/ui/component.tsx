@@ -25,7 +25,6 @@ const useStyles = (
   return {
     root: {
       ...f('-c-c'),
-      display : 'flex',
       ...sx?.root
     },
     svg: {

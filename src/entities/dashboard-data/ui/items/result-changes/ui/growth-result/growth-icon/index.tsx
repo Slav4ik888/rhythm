@@ -6,7 +6,7 @@ import FallIcon from './assets/triangle-fall.svg';
 import UnchangedLeftIcon from './assets/triangle-unchanged-left.svg';
 import UnchangedRightIcon from './assets/triangle-unchanged-right.svg';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-import { pxToRem } from 'shared/styles';
+import { f, pxToRem } from 'shared/styles';
 import { SxSmallContainer } from 'entities/dashboard-data';
 import { isNotUndefined } from 'shared/lib/validators';
 import { cloneObj } from 'shared/helpers/objects';
@@ -28,10 +28,8 @@ const useStyles = (
   
   return {
     root: {
-      display : 'flex',
-      pt      : pxToRem(5),
-      // justifyContent : 'center',
-      // alignItems     : 'center',
+      ...f('-c-c'),
+      pt : pxToRem(5),
       ...root
     },
     svg: {

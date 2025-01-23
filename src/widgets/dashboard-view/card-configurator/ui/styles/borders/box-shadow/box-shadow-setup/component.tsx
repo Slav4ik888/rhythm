@@ -9,7 +9,7 @@ import { getBoxShadowValue } from './utils';
 
 const sx = {
   wrapper: {
-    mx: 1,
+    mr: 2.5,
   },
   field: {
     width: '2rem',

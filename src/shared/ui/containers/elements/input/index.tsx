@@ -124,11 +124,13 @@ export const Input: FC<Props> = memo((props) => {
     
     if (e.keyCode === 13) {
       onSubmit && onSubmit(e, typeNum ? toNumber(value) : value);
+      // @ts-ignore
+      focusRef.current && focusRef.current.blur();
     }
     else if (e.keyCode === 27) {
       onBlur && onBlur(e, typeNum ? toNumber(value) : value);
       // @ts-ignore
-      // focusRef.current && focusRef.current.blur();
+      focusRef.current && focusRef.current.blur();
     }
   };
   

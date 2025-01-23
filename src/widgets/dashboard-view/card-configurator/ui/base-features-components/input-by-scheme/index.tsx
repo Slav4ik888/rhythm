@@ -15,10 +15,11 @@ interface Props {
   width?      : string
   helperText? : string
   toolTitle?  : string
+  disabled?   : boolean
   sx?         : SxInputByScheme
-  transform?: (v: string | number) => string | number // Если полученное начальное значение нужно как-либо преобразовать. Например, 'boxShadow': 'rgba(184, 184, 184, 1)'
+  transform?  : (v: string | number) => string | number // Если полученное начальное значение нужно как-либо преобразовать. Например, 'boxShadow': 'rgba(184, 184, 184, 1)'
   clear?      : string | number // Если нужно, чтобы при очистке значения, была не пустая строка '', а что-то другое
-  onClear?    : () => void // Если нужно, чтобы для очистки значения, была другая функция
+  onClear?    : () => void      // Если нужно, чтобы для очистки значения, была другая функция
   onBlur?     : (e: MouseEvent, v: string | number) => void // Если нужна не стандартная обработка
   onChange?   : (e: MouseEvent, v: string | number) => void // Если нужна не стандартная обработка
   onSubmit?   : (e: MouseEvent, v: string | number) => void // Если нужна не стандартная обработка
@@ -26,8 +27,7 @@ interface Props {
 
 
 /** Input update CardItem */
-export const InputByScheme: FC<Props> = memo(({
-  scheme, type, width, sx: style, helperText, toolTitle, clear,
+export const InputByScheme: FC<Props> = memo(({ scheme, type, width, sx: style, helperText, toolTitle, clear, disabled,
   transform, onClear, onBlur, onChange, onSubmit
 }) => {
   const sx = useStyles(useTheme(), style, width);
@@ -38,34 +38,41 @@ export const InputByScheme: FC<Props> = memo(({
   }, [selectedItem, scheme]);
 
 
-  // Change - приходит тот тип, что указали в type
-  const handleChange = useCallback((e: MouseEvent, v: string | number) => {
-    if (onChange) return onChange(e, v);
-
+  const handleUpdate = useCallback((v: string | number) => {
     const result: PartialCardItem = {
       id: selectedItem.id
     };
 
     setValueByScheme(result, scheme, v);
     updateCardItem(result);
-  }, [selectedItem]);
+  }, [selectedItem, scheme, updateCardItem]);
+
+
+  // Change - приходит тот тип, что указали в type
+  const handleChange = useCallback((e: MouseEvent, v: string | number) => {
+    if (onChange) onChange(e, v);
+    else handleUpdate(v);
+  }, [selectedItem, scheme, handleUpdate]);
+
 
   // Blur
   const handleBlur = useCallback((e: MouseEvent, v: string | number) => {
-    if (onBlur) return onBlur(e, v);
-    handleChange(e, v);
-  }, [selectedItem]);
+    if (onBlur) onBlur(e, v);
+    else handleSubmit(e, v);
+  }, [selectedItem, scheme]);
+
 
   // Submit
   const handleSubmit = useCallback((e: MouseEvent, v: string | number) => {
-    if (onSubmit) return onSubmit(e, v);
-    handleChange(e, v);
-  }, [selectedItem]);
+    if (onSubmit) onSubmit(e, v);
+    else handleUpdate(v);
+  }, [selectedItem, scheme, handleUpdate]);
+  
   
   // Clear
   const handleClear = useCallback((e: MouseEvent) => {
     if (onClear) onClear()
-    else handleChange(e, clear !== undefined ? clear : '');
+    else handleSubmit(e, clear !== undefined ? clear : '');
   }, [onClear, handleChange]);
 
 
@@ -77,13 +84,16 @@ export const InputByScheme: FC<Props> = memo(({
         changesValue = {value}
         helperText   = {helperText}
         toolTitle    = {toolTitle}
+        disabled     = {disabled}
         sx           = {sx.textfield}
         onBlur       = {handleBlur}
         onChange     = {handleChange}
         onSubmit     = {handleSubmit}
       />
       {
-        value ? <ClearIcon sx={sx.clearBtn} onClick={handleClear} /> : ''
+        value
+          ? <ClearIcon sx={sx.clearBtn} onClick={handleClear} />
+          : ''
       }
     </Box>
   )
