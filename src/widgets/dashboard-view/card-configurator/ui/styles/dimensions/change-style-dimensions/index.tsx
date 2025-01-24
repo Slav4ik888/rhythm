@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { ItemStylesField } from 'entities/dashboard-view';
 import { f } from 'shared/styles';
 import { SelectValue } from '../../../../../../../shared/ui/configurators-components/select';
-import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
+import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { getDimension, isPx } from './utils';
 import { InputByScheme } from '../../../base-features-components';
 
@@ -55,14 +55,6 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ field, bold, toolTit
           onBlur    = {(e: MouseEvent, v: string | number) => onChange(field, v)}
           onSubmit  = {(e: MouseEvent, v: string | number) => onChange(field, v)}
         />
-        {/* <ChangeStyleItem
-          type     = 'number'
-          value    = {(isValueNumber && value || '') as number} // чтобы выводились только числа
-          field    = {field}
-          width    = '4rem'
-          disabled = {! isValueNumber}
-          onSubmit = {onChange}
-        /> */}
 
         {/* In text */}
         <SelectValue

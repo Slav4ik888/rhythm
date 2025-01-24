@@ -17,7 +17,7 @@ interface Props {
 
 
 /** align-items */
-export const AlignItems: FC<Props> = memo(({ value = 'center', onChange }) => {
+export const AlignItems: FC<Props> = memo(({ value, onChange }) => {
 
   const handleChange = (e: MouseEvent<HTMLElement>, newAlignment: AlignItemsType) => {
     onChange('alignItems', newAlignment);

@@ -12,9 +12,9 @@ import { ChartBackgroundColor } from './chart-settings/background-сolor';
 import { ChartBorderWidth } from './chart-settings/border-width';
 import { ConfiguratorSubTitle } from 'shared/ui/configurators-components/sub-title';
 import { ChartSetColorByScheme } from './set-сolor';
-import { ChartNumberByScheme } from './number-by-scheme';
 import { ChartKodLabel } from './chart-settings/kod-label';
 import { RowFlagByScheme } from '../../base-features-components/row-flag-by-scheme';
+import { RowInputByScheme } from '../../base-features-components';
 
 
 
@@ -49,25 +49,37 @@ export const CardItemChartSettingsConfigurator: FC = memo(() => {
       <SubHeader title='Ось Y'>
         {/* Min | max */}
         <ConfiguratorSubTitle title='Min | max' type='title' />
-        <ChartNumberByScheme
+        <RowInputByScheme
           scheme    = 'settings.chartOptions.scales.y.min'
+          type      = 'number'
           title     = 'min'
           toolTitle = 'Изменить min'
+          width     = '7rem'
+          clear     = {null}
         />
-        <ChartNumberByScheme
+        <RowInputByScheme
           scheme    = 'settings.chartOptions.scales.y.max'
+          type      = 'number'
           title     = 'max'
           toolTitle = 'Изменить max'
+          width     = '7rem'
+          clear     = {null}
         />
-        <ChartNumberByScheme
+        <RowInputByScheme
           scheme    = 'settings.chartOptions.scales.y.suggestedMin'
+          type      = 'number'
           title     = 'suggestedMin'
           toolTitle = 'Изменить suggestedMin'
+          width     = '7rem'
+          clear     = {null}
         />
-        <ChartNumberByScheme
+        <RowInputByScheme
           scheme    = 'settings.chartOptions.scales.y.suggestedMax'
+          type      = 'number'
           title     = 'suggestedMax'
           toolTitle = 'Изменить suggestedMax'
+          width     = '7rem'
+          clear     = {null}
         />
 
         {/* Grid */}

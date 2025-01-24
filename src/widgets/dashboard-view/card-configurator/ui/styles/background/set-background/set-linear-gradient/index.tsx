@@ -1,9 +1,9 @@
-import { FC, memo, useState, useEffect } from 'react';
-import { ChangeStyleItem } from 'shared/ui/configurators-components';
+import { FC, memo, useState, useEffect, MouseEvent } from 'react';
 import { ItemStylesField, RgbaString } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
-import { SplittedLinerGradient } from '../utils';
+import { splitGradinetRgba, SplittedLinerGradient } from '../utils';
 import { linearGradient } from 'shared/styles';
+import { InputByScheme } from '../../../../base-features-components';
 
 
 
@@ -26,7 +26,7 @@ export const SetLinearGradient: FC<Props> = memo(({ defaultValue = '', gradients
     setState (gradients[2] || defaultValue as string);
   }, [defaultValue, gradients]);
 
-  const handleDeg = (field: ItemStylesField, value: number | string) => {
+  const handleDeg = (e: MouseEvent, value: number | string) => {
     setDeg(value as number);
     onChange('background', linearGradient(main, state, value as number));
   };
@@ -40,17 +40,18 @@ export const SetLinearGradient: FC<Props> = memo(({ defaultValue = '', gradients
     setState(value);
     onChange('background', linearGradient(main, value, deg as number));
   };
-
+ 
 
   return (
     <>
-      <ChangeStyleItem
-        type       = 'number'
-        value      = {deg}
-        width      = '4rem'
-        toolTitle  = 'Угол поворота градиента'
-        onCallback = {handleDeg}
-        onSubmit   = {handleDeg}
+      <InputByScheme
+        type      = 'number'
+        scheme    = 'styles.background'
+        width     = '4rem'
+        toolTitle = 'Угол поворота градиента'
+        transform = {(v: string | number) => splitGradinetRgba(v as string)?.[0]}
+        onChange  = {handleDeg}
+        onSubmit  = {handleDeg}
       />
       <ColorPicker
         defaultColor = {main}

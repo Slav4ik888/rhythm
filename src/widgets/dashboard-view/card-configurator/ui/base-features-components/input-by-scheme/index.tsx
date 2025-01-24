@@ -11,7 +11,7 @@ import { SxInputByScheme, useStyles } from './styles';
 
 interface Props {
   scheme      : string
-  type        : InputType
+  type?       : InputType
   width?      : string
   helperText? : string
   toolTitle?  : string
@@ -27,7 +27,8 @@ interface Props {
 
 
 /** Input update CardItem */
-export const InputByScheme: FC<Props> = memo(({ scheme, type, width, sx: style, helperText, toolTitle, clear, disabled,
+export const InputByScheme: FC<Props> = memo(({ scheme, width, sx: style, helperText, toolTitle, clear, disabled,
+  type = 'text',
   transform, onClear, onBlur, onChange, onSubmit
 }) => {
   const sx = useStyles(useTheme(), style, width);

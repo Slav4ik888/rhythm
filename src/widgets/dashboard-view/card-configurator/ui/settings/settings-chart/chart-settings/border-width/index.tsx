@@ -1,6 +1,7 @@
-import { FC, memo, useCallback } from 'react';
-import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
-import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
+import { FC, memo, useCallback, MouseEvent } from 'react';
+import { CardItemCharts, useDashboardView } from 'entities/dashboard-view';
+import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
+import { InputByScheme } from 'widgets/dashboard-view/card-configurator/ui/base-features-components';
 
 
 
@@ -10,22 +11,24 @@ interface Props {
 
 /** Толщина линии графика */
 export const ChartBorderWidth: FC<Props> = memo(({ index }) => {
-  const { selectedItem, changeOneDatasetsItem } = useDashboardView();
+  const { changeOneDatasetsItem } = useDashboardView();
 
-  const handleChange = useCallback((_: ItemStylesField, value: string | number) => {
+  const handleChange = useCallback((value: string | number) => {
     changeOneDatasetsItem({ field: 'borderWidth', value, index });
-  }, [selectedItem, changeOneDatasetsItem]);
+  }, [changeOneDatasetsItem]);
 
 
   return (
     <RowWrapper>
       <ConfiguratorTextTitle bold title='Border width' toolTitle='Выберите толщину линии графика' />
-      <ChangeStyleItem
-        type       = 'number'
-        value      = {selectedItem.settings?.charts?.[index]?.datasets?.borderWidth as number}
-        width      = '3rem'
-        onCallback = {handleChange}
-        onSubmit   = {handleChange}
+      <InputByScheme
+        type      = 'number'
+        scheme    = 'settings.charts'
+        width     = '3rem'
+        transform = {(v) => (v as unknown as CardItemCharts[] | undefined)?.[index]?.datasets?.borderWidth as number}
+        onChange  = {(e: MouseEvent, v: string | number) => handleChange(v)}
+        onBlur    = {(e: MouseEvent, v: string | number) => handleChange(v)}
+        onSubmit  = {(e: MouseEvent, v: string | number) => handleChange(v)}
       />
     </RowWrapper>
   )

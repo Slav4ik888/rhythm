@@ -17,7 +17,7 @@ interface Props {
 }
 
 /** justify-content */
-export const JustifyContent: FC<Props> = memo(({ value = 'center', onChange }) => {
+export const JustifyContent: FC<Props> = memo(({ value, onChange }) => {
 
   const handleChange = (e: MouseEvent<HTMLElement>, newAlignment: JustifyContentType) => {
     onChange('justifyContent', newAlignment);

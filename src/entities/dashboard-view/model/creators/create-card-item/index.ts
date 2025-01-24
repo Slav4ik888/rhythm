@@ -23,14 +23,6 @@ const BASE_SX: ItemStyles = {
 };
 
 
-/** Additional style for box|text items */
-const ADDI_SX: ItemStyles = {
-  width        : 'max-content',
-  // boxShadow    : '1px 1px 3px 0px rgba(184, 184, 184, 1)',
-  background   : 'rgba(255, 255, 255, 1)',
-  color        : 'rgba(70, 70, 70, 1)',
-};
-
 
 export const createCardItem = (
   cfg    : Partial<CardItem> = {} as CardItem,
@@ -51,10 +43,14 @@ export const createCardItem = (
   });
 
   if (cfg.type === 'text') cardItem.label = 'Введите заголовок'
-  if (cfg.type === 'box' || cfg.type === 'text' || cfg.type === 'growthIcon') {
+
+  if (cfg.type === 'box' || cfg.type === 'text') {
     cardItem.styles = {
       ...cardItem.styles,
-      ...ADDI_SX
+      width        : 'max-content',
+      // boxShadow    : '1px 1px 3px 0px rgba(184, 184, 184, 1)',
+      background   : 'rgba(255, 255, 255, 1)',
+      color        : 'rgba(70, 70, 70, 1)',
     }
   }
 
@@ -62,6 +58,14 @@ export const createCardItem = (
     cardItem.settings = {};
     cardItem.settings.charts = [];
     cardItem.settings.charts.push({ chartType: cfg.settings?.charts?.[0]?.chartType || 'line' });
+  }
+
+  if (cfg.type === 'growthIcon') {
+    cardItem.styles = {
+      ...cardItem.styles,
+      ...f('c-c-c'), // Чтобы треугольник выравнился по центру, а не был прилеплен сверху
+      width : 40,
+    }
   }
 
   return cardItem;

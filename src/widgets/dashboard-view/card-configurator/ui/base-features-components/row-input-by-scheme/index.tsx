@@ -11,10 +11,11 @@ interface Props {
   title     : string
   toolTitle : string
   width?    : string
+  clear?    : any
   sx?       : any
 }
 
-export const RowInputByScheme: FC<Props> = memo(({ scheme, type, title, toolTitle, width, sx }) => {
+export const RowInputByScheme: FC<Props> = memo(({ scheme, type, title, toolTitle, width, clear, sx }) => {
   return (
     <RowWrapper sx={sx}>
       <ConfiguratorTextTitle bold title={title} toolTitle={toolTitle} />
@@ -23,6 +24,7 @@ export const RowInputByScheme: FC<Props> = memo(({ scheme, type, title, toolTitl
         type   = {type}
         scheme = {scheme}
         width  = {width}
+        clear  = {clear}
       />
     </RowWrapper>
   )

@@ -1,6 +1,7 @@
-import { FC, memo, useCallback } from 'react';
-import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
-import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
+import { FC, memo, useCallback, MouseEvent } from 'react';
+import { CardItemCharts, useDashboardView } from 'entities/dashboard-view';
+import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
+import { InputByScheme } from 'widgets/dashboard-view/card-configurator/ui/base-features-components';
 import { pxToRem } from 'shared/styles';
 
 
@@ -13,7 +14,7 @@ interface Props {
 export const ChartLabel: FC<Props> = memo(({ index }) => {
   const { selectedItem, changeOneDatasetsItem } = useDashboardView();
 
-  const handleChange = useCallback((_: ItemStylesField, value: string | number) => {
+  const handleChange = useCallback((value: string | number) => {
     changeOneDatasetsItem({ field: 'label', value, index });
   }, [selectedItem, changeOneDatasetsItem]);
   
@@ -23,13 +24,14 @@ export const ChartLabel: FC<Props> = memo(({ index }) => {
   return (
     <RowWrapper>
       <ConfiguratorTextTitle bold title='Chart label' toolTitle='Выберите метку для графика' />
-      <ChangeStyleItem
-        type       = 'text'
-        toolTitle  = 'Label графика'
-        value      = {selectedItem.settings?.charts?.[index]?.datasets?.label as string}
-        width      = '100%'
-        sx         = {{ field: { height: pxToRem(40)}}}
-        onSubmit   = {handleChange}
+      <InputByScheme
+        scheme    = 'settings.charts'
+        width     = '100%'
+        sx        = {{ field: { height: pxToRem(40)}}}
+        transform = {(v) => (v as unknown as CardItemCharts[] | undefined)?.[index]?.datasets?.label as string}
+        onChange  = {(e: MouseEvent, v: string | number) => {}}
+        onBlur    = {(e: MouseEvent, v: string | number) => handleChange(v)}
+        onSubmit  = {(e: MouseEvent, v: string | number) => handleChange(v)}
       />
     </RowWrapper>
   )
