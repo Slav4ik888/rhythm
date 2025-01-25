@@ -8,6 +8,7 @@ const useStyles = (bold?: boolean) => ({
   title: {
     fontWeight: bold ? 'bold' : 'normal',
     textShadow: bold ? '1px 1px 8px #9e9e9e' : 'none',
+    mr: 1,
   },
 });
 

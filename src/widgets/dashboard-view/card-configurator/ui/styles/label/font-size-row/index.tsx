@@ -1,29 +1,17 @@
 import { FC, memo } from 'react';
-import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
-import { ChangeStyleItem, ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
+import { RowInputByScheme } from '../../../base-features-components';
 
 
-
-interface Props {
-  onChange: (field: ItemStylesField, value: number | string) => void
-}
 
 /** Set fontSize */
-export const FontSizeRow: FC<Props> = memo(({ onChange }) => {
-  const { styleValueByField } = useDashboardView({ field: 'fontSize' });
-
+export const FontSizeRow: FC = memo(() => {
   return (
-    <RowWrapper>
-      <ConfiguratorTextTitle title='font-size' toolTitle='font-size' bold />
-
-      <ChangeStyleItem
-        type       = 'number'
-        value      = {styleValueByField as number}
-        field      = 'fontSize'
-        width      = '5rem'
-        onCallback = {onChange}
-        onSubmit   = {onChange}
-      />
-    </RowWrapper>
+    <RowInputByScheme
+      scheme    = 'styles.fontSize'
+      type      = 'number'
+      title     = 'font-size'
+      toolTitle = 'font-size'
+      width     = '5rem'
+    />
   )
 });

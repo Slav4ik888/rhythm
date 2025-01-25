@@ -37,7 +37,7 @@ export const SetBackground: FC<Props> = memo(({ onChange }) => {
         title     = 'background'
         toolTitle = 'background'
       />
-      <Tooltip title = 'background gradient'>
+      <Tooltip title = 'Настроить gradient'>
         <Checkbox
           size       = 'small'
           checked    = {checked}

@@ -12,10 +12,12 @@ export const useStyles = (theme: CustomTheme, sx?: SxInputByScheme, width?: stri
   wrapper: {
     position: 'relative',
     ...f('-fs-fs'),
+    width: width || '80px',
     ...sx?.wrapper,
   },
   textfield: {
     root: {
+      width: width || '80px',
       ...sx?.root,
     },
     field: {
@@ -25,6 +27,7 @@ export const useStyles = (theme: CustomTheme, sx?: SxInputByScheme, width?: stri
     input: {
       textAlign : 'center',
       padding   : '2px 4px',
+      fontSize  : pxToRem(16),
       ...sx?.input,
     }
   },

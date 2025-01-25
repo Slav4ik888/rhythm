@@ -22,7 +22,7 @@ export const CardLabel: FC<Props> = memo(({ onChange }) => {
   return (
     <SubHeader title='Текст'>
       <LabelRow />
-      <FontSizeRow   onChange={onChange} />
+      <FontSizeRow />
       <FontStyleRow  onChange={onChange} />
       <FontWeightRow onChange={onChange} />
       

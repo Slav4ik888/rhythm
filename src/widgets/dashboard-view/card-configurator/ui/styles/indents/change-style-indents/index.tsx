@@ -1,8 +1,9 @@
-import { FC, memo } from 'react';
+import { FC, memo, MouseEvent } from 'react';
 import { Box } from '@mui/material';
-import { ItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ItemStylesField } from 'entities/dashboard-view';
+import { ConfiguratorTextTitle } from 'shared/ui/configurators-components';
+import { InputByScheme } from '../../../base-features-components';
 import { f } from 'shared/styles';
-import { ChangeStyleItem, ConfiguratorTextTitle } from 'shared/ui/configurators-components';
 
 
 
@@ -29,8 +30,8 @@ interface Props {
 /** Отступы */
 export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTitle, title, onChange }) => {
   const sx = useStyles();
-  const { stylesByCardItemId } = useDashboardView();
 
+  const handleEmpty = (e: MouseEvent, v: string | number) => {};
 
   return (
     <Box sx={sx.root}>
@@ -39,64 +40,71 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTi
           <ConfiguratorTextTitle title={title} toolTitle={toolTitle} bold={bold} />
         </Box>
 
-        <ChangeStyleItem
+        <InputByScheme
           type       = 'number'
-          title      = 'Сверху'
+          scheme     = {`styles.${baseField + 't'}`}
           width      = '4rem'
-          field      = {baseField + 't' as ItemStylesField}
-          value      = {stylesByCardItemId[baseField + 't' as ItemStylesField] as number}
-          onSubmit   = {onChange}
+          helperText = 'Сверху'
+          onChange   = {handleEmpty}
+          onBlur     = {(e: MouseEvent, v: string | number) => onChange(baseField + 't' as ItemStylesField, v)}
+          onSubmit   = {(e: MouseEvent, v: string | number) => onChange(baseField + 't' as ItemStylesField, v)}
         />
-        <ChangeStyleItem
+        <InputByScheme
           type       = 'number'
-          title      = 'Общие'
+          scheme     = {`styles.${baseField}`}
           width      = '4rem'
-          field      = {baseField}
-          value      = {stylesByCardItemId[baseField] as number}
-          onSubmit   = {onChange}
+          helperText = 'Общие'
+          onChange   = {handleEmpty}
+          onBlur     = {(e: MouseEvent, v: string | number) => onChange(baseField as ItemStylesField, v)}
+          onSubmit   = {(e: MouseEvent, v: string | number) => onChange(baseField as ItemStylesField, v)}
         />
-        <ChangeStyleItem
+        <InputByScheme
           type       = 'number'
-          title      = 'Верх/низ'
+          scheme     = {`styles.${baseField + 'y'}`}
           width      = '4rem'
-          field      = {baseField + 'y' as ItemStylesField}
-          value      = {stylesByCardItemId[baseField + 'y' as ItemStylesField] as number}
-          onSubmit   = {onChange}
+          helperText = 'Верх/низ'
+          onChange   = {handleEmpty}
+          onBlur     = {(e: MouseEvent, v: string | number) => onChange(baseField + 'y' as ItemStylesField, v)}
+          onSubmit   = {(e: MouseEvent, v: string | number) => onChange(baseField + 'y' as ItemStylesField, v)}
         />
       </Box>
 
       <Box sx={sx.row}>
-        <ChangeStyleItem
+        <InputByScheme
           type       = 'number'
-          title      = 'Слева'
+          scheme     = {`styles.${baseField + 'l'}`}
           width      = '4rem'
-          field      = {baseField + 'l' as ItemStylesField}
-          value      = {stylesByCardItemId[baseField + 'l' as ItemStylesField] as number}
-          onSubmit   = {onChange}
+          helperText = 'Слева'
+          onChange   = {handleEmpty}
+          onBlur     = {handleEmpty}
+          onSubmit   = {(e: MouseEvent, v: string | number) => onChange(baseField + 'l' as ItemStylesField, v)}
         />
-        <ChangeStyleItem
+        <InputByScheme
           type       = 'number'
-          title      = 'Снизу'
+          scheme     = {`styles.${baseField + 'b'}`}
           width      = '4rem'
-          field      = {baseField + 'b' as ItemStylesField}
-          value      = {stylesByCardItemId[baseField + 'b' as ItemStylesField] as number}
-          onSubmit   = {onChange}
+          helperText = 'Снизу'
+          onChange   = {handleEmpty}
+          onBlur     = {handleEmpty}
+          onSubmit   = {(e: MouseEvent, v: string | number) => onChange(baseField + 'b' as ItemStylesField, v)}
         />
-        <ChangeStyleItem
+        <InputByScheme
           type       = 'number'
-          title      = 'Справа'
+          scheme     = {`styles.${baseField + 'r'}`}
           width      = '4rem'
-          field      = {baseField + 'r' as ItemStylesField}
-          value      = {stylesByCardItemId[baseField + 'r' as ItemStylesField] as number}
-          onSubmit   = {onChange}
+          helperText = 'Справа'
+          onChange   = {handleEmpty}
+          onBlur     = {handleEmpty}
+          onSubmit   = {(e: MouseEvent, v: string | number) => onChange(baseField + 'r' as ItemStylesField, v)}
         />
-        <ChangeStyleItem
+        <InputByScheme
           type       = 'number'
-          title      = 'Прав/лев'
+          scheme     = {`styles.${baseField + 'x'}`}
           width      = '4rem'
-          field      = {baseField + 'x' as ItemStylesField}
-          value      = {stylesByCardItemId[baseField + 'x' as ItemStylesField] as number}
-          onSubmit   = {onChange}
+          helperText = 'Прав/лев'
+          onChange   = {handleEmpty}
+          onBlur     = {handleEmpty}
+          onSubmit   = {(e: MouseEvent, v: string | number) => onChange(baseField + 'x' as ItemStylesField, v)}
         />
       </Box>
     </Box>

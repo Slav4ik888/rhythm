@@ -48,7 +48,6 @@ export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
     onSelect(item.id);
   };
 
-
   return (
     <Box
       id      = {item.id}

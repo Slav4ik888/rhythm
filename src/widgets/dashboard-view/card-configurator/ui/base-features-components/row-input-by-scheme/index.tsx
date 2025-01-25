@@ -7,7 +7,7 @@ import { InputByScheme } from '..';
 
 interface Props {
   scheme    : string // начиная с 1го уровня
-  type      : InputType
+  type?     : InputType
   title     : string
   toolTitle : string
   width?    : string
