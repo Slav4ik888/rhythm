@@ -23,9 +23,10 @@ export const CardItemConfigurator: FC = memo(() => {
   const { editMode, selectedId, selectedItem, entities, prevStoredCard, setSelectedId, setEditMode, serviceUpdateCardItem } = useDashboardView();
   const [value, setValue] = useState('1');
   const isSettings = useMemo(() =>
-    selectedItem?.type === 'chart' ||
-    selectedItem?.type === 'chip'  ||
-    selectedItem?.type === 'growthIcon', [selectedItem]);
+    selectedItem?.type === 'chart'      ||
+    selectedItem?.type === 'chip'       ||
+    selectedItem?.type === 'growthIcon' ||
+    selectedItem?.type === 'digitIndicator', [selectedItem]);
   
   const handleChange = (event: SyntheticEvent, newValue: string) => setValue(newValue);
 

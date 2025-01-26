@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { FC, memo } from 'react';
 import { Box } from '@mui/material';
 import { DashboardStatisticItem } from '../../../../../model/types';
 import { GrowthResult } from '../growth-result';
@@ -9,9 +9,9 @@ import { ReportsLineChartConfig } from 'entities/dashboard-data';
 
 const useStyles = () => ({
   root: {
-    display       : "flex",
-    // justifyContent : "center",
-    // alignItems: "center",
+    display       : 'flex',
+    // justifyContent : 'center',
+    // alignItems: 'center',
   },
 });
 

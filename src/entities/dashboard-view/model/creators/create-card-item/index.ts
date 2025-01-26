@@ -68,5 +68,14 @@ export const createCardItem = (
     }
   }
 
+  if (cfg.type === 'digitIndicator') {
+    cardItem.styles = {
+      ...cardItem.styles,
+      ...f('-c-c'),
+      width : 100,
+      p     : 4,
+    }
+  }
+
   return cardItem;
 }

@@ -2,10 +2,10 @@ import { FC, memo } from 'react';
 import { Box } from '@mui/material';
 import { MDTypography } from 'shared/ui/mui-design-components';
 import { ReportsResultChangesConfig } from '../../../../reports';
-import { getComparisonValues } from './utils';
 import { Tooltip } from 'shared/ui/tooltip';
 import { f } from 'shared/styles';
-import { getReversedIndicators } from 'widgets/dashboard-view/body-content/content-item/growth-icon/model/utils';
+import { getReversedIndicators } from 'widgets/dashboard-view/body-content/content-item/digit-indicator';
+import { getComparisonValues } from '../utils/get-comparison-values';
 
 
 /* Returns tooltip title for 1 & 2 indexes */

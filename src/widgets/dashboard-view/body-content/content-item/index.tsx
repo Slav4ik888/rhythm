@@ -5,6 +5,7 @@ import { ItemDivider } from './divider';
 import { ItemChart } from './chart';
 import { ItemChip } from './chip';
 import { ItemGrowthIcon } from './growth-icon';
+import { ItemDigitIndicator } from './digit-indicator';
 
 
 
@@ -20,11 +21,12 @@ export const DashboardBodyContentItem: FC<Props> = memo(({ item, parentsCardItem
 
   switch (item.type) {
     case 'box':
-    case 'text':       return <ItemBox        item={item} onSelect={onSelect} parentsCardItems={parentsCardItems} />;
-    case 'divider':    return <ItemDivider    item={item} onSelect={onSelect} />;
-    case 'chart':      return <ItemChart      item={item} onSelect={onSelect} />;
-    case 'chip':       return <ItemChip       item={item} onSelect={onSelect} />;
-    case 'growthIcon': return <ItemGrowthIcon item={item} onSelect={onSelect} />;
+    case 'text':           return <ItemBox            item={item} onSelect={onSelect} parentsCardItems={parentsCardItems} />;
+    case 'divider':        return <ItemDivider        item={item} onSelect={onSelect} />;
+    case 'chart':          return <ItemChart          item={item} onSelect={onSelect} />;
+    case 'chip':           return <ItemChip           item={item} onSelect={onSelect} />;
+    case 'growthIcon':     return <ItemGrowthIcon     item={item} onSelect={onSelect} />;
+    case 'digitIndicator': return <ItemDigitIndicator item={item} onSelect={onSelect} />;
 
     default: return <ItemBox item={item} onSelect={onSelect} parentsCardItems={parentsCardItems} />;
   }

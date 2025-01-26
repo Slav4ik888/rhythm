@@ -12,8 +12,7 @@ const useStyles = (color: string) => ({
   button: {
     root: {
       color,
-      marginLeft : pxToRem(16),
-      fontSize   : '0.7rem',
+      fontSize: '0.7rem',
     }
   },
   icon: {

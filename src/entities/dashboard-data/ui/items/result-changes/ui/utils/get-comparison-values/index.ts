@@ -1,6 +1,5 @@
-import { getValueAndPrefix, ValueAndPrefix } from 'widgets/dashboard-view/body-content/content-item/growth-icon/model/utils';
-import { ReportsResultChangesConfig } from '../../../../../../reports';
-
+import { ReportsResultChangesConfig } from 'entities/dashboard-data/ui/reports';
+import { getValueAndPrefix, ValueAndPrefix } from 'widgets/dashboard-view/body-content/content-item/digit-indicator/model/utils';
 
 
 

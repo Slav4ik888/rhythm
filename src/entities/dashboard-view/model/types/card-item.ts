@@ -4,7 +4,7 @@ import { ItemStyles } from './item-styles'
 
 
 
-export type CardItemType = 'box' | 'text' | 'divider' | 'chart' | 'chip' | 'growthIcon'
+export type CardItemType = 'box' | 'text' | 'divider' | 'chart' | 'chip' | 'growthIcon' | 'digitIndicator'
 
 export type CardItemId = string
 

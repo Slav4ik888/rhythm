@@ -3,7 +3,8 @@ import { CardItem, CardItemId } from 'entities/dashboard-view';
 import { ItemWrapper } from '../../wrapper-item';
 import { Increased, useDashboardData } from 'entities/dashboard-data';
 import { GrowthIconComponent } from './component';
-import { calcIncreased, getReversedIndicators } from '../model/utils';
+import { calcIncreased } from '../model/utils';
+import { getReversedIndicators } from '../../digit-indicator';
 
 
 
