@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "add ItemDigitIndicator" && git push -u origin main
+// git add . && git commit -m "refact SelectKod" && git push -u origin main

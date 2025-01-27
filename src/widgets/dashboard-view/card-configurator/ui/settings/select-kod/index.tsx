@@ -1,19 +1,20 @@
 import { FC, memo } from 'react';
-import { SelectByField } from '../select-by-field';
+import { RowSelectByField } from '../../base-features-components';
 import { useDashboardData } from 'entities/dashboard-data';
+import { SelectKodItem } from './item';
 
 
 
-/**  */
 export const SelectKod: FC = memo(() => {
   const { kods } = useDashboardData();
 
   return (
-    <SelectByField
-      field     = 'kod'
+    <RowSelectByField
+      scheme    = 'settings.kod'
       title     = 'Код'
       toolTitle = 'Укажите код статистики для графика'
       array     = {kods}
+      component = {SelectKodItem}
     />
   )
 });

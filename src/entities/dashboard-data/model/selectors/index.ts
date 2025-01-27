@@ -1,5 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/store';
+import { sortingArr } from 'shared/helpers/sorting';
 import { StateSchemaDashboardData, DashboardDataEntities } from '../slice/state-schema';
 
 
@@ -15,7 +16,10 @@ export const selectStartDates     = createSelector(selectModule, (state: StateSc
 
 /** Returns sorted list of all kods */
 export const selectKods = createSelector(selectStartEntities, (startEntities: DashboardDataEntities) => {
-  return Object.values(startEntities).map(entity => entity.kod).sort()
+  return sortingArr(
+    Object.values(startEntities).map(entity => ({ value: entity.kod, title: entity.title })),
+    'value'
+  )
 });
   
 export const selectLastUpdated    = createSelector(selectModule, (state: StateSchemaDashboardData) => state.lastUpdated);

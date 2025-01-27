@@ -1,7 +1,8 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, FC, useState } from 'react';
 import { Chip, FormControl, MenuItem } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { f, SxCard, pxToRem } from 'shared/styles';
+import { isStr } from 'shared/lib/validators';
 
 
 
@@ -29,13 +30,14 @@ const useStyles = (sx?: SxCard) => ({
 
 interface Props<T> {
   selectedValue : T
-  array         : T[]
+  array         : T[] | any[] // any if component present
+  component?    : FC<any> // Если нужен не стандартный компонент вместо item
   sx?           : SxCard
   onSelect      : (value: T) => void
 }
 
 
-export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, array, onSelect }: Props<T>) => {
+export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, array, component: ComponentItem, onSelect }: Props<T>) => {
   const sx = useStyles(style);
   const [openSelect, setOpenSelect] = useState(false);
 
@@ -68,10 +70,14 @@ export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, a
           >
             {
               array.map((item) => <MenuItem
-                key   = {item}
-                value = {item}
+                key   = {isStr(item) ? item : item?.value}
+                value = {isStr(item) ? item : item?.value}
               >
-                {item}
+                {
+                  ComponentItem
+                    ? <ComponentItem item={item} />
+                    : item
+                }
               </MenuItem>)
             }
           </Select>
