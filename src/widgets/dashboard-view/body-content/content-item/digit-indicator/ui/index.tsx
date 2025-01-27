@@ -6,13 +6,11 @@ import { getComparisonValues, getReversedIndicators } from '../model/utils';
 import { Typography } from '@mui/material';
 import { pxToRem } from 'shared/styles';
 import { CustomTheme, useTheme } from 'app/providers/theme';
+import { ItemDigitIndicatorValue } from './value';
 
 
 
 const useStyles = (theme: CustomTheme) => ({
-  value: {
-
-  },
   prefix: {
 
   },
@@ -38,9 +36,9 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
     getReversedIndicators(statisticItem?.data, count), // 0 - lastValue, 1 - prevValue, 2 - nextValue
     count,
     {
-      reduce         : false, // Убрать разряды: 12 500 700 => 12.5 млн
-      fractionDigits : 2,  // Количество знаков после запятой
-      addZero        : false, // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+      reduce         : item?.settings?.reduce,         // Убрать разряды: 12 500 700 => 12.5 млн
+      fractionDigits : item?.settings?.fractionDigits, // Количество знаков после запятой
+      addZero        : item?.settings?.addZero,        // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
     }
   ), [activeEntities, item]);
 
@@ -59,11 +57,7 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
       {/* +- или не нужно */}
 
       {/* Число */}
-      <Typography sx={sx.value}>
-        {
-          values[0] && values[0].value
-        }
-      </Typography>
+      <ItemDigitIndicatorValue item={item} value={values[0]?.value} />
 
       {/* Ед изменения */}
       <Typography sx={sx.prefix}>

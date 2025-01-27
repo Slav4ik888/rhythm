@@ -54,7 +54,9 @@ export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
       sx      = {sx.root}
       onClick = {handleClick}
     >
-      <Box sx={sx.hover} />
+      {
+        editMode && <Box sx={sx.hover} />
+      }
       {
         children
       }

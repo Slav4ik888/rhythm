@@ -1,5 +1,6 @@
 import { ItemBase } from 'entities/base'
 import { ChartConfigDatasets, ChartConfigOptions, ChartType } from 'entities/charts'
+import { IndicatorsConfig } from './config'
 import { ItemStyles } from './item-styles'
 
 
@@ -30,14 +31,12 @@ export const chipOptions: Record<ChipType, { label: string; value: ChipType }> =
 export const arrayChipLabel = Object.values(chipOptions).map(item => item.label);
 
 
-export interface CardItemSettings {
+export type CardItemSettings = IndicatorsConfig & {
   // Global settings
   display?        : boolean // Показывать ли элемент
   kod?            : string  // Код для одиночного элемента Chip | GrowthItem |
   inverted?       : boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
   unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
-  fractionDigits? : number  // Количество знаков после запятой
-  addZero?        : boolean // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
   
   // Chart settings
   charts?         : CardItemCharts[]
@@ -49,11 +48,14 @@ export interface CardItemSettings {
   // GrowthItem settings
   scale?          : number  // Изменение размера треуголька
   isLeft?         : boolean // При отсутствии изменений чёрный треугольник повернуть влево
-
 }
 
 export type CardItemSettingsField = keyof CardItemSettings;
 
+
+// ------------------------------------- //
+// ------------  CARD-ITEM  ------------ //
+// ------------------------------------- //
 
 export interface CardItem extends ItemBase {
   id           : CardItemId
