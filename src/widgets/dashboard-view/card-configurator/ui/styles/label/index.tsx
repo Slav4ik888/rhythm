@@ -6,6 +6,7 @@ import { SetColor } from './set-color';
 import { FontSizeRow } from './font-size-row';
 import { FontWeightRow } from './font-weight-row';
 import { FontStyleRow } from './font-style-row';
+import { LineHeightRow } from './line-height-row';
 
 
 
@@ -17,16 +18,17 @@ interface Props {
 export const CardLabel: FC<Props> = memo(({ onChange }) => {
   const { selectedItem: { type } } = useDashboardView();
 
-  if (type !== 'text') return null
+  if (type !== 'text' && type !== 'digitIndicator') return null
 
   return (
     <SubHeader title='Текст'>
-      <LabelRow />
+      {type === 'text' && <LabelRow />}
       <FontSizeRow />
       <FontStyleRow  onChange={onChange} />
       <FontWeightRow onChange={onChange} />
-      
+      <LineHeightRow />
       {/* font-family */}
+
       <SetColor onChange={onChange} />
     </SubHeader>
   )

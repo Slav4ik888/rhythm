@@ -1,20 +1,29 @@
 import { FC, memo, useMemo } from 'react';
 import { CardItem, CardItemId } from 'entities/dashboard-view';
 import { ItemWrapper } from '../../wrapper-item';
-import { DashboardStatisticItem, useDashboardData } from 'entities/dashboard-data';
-import { getComparisonValues, getReversedIndicators } from '../model/utils';
+import { DashboardStatisticItem, Increased, useDashboardData } from 'entities/dashboard-data';
+import { getColorByIncreased, getComparisonValues, getIncreased, getReversedIndicators } from '../model/utils';
 import { Typography } from '@mui/material';
 import { pxToRem } from 'shared/styles';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { ItemDigitIndicatorValue } from './value';
+import { ItemDigitIndicatorPrefix } from './prefix';
 
 
 
-const useStyles = (theme: CustomTheme) => ({
-  prefix: {
+const useStyles = (theme: CustomTheme, item: CardItem, increased: Increased) => {
+  let color = '';
+  
+  // Если указано что цвет по росту/падению
+  if (item?.settings?.growthColor) {
+    color = getColorByIncreased(theme, increased, item?.settings?.unchangedBlack);
+  }
+  else if (item?.styles?.color) {
+    color = item?.styles?.color;
+  }
 
-  },
-});
+  return color
+};
 
 
 
@@ -26,8 +35,9 @@ interface Props {
 
 /** Item digitIndicator */
 export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
-  const sx = useStyles(useTheme());
   const { activeEntities } = useDashboardData();
+  const increased = useMemo(() => getIncreased(item, activeEntities), [item, activeEntities]);
+  const color = useStyles(useTheme(), item, increased);
 
   const statisticItem = useMemo(() => activeEntities[item.settings?.kod || ''] as DashboardStatisticItem<number>, [activeEntities, item]);
   // Числа для сравнений последнее или предпоследнее или предпредпоследнее (по указанному индексу с конца)
@@ -42,10 +52,7 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
     }
   ), [activeEntities, item]);
 
-  // +- или не нужно
-  // Цвет - рост/падение | просто цвет
-  //  - рост/падение - нужно 2 значения для вычисления цвета маркера
-  //  - просто цвет
+  
   // Да/Нет - Разделитель разрядов (пробелом)
   // Ед. изменения
   //  - размер (такой же как цифры или другой)
@@ -57,14 +64,18 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
       {/* +- или не нужно */}
 
       {/* Число */}
-      <ItemDigitIndicatorValue item={item} value={values[0]?.value} />
+      <ItemDigitIndicatorValue
+        item  = {item}
+        value = {values[0]?.value}
+        color = {color}
+      />
 
       {/* Ед изменения */}
-      <Typography sx={sx.prefix}>
-        {
-          values[0] && values[0].prefix
-        }
-      </Typography>
+      <ItemDigitIndicatorPrefix
+        item  = {item}
+        value = {values[0]?.prefix}
+        color = {color}
+      />
     </ItemWrapper>
   )
 });

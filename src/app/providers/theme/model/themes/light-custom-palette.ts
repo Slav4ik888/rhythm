@@ -126,8 +126,8 @@ export const customPalette = {
   } as Color,
   
   subHeader: {
-    light: '#6c925a', // shaddow
-    main: '#2a6c0b',  // color
+    light: '#93b8cc', // shaddow
+    main: '#4d6e7f',  // color
     dark: '#000000',
     focus: '#000000',
     contrastText: '#000000',

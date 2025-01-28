@@ -1,10 +1,11 @@
-import { FC, memo } from 'react';
+import { FC, memo, MouseEvent } from 'react';
 import { RowWrapper } from 'shared/ui/configurators-components';
 import { BaseChipType, ChipContainer } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { ColorSettingsType, useCompany } from 'entities/company';
 import { Box } from '@mui/material';
-import { f } from 'shared/styles';
+import { f, pxToRem } from 'shared/styles';
+import { Input } from 'shared/ui/containers';
 
 
 
@@ -27,6 +28,15 @@ export const SetColorsItem: FC<Props> = memo(({ type, label }) => {
         }
     }});
   };
+
+  const handleSubmit = (e: MouseEvent, title: string | number) => {
+    updateCustomSettings({
+      [type]: {
+        [label]: {
+          title
+        }
+    }});
+  };
   
 
   return (
@@ -36,6 +46,22 @@ export const SetColorsItem: FC<Props> = memo(({ type, label }) => {
         toolTitle = {label}
         sx        = {{ color, background }}
       />
+
+      {
+        type === 'periodType' && (
+          <Input
+            defaultValue = {customSettings?.[type]?.[label]?.title || ''}
+            changesValue = {customSettings?.[type]?.[label]?.title || ''}
+            toolTitle    = 'Введите название поля'
+            sx           = {{ field: { height: pxToRem(40)}}}
+            onBlur       = {handleSubmit}
+            onChange     = {() => {}}
+            onSubmit     = {handleSubmit}
+          />
+        )
+      }
+      
+
       <Box sx={f()}>
         <ColorPicker
           defaultColor = {color}

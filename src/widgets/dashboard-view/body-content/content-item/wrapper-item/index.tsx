@@ -1,14 +1,14 @@
 import { FC, memo, ReactNode } from 'react';
 import { CardItem, CardItemId, stylesToSx, ItemStyles, useDashboardView } from 'entities/dashboard-view';
 import { Box } from '@mui/material';
+import { SxCard } from 'shared/styles';
 
 
 
 const useStyles = (styles: ItemStyles, editMode: boolean) => {
-
   const root: any = {
     position: 'relative',
-    ...stylesToSx(styles)
+    ...stylesToSx(styles),
   };
 
   const hover: any = {

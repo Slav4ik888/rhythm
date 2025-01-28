@@ -10,7 +10,7 @@ import { f, pxToRem } from 'shared/styles';
 import { SxSmallContainer } from 'entities/dashboard-data';
 import { isNotUndefined } from 'shared/lib/validators';
 import { cloneObj } from 'shared/helpers/objects';
-import { getColorByIncreased } from 'widgets/dashboard-view/body-content/content-item/growth-icon/model/utils';
+import { getColorByIncreased } from 'widgets/dashboard-view/body-content/content-item/digit-indicator/model/utils';
 
 
 

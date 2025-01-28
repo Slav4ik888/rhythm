@@ -6,8 +6,8 @@ import UnchangedLeftIcon from './assets/triangle-unchanged-left.svg';
 import UnchangedRightIcon from './assets/triangle-unchanged-right.svg';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { f, SxCard } from 'shared/styles';
-import { getColorByIncreased } from '../model/utils';
 import { Increased } from 'entities/dashboard-data';
+import { getColorByIncreased } from '../../digit-indicator/model/utils';
 
 
 

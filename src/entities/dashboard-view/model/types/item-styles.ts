@@ -71,6 +71,7 @@ export interface ItemStyles {
   fontWeight?   : number
   fontStyle?    : FontStyleType
   fontFamily?   : string
+  lineHeight?   : number
 
   // textAlign?: string
   // textDecoration?: string

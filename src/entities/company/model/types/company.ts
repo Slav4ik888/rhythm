@@ -33,6 +33,7 @@ export type CompanyDashboardData = ReactElement<any, any>
 export type ColorSettingsType = 'color' | 'background'
 
 export interface ColorSettings {
+  title?      : string // Можно исп для periodType, напр. "Мес" | "Нед"
   color?      : string
   background? : string
 }

@@ -6,6 +6,7 @@ import { f, pxToRem } from 'shared/styles';
 import { useUser } from 'entities/user';
 import { useCompany } from 'entities/company';
 import { CardItemType } from 'entities/dashboard-view/model/types';
+import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 
 
 
@@ -30,7 +31,7 @@ export const AddRows: FC = memo(() => {
   if (type !== 'box') return null
 
   return (
-    <>
+    <SubHeader title='Добавление элементов'>
       <RowWrapper sx={{ ...f('-c-fe'), flexWrap: 'wrap', gap: pxToRem(8) } }>
         <AddCardElementBtns onClick={handleAdd} />
       </RowWrapper>
@@ -39,6 +40,6 @@ export const AddRows: FC = memo(() => {
         {/* TODO: select chart type: line | bar ... */}
         <AddCardIndicatorsBtns onClick={handleAdd} />
       </RowWrapper>
-    </>
+    </SubHeader>
   )
 });

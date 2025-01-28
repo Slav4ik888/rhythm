@@ -7,8 +7,8 @@ import { GrowthIcon } from './growth-icon';
 import { getFixedFraction } from 'shared/helpers/numbers';
 import { ReportsResultChangesConfig, SxSmallContainer } from 'entities/dashboard-data';
 import { f } from 'shared/styles';
-import { calcGrowthChange, calcIncreased, getGrowIconTypeByIncreased } from 'widgets/dashboard-view/body-content/content-item/growth-icon/model/utils';
-import { getValueAndPrefix, getReversedIndicators } from 'widgets/dashboard-view/body-content/content-item/digit-indicator/model/utils';
+import { calcGrowthChange, getGrowIconTypeByIncreased } from 'widgets/dashboard-view/body-content/content-item/growth-icon/model/utils';
+import { getValueAndPrefix, getReversedIndicators, calcIncreased } from 'widgets/dashboard-view/body-content/content-item/digit-indicator/model/utils';
 
 
 

@@ -14,7 +14,7 @@ const useStyles = (theme: CustomTheme) => ({
     ...f('-c-c'),
     fontSize   : '1.3rem',
     color      : theme.palette.subHeader.main,
-    textShadow : `0px 0px 3px ${theme.palette.subHeader.light}`,
+    textShadow : `0px 0px 1px ${theme.palette.subHeader.light}`,
     my         : 3,
   },
 });

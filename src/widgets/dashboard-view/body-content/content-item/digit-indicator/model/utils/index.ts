@@ -1,3 +1,6 @@
+export * from './calc-increased'
+export * from './get-color-by-increased'
 export * from './get-comparison-values'
+export * from './get-increased'
 export * from './get-reversed-indicators'
 export * from './get-value-and-prefix'

@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { CardMain } from './id';
+import { CardMain } from './card-main';
 import { DangerZone } from './danger-zone';
 
 

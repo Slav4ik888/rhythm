@@ -12,6 +12,11 @@ export const CardItemDigitIndicatorSettingsConfigurator: FC = memo(() => {
     <>
       <SelectKod />
       <RowFlagByScheme
+        scheme    = 'settings.growthColor'
+        title     = 'growthColor'
+        toolTitle = 'Красить зелёным при росте / красным при падении'        
+      />
+      <RowFlagByScheme
         scheme    = 'settings.reduce'
         title     = 'reduce'
         toolTitle = 'Убрать разряды: 12 500 700 => 12.5 млн'        

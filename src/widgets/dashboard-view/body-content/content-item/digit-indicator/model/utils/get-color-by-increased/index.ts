@@ -1,6 +1,6 @@
 import { CustomTheme } from 'app/providers/theme';
 import { Increased } from 'entities/dashboard-data';
-import { getGrowIconTypeByIncreased } from '../get-grow-icon-type-by-increased';
+import { getGrowIconTypeByIncreased } from '../../../../growth-icon/model/utils/get-grow-icon-type-by-increased';
 
 
 /** Цвет исходя рост или падение */

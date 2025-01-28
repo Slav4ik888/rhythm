@@ -1,10 +1,9 @@
 import { FC, memo, useMemo } from 'react';
 import { CardItem, CardItemId } from 'entities/dashboard-view';
 import { ItemWrapper } from '../../wrapper-item';
-import { Increased, useDashboardData } from 'entities/dashboard-data';
+import { useDashboardData } from 'entities/dashboard-data';
 import { GrowthIconComponent } from './component';
-import { calcIncreased } from '../model/utils';
-import { getReversedIndicators } from '../../digit-indicator';
+import { getIncreased } from '../../digit-indicator';
 
 
 
@@ -18,13 +17,14 @@ export const ItemGrowthIcon: FC<Props> = memo(({ item, onSelect }) => {
   const { activeEntities } = useDashboardData();
   // const { display, fractionDigits, addZero, kod = '' } = item.settings || {};
   
-  const [lastValue, prevValue] = useMemo(() => {
-    const data = activeEntities[item.settings?.kod || '']?.data as number[] || [];
-    return getReversedIndicators(data)
-  }, [activeEntities]);
+  // const [lastValue, prevValue] = useMemo(() => {
+  //   const data = activeEntities[item.settings?.kod || '']?.data as number[] || [];
+  //   return getReversedIndicators(data)
+  // }, [activeEntities]);
 
-  const increased: Increased = calcIncreased(lastValue, prevValue, item.settings?.inverted);
+  // const increased: Increased = calcIncreased(lastValue, prevValue, item.settings?.inverted);
   
+  const increased = useMemo(() => getIncreased(item, activeEntities), [activeEntities, item]);
 
   return (
     <ItemWrapper item={item} onSelect={onSelect}>

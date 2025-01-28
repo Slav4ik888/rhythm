@@ -25,10 +25,9 @@ interface Props {
   color : string
 }
 
-/** Число */
-export const ItemDigitIndicatorValue: FC<Props> = memo(({ item, value, color }) => {
+/** Префикс */
+export const ItemDigitIndicatorPrefix: FC<Props> = memo(({ item, value, color }) => {
   const sx = useStyles(item, color);
-
   
 
   if (! value) return null

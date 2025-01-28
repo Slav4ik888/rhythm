@@ -34,8 +34,8 @@ export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
     }
     else if (type === 'period') {
       const period = kod ? activeEntities[kod]?.periodType : '' as StatisticPeriodType;
-      label      = period;
-      toolTitle  = period;
+      label      = customSettings?.periodType?.[period]?.title      || period;
+      toolTitle  = customSettings?.periodType?.[period]?.title      || period;
       color      = customSettings?.periodType?.[period]?.color      || '#000'; // theme.palette.statisticPeriodTypeChip[period]?.color;
       background = customSettings?.periodType?.[period]?.background || '#eee'; // theme.palette.statisticPeriodTypeChip[period]?.background;
     }

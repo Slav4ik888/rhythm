@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refact ItemWrapper & start CardItemDigitIndicatorSettingsConfigurator" && git push -u origin main
+// git add . && git commit -m "refact ItemChip & setup growthColor" && git push -u origin main
