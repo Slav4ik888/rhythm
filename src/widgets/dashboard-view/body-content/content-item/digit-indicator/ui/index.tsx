@@ -8,6 +8,7 @@ import { pxToRem } from 'shared/styles';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { ItemDigitIndicatorValue } from './value';
 import { ItemDigitIndicatorPrefix } from './prefix';
+import { ItemDigitIndicatorPlusMinus } from './plus-minus';
 
 
 
@@ -58,11 +59,17 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
   //  - размер (такой же как цифры или другой)
   //  - % | шт | (трил млрд млн тыс)
 
+  
 
   return (
     <ItemWrapper item={item} onSelect={onSelect}>
-      {/* +- или не нужно */}
-
+      
+      <ItemDigitIndicatorPlusMinus
+        item      = {item}
+        increased = {increased}
+        color     = {color}
+      />
+      
       {/* Число */}
       <ItemDigitIndicatorValue
         item  = {item}

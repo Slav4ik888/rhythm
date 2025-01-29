@@ -1,6 +1,7 @@
 import { FC, memo } from 'react';
 import { CardItem, stylesToSx } from 'entities/dashboard-view';
 import { Typography } from '@mui/material';
+import { isUndefined } from 'shared/lib/validators';
 
 
 
@@ -31,7 +32,7 @@ export const ItemDigitIndicatorValue: FC<Props> = memo(({ item, value, color }) 
 
   
 
-  if (! value) return null
+  if (isUndefined(value)) return null
 
   return (
     <Typography sx={sx.root}>

@@ -12,6 +12,11 @@ export const CardItemDigitIndicatorSettingsConfigurator: FC = memo(() => {
     <>
       <SelectKod />
       <RowFlagByScheme
+        scheme    = 'settings.plusMinus'
+        title     = 'plusMinus'
+        toolTitle = 'Показывать знак + при росте / - при падении'        
+      />
+      <RowFlagByScheme
         scheme    = 'settings.growthColor'
         title     = 'growthColor'
         toolTitle = 'Красить зелёным при росте / красным при падении'        

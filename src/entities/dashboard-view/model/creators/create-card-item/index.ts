@@ -18,6 +18,7 @@ const BASE_SX: ItemStyles = {
   borderWidth  : 1,
   borderColor  : 'rgba(146, 146, 146, 1)',
   borderRadius : 4,
+  lineHeight   : 1,
   m            : 0,
   p            : 24,
 };
