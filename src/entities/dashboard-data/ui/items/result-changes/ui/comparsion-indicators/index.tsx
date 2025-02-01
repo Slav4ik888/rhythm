@@ -68,12 +68,12 @@ export const ComparisonIndicators: FC<Props> = memo(({ data, config = {} }) => {
                 {values[i].value}
               </MDTypography>
               {
-                values[i].prefix && <MDTypography
+                values[i].reduction && <MDTypography
                   variant = {i === 0 ? 'h6' : 'body1'}
                   color   = {i === 0 ? 'comparisonIndicators_1' : 'comparisonIndicators_2'}
                   sx      = {i === 0 ? sx.firstPrefix : sx.prefixSecond}
                 >
-                  {values[i].prefix}
+                  {values[i].reduction}
                 </MDTypography>
               }
             </Box>

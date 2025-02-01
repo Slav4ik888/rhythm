@@ -30,12 +30,11 @@ interface Props {
 export const ItemDigitIndicatorValue: FC<Props> = memo(({ item, value, color }) => {
   const sx = useStyles(item, color);
 
-  
 
   if (isUndefined(value)) return null
 
   return (
-    <Typography sx={sx.root}>
+    <Typography component='span' sx={sx.root}>
       {
         value
       }

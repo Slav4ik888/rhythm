@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { CardItem, stylesToSx } from 'entities/dashboard-view';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { Increased } from 'entities/dashboard-data';
 
 
@@ -42,10 +42,10 @@ export const ItemDigitIndicatorPlusMinus: FC<Props> = memo(({ item, increased, c
       : '';
 
   return (
-    <Box sx={sx.root}>
+    <Typography component='span' sx={sx.root}>
       {
         char
       }
-    </Box>
+    </Typography>
   )
 });

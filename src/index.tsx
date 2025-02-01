@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "add ItemDigitIndicatorPlusMinus" && git push -u origin main
+// git add . && git commit -m "setup ItemDigitIndicatorEnding" && git push -u origin main

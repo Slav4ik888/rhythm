@@ -52,7 +52,7 @@ export const createCardItem = (
       // boxShadow    : '1px 1px 3px 0px rgba(184, 184, 184, 1)',
       background   : 'rgba(255, 255, 255, 1)',
       color        : 'rgba(70, 70, 70, 1)',
-    }
+    };
   }
 
   if (cfg.type === 'chart') {
@@ -65,8 +65,8 @@ export const createCardItem = (
     cardItem.styles = {
       ...cardItem.styles,
       ...f('c-c-c'), // Чтобы треугольник выравнился по центру, а не был прилеплен сверху
-      width : 40,
-    }
+      width: 40,
+    };
   }
 
   if (cfg.type === 'digitIndicator') {
@@ -75,7 +75,7 @@ export const createCardItem = (
       ...f('-c-c'),
       width : 100,
       p     : 4,
-    }
+    };
   }
 
   return cardItem;

@@ -8,7 +8,7 @@ import { getFixedFraction } from 'shared/helpers/numbers';
 import { ReportsResultChangesConfig, SxSmallContainer } from 'entities/dashboard-data';
 import { f } from 'shared/styles';
 import { calcGrowthChange, getGrowIconTypeByIncreased } from 'widgets/dashboard-view/body-content/content-item/growth-icon/model/utils';
-import { getValueAndPrefix, getReversedIndicators, calcIncreased } from 'widgets/dashboard-view/body-content/content-item/digit-indicator/model/utils';
+import { getValueAndReduction, getReversedIndicators, calcIncreased } from 'widgets/dashboard-view/body-content/content-item/digit-indicator/model/utils';
 
 
 
@@ -49,7 +49,7 @@ export const GrowthResult: FC<Props> = memo(({ config, data, sx: style }) => {
   
   // Value
   const { display: displayValue } = growthResult?.value || {};
-  const { value: growthValue, prefix } = getValueAndPrefix(lastValue - prevValue, growthResult?.value);
+  const { value: growthValue, reduction } = getValueAndReduction(lastValue - prevValue, growthResult?.value);
 
   // Increased
   const increased: Increased = calcIncreased(lastValue, prevValue, inverted);
@@ -70,7 +70,7 @@ export const GrowthResult: FC<Props> = memo(({ config, data, sx: style }) => {
         
         {
           displayValue && <GrowthChange
-            value     = {growthValue}
+            value     = {(growthValue || '') as string}
             color     = {resultColor}
             increased = {increased}
             sx        = {style}

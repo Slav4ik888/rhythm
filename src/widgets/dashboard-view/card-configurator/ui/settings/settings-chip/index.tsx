@@ -4,6 +4,7 @@ import { SelectChipType } from './select-chip';
 import { useDashboardView } from 'entities/dashboard-view';
 import { SetupChipsColorsByType } from './setup-chips-colors-by-type';
 import { SelectKod } from '../select-kod';
+import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 
 
 
@@ -14,12 +15,11 @@ export const CardItemChipSettingsConfigurator: FC = memo(() => {
 
   return (
     <>
-      {/* GLOBAL SETTINGS */}
-      <InvertedData />
-
-      {/* CHIP SETTINGS */}
-      <SelectKod />
-      <SelectChipType />
+      <SubHeader title='Общие настройки'>
+        <InvertedData />
+        <SelectKod />
+        <SelectChipType />
+      </SubHeader>
 
       {
         selectedItem.settings?.chipType === 'period'
