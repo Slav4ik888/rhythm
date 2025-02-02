@@ -14,6 +14,12 @@ export const CardItemDigitIndicatorSettingsConfigurator: FC = memo(() => {
     <>
       <SubHeader title='Общие настройки'>
         <SelectKod />
+        <RowInputByScheme
+          scheme    = 'settings.valueNumber'
+          type      = 'number'
+          title     = 'valueNumber'
+          toolTitle = 'Номер значения статистики, в обратном порядке (1 - последнее, 2 - предпоследнее)'
+        />
         <RowFlagByScheme
           scheme    = 'settings.plusMinus'
           title     = 'plusMinus'

@@ -10,11 +10,11 @@ export interface ValueStringAndReduction {
 /** Показатели для сравнения */
 export const getComparisonValues = (
   values : number[],
-  count  : number,
+  count  : number = 2,
   config : IndicatorsConfig = {}
 ): ValueStringAndReduction[] => {
 
   return values
-    .slice(0, count) // Оставляем нужное кол-во значений
+    .slice(0, count < 2 ? 2 : count) // Оставляем нужное кол-во значений, минимум 2
     .map(startValue => getValueAndReduction(startValue, config));
 };

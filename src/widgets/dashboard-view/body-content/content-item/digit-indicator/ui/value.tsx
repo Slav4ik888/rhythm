@@ -1,7 +1,8 @@
-import { FC, memo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { CardItem, stylesToSx } from 'entities/dashboard-view';
 import { Typography } from '@mui/material';
 import { isUndefined } from 'shared/lib/validators';
+import { Tooltip } from 'shared/ui/tooltip';
 
 
 
@@ -14,6 +15,7 @@ const useStyles = (item: CardItem, color: string) => {
   return {
     root: {
       ...root,
+      cursor: 'default',
       color,
     },
   }
@@ -26,18 +28,24 @@ interface Props {
   color : string
 }
 
+
 /** Число */
 export const ItemDigitIndicatorValue: FC<Props> = memo(({ item, value, color }) => {
   const sx = useStyles(item, color);
 
+  const toolTitle = useMemo(() => {
+    if (isUndefined(item?.settings?.kod)) return 'Не выбран код статистики';
+    if (value === '-') return 'Отсутствует значение статистики';
+  }, [item, value]);
 
-  if (isUndefined(value)) return null
 
   return (
-    <Typography component='span' sx={sx.root}>
-      {
-        value
-      }
-    </Typography>
+    <Tooltip title={toolTitle}>
+      <Typography component='span' sx={sx.root}>
+        {
+          value
+        }
+      </Typography>
+    </Tooltip>
   )
 });
