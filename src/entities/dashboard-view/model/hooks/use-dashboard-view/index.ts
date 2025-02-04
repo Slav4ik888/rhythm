@@ -5,15 +5,15 @@ import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
 import { ChangeOneSettingsField, ChangeSelectedStyle, ChangeOneDatasetsItem, ChangeOneChartsItem } from '../../slice/types';
 import { ActivatedCompanyId } from 'entities/company';
-import { CardItem, CardItemId, ItemStyles, ItemStylesField, PartialCardItem } from '../../types';
-import { addNewCard, deleteCard, DeleteCard, UpdateCardItem, updateCardItem as updateCardItemOnServer } from 'features/dashboard-view';
+import { ViewItem, ViewItemId, ViewItemStyles, ViewItemStylesField, PartialViewItem } from '../../types';
+import { addNewViewItem, deleteViewItem, DeleteViewItem, UpdateViewItem, updateViewItem as updateViewItemOnServer } from 'features/dashboard-view';
 import { StateSchemaDashboardView } from '../../slice/state-schema';
 
 
 
 interface Config {
-  parentId? : CardItemId
-  field?    : ItemStylesField
+  parentId? : ViewItemId
+  field?    : ViewItemStylesField
 }
 
 export const useDashboardView = (config: Config = {}) => {
@@ -31,35 +31,35 @@ export const useDashboardView = (config: Config = {}) => {
     editMode            = useSelector(s.selectEditMode),
     setEditMode         = (editMode: boolean) => dispatch(a.setEditMode(editMode)),
     entities            = useSelector(s.selectEntities),
-    cardItems           = useSelector(s.selectCardItems),
-    parentsCardItems    = useSelector(s.selectParentsCardItems),
-    updateCardItem      = (data: PartialCardItem) => dispatch(a.updateCardItem(data)),
+    viewItems           = useSelector(s.selectViewItems),
+    parentsViewItems    = useSelector(s.selectParentsViewItems),
+    updateViewItem      = (data: PartialViewItem) => dispatch(a.updateViewItem(data)),
     
     // Movement
     activatedMovementId = useSelector(s.selectActivatedMovementId),
     setActiveMovementId = () => dispatch(a.setActiveMovementId()),
     clearActivatedMovementId = () => dispatch(a.clearActivatedMovementId()),
 
-    // Card
+    // View
     selectedId          = useSelector(s.selectSelectedId),
-    setSelectedId       = (id: CardItemId) => dispatch(a.setSelectedId(id)),
+    setSelectedId       = (id: ViewItemId) => dispatch(a.setSelectedId(id)),
     selectedItem        = useSelector(s.selectSelectedItem),
 
-    newStoredCard       = useSelector(s.selectNewStoredCard),
-    prevStoredCard      = useSelector(s.selectPrevStoredCard),
-    updateNewStoredCard = (data: PartialCardItem) => dispatch(a.updateNewStoredCard(data)),
+    newStoredViewItem       = useSelector(s.selectNewStoredViewItem),
+    prevStoredViewItem      = useSelector(s.selectPrevStoredViewItem),
+    updateNewStoredViewItem = (data: PartialViewItem) => dispatch(a.updateNewStoredViewItem(data)),
 
-    selectChildrenCardItems = s.makeSelectChildrenCardItems(parentId as CardItemId),
-    childrenCardItems   = useSelector(selectChildrenCardItems),
-    parentChildrenIds   = childrenCardItems.map(item => item.id),
+    selectChildrenViewItems = s.makeSelectChildrenViewItems(parentId as ViewItemId),
+    childrenViewItems   = useSelector(selectChildrenViewItems),
+    parentChildrenIds   = childrenViewItems.map(item => item.id),
 
     // Styles
     changeOneStyleField = (data: ChangeSelectedStyle) => dispatch(a.changeOneStyleField(data)),
-    setSelectedStyles   = (data: ItemStyles) => dispatch(a.setSelectedStyles(data)),
+    setSelectedStyles   = (data: ViewItemStyles) => dispatch(a.setSelectedStyles(data)),
 
-    stylesByCardItemId  = useSelector(s.selectCardItemStyle),
+    stylesByViewItemId  = useSelector(s.selectViewItemStyle),
     
-    selectStyleByField  = s.makeSelectStyleByField(field as ItemStylesField),
+    selectStyleByField  = s.makeSelectStyleByField(field as ViewItemStylesField),
     styleValueByField   = useSelector(selectStyleByField),
  
     // Settings
@@ -69,14 +69,14 @@ export const useDashboardView = (config: Config = {}) => {
     changeOneDatasetsItem = (data: ChangeOneDatasetsItem) => dispatch(a.changeOneDatasetsItem(data)),
 
     // Services
-    serviceAddNewCard = (
+    serviceAddNewViewItem = (
       companyId   : ActivatedCompanyId,
-      cardItem    : CardItem,
-      // childrenIds : CardItemId[]
-    ) => dispatch(addNewCard({ companyId, cardItem })),
+      viewItem    : ViewItem,
+      // childrenIds : ViewItemId[]
+    ) => dispatch(addNewViewItem({ companyId, viewItem })),
 
-    serviceUpdateCardItem = (data: UpdateCardItem) => dispatch(updateCardItemOnServer(data)),
-    serviceDeleteCard     = (data: DeleteCard) => dispatch(deleteCard(data));
+    serviceUpdateViewItem = (data: UpdateViewItem) => dispatch(updateViewItemOnServer(data)),
+    serviceDeleteViewItem     = (data: DeleteViewItem) => dispatch(deleteViewItem(data));
 
   
   return {
@@ -90,19 +90,19 @@ export const useDashboardView = (config: Config = {}) => {
     editMode,
     setEditMode,
     entities,
-    cardItems,
-    parentsCardItems,
+    viewItems,
+    parentsViewItems,
     parentChildrenIds,
-    updateCardItem,
+    updateViewItem,
 
-    // Card
+    // View
     selectedId,
     setSelectedId,
     selectedItem,
-    newStoredCard,
-    prevStoredCard,
-    updateNewStoredCard,
-    childrenCardItems,
+    newStoredViewItem,
+    prevStoredViewItem,
+    updateNewStoredViewItem,
+    childrenViewItems,
 
     // Movement
     activatedMovementId,
@@ -112,7 +112,7 @@ export const useDashboardView = (config: Config = {}) => {
     // Styles
     changeOneStyleField,
     setSelectedStyles,
-    stylesByCardItemId,
+    stylesByViewItemId,
     styleValueByField,
 
     // Settings
@@ -121,8 +121,8 @@ export const useDashboardView = (config: Config = {}) => {
     changeOneDatasetsItem,
 
     // Services
-    serviceAddNewCard,
-    serviceUpdateCardItem,
-    serviceDeleteCard,
+    serviceAddNewViewItem,
+    serviceUpdateViewItem,
+    serviceDeleteViewItem,
   }
 };

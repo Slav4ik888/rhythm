@@ -1,4 +1,4 @@
-import { CardItem, CardItemId } from 'entities/dashboard-view';
+import { ViewItem, ViewItemId } from 'entities/dashboard-view';
 
 
 /**
@@ -6,9 +6,9 @@ import { CardItem, CardItemId } from 'entities/dashboard-view';
  * в предоставленный []
  */
 export const getAllChildrenIds = (
-  items       : CardItem[],
-  currentId   : CardItemId,
-  resultArray : CardItemId[]
+  items       : ViewItem[],
+  currentId   : ViewItemId,
+  resultArray : ViewItemId[]
 ) => {
   const childrenIds = items.filter(item => item.parentId === currentId).map(item => item.id);
   resultArray.push(currentId);

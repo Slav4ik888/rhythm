@@ -5,7 +5,7 @@ import { COMPANIES_CONFIG } from '../../model/config';
 import { CircularProgress } from 'shared/ui/circular-progress';
 import { DashboardBodyWrapper } from './wrapper';
 import { PageLoader } from 'widgets';
-import { DashboardBodyPanel, CardItemConfigurator, DashboardBodyContent } from 'widgets/dashboard-view';
+import { DashboardBodyPanel, ViewItemConfigurator, DashboardBodyContent } from 'widgets/dashboard-view';
 import { getInitialState as getInitialStateView, useDashboardView } from 'entities/dashboard-view';
 // import { DashboardBody_demo_pecar } from './templates';
 
@@ -32,7 +32,7 @@ export const DashboardBody = memo(() => {
   return companyId
     ? <DashboardBodyWrapper>
         <DashboardBodyPanel />
-        <CardItemConfigurator />
+        <ViewItemConfigurator />
         <DashboardBodyContent />
       
         {COMPANIES_CONFIG[companyId].dashboard}

@@ -2,18 +2,18 @@ import { memo, useCallback } from 'react';
 import { ContentRender } from './render-items';
 import { Box } from '@mui/material';
 import { f } from 'shared/styles';
-import { CardItemId, PartialCardItem, useDashboardView } from 'entities/dashboard-view';
+import { ViewItemId, PartialViewItem, useDashboardView } from 'entities/dashboard-view';
 import { useCompany } from 'entities/company';
 
 
 
 export const DashboardBodyContent = memo(() => {
   const { companyId } = useCompany();
-  const { editMode, selectedId, selectedItem, activatedMovementId, parentsCardItems, entities,
-    setSelectedId, updateCardItem, serviceUpdateCardItem } = useDashboardView();
+  const { editMode, selectedId, selectedItem, activatedMovementId, parentsViewItems, entities,
+    setSelectedId, updateViewItem, serviceUpdateViewItem } = useDashboardView();
 
 
-  const handleSelectCardItem = useCallback((id: CardItemId) => {
+  const handleSelectViewItem = useCallback((id: ViewItemId) => {
     if (! editMode || id === selectedId) return
 
     // Если активирован выбранный элемент для перемещения то его перемещаем в родительский элемент
@@ -24,12 +24,12 @@ export const DashboardBodyContent = memo(() => {
       if (entities[id].type !== 'box') return // Перемещать можно только в Box
 
       // У activatedMovementId изменяем parentId на выбранный id
-      const cardItem: PartialCardItem = {
+      const viewItem: PartialViewItem = {
         id       : activatedMovementId,
         parentId : id // Новый родительский элемент
       };
-      updateCardItem(cardItem); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
-      serviceUpdateCardItem({ companyId, cardItem });
+      updateViewItem(viewItem); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
+      serviceUpdateViewItem({ companyId, viewItem });
     } 
     else {
       setSelectedId(id);
@@ -40,9 +40,9 @@ export const DashboardBodyContent = memo(() => {
   return (
     <Box sx={{ ...f('c') }}>
       <ContentRender
-        parentsCardItems = {parentsCardItems}
+        parentsViewItems = {parentsViewItems}
         parentId         = 'no_parentId'
-        onSelect         = {handleSelectCardItem}
+        onSelect         = {handleSelectViewItem}
       />
     </Box>
   )

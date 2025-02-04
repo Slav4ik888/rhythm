@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { CardItem, useDashboardView } from 'entities/dashboard-view';
+import { ViewItem, useDashboardView } from 'entities/dashboard-view';
 import { Toward, TowardType } from './toward';
 import { calcNewOrder } from '../model/utils/calc-new-order';
 import { sortingArr } from 'shared/helpers/sorting';
@@ -7,19 +7,19 @@ import { sortingArr } from 'shared/helpers/sorting';
 
 
 interface Props {
-  cardItem: CardItem
+  viewItem: ViewItem
 }
 
 /**
  * Перемещение (изменение order) внутри родителя
  */
-export const MoveItemUpdownward: FC<Props> = memo(({ cardItem }) => {
-  const { childrenCardItems, updateCardItem } = useDashboardView({ parentId: cardItem.parentId });
+export const MoveItemUpdownward: FC<Props> = memo(({ viewItem }) => {
+  const { childrenViewItems, updateViewItem } = useDashboardView({ parentId: viewItem.parentId });
 
   const handleClick = (type: TowardType) => {
-    updateCardItem({
-      id    : cardItem.id,
-      order : calcNewOrder(type, sortingArr(childrenCardItems, 'order'), cardItem)
+    updateViewItem({
+      id    : viewItem.id,
+      order : calcNewOrder(type, sortingArr(childrenViewItems, 'order'), viewItem)
     });
   };
 

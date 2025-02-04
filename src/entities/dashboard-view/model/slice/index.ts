@@ -3,10 +3,10 @@ import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { StateSchemaDashboardView } from './state-schema';
-import { deleteCard, DeleteCard, AddNewCard, addNewCard, UpdateCardItem, updateCardItem } from 'features/dashboard-view';
+import { deleteViewItem, DeleteViewItem, AddNewViewItem, addNewViewItem, UpdateViewItem, updateViewItem } from 'features/dashboard-view';
 import { SetDashboardView, ChangeSelectedStyle, ChangeOneSettingsField, ChangeOneDatasetsItem, ChangeOneChartsItem } from './types';
 import { addEntities } from 'entities/base';
-import { CardItem, CardItemId, CardItemSettings, ItemStyles, PartialCardItem } from '../types';
+import { ViewItem, ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem } from '../types';
 // import { NO_PARENT_ID } from '../consts';
 import { cloneObj, updateObject } from 'shared/helpers/objects';
 import { updateChartsItem } from '../utils';
@@ -21,8 +21,8 @@ const initialState: StateSchemaDashboardView = {
   editMode            : false,
   entities            : {},
   selectedId          : '',
-  newStoredCard       : {}, // Начальные значения выбранного элемента
-  prevStoredCard      : {}, // Начальные значения предыдущего выбранного элемента
+  newStoredViewItem   : {}, // Начальные значения выбранного элемента
+  prevStoredViewItem  : {}, // Начальные значения предыдущего выбранного элемента
   activatedMovementId : '', // Активированный Id перемещаемого элемента
 };
 
@@ -34,8 +34,8 @@ export const slice = createSlice({
     setInitial: (state, { payload }: PayloadAction<StateSchemaDashboardView>) => {
       state.entities       = payload.entities       || {},
       state.selectedId     = payload.selectedId,
-      state.newStoredCard  = payload.newStoredCard  || {},
-      state.prevStoredCard = payload.prevStoredCard || {},
+      state.newStoredViewItem  = payload.newStoredViewItem  || {},
+      state.prevStoredViewItem = payload.prevStoredViewItem || {},
       state.loading        = payload.loading;
       state.errors         = payload.errors;
     },
@@ -47,7 +47,7 @@ export const slice = createSlice({
     },
 
     setDashboardView: (state, { payload }: PayloadAction<SetDashboardView>) => {
-      state.entities = addEntities(state.entities, payload.cardItems);
+      state.entities = addEntities(state.entities, payload.viewItems);
 
       LS.setDashboardView(payload.companyId, state.entities); // Save entities to local storage
     },
@@ -60,18 +60,18 @@ export const slice = createSlice({
     },
     
     /** Id выбранного элемента (при editMode === true) */
-    setSelectedId: (state, { payload }: PayloadAction<CardItemId>) => {
+    setSelectedId: (state, { payload }: PayloadAction<ViewItemId>) => {
       state.selectedId     = payload;
-      state.prevStoredCard = state.newStoredCard;
-      state.newStoredCard  = state.entities[payload] || {};
+      state.prevStoredViewItem = state.newStoredViewItem;
+      state.newStoredViewItem  = state.entities[payload] || {};
     },
 
     /** Обновление изменившихся полей, при сохранении через UnsavedChanges */
-    updateNewStoredCard: (state, { payload }: PayloadAction<PartialCardItem>) => {
-      state.newStoredCard = updateObject(state.newStoredCard, payload);
+    updateNewStoredViewItem: (state, { payload }: PayloadAction<PartialViewItem>) => {
+      state.newStoredViewItem = updateObject(state.newStoredViewItem, payload);
     },
     
-    // Перемещение выбранного Card-item в другой
+    // Перемещение выбранного View-item в другой
     setActiveMovementId: (state) => {
       state.activatedMovementId = state.selectedId;
     },
@@ -79,8 +79,8 @@ export const slice = createSlice({
       state.activatedMovementId = '';
     },
 
-    // Update Card-item
-    updateCardItem: (state, { payload }: PayloadAction<PartialCardItem>) => {
+    // Update View-item
+    updateViewItem: (state, { payload }: PayloadAction<PartialViewItem>) => {
       state.entities[payload.id] = updateObject(state.entities[payload.id], payload);
       state.activatedMovementId = '';
     },
@@ -92,7 +92,7 @@ export const slice = createSlice({
       state.entities[selectedId].styles[field] = value;
     },
 
-    setSelectedStyles: (state, { payload }: PayloadAction<ItemStyles>) => {
+    setSelectedStyles: (state, { payload }: PayloadAction<ViewItemStyles>) => {
       state.entities[state.selectedId].styles = payload;
     },
 
@@ -103,7 +103,7 @@ export const slice = createSlice({
       
       if (state.entities[selectedId]) {
         if (! state.entities[selectedId]?.settings) state.entities[selectedId].settings = {};
-        (state.entities[selectedId].settings as CardItemSettings)[field] = value;
+        (state.entities[selectedId].settings as ViewItemSettings)[field] = value;
       }
     },
 
@@ -115,7 +115,7 @@ export const slice = createSlice({
 
       if (state.entities[selectedId]) {
         if (!state.entities[selectedId]?.settings) state.entities[selectedId].settings = {};
-        (state.entities[selectedId].settings as CardItemSettings).charts = updateChartsItem(selectedItem, index, field, value);
+        (state.entities[selectedId].settings as ViewItemSettings).charts = updateChartsItem(selectedItem, index, field, value);
       }
     },
 
@@ -129,7 +129,7 @@ export const slice = createSlice({
 
       if (state.entities[selectedId]) {
         if (! state.entities[selectedId]?.settings) state.entities[selectedId].settings = {};
-        (state.entities[selectedId].settings as CardItemSettings).charts = updateChartsItem(selectedItem, index, 'datasets', datasets);
+        (state.entities[selectedId].settings as ViewItemSettings).charts = updateChartsItem(selectedItem, index, 'datasets', datasets);
       }
     },
     
@@ -137,18 +137,18 @@ export const slice = createSlice({
 
 
   extraReducers: builder => {
-    // ADD-NEW-CARD
+    // ADD-NEW-ITEM
     builder
-      .addCase(addNewCard.pending, (state) => {
+      .addCase(addNewViewItem.pending, (state) => {
         state.loading = true;
         state.errors  = {};
       })
-      .addCase(addNewCard.fulfilled, (state, { payload }: PayloadAction<AddNewCard>) => {
-        const { cardItem, companyId } = payload;
-        const updatedEntities = addEntities(state.entities, [cardItem]);
+      .addCase(addNewViewItem.fulfilled, (state, { payload }: PayloadAction<AddNewViewItem>) => {
+        const { viewItem, companyId } = payload;
+        const updatedEntities = addEntities(state.entities, [viewItem]);
 
-        // if (cardItem.parentId !== NO_PARENT_ID) {
-        //   updatedEntities[cardItem.parentId].childrenIds.push(cardItem.id);
+        // if (viewItem.parentId !== NO_PARENT_ID) {
+        //   updatedEntities[viewItem.parentId].childrenIds.push(viewItem.id);
         // }
 
         state.entities = updatedEntities;
@@ -158,39 +158,39 @@ export const slice = createSlice({
 
         LS.setDashboardView(companyId, state.entities); // Save entities to local storage
       })
-      .addCase(addNewCard.rejected, (state, { payload }) => {
+      .addCase(addNewViewItem.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       }),
     
-    // UPDATE-CARD-ITEM
+    // UPDATE-VIEW-ITEM
     builder
-      .addCase(updateCardItem.pending, (state) => {
+      .addCase(updateViewItem.pending, (state) => {
         state.loading = true;
         state.errors  = {};
       })
-      .addCase(updateCardItem.fulfilled, (state, { payload }: PayloadAction<UpdateCardItem>) => {
-        const { cardItem, companyId } = payload;
+      .addCase(updateViewItem.fulfilled, (state, { payload }: PayloadAction<UpdateViewItem>) => {
+        const { viewItem, companyId } = payload;
         
-        state.entities[cardItem.id] = updateObject(state.entities[cardItem.id], cardItem);
+        state.entities[viewItem.id] = updateObject(state.entities[viewItem.id], viewItem);
         state.activatedMovementId   = '';
         state.loading               = false;
         state.errors                = {};
 
         LS.setDashboardView(companyId, state.entities); // Save entities to local storage
       })
-      .addCase(updateCardItem.rejected, (state, { payload }) => {
+      .addCase(updateViewItem.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       }),
 
-    // DELETE-CARD
+    // DELETE-VIEW
     builder
-      .addCase(deleteCard.pending, (state) => {
+      .addCase(deleteViewItem.pending, (state) => {
         state.loading = true;
         state.errors  = {};
       })
-      .addCase(deleteCard.fulfilled, (state, { payload }: PayloadAction<DeleteCard>) => {
+      .addCase(deleteViewItem.fulfilled, (state, { payload }: PayloadAction<DeleteViewItem>) => {
         const { companyId, allIds } = payload;
 
         allIds.forEach(id => delete state.entities[id]);
@@ -201,15 +201,15 @@ export const slice = createSlice({
         // }
 
         state.selectedId          = '';
-        state.newStoredCard       = {};
-        state.prevStoredCard      = {};
+        state.newStoredViewItem   = {};
+        state.prevStoredViewItem  = {};
         state.activatedMovementId = '';
         state.loading             = false;
         state.errors              = {};
 
         LS.setDashboardView(companyId, state.entities); // Save entities to local storage
       })
-      .addCase(deleteCard.rejected, (state, { payload }) => {
+      .addCase(deleteViewItem.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       })

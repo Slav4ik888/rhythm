@@ -1,19 +1,19 @@
-import { CardItem } from '../../types';
+import { ViewItem } from '../../types';
 
 
 
-export interface ParentsCardItems {
-  [parentId: string]: CardItem[]
+export interface ParentsViewItems {
+  [parentId: string]: ViewItem[]
 }
 
 /**
- * Returns object ParentsCardItems {
- *   [parentId: string]: CardItem[]
+ * Returns object ParentsViewItems {
+ *   [parentId: string]: ViewItem[]
  * }
  */
-export const getParents = (items: CardItem[]): ParentsCardItems => {
+export const getParents = (items: ViewItem[]): ParentsViewItems => {
 
-  const parents: ParentsCardItems = {};
+  const parents: ParentsViewItems = {};
   if (! items || ! items.length) return parents;
 
   items.forEach(item => {

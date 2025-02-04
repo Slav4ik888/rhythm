@@ -1,6 +1,6 @@
 import { FC, memo, useCallback, MouseEvent } from 'react';
 import { Box, Typography } from '@mui/material';
-import { ItemStylesField } from 'entities/dashboard-view';
+import { ViewItemStylesField } from 'entities/dashboard-view';
 import { f, SxCard } from 'shared/styles';
 import { useValue } from 'shared/lib/hooks';
 import { CustomTheme, useTheme } from 'app/providers/theme';
@@ -53,15 +53,15 @@ const useStyles = (theme: CustomTheme, sx?: SxCard, width?: string) => ({
 interface Props {
   type        : 'number' | 'text'
   value       : number | string
-  field?      : ItemStylesField
+  field?      : ViewItemStylesField
   width?      : string // in rem
   title?      : string
   toolTitle?  : string
   disabled?   : boolean
   sx?         : SxCard
   onClear?    : () => void // Для очистки значения если нужно чтобы было не пустая строка ''
-  onCallback? : (field: ItemStylesField, value: number | string) => void
-  onSubmit    : (field: ItemStylesField, value: number | string) => void
+  onCallback? : (field: ViewItemStylesField, value: number | string) => void
+  onSubmit    : (field: ViewItemStylesField, value: number | string) => void
 }``
 
 /**
@@ -83,20 +83,20 @@ export const ChangeStyleItem: FC<Props> = memo(({ type, sx: style, value, width,
 
   const handleCallback = useCallback((e: MouseEvent, _value: number | string) => {
     if (onCallback) {
-      onCallback(field as ItemStylesField, _value as number);
+      onCallback(field as ViewItemStylesField, _value as number);
     }
   },[value, field, onCallback]);
 
 
   const handleSubmit = useCallback((e: MouseEvent, _value: number | string) => {
-    onSubmit(field as ItemStylesField, _value as number);
+    onSubmit(field as ViewItemStylesField, _value as number);
     hookOpen.setClose();
   },[value, field, hookOpen.setClose, onSubmit]);
   
   
   const handleClear = () => {
     if (onClear) onClear()
-    else onSubmit(field as ItemStylesField, '' as unknown as number)
+    else onSubmit(field as ViewItemStylesField, '' as unknown as number)
     
     hookOpen.setClose();
   };

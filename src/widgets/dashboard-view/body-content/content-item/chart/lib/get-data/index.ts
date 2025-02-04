@@ -1,6 +1,6 @@
 import { fixPointRadius } from 'entities/charts';
 import { checkInvertData, DashboardStatisticItem } from 'entities/dashboard-data';
-import { CardItem } from 'entities/dashboard-view';
+import { ViewItem } from 'entities/dashboard-view';
 import { setValue } from 'shared/lib/charts';
 
 
@@ -8,7 +8,7 @@ import { setValue } from 'shared/lib/charts';
 export const getData = (
   dates     : string[],
   itemsData : DashboardStatisticItem<number>[],
-  item      : CardItem
+  item      : ViewItem
 ) => {
   
   return {

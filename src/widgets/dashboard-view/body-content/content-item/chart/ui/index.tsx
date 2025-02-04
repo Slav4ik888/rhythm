@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { CardItem, CardItemId } from 'entities/dashboard-view';
+import { ViewItem, ViewItemId } from 'entities/dashboard-view';
 import { ItemWrapper } from '../../wrapper-item';
 import "chart.js/auto";
 import { Chart } from "react-chartjs-2";
@@ -10,8 +10,8 @@ import { getData, getOptions } from '../lib';
 
 
 interface Props {
-  item     : CardItem
-  onSelect : (id: CardItemId) => void
+  item     : ViewItem
+  onSelect : (id: ViewItemId) => void
 }
 
 /** Item chart */

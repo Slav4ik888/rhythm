@@ -1,14 +1,14 @@
 export {
-  CardItemId, CardItem, BorderStyleType, arrayBorderStyles, FlexDirectionType, FlexWrapType,
-  AlignItemsType, JustifyContentType, ItemStyles, ItemStylesField, PartialCardItem, RgbaString,
-  FontStyleType, arrayFontStyles, FontWeightType, arrayFontWeights, CardItemSettings, CardItemSettingsField,
-  CardItemCharts, CardItemChartsField, ChipType, arrayChipLabel, chipOptions, BaseChipType, IndicatorsConfig,
-  arrayEndingType, arrayEndingDiffType, EndingType, EndingDiffType
+  ViewItemId, ViewItem, BorderStyleType, arrayBorderStyles, FlexDirectionType, FlexWrapType,
+  AlignItemsType, JustifyContentType, ViewItemStyles, ViewItemStylesField, PartialViewItem, RgbaString,
+  FontStyleType, arrayFontStyles, FontWeightType, arrayFontWeights, ViewItemSettings, ViewItemSettingsField,
+  ViewItemCharts, ViewItemChartsField, ChipType, arrayChipLabel, chipOptions, BaseChipType, IndicatorsConfig,
+  arrayEndingType, arrayEndingDiffType, EndingType, EndingDiffType, ViewItemType
 } from './model/types'
 export { actions as actionsDashboardView, reducer as reducerDashboardView } from './model/slice'
 export { DashboardViewEntities, StateSchemaDashboardView } from './model/slice/state-schema'
-export { getInitialState, ParentsCardItems, stylesToSx, createNextOrder } from './model/utils'
+export { getInitialState, ParentsViewItems, stylesToSx, createNextOrder } from './model/utils'
 export { useDashboardView } from './model/hooks'
-export { createCardItem } from './model/creators/'
+export { createViewItem } from './model/creators/'
 export { NO_SHEET_ID, NO_PARENT_ID, ORDER_STEP } from './model/consts'
 export { ChipContainer } from './ui'

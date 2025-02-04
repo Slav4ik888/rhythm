@@ -1,22 +1,22 @@
 import { ItemBase } from 'entities/base'
 import { ChartConfigDatasets, ChartConfigOptions, ChartType } from 'entities/charts'
 import { IndicatorsConfig } from './config'
-import { ItemStyles } from './item-styles'
+import { ViewItemStyles } from './item-styles'
 
 
 
-export type CardItemType = 'box' | 'text' | 'divider' | 'chart' | 'chip' | 'growthIcon' | 'digitIndicator'
+export type ViewItemType = 'box' | 'text' | 'divider' | 'chart' | 'chip' | 'growthIcon' | 'digitIndicator'
 
-export type CardItemId = string
+export type ViewItemId = string
 
 
-export interface CardItemCharts {
+export interface ViewItemCharts {
   kod?       : string
   chartType? : ChartType
   datasets?  : ChartConfigDatasets
 }
 
-export type CardItemChartsField = keyof CardItemCharts
+export type ViewItemChartsField = keyof ViewItemCharts
 
 export type ChipType = 'condition' | 'period' | 'company' | 'product' | 'custom'
 export type BaseChipType = 'periodType' | 'companyType' | 'productType'
@@ -31,7 +31,8 @@ export const chipOptions: Record<ChipType, { label: string; value: ChipType }> =
 export const arrayChipLabel = Object.values(chipOptions).map(item => item.label);
 
 
-export type CardItemSettings = IndicatorsConfig & {
+/** v.2025-02-04 */
+export type ViewItemSettings = IndicatorsConfig & {
   // Global settings
   display?        : boolean // Показывать ли элемент
   kod?            : string  // Код для одиночного элемента Chip | GrowthItem |
@@ -39,7 +40,7 @@ export type CardItemSettings = IndicatorsConfig & {
   unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
   
   // Chart settings
-  charts?         : CardItemCharts[]
+  charts?         : ViewItemCharts[]
   chartOptions?   : ChartConfigOptions
 
   // Chips settings
@@ -50,22 +51,22 @@ export type CardItemSettings = IndicatorsConfig & {
   isLeft?         : boolean // При отсутствии изменений чёрный треугольник повернуть влево
 }
 
-export type CardItemSettingsField = keyof CardItemSettings;
+export type ViewItemSettingsField = keyof ViewItemSettings;
 
 
 // ------------------------------------- //
-// ------------  CARD-ITEM  ------------ //
+// ------------  VIEW-ITEM  ------------ //
 // ------------------------------------- //
 
-export interface CardItem extends ItemBase {
-  id           : CardItemId
-  parentId     : CardItemId // Where item is child. If no parentId, then parentId === ''
-  sheetId      : CardItemId // Main sheet id === ''
+export interface ViewItem extends ItemBase {
+  id           : ViewItemId
+  parentId     : ViewItemId // Where item is child. If no parentId, then parentId === ''
+  sheetId      : ViewItemId // Main sheet id === ''
 
-  type         : CardItemType
-  styles       : ItemStyles
+  type         : ViewItemType
+  styles       : ViewItemStyles
 
-  settings?    : CardItemSettings
+  settings?    : ViewItemSettings
 }
 
-export type PartialCardItem = Partial<CardItem> & { id: CardItemId }
+export type PartialViewItem = Partial<ViewItem> & { id: ViewItemId }

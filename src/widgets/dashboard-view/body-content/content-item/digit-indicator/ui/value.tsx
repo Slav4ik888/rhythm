@@ -1,12 +1,12 @@
 import { FC, memo, useMemo } from 'react';
-import { CardItem, stylesToSx } from 'entities/dashboard-view';
+import { ViewItem, stylesToSx } from 'entities/dashboard-view';
 import { Typography } from '@mui/material';
 import { isUndefined } from 'shared/lib/validators';
 import { Tooltip } from 'shared/ui/tooltip';
 
 
 
-const useStyles = (item: CardItem, color: string) => {
+const useStyles = (item: ViewItem, color: string) => {
   const root: any = {};
 
   if (item?.styles?.fontSize) root.fontSize = stylesToSx(item?.styles)?.fontSize;
@@ -23,7 +23,7 @@ const useStyles = (item: CardItem, color: string) => {
 
 
 interface Props {
-  item  : CardItem
+  item  : ViewItem
   value : string
   color : string
 }

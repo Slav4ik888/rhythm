@@ -1,14 +1,14 @@
 import { FC, memo, MouseEvent } from 'react';
-import { ItemStylesField } from 'entities/dashboard-view';
+import { ViewItemStylesField } from 'entities/dashboard-view';
 import { ConfiguratorTextfieldItem } from 'shared/ui/configurators-components';
 
 
 
 interface Props {
-  field        : ItemStylesField
+  field        : ViewItemStylesField
   defaultValue : string | number | undefined
-  onCallback?  : (field: ItemStylesField, value: number) => void // Если нужно чтобы каждое изменение отображалось на экране
-  onSubmit     : (field: ItemStylesField, value: number) => void
+  onCallback?  : (field: ViewItemStylesField, value: number) => void // Если нужно чтобы каждое изменение отображалось на экране
+  onSubmit     : (field: ViewItemStylesField, value: number) => void
 }
 
 

@@ -1,5 +1,5 @@
 import { StateSchema } from 'app/providers/store';
-import { CardItem, CardItemId, ItemStylesField } from '../types';
+import { ViewItem, ViewItemId, ViewItemStylesField } from '../types';
 import { DashboardViewEntities, StateSchemaDashboardView } from '../slice/state-schema';
 import { getChildren, getParents } from '../utils';
 import { createSelector } from '@reduxjs/toolkit';
@@ -18,28 +18,28 @@ export const selectSelectedId   = createSelector(selectModule, (state: StateSche
 export const selectSelectedItem = createSelector(selectEntities, selectSelectedId,
   (entities: DashboardViewEntities, selectedId: string) => entities[selectedId] || {});
 
-export const selectNewStoredCard  = createSelector(selectModule, (state: StateSchemaDashboardView) => state.newStoredCard);
-export const selectPrevStoredCard = createSelector(selectModule, (state: StateSchemaDashboardView) => state.prevStoredCard);
+export const selectNewStoredViewItem  = createSelector(selectModule, (state: StateSchemaDashboardView) => state.newStoredViewItem);
+export const selectPrevStoredViewItem = createSelector(selectModule, (state: StateSchemaDashboardView) => state.prevStoredViewItem);
 
-export const selectCardItems = createSelector(selectEntities,
+export const selectViewItems = createSelector(selectEntities,
   (entities: DashboardViewEntities) => Object.values(entities));
 
-/** Returns object ParentsCardItems { [parentId: string]: CardItem[] } */
-export const selectParentsCardItems = createSelector(selectCardItems, (items: CardItem[]) => getParents(items));
+/** Returns object ParentsViewItems { [parentId: string]: ViewItem[] } */
+export const selectParentsViewItems = createSelector(selectViewItems, (items: ViewItem[]) => getParents(items));
 
 /** Parent`s children by parentId  */
-export const makeSelectChildrenCardItems = (parentId?: CardItemId) => createSelector(
-  [selectCardItems, selectSelectedId],
-  (items: CardItem[], selectedId: string) => getChildren(items, parentId || selectedId)
+export const makeSelectChildrenViewItems = (parentId?: ViewItemId) => createSelector(
+  [selectViewItems, selectSelectedId],
+  (items: ViewItem[], selectedId: string) => getChildren(items, parentId || selectedId)
 );
 
-export const selectCardItemById = createSelector(selectEntities, selectSelectedId,
+export const selectViewItemById = createSelector(selectEntities, selectSelectedId,
   (entities: DashboardViewEntities, selectedId: string) => entities[selectedId] || {});
 
-export const selectCardItemStyle = createSelector(selectEntities, selectSelectedId,
+export const selectViewItemStyle = createSelector(selectEntities, selectSelectedId,
   (entities: DashboardViewEntities, selectedId: string) => entities[selectedId]?.styles || {});
 
-export const makeSelectStyleByField = (field: ItemStylesField) => createSelector(
+export const makeSelectStyleByField = (field: ViewItemStylesField) => createSelector(
   [selectEntities, selectSelectedId],
   (entities: DashboardViewEntities, selectedId: string) => 
     entities[selectedId]?.styles?.[field]

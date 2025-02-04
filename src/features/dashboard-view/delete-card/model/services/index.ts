@@ -1,1 +1,1 @@
-export { deleteCard, DeleteCard } from './delete-card'
+export { deleteViewItem, DeleteViewItem } from './delete-item'

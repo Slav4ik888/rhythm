@@ -1,12 +1,12 @@
-import { CardItem, CardItemCharts, CardItemChartsField } from 'entities/dashboard-view';
+import { ViewItem, ViewItemCharts, ViewItemChartsField } from 'entities/dashboard-view';
 
 
 export const updateChartsItem = (
-  item        : CardItem,
+  item        : ViewItem,
   index       : number,
-  fieldItem   : CardItemChartsField,
+  fieldItem   : ViewItemChartsField,
   updatedItem : any
-): CardItemCharts[] => {
+): ViewItemCharts[] => {
   
   const oldCharts = item.settings?.charts || [];
 

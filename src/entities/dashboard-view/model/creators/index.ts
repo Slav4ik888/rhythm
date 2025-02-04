@@ -1,1 +1,1 @@
-export * from './create-card-item'
+export * from './create-view-item'

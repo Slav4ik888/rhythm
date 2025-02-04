@@ -1,11 +1,11 @@
 import { FC, memo } from 'react';
-import { CardItem, stylesToSx } from 'entities/dashboard-view';
+import { ViewItem, stylesToSx } from 'entities/dashboard-view';
 import { Box, Typography } from '@mui/material';
 import { Increased } from 'entities/dashboard-data';
 
 
 
-const useStyles = (item: CardItem, color: string) => {
+const useStyles = (item: ViewItem, color: string) => {
   const root: any = {};
 
   if (item?.styles?.fontSize) root.fontSize = stylesToSx(item?.styles)?.fontSize;
@@ -21,7 +21,7 @@ const useStyles = (item: CardItem, color: string) => {
 
 
 interface Props {
-  item      : CardItem
+  item      : ViewItem
   increased : Increased
   color     : string
 }

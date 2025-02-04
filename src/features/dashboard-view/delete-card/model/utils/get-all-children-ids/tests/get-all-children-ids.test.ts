@@ -1,4 +1,4 @@
-import { CardItem, CardItemId } from 'entities/dashboard-view';
+import { ViewItem, ViewItemId } from 'entities/dashboard-view';
 import { getAllChildrenIds } from '..';
 
 
@@ -26,9 +26,9 @@ describe('getAllChildrenIds', () => {
       { id: '2-2-1',     parentId: '' },
       { id: '2-2-2',     parentId: '' },
       { id: '2-2-3',     parentId: '' },
-     ] as CardItem[];
+     ] as ViewItem[];
 
-    const resultArray: CardItemId[] = [];
+    const resultArray: ViewItemId[] = [];
     getAllChildrenIds(items, '1-2', resultArray);
 
     expect(resultArray).toEqual(['1-2', '1-2-1', '1-2-1-1', '1-2-1-2', '1-2-1-3', '1-2-1-3-1', '1-2-1-3-2', '1-2-1-3-3', '1-2-2', '1-2-3']);

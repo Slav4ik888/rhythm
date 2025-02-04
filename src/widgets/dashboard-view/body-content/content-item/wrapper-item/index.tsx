@@ -1,11 +1,10 @@
 import { FC, memo, ReactNode } from 'react';
-import { CardItem, CardItemId, stylesToSx, ItemStyles, useDashboardView } from 'entities/dashboard-view';
+import { ViewItem, ViewItemId, stylesToSx, ViewItemStyles, useDashboardView } from 'entities/dashboard-view';
 import { Box } from '@mui/material';
-import { SxCard } from 'shared/styles';
 
 
 
-const useStyles = (styles: ItemStyles, editMode: boolean) => {
+const useStyles = (styles: ViewItemStyles, editMode: boolean) => {
   const root: any = {
     position: 'relative',
     ...stylesToSx(styles),
@@ -33,9 +32,9 @@ const useStyles = (styles: ItemStyles, editMode: boolean) => {
 
 
 interface Props {
-  item     : CardItem
+  item     : ViewItem
   children : ReactNode
-  onSelect : (id: CardItemId) => void
+  onSelect : (id: ViewItemId) => void
 }
 
 /** Item wrapper */

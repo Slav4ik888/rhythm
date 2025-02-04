@@ -1,8 +1,8 @@
-import { CardItem, CardItemId } from '../../types';
+import { ViewItem, ViewItemId } from '../../types';
 
 
 /** Returns children by parentId */
-export const getChildren = (items: CardItem[], parentId: CardItemId): CardItem[] => {
+export const getChildren = (items: ViewItem[], parentId: ViewItemId): ViewItem[] => {
   if (! items || ! items.length) return [];
 
   return items.filter(item => item.parentId === parentId);

@@ -1,4 +1,4 @@
-import { CardItem } from '../../../types';
+import { ViewItem } from '../../../types';
 import { createNextOrder } from '..';
 
 
@@ -6,13 +6,13 @@ describe('createNextOrder', () => {
   test('data is valid', () => {
     const children = [
       { order: 1000 }, { order: 2000 }, { order: 30000 }
-    ] as CardItem[];
+    ] as ViewItem[];
 
     expect(createNextOrder(children)).toEqual(31000);
   });
   
   test('data is undefined', () => {
-    expect(createNextOrder(undefined as unknown as CardItem[])).toEqual(1000);
+    expect(createNextOrder(undefined as unknown as ViewItem[])).toEqual(1000);
   });
 });
 

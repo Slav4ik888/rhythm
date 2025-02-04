@@ -15,7 +15,7 @@ export const arrayFontWeights = ['lighter' , 'normal' , 'bold' , 'bolder' , '100
 
 
 
-export interface ItemStyles {
+export interface ViewItemStyles {
   width?     : number | string // In px | '100%' | 'auto' | 'max-content' | 'min-content'
   minWidth?  : number | string
   maxWidth?  : number | string
@@ -83,4 +83,4 @@ export interface ItemStyles {
 
 }
 
-export type ItemStylesField = keyof ItemStyles;
+export type ViewItemStylesField = keyof ViewItemStyles;

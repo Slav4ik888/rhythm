@@ -1,5 +1,5 @@
 import { FC, memo, useCallback } from 'react';
-import { CardItemId, useDashboardView } from 'entities/dashboard-view';
+import { ViewItemId, useDashboardView } from 'entities/dashboard-view';
 import { Box } from '@mui/material';
 import { useCompany } from 'entities/company';
 import { DeleteButton } from 'shared/ui/buttons/delete-button';
@@ -9,16 +9,16 @@ import { getAllChildrenIds } from '../model/utils/get-all-children-ids';
 
 
 export const DeleteItemContainer: FC = memo(() => {
-  const { selectedId, cardItems, serviceDeleteCard } = useDashboardView();
+  const { selectedId, viewItems, serviceDeleteViewItem } = useDashboardView();
   const { companyId } = useCompany();
 
 
   const handleDel = useCallback(() => {
-    let allIds: CardItemId[] = []; // Ids всех вложенных элементов
-    getAllChildrenIds(cardItems, selectedId, allIds);
+    let allIds: ViewItemId[] = []; // Ids всех вложенных элементов
+    getAllChildrenIds(viewItems, selectedId, allIds);
 
-    serviceDeleteCard({ companyId, allIds });
-  }, [selectedId, cardItems, serviceDeleteCard]);
+    serviceDeleteViewItem({ companyId, allIds });
+  }, [selectedId, viewItems, serviceDeleteViewItem]);
 
 
   return (

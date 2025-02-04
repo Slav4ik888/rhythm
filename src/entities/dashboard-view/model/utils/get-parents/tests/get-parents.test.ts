@@ -1,11 +1,11 @@
-import { CardItem } from '../../../types';
+import { ViewItem } from '../../../types';
 import { getParents } from '..';
 
 
 
 describe('getParents', () => {
   test('items is undefined', () => {
-    expect(getParents(undefined as unknown as CardItem[])).toEqual({});
+    expect(getParents(undefined as unknown as ViewItem[])).toEqual({});
   });
 
   test('getParents', () => {
@@ -26,7 +26,7 @@ describe('getParents', () => {
       { id: '14', parentId: 'no_parentId' },
     ];
 
-    expect(getParents(items as CardItem[])).toEqual({
+    expect(getParents(items as ViewItem[])).toEqual({
       'no_parentId': [
         { id: '1', parentId: 'no_parentId' },
         { id: '2', parentId: 'no_parentId' },

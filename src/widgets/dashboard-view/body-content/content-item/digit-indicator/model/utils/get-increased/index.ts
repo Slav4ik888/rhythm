@@ -1,11 +1,11 @@
 import { DashboardDataEntities, Increased } from 'entities/dashboard-data';
-import { CardItem } from 'entities/dashboard-view';
+import { ViewItem } from 'entities/dashboard-view';
 import { calcIncreased } from '../calc-increased';
 import { getReversedIndicators } from '../get-reversed-indicators';
 
 
 export const getIncreased = (
-  item           : CardItem,
+  item           : ViewItem,
   activeEntities : DashboardDataEntities
 ): Increased => {
   const data = activeEntities[item.settings?.kod || '']?.data as number[] || [];

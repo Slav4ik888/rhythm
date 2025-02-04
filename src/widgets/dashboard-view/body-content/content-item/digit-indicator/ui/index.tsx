@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { CardItem, CardItemId } from 'entities/dashboard-view';
+import { ViewItem, ViewItemId } from 'entities/dashboard-view';
 import { ItemWrapper } from '../../wrapper-item';
 import { DashboardStatisticItem, Increased, useDashboardData } from 'entities/dashboard-data';
 import { getColorByIncreased, getComparisonValues, getIncreased, getReversedIndicators } from '../model/utils';
@@ -13,7 +13,7 @@ import { isNotUndefined } from 'shared/lib/validators';
 
 
 
-const useStyles = (theme: CustomTheme, item: CardItem, increased: Increased) => {
+const useStyles = (theme: CustomTheme, item: ViewItem, increased: Increased) => {
   let color = '';
   
   // Если указано что цвет по росту/падению
@@ -29,8 +29,8 @@ const useStyles = (theme: CustomTheme, item: CardItem, increased: Increased) => 
 
 
 interface Props {
-  item     : CardItem
-  onSelect : (id: CardItemId) => void
+  item     : ViewItem
+  onSelect : (id: ViewItemId) => void
 }
 
 /** Item digitIndicator */

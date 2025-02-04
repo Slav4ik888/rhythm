@@ -1,5 +1,5 @@
 import { isNotUndefined as is, isStr } from 'shared/lib/validators';
-import { ItemStyles } from '../../types';
+import { ViewItemStyles } from '../../types';
 
 
 
@@ -17,7 +17,7 @@ const getIndents = (v: any) => v * 8;
  * Sx transform to base format styles
  * Пока НЕ используется
  */
-export const sxToStyles = (sx?: ItemStyles): ItemStyles => {
+export const sxToStyles = (sx?: ViewItemStyles): ViewItemStyles => {
   const style = { ...sx };
 
   if (! sx) return style;

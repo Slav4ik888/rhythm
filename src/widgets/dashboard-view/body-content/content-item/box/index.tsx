@@ -1,18 +1,18 @@
 import { FC, memo } from 'react';
-import { CardItem, CardItemId, ParentsCardItems } from 'entities/dashboard-view';
+import { ViewItem, ViewItemId, ParentsViewItems } from 'entities/dashboard-view';
 import { ContentRender } from '../../render-items';
 import { ItemWrapper } from '../wrapper-item';
 
 
 
 interface Props {
-  parentsCardItems : ParentsCardItems
-  item             : CardItem
-  onSelect         : (id: CardItemId) => void
+  parentsViewItems : ParentsViewItems
+  item             : ViewItem
+  onSelect         : (id: ViewItemId) => void
 }
 
 /** Item box */
-export const ItemBox: FC<Props> = memo(({ parentsCardItems, item, onSelect }) => {
+export const ItemBox: FC<Props> = memo(({ parentsViewItems, item, onSelect }) => {
 
 
   return (
@@ -21,7 +21,7 @@ export const ItemBox: FC<Props> = memo(({ parentsCardItems, item, onSelect }) =>
         item.label
           ? <>{item.label}</>
           : <ContentRender
-              parentsCardItems = {parentsCardItems}
+              parentsViewItems = {parentsViewItems}
               parentId         = {item.id}
               onSelect         = {onSelect}
             />

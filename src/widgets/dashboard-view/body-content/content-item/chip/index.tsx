@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { CardItem, CardItemId, ChipContainer } from 'entities/dashboard-view';
+import { ViewItem, ViewItemId, ChipContainer } from 'entities/dashboard-view';
 import { ItemWrapper } from '../wrapper-item';
 import { CONDITION_TYPE, DashboardConditionType, getConditionType } from 'entities/condition-type';
 import { useDashboardData } from 'entities/dashboard-data';
@@ -10,8 +10,8 @@ import { useCompany } from 'entities/company';
 
 
 interface Props {
-  item     : CardItem
-  onSelect : (id: CardItemId) => void
+  item     : ViewItem
+  onSelect : (id: ViewItemId) => void
 }
 
 /** Item chip */

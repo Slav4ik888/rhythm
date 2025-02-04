@@ -1,26 +1,26 @@
 import { ChartConfigDatasetsField } from 'entities/charts';
-import { CardItem, CardItemId, ItemStylesField, CardItemSettingsField, CardItemChartsField } from '../types';
+import { ViewItem, ViewItemId, ViewItemStylesField, ViewItemSettingsField, ViewItemChartsField } from '../types';
 
 
 
 export interface SetDashboardView {
   companyId : string
-  cardItems : CardItem[]
+  viewItems : ViewItem[]
 }
 
 export interface ChangeSelectedStyle {
-  selectedId : CardItemId
-  field      : ItemStylesField
+  selectedId : ViewItemId
+  field      : ViewItemStylesField
   value      : number | string
 }
 
 export interface ChangeOneSettingsField {
-  field      : CardItemSettingsField
+  field      : ViewItemSettingsField
   value      : any
 }
 
 export interface ChangeOneChartsItem {
-  field      : CardItemChartsField
+  field      : ViewItemChartsField
   index      : number // № графика
   value      : any
 }

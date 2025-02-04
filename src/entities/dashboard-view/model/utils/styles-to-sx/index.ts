@@ -1,5 +1,5 @@
 import { isNotUndefined as is, isNum } from 'shared/lib/validators';
-import { ItemStyles } from '../../types';
+import { ViewItemStyles } from '../../types';
 
 
 
@@ -14,7 +14,7 @@ const getIndents = (v: any) => v ? v / 8 : v;
  * 
  * DB => display user
  */
-export const stylesToSx = (style?: ItemStyles): any => {
+export const stylesToSx = (style?: ViewItemStyles): any => {
   const sx = { ...style } as any;
 
   if (! style) return sx;

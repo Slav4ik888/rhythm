@@ -1,14 +1,14 @@
 import { ORDER_STEP } from '../../consts';
-import { CardItem } from '../../types';
+import { ViewItem } from '../../types';
 
 
-export const createNextOrder = (childrenCardItems: CardItem[]): number => {
+export const createNextOrder = (childrenViewItems: ViewItem[]): number => {
   let maxOrder = ORDER_STEP;
 
-  if (! childrenCardItems || ! childrenCardItems.length) return maxOrder
+  if (! childrenViewItems || ! childrenViewItems.length) return maxOrder
 
-  childrenCardItems.forEach((cardItem) => {
-    maxOrder = Math.max(maxOrder, cardItem?.order || 0);
+  childrenViewItems.forEach((item) => {
+    maxOrder = Math.max(maxOrder, item?.order || 0);
   });
 
   return maxOrder + ORDER_STEP;

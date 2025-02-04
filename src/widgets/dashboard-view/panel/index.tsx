@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Box } from '@mui/material';
-import { PanelAddCardBtns } from 'features/dashboard-view';
+import { PanelAddViewItemBtns } from 'features/dashboard-view';
 import { useDashboardView } from 'entities/dashboard-view';
 
 
@@ -20,7 +20,7 @@ export const DashboardBodyPanel = memo(() => {
 
   return (
     <Box sx={sx.root}>
-      <PanelAddCardBtns parentId='no_parentId' />
+      <PanelAddViewItemBtns parentId='no_parentId' />
     </Box>
   )
 });
