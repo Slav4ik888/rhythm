@@ -27,4 +27,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refact CartItem to ViewItem" && git push -u origin main
+// git add . && git commit -m "add getCopyViewItem" && git push -u origin main

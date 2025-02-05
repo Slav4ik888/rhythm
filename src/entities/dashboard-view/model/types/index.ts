@@ -1,3 +1,3 @@
-export * from './card-item'
+export * from './view-item'
 export * from './config'
 export * from './item-styles'

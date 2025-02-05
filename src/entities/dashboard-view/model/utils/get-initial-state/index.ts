@@ -17,7 +17,9 @@ export const getInitialState = (companyId: ActivatedCompanyId): StateSchemaDashb
     entities            : LS.getDashboardView(companyId) || {},
     newStoredViewItem   : {}, // Начальные значения выбранного элемента
     prevStoredViewItem  : {}, // Начальные значения предыдущего выбранного элемента
+
     activatedMovementId : '', // Активированный Id перемещаемого элемента
+    activatedCopiedId   : '', // Активированный Id копируемого элемента
   };
 
   return initialState;

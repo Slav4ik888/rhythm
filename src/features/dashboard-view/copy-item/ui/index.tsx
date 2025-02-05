@@ -4,8 +4,8 @@ import { Box } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
 import { MDButton } from 'shared/ui/mui-design-components';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-import MoveIcon from '@mui/icons-material/MoveUp';
 import { pxToRem } from 'shared/styles';
+import CopyIcon from '@mui/icons-material/ContentCopy';
 
 
 
@@ -47,17 +47,17 @@ export const CopyViewItem: FC = memo(() => {
       {
         selectedId && selectedId === activatedMovementId
           ? <Box sx={sx.helperText}>
-            Для перемещения этого элемента, кликните на тот элемент, в который хотите его переместить
+            Для копирования этого элемента, кликните на тот элемент, в который хотите его переместить
           </Box>
           : null
       }
-      <Tooltip title='Переместить этот элемент в другой'>
+      <Tooltip title='Копировать этот элемент в другой'>
         <MDButton
           variant   = 'outlined'
           color     = 'dark'
           onClick   = {handleToggleActiveMovement}
         >
-          <MoveIcon sx={sx.icon} />
+          <CopyIcon sx={sx.icon} />
         </MDButton>
       </Tooltip>
     </Box>

@@ -23,7 +23,9 @@ const initialState: StateSchemaDashboardView = {
   selectedId          : '',
   newStoredViewItem   : {}, // Начальные значения выбранного элемента
   prevStoredViewItem  : {}, // Начальные значения предыдущего выбранного элемента
+
   activatedMovementId : '', // Активированный Id перемещаемого элемента
+  activatedCopiedId   : '', // Активированный Id копируемого элемента
 };
 
 
@@ -32,12 +34,12 @@ export const slice = createSlice({
   initialState,
   reducers: {
     setInitial: (state, { payload }: PayloadAction<StateSchemaDashboardView>) => {
-      state.entities       = payload.entities       || {},
-      state.selectedId     = payload.selectedId,
+      state.entities           = payload.entities           || {},
+      state.selectedId         = payload.selectedId,
       state.newStoredViewItem  = payload.newStoredViewItem  || {},
       state.prevStoredViewItem = payload.prevStoredViewItem || {},
-      state.loading        = payload.loading;
-      state.errors         = payload.errors;
+      state.loading            = payload.loading;
+      state.errors             = payload.errors;
     },
     setErrors: (state, { payload }: PayloadAction<Errors>) => {
       state.errors = getError(payload);
@@ -74,8 +76,20 @@ export const slice = createSlice({
     // Перемещение выбранного View-item в другой
     setActiveMovementId: (state) => {
       state.activatedMovementId = state.selectedId;
+      state.activatedCopiedId   = '';
     },
     clearActivatedMovementId: (state) => {
+      state.activatedMovementId = '';
+      state.activatedCopiedId   = '';
+    },
+
+    // Копирование выбранного View-item в другой
+    setActiveCopiedId: (state) => {
+      state.activatedCopiedId   = state.selectedId;
+      state.activatedMovementId = '';
+    },
+    clearActivatedCopiedId: (state) => {
+      state.activatedCopiedId   = '';
       state.activatedMovementId = '';
     },
 

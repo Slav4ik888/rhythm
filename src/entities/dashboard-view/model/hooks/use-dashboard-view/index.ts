@@ -40,6 +40,11 @@ export const useDashboardView = (config: Config = {}) => {
     setActiveMovementId = () => dispatch(a.setActiveMovementId()),
     clearActivatedMovementId = () => dispatch(a.clearActivatedMovementId()),
 
+    // Copying
+    activatedCopiedId = useSelector(s.selectActivatedMovementId),
+    setActiveCopiedId = () => dispatch(a.setActiveCopiedId()),
+    clearActivatedCopiedId = () => dispatch(a.clearActivatedCopiedId()),
+
     // View
     selectedId          = useSelector(s.selectSelectedId),
     setSelectedId       = (id: ViewItemId) => dispatch(a.setSelectedId(id)),
@@ -108,6 +113,11 @@ export const useDashboardView = (config: Config = {}) => {
     activatedMovementId,
     setActiveMovementId,
     clearActivatedMovementId,
+
+    // Copying
+    activatedCopiedId,
+    setActiveCopiedId,
+    clearActivatedCopiedId,
 
     // Styles
     changeOneStyleField,

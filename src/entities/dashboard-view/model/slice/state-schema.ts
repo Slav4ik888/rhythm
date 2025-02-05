@@ -23,6 +23,9 @@ export interface StateSchemaDashboardView {
   // Начальные значения предыдущего выбранного элемента, которое можно сравнивать для сохранения изменений
   // Используется при смене selectedId
   prevStoredViewItem  : ViewItem | {}
+
   // Активированный Id перемещаемого элемента
   activatedMovementId : ViewItemId
+  // Активированный Id копируемого элемента
+  activatedCopiedId   : ViewItemId
 }
