@@ -20,7 +20,7 @@ export const serviceLogout = createAsyncThunk <
     try {
       await extra.api.get(paths.user.logout);
       
-      dispatch(actionsCompany.setCompany({} as Company));
+      dispatch(actionsCompany.setCompany({ companyId: '', company: {} as Company}));
       return;
     }
     catch (e) {

@@ -8,6 +8,6 @@ export const selectModule         = createSelector([(state: StateSchema) => stat
 export const selectLoading        = createSelector(selectModule, (state: StateSchemaCompany) => state.loading);
 export const selectErrors         = createSelector(selectModule, (state: StateSchemaCompany) => state.errors);
 
-export const selectCompany        = createSelector(selectModule, (state: StateSchemaCompany) => state.company);
+export const selectCompany        = createSelector(selectModule, (state: StateSchemaCompany) => state.company || {});
 export const selectStoredCompany  = createSelector(selectModule, (state: StateSchemaCompany) => state.storedCompany);
-export const selectCustomSettings = createSelector(selectCompany, (company: Company) => company.customSettings);
+export const selectCustomSettings = createSelector(selectCompany, (company: Company) => company?.customSettings || {});

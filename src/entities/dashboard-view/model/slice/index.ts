@@ -49,8 +49,9 @@ export const slice = createSlice({
     },
 
     setDashboardView: (state, { payload }: PayloadAction<SetDashboardView>) => {
-      state.entities = addEntities(state.entities, payload.viewItems);
-
+      state.entities            = addEntities(state.entities, payload.viewItems);
+      state.activatedMovementId = '';
+      state.activatedCopiedId   = '';
       LS.setDashboardView(payload.companyId, state.entities); // Save entities to local storage
     },
 
@@ -159,14 +160,10 @@ export const slice = createSlice({
       })
       .addCase(addNewViewItem.fulfilled, (state, { payload }: PayloadAction<AddNewViewItem>) => {
         const { viewItem, companyId } = payload;
-        const updatedEntities = addEntities(state.entities, [viewItem]);
 
-        // if (viewItem.parentId !== NO_PARENT_ID) {
-        //   updatedEntities[viewItem.parentId].childrenIds.push(viewItem.id);
-        // }
-
-        state.entities = updatedEntities;
+        state.entities = addEntities(state.entities, [viewItem]);
         state.activatedMovementId = '';
+        state.activatedCopiedId   = '';
         state.loading = false;
         state.errors  = {};
 
@@ -188,6 +185,7 @@ export const slice = createSlice({
         
         state.entities[viewItem.id] = updateObject(state.entities[viewItem.id], viewItem);
         state.activatedMovementId   = '';
+        state.activatedCopiedId     = '';
         state.loading               = false;
         state.errors                = {};
 
@@ -209,15 +207,11 @@ export const slice = createSlice({
 
         allIds.forEach(id => delete state.entities[id]);
 
-        // Удаляем у parentId запись из childrenIds
-        // if (parentId !== NO_PARENT_ID) {
-        //   state.entities[parentId].childrenIds = parentChildrenIds;
-        // }
-
         state.selectedId          = '';
         state.newStoredViewItem   = {};
         state.prevStoredViewItem  = {};
         state.activatedMovementId = '';
+        state.activatedCopiedId   = '';
         state.loading             = false;
         state.errors              = {};
 

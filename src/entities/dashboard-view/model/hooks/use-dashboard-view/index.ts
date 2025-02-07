@@ -3,7 +3,7 @@ import { actions as a } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
-import { ChangeOneSettingsField, ChangeSelectedStyle, ChangeOneDatasetsItem, ChangeOneChartsItem } from '../../slice/types';
+import { ChangeOneSettingsField, ChangeSelectedStyle, ChangeOneDatasetsItem, ChangeOneChartsItem, SetDashboardView } from '../../slice/types';
 import { ActivatedCompanyId } from 'entities/company';
 import { ViewItem, ViewItemId, ViewItemStyles, ViewItemStylesField, PartialViewItem } from '../../types';
 import { addNewViewItem, deleteViewItem, DeleteViewItem, UpdateViewItem, updateViewItem as updateViewItemOnServer } from 'features/dashboard-view';
@@ -28,6 +28,7 @@ export const useDashboardView = (config: Config = {}) => {
     isMounted           = useSelector(s.selectIsMounted),
 
     setInitial          = (state: StateSchemaDashboardView) => dispatch(a.setInitial(state)),
+    setDashboardView    = (data: SetDashboardView) => dispatch(a.setDashboardView(data)),
     editMode            = useSelector(s.selectEditMode),
     setEditMode         = (editMode: boolean) => dispatch(a.setEditMode(editMode)),
     entities            = useSelector(s.selectEntities),
@@ -41,7 +42,7 @@ export const useDashboardView = (config: Config = {}) => {
     clearActivatedMovementId = () => dispatch(a.clearActivatedMovementId()),
 
     // Copying
-    activatedCopiedId = useSelector(s.selectActivatedMovementId),
+    activatedCopiedId = useSelector(s.selectActivatedCopiedId),
     setActiveCopiedId = () => dispatch(a.setActiveCopiedId()),
     clearActivatedCopiedId = () => dispatch(a.clearActivatedCopiedId()),
 
@@ -92,6 +93,7 @@ export const useDashboardView = (config: Config = {}) => {
     isMounted,
 
     setInitial,
+    setDashboardView,
     editMode,
     setEditMode,
     entities,

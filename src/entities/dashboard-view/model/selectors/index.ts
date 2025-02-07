@@ -46,4 +46,5 @@ export const makeSelectStyleByField = (field: ViewItemStylesField) => createSele
 );
 
 export const selectActivatedMovementId = createSelector(selectModule, (state: StateSchemaDashboardView) => state.activatedMovementId);
+export const selectActivatedCopiedId = createSelector(selectModule, (state: StateSchemaDashboardView) => state.activatedCopiedId);
   

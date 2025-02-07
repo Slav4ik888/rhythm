@@ -5,13 +5,14 @@ import { f } from 'shared/styles';
 import { ViewItemId, PartialViewItem, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { useCompany } from 'entities/company';
 import { getCopyViewItem } from 'features/dashboard-view';
+import { cloneObj } from 'shared/helpers/objects';
 
 
 
 export const DashboardBodyContent = memo(() => {
   const { companyId } = useCompany();
   const { editMode, selectedId, selectedItem, activatedMovementId, parentsViewItems, viewItems, entities,
-    activatedCopiedId, 
+    activatedCopiedId, setDashboardView,
     setSelectedId, updateViewItem, serviceUpdateViewItem } = useDashboardView();
 
 
@@ -39,21 +40,19 @@ export const DashboardBodyContent = memo(() => {
     else if (activatedCopiedId) {
       if (selectedId === id) return // Нажали на этот же элемент
       if (entities[id].type !== 'box') return // Перемещать можно только в Box
+      
+      console.log('viewItems: ', cloneObj(viewItems));
 
       const copiedViewItems = getCopyViewItem(activatedCopiedId, selectedId, viewItems)
+      console.log('copiedViewItems: ', copiedViewItems);
 
-      // У activatedCopiedId изменяем parentId на выбранный id
-      // const viewItem: PartialViewItem = {
-      //   id       : activatedCopiedId,
-      //   parentId : id // Новый родительский элемент
-      // };
-      createGroupViewItems(viewItem); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
-      serviceCreateGroupViewItems({ companyId, viewItem });
+      setDashboardView({ companyId, viewItems: copiedViewItems }); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
+      // serviceCreateGroupViewItems({ companyId, viewItem });
     } 
     else {
       setSelectedId(id);
     }
-  }, [editMode, selectedId, activatedMovementId, activatedCopiedId, viewItems, entities, setSelectedId]);
+  }, [editMode, selectedId, activatedMovementId, activatedCopiedId, viewItems, entities, setSelectedId, setDashboardView]);
 
 
   return (

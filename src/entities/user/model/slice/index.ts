@@ -3,10 +3,12 @@ import { serviceUpdateUser, serviceLogout } from 'features/user';
 import { updateObject } from 'shared/helpers/objects';
 // import { updateObject } from 'shared/helpers/objects';
 import { getPayloadError as getError } from 'shared/lib/errors';
+import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
 import { creatorUser } from '../creators';
 import { getStartResourseData } from '../services';
 import { StateSchemaUser, User } from '../types';
+import { SetUser } from './types';
 
 
 const initialState: StateSchemaUser = {
@@ -32,9 +34,10 @@ export const slice = createSlice({
     setAuth: (state, { payload }: PayloadAction<boolean>) => {
       state.auth = payload;
     },
-    setUser: (state, { payload }: PayloadAction<User>) => {
+    setUser: (state, { payload }: PayloadAction<SetUser>) => {
       state.auth = true;
-      state.user = creatorUser(payload);
+      state.user = creatorUser(payload.user);
+      LS.setUserState(payload.companyId, state);
     }
   },
 
@@ -48,9 +51,10 @@ export const slice = createSlice({
       .addCase(getStartResourseData.fulfilled, (state, { payload }) => {
         // state._isInit       = true;
         state.auth    = true;
-        state.user    = payload;
+        state.user    = payload.user;
         state.errors  = {};
         state.loading = false;
+        LS.setUserState(payload.companyId, state);
       })
       .addCase(getStartResourseData.rejected, (state, { payload }) => {
         // state._isInit = true;

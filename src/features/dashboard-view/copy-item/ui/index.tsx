@@ -16,6 +16,7 @@ const useStyles = (theme: CustomTheme) => ({
   helperText: {
     position  : 'absolute',
     top       : '100%',
+    right     : 0,
     width     : pxToRem(400),
     maxWidth  : pxToRem(400),
     fontSize  : '0.8rem',
@@ -34,18 +35,18 @@ const useStyles = (theme: CustomTheme) => ({
  */
 export const CopyViewItem: FC = memo(() => {
   const sx = useStyles(useTheme());
-  const { selectedId, activatedMovementId, setActiveMovementId, clearActivatedMovementId } = useDashboardView();
+  const { selectedId, activatedCopiedId, setActiveCopiedId, clearActivatedCopiedId } = useDashboardView();
 
-  const handleToggleActiveMovement = useCallback(() => {
-    if (activatedMovementId) clearActivatedMovementId()
-    else setActiveMovementId()
-  }, [activatedMovementId]);
+  const handleToggleActiveCopying = useCallback(() => {
+    if (activatedCopiedId) clearActivatedCopiedId()
+    else setActiveCopiedId()
+  }, [selectedId, activatedCopiedId, setActiveCopiedId]);
 
 
   return (
     <Box sx={sx.root}>
       {
-        selectedId && selectedId === activatedMovementId
+        selectedId && selectedId === activatedCopiedId
           ? <Box sx={sx.helperText}>
             Для копирования этого элемента, кликните на тот элемент, в который хотите его переместить
           </Box>
@@ -55,7 +56,7 @@ export const CopyViewItem: FC = memo(() => {
         <MDButton
           variant   = 'outlined'
           color     = 'dark'
-          onClick   = {handleToggleActiveMovement}
+          onClick   = {handleToggleActiveCopying}
         >
           <CopyIcon sx={sx.icon} />
         </MDButton>

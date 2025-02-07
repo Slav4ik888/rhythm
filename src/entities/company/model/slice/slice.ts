@@ -5,6 +5,8 @@ import { getPayloadError as getError } from 'shared/lib/errors';
 import { StateSchemaCompany } from 'entities/company';
 import { updateCompany } from 'features/company';
 import { updateObject } from 'shared/helpers/objects';
+import { LS } from 'shared/lib/local-storage';
+import { SetCompany } from './types';
 
 
 
@@ -26,9 +28,11 @@ const slice = createSlice({
     clearErrors: (state) => {
       state.errors = {};
     },
-    setCompany: (state, { payload }: PayloadAction<Company> ) => {
-      state.company       = payload;
-      state.storedCompany = payload;
+    setCompany: (state, { payload }: PayloadAction<SetCompany> ) => {
+      state.company       = payload.company;
+      state.storedCompany = payload.company;
+      LS.setCompanyState(payload.companyId, state);
+      LS.setLastCompanyId(payload.companyId);
     },
     updateCustomSettings: (state, { payload }: PayloadAction<Partial<CustomSettings>>) => {
       if (! state.company.customSettings) state.company.customSettings = {};

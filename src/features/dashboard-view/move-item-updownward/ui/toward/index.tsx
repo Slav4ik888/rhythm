@@ -9,9 +9,6 @@ import { CustomTheme, useTheme } from 'app/providers/theme';
 
 
 const useStyles = (theme: CustomTheme) => ({
-  root: {
-    ml: 2
-  },
   icon: {
     color    : theme.palette.dark.main,
     fontSize : '20px',
@@ -33,7 +30,7 @@ export const Toward: FC<Props> = memo(({ type, onClick }) => {
 
 
   return (
-    <Box sx={sx.root}>
+    <Box>
       <Tooltip title={`Переместить элемент ${up ? 'вверх' : 'вниз'}`}>
         <MDButton
           variant = 'outlined'

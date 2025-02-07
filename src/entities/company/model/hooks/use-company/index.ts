@@ -22,7 +22,7 @@ export const useCompany = (config: Config = {}) => {
     clearErrors          = () => dispatch(a.setErrors({})),
 
     company              = useSelector(s.selectCompany),
-    companyId            = company.id as ActivatedCompanyId,
+    companyId            = company?.id as ActivatedCompanyId,
     storedCompany        = useSelector(s.selectStoredCompany),
     customSettings       = useSelector(s.selectCustomSettings),
     updateCustomSettings = (data: Partial<CustomSettings>) => dispatch(a.updateCustomSettings(data)),

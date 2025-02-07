@@ -1,11 +1,25 @@
 import { UIConfiguratorProviderState } from 'app/providers/theme';
+import { StateSchemaCompany } from 'entities/company';
 import { StateSchemaDashboardData } from 'entities/dashboard-data';
 import { DashboardViewEntities } from 'entities/dashboard-view';
+import { StateSchemaUser } from 'entities/user';
 import { ResGetData } from 'features/dashboard-data/get-data/model/types';
 import { setStorageData, getStorageData, removeStorageData } from './main';
 import { Names } from './names';
 
 
+// User
+export const setUserState = (companyId: string, state: StateSchemaUser) => setStorageData(`UserState-${companyId}`, state);
+export const getUserState = (companyId: string) => (getStorageData<object>(`UserState-${companyId}`) || {}) as StateSchemaUser;
+
+// Company
+export const setLastCompanyId = (companyId: string) => setStorageData('LastCompanyState', companyId);
+export const getLastCompanyId = () => (getStorageData<object>('LastCompanyState') || '') as unknown as string;
+
+export const setCompanyState = (companyId: string, state: StateSchemaCompany) => setStorageData(`CompanyState-${companyId}`, state);
+export const getCompanyState = (companyId: string) => (getStorageData<object>(`CompanyState-${companyId}`) || {}) as StateSchemaCompany;
+
+// Configurator
 export const setUIConfiguratorState = (state: UIConfiguratorProviderState) => setStorageData('UIConfiguratorState', state);
 export const getUIConfiguratorState = () => (getStorageData<object>('UIConfiguratorState') || {}) as UIConfiguratorProviderState;
 

@@ -6,6 +6,7 @@ import { SignupData } from '../../types';
 import { actionsUI } from 'entities/ui';
 import { Errors } from 'shared/lib/validators';
 import { paths } from 'shared/api';
+import { LS } from 'shared/lib/local-storage';
 
 
 
@@ -27,9 +28,10 @@ export const signupByEmail = createAsyncThunk<
     try {
       const { data: { newUserData, newCompanyData, message } } = await extra.api.post<ResSignup>(paths.auth.signup.byEmail, { signupData });
       console.log('data: ', newUserData, newCompanyData, message);
-      
-      dispatch(actionsUser.setUser(newUserData));
-      dispatch(actionsCompany.setCompany(newCompanyData));
+      const companyId = newCompanyData?.id || LS.getLastCompanyId();
+
+      dispatch(actionsUser.setUser({ companyId, user: newUserData }));
+      dispatch(actionsCompany.setCompany({ companyId, company: newCompanyData }));
       dispatch(actionsUI.setSuccessMessage(message));
     
       return;
