@@ -47,12 +47,13 @@ export const getStartResourseData = createAsyncThunk <
         company   = cloneObj(companyData);
         viewItems = dashboardView;
         companyId = companyData.id;
+        LS.setDashboardView(companyId, viewItems);
       }
       else { // На случай отсутствия интернета (для разработки)
         companyId = LS.getLastCompanyId();
         user      = LS.getUserState(companyId)?.user;
         company   = LS.getCompanyState(companyId)?.company;
-        viewItems = Object.values(LS.getDashboardView(companyId));
+        viewItems = LS.getDashboardView(companyId);
       }
 
       dispatch(actionsCompany.setCompany({ companyId, company }));

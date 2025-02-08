@@ -52,7 +52,6 @@ export const slice = createSlice({
       state.entities            = addEntities(state.entities, payload.viewItems);
       state.activatedMovementId = '';
       state.activatedCopiedId   = '';
-      LS.setDashboardView(payload.companyId, state.entities); // Save entities to local storage
     },
 
     setEditMode: (state, { payload }: PayloadAction<boolean>) => {
@@ -167,7 +166,7 @@ export const slice = createSlice({
         state.loading = false;
         state.errors  = {};
 
-        LS.setDashboardView(companyId, state.entities); // Save entities to local storage
+        LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
       })
       .addCase(addNewViewItem.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
@@ -189,7 +188,7 @@ export const slice = createSlice({
         state.loading               = false;
         state.errors                = {};
 
-        LS.setDashboardView(companyId, state.entities); // Save entities to local storage
+        LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
       })
       .addCase(updateViewItem.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
@@ -215,7 +214,7 @@ export const slice = createSlice({
         state.loading             = false;
         state.errors              = {};
 
-        LS.setDashboardView(companyId, state.entities); // Save entities to local storage
+        LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
       })
       .addCase(deleteViewItem.rejected, (state, { payload }) => {
         state.errors  = getError(payload);

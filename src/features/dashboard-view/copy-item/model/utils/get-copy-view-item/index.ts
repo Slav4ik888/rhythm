@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const getCopyViewItem = (
   activatedCopiedId : ViewItemId,
-  selectedId        : ViewItemId, // Будет parentId для первого элемента
+  newParentId       : ViewItemId, // Будет parentId для первого элемента
   viewItems         : ViewItem[],
 ): ViewItem[] => {
   const copyViewItem: ViewItem[] = [];
@@ -16,19 +16,19 @@ export const getCopyViewItem = (
   const copyNestedItems = cloneObj(getNestedViewItems(viewItems, activatedCopiedId));
   
   // Create new ids & set its as parentId for all nested items
-  const setNewIds = (id: ViewItemId, parentId: ViewItemId) => {
-    const parentItem = copyNestedItems.find(item => item.id === id);
+  const setNewIds = (currentItemId: ViewItemId, parentId: ViewItemId) => {
+    const currentItem = copyNestedItems.find(item => item.id === currentItemId);
 
-    if (parentItem) {
-      parentItem.id = uuidv4();
-      parentItem.parentId = parentId;
-      copyViewItem.push(parentItem);
+    if (currentItem) {
+      currentItem.id = uuidv4();
+      currentItem.parentId = parentId;
+      copyViewItem.push(currentItem);
 
-      getChildren(viewItems, id).forEach(item => setNewIds(item.id, id));
+      getChildren(viewItems, currentItemId).forEach(item => setNewIds(item.id, currentItem.id));
     } 
   };
 
-  setNewIds(activatedCopiedId, selectedId);
+  setNewIds(activatedCopiedId, newParentId);
 
   return copyViewItem
 }

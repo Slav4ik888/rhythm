@@ -8,12 +8,13 @@ import { App } from './app';
 import cfg from 'app/config';
 import { UIConfiguratorProvider } from 'app/providers/theme';
 console.log(`Version: ${cfg.ASSEMBLY_DATE}`);
+console.log(cfg.IS_DEV ? 'OFFLINE STATUS' : 'Online status');
 
 
 
 // @ts-ignore
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
+  
 root.render(
   <BrowserRouter>
     <StoreProvider>
@@ -27,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "setup IS_DEV for getStartResourses" && git push -u origin main
+// git add . && git commit -m "fix getCopyViewItem" && git push -u origin main

@@ -27,16 +27,18 @@ describe('getCopyViewItem', () => {
   ];
 
   test('Valid data', () => {
-    const result = getCopyViewItem('4', '111', items as unknown as ViewItem[])
-      .map(item => ({
-        // @ts-ignore
-        oldId       : item.oldId,
-        // @ts-ignore
-        oldParentId : item.oldParentId,
-      }));
+    const result = getCopyViewItem('4', '111', items as unknown as ViewItem[]);
     console.log(result);
+
+    const resultOldData = result.map(item => ({
+      // @ts-ignore
+      oldId: item.oldId, oldParentId : item.oldParentId,
+    }));
     
-    expect(result).toEqual([
+    expect(result[0].parentId).toEqual('111');
+    expect(result[1].parentId).toEqual(result[0].id);
+    
+    expect(resultOldData).toEqual([
       { oldId: '4',  oldParentId: '1' },
       { oldId: '10', oldParentId: '4' },
       { oldId: '11', oldParentId: '4' },

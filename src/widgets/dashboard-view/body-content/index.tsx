@@ -43,7 +43,7 @@ export const DashboardBodyContent = memo(() => {
       
       console.log('viewItems: ', cloneObj(viewItems));
 
-      const copiedViewItems = getCopyViewItem(activatedCopiedId, selectedId, viewItems)
+      const copiedViewItems = getCopyViewItem(activatedCopiedId, id, viewItems)
       console.log('copiedViewItems: ', copiedViewItems);
 
       setDashboardView({ companyId, viewItems: copiedViewItems }); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере

@@ -1,3 +1,4 @@
+import { addEntities } from 'entities/base';
 import { ActivatedCompanyId } from 'entities/company';
 import { LS } from 'shared/lib/local-storage';
 import { StateSchemaDashboardView } from '../../slice/state-schema';
@@ -14,7 +15,7 @@ export const getInitialState = (companyId: ActivatedCompanyId): StateSchemaDashb
 
     editMode            : false,
     selectedId          : '',
-    entities            : LS.getDashboardView(companyId) || {},
+    entities            : addEntities({}, LS.getDashboardView(companyId)) || {},
     newStoredViewItem   : {}, // Начальные значения выбранного элемента
     prevStoredViewItem  : {}, // Начальные значения предыдущего выбранного элемента
 
