@@ -103,7 +103,7 @@ export const slice = createSlice({
     changeOneStyleField: (state, { payload }: PayloadAction<ChangeSelectedStyle>) => {
       const { selectedId, field, value } = payload;
       // @ts-ignore
-      state.entities[selectedId].styles[field] = value;
+      state.entities[selectedId]?.styles?.[field] = value;
     },
 
     setSelectedStyles: (state, { payload }: PayloadAction<ViewItemStyles>) => {

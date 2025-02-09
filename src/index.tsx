@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "fix getCopyViewItem" && git push -u origin main
+// git add . && git commit -m "ended copyItem in frontend part" && git push -u origin main
