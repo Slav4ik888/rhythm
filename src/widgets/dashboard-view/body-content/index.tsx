@@ -6,14 +6,17 @@ import { ViewItemId, PartialViewItem, useDashboardView, NO_PARENT_ID } from 'ent
 import { useCompany } from 'entities/company';
 import { getCopyViewItem } from 'features/dashboard-view';
 import { cloneObj } from 'shared/helpers/objects';
+import { useUser } from 'entities/user';
 
 
 
 export const DashboardBodyContent = memo(() => {
+  const { userId } = useUser();
   const { companyId } = useCompany();
-  const { editMode, selectedId, selectedItem, activatedMovementId, parentsViewItems, viewItems, entities,
-    activatedCopiedId, setDashboardView,
-    setSelectedId, updateViewItem, serviceUpdateViewItem } = useDashboardView();
+  const {
+    editMode, selectedId, selectedItem, activatedMovementId, parentsViewItems, viewItems, entities, activatedCopiedId,
+    setDashboardView, setSelectedId, updateViewItem, serviceUpdateViewItem, serviceCreateGroupViewItems
+  } = useDashboardView();
 
 
   const handleSelectViewItem = useCallback((id: ViewItemId) => {
@@ -42,24 +45,20 @@ export const DashboardBodyContent = memo(() => {
       if (selectedId === id) return // Нажали на этот же элемент
       if (entities[id]?.type !== 'box' && id !== NO_PARENT_ID) return // Перемещать можно только в Box или корневой элемент
       
-      console.log('viewItems: ', cloneObj(viewItems));
-
-      const copiedViewItems = getCopyViewItem(activatedCopiedId, id, viewItems)
-      console.log('copiedViewItems: ', copiedViewItems);
-
+      const copiedViewItems = getCopyViewItem(activatedCopiedId, id, viewItems, userId);
       setDashboardView({ companyId, viewItems: copiedViewItems }); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
-      // serviceCreateGroupViewItems({ companyId, viewItem });
+      serviceCreateGroupViewItems({ companyId, viewItems: copiedViewItems });
     } 
     else {
       setSelectedId(id);
     }
-  }, [editMode, selectedId, activatedMovementId, activatedCopiedId, viewItems, entities, setSelectedId, setDashboardView]);
+  }, [editMode, selectedId, activatedMovementId, activatedCopiedId, viewItems, entities, userId, setSelectedId, setDashboardView]);
 
 
   return (
     <Box
-      sx={{ ...f('c') }}
-      onClick={() => handleSelectViewItem(NO_PARENT_ID)}
+      sx      = {{ ...f('c') }}
+      onClick = {() => handleSelectViewItem(NO_PARENT_ID)}
     >
       <ContentRender
         parentsViewItems = {parentsViewItems}

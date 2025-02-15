@@ -21,6 +21,7 @@ root.render(
       <ErrorBoundary>
         <UIConfiguratorProvider>
           <App />
+          
         </UIConfiguratorProvider>
       </ErrorBoundary>
     </StoreProvider>
@@ -28,4 +29,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "ended copyItem in frontend part" && git push -u origin main
+// git add . && git commit -m "add serviceCreateGroupViewItems" && git push -u origin main

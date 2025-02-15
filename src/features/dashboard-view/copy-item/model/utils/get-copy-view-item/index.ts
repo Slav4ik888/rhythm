@@ -3,12 +3,14 @@ import { getChildren } from 'entities/dashboard-view/model/utils';
 import { cloneObj } from 'shared/helpers/objects';
 import { getNestedViewItems } from '../get-nested-view-items';
 import { v4 as uuidv4 } from 'uuid';
+import { creatorFixDate } from 'entities/base';
 
 
 export const getCopyViewItem = (
   activatedCopiedId : ViewItemId,
   newParentId       : ViewItemId, // Будет parentId для первого элемента
   viewItems         : ViewItem[],
+  userId            : string,
 ): ViewItem[] => {
   const copyViewItem: ViewItem[] = [];
 
@@ -20,8 +22,10 @@ export const getCopyViewItem = (
     const currentItem = copyNestedItems.find(item => item.id === currentItemId);
 
     if (currentItem) {
-      currentItem.id = uuidv4();
-      currentItem.parentId = parentId;
+      currentItem.id         = uuidv4();
+      currentItem.parentId   = parentId;
+      currentItem.createdAt  = creatorFixDate(userId);
+      currentItem.lastChange = creatorFixDate(userId);
       copyViewItem.push(currentItem);
 
       getChildren(viewItems, currentItemId).forEach(item => setNewIds(item.id, currentItem.id));

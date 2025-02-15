@@ -27,7 +27,7 @@ describe('getCopyViewItem', () => {
   ];
 
   test('Valid data', () => {
-    const result = getCopyViewItem('4', '111', items as unknown as ViewItem[]);
+    const result = getCopyViewItem('4', '111', items as unknown as ViewItem[], 'userId_123');
     console.log(result);
 
     const resultOldData = result.map(item => ({
@@ -37,6 +37,8 @@ describe('getCopyViewItem', () => {
     
     expect(result[0].parentId).toEqual('111');
     expect(result[1].parentId).toEqual(result[0].id);
+    expect(result[0].lastChange.userId).toEqual('userId_123');
+  
     
     expect(resultOldData).toEqual([
       { oldId: '4',  oldParentId: '1' },
@@ -53,13 +55,13 @@ describe('getCopyViewItem', () => {
 
 
   test('Invalid items', () => {
-    const result = getCopyViewItem('4', '111', undefined as unknown as ViewItem[]);
+    const result = getCopyViewItem('4', '111', undefined as unknown as ViewItem[], 'userId_123');
     
     expect(result).toEqual([]);
   });
 
   test('Incorrect copiedId', () => {
-    const result = getCopyViewItem('100500', '111', items as unknown as ViewItem[]);
+    const result = getCopyViewItem('100500', '111', items as unknown as ViewItem[], 'userId_123');
     
     expect(result).toEqual([]);
   });

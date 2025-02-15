@@ -6,7 +6,7 @@ import { Errors } from 'shared/lib/validators';
 import { ChangeOneSettingsField, ChangeSelectedStyle, ChangeOneDatasetsItem, ChangeOneChartsItem, SetDashboardView } from '../../slice/types';
 import { ActivatedCompanyId } from 'entities/company';
 import { ViewItem, ViewItemId, ViewItemStyles, ViewItemStylesField, PartialViewItem } from '../../types';
-import { addNewViewItem, deleteViewItem, DeleteViewItem, UpdateViewItem, updateViewItem as updateViewItemOnServer } from 'features/dashboard-view';
+import { addNewViewItem, CreateGroupViewItems, createGroupViewItems, deleteViewItem, DeleteViewItem, UpdateViewItem, updateViewItem as updateViewItemOnServer } from 'features/dashboard-view';
 import { StateSchemaDashboardView } from '../../slice/state-schema';
 
 
@@ -80,6 +80,7 @@ export const useDashboardView = (config: Config = {}) => {
       viewItem    : ViewItem,
       // childrenIds : ViewItemId[]
     ) => dispatch(addNewViewItem({ companyId, viewItem })),
+    serviceCreateGroupViewItems = (data: CreateGroupViewItems) => dispatch(createGroupViewItems(data)),
 
     serviceUpdateViewItem = (data: UpdateViewItem) => dispatch(updateViewItemOnServer(data)),
     serviceDeleteViewItem     = (data: DeleteViewItem) => dispatch(deleteViewItem(data));
@@ -134,6 +135,7 @@ export const useDashboardView = (config: Config = {}) => {
 
     // Services
     serviceAddNewViewItem,
+    serviceCreateGroupViewItems,
     serviceUpdateViewItem,
     serviceDeleteViewItem,
   }
