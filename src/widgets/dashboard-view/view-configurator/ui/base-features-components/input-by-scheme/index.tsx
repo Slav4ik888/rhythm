@@ -60,14 +60,14 @@ export const InputByScheme: FC<Props> = memo(({ scheme, width, sx: style, helper
   const handleBlur = useCallback((e: MouseEvent, v: string | number) => {
     if (onBlur) onBlur(e, v);
     else handleSubmit(e, v);
-  }, [selectedItem, scheme]);
+  }, [selectedItem, scheme, onBlur]);
 
 
   // Submit
   const handleSubmit = useCallback((e: MouseEvent, v: string | number) => {
     if (onSubmit) onSubmit(e, v);
     else handleUpdate(v);
-  }, [selectedItem, scheme, handleUpdate]);
+  }, [selectedItem, scheme, handleUpdate, onSubmit]);
   
   
   // Clear

@@ -76,7 +76,7 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTi
           width      = '4rem'
           helperText = 'Слева'
           onChange   = {handleEmpty}
-          onBlur     = {handleEmpty}
+          onBlur     = {(e: MouseEvent, v: string | number) => onChange(baseField + 'l' as ViewItemStylesField, v)}
           onSubmit   = {(e: MouseEvent, v: string | number) => onChange(baseField + 'l' as ViewItemStylesField, v)}
         />
         <InputByScheme
@@ -85,7 +85,7 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTi
           width      = '4rem'
           helperText = 'Снизу'
           onChange   = {handleEmpty}
-          onBlur     = {handleEmpty}
+          onBlur     = {(e: MouseEvent, v: string | number) => onChange(baseField + 'b' as ViewItemStylesField, v)}
           onSubmit   = {(e: MouseEvent, v: string | number) => onChange(baseField + 'b' as ViewItemStylesField, v)}
         />
         <InputByScheme
@@ -94,7 +94,7 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTi
           width      = '4rem'
           helperText = 'Справа'
           onChange   = {handleEmpty}
-          onBlur     = {handleEmpty}
+          onBlur     = {(e: MouseEvent, v: string | number) => onChange(baseField + 'r' as ViewItemStylesField, v)}
           onSubmit   = {(e: MouseEvent, v: string | number) => onChange(baseField + 'r' as ViewItemStylesField, v)}
         />
         <InputByScheme
@@ -103,7 +103,7 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ baseField, bold, toolTi
           width      = '4rem'
           helperText = 'Прав/лев'
           onChange   = {handleEmpty}
-          onBlur     = {handleEmpty}
+          onBlur     = {(e: MouseEvent, v: string | number) => onChange(baseField + 'x' as ViewItemStylesField, v)}
           onSubmit   = {(e: MouseEvent, v: string | number) => onChange(baseField + 'x' as ViewItemStylesField, v)}
         />
       </Box>
