@@ -2,12 +2,12 @@ import { FC, memo, useMemo } from 'react';
 import { ViewItem, ViewItemId } from 'entities/dashboard-view';
 import { ItemWrapper } from '../../wrapper-item';
 import { DashboardStatisticItem, Increased, useDashboardData } from 'entities/dashboard-data';
-import { getColorByIncreased, getComparisonValues, getIncreased, getReversedIndicators } from '../model/utils';
+import { getColorByIncreased, getComparisonValues, getIncreased, getReversedIndicators, ValueStringAndReduction } from '../model/utils';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { ItemDigitIndicatorValue } from './value';
 import { ItemDigitIndicatorEnding } from './ending';
 import { ItemDigitIndicatorPlusMinus } from './plus-minus';
-import { getFixedFraction } from 'shared/helpers/numbers';
+import { getFixedFraction, getReducedWithReduction } from 'shared/helpers/numbers';
 import { calcGrowthChange } from '../../growth-icon/model/utils';
 import { isNotUndefined } from 'shared/lib/validators';
 
@@ -59,9 +59,15 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
   ), [activeEntities, item]);
 
 
+  if (item.id === 'c0857cf5-edd5-4996-aed7-9d8c83b48248') {
+    console.log('values: ', values);
+  }
+
+
   // Значение для вывода на экран
-  const calcedValue = useMemo(() => {
+  const calcedValue: ValueStringAndReduction = useMemo(() => {
     let value: any = '-';
+    let reduction: string = '';
 
     if (item?.settings?.endingDiffType === '% соотношение') {
       value = getFixedFraction(
@@ -70,7 +76,9 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
       );
     }
     else if (item?.settings?.endingDiffType === 'Разница') {
-      value = getFixedFraction(lastValue - prevValue, { fractionDigits, addZero });
+      const { value: v, reduction: p = '' } = getReducedWithReduction(lastValue - prevValue);
+      value = getFixedFraction(v, { fractionDigits, addZero });
+      reduction = p;
     }
     else {
       if (isNotUndefined(value) && isNotUndefined(count)) {
@@ -80,7 +88,12 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
       }
     }
 
-    return String(value).replace('.',',');
+    return {
+      reduction,
+      value: item?.settings?.plusMinus
+        ? String(value).replace('-', '').replace('.', ',') // Удаляем знак минус, если выбрано plusMinus, чтобы не дублировался тк будет выведен в ItemDigitIndicatorPlusMinus
+        : String(value).replace('.', ','),
+    }
   }, [activeEntities, lastValue, prevValue, values, item]);
 
 
@@ -98,15 +111,15 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
       {/* Число */}
       <ItemDigitIndicatorValue
         item  = {item}
-        value = {calcedValue}
+        value = {calcedValue.value}
         color = {color}
       />
 
       {/* Сокращение - (тыс млн) | Ед изменения */}
       <ItemDigitIndicatorEnding
-        item  = {item}
-        reduction = {values[0]?.reduction}
-        color = {color}
+        item      = {item}
+        reduction = {calcedValue.reduction || values[0]?.reduction}
+        color     = {color}
       />
     </ItemWrapper>
   )

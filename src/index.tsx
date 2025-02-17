@@ -29,4 +29,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "fix SelectKod in Chart settings" && git push -u origin main
+// git add . && git commit -m "add getReducedWithReduction when calc difference" && git push -u origin main
