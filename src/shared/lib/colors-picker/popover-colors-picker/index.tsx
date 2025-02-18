@@ -11,45 +11,48 @@ console.log('MODULE STYLE: ', s);
 
 
 
-const useStyles = (theme: CustomTheme, sx: SxCard | undefined, backgroundColor: RgbaColor | undefined) => ({
-  root: {
-    position: 'relative',
-    ...sx?.root,
-  },
-
-  swatch: {
-    width           : '50px',
-    height          : '28px',
-    borderRadius    : '8px',
-    border          : '3px solid #fff',
-    boxShadow       : '0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.1)',
-    cursor          : 'pointer',
-    backgroundColor : rgba(backgroundColor),
-  },
-
-  popover: {
-    position     : 'absolute',
-    bottom       : 'calc(100% + 8px)',
-    right        : 0,
-    ...f('c'),
-    gap          : 1,
-    p            : 0.5,
-    pb           : 1,   
-    borderRadius : '9px',
-    boxShadow    : '0 6px 12px rgba(0, 0, 0, 0.15)',
-    background   : theme.palette.background.paper,
-    zIndex       : 1000,
-  },
-  control: {
-    ...f('-c-sb'),
-  },
-  transparent: {
+const useStyles = (theme: CustomTheme, sx: SxCard | undefined, backgroundColor: RgbaColor | undefined) => {
+  return {
     root: {
-      fontSize : pxToRem(10),
-      // width    : '60px',
+      position: 'relative',
+      ...sx?.root,
+    },
+
+    swatch: {
+      width           : '50px',
+      height          : '28px',
+      borderRadius    : '8px',
+      border          : '3px solid #fff',
+      boxShadow       : '0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.1)',
+      cursor          : 'pointer',
+      backgroundColor : rgba(backgroundColor),
+    },
+
+    popover: {
+      position     : 'absolute',
+      bottom       : sx?.popover?.bottom ? sx?.popover?.bottom : 'calc(100% + 8px)',
+      right        : 0,
+      ...f('c'),
+      gap          : 1,
+      p            : 0.5,
+      pb           : 1,   
+      borderRadius : '9px',
+      boxShadow    : '0 6px 12px rgba(0, 0, 0, 0.15)',
+      background   : theme.palette.background.paper,
+      zIndex       : 1000,
+      ...sx?.popover,
+    },
+    control: {
+      ...f('-c-sb'),
+    },
+    transparent: {
+      root: {
+        fontSize : pxToRem(10),
+        // width    : '60px',
+      }
     }
   }
-});
+};
 
 
 interface Props {

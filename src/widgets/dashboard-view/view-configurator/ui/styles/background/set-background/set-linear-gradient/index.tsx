@@ -2,7 +2,7 @@ import { FC, memo, useState, useEffect, MouseEvent } from 'react';
 import { ViewItemStylesField, RgbaString } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { splitGradinetRgba, SplittedLinerGradient } from '../utils';
-import { linearGradient } from 'shared/styles';
+import { linearGradient, SxCard } from 'shared/styles';
 import { InputByScheme } from '../../../../base-features-components';
 
 
@@ -10,12 +10,13 @@ import { InputByScheme } from '../../../../base-features-components';
 interface Props {
   defaultValue : RgbaString
   gradients    : SplittedLinerGradient
+  sx?          : SxCard
   onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
 
 /** background linear-gradient*/
-export const SetLinearGradient: FC<Props> = memo(({ defaultValue = '', gradients, onChange }) => {
+export const SetLinearGradient: FC<Props> = memo(({ sx, defaultValue = '', gradients, onChange }) => {
   const [deg, setDeg]     = useState(gradients[0] as unknown as number || 15);
   const [main, setMain]   = useState(gradients[1] || defaultValue as string);
   const [state, setState] = useState(gradients[2] || defaultValue as string);
@@ -55,10 +56,12 @@ export const SetLinearGradient: FC<Props> = memo(({ defaultValue = '', gradients
       />
       <ColorPicker
         defaultColor = {main}
+        sx           = {sx}
         onChange     = {handleGrainentMain}
       />
       <ColorPicker
         defaultColor = {state}
+        sx           = {sx}
         onChange     = {handleGrainentState}
       />
     </>

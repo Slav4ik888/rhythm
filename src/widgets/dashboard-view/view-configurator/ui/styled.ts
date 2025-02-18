@@ -62,7 +62,6 @@ export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, owne
       paddingBottom : pxToRem(60),
       borderRadius  : borderRadius.xl,
       boxShadow     : getBoxShadows(theme as CustomTheme).lg,
-      overflowY     : 'auto',
       transform     : editMode ? 'translateX(0)' : `translateX(${pxToRem(450)})`,
 
       ...(editMode ? drawerOpenStyles() : drawerCloseStyles()),

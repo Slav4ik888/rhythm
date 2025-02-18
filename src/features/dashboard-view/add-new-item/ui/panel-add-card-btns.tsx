@@ -16,7 +16,7 @@ import { ViewItemType } from 'entities/dashboard-view/model/types';
 
 const useStyles = (theme: CustomTheme) => ({
   root: {
-    ...f(),
+    ...f('r'),
     position : 'relative',
     width    : '110px',
   },

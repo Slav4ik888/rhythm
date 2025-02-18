@@ -18,6 +18,12 @@ import { InfoBlock } from './info-block';
 
 
 
+const sxTabPanel = {
+  overflowY : 'auto',
+  p         : 0,
+};
+
+
 export const ViewItemConfigurator: FC = memo(() => {
   const { companyId, storedCompany, company, serviceUpdateCompany } = useCompany();
   const { editMode, selectedId, selectedItem, entities, prevStoredViewItem, setSelectedId, setEditMode, serviceUpdateViewItem } = useDashboardView();
@@ -82,13 +88,13 @@ export const ViewItemConfigurator: FC = memo(() => {
           </TabList>
         </Box>
 
-        <TabPanel value='1' keepMounted sx={{ p: 0 }}>
+        <TabPanel value='1' keepMounted sx={sxTabPanel}>
           <ViewItemControlConfigurator />
         </TabPanel>
-        <TabPanel value='2' keepMounted sx={{ p: 0 }}>
+        <TabPanel value='2' keepMounted sx={sxTabPanel}>
           <ViewItemStylesConfigurator />
         </TabPanel>
-        <TabPanel value='3' keepMounted sx={{ p: 0 }}>
+        <TabPanel value='3' keepMounted sx={sxTabPanel}>
           <ViewItemConfiguratorSettings />
         </TabPanel>
       </TabContext>

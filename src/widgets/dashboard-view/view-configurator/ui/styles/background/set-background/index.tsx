@@ -6,12 +6,19 @@ import { Checkbox } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
 import { splitGradinetRgba } from './utils';
 import { SetLinearGradient } from './set-linear-gradient';
+import { pxToRem, SxCard } from 'shared/styles';
 
 
 
 interface Props {
   onChange: (field: ViewItemStylesField, value: number | string) => void
 }
+
+const sx: SxCard = {
+  popover: {
+    bottom: pxToRem(-260) 
+  }
+};
 
 
 /** background */
@@ -50,10 +57,12 @@ export const SetBackground: FC<Props> = memo(({ onChange }) => {
           ? <SetLinearGradient
               defaultValue = {styleValueByField as RgbaString}
               gradients    = {gradients}
+              sx           = {sx}
               onChange     = {onChange}
             />
           : <ColorPicker
               defaultColor = {styleValueByField as RgbaString}
+              sx           = {sx}
               onChange     = {handleBackground}
             />
       }

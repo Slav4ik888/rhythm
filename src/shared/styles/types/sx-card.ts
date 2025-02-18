@@ -16,4 +16,5 @@ export interface SxCard {
   column?      : objStr
   row?         : objStr
   hiddenLabel? : objStr // For hiddenLabel
+  popover?     : objStr // For ColorPicker
 };
