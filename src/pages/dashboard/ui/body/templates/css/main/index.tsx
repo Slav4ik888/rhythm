@@ -39,8 +39,8 @@ export const DashboardBodyMain = memo(() => {
         <DashboardReportContainer7_0_4 />
       </DashboardBoxContainer> */}
 
-      <DashboardGroupDepartment7 />
-      <DashboardGroupDepartment1 />
+      {/* <DashboardGroupDepartment7 /> */}
+      {/* <DashboardGroupDepartment1 /> */}
       <DashboardGroupDepartment2 />
       <DashboardGroupDepartment3 />
       <DashboardGroupDepartment4 />

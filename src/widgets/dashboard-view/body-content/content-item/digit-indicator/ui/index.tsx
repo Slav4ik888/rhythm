@@ -59,11 +59,6 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
   ), [activeEntities, item]);
 
 
-  if (item.id === 'c0857cf5-edd5-4996-aed7-9d8c83b48248') {
-    console.log('values: ', values);
-  }
-
-
   // Значение для вывода на экран
   const calcedValue: ValueStringAndReduction = useMemo(() => {
     let value: any = '-';

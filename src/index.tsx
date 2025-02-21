@@ -21,7 +21,6 @@ root.render(
       <ErrorBoundary>
         <UIConfiguratorProvider>
           <App />
-          
         </UIConfiguratorProvider>
       </ErrorBoundary>
     </StoreProvider>
@@ -29,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "add sxTabPanel" && git push -u origin main
+// git add . && git commit -m "add 1st department" && git push -u origin main

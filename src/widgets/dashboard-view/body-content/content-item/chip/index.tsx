@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { ViewItem, ViewItemId, ChipContainer } from 'entities/dashboard-view';
+import { ViewItem, ViewItemId, ChipContainer, stylesToSx } from 'entities/dashboard-view';
 import { ItemWrapper } from '../wrapper-item';
 import { CONDITION_TYPE, DashboardConditionType, getConditionType } from 'entities/condition-type';
 import { useDashboardData } from 'entities/dashboard-data';
@@ -66,7 +66,12 @@ export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
       <ChipContainer
         label     = {label}
         toolTitle = {toolTitle}
-        sx        = {{ color, background }}
+        sx={{
+          color,
+          background,
+          width  : stylesToSx(item?.styles)?.width,
+          height : stylesToSx(item?.styles)?.height,
+        }}
       />
     </ItemWrapper>
   )

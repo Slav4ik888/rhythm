@@ -5,12 +5,15 @@ import { f, pxToRem } from 'shared/styles';
 
 
 
-interface SxChipContaine {
+export interface SxChipContainer {
   color      : string
   background : string
+  width?     : string
+  height?    : string
 }
 
-const useStyle = (sx: SxChipContaine) => {
+
+const useStyle = (sx: SxChipContainer) => {
 
   return {
     tooltip: {
@@ -19,8 +22,8 @@ const useStyle = (sx: SxChipContaine) => {
       cursor     : 'default',
     },
     chip: {
-      width      : pxToRem(70),
-      height     : pxToRem(15),
+      width      : sx.width  || pxToRem(70),
+      height     : sx.height || pxToRem(15),
       fontSize   : pxToRem(12),
       color      : sx.color      || '#000',
       background : sx.background || '#eee',
@@ -32,7 +35,7 @@ const useStyle = (sx: SxChipContaine) => {
 interface Props {
   label     : string
   toolTitle : string
-  sx        : SxChipContaine
+  sx        : SxChipContainer
 }
 
 /**

@@ -1,1 +1,1 @@
-export { ChipContainer } from './chip'
+export { ChipContainer, SxChipContainer } from './chip'
