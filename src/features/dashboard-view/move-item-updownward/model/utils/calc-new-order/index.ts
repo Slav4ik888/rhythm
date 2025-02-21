@@ -31,7 +31,15 @@ export const calcNewOrder = (
     else { // Если третий или ниже сверху => ставим между двумя предыдущими
       const prevOrder     = childrenItems[currentIdx - 1].order; // 2000
       const prevPrevOrder = childrenItems[currentIdx - 2].order; // 1000
-      order = prevPrevOrder + (prevOrder - prevPrevOrder) / 2; // 1000 + (2000 - 1000) / 2 = 1500
+
+      if (prevOrder === prevPrevOrder) { // Если равны => делаем между двумя предыдущими
+        if (currentIdx === 1) { // Если второй равен первому => делаем первым
+          order = childrenItems[0].order / 2;
+        }
+      }
+      else {
+        order = prevPrevOrder + (prevOrder - prevPrevOrder) / 2; // 1000 + (2000 - 1000) / 2 = 1500
+      }
     }
   }
   else { // type === 'down'

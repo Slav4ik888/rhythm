@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "add 1st department" && git push -u origin main
+// git add . && git commit -m "refact getCopyViewItem - order - Первый элемент помещаем в конец newParentId" && git push -u origin main
