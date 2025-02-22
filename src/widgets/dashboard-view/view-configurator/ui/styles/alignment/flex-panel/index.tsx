@@ -15,7 +15,7 @@ interface Props {
   onChange: (field: ViewItemStylesField, value: number | string) => void
 }
 
-export const PanelAlignment: FC<Props> = memo(({ onChange }) => {
+export const FlexPanelAlignment: FC<Props> = memo(({ onChange }) => {
   const { stylesByViewItemId: style } = useDashboardView();
 
   return (

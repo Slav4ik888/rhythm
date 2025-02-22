@@ -11,7 +11,7 @@ import { CardLabel } from './label';
 
 /** Вкладка Styles */
 export const ViewItemStylesConfigurator: FC = memo(() => {
-  const { selectedId, entities, changeOneStyleField } = useDashboardView();
+  const { selectedItem, selectedId, entities, changeOneStyleField } = useDashboardView();
 
   /** Сохраняем изменения стилей элементов в store */
   const handleChange = useCallback((field: ViewItemStylesField, value: number | string) => {
@@ -22,12 +22,12 @@ export const ViewItemStylesConfigurator: FC = memo(() => {
 
   return (
     <>
-      <CardLabel onChange={handleChange} />
+      <CardLabel  onChange={handleChange} />
       <Background onChange={handleChange} />
-      <Alignment onChange={handleChange} />
+      <Alignment  onChange={handleChange} type={selectedItem.type} />
       <Dimensions onChange={handleChange} />
       <Indents />
-      <Borders onChange={handleChange} />
+      <Borders    onChange={handleChange} />
     </>
   )
 });

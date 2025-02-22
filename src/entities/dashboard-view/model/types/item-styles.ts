@@ -1,4 +1,4 @@
-
+// v.2025-02-22
 export type BorderStyleType    =  'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'ridge' | 'inset' | 'outset' | 'none';
 export const arrayBorderStyles = ['solid' , 'dashed' , 'dotted' , 'double' , 'groove' , 'ridge' , 'inset' , 'outset' , 'none'];
 
@@ -13,6 +13,7 @@ export const arrayFontStyles: Array<FontStyleType> = ['normal' , 'italic'];
 export type FontWeightType    =  'lighter' | 'normal' | 'bold' | 'bolder' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
 export const arrayFontWeights = ['lighter' , 'normal' , 'bold' , 'bolder' , '100' , '200' , '300' , '400' , '500' , '600' , '700' , '800' , '900'];
 
+export type TextAlignType = 'left' | 'right' | 'center';
 
 
 export interface ViewItemStyles {
@@ -73,7 +74,7 @@ export interface ViewItemStyles {
   fontFamily?   : string
   lineHeight?   : number
 
-  // textAlign?: string
+  textAlign?    : TextAlignType
   // textDecoration?: string
   // textTransform?: string
   // textShadow?: string

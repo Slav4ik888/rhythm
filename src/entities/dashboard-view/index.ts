@@ -3,7 +3,7 @@ export {
   AlignItemsType, JustifyContentType, ViewItemStyles, ViewItemStylesField, PartialViewItem, RgbaString,
   FontStyleType, arrayFontStyles, FontWeightType, arrayFontWeights, ViewItemSettings, ViewItemSettingsField,
   ViewItemCharts, ViewItemChartsField, ChipType, arrayChipLabel, chipOptions, BaseChipType, IndicatorsConfig,
-  arrayEndingType, arrayEndingDiffType, EndingType, EndingDiffType, ViewItemType
+  arrayEndingType, arrayEndingDiffType, EndingType, EndingDiffType, ViewItemType, TextAlignType
 } from './model/types'
 export { actions as actionsDashboardView, reducer as reducerDashboardView } from './model/slice'
 export { DashboardViewEntities, StateSchemaDashboardView } from './model/slice/state-schema'
