@@ -2,7 +2,7 @@ import { FC, memo, ReactNode } from 'react';
 import { Box } from '@mui/material';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { f } from 'shared/styles';
-import { ConfiguratorSubTitle } from '../sub-title';
+import { ConfiguratorTitle } from '../sub-title';
 
 
 
@@ -13,7 +13,8 @@ const useStyles = (theme: CustomTheme) => ({
     border       : `1px solid ${theme.palette.dark.main}`,
     borderRadius : '8px',
     my           : 1,
-    p            : 1,
+    pl           : 1,
+    pr           : 2
   }
 });
 
@@ -29,7 +30,7 @@ export const ConfiguratorSubBoxWrapper: FC<Props> = memo(({ title, children }) =
 
   return (
     <Box sx={sx.root}>
-      <ConfiguratorSubTitle title={title} type='title' />
+      <ConfiguratorTitle title={title} type='title2' />
       {
         children
       }

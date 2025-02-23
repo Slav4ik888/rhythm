@@ -1,7 +1,8 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { f } from 'shared/styles';
 import { FC, memo, ReactNode } from 'react';
+import { ConfiguratorTitle } from '../sub-title';
 
 
 
@@ -9,13 +10,7 @@ const useStyles = (theme: CustomTheme) => ({
   root: {
     ...f('c'),
     width: '100%',
-  },
-  title: {
-    ...f('-c-c'),
-    fontSize   : '1.3rem',
-    color      : theme.palette.subHeader.main,
-    textShadow : `0px 0px 1px ${theme.palette.subHeader.light}`,
-    my         : 3,
+    pt: 2,
   },
 });
 
@@ -31,9 +26,7 @@ export const ConfiguratorSubHeader: FC<Props> = memo(({ title, children }) => {
 
   return (
     <Box sx={sx.root}>
-      <Typography sx={sx.title}>
-        {title}
-      </Typography>
+      <ConfiguratorTitle title={title} type='title1' />
       {
         children
       }
