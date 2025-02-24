@@ -10,6 +10,7 @@ import { ChartBackgroundColor } from './chart-settings/background-сolor';
 import { ChartBorderWidth } from './chart-settings/border-width';
 import { ChartKodLabel } from './chart-settings/kod-label';
 import { useDashboardView } from 'entities/dashboard-view';
+import { ChartTrendCheckbox } from './chart-settings/trend-checkbox';
 
 
 
@@ -28,21 +29,22 @@ export const ViewItemChartSettingsList: FC = memo(() => {
             <ConfiguratorTitle title='Общие настройки' type='subtitle1' />
             <SelectKod     index={index} />
             <ChartKodLabel index={index} />
+
             {/* Выбрать период дат: общий или уникальный */}
-            <SelectChartType                 index={index} />
-            <ChartLabel index={index} />
+            <SelectChartType index={index} />
+            <ChartLabel      index={index} />
             
             <ConfiguratorTitle title='Точки' type='subtitle1' />
-            <ChartPointRadius                index={index} />
-            <ChartPointBackgroundColor       index={index} />
+            <ChartPointRadius          index={index} />
+            <ChartPointBackgroundColor index={index} />
 
             <ConfiguratorTitle title='Линия графика' type='subtitle1' />
-            <ChartBorderWidth                index={index} />
-            <ChartBorderColor                index={index} />
-            <ChartBackgroundColor            index={index} />
+            <ChartBorderWidth     index={index} />
+            <ChartBorderColor     index={index} />
+            <ChartBackgroundColor index={index} />
 
             <ConfiguratorTitle title='Линия тренда' type='subtitle1' />
-
+            <ChartTrendCheckbox index={index} />
           </ConfiguratorSubBoxWrapper>
         ))
       }

@@ -27,6 +27,13 @@ export interface ChartConfigDatasets {
   maxBarThickness?      : number
 }
 
+// Для Тренда
+// export interface ChartConfigTrendDatasets {
+//   data?                 : number[] // Данные
+//   borderColor?          : string | string[] // Несколько цветов [], если нужно каждый столбик раскрасить разным цветом
+//   borderWidth?          : number // Толщика линии
+// }
+
 export type ChartConfigDatasetsField = keyof ChartConfigDatasets;
 
 

@@ -10,10 +10,13 @@ export type ViewItemType = 'box' | 'text' | 'divider' | 'chart' | 'chip' | 'grow
 export type ViewItemId = string
 
 
+/** v.2025-02-24 */
 export interface ViewItemCharts {
-  kod?       : string
-  chartType? : ChartType
-  datasets?  : ChartConfigDatasets
+  kod?           : string
+  chartType?     : ChartType
+  datasets?      : ChartConfigDatasets
+  isTrend?       : boolean // Показывать ли линию тренда
+  // trendDataSets? : ChartConfigTrendDatasets
 }
 
 export type ViewItemChartsField = keyof ViewItemCharts

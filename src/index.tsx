@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refact ConfiguratorTitle & refact scales settings" && git push -u origin main
+// git add . && git commit -m "start ChartTrendCheckbox" && git push -u origin main
