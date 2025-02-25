@@ -16,6 +16,7 @@ export * from './get-value-by-scheme';
 export * from './is-changes';
 export * from './is-field';                // v.2024-11-09
 export * from './object-fields-to-string';
+export { setIfNotUndefined } from './set-if-not-undefined' // v.2025-02-25
 export * from './set-value-by-scheme';
 export * from './size-of';
 export * from './update-object';

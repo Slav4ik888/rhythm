@@ -15,16 +15,18 @@ export interface ChartConfig {
 
 export interface ChartConfigDatasets {
   label?                : string
-  data?                 : number[] // Данные
+  data                  : number[] // Данные
   tension?              : number
   pointRadius?          : number // Толщика точки (круглешков)
-  pointBorderColor?     : 'transparent'
+  pointBorderColor?     : string | 'transparent'
   pointBackgroundColor? : string
   borderColor?          : string | string[] // Несколько цветов [], если нужно каждый столбик раскрасить разным цветом
   borderWidth?          : number // Толщика линии
   backgroundColor?      : string | string[] // Несколько цветов [], если нужно каждый столбик раскрасить разным цветом
   fill?                 : boolean
   maxBarThickness?      : number
+  type?                 : 'line' // Если на 1 графике несколько Charts и 1й 'bar', but not 'line' 
+  order?                : number // Если на 1 графике несколько Charts и нужно упорядочить их
 }
 
 // Для Тренда

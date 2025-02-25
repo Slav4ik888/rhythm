@@ -1,4 +1,4 @@
-import { FC, memo, useMemo } from 'react';
+import { FC, memo, useEffect, useMemo } from 'react';
 import { ViewItem, ViewItemId } from 'entities/dashboard-view';
 import { ItemWrapper } from '../../wrapper-item';
 import "chart.js/auto";
@@ -30,6 +30,26 @@ export const ItemChart: FC<Props> = memo(({ item, onSelect }) => {
   // console.log('data: ', data);
   // console.log('options: ', options);
 
+  useEffect(() => {
+    if (! item?.settings?.charts?.length) return
+    
+    item.settings.charts.forEach((chart) => {
+      if (chart.isTrend) { // рассчитываем и добавляем данные о тренде
+        const trendData: number[] = [];
+
+        data.datasets.push({
+          label           : 'Тренд',
+          data            : trendData,
+          borderColor     : 'rgba(255, 99, 132, 0.2)',
+          backgroundColor : 'rgba(255, 99, 132, 0.2)',
+          fill            : false,
+          type            : 'line',
+        });
+      }
+    });
+
+  }, [item]);
+  
 
   return (
     <ItemWrapper item={item} onSelect={onSelect}>
