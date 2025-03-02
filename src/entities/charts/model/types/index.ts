@@ -27,6 +27,7 @@ export interface ChartConfigDatasets {
   maxBarThickness?      : number
   type?                 : 'line' // Если на 1 графике несколько Charts и 1й 'bar', but not 'line' 
   order?                : number // Если на 1 графике несколько Charts и нужно упорядочить их
+  parentChartsIdx?      : number // For trendLine чтобы знать чей это тренд charts
 }
 
 // Для Тренда
@@ -55,7 +56,7 @@ export interface ChartConfigOptions {
     }
   }
   interaction?: {
-    intersect? : boolean
+    intersect? : boolean  // true - событие срабатывает только если курсор пересекает элемент (например, находится прямо над точкой или столбцом)
     mode?      : InteractionMode //'index'
   }
     

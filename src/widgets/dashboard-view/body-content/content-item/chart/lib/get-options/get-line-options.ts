@@ -18,7 +18,7 @@ export const getLineOptions = (options = {} as ChartConfigOptions): ChartConfigO
       },
     },
     interaction: {
-      intersect : false,
+      intersect : false, // true - событие срабатывает только если курсор пересекает элемент (например, находится прямо над точкой или столбцом)
       mode      : 'index' as InteractionMode,
     },
     scales: {

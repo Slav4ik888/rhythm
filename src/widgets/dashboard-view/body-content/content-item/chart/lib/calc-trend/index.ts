@@ -9,7 +9,7 @@ const sum = (arr: number[]): number => arr.reduce((prev, val) => prev + val, 0);
  * Расчитывает значения для линейного тренда
  * @param dates 
  * @param items 
- * @returns 
+ * @returns items for trend-line
  */
 export const calcTrend = (
   dates : string[],

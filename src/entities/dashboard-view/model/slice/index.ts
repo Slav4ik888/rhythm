@@ -10,6 +10,7 @@ import { ViewItem, ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem
 // import { NO_PARENT_ID } from '../consts';
 import { cloneObj, updateObject } from 'shared/helpers/objects';
 import { updateChartsItem } from '../utils';
+import { ChartConfigDatasets } from 'entities/charts';
 
 
 
@@ -138,8 +139,8 @@ export const slice = createSlice({
       const { field, index, value } = payload;
       const selectedId   = state.selectedId;
       const selectedItem = state.entities[selectedId];
-      const datasets     = cloneObj(selectedItem?.settings?.charts?.[index]?.datasets || {});
-      datasets[field] = value;
+      const datasets     = cloneObj(selectedItem?.settings?.charts?.[index]?.datasets || {}) as ChartConfigDatasets;
+      datasets[field] = value as never;
 
       if (state.entities[selectedId]) {
         if (! state.entities[selectedId]?.settings) state.entities[selectedId].settings = {};
