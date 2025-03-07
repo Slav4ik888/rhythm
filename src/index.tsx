@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "add calcTrend to getData" && git push -u origin main
+// git add . && git commit -m "add calcNanValue" && git push -u origin main

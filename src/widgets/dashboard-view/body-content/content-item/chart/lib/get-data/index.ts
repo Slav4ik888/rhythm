@@ -1,8 +1,8 @@
 import { ChartConfig, ChartConfigDatasets, fixPointRadius } from 'entities/charts';
 import { checkInvertData, DashboardStatisticItem } from 'entities/dashboard-data';
 import { ViewItem } from 'entities/dashboard-view';
-import { setIfNotUndefined } from 'shared/helpers/objects';
 import { setValue } from 'shared/lib/charts';
+import { isStr } from 'shared/lib/validators';
 import { calcTrend } from '../calc-trend';
 
 
@@ -25,7 +25,7 @@ export const getData = (
 
         const result: ChartConfigDatasets = {
           label                : setValue(datasets.label, `График ${idx + 1}`),
-          data                 : checkInvertData(item?.settings, itemData),
+          data                 : checkInvertData(item?.settings, itemData).map(item => isStr(item) ? NaN : item), // Empty value changes for NaN
           tension              : 0,
           pointRadius          : setValue(datasets.pointRadius, fixPointRadius(dates)), // Толщика точки (круглешков)
           pointBorderColor     : 'transparent',
@@ -38,8 +38,6 @@ export const getData = (
           order                : setValue(datasets.order, idx + 1)
         };
 
-        // setIfNotUndefined(result, 'label', datasets.label);
-        
         return result
     })],
   };
@@ -48,15 +46,14 @@ export const getData = (
   item?.settings?.charts?.forEach((chart, idx) => {
     // Если активирована линия тренда, рассчитываем данные тренда и добавляем как график
     if (chart.isTrend) {
-      const trendData = calcTrend(dates, config.datasets?.[0]?.data);
+      const trendData = calcTrend(dates, config.datasets?.[idx]?.data);
 
       config.datasets.push({
         label           : 'Тренд',
         data            : trendData,
-        borderColor     : 'rgba(255, 99, 132, 0.2)',
-        backgroundColor : 'rgba(255, 99, 132, 0.2)',
+        pointRadius     : 0,
+        borderColor     : config.datasets?.[idx]?.borderColor || 'rgb(19, 40, 162)',
         borderWidth     : 3,
-        // fill            : false,
         order           : idx, // поверх (на 1<) графика parentChartsIdx
         type            : 'line',
         parentChartsIdx : idx // чтобы знать к чей это трент
