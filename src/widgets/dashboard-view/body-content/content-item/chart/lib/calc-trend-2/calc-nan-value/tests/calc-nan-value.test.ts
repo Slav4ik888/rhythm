@@ -18,6 +18,10 @@ describe('calcNanValue', () => {
     expect(calcNanValue([10, 20, NaN,  NaN,  NaN, 40, 50], NaN, 3)).toEqual(30);
   });
 
+  test('NaN между двумя цифрами', () => {
+    expect(calcNanValue([10, 20, NaN,  NaN,  NaN, 35, NaN, 15], NaN, 6)).toEqual(25);
+  });
+
   test('NaN is some in the middle in array', () => {
     expect(calcNanValue([10, 20, NaN,  NaN,  NaN, 40, 50], NaN, 4)).toEqual(35);
   });

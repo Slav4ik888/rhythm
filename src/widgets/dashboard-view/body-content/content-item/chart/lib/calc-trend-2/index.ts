@@ -1,4 +1,5 @@
 import { isNum } from 'shared/lib/validators';
+import { calcNanValue } from './calc-nan-value';
 import { removeBorderlineEmptyValues } from './remove-borderline-empty-values';
 
 
@@ -25,40 +26,54 @@ export const calcTrend2 = (
   //   ? isNaN(v)
   //     ? v : ''
   //   : '').filter(v => v) as number[];
-  const y = removeBorderlineEmptyValues(items).map(v => isNum(v) ? v : NaN);
+  const yClear = removeBorderlineEmptyValues(items).map(v => isNum(v) ? v : NaN);
+  const y = yClear.map((v, i) => calcNanValue(yClear, v, i)); // 10 0 3 6 9 12 15 35 25 15
   console.log('y: ', y);
   
   // Количество точек данных
   // const n = dates.length; // 7
-  const n = y.length; // 5
+  const n = y.length; // 10
   console.log('n: ', n);
 
   // ∑x суммы значений => 1 + 2 + 3 + 4...
   const x = dates.map((v, i) => i + 1).slice(0, n); // [1, 2, 3, 4, 5]
-  const sumX = sum(x); // 15
+  console.log('x: ', x);
+  const sumX = sum(x); // 55
+  console.log('sumX: ', sumX);
 
   // ∑y суммы значений
-  const sumY = sum(y); // 105
+  const sumY = sum(y); // 130
+  console.log('sumY: ', sumY);
 
   // ∑xy сумма произведений
-  const xy = x.map((v, i) => v * y[i]); // 10 0 45 140 0 120 175
-  const sumXY = sum(xy); // 490
+  const xy = x.map((v, i) => v * y[i]); // 10 0 9 24 45 72 105 280 225 150
+  console.log('xy: ', xy);
+  const sumXY = sum(xy); // 920
+  console.log('sumXY: ', sumXY);
 
   // ∑x2 сумма квадратов значений
-  const x2 = x.map(v => v * v); // 1 4 9 16 25 36 49
-  const sumX2 = sum(x2); // 140
+  const x2 = x.map(v => v * v); // 1 4 9 16 25 36 49 64 81 100
+  console.log('x2: ', x2);
+  const sumX2 = sum(x2); // 385
+  console.log('sumX2: ', sumX2);
 
   // Формула линейного тренда:  y = mx + b
   // ---------------------------------------
   // m — наклон линии (скорость изменения)
-  const mChisl = n * sumXY - sumX * sumY; // 490
-  const mZnam  = n * sumX2 - sumX * sumX; // 196
-  const m = mChisl / mZnam; // 2,50
+  const mChisl = n * sumXY - sumX * sumY; // 2050
+  console.log('mChisl: ', mChisl);
+  const mZnam  = n * sumX2 - sumX * sumX; // 825
+  console.log('mZnam: ', mZnam);
+  const m = mChisl / mZnam; // 2,48485
+  console.log('m: ', m);
 
   // b — точка пересечения с осью
-  const bChisl = sumY - m * sumX; // 35
-  const bZnam  = n; // 7
-  const b = bChisl / bZnam; // 5,00
+  const bChisl = sumY - m * sumX; // -6,666666667
+  console.log('bChisl: ', bChisl);
+  const bZnam  = n; // 10
+  console.log('bZnam: ', bZnam);
+  const b = bChisl / bZnam; // -0,67
+  console.log('b: ', b);
   
   // y — прогнозируемое значение
   // x — момент времени

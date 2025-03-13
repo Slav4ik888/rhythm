@@ -3,7 +3,7 @@ import { checkInvertData, DashboardStatisticItem } from 'entities/dashboard-data
 import { ViewItem } from 'entities/dashboard-view';
 import { setValue } from 'shared/lib/charts';
 import { isStr } from 'shared/lib/validators';
-import { calcTrend } from '../calc-trend';
+import { calcTrend2 } from '../calc-trend-2';
 
 
 
@@ -46,7 +46,7 @@ export const getData = (
   item?.settings?.charts?.forEach((chart, idx) => {
     // Если активирована линия тренда, рассчитываем данные тренда и добавляем как график
     if (chart.isTrend) {
-      const trendData = calcTrend(dates, config.datasets?.[idx]?.data);
+      const trendData = calcTrend2(dates, config.datasets?.[idx]?.data);
 
       config.datasets.push({
         label           : 'Тренд',

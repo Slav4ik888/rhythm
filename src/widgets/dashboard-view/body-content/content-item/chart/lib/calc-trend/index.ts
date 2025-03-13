@@ -6,7 +6,7 @@ const sum = (arr: number[]): number => arr.reduce((prev, val) => prev + val, 0);
 
 
 /**
- * Расчитывает значения для линейного тренда
+ * @DEPRECATED Расчитывает значения для линейного тренда
  * @param dates 
  * @param items 
  * @returns items for trend-line

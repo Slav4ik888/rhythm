@@ -3,16 +3,14 @@ import { calcTrend2 } from '..';
 
 describe('calcTrend2', () => {
   test('valid values', () => {
-    const dates = ['first', 'second', 'third', 'fourth', 'fifth', 'six', 'seven', 'eight'];
-    const y = [NaN, 10, 0, 15, NaN, NaN, NaN, NaN, 35, NaN, 20, NaN];
+    const dates = ['first', 'second', 'third', 'fourth', 'fifth', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+    const y = [NaN, 10, 0, NaN, NaN, NaN, NaN, 15, 35, NaN, 15, NaN];
 
-    const res = calcTrend2(dates, y).map(item => item.toFixed(3));
-    
+    const res = calcTrend2(dates, y).map(item => Number(item.toFixed(3)));
     
     // @ts-ignore
-    expect(res).toEqual([9.166, 11.666, 14.166, 16.666, 19.166, 21.666, 24.166, 26.666]);
+    expect(res).toEqual([1.818, 4.303, 6.788, 9.273, 11.758, 14.242, 16.727, 19.212, 21.697, 24.182]);
   });
-
 
   test('invalid dates', () => {
     const y = [10, 0, 15, 35, NaN, 20, NaN];
