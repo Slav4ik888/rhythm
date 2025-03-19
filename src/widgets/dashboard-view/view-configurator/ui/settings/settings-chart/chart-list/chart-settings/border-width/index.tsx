@@ -1,7 +1,7 @@
 import { FC, memo, useCallback, MouseEvent } from 'react';
 import { ViewItemCharts, useDashboardView } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { InputByScheme } from 'widgets/dashboard-view/view-configurator/ui/base-features-components';
+import { InputByScheme } from '../../../../../base-features-components';
 
 
 

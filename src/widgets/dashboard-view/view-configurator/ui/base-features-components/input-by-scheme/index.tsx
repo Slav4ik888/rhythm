@@ -33,10 +33,11 @@ export const InputByScheme: FC<Props> = memo(({ scheme, width, sx: style, helper
 }) => {
   const sx = useStyles(useTheme(), style, width);
   const { selectedItem, updateViewItem } = useDashboardView();
+  
   const value = useMemo(() => {
     const v = getValueByScheme(selectedItem, scheme);
     return transform ? transform(v) : v
-  }, [selectedItem, scheme]);
+  }, [selectedItem, scheme, transform]);
 
 
   const handleUpdate = useCallback((v: string | number) => {

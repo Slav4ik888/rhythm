@@ -10,7 +10,9 @@ import { ChartBackgroundColor } from './chart-settings/background-сolor';
 import { ChartBorderWidth } from './chart-settings/border-width';
 import { ChartKodLabel } from './chart-settings/kod-label';
 import { useDashboardView } from 'entities/dashboard-view';
-import { ChartTrendCheckbox } from './chart-settings/trend-checkbox';
+import { ChartTrendCheckbox } from './chart-settings/trend/checkbox';
+import { ChartTrendColor } from './chart-settings/trend/сolor';
+import { ChartTrendWidth } from './chart-settings/trend/width';
 
 
 
@@ -45,6 +47,8 @@ export const ViewItemChartSettingsList: FC = memo(() => {
 
             <ConfiguratorTitle title='Линия тренда' type='subtitle1' />
             <ChartTrendCheckbox index={index} />
+            <ChartTrendWidth    index={index} />
+            <ChartTrendColor    index={index} />
           </ConfiguratorSubBoxWrapper>
         ))
       }

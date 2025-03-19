@@ -2,13 +2,13 @@ import { ChartConfig, ChartConfigDatasets, fixPointRadius } from 'entities/chart
 import { checkInvertData, DashboardStatisticItem } from 'entities/dashboard-data';
 import { ViewItem } from 'entities/dashboard-view';
 import { setValue } from 'shared/lib/charts';
-import { isStr } from 'shared/lib/validators';
+import { isArr, isStr } from 'shared/lib/validators';
 import { calcTrend2 } from '../calc-trend-2';
 
 
 
 /**
- * Наполняет данные для оси Y (даты)
+ * Наполняет подписи оси X (даты)
  * и наполняет datasets всеми вложенными в item графиками
  */
 export const getData = (
@@ -17,6 +17,9 @@ export const getData = (
   item      : ViewItem
 ): ChartConfig => {
   
+  // TODO: надо учесть приход 5 графиков и у них 3 тренда
+  //  - order графиков должен быть на 1 меньше его тренда
+
   const config = {
     labels   : dates, // any[] // Dates (метки на оси X)
     datasets : [      // ChartConfigDatasets[]
@@ -43,20 +46,25 @@ export const getData = (
   };
 
 
-  item?.settings?.charts?.forEach((chart, idx) => {
+  item?.settings?.charts?.forEach((itemChart, idx) => {
     // Если активирована линия тренда, рассчитываем данные тренда и добавляем как график
-    if (chart.isTrend) {
+    if (itemChart.isTrend) {
       const trendData = calcTrend2(dates, config.datasets?.[idx]?.data);
+
+      // Цвет родителя в виде строки (если там массив) | шаблон
+      const baseBColor = 'rgb(19, 40, 162)';
+      const pbColor = config.datasets?.[idx]?.borderColor;
+      const parentBorderColor: string = (isArr(pbColor) ? pbColor?.[0] : (pbColor as string)) || baseBColor;
 
       config.datasets.push({
         label           : 'Тренд',
         data            : trendData,
         pointRadius     : 0,
-        borderColor     : config.datasets?.[idx]?.borderColor || 'rgb(19, 40, 162)',
-        borderWidth     : 3,
+        borderColor     : setValue(itemChart?.trendDataSets?.borderColor, parentBorderColor),
+        borderWidth     : setValue(itemChart?.trendDataSets?.borderWidth, 3),
         order           : idx, // поверх (на 1<) графика parentChartsIdx
         type            : 'line',
-        parentChartsIdx : idx // чтобы знать к чей это трент
+        parentChartsIdx : idx // чтобы знать чей это тренд
       });
     }
   });

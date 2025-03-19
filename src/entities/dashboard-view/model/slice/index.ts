@@ -129,7 +129,7 @@ export const slice = createSlice({
       const selectedItem = state.entities[selectedId];
 
       if (state.entities[selectedId]) {
-        if (!state.entities[selectedId]?.settings) state.entities[selectedId].settings = {};
+        if (! state.entities[selectedId]?.settings) state.entities[selectedId].settings = {};
         (state.entities[selectedId].settings as ViewItemSettings).charts = updateChartsItem(selectedItem, index, field, value);
       }
     },

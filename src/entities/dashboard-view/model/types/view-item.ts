@@ -1,5 +1,5 @@
 import { ItemBase } from 'entities/base'
-import { ChartConfigDatasets, ChartConfigOptions, ChartType } from 'entities/charts'
+import { ChartConfigDatasets, ChartConfigOptions, ChartType, ChartConfigTrendDatasets } from 'entities/charts'
 import { IndicatorsConfig } from './config'
 import { ViewItemStyles } from './item-styles'
 
@@ -16,7 +16,7 @@ export interface ViewItemCharts {
   chartType?     : ChartType
   datasets?      : ChartConfigDatasets
   isTrend?       : boolean // Показывать ли линию тренда
-  // trendDataSets? : ChartConfigTrendDatasets
+  trendDataSets? : ChartConfigTrendDatasets
 }
 
 export type ViewItemChartsField = keyof ViewItemCharts

@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "add calcTrend2" && git push -u origin main
+// git add . && git commit -m "add ChartTrendWidth & ChartTrendColor" && git push -u origin main
