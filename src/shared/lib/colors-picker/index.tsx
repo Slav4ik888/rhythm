@@ -24,9 +24,13 @@ export const ColorPicker: FC<Props> = memo(({ sx, defaultColor, onChange }) => {
   useDebouncyEffect(() => {
     // Не обновлять значение, если в компоненте оно ещё не существует (например, его ещё ни сразу не устанавливали)
     if (defaultColor === undefined && color === undefined) return;
-    
+
+    // Не обновлять значение, при первоначальной установке color
+    // TODO: баг в том, что если изменили defaultColor, то вернуть его же система не даст
+    if (rgba(color) === defaultColor) return;
+
     onChange(rgba(color));
-  }, 50, [color]);
+  }, 30, [color, defaultColor, onChange]);
   
 
   return <PopoverColorsPicker sx={sx} color={color} onChange={setColor} />;

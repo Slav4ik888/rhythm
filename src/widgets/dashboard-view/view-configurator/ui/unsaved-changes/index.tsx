@@ -42,10 +42,15 @@ export const UnsavedChanges: FC = memo(() => {
   /** Есть ли не сохранённые изменения в SelectedItem */
   const isChanges = useMemo(() => {
     if (! selectedId) return false;
-    // console.log('changedCompany: ', changedCompany);
-    // console.log('changedStyles: ', changedStyles);
-    if (isNotEmpty(changedCompany)) return true
-    if (isNotEmpty(changedStyles)) return true
+    
+    if (isNotEmpty(changedCompany)) {
+      // console.log('changedCompany: ', changedCompany);
+      return true
+    }
+    if (isNotEmpty(changedStyles)) {
+      console.log('changedStyles: ', changedStyles);
+      return true
+    }
     return false
   }
   , [selectedId, changedCompany, changedStyles]);

@@ -5,7 +5,6 @@ import { f } from 'shared/styles';
 import { ViewItemId, PartialViewItem, useDashboardView, NO_PARENT_ID } from 'entities/dashboard-view';
 import { useCompany } from 'entities/company';
 import { getCopyViewItem } from 'features/dashboard-view';
-import { cloneObj } from 'shared/helpers/objects';
 import { useUser } from 'entities/user';
 
 
@@ -48,7 +47,7 @@ export const DashboardBodyContent = memo(() => {
       const copiedViewItems = getCopyViewItem(activatedCopiedId, id, viewItems, userId);
       setDashboardView({ companyId, viewItems: copiedViewItems }); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
       serviceCreateGroupViewItems({ companyId, viewItems: copiedViewItems });
-    } 
+    }
     else {
       setSelectedId(id);
     }

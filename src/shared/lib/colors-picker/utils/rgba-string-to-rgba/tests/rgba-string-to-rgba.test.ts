@@ -10,6 +10,10 @@ describe('rgbaStringToRgba', () => {
     expect(rgbaStringToRgba('rgba(255, 255, 255, 1)')).toEqual({ r: 255, g: 255, b: 255, a: 1 });
   });
 
+  test('invalid data', () => {
+    expect(rgbaStringToRgba('rgba(NaN, undefined, 255, 1)')).toEqual({ r: 0, g: 0, b: 255, a: 1 });
+  });
+
   // test('invalid data', () => {
   //   expect(rgbaStringToRgba('rgba(255, 255, 255, 1)')).toEqual({ r: 255, g: 255, b: 255, a: 1 });
   // });
