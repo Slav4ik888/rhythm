@@ -1,4 +1,4 @@
-// v.2025-01-03
+// v.2025-03-21
 export * from './capitalize';
 export * from './capitalize-first/'
 export * from './get-item-by-pos';

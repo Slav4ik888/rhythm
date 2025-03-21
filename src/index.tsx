@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "start refact ColorPicker" && git push -u origin main
+// git add . && git commit -m "fir ColorPicker" && git push -u origin main
