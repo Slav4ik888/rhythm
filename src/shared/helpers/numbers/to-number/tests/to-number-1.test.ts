@@ -8,4 +8,4 @@ describe(`toNumber`, () => {
   }));
 });
 
-// npm run test to-number.test.ts
+// npm run test:unit to-number-1.test.ts

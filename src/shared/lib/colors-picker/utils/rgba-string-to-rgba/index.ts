@@ -8,14 +8,14 @@ import { RgbaColor } from 'react-colorful';
  *  => { r: 255, g: 255, b: 255, a: 1 }
  */
 export function rgbaStringToRgba(color: RgbaString): RgbaColor | undefined {  
+  if (! color || ! color.startsWith('rgba')) return
+
   let result: RgbaColor = {
     r: 0,
     g: 0,
     b: 0,
     a: 1,
   };
-
-  if (! color || ! color.startsWith('rgba')) return result
 
   const res = color.replace('rgba(', '').replace(')', '').split(',');
 

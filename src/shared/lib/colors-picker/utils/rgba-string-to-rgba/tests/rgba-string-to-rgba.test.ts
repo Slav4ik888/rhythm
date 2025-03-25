@@ -3,7 +3,7 @@ import { rgbaStringToRgba } from '..';
 
 describe('rgbaStringToRgba', () => {
   test('data is undefined', () => {
-    expect(rgbaStringToRgba(undefined as unknown as string)).toEqual({ r: 0, g: 0, b: 0, a: 1 });
+    expect(rgbaStringToRgba(undefined as unknown as string)).toEqual(undefined);
   });
 
   test('valid data', () => {

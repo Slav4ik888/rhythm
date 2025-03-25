@@ -13,6 +13,7 @@ const useStyles = (item: ViewItem, color: string) => {
 
   return {
     root: {
+      cursor: 'default',
       ...root,
       color,
     },

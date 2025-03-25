@@ -1,7 +1,6 @@
 import { FC, memo } from 'react';
 import { ViewItem, stylesToSx } from 'entities/dashboard-view';
-import { Box, Typography } from '@mui/material';
-import { f } from 'shared/styles';
+import { Typography } from '@mui/material';
 
 
 
@@ -12,17 +11,14 @@ const useStyles = (item: ViewItem, color: string) => {
   if (item?.styles?.lineHeight) root.lineHeight = stylesToSx(item?.styles)?.lineHeight;
 
   return {
-    // root: {
-    //   ...f(),
-    //   ...root,
-    //   color,
-    // },
     reduction: {
+      cursor: 'default',
       ...root,
       color,
       ml: 0.5
     },
     ending: {
+      cursor: 'default',
       ...root,
       color,
       ml: 0.5
