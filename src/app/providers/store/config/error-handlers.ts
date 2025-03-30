@@ -2,6 +2,7 @@ import { actionsUI } from 'entities/ui';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 import { StateSchema, ThunkExtraArg } from './state';
 import { Errors } from 'shared/lib/validators';
+import { actionsUser } from 'entities/user';
 
 
 
@@ -38,6 +39,7 @@ export const errorHandlers = (
 
   // Нужно авторизоваться, будет редирект to loginPage
   if (status === 401) {
+    dispatch(actionsUser.setAuth(false));
     dispatch(actionsUI.setErrorStatus({ status: 401, pathname }));
   }
   else if (status === 403) dispatch(actionsUI.setErrorStatus({ status: 403, pathname }));

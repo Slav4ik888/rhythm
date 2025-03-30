@@ -27,7 +27,7 @@ interface ResGetStartResourseData {
 }
 
 
-export const getStartResourseData = createAsyncThunk <
+export const getStartResourseData = createAsyncThunk<
   SetUser,
   ReqGetStartResourseData | undefined,
   ThunkConfig<Errors>

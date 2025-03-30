@@ -7,6 +7,7 @@ import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { useInitialEffect } from 'shared/lib/hooks';
 import { setIsSidebar, useUIConfiguratorController } from 'app/providers/theme';
 import { reducerDashboardView } from 'entities/dashboard-view';
+import { RequireAuth } from 'app/providers/routes';
 
 
 
@@ -24,13 +25,15 @@ const DashboardPage: FC = memo(() => {
 
 
   return (
-    <DynamicModuleLoader reducers={initialReducers}>
-      <Sidebar />
+    <RequireAuth>
+      <DynamicModuleLoader reducers={initialReducers}>
+        <Sidebar />
 
-      <SidebarRegulatorWrapper body>
-        <DashboardBody />
-      </SidebarRegulatorWrapper>
-    </DynamicModuleLoader>
+        <SidebarRegulatorWrapper body>
+          <DashboardBody />
+        </SidebarRegulatorWrapper>
+      </DynamicModuleLoader>
+    </RequireAuth>
   );
 });
 
