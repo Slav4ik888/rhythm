@@ -1,8 +1,7 @@
-export { PanelAddViewItemBtns, AddNewViewItem, addNewViewItem, AddViewItemElementBtns, AddViewItemIndicatorsBtns } from './add-new-item'
-export { MoveToAnotherItem } from './move-to-anyther-item'
-export { UpdateViewItem, updateViewItem } from './update-view-item'
+export {
+  PanelAddViewItemBtns, AddNewViewItem, addNewViewItem, AddViewItemElementBtns, AddViewItemIndicatorsBtns,
+  MoveToAnotherItem, UpdateViewItem, updateViewItem, MoveItemUpdownward,
+  CopyViewItem, getCopyViewItem, CreateGroupViewItems, createGroupViewItems,
+  DeleteItemContainer, deleteViewItem, DeleteViewItem, SelectParentViewItem, AddNewChart
+} from './configurator'
 export { DashboardSetEditBtn } from './set-edit-btn'
-export { DeleteItemContainer, deleteViewItem, DeleteViewItem } from './delete-card'
-export { MoveItemUpdownward } from './move-item-updownward'
-export { CopyViewItem, getCopyViewItem, CreateGroupViewItems, createGroupViewItems } from './copy-item'
-export { SelectParentViewItem } from './select-parent'

@@ -70,9 +70,9 @@ export const useDashboardView = (config: Config = {}) => {
  
     // Settings
     changeOneSettingsField = (data: ChangeOneSettingsField) => dispatch(a.changeOneSettingsField(data)),
-    changeOneChartsItem = (data: ChangeOneChartsItem) => dispatch(a.changeOneChartsItem(data)),
+    changeOneChartsItem    = (data: ChangeOneChartsItem)    => dispatch(a.changeOneChartsItem(data)),
     // Изменение 1 field в settings.charts[index].datasets
-    changeOneDatasetsItem = (data: ChangeOneDatasetsItem) => dispatch(a.changeOneDatasetsItem(data)),
+    changeOneDatasetsItem  = (data: ChangeOneDatasetsItem)  => dispatch(a.changeOneDatasetsItem(data)),
 
     // Services
     serviceAddNewViewItem = (

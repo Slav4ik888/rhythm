@@ -28,4 +28,8 @@ root.render(
 );
 
 
-// git add . && git commit -m "add RequireAuth" && git push -u origin main
+// git add . && git commit -m "add AddNewChart" && git push -u origin main
+// Сделать:
+//  - Fix ColorPicker: copy/past & отображение верного кода цвета (сейчас выводится не корректный)
+//  - Добавление/удаление нескольких графиков в одном Chart
+//  - Inverted add individual in chart, if need that first chart is not inverted, but second chart is inverted
