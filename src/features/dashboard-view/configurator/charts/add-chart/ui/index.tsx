@@ -9,12 +9,11 @@ import { useDashboardView, ViewItemType } from 'entities/dashboard-view';
 const useStyles = () => ({
   button: {
     root: {
-      color: '#dadada',
       fontSize: '0.7rem',
     }
   },
   icon: {
-    color: '#dadada',
+    color: '#000000',
     fontSize : '20px',
   },
 });
@@ -43,7 +42,7 @@ export const AddNewChart: FC<Props> = memo(({ }) => {
     <Tooltip title="Добавить новый график">
       <MDButton
         variant   = 'outlined'
-        color     = 'dark'
+        color     = 'black'
         sx        = {sx.button}
         startIcon = {<AddCardIcon sx={sx.icon} />}
         onClick   = {handleClick}

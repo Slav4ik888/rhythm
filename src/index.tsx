@@ -14,7 +14,7 @@ console.log(cfg.IS_DEV ? 'OFFLINE STATUS' : 'Online status');
 
 // @ts-ignore
 const root = ReactDOM.createRoot(document.getElementById("root"));
-  
+
 root.render(
   <BrowserRouter>
     <StoreProvider>
@@ -28,7 +28,7 @@ root.render(
 );
 
 
-// git add . && git commit -m "add AddNewChart" && git push -u origin main
+// git add . && git commit -m "add rgbaToHexWithAlpha" && git push -u origin main
 // Сделать:
 //  - Fix ColorPicker: copy/past & отображение верного кода цвета (сейчас выводится не корректный)
 //  - Добавление/удаление нескольких графиков в одном Chart

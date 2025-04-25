@@ -7,6 +7,7 @@ import { CustomTheme, useTheme } from 'app/providers/theme';
 import s from './index.module.scss';
 import { MDButton } from 'shared/ui/mui-design-components';
 import { hexToRgba, rgba } from '../utils';
+import { rgbaToHexWithAlpha } from '../utils/rgba-to-hex-with-alpha';
 console.log('MODULE STYLE: ', s);
 
 
@@ -89,9 +90,9 @@ export const PopoverColorsPicker: FC<Props> = memo(({ sx: style, color, onChange
           />
           <Box sx={sx.control}>
             <HexColorInput
-              // alpha
+              alpha
               prefixed
-              color    = {rgba(color)}
+              color    = {rgbaToHexWithAlpha(rgba(color))}
               style    = {{ width: 100 }}
               onChange = {handleChangeHex}
             />

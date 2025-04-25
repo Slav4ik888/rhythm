@@ -16,6 +16,8 @@ interface Props {
 
 
 export const ColorPicker: FC<Props> = memo(({ sx, defaultColor, onChange }) => {
+  console.log('defaultColor: ', defaultColor, 'rgbaStringToRgba: ', rgbaStringToRgba(defaultColor));
+
   const [color, setColor] = useState(() => rgbaStringToRgba(defaultColor));
   const prevDefaultColorRef = useRef(defaultColor); // Храним предыдущее значение defaultColor
 
@@ -30,6 +32,7 @@ export const ColorPicker: FC<Props> = memo(({ sx, defaultColor, onChange }) => {
     if (defaultColor === undefined && color === undefined) return;
 
     // Не обновлять значение, при первоначальной установке color
+    // TODO: медленно реагирует на изменение цвета
     // TODO: баг в том, что если изменили defaultColor, то вернуть его же система не даст
     if (rgba(color) === defaultColor) return;
 
@@ -40,7 +43,7 @@ export const ColorPicker: FC<Props> = memo(({ sx, defaultColor, onChange }) => {
     else {
       onChange(rgba(color));
     }
-  }, 30, [color, onChange]);
+  }, 20, [color, onChange]);
   
 
   return <PopoverColorsPicker sx={sx} color={color} onChange={setColor} />;
