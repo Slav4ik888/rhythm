@@ -16,12 +16,13 @@ interface Props {
 
 
 export const ColorPicker: FC<Props> = memo(({ sx, defaultColor, onChange }) => {
-  console.log('defaultColor: ', defaultColor, 'rgbaStringToRgba: ', rgbaStringToRgba(defaultColor));
-
   const [color, setColor] = useState(() => rgbaStringToRgba(defaultColor));
-  const prevDefaultColorRef = useRef(defaultColor); // Храним предыдущее значение defaultColor
-
+  // Для того, чтобы при переключении между элементами, в выбранны не подтягивался цвет предыдущего
+  // для этого храним предыдущее значение defaultColor
+  const prevDefaultColorRef = useRef(defaultColor);
+  const [isChanges, setIsChanges] = useState(false); // Было ли хотя бы 1 изменение
   
+
   useEffect(() => {
     setColor(rgbaStringToRgba(defaultColor));
   }, [defaultColor]);
@@ -30,20 +31,21 @@ export const ColorPicker: FC<Props> = memo(({ sx, defaultColor, onChange }) => {
   useDebouncyEffect(() => {
     // Не обновлять значение, если в компоненте оно ещё не существует (например, его ещё ни сразу не устанавливали)
     if (defaultColor === undefined && color === undefined) return;
-
+    
     // Не обновлять значение, при первоначальной установке color
-    // TODO: медленно реагирует на изменение цвета
-    // TODO: баг в том, что если изменили defaultColor, то вернуть его же система не даст
-    if (rgba(color) === defaultColor) return;
-
+    if (rgba(color) === defaultColor && ! isChanges) return; // Вроде устранил с помощью isChanges - баг в том, что если изменили defaultColor, то вернуть его же система не даст
+    
     // Если defaultColor изменился, обновляем color
     if (prevDefaultColorRef.current !== defaultColor) {
       prevDefaultColorRef.current = defaultColor; // Обновляем предыдущее значение
     }
     else {
-      onChange(rgba(color));
+      if (rgba(color) !== defaultColor) {
+        setIsChanges(true);
+        onChange(rgba(color));
+      }
     }
-  }, 20, [color, onChange]);
+  }, 20, [isChanges, prevDefaultColorRef.current, defaultColor, color, onChange]);
   
 
   return <PopoverColorsPicker sx={sx} color={color} onChange={setColor} />;

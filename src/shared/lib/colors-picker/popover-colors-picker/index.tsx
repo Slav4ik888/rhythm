@@ -6,8 +6,7 @@ import { HexColorInput, RgbaColorPicker, RgbaColor  } from 'react-colorful';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import s from './index.module.scss';
 import { MDButton } from 'shared/ui/mui-design-components';
-import { hexToRgba, rgba } from '../utils';
-import { rgbaToHexWithAlpha } from '../utils/rgba-to-hex-with-alpha';
+import { hexToRgba, rgba, rgbaToHexWithAlpha } from '../utils';
 console.log('MODULE STYLE: ', s);
 
 
@@ -73,7 +72,9 @@ export const PopoverColorsPicker: FC<Props> = memo(({ sx: style, color, onChange
   
   useClickOutside(popoverRef, handleClose);
 
-  const handleChange      = (newColor: RgbaColor) => onChange(newColor);
+  const handleChange = (newColor: RgbaColor) => {
+    onChange(newColor);
+  }
   const handleChangeHex   = (hex: string) => onChange(hexToRgba(hex));
   const handleTransparent = () => onChange({ r: 255, g: 255, b: 255, a: 0 });
 

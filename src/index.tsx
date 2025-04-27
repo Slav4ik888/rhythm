@@ -28,7 +28,7 @@ root.render(
 );
 
 
-// git add . && git commit -m "add rgbaToHexWithAlpha" && git push -u origin main
+// git add . && git commit -m "fix ColorPicker" && git push -u origin main
 // Сделать:
 //  - Fix ColorPicker: copy/past & отображение верного кода цвета (сейчас выводится не корректный)
 //  - Добавление/удаление нескольких графиков в одном Chart
