@@ -2,7 +2,7 @@ import { FC, memo, useCallback } from 'react';
 import { Tooltip } from 'shared/ui/tooltip';
 import { MDButton } from 'shared/ui/mui-design-components';
 import AddCardIcon from '@mui/icons-material/AddCard';
-import { useDashboardView, ViewItemType } from 'entities/dashboard-view';
+import { useDashboardView } from 'entities/dashboard-view';
 
 
 
@@ -20,8 +20,6 @@ const useStyles = () => ({
 
 
 interface Props {
-  // color   : string
-  // onClick : (type: ViewItemType) => void
 }
 
 /** AddNewChart into the charts */

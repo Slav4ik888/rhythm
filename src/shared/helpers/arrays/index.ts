@@ -1,4 +1,4 @@
-// v.2024-09-18
+// v.2025-05-01
 export * from './add-order-to-arr-by-idx';                // v.2024-03-08
 export * from './change-sequence';                        // v.2024-03-02
 export { createArr } from './create-arr'                  // v.2023-07-31
@@ -6,6 +6,7 @@ export * from './get-arr-contain-value-by-field';
 export * from './get-arr-from-arrs-by-field-and-value';
 export * from './get-arr-without-item';
 export * from './get-arr-without-item-by-id';
+export * from './get-arr-without-item-by-idx';            // v.2025-05-01
 export * from './get-arr-without-item-by-two-fields-obj';
 export * from './get-arr-without-items';
 export * from './get-item-by-id';                         // v.2023-08-08

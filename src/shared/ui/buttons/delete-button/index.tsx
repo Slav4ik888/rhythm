@@ -4,10 +4,12 @@ import { ConfirmType, DialogConfirm } from 'shared/ui/dialogs';
 import { MDButton } from 'shared/ui/mui-design-components';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Tooltip } from 'shared/ui/tooltip';
+import { SxCard } from 'shared/styles';
 
 
 
 type Props = {
+  sx?        : SxCard
   toolTitle? : string
   disabled?  : boolean | undefined
   hookOpen?  : UseGroup<unknown>
@@ -16,8 +18,8 @@ type Props = {
 }
 
 
-/** v.2024-12-23 */
-export const DeleteButton: React.FC<Props> = ({ disabled, toolTitle = '', hookOpen, onClose, onDel }) => {
+/** v.2025-05-01 */
+export const DeleteButton: React.FC<Props> = ({ sx, disabled, toolTitle = '', hookOpen, onClose, onDel }) => {
   const confirm = useValue();
   
 
@@ -45,7 +47,7 @@ export const DeleteButton: React.FC<Props> = ({ disabled, toolTitle = '', hookOp
           variant   = 'outlined'
           disabled  = {disabled}
           startIcon = {<DeleteIcon />}
-          sx        = {{ root: { color: 'red' } }}
+          sx        = {{ root: { color: 'red', ...sx?.root } }}
           onClick   = {confirm.setOpen}
         />
       </Tooltip>

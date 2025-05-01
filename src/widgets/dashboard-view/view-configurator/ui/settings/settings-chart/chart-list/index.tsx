@@ -13,7 +13,7 @@ import { useDashboardView } from 'entities/dashboard-view';
 import { ChartTrendCheckbox } from './chart-settings/trend/checkbox';
 import { ChartTrendColor } from './chart-settings/trend/сolor';
 import { ChartTrendWidth } from './chart-settings/trend/width';
-import { AddNewChart } from 'features/dashboard-view';
+import { AddNewChart, DelChart } from 'features/dashboard-view';
 
 
 
@@ -50,10 +50,13 @@ export const ViewItemChartSettingsList: FC = memo(() => {
             <ChartTrendCheckbox index={index} />
             <ChartTrendWidth    index={index} />
             <ChartTrendColor    index={index} />
+
+            <DelChart index={index} />
           </ConfiguratorSubBoxWrapper>
         ))
       }
-      <AddNewChart />
+
+      <AddNewChart /> 
     </>
   )
 });
