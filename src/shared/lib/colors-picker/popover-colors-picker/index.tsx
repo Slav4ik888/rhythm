@@ -72,9 +72,7 @@ export const PopoverColorsPicker: FC<Props> = memo(({ sx: style, color, onChange
   
   useClickOutside(popoverRef, handleClose);
 
-  const handleChange = (newColor: RgbaColor) => {
-    onChange(newColor);
-  }
+  const handleChange = (newColor: RgbaColor) => onChange(newColor);
   const handleChangeHex   = (hex: string) => onChange(hexToRgba(hex));
   const handleTransparent = () => onChange({ r: 255, g: 255, b: 255, a: 0 });
 

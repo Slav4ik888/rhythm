@@ -1,5 +1,6 @@
 import { RgbaString } from 'entities/dashboard-view';
 import { RgbaColor } from 'react-colorful';
+import { isNotUndefined } from 'shared/lib/validators';
 
 
 
@@ -23,7 +24,7 @@ export function rgbaStringToRgba(color: RgbaString): RgbaColor | undefined {
     r: parseInt(res[0])   || 0,
     g: parseInt(res[1])   || 0,
     b: parseInt(res[2])   || 0,
-    a: parseFloat(res[3]) || 1,
+    a: isNotUndefined(parseFloat(res[3])) ? parseFloat(res[3]) : 1,
   };
 
   return result;

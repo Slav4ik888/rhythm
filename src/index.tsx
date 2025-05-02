@@ -28,7 +28,7 @@ root.render(
 );
 
 
-// git add . && git commit -m "add DelChart" && git push -u origin main
+// git add . && git commit -m "fix rgbaStringToRgba" && git push -u origin main
 // Сделать:
 //  - Fix ColorPicker: copy/past & отображение верного кода цвета (сейчас выводится не корректный)
 //  - Добавление/удаление нескольких графиков в одном Chart
