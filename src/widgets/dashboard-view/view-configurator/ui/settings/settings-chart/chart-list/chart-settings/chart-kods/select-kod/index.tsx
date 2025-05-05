@@ -3,7 +3,7 @@ import { useDashboardView } from 'entities/dashboard-view';
 import { SelectValue } from 'shared/ui/configurators-components/select';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { useDashboardData } from 'entities/dashboard-data';
-import { SelectKodItem } from '../../../../select-kod/item';
+import { SelectKodItem } from '../../../../../select-kod/item';
 
 
 

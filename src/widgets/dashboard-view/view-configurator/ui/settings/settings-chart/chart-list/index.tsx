@@ -1,5 +1,4 @@
 import { FC, memo } from 'react';
-import { SelectKod } from './chart-settings/select-kod';
 import { SelectChartType } from './chart-settings/select-chart-type';
 import { ChartLabel } from './chart-settings/chart-label';
 import { ConfiguratorSubBoxWrapper, ConfiguratorTitle } from 'shared/ui/configurators-components';
@@ -8,12 +7,12 @@ import { ChartPointBackgroundColor } from './chart-settings/point-background-col
 import { ChartBorderColor } from './chart-settings/border-сolor';
 import { ChartBackgroundColor } from './chart-settings/background-сolor';
 import { ChartBorderWidth } from './chart-settings/border-width';
-import { ChartKodLabel } from './chart-settings/kod-label';
 import { useDashboardView } from 'entities/dashboard-view';
 import { ChartTrendCheckbox } from './chart-settings/trend/checkbox';
 import { ChartTrendColor } from './chart-settings/trend/сolor';
 import { ChartTrendWidth } from './chart-settings/trend/width';
 import { AddNewChart, DelChart } from 'features/dashboard-view';
+import { ChartKods } from './chart-settings/chart-kods';
 
 
 
@@ -30,12 +29,11 @@ export const ViewItemChartSettingsList: FC = memo(() => {
         selectedItem.settings.charts.map((item, index) => (
           <ConfiguratorSubBoxWrapper title={`График ${index + 1}`} key={index}>
             <ConfiguratorTitle title='Общие настройки' type='subtitle1' />
-            <SelectKod     index={index} />
-            <ChartKodLabel index={index} />
-
-            {/* Выбрать период дат: общий или уникальный */}
             <SelectChartType index={index} />
+            <ChartKods       index={index} />
+            
             <ChartLabel      index={index} />
+            {/* Выбрать период дат: общий или уникальный */}
             
             <ConfiguratorTitle title='Точки' type='subtitle1' />
             <ChartPointRadius          index={index} />
