@@ -5,7 +5,8 @@ import "chart.js/auto";
 import { Chart } from "react-chartjs-2";
 import { DashboardStatisticItem, useDashboardData } from 'entities/dashboard-data';
 import { formatDate, SUB } from 'shared/helpers/dates';
-import { getData, getOptions } from '../lib';
+import { getData, getDataDoughnut, getOptions } from '../lib';
+import { isNotPie } from 'entities/charts';
 
 
 
@@ -18,14 +19,23 @@ interface Props {
 export const ItemChart: FC<Props> = memo(({ item, onSelect }) => {
   const { activeDates, activeEntities } = useDashboardData();
 
-  const itemsData = useMemo(() => item.settings?.charts?.map(chart => activeEntities[chart?.kod || ''] as DashboardStatisticItem<number>), [activeEntities, item]);
+  // TODO: упростить, всё засунуть в 1 useMemo, после того как заработает 'doughnut'
+  const notPie = isNotPie(item);
 
-  const dates = useMemo(() => itemsData
-    ? activeDates[itemsData?.[0]?.periodType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC))
-    : [], [activeDates, itemsData]);
+  const itemsData = useMemo(() => item.settings?.charts?.map(chart => activeEntities[chart?.kod || ''] as DashboardStatisticItem<number>)|| []
+    , [activeEntities, item]);
+  
+  const dates = useMemo(() => {
+    if (notPie) {
+      return itemsData
+        ? activeDates[itemsData?.[0]?.periodType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC))
+        : []
+    }
+    else return [] // dates не нужен для 'doughnut'
+  }, [activeDates, itemsData]);
 
-  const type    = item?.settings?.charts?.[0]?.chartType || 'line';
-  const data    = getData(dates, itemsData || [], item);
+  const type    = item.settings?.charts?.[0]?.chartType || 'line';
+  const data    = notPie ? getData(dates, itemsData, item) : getDataDoughnut(['Red', 'Blue', 'Yellow'], itemsData, item);
   const options = getOptions(type, item.settings?.chartOptions || {});
 
 

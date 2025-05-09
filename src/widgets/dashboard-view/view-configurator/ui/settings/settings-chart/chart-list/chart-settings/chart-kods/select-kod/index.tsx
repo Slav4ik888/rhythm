@@ -17,7 +17,6 @@ export const SelectKod: FC<Props> = memo(({ index }) => {
   const { selectedItem, changeOneChartsItem } = useDashboardView();
   const [selectedValue, setSelectedValue] = useState<string>('');
 
-
   useEffect(() => {
     setSelectedValue(selectedItem.settings?.charts?.[index]?.kod || '');
   }, [selectedItem.settings?.charts?.[index]?.kod]);

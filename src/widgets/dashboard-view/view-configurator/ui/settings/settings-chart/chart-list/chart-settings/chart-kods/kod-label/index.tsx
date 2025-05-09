@@ -21,7 +21,7 @@ export const ChartKodLabel: FC<Props> = memo(({ index }) => {
   return (
     <RowWrapper>
       <ConfiguratorTextTitle bold title='Kod label' toolTitle='Так записано название статистики в гугл файле' />
-      <Box sx={{ fontSize: '1rem' }}>
+      <Box sx={{ fontSize: '1rem', cursor: 'default' }}>
         {title}
       </Box>
     </RowWrapper>

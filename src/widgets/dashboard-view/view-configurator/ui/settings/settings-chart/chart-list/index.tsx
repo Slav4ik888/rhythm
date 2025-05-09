@@ -13,45 +13,66 @@ import { ChartTrendColor } from './chart-settings/trend/сolor';
 import { ChartTrendWidth } from './chart-settings/trend/width';
 import { AddNewChart, DelChart } from 'features/dashboard-view';
 import { ChartKods } from './chart-settings/chart-kods';
+import { isNotPie } from 'entities/charts';
 
 
 
 /** Отрисовки списка графиков */
 export const ViewItemChartSettingsList: FC = memo(() => {
   const { selectedItem } = useDashboardView();
-  
+
+  const notPie = isNotPie(selectedItem);
 
   return (
     <>
       {
-        selectedItem.settings?.charts &&
-        selectedItem.settings.charts.length > 0 &&
-        selectedItem.settings.charts.map((item, index) => (
-          <ConfiguratorSubBoxWrapper title={`График ${index + 1}`} key={index}>
-            <ConfiguratorTitle title='Общие настройки' type='subtitle1' />
-            <SelectChartType index={index} />
-            <ChartKods       index={index} />
-            
-            <ChartLabel      index={index} />
-            {/* Выбрать период дат: общий или уникальный */}
-            
-            <ConfiguratorTitle title='Точки' type='subtitle1' />
-            <ChartPointRadius          index={index} />
-            <ChartPointBackgroundColor index={index} />
+        
+        //   ?
+            selectedItem.settings?.charts &&
+            selectedItem.settings.charts.length > 0 &&
+            selectedItem.settings.charts.map((item, index) => (
+              <ConfiguratorSubBoxWrapper title={`График ${index + 1}`} key={index}>
+                <ConfiguratorTitle title='Общие настройки' type='subtitle1' />
+                <SelectChartType index={index} />
+                <ChartKods       index={index} />
+                
+                <ChartLabel      index={index} />
+                {/* Выбрать период дат: общий или уникальный */}
+                
+                {
+                  notPie
+                    ?
+                      <>
+                        <ConfiguratorTitle title='Точки' type='subtitle1' />
+                        <ChartPointRadius          index={index} />
+                        <ChartPointBackgroundColor index={index} />
 
-            <ConfiguratorTitle title='Линия графика' type='subtitle1' />
-            <ChartBorderWidth     index={index} />
-            <ChartBorderColor     index={index} />
-            <ChartBackgroundColor index={index} />
+                        <ConfiguratorTitle title='Линия графика' type='subtitle1' />
+                        <ChartBorderWidth     index={index} />
+                        <ChartBorderColor     index={index} />
+                        <ChartBackgroundColor index={index} />
 
-            <ConfiguratorTitle title='Линия тренда' type='subtitle1' />
-            <ChartTrendCheckbox index={index} />
-            <ChartTrendWidth    index={index} />
-            <ChartTrendColor    index={index} />
+                        <ConfiguratorTitle title='Линия тренда' type='subtitle1' />
+                        <ChartTrendCheckbox index={index} />
+                        <ChartTrendWidth    index={index} />
+                        <ChartTrendColor    index={index} />
+                      </>
+                    : <>
+                        <ChartBackgroundColor index={index} />
+                      </>
+                }
 
-            <DelChart index={index} />
-          </ConfiguratorSubBoxWrapper>
-        ))
+                <DelChart index={index} />
+              </ConfiguratorSubBoxWrapper>
+            ))
+          // : 
+          //   <ConfiguratorSubBoxWrapper title={'График 1'}>
+          //     <ConfiguratorTitle title='Общие настройки' type='subtitle1' />
+          //     <SelectChartType index={0} />
+          //     <ChartKods       index={0} />
+              
+          //     <DelChart index={0} />
+          //   </ConfiguratorSubBoxWrapper>
       }
 
       <AddNewChart /> 

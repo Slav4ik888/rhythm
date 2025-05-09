@@ -3,6 +3,7 @@ import { Tooltip } from 'shared/ui/tooltip';
 import { MDButton } from 'shared/ui/mui-design-components';
 import AddCardIcon from '@mui/icons-material/AddCard';
 import { useDashboardView } from 'entities/dashboard-view';
+import { isPie } from 'entities/charts';
 
 
 
@@ -27,17 +28,16 @@ export const AddNewChart: FC<Props> = memo(({ }) => {
   const sx = useStyles();
   const { selectedItem, changeOneSettingsField } = useDashboardView();
 
-
   const handleClick = useCallback(() => {
     const value = selectedItem.settings?.charts ? [...selectedItem.settings?.charts] : [];
-    value.push({ chartType: 'line' });
+    value.push({ chartType: selectedItem?.settings?.charts?.[0].chartType || 'line' });
 
     changeOneSettingsField({ field: 'charts', value });
   }, [selectedItem, changeOneSettingsField]);
 
 
   return (
-    <Tooltip title="Добавить новый график">
+    <Tooltip title={`Добавить нов${isPie(selectedItem) ? 'ую дугу' : 'ый график'}`}>
       <MDButton
         variant   = 'outlined'
         color     = 'black'
@@ -45,7 +45,7 @@ export const AddNewChart: FC<Props> = memo(({ }) => {
         startIcon = {<AddCardIcon sx={sx.icon} />}
         onClick   = {handleClick}
       >
-        график
+        {isPie(selectedItem) ? 'дугу' : 'график'}
       </MDButton>
     </Tooltip>
   )
