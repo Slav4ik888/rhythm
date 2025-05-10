@@ -51,9 +51,8 @@ export const useDashboardView = (config: Config = {}) => {
     setSelectedId       = (id: ViewItemId) => dispatch(a.setSelectedId(id)),
     selectedItem        = useSelector(s.selectSelectedItem),
 
-    newStoredViewItem       = useSelector(s.selectNewStoredViewItem),
-    prevStoredViewItem      = useSelector(s.selectPrevStoredViewItem),
-    updateNewStoredViewItem = (data: PartialViewItem) => dispatch(a.updateNewStoredViewItem(data)),
+    newStoredViewItem   = useSelector(s.selectNewStoredViewItem),
+    prevStoredViewItem  = useSelector(s.selectPrevStoredViewItem),
 
     selectChildrenViewItems = s.makeSelectChildrenViewItems(parentId as ViewItemId),
     childrenViewItems   = useSelector(selectChildrenViewItems),
@@ -109,7 +108,6 @@ export const useDashboardView = (config: Config = {}) => {
     selectedItem,
     newStoredViewItem,
     prevStoredViewItem,
-    updateNewStoredViewItem,
     childrenViewItems,
 
     // Movement

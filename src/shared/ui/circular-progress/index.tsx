@@ -16,13 +16,14 @@ type Props = {
   sx?     : any
   center? : boolean // По центру
   block?  : boolean // Заблокировать экран подсветкой
+  color?  : string
 }
 
 
 /** v.2023.08.20 */
 const useStyles = (
   // sx: SxCard
-  { id = 'CircularId', size = 30, top, bottom, right, left, sx, center, block }: Props
+  { id = 'CircularId', size = 30, top, bottom, right, left, sx, center, block, color }: Props
   // parentDimentions: ElementDimentions
 ) => {
   // const h = getCenterHeight(id);//parentDimentions?.height);
@@ -50,7 +51,7 @@ const useStyles = (
       // right    : () => right ? right : '0px',
       // zIndex   : 2010,
       '&.MuiCircularProgress-root': {
-        color: '#7a7a7a'
+        color: color || '#7a7a7a'
       },
       ...sx?.content
     }

@@ -70,9 +70,9 @@ export const slice = createSlice({
     },
 
     /** Обновление изменившихся полей, при сохранении через UnsavedChanges */
-    updateNewStoredViewItem: (state, { payload }: PayloadAction<PartialViewItem>) => {
-      state.newStoredViewItem = updateObject(state.newStoredViewItem, payload);
-    },
+    // updateNewStoredViewItem: (state, { payload }: PayloadAction<PartialViewItem>) => {
+    //   state.newStoredViewItem = updateObject(state.newStoredViewItem, payload);
+    // },
     
     // Перемещение выбранного View-item в другой
     setActiveMovementId: (state) => {
@@ -184,6 +184,7 @@ export const slice = createSlice({
         const { viewItem, companyId } = payload;
         
         state.entities[viewItem.id] = updateObject(state.entities[viewItem.id], viewItem);
+        state.newStoredViewItem     = updateObject(state.newStoredViewItem, viewItem);
         state.activatedMovementId   = '';
         state.activatedCopiedId     = '';
         state.loading               = false;

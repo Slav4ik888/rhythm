@@ -6,10 +6,11 @@ import { Tooltip } from 'shared/ui/tooltip';
 import { getChanges, isEmpty, isNotEmpty } from 'shared/helpers/objects';
 import { pxToRem } from 'shared/styles';
 import { useCompany } from 'entities/company';
+import { CircularProgress } from 'shared/ui/circular-progress';
 
 
 
-const useStyles = (theme: CustomTheme) => ({
+const useStyles = (theme: CustomTheme, loading: boolean) => ({
   isChanges: {
     position     : 'absolute',
     top          : pxToRem(100),
@@ -20,6 +21,7 @@ const useStyles = (theme: CustomTheme) => ({
     py           : pxToRem(3),
     px           : pxToRem(6),
     zIndex       : 100,
+    opacity      : loading ? 0.5 : 1
   },
   text: {
     color        : theme.palette.error.main,
@@ -29,9 +31,9 @@ const useStyles = (theme: CustomTheme) => ({
 
 
 export const UnsavedChanges: FC = memo(() => {
-  const sx = useStyles(useTheme());
   const { companyId, storedCompany, company, serviceUpdateCompany } = useCompany();
-  const { selectedId, newStoredViewItem, entities, updateNewStoredViewItem, serviceUpdateViewItem } = useDashboardView();
+  const { loading, selectedId, newStoredViewItem, entities, serviceUpdateViewItem } = useDashboardView();
+  const sx = useStyles(useTheme(), loading);
 
   const changedCompany = useMemo(() => getChanges(storedCompany, company)
     , [selectedId, newStoredViewItem, entities, storedCompany, company]);
@@ -44,7 +46,6 @@ export const UnsavedChanges: FC = memo(() => {
     if (! selectedId) return false;
     
     if (isNotEmpty(changedCompany)) {
-      // console.log('changedCompany: ', changedCompany);
       return true
     }
     if (isNotEmpty(changedStyles)) {
@@ -65,7 +66,6 @@ export const UnsavedChanges: FC = memo(() => {
 
     const viewItem = { id: selectedId, ...changedStyles };
     serviceUpdateViewItem({ companyId, viewItem });
-    updateNewStoredViewItem(viewItem);
   }, [selectedId, changedCompany, changedStyles]);
 
 
@@ -80,6 +80,11 @@ export const UnsavedChanges: FC = memo(() => {
       >
         <Typography sx={sx.text}>Не сохранён</Typography>
       </Tooltip>
+      <CircularProgress
+        loading = {loading}
+        color   = {sx.text.color}
+        size    = {20}
+      />
     </Box>
   )
 });

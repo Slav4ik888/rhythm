@@ -7,6 +7,7 @@ import { actionsUser } from 'entities/user';
 
 
 export interface CustomAxiosError {
+  code: string
   response: {
     status : number
     data   : Errors
@@ -31,6 +32,9 @@ export const errorHandlers = (
 
   console.log('pathname: ', pathname);
 
+  if (e.code === 'ECONNABORTED') {
+    dispatch(actionsUI.setWarningMessage('Отсутствует интернет-соединение. Попробуйте позже.'))
+  }
   if (errors.general) {
     if (errors.general !== 'auth/user-not-found') dispatch(actionsUI.setWarningMessage(errors.general));
   }
@@ -46,7 +50,7 @@ export const errorHandlers = (
   else if (status === 404) {
     dispatch(actionsUI.setWarningMessage(`Сервер вернул ошибку - отсутствует обработчик на данный запрос [${e.response?.config?.url}]. Повторите действие позже.`))
   }
-  else if (status === 502 || status === 504) {
+  else if (status === 500 || status === 501 || status === 502 || status === 504) {
     // dispatch(actionsUI.setErrorStatus(504));
     dispatch(actionsUI.setWarningMessage('Извините, сервер временно не доступен...'))
   }
