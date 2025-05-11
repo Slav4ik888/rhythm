@@ -4,6 +4,7 @@ import { InvertedData } from '../inverted-data';
 import { ViewItemChartSettingsList } from './chart-list';
 import { ViewItemChartScaleYSettings } from './y-settings';
 import { ViewItemChartScaleXSettings } from './x-settings';
+import { ChartCutout } from './cutout';
 
 
 
@@ -14,6 +15,7 @@ export const ViewItemChartSettingsConfigurator: FC = memo(() => {
       {/* GLOBAL SETTINGS */}
       <InvertedData />
       <ChartLegends />
+      <ChartCutout />
 
       {/* Individual charts settings */}
       <ViewItemChartSettingsList />

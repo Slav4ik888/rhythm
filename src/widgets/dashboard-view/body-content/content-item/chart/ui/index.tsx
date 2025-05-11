@@ -35,7 +35,7 @@ export const ItemChart: FC<Props> = memo(({ item, onSelect }) => {
   }, [activeDates, itemsData]);
 
   const type    = item.settings?.charts?.[0]?.chartType || 'line';
-  const data    = notPie ? getData(dates, itemsData, item) : getDataDoughnut(['Red', 'Blue', 'Yellow'], itemsData, item);
+  const data    = notPie ? getData(dates, itemsData, item) : getDataDoughnut(itemsData, item);
   const options = getOptions(type, item.settings?.chartOptions || {});
 
 

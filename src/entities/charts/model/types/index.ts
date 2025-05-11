@@ -28,6 +28,8 @@ export interface ChartConfigDatasets {
   type?                 : 'line' // Если на 1 графике несколько Charts и 1й 'bar', but not 'line' 
   order?                : number // Если на 1 графике несколько Charts и нужно упорядочить их
   parentChartsIdx?      : number // For trendLine чтобы знать чей это тренд charts
+  cutout?               : string // Doughnut in percent
+  hoverOffset?          : number // For Doughnut
 }
 
 // Для Тренда

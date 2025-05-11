@@ -13,15 +13,15 @@ import { getBackgroundColors } from './utils';
  * Наполняет datasets всеми необходимыми даннными для Doughnut
  */
 export const getDataDoughnut = (
-  labels    : string[],
   itemsData : DashboardStatisticItem<number>[],
   viewItem  : ViewItem
 ): ChartConfig => {
   
-  const config = {
+  const config: ChartConfig = {
     labels: viewItem?.settings?.charts?.map((item) => { // ['Red', 'Blue', 'Yellow']
       return item?.datasets?.label || ''
     }) || [''],
+
     datasets: [
       {
         label: '', // Chart name is added to each value by hover
@@ -34,6 +34,11 @@ export const getDataDoughnut = (
       },
     ],
   };
+
+  if (viewItem?.settings?.charts?.[0]?.datasets?.cutout) {
+    
+    config.datasets[0].cutout = viewItem.settings.charts[0].datasets.cutout
+  }
 
   return config
 }
