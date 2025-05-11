@@ -7,8 +7,9 @@ import { PartialViewItem } from 'entities/dashboard-view';
 
 
 export interface UpdateViewItem {
-  companyId : string
-  viewItem  : PartialViewItem
+  companyId          : string
+  viewItem           : PartialViewItem
+  newStoredViewItem? : PartialViewItem
 }
 
 /**

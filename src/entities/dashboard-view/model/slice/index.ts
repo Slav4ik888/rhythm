@@ -181,10 +181,12 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(updateViewItem.fulfilled, (state, { payload }: PayloadAction<UpdateViewItem>) => {
-        const { viewItem, companyId } = payload;
+        const { viewItem, companyId, newStoredViewItem } = payload;
         
         state.entities[viewItem.id] = updateObject(state.entities[viewItem.id], viewItem);
-        state.newStoredViewItem     = updateObject(state.newStoredViewItem, viewItem);
+        if (newStoredViewItem) {
+          state.newStoredViewItem = updateObject(state.newStoredViewItem, newStoredViewItem);
+        }
         state.activatedMovementId   = '';
         state.activatedCopiedId     = '';
         state.loading               = false;

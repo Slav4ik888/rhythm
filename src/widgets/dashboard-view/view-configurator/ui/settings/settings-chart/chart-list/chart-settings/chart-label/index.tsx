@@ -18,7 +18,8 @@ export const ChartLabel: FC<Props> = memo(({ index }) => {
     changeOneDatasetsItem({ field: 'label', value, index });
   }, [selectedItem, changeOneDatasetsItem]);
   
-  if (! Boolean(selectedItem.settings?.chartOptions?.plugins?.legend?.display)) return null
+  // Скрывать если галочка не стоит
+  // if (! Boolean(selectedItem.settings?.chartOptions?.plugins?.legend?.display)) return null
 
 
   return (

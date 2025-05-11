@@ -65,7 +65,7 @@ export const UnsavedChanges: FC = memo(() => {
     if (isEmpty(changedStyles)) return
 
     const viewItem = { id: selectedId, ...changedStyles };
-    serviceUpdateViewItem({ companyId, viewItem });
+    serviceUpdateViewItem({ companyId, viewItem, newStoredViewItem: viewItem });
   }, [selectedId, changedCompany, changedStyles]);
 
 

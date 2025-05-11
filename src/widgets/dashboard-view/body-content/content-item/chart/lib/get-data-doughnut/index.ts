@@ -15,21 +15,21 @@ import { getBackgroundColors } from './utils';
 export const getDataDoughnut = (
   labels    : string[],
   itemsData : DashboardStatisticItem<number>[],
-  item      : ViewItem
+  viewItem  : ViewItem
 ): ChartConfig => {
-  console.log("🚀 ~ itemsData:", itemsData);
-  console.log("🚀 ~ item:", item);
   
   const config = {
-    labels, // ['Red', 'Blue', 'Yellow']
+    labels: viewItem?.settings?.charts?.map((item) => { // ['Red', 'Blue', 'Yellow']
+      return item?.datasets?.label || ''
+    }) || [''],
     datasets: [
       {
-        label: '',
+        label: '', // Chart name is added to each value by hover
         data: [...itemsData.map((itemData, idx) => {
           // последние значения соответствующие концу выбранного промежутка
           return itemData?.data[itemData?.data.length - 1] || 0
         })],
-        backgroundColor: getBackgroundColors(item),
+        backgroundColor: getBackgroundColors(viewItem),
         hoverOffset: 4
       },
     ],
