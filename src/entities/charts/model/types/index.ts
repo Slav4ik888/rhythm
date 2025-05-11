@@ -4,6 +4,8 @@ import { InteractionMode } from 'node_modules/chart.js/dist/types/index.d.ts';
 
 export type ChartType = 'line' | 'bar' | 'pie' | 'doughnut'
 export const arrChartType: ChartType[] = ['line', 'bar', 'pie', 'doughnut'];
+export type LegendPosition = 'left' | 'top' | 'right' | 'bottom' | 'center';
+export const arrLegendPosition: LegendPosition[] = ['left', 'top', 'right', 'bottom', 'center'];
 
 
 export interface ChartConfig {
@@ -53,7 +55,7 @@ export interface ChartConfigOptions {
   plugins?: {
     legend?: {
       display?  : boolean
-      position? : 'top' | 'left' | 'bottom' | 'right' | 'chartArea'
+      position? : LegendPosition
       align?    : 'start' | 'center' | 'end'
     }
   }

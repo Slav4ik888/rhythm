@@ -1,7 +1,6 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { useDashboardView } from 'entities/dashboard-view';
-import { SelectValue } from '../../../../../../../../../shared/ui/configurators-components/select';
-import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
+import { ConfiguratorTextTitle, RowWrapper, SelectValue } from 'shared/ui/configurators-components';
 import { arrChartType, ChartType } from 'entities/charts';
 
 

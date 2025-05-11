@@ -1,5 +1,5 @@
 const cfg = {
-  ASSEMBLY_DATE           : '2025-05-08',
+  ASSEMBLY_DATE           : '2025-05-11',
   
   COOKIE_NAME             : 'Rhythm',
   DEFAULT_MESSAGE_TIMEOUT : 6000,
@@ -12,7 +12,7 @@ const cfg = {
   // DEV
   /** If checks should been disabled */
   IS_EXPERIMENTAL : false,
-  IS_DEV: true, // false, // Если загрузить данные надо не с сервера а из LS, например, когда нет интернета
+  IS_DEV: false, // true, // Если загрузить данные надо не с сервера а из LS, например, когда нет интернета
 }
 
 export default cfg

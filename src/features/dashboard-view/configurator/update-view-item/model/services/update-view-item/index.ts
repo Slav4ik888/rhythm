@@ -9,7 +9,7 @@ import { PartialViewItem } from 'entities/dashboard-view';
 export interface UpdateViewItem {
   companyId          : string
   viewItem           : PartialViewItem
-  newStoredViewItem? : PartialViewItem
+  newStoredViewItem? : PartialViewItem // для сохранения из UnsavedChanges чтобы сохранился текущий элемент
 }
 
 /**
