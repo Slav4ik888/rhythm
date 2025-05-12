@@ -23,7 +23,7 @@ const sx: SxCard = {
 
 /** background */
 export const SetBackground: FC<Props> = memo(({ onChange }) => {
-  const { styleValueByField = 'rgba(255, 255, 255, 0)' } = useDashboardView({ field: 'background' });
+  const { styleValueByField } = useDashboardView({ field: 'background' }); // = 'rgba(255, 255, 255, 0)' убрал, тк иногда не успевало прогрузится и удалялся прошлый имеющийся цвет
 
   const gradients = useMemo(() => splitGradinetRgba(styleValueByField as string), [styleValueByField]);
 

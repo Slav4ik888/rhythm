@@ -41,6 +41,8 @@ export const BoxShadowSetupComponent: FC<Props> = memo(({ color, onChange }) => 
         sx        = {sx}
         transform = {(v: string | number) => getBoxShadowValue(v, 0)}
         onChange  = {(e: MouseEvent, v: string | number) => onChange(v, 0)}
+        onBlur    = {(e: MouseEvent, v: string | number) => onChange(v, 0)}
+        onSubmit  = {(e: MouseEvent, v: string | number) => onChange(v, 0)}
       />
       <InputByScheme
         type      = 'number'
@@ -51,6 +53,8 @@ export const BoxShadowSetupComponent: FC<Props> = memo(({ color, onChange }) => 
         sx        = {sx}
         transform = {(v: string | number) => getBoxShadowValue(v, 1)}
         onChange  = {(e: MouseEvent, v: string | number) => onChange(v, 1)}
+        onBlur    = {(e: MouseEvent, v: string | number) => onChange(v, 1)}
+        onSubmit  = {(e: MouseEvent, v: string | number) => onChange(v, 1)}
       />
       <InputByScheme
         type      = 'number'
@@ -61,6 +65,8 @@ export const BoxShadowSetupComponent: FC<Props> = memo(({ color, onChange }) => 
         sx        = {sx}
         transform = {(v: string | number) => getBoxShadowValue(v, 2)}
         onChange  = {(e: MouseEvent, v: string | number) => onChange(v, 2)}
+        onBlur    = {(e: MouseEvent, v: string | number) => onChange(v, 2)}
+        onSubmit  = {(e: MouseEvent, v: string | number) => onChange(v, 2)}
       />
       <InputByScheme
         type      = 'number'
@@ -71,6 +77,8 @@ export const BoxShadowSetupComponent: FC<Props> = memo(({ color, onChange }) => 
         sx        = {sx}
         transform = {(v: string | number) => getBoxShadowValue(v, 3)}
         onChange  = {(e: MouseEvent, v: string | number) => onChange(v, 3)}
+        onBlur    = {(e: MouseEvent, v: string | number) => onChange(v, 3)}
+        onSubmit  = {(e: MouseEvent, v: string | number) => onChange(v, 3)}
       />
 
       <ColorPicker

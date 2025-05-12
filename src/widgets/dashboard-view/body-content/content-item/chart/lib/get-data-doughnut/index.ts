@@ -27,6 +27,7 @@ export const getDataDoughnut = (
           return itemData?.data[itemData?.data.length - 1] || 0
         })],
         backgroundColor: getBackgroundColors(viewItem),
+        borderWidth: 0,
         hoverOffset: 8
       },
     ],
