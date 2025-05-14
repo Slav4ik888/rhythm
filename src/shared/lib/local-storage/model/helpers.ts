@@ -29,6 +29,8 @@ export const getDashboardState = (companyId: string) => (getStorageData<object>(
 
 export const setDashboardView = (companyId: string, views: ViewItem[]) => setStorageData(`DashboardView-${companyId}`, views);
 export const getDashboardView = (companyId: string) => (getStorageData<object>(`DashboardView-${companyId}`) || {}) as ViewItem[];
+export const setDashboardViewEditMode = (companyId: string, editMode: boolean) => setStorageData(`DashboardViewEditMode-${companyId}`, editMode);
+export const getDashboardViewEditMode = (companyId: string): boolean => getStorageData<boolean>(`DashboardViewEditMode-${companyId}`) || false;
 
 
 export const devSetGSData = (companyId: string, data: ResGetData) => setStorageData(`Dashboard-GSData-${companyId}`, data);

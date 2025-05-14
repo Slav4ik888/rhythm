@@ -43,7 +43,7 @@ export const ViewItemConfigurator: FC = memo(() => {
     const changedCompany = getChanges(storedCompany, company);
     if (isNotEmpty(changedCompany)) serviceUpdateCompany({ id: companyId, ...changedCompany });
     
-    /** Сохраняем изменившиеся поля | стили */
+    /** Вроде как при закрытии Конфигуратора - сохраняем изменившиеся поля | стили */
     const prevId = (prevStoredViewItem as ViewItem)?.id; // Так как selectedId это уже нововыбранный
     if (! prevId) return // Например, выбрали первый раз или удалили карточку
 
@@ -58,7 +58,7 @@ export const ViewItemConfigurator: FC = memo(() => {
   /** Закрываем конфигуратор */
   const handleClose = useCallback(() => {
     setValue('1');
-    setEditMode(false);
+    setEditMode({ editMode: false, companyId });
     setSelectedId(''); // Убираем, чтобы prevStoredViewItem обновился и произошло сохранение
   }, [selectedId, setEditMode, setSelectedId]);
 

@@ -16,7 +16,11 @@ export interface StateSchemaDashboardView {
 
   editMode            : boolean // Режим редактирования
   entities            : DashboardViewEntities
-  selectedId          : ViewItemId    // Id выбранного элемента (при editMode === true)
+  // Id выбранного элемента (на время пока loading === true),
+  // чтобы если при сохранении будет ошибка, то можно было это уладить до переключения на следующий элемент
+  // После loading === false, должно произойти selectedId = newSelectedId
+  newSelectedId       : ViewItemId
+  selectedId          : ViewItemId // Id выбранного элемента (при editMode === true)
   // Начальные значения выбранного элемента, чтобы затем перевести его в статус prevStoredView
   // само по себе используется только в UnsavedChanges, а также для промежуточного хранения
   newStoredViewItem   : ViewItem | {}

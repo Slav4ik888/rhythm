@@ -3,6 +3,11 @@ import { ViewItem, ViewItemId, ViewItemStylesField, ViewItemSettingsField, ViewI
 
 
 
+export interface SetEditMode {
+  editMode  : boolean
+  companyId : string
+}
+
 export interface SetDashboardView {
   companyId : string
   viewItems : ViewItem[]

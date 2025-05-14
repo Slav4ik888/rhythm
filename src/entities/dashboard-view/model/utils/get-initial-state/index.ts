@@ -13,7 +13,8 @@ export const getInitialState = (companyId: ActivatedCompanyId): StateSchemaDashb
     errors              : {},
     _isMounted          : true,
 
-    editMode            : false,
+    editMode            : LS.getDashboardViewEditMode(companyId),
+    newSelectedId       : '',
     selectedId          : '',
     entities            : addEntities({}, LS.getDashboardView(companyId)) || {},
     newStoredViewItem   : {}, // Начальные значения выбранного элемента

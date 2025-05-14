@@ -28,7 +28,7 @@ root.render(
 );
 
 
-// git add . && git commit -m "refact BoxShadowSetupComponent" && git push -u origin main
+// git add . && git commit -m "refact update & setSelectedId with BodyContent" && git push -u origin main
 // Сделать:
 //  - Добавление/удаление нескольких графиков в одном Chart
 //  - Inverted add individual in chart, if need that first chart is not inverted, but second chart is inverted

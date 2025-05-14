@@ -23,16 +23,16 @@ const sx: SxCard = {
 
 /** background */
 export const SetBackground: FC<Props> = memo(({ onChange }) => {
-  const { styleValueByField } = useDashboardView({ field: 'background' }); // = 'rgba(255, 255, 255, 0)' убрал, тк иногда не успевало прогрузится и удалялся прошлый имеющийся цвет
+  const { selectedItem } = useDashboardView({ field: 'background' }); // = 'rgba(255, 255, 255, 0)' убрал, тк иногда не успевало прогрузится и удалялся прошлый имеющийся цвет
 
-  const gradients = useMemo(() => splitGradinetRgba(styleValueByField as string), [styleValueByField]);
+  const gradients = useMemo(() => splitGradinetRgba(selectedItem?.styles?.background as string), [selectedItem]);
 
   const [checked, setChecked] = useState(gradients.length === 3); // if 'linear-gradient(195deg, #bbdefb, #64b5f6)';
   const handleToggle = () => setChecked(! checked);
   
   useEffect(() => {
     setChecked(gradients.length === 3);
-  }, [styleValueByField]);
+  }, [selectedItem]);
   
   const handleBackground = (value: string) => onChange('background', value as unknown as string);
 
@@ -55,13 +55,13 @@ export const SetBackground: FC<Props> = memo(({ onChange }) => {
       {
         checked
           ? <SetLinearGradient
-              defaultValue = {styleValueByField as RgbaString}
+              defaultValue = {selectedItem?.styles?.background as RgbaString}
               gradients    = {gradients}
               sx           = {sx}
               onChange     = {onChange}
             />
           : <ColorPicker
-              defaultColor = {styleValueByField as RgbaString}
+              defaultColor = {selectedItem?.styles?.background as RgbaString}
               sx           = {sx}
               onChange     = {handleBackground}
             />

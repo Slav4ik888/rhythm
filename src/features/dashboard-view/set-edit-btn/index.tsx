@@ -5,6 +5,7 @@ import { useDashboardView } from 'entities/dashboard-view';
 import { Tooltip } from 'shared/ui/tooltip';
 import { CustomTheme, useTheme, useUIConfiguratorController } from 'app/providers/theme';
 import { sxNavbarIconButton, sxNavbarIconsStyle } from 'shared/lib/styles/navbar';
+import { useCompany } from 'entities/company';
 
 
 
@@ -44,6 +45,7 @@ interface Props {
 
 export const DashboardSetEditBtn: FC<Props> = memo(({ light }) => {
   const { editMode, setEditMode } = useDashboardView();
+  const { companyId } = useCompany();
   // const sx = useStyles(useTheme(), editMode);
   const [configuratorState] = useUIConfiguratorController();
   const sx = useStyles(useTheme(), configuratorState.navbarTransparent, light);
@@ -54,7 +56,7 @@ export const DashboardSetEditBtn: FC<Props> = memo(({ light }) => {
     setText(editMode ? 'Выключить режим редактирования' : 'Включить режим редактирования');
   }, [editMode]);
 
-  const handleToggle = useCallback(() => setEditMode(! editMode), [editMode, setEditMode]);
+  const handleToggle = useCallback(() => setEditMode({ editMode: ! editMode, companyId }), [editMode, setEditMode]);
 
 
   return (

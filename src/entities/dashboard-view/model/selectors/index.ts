@@ -14,6 +14,8 @@ export const selectIsMounted    = createSelector(selectModule, (state: StateSche
 export const selectEditMode     = createSelector(selectModule, (state: StateSchemaDashboardView) => state.editMode);
 export const selectEntities     = createSelector(selectModule, (state: StateSchemaDashboardView) => state.entities || {});
 
+export const selectNewSelectedId = createSelector(selectModule, (state: StateSchemaDashboardView) => state.newSelectedId);
+
 export const selectSelectedId   = createSelector(selectModule, (state: StateSchemaDashboardView) => state.selectedId);
 export const selectSelectedItem = createSelector(selectEntities, selectSelectedId,
   (entities: DashboardViewEntities, selectedId: string) => entities[selectedId] || {});

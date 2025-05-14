@@ -4,9 +4,9 @@ import { Errors } from 'shared/lib/validators';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { StateSchemaDashboardView } from './state-schema';
 import { deleteViewItem, DeleteViewItem, AddNewViewItem, addNewViewItem, UpdateViewItem, updateViewItem } from 'features/dashboard-view';
-import { SetDashboardView, ChangeSelectedStyle, ChangeOneSettingsField, ChangeOneDatasetsItem, ChangeOneChartsItem } from './types';
+import { SetDashboardView, ChangeSelectedStyle, ChangeOneSettingsField, ChangeOneDatasetsItem, ChangeOneChartsItem, SetEditMode } from './types';
 import { addEntities } from 'entities/base';
-import { ViewItem, ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem } from '../types';
+import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem } from '../types';
 // import { NO_PARENT_ID } from '../consts';
 import { cloneObj, updateObject } from 'shared/helpers/objects';
 import { updateChartsItem } from '../utils';
@@ -21,6 +21,7 @@ const initialState: StateSchemaDashboardView = {
 
   editMode            : false,
   entities            : {},
+  newSelectedId       : '',
   selectedId          : '',
   newStoredViewItem   : {}, // Начальные значения выбранного элемента
   prevStoredViewItem  : {}, // Начальные значения предыдущего выбранного элемента
@@ -39,6 +40,7 @@ export const slice = createSlice({
       state.selectedId         = payload.selectedId,
       state.newStoredViewItem  = payload.newStoredViewItem  || {},
       state.prevStoredViewItem = payload.prevStoredViewItem || {},
+      state.editMode           = payload.editMode           || false;
       state.loading            = payload.loading;
       state.errors             = payload.errors;
     },
@@ -55,16 +57,28 @@ export const slice = createSlice({
       state.activatedCopiedId   = '';
     },
 
-    setEditMode: (state, { payload }: PayloadAction<boolean>) => {
-      state.editMode = payload;
-      if (! payload) {
+    setEditMode: (state, { payload }: PayloadAction<SetEditMode>) => {
+      const { editMode, companyId } = payload;
+      state.editMode = editMode;
+      LS.setDashboardViewEditMode(companyId, editMode);
+      
+      if (! editMode) {
         state.selectedId = '';
       }
     },
     
-    /** Id выбранного элемента (при editMode === true) */
+    /** Вначале newSelectedId а затем по условию из useEffect */
+    setNewSelectedId: (state, { payload }: PayloadAction<ViewItemId>) => {
+      state.newSelectedId = payload;
+    },
+
+    /**
+     * Запускается из useEffect
+     * Id выбранного элемента (при editMode === true)
+     */
     setSelectedId: (state, { payload }: PayloadAction<ViewItemId>) => {
-      state.selectedId     = payload;
+      state.selectedId         = payload;
+      state.newSelectedId      = '';
       state.prevStoredViewItem = state.newStoredViewItem;
       state.newStoredViewItem  = state.entities[payload] || {};
     },
@@ -187,14 +201,16 @@ export const slice = createSlice({
         if (newStoredViewItem) {
           state.newStoredViewItem = updateObject(state.newStoredViewItem, newStoredViewItem);
         }
-        state.activatedMovementId   = '';
-        state.activatedCopiedId     = '';
-        state.loading               = false;
-        state.errors                = {};
+        state.activatedMovementId = '';
+        state.activatedCopiedId   = '';
+        state.loading             = false;
+        state.errors              = {};
 
         LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
       })
       .addCase(updateViewItem.rejected, (state, { payload }) => {
+        console.log("🚀 ~ .addCase ~ payload:", payload)
+        state.newStoredViewItem = ''; // Раз обновление завершилось с ошибкой, то нельзя переключаться на новый элемент
         state.errors  = getError(payload);
         state.loading = false;
       }),

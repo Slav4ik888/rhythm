@@ -3,7 +3,7 @@ import { actions as a } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
-import { ChangeOneSettingsField, ChangeSelectedStyle, ChangeOneDatasetsItem, ChangeOneChartsItem, SetDashboardView } from '../../slice/types';
+import { ChangeOneSettingsField, ChangeSelectedStyle, ChangeOneDatasetsItem, ChangeOneChartsItem, SetDashboardView, SetEditMode } from '../../slice/types';
 import { ActivatedCompanyId } from 'entities/company';
 import { ViewItem, ViewItemId, ViewItemStyles, ViewItemStylesField, PartialViewItem } from '../../types';
 import { addNewViewItem, CreateGroupViewItems, createGroupViewItems, deleteViewItem, DeleteViewItem, UpdateViewItem, updateViewItem as updateViewItemOnServer } from 'features/dashboard-view';
@@ -30,7 +30,7 @@ export const useDashboardView = (config: Config = {}) => {
     setInitial          = (state: StateSchemaDashboardView) => dispatch(a.setInitial(state)),
     setDashboardView    = (data: SetDashboardView) => dispatch(a.setDashboardView(data)),
     editMode            = useSelector(s.selectEditMode),
-    setEditMode         = (editMode: boolean) => dispatch(a.setEditMode(editMode)),
+    setEditMode         = (data: SetEditMode) => dispatch(a.setEditMode(data)),
     entities            = useSelector(s.selectEntities),
     viewItems           = useSelector(s.selectViewItems),
     parentsViewItems    = useSelector(s.selectParentsViewItems),
@@ -47,7 +47,9 @@ export const useDashboardView = (config: Config = {}) => {
     clearActivatedCopiedId = () => dispatch(a.clearActivatedCopiedId()),
 
     // View
+    newSelectedId       = useSelector(s.selectNewSelectedId),
     selectedId          = useSelector(s.selectSelectedId),
+    setNewSelectedId    = (id: ViewItemId) => dispatch(a.setNewSelectedId(id)),
     setSelectedId       = (id: ViewItemId) => dispatch(a.setSelectedId(id)),
     selectedItem        = useSelector(s.selectSelectedItem),
 
@@ -103,6 +105,8 @@ export const useDashboardView = (config: Config = {}) => {
     updateViewItem,
 
     // View
+    newSelectedId,
+    setNewSelectedId,
     selectedId,
     setSelectedId,
     selectedItem,
