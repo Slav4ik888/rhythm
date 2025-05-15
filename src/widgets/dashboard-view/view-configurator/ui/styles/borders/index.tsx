@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { ViewItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ViewItemStylesField, ViewItem } from 'entities/dashboard-view';
 import { BorderRow } from './border';
 import { BorderRadiusRow } from './border-radius';
 import { BoxShadowRow } from './box-shadow';
@@ -8,22 +8,26 @@ import { BoxShadowRow } from './box-shadow';
 
 
 interface Props {
-  onChange: (field: ViewItemStylesField, value: number | string) => void
+  selectedItem : ViewItem | undefined
+  onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
-
 /** Рамки */
-export const Borders: FC<Props> = memo(({ onChange }) => {
-  const { stylesByViewItemId: styles } = useDashboardView();
+export const Borders: FC<Props> = memo(({ selectedItem, onChange }) => {
 
   return (
     <SubHeader title='Рамка'>
       <BorderRow
-        borderColor = {styles.borderColor}
-        onChange    = {onChange}
+        selectedItem = {selectedItem}
+        onChange     = {onChange}
       />
-      <BorderRadiusRow />
-      <BoxShadowRow onChange={onChange} />
+      <BorderRadiusRow
+        selectedItem = {selectedItem}
+      />
+      <BoxShadowRow
+        selectedItem = {selectedItem}
+        onChange     = {onChange}
+      />
     </SubHeader>
   )
 });

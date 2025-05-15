@@ -10,6 +10,7 @@ import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-comp
 
 
 
+/** Строки для добавления разных элементов */
 export const AddRows: FC = memo(() => {
   const { selectedId, selectedItem: { type}, childrenViewItems, parentChildrenIds, serviceAddNewViewItem } = useDashboardView();
   const { userId } = useUser();
@@ -17,6 +18,8 @@ export const AddRows: FC = memo(() => {
 
 
   const handleAdd = useCallback((type: ViewItemType) => {
+    if (! selectedId) return;
+    
     const viewItem = createViewItem({
       sheetId  : NO_SHEET_ID,
       parentId : selectedId,
@@ -25,7 +28,7 @@ export const AddRows: FC = memo(() => {
     }, userId);
     
     serviceAddNewViewItem(companyId, viewItem);
-  }, [parentChildrenIds, childrenViewItems, serviceAddNewViewItem]);  
+  }, [selectedId, companyId, userId, parentChildrenIds, childrenViewItems, serviceAddNewViewItem]);  
 
 
   if (type !== 'box') return null

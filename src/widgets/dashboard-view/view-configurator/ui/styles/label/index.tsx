@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { ViewItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ViewItemStylesField, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { LabelRow } from './label-row';
 import { SetColor } from './set-color';
 import { FontSizeRow } from './font-size-row';
@@ -11,25 +11,26 @@ import { LineHeightRow } from './line-height-row';
 
 
 interface Props {
-  onChange: (field: ViewItemStylesField, value: number | string) => void
+  selectedItem : ViewItem | undefined
+  onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
 /** Card text label */
-export const CardLabel: FC<Props> = memo(({ onChange }) => {
-  const { selectedItem: { type } } = useDashboardView();
+export const CardLabel: FC<Props> = memo(({ selectedItem, onChange }) => {
+  const type = selectedItem?.type;
 
   if (type !== 'text' && type !== 'digitIndicator') return null
 
   return (
     <SubHeader title='Текст'>
-      {type === 'text' && <LabelRow />}
-      <FontSizeRow />
-      <FontStyleRow  onChange={onChange} />
-      <FontWeightRow onChange={onChange} />
-      <LineHeightRow />
+      {type === 'text' && <LabelRow selectedItem={selectedItem} />}
+      <FontSizeRow   selectedItem={selectedItem} />
+      <FontStyleRow  selectedItem={selectedItem} onChange={onChange} />
+      <FontWeightRow selectedItem={selectedItem} onChange={onChange} />
+      <LineHeightRow selectedItem={selectedItem} />
       {/* font-family */}
 
-      <SetColor onChange={onChange} />
+      <SetColor selectedItem={selectedItem} onChange={onChange} />
     </SubHeader>
   )
 });

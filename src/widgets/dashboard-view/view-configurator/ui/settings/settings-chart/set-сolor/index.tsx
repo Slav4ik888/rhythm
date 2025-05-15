@@ -1,5 +1,5 @@
 import { FC, memo, useCallback } from 'react';
-import { useDashboardView } from 'entities/dashboard-view';
+import { useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { getValueByScheme, setValueByScheme, updateObject } from 'shared/helpers/objects';
@@ -7,14 +7,15 @@ import { getValueByScheme, setValueByScheme, updateObject } from 'shared/helpers
 
 
 interface Props {
-  scheme    : string
-  title     : string
-  toolTitle : string
+  scheme       : string
+  title        : string
+  toolTitle    : string
+  selectedItem : ViewItem | undefined
 }
 
 /** Установка цвета элементам графика (by scheme) */
-export const ChartSetColorByScheme: FC<Props> = memo(({ scheme, title, toolTitle }) => {
-  const { selectedItem, changeOneSettingsField } = useDashboardView();
+export const ChartSetColorByScheme: FC<Props> = memo(({ selectedItem, scheme, title, toolTitle }) => {
+  const { changeOneSettingsField } = useDashboardView();
 
   const handleChange = useCallback((value: string | number) => {
     const result = {};
@@ -24,7 +25,7 @@ export const ChartSetColorByScheme: FC<Props> = memo(({ scheme, title, toolTitle
     changeOneSettingsField({
       field: 'chartOptions',
       value: updateObject(
-        selectedItem.settings?.chartOptions || {},
+        selectedItem?.settings?.chartOptions || {},
         result
       )
     });

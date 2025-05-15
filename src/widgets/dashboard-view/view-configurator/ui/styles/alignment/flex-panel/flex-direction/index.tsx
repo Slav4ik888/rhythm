@@ -1,4 +1,4 @@
-import { FC, memo, MouseEvent } from 'react';
+import { FC, memo, MouseEvent, useCallback } from 'react';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { FlexDirectionType, ViewItemStylesField } from 'entities/dashboard-view';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
@@ -15,9 +15,9 @@ interface Props {
 /** flex-direction */
 export const FlexDirection: FC<Props> = memo(({ value = 'row', onChange }) => {
 
-  const handleChange = (e: MouseEvent<HTMLElement>, newAlignment: FlexDirectionType) => {
+  const handleChange = useCallback((e: MouseEvent<HTMLElement>, newAlignment: FlexDirectionType) => {
     onChange('flexDirection', newAlignment);
-  };
+  }, [onChange]);
 
 
   return (

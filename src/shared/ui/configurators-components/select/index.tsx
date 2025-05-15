@@ -1,4 +1,4 @@
-import { memo, FC, useState } from 'react';
+import { memo, FC, useState, useCallback } from 'react';
 import { Chip, FormControl, MenuItem } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { f, SxCard, pxToRem } from 'shared/styles';
@@ -41,13 +41,13 @@ export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, a
   const sx = useStyles(style);
   const [openSelect, setOpenSelect] = useState(false);
 
-  const handleChange = (e: SelectChangeEvent) => {
+  const handleChange = useCallback((e: SelectChangeEvent) => {
     onSelect(e.target.value as T);
     setOpenSelect(false);
-  };
+  }, [onSelect, setOpenSelect]);
 
-  const handleClickChip = () => setOpenSelect(true);
-  const handleSelectClose = () => setOpenSelect(false);
+  const handleClickChip = useCallback(() => setOpenSelect(true), [setOpenSelect]);
+  const handleSelectClose = useCallback(() => setOpenSelect(false), [setOpenSelect]);
 
 
   return (

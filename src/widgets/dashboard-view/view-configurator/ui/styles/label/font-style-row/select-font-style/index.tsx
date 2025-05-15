@@ -1,22 +1,21 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { SelectValue } from 'shared/ui/configurators-components';
-import { FontStyleType, ViewItemStylesField, arrayFontStyles, useDashboardView } from 'entities/dashboard-view';
+import { FontStyleType, ViewItemStylesField, arrayFontStyles, ViewItem } from 'entities/dashboard-view';
 
 
 
 interface Props {
-  onChange: (field: ViewItemStylesField, value: number | string) => void
+  selectedItem : ViewItem | undefined
+  onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
-export const SelectFontStyle: FC<Props> = memo(({ onChange }) => {
-  const { styleValueByField } = useDashboardView({ field: 'fontStyle' });
-
-  const handleSelectedStyle = (selected: FontStyleType) => { onChange('fontStyle', selected) };
+export const SelectFontStyle: FC<Props> = memo(({ selectedItem, onChange }) => {
+  const handleSelectedStyle = useCallback((selected: FontStyleType) => onChange('fontStyle', selected), [onChange]);
 
 
   return (
     <SelectValue
-      selectedValue = {styleValueByField as FontStyleType || 'default'} // selectedStyle}
+      selectedValue = {selectedItem?.styles?.fontStyle || 'default'}
       array         = {arrayFontStyles}
       sx            = {{ root: { width: '100px' }}}
       // @ts-ignore

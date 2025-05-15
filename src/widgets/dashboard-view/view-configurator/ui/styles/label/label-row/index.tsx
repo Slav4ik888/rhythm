@@ -1,16 +1,22 @@
+import { ViewItem } from 'entities/dashboard-view';
 import { FC, memo } from 'react';
 import { pxToRem } from 'shared/styles';
 import { RowInputByScheme } from '../../../base-features-components';
 
 
 
-export const LabelRow: FC = memo(() => {
+interface Props {
+  selectedItem: ViewItem | undefined
+}
+
+export const LabelRow: FC<Props> = memo(({ selectedItem }) => {
   return (
     <RowInputByScheme
-      scheme    = 'label'
-      title     = 'Заголовок'
-      toolTitle = 'Заголовок'
-      width     = '100%'
+      scheme       = 'label'
+      title        = 'Заголовок'
+      toolTitle    = 'Заголовок'
+      width        = '100%'
+      selectedItem = { selectedItem }
       sx={{
         input: {
           fontSize : `${pxToRem(18)} !important`,

@@ -1,18 +1,22 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { ViewItemStyles, ViewItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ViewItemStyles, ViewItemStylesField, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { ChangeStyleItemIndents } from './change-style-indents';
 
 
 
+interface Props {
+  selectedItem : ViewItem | undefined
+}
+
 /** Отступы */
-export const Indents: FC = memo(() => {
-  const { stylesByViewItemId, setSelectedStyles } = useDashboardView();
+export const Indents: FC<Props> = memo(({ selectedItem }) => {
+  const { setSelectedStyles } = useDashboardView();
 
 
-  const handleSubmit = (field: ViewItemStylesField, value: number | string) => {
+  const handleSubmit = useCallback((field: ViewItemStylesField, value: number | string) => {
     let newStyles: ViewItemStyles = {
-      ...stylesByViewItemId,
+      ...selectedItem?.styles,
       [field]: value,
     };
 
@@ -57,24 +61,26 @@ export const Indents: FC = memo(() => {
     }
 
     setSelectedStyles(newStyles);
-  };
+  }, [selectedItem, setSelectedStyles]);
 
 
   return (
     <SubHeader title='Отступы'>
       <ChangeStyleItemIndents
         bold
-        title      = 'margin'
-        toolTitle  = 'Отступ вокруг элемента'
-        baseField  = 'm'
-        onChange   = {handleSubmit}
+        title        = 'margin'
+        toolTitle    = 'Отступ вокруг элемента'
+        baseField    = 'm'
+        selectedItem = {selectedItem}
+        onChange     = {handleSubmit}
       />
       <ChangeStyleItemIndents
         bold
-        title      = 'padding'
-        toolTitle  = 'Отступ внутри элемента'
-        baseField  = 'p'
-        onChange   = {handleSubmit}
+        title        = 'padding'
+        toolTitle    = 'Отступ внутри элемента'
+        baseField    = 'p'
+        selectedItem = {selectedItem}
+        onChange     = {handleSubmit}
       />
     </SubHeader>
   )

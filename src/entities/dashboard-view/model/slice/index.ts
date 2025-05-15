@@ -23,8 +23,8 @@ const initialState: StateSchemaDashboardView = {
   entities            : {},
   newSelectedId       : '',
   selectedId          : '',
-  newStoredViewItem   : {}, // Начальные значения выбранного элемента
-  prevStoredViewItem  : {}, // Начальные значения предыдущего выбранного элемента
+  newStoredViewItem   : undefined, // Начальные значения выбранного элемента
+  prevStoredViewItem  : undefined, // Начальные значения предыдущего выбранного элемента
 
   activatedMovementId : '', // Активированный Id перемещаемого элемента
   activatedCopiedId   : '', // Активированный Id копируемого элемента
@@ -38,8 +38,8 @@ export const slice = createSlice({
     setInitial: (state, { payload }: PayloadAction<StateSchemaDashboardView>) => {
       state.entities           = payload.entities           || {},
       state.selectedId         = payload.selectedId,
-      state.newStoredViewItem  = payload.newStoredViewItem  || {},
-      state.prevStoredViewItem = payload.prevStoredViewItem || {},
+      state.newStoredViewItem  = payload.newStoredViewItem  || undefined,
+      state.prevStoredViewItem = payload.prevStoredViewItem || undefined,
       state.editMode           = payload.editMode           || false;
       state.loading            = payload.loading;
       state.errors             = payload.errors;
@@ -112,6 +112,16 @@ export const slice = createSlice({
     updateViewItem: (state, { payload }: PayloadAction<PartialViewItem>) => {
       state.entities[payload.id] = updateObject(state.entities[payload.id], payload);
       state.activatedMovementId = '';
+    },
+
+    cancelUpdateViewItem: (state) => {
+      if (state.newStoredViewItem && state.newStoredViewItem.id) {
+        state.entities[state.selectedId] = { ...state.newStoredViewItem };
+      }
+      else {
+        // Optionally handle missing data, e.g., throw error or log warning
+        console.warn('newStoredViewItem is undefined or invalid');
+      }
     },
 
     // Изменение 1 field в styles
@@ -210,7 +220,7 @@ export const slice = createSlice({
       })
       .addCase(updateViewItem.rejected, (state, { payload }) => {
         console.log("🚀 ~ .addCase ~ payload:", payload)
-        state.newStoredViewItem = ''; // Раз обновление завершилось с ошибкой, то нельзя переключаться на новый элемент
+        state.newStoredViewItem = undefined; // Раз обновление завершилось с ошибкой, то нельзя переключаться на новый элемент
         state.errors  = getError(payload);
         state.loading = false;
       }),
@@ -227,8 +237,8 @@ export const slice = createSlice({
         allIds.forEach(id => delete state.entities[id]);
 
         state.selectedId          = '';
-        state.newStoredViewItem   = {};
-        state.prevStoredViewItem  = {};
+        state.newStoredViewItem   = undefined;
+        state.prevStoredViewItem  = undefined;
         state.activatedMovementId = '';
         state.activatedCopiedId   = '';
         state.loading             = false;

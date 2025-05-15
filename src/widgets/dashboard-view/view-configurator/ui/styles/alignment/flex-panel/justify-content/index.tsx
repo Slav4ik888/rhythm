@@ -1,4 +1,4 @@
-import { FC, memo, MouseEvent } from 'react';
+import { FC, memo, MouseEvent, useCallback } from 'react';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { JustifyContentType, ViewItemStylesField } from 'entities/dashboard-view';
 import { Tooltip } from 'shared/ui/tooltip';
@@ -19,9 +19,9 @@ interface Props {
 /** justify-content */
 export const JustifyContent: FC<Props> = memo(({ value, onChange }) => {
 
-  const handleChange = (e: MouseEvent<HTMLElement>, newAlignment: JustifyContentType) => {
+  const handleChange = useCallback((e: MouseEvent<HTMLElement>, newAlignment: JustifyContentType) => {
     onChange('justifyContent', newAlignment);
-  };
+  }, [onChange]);
 
   return (
     <ToggleButtonGroup

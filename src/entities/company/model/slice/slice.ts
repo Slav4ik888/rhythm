@@ -14,7 +14,7 @@ const initialState: StateSchemaCompany = {
   loading       : false,
   errors        : {},
   company       : {} as Company,
-  storedCompany : {} as Company,
+  storedCompany : undefined,
 };
 
 
@@ -37,6 +37,12 @@ const slice = createSlice({
     updateCustomSettings: (state, { payload }: PayloadAction<Partial<CustomSettings>>) => {
       if (! state.company.customSettings) state.company.customSettings = {};
       state.company.customSettings = updateObject(state.company.customSettings, payload);
+    },
+    cancelCustomSettings: (state) => {
+      if (state.storedCompany) {
+        state.company = { ...state.storedCompany };
+        state.storedCompany = undefined;
+      }
     }
   },
 

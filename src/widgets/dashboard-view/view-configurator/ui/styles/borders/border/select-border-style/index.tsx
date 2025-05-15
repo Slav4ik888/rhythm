@@ -1,22 +1,21 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { SelectValue } from 'shared/ui/configurators-components';
-import { BorderStyleType, ViewItemStylesField, arrayBorderStyles, useDashboardView } from 'entities/dashboard-view';
+import { BorderStyleType, ViewItemStylesField, arrayBorderStyles, ViewItem } from 'entities/dashboard-view';
 
 
 
 interface Props {
+  selectedItem : ViewItem | undefined
   onChange: (field: ViewItemStylesField, value: number | string) => void
 }
 
-export const SelectBorderStyle: FC<Props> = memo(({ onChange }) => {
-  const { styleValueByField } = useDashboardView({ field: 'borderStyle' });
-
-  const handleSelectedStyle = (selected: BorderStyleType) => onChange('borderStyle', selected);
+export const SelectBorderStyle: FC<Props> = memo(({ selectedItem, onChange }) => {
+  const handleSelectedStyle = useCallback((selected: BorderStyleType) => onChange('borderStyle', selected), [onChange]);
 
 
   return (
     <SelectValue
-      selectedValue = {styleValueByField as string || 'none'} // selectedStyle}
+      selectedValue = {selectedItem?.styles?.borderStyle || 'none'}
       array         = {arrayBorderStyles}
       sx            = {{ root: { width: '80px', mr: 1 }}}
       // @ts-ignore

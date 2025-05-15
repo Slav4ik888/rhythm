@@ -5,24 +5,29 @@ import { ViewItemChartSettingsList } from './chart-list';
 import { ViewItemChartScaleYSettings } from './y-settings';
 import { ViewItemChartScaleXSettings } from './x-settings';
 import { ChartCutout } from './cutout';
+import { ViewItem } from 'entities/dashboard-view';
 
 
+
+interface Props {
+  selectedItem: ViewItem | undefined
+}
 
 /** Вкладка Settings для графиков */
-export const ViewItemChartSettingsConfigurator: FC = memo(() => {
+export const ViewItemChartSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => {
   return (
     <>
       {/* GLOBAL SETTINGS */}
-      <InvertedData />
-      <ChartLegends />
-      <ChartCutout />
+      <InvertedData selectedItem={selectedItem} />
+      <ChartLegends selectedItem={selectedItem} />
+      <ChartCutout  selectedItem={selectedItem} />
 
       {/* Individual charts settings */}
-      <ViewItemChartSettingsList />
+      <ViewItemChartSettingsList selectedItem={selectedItem} />
       {/* TODO: возможность добавлять графики */}
 
-      <ViewItemChartScaleYSettings />
-      <ViewItemChartScaleXSettings />
+      <ViewItemChartScaleYSettings selectedItem={selectedItem} />
+      <ViewItemChartScaleXSettings selectedItem={selectedItem} />
     </>
   )
 });

@@ -75,7 +75,7 @@ const checkChanges = (newObj: object, prevObj: object, updObj: object, prevSchem
  * @param prevObj - первоначальный объект
  * @param updObj  - новый объект
  */
-export function getChanges<T extends object>(prevObj: T, updObj: Partial<T>): Partial<T> {
+export function getChanges<T extends object>(prevObj: T | undefined, updObj: Partial<T>): Partial<T> {
   if ((! prevObj && ! updObj) || ! updObj) return {};
   if (! prevObj) return updObj;
 

@@ -5,7 +5,7 @@ import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
 import { ChangeOneSettingsField, ChangeSelectedStyle, ChangeOneDatasetsItem, ChangeOneChartsItem, SetDashboardView, SetEditMode } from '../../slice/types';
 import { ActivatedCompanyId } from 'entities/company';
-import { ViewItem, ViewItemId, ViewItemStyles, ViewItemStylesField, PartialViewItem } from '../../types';
+import { ViewItem, ViewItemId, ViewItemStyles, PartialViewItem } from '../../types';
 import { addNewViewItem, CreateGroupViewItems, createGroupViewItems, deleteViewItem, DeleteViewItem, UpdateViewItem, updateViewItem as updateViewItemOnServer } from 'features/dashboard-view';
 import { StateSchemaDashboardView } from '../../slice/state-schema';
 
@@ -13,32 +13,33 @@ import { StateSchemaDashboardView } from '../../slice/state-schema';
 
 interface Config {
   parentId? : ViewItemId
-  field?    : ViewItemStylesField
+  // field?    : ViewItemStylesField
 }
 
 export const useDashboardView = (config: Config = {}) => {
   const
-    { field, parentId } = config,
+    { parentId } = config,
     dispatch = useAppDispatch(),
 
-    loading             = useSelector(s.selectLoading),
-    errors              = useSelector(s.selectErrors),
-    setErrors           = (errors: Errors) => dispatch(a.setErrors(errors)),
-    clearErrors         = () => dispatch(a.setErrors({})),
-    isMounted           = useSelector(s.selectIsMounted),
+    loading              = useSelector(s.selectLoading),
+    errors               = useSelector(s.selectErrors),
+    setErrors            = (errors: Errors) => dispatch(a.setErrors(errors)),
+    clearErrors          = () => dispatch(a.setErrors({})),
+    isMounted            = useSelector(s.selectIsMounted),
 
-    setInitial          = (state: StateSchemaDashboardView) => dispatch(a.setInitial(state)),
-    setDashboardView    = (data: SetDashboardView) => dispatch(a.setDashboardView(data)),
-    editMode            = useSelector(s.selectEditMode),
-    setEditMode         = (data: SetEditMode) => dispatch(a.setEditMode(data)),
-    entities            = useSelector(s.selectEntities),
-    viewItems           = useSelector(s.selectViewItems),
-    parentsViewItems    = useSelector(s.selectParentsViewItems),
-    updateViewItem      = (data: PartialViewItem) => dispatch(a.updateViewItem(data)),
-    
+    setInitial           = (state: StateSchemaDashboardView) => dispatch(a.setInitial(state)),
+    setDashboardView     = (data: SetDashboardView) => dispatch(a.setDashboardView(data)),
+    editMode             = useSelector(s.selectEditMode),
+    setEditMode          = (data: SetEditMode) => dispatch(a.setEditMode(data)),
+    entities             = useSelector(s.selectEntities),
+    viewItems            = useSelector(s.selectViewItems),
+    parentsViewItems     = useSelector(s.selectParentsViewItems),
+    updateViewItem       = (data: PartialViewItem) => dispatch(a.updateViewItem(data)),
+    cancelUpdateViewItem = () => dispatch(a.cancelUpdateViewItem()),
+
     // Movement
-    activatedMovementId = useSelector(s.selectActivatedMovementId),
-    setActiveMovementId = () => dispatch(a.setActiveMovementId()),
+    activatedMovementId  = useSelector(s.selectActivatedMovementId),
+    setActiveMovementId  = () => dispatch(a.setActiveMovementId()),
     clearActivatedMovementId = () => dispatch(a.clearActivatedMovementId()),
 
     // Copying
@@ -63,11 +64,6 @@ export const useDashboardView = (config: Config = {}) => {
     // Styles
     changeOneStyleField = (data: ChangeSelectedStyle) => dispatch(a.changeOneStyleField(data)),
     setSelectedStyles   = (data: ViewItemStyles) => dispatch(a.setSelectedStyles(data)),
-
-    stylesByViewItemId  = useSelector(s.selectViewItemStyle),
-    
-    selectStyleByField  = s.makeSelectStyleByField(field as ViewItemStylesField),
-    styleValueByField   = useSelector(selectStyleByField),
  
     // Settings
     changeOneSettingsField = (data: ChangeOneSettingsField) => dispatch(a.changeOneSettingsField(data)),
@@ -103,6 +99,7 @@ export const useDashboardView = (config: Config = {}) => {
     parentsViewItems,
     parentChildrenIds,
     updateViewItem,
+    cancelUpdateViewItem,
 
     // View
     newSelectedId,
@@ -127,8 +124,8 @@ export const useDashboardView = (config: Config = {}) => {
     // Styles
     changeOneStyleField,
     setSelectedStyles,
-    stylesByViewItemId,
-    styleValueByField,
+    // stylesByViewItemId,
+    // styleValueByField,
 
     // Settings
     changeOneSettingsField,

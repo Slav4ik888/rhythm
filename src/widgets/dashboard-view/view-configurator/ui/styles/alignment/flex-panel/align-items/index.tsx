@@ -1,4 +1,4 @@
-import { FC, memo, MouseEvent } from 'react';
+import { FC, memo, MouseEvent, useCallback } from 'react';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { AlignItemsType, ViewItemStylesField } from 'entities/dashboard-view';
 import { Tooltip } from 'shared/ui/tooltip';
@@ -19,9 +19,9 @@ interface Props {
 /** align-items */
 export const AlignItems: FC<Props> = memo(({ value, onChange }) => {
 
-  const handleChange = (e: MouseEvent<HTMLElement>, newAlignment: AlignItemsType) => {
+  const handleChange = useCallback((e: MouseEvent<HTMLElement>, newAlignment: AlignItemsType) => {
     onChange('alignItems', newAlignment);
-  };
+  }, [onChange]);
 
 
   return (

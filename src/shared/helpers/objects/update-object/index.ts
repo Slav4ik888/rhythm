@@ -9,7 +9,7 @@ import { setValueByScheme } from '../set-value-by-scheme';
  * Check updObj of new field, that absent in prevObj
  * Add new field to newObj
  */
-const addNewField = (newObj: object, prevObj: object, updObj: object, prevScheme: string = ''): void => {
+const addNewField = (newObj: object | undefined, prevObj: object | undefined, updObj: object | undefined, prevScheme: string = ''): void => {
   if (isNotObj(updObj)) return
   
   for (const key in updObj) {
@@ -33,7 +33,7 @@ const addNewField = (newObj: object, prevObj: object, updObj: object, prevScheme
 
 
 /** Check is Array or any type and save */
-const addChanges = (newObj: object, prevValue: unknown, updValue: unknown, scheme: string) => {
+const addChanges = (newObj: object | undefined, prevValue: unknown, updValue: unknown, scheme: string) => {
   if (isArr(prevValue as unknown as object[])) {
     if (! isArrsEqual(prevValue as unknown as object[], updValue as unknown as object[])) {
       setValueByScheme(newObj, scheme, updValue);
@@ -46,7 +46,7 @@ const addChanges = (newObj: object, prevValue: unknown, updValue: unknown, schem
 
 
 /** Add changes */
-const checkAndAddChanges = (newObj: object, prevObj: object, updObj: object, prevScheme: string = ''): void => {
+const checkAndAddChanges = (newObj: object | undefined, prevObj: object| undefined, updObj: object| undefined, prevScheme: string = ''): void => {
   for (const key in prevObj) {
     const scheme = prevScheme ? `${prevScheme}.${key}` : key;
 
@@ -77,7 +77,7 @@ const checkAndAddChanges = (newObj: object, prevObj: object, updObj: object, pre
  * Обновляет атомарно
  * Not deleted fields
  */
-export function updateObject<T extends object, O extends Partial<T & any>>(
+export function updateObject<T extends object | undefined, O extends Partial<T & any>>(
   prevObj   : T,
   updFields : O
 ): T & O | T {

@@ -27,7 +27,7 @@ export interface ChartConfigDatasets {
   backgroundColor?      : string | string[] // Несколько цветов [], если нужно каждый столбик раскрасить разным цветом
   fill?                 : boolean
   maxBarThickness?      : number
-  type?                 : 'line' // Если на 1 графике несколько Charts и 1й 'bar', but not 'line' 
+  type?                 : ChartType // Если на 1 графике несколько Charts и 1й 'bar', but not 'line' 
   order?                : number // Если на 1 графике несколько Charts и нужно упорядочить их
   parentChartsIdx?      : number // For trendLine чтобы знать чей это тренд charts
   cutout?               : string // Doughnut in percent

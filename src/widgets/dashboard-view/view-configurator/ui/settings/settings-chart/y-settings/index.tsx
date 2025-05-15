@@ -3,16 +3,27 @@ import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-comp
 import { ViewItemChartScaleTicks as Ticks } from '../ticks';
 import { ViewItemChartScaleGrid as Grid} from '../grid';
 import { ViewItemChartScaleYMinMax as MinMax } from './min-max';
+import { ViewItem } from 'entities/dashboard-view';
 
 
+
+interface Props {
+  selectedItem: ViewItem | undefined
+}
 
 /** НАСТРОЙКИ ОСИ Y */
-export const ViewItemChartScaleYSettings: FC = memo(() => {
+export const ViewItemChartScaleYSettings: FC<Props> = memo(({ selectedItem }) => {
   return (
     <SubHeader title='Ось Y'>
-      <MinMax />
-      <Grid  scale='y' />
-      <Ticks scale='y' />
+      <MinMax selectedItem={selectedItem} />
+      <Grid
+        scale        = 'y'
+        selectedItem = {selectedItem}
+      />
+      <Ticks
+        scale        = 'y'
+        selectedItem = {selectedItem}
+      />
     </SubHeader>
   )
 });

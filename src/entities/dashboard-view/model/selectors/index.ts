@@ -38,14 +38,14 @@ export const makeSelectChildrenViewItems = (parentId?: ViewItemId) => createSele
 export const selectViewItemById = createSelector(selectEntities, selectSelectedId,
   (entities: DashboardViewEntities, selectedId: string) => entities[selectedId] || {});
 
-export const selectViewItemStyle = createSelector(selectEntities, selectSelectedId,
-  (entities: DashboardViewEntities, selectedId: string) => entities[selectedId]?.styles || {});
+// export const selectViewItemStyle = createSelector(selectEntities, selectSelectedId,
+//   (entities: DashboardViewEntities, selectedId: string) => entities[selectedId]?.styles || {});
 
-export const makeSelectStyleByField = (field: ViewItemStylesField) => createSelector(
-  [selectEntities, selectSelectedId],
-  (entities: DashboardViewEntities, selectedId: string) => 
-    entities[selectedId]?.styles?.[field]
-);
+// export const makeSelectStyleByField = (field: ViewItemStylesField) => createSelector(
+//   [selectEntities, selectSelectedId],
+//   (entities: DashboardViewEntities, selectedId: string) => 
+//     entities[selectedId]?.styles?.[field]
+// );
 
 export const selectActivatedMovementId = createSelector(selectModule, (state: StateSchemaDashboardView) => state.activatedMovementId);
 export const selectActivatedCopiedId = createSelector(selectModule, (state: StateSchemaDashboardView) => state.activatedCopiedId);

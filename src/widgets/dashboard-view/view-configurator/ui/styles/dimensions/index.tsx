@@ -1,16 +1,16 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { ViewItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ViewItemStylesField, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { ChangeStyleItemDimensions as ChangeStyle } from './change-style-dimensions';
 
 
 
 interface Props {
-  onChange: (field: ViewItemStylesField, value: number | string) => void
+  selectedItem : ViewItem | undefined
+  onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
-export const Dimensions: FC<Props> = memo(({ onChange }) => {
-  const { stylesByViewItemId: styles } = useDashboardView();
+export const Dimensions: FC<Props> = memo(({ selectedItem, onChange }) => {
   
   return (
     <SubHeader title='Размеры'>
@@ -19,21 +19,24 @@ export const Dimensions: FC<Props> = memo(({ onChange }) => {
         field        = 'width'
         title        = 'width'
         toolTitle    = 'Ширина элемента'
-        value        = {styles.width}
+        value        = {selectedItem?.styles?.width}
+        selectedItem = {selectedItem} 
         onChange     = {onChange}
       />
       <ChangeStyle
         field        = 'minWidth'
         title        = 'minWidth'
         toolTitle    = 'Мин ширина элемента'
-        value        = {styles.minWidth}
+        value        = {selectedItem?.styles?.minWidth}
+        selectedItem = {selectedItem} 
         onChange     = {onChange}
       />
       <ChangeStyle
         field        = 'maxWidth'
         title        = 'maxWidth'
         toolTitle    = 'Макс ширина элемента'
-        value        = {styles.maxWidth}
+        value        = {selectedItem?.styles?.maxWidth}
+        selectedItem = {selectedItem} 
         onChange     = {onChange}
       />
       <ChangeStyle
@@ -41,21 +44,24 @@ export const Dimensions: FC<Props> = memo(({ onChange }) => {
         field        = 'height'
         title        = 'height'
         toolTitle    = 'Высота элемента'
-        value        = {styles.height}
+        value        = {selectedItem?.styles?.height}
+        selectedItem = {selectedItem} 
         onChange     = {onChange}
       />
       <ChangeStyle
         field        = 'minHeight'
         title        = 'minHeight'
         toolTitle    = 'Мин высота элемента'
-        value        = {styles.minHeight}
+        value        = {selectedItem?.styles?.minHeight}
+        selectedItem = {selectedItem} 
         onChange     = {onChange}
       />
       <ChangeStyle
         field        = 'maxHeight'
         title        = 'maxHeight'
         toolTitle    = 'Макс высота элемента'
-        value        = {styles.maxHeight}
+        value        = {selectedItem?.styles?.maxHeight}
+        selectedItem = {selectedItem} 
         onChange     = {onChange}
       />
     </SubHeader>

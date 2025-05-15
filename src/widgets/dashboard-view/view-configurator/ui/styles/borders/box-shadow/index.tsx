@@ -1,37 +1,35 @@
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { Checkbox } from '@mui/material';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { ViewItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ViewItemStylesField, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { BoxShadowSetupContainer } from './box-shadow-setup';
 import { Tooltip } from 'shared/ui/tooltip';
 
 
 
 interface Props {
-  onChange: (field: ViewItemStylesField, value: number | string) => void
+  selectedItem : ViewItem | undefined
+  onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
-/**
- * box-shadow
- */
-export const BoxShadowRow: FC<Props> = memo(({ onChange }) => {
-  const { styleValueByField } = useDashboardView({ field: 'boxShadow' });
-  
-  const [checked, setChecked] = useState(Boolean(styleValueByField));
+/** box-shadow */
+export const BoxShadowRow: FC<Props> = memo(({ selectedItem, onChange }) => {  
+  const [checked, setChecked] = useState(Boolean(selectedItem?.styles?.boxShadow));
 
-  const handleToggle = () => {
-    if (Boolean(styleValueByField)) {
+  useEffect(() => {
+    setChecked(Boolean(selectedItem?.styles?.boxShadow));
+  }, [selectedItem, setChecked]);
+
+
+  const handleToggle = useCallback(() => {
+    if (Boolean(selectedItem?.styles?.boxShadow)) {
       onChange('boxShadow', '');
     }
     else {
       onChange('boxShadow', '1px 1px 3px 0px rgba(184, 184, 184, 1)');
       setChecked(true);
     }
-  };
-  
-  useEffect(() => {
-    setChecked(Boolean(styleValueByField));
-  }, [styleValueByField]);
+  }, [selectedItem, onChange, setChecked]);
 
 
   return (
@@ -41,7 +39,7 @@ export const BoxShadowRow: FC<Props> = memo(({ onChange }) => {
         title     = 'box-shadow'
         toolTitle = '1px 1px 3px 0px rgba(184, 184, 184, 1) => offset-x | offset-y | blur-radius | spread-radius | color'
       />
-      <Tooltip title = 'background gradient'>
+      <Tooltip title='background gradient'>
         <Checkbox
           size       = 'small'
           checked    = {checked}
@@ -51,7 +49,10 @@ export const BoxShadowRow: FC<Props> = memo(({ onChange }) => {
       </Tooltip>
       {
         checked
-          ? <BoxShadowSetupContainer onChange={onChange} />
+          ? <BoxShadowSetupContainer
+              selectedItem = {selectedItem}
+              onChange     = {onChange}
+            />
           : null
       }
     </RowWrapper>

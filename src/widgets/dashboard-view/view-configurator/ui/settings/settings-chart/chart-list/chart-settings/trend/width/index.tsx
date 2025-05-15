@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, MouseEvent } from 'react';
-import { ViewItemCharts, useDashboardView } from 'entities/dashboard-view';
+import { ViewItemCharts, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { InputByScheme } from '../../../../../../base-features-components';
 import { ChartConfigTrendDatasets } from 'entities/charts';
@@ -8,12 +8,13 @@ import { cloneObj } from 'shared/helpers/objects';
 
 
 interface Props {
-  index: number // Index charts in settings.charts
+  index        : number // Index charts in settings.charts
+  selectedItem : ViewItem | undefined
 }
 
 /** Толщина линии тренда */
-export const ChartTrendWidth: FC<Props> = memo(({ index }) => {
-  const { selectedItem, changeOneChartsItem } = useDashboardView();
+export const ChartTrendWidth: FC<Props> = memo(({ index, selectedItem }) => {
+  const { changeOneChartsItem } = useDashboardView();
 
   const handleChange = useCallback((value: string | number) => {
     const trendDataSets = cloneObj(selectedItem?.settings?.charts?.[index]?.trendDataSets) || {} as ChartConfigTrendDatasets;
@@ -27,13 +28,14 @@ export const ChartTrendWidth: FC<Props> = memo(({ index }) => {
     <RowWrapper>
       <ConfiguratorTextTitle bold title='Trend width' toolTitle='Выберите толщину линии тренда' />
       <InputByScheme
-        type      = 'number'
-        scheme    = 'settings.charts'
-        width     = '3rem'
-        transform = {(v) => (v as unknown as ViewItemCharts[] | undefined)?.[index]?.trendDataSets?.borderWidth as number}
-        onChange  = {(e: MouseEvent, v: string | number) => handleChange(v)}
-        onBlur    = {(e: MouseEvent, v: string | number) => handleChange(v)}
-        onSubmit  = {(e: MouseEvent, v: string | number) => handleChange(v)}
+        type         = 'number'
+        selectedItem = {selectedItem}
+        scheme       = 'settings.charts'
+        width        = '3rem'
+        transform    = {(v) => (v as unknown as ViewItemCharts[] | undefined)?.[index]?.trendDataSets?.borderWidth as number}
+        onChange     = {(e: MouseEvent, v: string | number) => handleChange(v)}
+        onBlur       = {(e: MouseEvent, v: string | number) => handleChange(v)}
+        onSubmit     = {(e: MouseEvent, v: string | number) => handleChange(v)}
       />
     </RowWrapper>
   )

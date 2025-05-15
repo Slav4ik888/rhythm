@@ -14,7 +14,7 @@ import { calcTrend2 } from '../calc-trend-2';
 export const getData = (
   dates     : string[],
   itemsData : DashboardStatisticItem<number>[],
-  item      : ViewItem
+  viewItem  : ViewItem
 ): ChartConfig => {
   
   // TODO: надо учесть приход 5 графиков и у них 3 тренда
@@ -24,11 +24,12 @@ export const getData = (
     labels   : dates, // any[] // Dates (метки на оси X)
     datasets : [      // ChartConfigDatasets[]
       ...itemsData.map((itemData, idx) => {
-        const datasets = item?.settings?.charts?.[idx].datasets || {} as ChartConfigDatasets;
+        const datasets = viewItem?.settings?.charts?.[idx].datasets || {} as ChartConfigDatasets;
 
         const result: ChartConfigDatasets = {
+          type                 : setValue(viewItem?.settings?.charts?.[idx].chartType, 'line'),
           label                : setValue(datasets.label, `График ${idx + 1}`),
-          data                 : checkInvertData(item?.settings, itemData).map(item => isStr(item) ? NaN : item), // Empty value changes for NaN
+          data                 : checkInvertData(viewItem?.settings, itemData).map(item => isStr(item) ? NaN : item), // Empty value changes for NaN
           tension              : 0,
           pointRadius          : setValue(datasets.pointRadius, fixPointRadius(dates)), // Толщика точки (круглешков)
           pointBorderColor     : 'transparent',
@@ -46,7 +47,7 @@ export const getData = (
   };
 
 
-  item?.settings?.charts?.forEach((itemChart, idx) => {
+  viewItem?.settings?.charts?.forEach((itemChart, idx) => {
     // Если активирована линия тренда, рассчитываем данные тренда и добавляем как график
     if (itemChart.isTrend) {
       const trendData = calcTrend2(dates, config.datasets?.[idx]?.data);

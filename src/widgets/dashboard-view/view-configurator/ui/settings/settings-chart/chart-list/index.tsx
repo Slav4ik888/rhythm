@@ -7,7 +7,7 @@ import { ChartPointBackgroundColor } from './chart-settings/point-background-col
 import { ChartBorderColor } from './chart-settings/border-сolor';
 import { ChartBackgroundColor } from './chart-settings/background-сolor';
 import { ChartBorderWidth } from './chart-settings/border-width';
-import { useDashboardView } from 'entities/dashboard-view';
+import { ViewItem } from 'entities/dashboard-view';
 import { ChartTrendCheckbox } from './chart-settings/trend/checkbox';
 import { ChartTrendColor } from './chart-settings/trend/сolor';
 import { ChartTrendWidth } from './chart-settings/trend/width';
@@ -17,24 +17,27 @@ import { isNotPie } from 'entities/charts';
 
 
 
+interface Props {
+  selectedItem: ViewItem | undefined
+}
+
 /** Отрисовки списка графиков */
-export const ViewItemChartSettingsList: FC = memo(() => {
-  const { selectedItem } = useDashboardView();
+export const ViewItemChartSettingsList: FC<Props> = memo(({ selectedItem }) => {
 
   const notPie = isNotPie(selectedItem);
 
   return (
     <>
       {
-        selectedItem.settings?.charts &&
-        selectedItem.settings.charts.length > 0 &&
-        selectedItem.settings.charts.map((item, index) => (
+        selectedItem?.settings?.charts &&
+        selectedItem?.settings.charts.length > 0 &&
+        selectedItem?.settings.charts.map((item, index) => (
           <ConfiguratorSubBoxWrapper title={`График ${index + 1}`} key={index}>
             <ConfiguratorTitle title='Общие настройки' type='subtitle1' />
-            <SelectChartType index={index} />
-            <ChartKods       index={index} />
+            <SelectChartType index={index} selectedItem={selectedItem} />
+            <ChartKods       index={index} selectedItem={selectedItem} />
             
-            <ChartLabel      index={index} />
+            <ChartLabel      index={index} selectedItem={selectedItem} />
             {/* Выбрать период дат: общий или уникальный */}
             
             {
@@ -42,21 +45,21 @@ export const ViewItemChartSettingsList: FC = memo(() => {
                 ?
                   <>
                     <ConfiguratorTitle title='Точки' type='subtitle1' />
-                    <ChartPointRadius          index={index} />
-                    <ChartPointBackgroundColor index={index} />
+                    <ChartPointRadius          index={index} selectedItem={selectedItem} />
+                    <ChartPointBackgroundColor index={index} selectedItem={selectedItem} />
 
                     <ConfiguratorTitle title='Линия графика' type='subtitle1' />
-                    <ChartBorderWidth     index={index} />
-                    <ChartBorderColor     index={index} />
-                    <ChartBackgroundColor index={index} />
+                    <ChartBorderWidth     index={index} selectedItem={selectedItem} />
+                    <ChartBorderColor     index={index} selectedItem={selectedItem} />
+                    <ChartBackgroundColor index={index} selectedItem={selectedItem} />
 
                     <ConfiguratorTitle title='Линия тренда' type='subtitle1' />
-                    <ChartTrendCheckbox index={index} />
-                    <ChartTrendWidth    index={index} />
-                    <ChartTrendColor    index={index} />
+                    <ChartTrendCheckbox index={index} selectedItem={selectedItem} />
+                    <ChartTrendWidth    index={index} selectedItem={selectedItem} />
+                    <ChartTrendColor    index={index} selectedItem={selectedItem} />
                   </>
                 : <>
-                    <ChartBackgroundColor index={index} />
+                    <ChartBackgroundColor index={index} selectedItem={selectedItem} />
                   </>
             }
 

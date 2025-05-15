@@ -9,7 +9,7 @@ type Obj = {
  * max вложенность = 8
  * v.2023-05-15
  */
-export function setValueByScheme(obj: Obj, scheme: string, value: any) {
+export function setValueByScheme(obj: Obj | undefined, scheme: string, value: any) {
   if (! obj || ! scheme) return undefined;
 
   const

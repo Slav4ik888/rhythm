@@ -23,10 +23,10 @@ export interface StateSchemaDashboardView {
   selectedId          : ViewItemId // Id выбранного элемента (при editMode === true)
   // Начальные значения выбранного элемента, чтобы затем перевести его в статус prevStoredView
   // само по себе используется только в UnsavedChanges, а также для промежуточного хранения
-  newStoredViewItem   : ViewItem | {}
+  newStoredViewItem   : ViewItem | undefined
   // Начальные значения предыдущего выбранного элемента, которое можно сравнивать для сохранения изменений
   // Используется при смене selectedId
-  prevStoredViewItem  : ViewItem | {}
+  prevStoredViewItem  : ViewItem | undefined
 
   // Активированный Id перемещаемого элемента
   activatedMovementId : ViewItemId

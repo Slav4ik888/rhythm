@@ -1,6 +1,6 @@
 import { FC, memo, useCallback, MouseEvent, useMemo } from 'react';
 import { Input, InputType } from 'shared/ui/containers';
-import { PartialViewItem, useDashboardView } from 'entities/dashboard-view';
+import { PartialViewItem, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { getValueByScheme, setValueByScheme } from 'shared/helpers/objects';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useTheme } from 'app/providers/theme';
@@ -10,37 +10,42 @@ import { SxInputByScheme, useStyles } from './styles';
 
 
 interface Props {
-  scheme      : string
-  type?       : InputType
-  width?      : string
-  helperText? : string
-  toolTitle?  : string
-  disabled?   : boolean
-  sx?         : SxInputByScheme
-  transform?  : (v: string | number) => string | number // Если полученное начальное значение нужно как-либо преобразовать. Например, 'boxShadow': 'rgba(184, 184, 184, 1)'
-  clear?      : string | number // Если нужно, чтобы при очистке значения, была не пустая строка '', а что-то другое
-  onClear?    : () => void      // Если нужно, чтобы для очистки значения, была другая функция
-  onBlur?     : (e: MouseEvent, v: string | number) => void // Если нужна не стандартная обработка
-  onChange?   : (e: MouseEvent, v: string | number) => void // Если нужна не стандартная обработка
-  onSubmit?   : (e: MouseEvent, v: string | number) => void // Если нужна не стандартная обработка
+  selectedItem : ViewItem | undefined
+  scheme       : string
+  type?        : InputType
+  width?       : string
+  helperText?  : string
+  toolTitle?   : string
+  disabled?    : boolean
+  sx?          : SxInputByScheme
+  transform?   : (v: string | number) => string | number // Если полученное начальное значение нужно как-либо преобразовать. Например, 'boxShadow': 'rgba(184, 184, 184, 1)'
+  clear?       : string | number // Если нужно, чтобы при очистке значения, была не пустая строка '', а что-то другое
+  onClear?     : () => void      // Если нужно, чтобы для очистки значения, была другая функция
+  onBlur?      : (e: MouseEvent, v: string | number) => void // Если нужна не стандартная обработка
+  onChange?    : (e: MouseEvent, v: string | number) => void // Если нужна не стандартная обработка
+  onSubmit?    : (e: MouseEvent, v: string | number) => void // Если нужна не стандартная обработка
 }
 
 
 /** Input update ViewItem */
-export const InputByScheme: FC<Props> = memo(({ scheme, width, sx: style, helperText, toolTitle, clear, disabled,
+export const InputByScheme: FC<Props> = memo(({ selectedItem, scheme, width, sx: style, helperText, toolTitle, clear, disabled,
   type = 'text',
   transform, onClear, onBlur, onChange, onSubmit
 }) => {
   const sx = useStyles(useTheme(), style, width);
-  const { selectedItem, updateViewItem } = useDashboardView();
+  const { updateViewItem } = useDashboardView();
   
   const value = useMemo(() => {
+    if (! selectedItem) return '';
+
     const v = getValueByScheme(selectedItem, scheme);
     return transform ? transform(v) : v
   }, [selectedItem, scheme, transform]);
 
 
   const handleUpdate = useCallback((v: string | number) => {
+    if (! selectedItem) return '';
+
     const result: PartialViewItem = {
       id: selectedItem.id
     };

@@ -8,7 +8,7 @@ type Obj = {
  * Object value by scheme
  * Поддерживает только вложенные объекты, not arrays
  */
-export function getValueByScheme(obj: Obj, scheme: string): any {
+export function getValueByScheme(obj: Obj | undefined, scheme: string): any {
   if (! obj || ! scheme) return undefined;
   
   const fields = scheme.split('.');

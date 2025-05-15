@@ -95,7 +95,7 @@ export const ViewItemConfigurator: FC = memo(() => {
           <ViewItemStylesConfigurator />
         </TabPanel>
         <TabPanel value='3' keepMounted sx={sxTabPanel}>
-          <ViewItemConfiguratorSettings />
+          <ViewItemConfiguratorSettings selectedItem={selectedItem} />
         </TabPanel>
       </TabContext>
     </DrawerStyled>

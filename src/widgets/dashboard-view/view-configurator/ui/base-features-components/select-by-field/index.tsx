@@ -1,19 +1,20 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { useDashboardView, PartialViewItem } from 'entities/dashboard-view';
+import { useDashboardView, PartialViewItem, ViewItem } from 'entities/dashboard-view';
 import { SelectValue } from 'shared/ui/configurators-components/select';
 import { getValueByScheme, setValueByScheme } from 'shared/helpers/objects';
 
 
 
 interface Props {
-  scheme     : string
-  array      : string[] | any[] // any if component present
-  component? : FC<any> // Если нужен не стандартный компонент вместо item
+  selectedItem : ViewItem | undefined
+  scheme       : string
+  array        : string[] | any[] // any if component present
+  component?   : FC<any> // Если нужен не стандартный компонент вместо item
 }
 
 /** Выбор ByField */
-export const SelectByField: FC<Props> = memo(({ scheme, array, component }) => {
-  const { selectedItem, updateViewItem } = useDashboardView();
+export const SelectByField: FC<Props> = memo(({ selectedItem, scheme, array, component }) => {
+  const { updateViewItem } = useDashboardView();
   const [selectedValue, setSelectedValue] = useState(getValueByScheme(selectedItem, scheme) || '');
 
   useEffect(() => {
@@ -21,6 +22,8 @@ export const SelectByField: FC<Props> = memo(({ scheme, array, component }) => {
   }, [selectedItem, scheme]);
 
   const handleUpdate = useCallback((v: string | number) => {
+    if (! selectedItem) return;
+
     const result: PartialViewItem = {
       id: selectedItem.id
     };

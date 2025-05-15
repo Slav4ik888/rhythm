@@ -1,8 +1,7 @@
-import { FC, memo, MouseEvent } from 'react';
+import { FC, memo, MouseEvent, useCallback } from 'react';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { TextAlignType, ViewItemStylesField } from 'entities/dashboard-view';
 import { Tooltip } from 'shared/ui/tooltip';
-import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
@@ -17,9 +16,9 @@ interface Props {
 /** text-align */
 export const TextAlignment: FC<Props> = memo(({ value, onChange }) => {
 
-  const handleChange = (e: MouseEvent<HTMLElement>, newAlignment: TextAlignType) => {
+  const handleChange = useCallback((e: MouseEvent<HTMLElement>, newAlignment: TextAlignType) => {
     onChange('textAlign', newAlignment);
-  };
+  }, [onChange]);
 
   return (
     <ToggleButtonGroup

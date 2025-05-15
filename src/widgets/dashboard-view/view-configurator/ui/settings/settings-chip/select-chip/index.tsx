@@ -1,18 +1,22 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { useDashboardView, arrayChipLabel, chipOptions } from 'entities/dashboard-view';
+import { useDashboardView, arrayChipLabel, chipOptions, ViewItem } from 'entities/dashboard-view';
 import { SelectValue } from 'shared/ui/configurators-components/select';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 
 
 
+interface Props {
+  selectedItem: ViewItem | undefined
+}
+
 /** Выбор ChipType */
-export const SelectChipType: FC = memo(() => {
-  const { selectedItem, changeOneSettingsField } = useDashboardView();
+export const SelectChipType: FC<Props> = memo(({ selectedItem }) => {
+  const { changeOneSettingsField } = useDashboardView();
   const [selectedValue, setSelectedValue] = useState(() => chipOptions[selectedItem?.settings?.chipType || 'condition'].label);
 
   useEffect(() => {
     setSelectedValue(chipOptions[selectedItem?.settings?.chipType || 'condition'].label);
-  }, [selectedItem.settings?.chipType]);
+  }, [selectedItem?.settings?.chipType]);
 
 
   const handleSelectedValue = useCallback((label: string) => {

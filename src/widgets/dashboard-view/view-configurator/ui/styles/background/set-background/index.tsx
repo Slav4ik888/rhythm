@@ -1,6 +1,6 @@
-import { FC, memo, useEffect, useMemo, useState } from 'react';
+import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { ViewItemStylesField, RgbaString, useDashboardView } from 'entities/dashboard-view';
+import { ViewItemStylesField, RgbaString, ViewItem } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { Checkbox } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
@@ -10,31 +10,29 @@ import { pxToRem, SxCard } from 'shared/styles';
 
 
 
-interface Props {
-  onChange: (field: ViewItemStylesField, value: number | string) => void
-}
-
 const sx: SxCard = {
   popover: {
     bottom: pxToRem(-260) 
   }
 };
 
+interface Props {
+  selectedItem : ViewItem | undefined
+  onChange     : (field: ViewItemStylesField, value: number | string) => void
+}
 
 /** background */
-export const SetBackground: FC<Props> = memo(({ onChange }) => {
-  const { selectedItem } = useDashboardView({ field: 'background' }); // = 'rgba(255, 255, 255, 0)' убрал, тк иногда не успевало прогрузится и удалялся прошлый имеющийся цвет
-
+export const SetBackground: FC<Props> = memo(({ selectedItem, onChange }) => {
   const gradients = useMemo(() => splitGradinetRgba(selectedItem?.styles?.background as string), [selectedItem]);
 
   const [checked, setChecked] = useState(gradients.length === 3); // if 'linear-gradient(195deg, #bbdefb, #64b5f6)';
-  const handleToggle = () => setChecked(! checked);
+  const handleToggle = useCallback(() => setChecked(! checked), [checked, setChecked, onChange]);
   
   useEffect(() => {
     setChecked(gradients.length === 3);
-  }, [selectedItem]);
+  }, [selectedItem, setChecked]);
   
-  const handleBackground = (value: string) => onChange('background', value as unknown as string);
+  const handleBackground = useCallback((value: string) => onChange('background', value as unknown as string), [onChange]);
 
 
   return (
@@ -57,6 +55,7 @@ export const SetBackground: FC<Props> = memo(({ onChange }) => {
           ? <SetLinearGradient
               defaultValue = {selectedItem?.styles?.background as RgbaString}
               gradients    = {gradients}
+              selectedItem = {selectedItem}
               sx           = {sx}
               onChange     = {onChange}
             />

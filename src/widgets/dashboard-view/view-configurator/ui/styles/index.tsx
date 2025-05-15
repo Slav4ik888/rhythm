@@ -22,12 +22,12 @@ export const ViewItemStylesConfigurator: FC = memo(() => {
 
   return (
     <>
-      <CardLabel  onChange={handleChange} />
-      <Background onChange={handleChange} />
-      <Alignment  onChange={handleChange} type={selectedItem.type} />
-      <Dimensions onChange={handleChange} />
-      <Indents />
-      <Borders    onChange={handleChange} />
+      <CardLabel  selectedItem={selectedItem} onChange={handleChange} />
+      <Background selectedItem={selectedItem} onChange={handleChange} />
+      <Alignment  selectedItem={selectedItem} onChange={handleChange} />
+      <Dimensions selectedItem={selectedItem} onChange={handleChange} />
+      <Indents    selectedItem={selectedItem} />
+      <Borders    selectedItem={selectedItem} onChange={handleChange} />
     </>
   )
 });

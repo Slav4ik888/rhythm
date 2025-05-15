@@ -1,5 +1,5 @@
-import { FC, memo, useState, useEffect, MouseEvent } from 'react';
-import { ViewItemStylesField, RgbaString } from 'entities/dashboard-view';
+import { FC, memo, useState, useEffect, MouseEvent, useCallback } from 'react';
+import { ViewItemStylesField, RgbaString, ViewItem } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { splitGradinetRgba, SplittedLinerGradient } from '../utils';
 import { linearGradient, SxCard } from 'shared/styles';
@@ -8,6 +8,7 @@ import { InputByScheme } from '../../../../base-features-components';
 
 
 interface Props {
+  selectedItem : ViewItem | undefined
   defaultValue : RgbaString
   gradients    : SplittedLinerGradient
   sx?          : SxCard
@@ -16,7 +17,7 @@ interface Props {
 
 
 /** background linear-gradient*/
-export const SetLinearGradient: FC<Props> = memo(({ sx, defaultValue = '', gradients, onChange }) => {
+export const SetLinearGradient: FC<Props> = memo(({ selectedItem, sx, defaultValue = '', gradients, onChange }) => {
   const [deg, setDeg]     = useState(gradients[0] as unknown as number || 15);
   const [main, setMain]   = useState(gradients[1] || defaultValue as string);
   const [state, setState] = useState(gradients[2] || defaultValue as string);
@@ -25,34 +26,35 @@ export const SetLinearGradient: FC<Props> = memo(({ sx, defaultValue = '', gradi
     setDeg   (gradients[0] as unknown as number || 15);
     setMain  (gradients[1] || defaultValue as string);
     setState (gradients[2] || defaultValue as string);
-  }, [defaultValue, gradients]);
+  }, [defaultValue, gradients, setDeg, setMain, setState]);
 
-  const handleDeg = (e: MouseEvent, value: number | string) => {
+  const handleDeg = useCallback((e: MouseEvent, value: number | string) => {
     setDeg(value as number);
     onChange('background', linearGradient(main, state, value as number));
-  };
+  }, [main, state, setDeg, onChange]);
 
-  const handleGrainentMain = (value: string) => {
+  const handleGrainentMain = useCallback((value: string) => {
     setMain(value);
     onChange('background', linearGradient(value, state, deg as number));
-  };
+  }, [state, deg, setMain, onChange]);
 
-  const handleGrainentState = (value: string) => {
+  const handleGrainentState = useCallback((value: string) => {
     setState(value);
     onChange('background', linearGradient(main, value, deg as number));
-  };
+  }, [main, deg, setState, onChange]);
  
 
   return (
     <>
       <InputByScheme
-        type      = 'number'
-        scheme    = 'styles.background'
-        width     = '4rem'
-        toolTitle = 'Угол поворота градиента'
-        transform = {(v: string | number) => splitGradinetRgba(v as string)?.[0]}
-        onChange  = {handleDeg}
-        onSubmit  = {handleDeg}
+        type         = 'number'
+        selectedItem = {selectedItem}
+        scheme       = 'styles.background'
+        width        = '4rem'
+        toolTitle    = 'Угол поворота градиента'
+        transform    = {(v: string | number) => splitGradinetRgba(v as string)?.[0]}
+        onChange     = {handleDeg}
+        onSubmit     = {handleDeg}
       />
       <ColorPicker
         defaultColor = {main}

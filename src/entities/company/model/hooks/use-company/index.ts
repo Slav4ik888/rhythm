@@ -26,6 +26,7 @@ export const useCompany = (config: Config = {}) => {
     storedCompany        = useSelector(s.selectStoredCompany),
     customSettings       = useSelector(s.selectCustomSettings),
     updateCustomSettings = (data: Partial<CustomSettings>) => dispatch(a.updateCustomSettings(data)),
+    cancelCustomSettings = () => dispatch(a.cancelCustomSettings()),
     serviceUpdateCompany = (company: Partial<Company>) => dispatch(updateCompany(company));
     // serviceDeleteCompany = (companyId: string) => dispatch(deleteCompany(companyId)),
 
@@ -42,6 +43,7 @@ export const useCompany = (config: Config = {}) => {
     storedCompany,
     customSettings,
     updateCustomSettings,
+    cancelCustomSettings,
     serviceUpdateCompany,
   }
 };

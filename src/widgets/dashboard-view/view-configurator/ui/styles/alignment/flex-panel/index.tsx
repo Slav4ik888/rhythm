@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { RowWrapper } from 'shared/ui/configurators-components';
 import {
-  FlexDirectionType, AlignItemsType, ViewItemStylesField, JustifyContentType, useDashboardView
+  FlexDirectionType, AlignItemsType, ViewItemStylesField, JustifyContentType, ViewItem
 } from 'entities/dashboard-view';
 import { FlexDirection } from './flex-direction';
 import { AlignItems } from './align-items';
@@ -12,26 +12,26 @@ import { f } from 'shared/styles';
 
 
 interface Props {
-  onChange: (field: ViewItemStylesField, value: number | string) => void
+  selectedItem : ViewItem | undefined
+  onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
-export const FlexPanelAlignment: FC<Props> = memo(({ onChange }) => {
-  const { stylesByViewItemId: style } = useDashboardView();
+export const FlexPanelAlignment: FC<Props> = memo(({ selectedItem, onChange }) => {
 
   return (
     <RowWrapper sx={f('-fs-sb')}>
       <FlexDirection
-        value    = {style.flexDirection as FlexDirectionType}
+        value    = {selectedItem?.styles?.flexDirection as FlexDirectionType}
         onChange = {onChange}
       />
 
       <Stack spacing={1} alignItems='flex-end'>
         <AlignItems
-          value    = {style.alignItems as AlignItemsType}
+          value    = {selectedItem?.styles?.alignItems as AlignItemsType}
           onChange = {onChange}
         />
         <JustifyContent
-          value    = {style.justifyContent as JustifyContentType}
+          value    = {selectedItem?.styles?.justifyContent as JustifyContentType}
           onChange = {onChange}
         />
       </Stack>

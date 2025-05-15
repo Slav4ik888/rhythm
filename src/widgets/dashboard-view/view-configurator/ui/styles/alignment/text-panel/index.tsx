@@ -1,22 +1,21 @@
 import { FC, memo } from 'react';
 import { RowWrapper } from 'shared/ui/configurators-components';
-import { ViewItemStylesField, useDashboardView } from 'entities/dashboard-view';
+import { ViewItem, ViewItemStylesField } from 'entities/dashboard-view';
 import { f } from 'shared/styles';
 import { TextAlignment } from './text-alignment';
 
 
 
 interface Props {
-  onChange: (field: ViewItemStylesField, value: number | string) => void
+  selectedItem : ViewItem | undefined
+  onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
-export const TextPanelAlignment: FC<Props> = memo(({ onChange }) => {
-  const { stylesByViewItemId: style } = useDashboardView();
-
+export const TextPanelAlignment: FC<Props> = memo(({ selectedItem, onChange }) => {
   return (
     <RowWrapper sx={f('--fe')}>
       <TextAlignment
-        value    = {style.textAlign}
+        value    = {selectedItem?.styles?.textAlign}
         onChange = {onChange}
       />
     </RowWrapper>

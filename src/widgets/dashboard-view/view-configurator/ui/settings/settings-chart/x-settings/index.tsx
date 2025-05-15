@@ -2,15 +2,26 @@ import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { ViewItemChartScaleTicks as Ticks } from '../ticks';
 import { ViewItemChartScaleGrid as Grid} from '../grid';
+import { ViewItem } from 'entities/dashboard-view';
 
 
+
+interface Props {
+  selectedItem: ViewItem | undefined
+}
 
 /** НАСТРОЙКИ ОСИ X */
-export const ViewItemChartScaleXSettings: FC = memo(() => {
+export const ViewItemChartScaleXSettings: FC<Props> = memo(({ selectedItem }) => {
   return (
     <SubHeader title='Ось X'>
-      <Grid  scale='x' />
-      <Ticks scale='x' />
+      <Grid 
+        scale        = 'x'
+        selectedItem = {selectedItem} 
+      />
+      <Ticks
+        scale        = 'x'
+        selectedItem = {selectedItem}
+      />
     </SubHeader>
   )
 });

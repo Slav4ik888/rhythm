@@ -10,7 +10,7 @@ import { RgbaColor } from 'react-colorful';
 
 
 interface Props {
-  defaultColor : RgbaString
+  defaultColor : RgbaString | undefined
   sx?          : SxCard
   onChange     : (color: RgbaString) => void
 }
