@@ -5,6 +5,7 @@ import { RgbaString } from 'entities/dashboard-view';
 import { rgba, rgbaStringToRgba } from './utils';
 import { SxCard } from 'shared/styles';
 import { ___devShow } from 'shared/helpers/strings/___dev-show';
+import { RgbaColor } from 'react-colorful';
 
 
 
@@ -16,7 +17,7 @@ interface Props {
 
 
 export const ColorPicker: FC<Props> = memo(({ sx, defaultColor, onChange }) => {
-  const [color, setColor] = useState(() => rgbaStringToRgba(defaultColor));
+  const [color, setColor] = useState<RgbaColor | undefined>();
   // Для того, чтобы при переключении между элементами, в выбранны не подтягивался цвет предыдущего
   // для этого храним предыдущее значение defaultColor
   const prevDefaultColorRef = useRef(defaultColor);
@@ -24,7 +25,9 @@ export const ColorPicker: FC<Props> = memo(({ sx, defaultColor, onChange }) => {
   
 
   useEffect(() => {
-    setColor(rgbaStringToRgba(defaultColor));
+    // Условие для того, чтобы попробовать устранить баг, когда при первоначальной монтировке выбранного элемента
+    // defaultColor приходит undefined и из rgbaStringToRgba подставляется rgba(undefined, undefined, undefined...)
+    if (defaultColor) setColor(rgbaStringToRgba(defaultColor));
   }, [defaultColor]);
   
 
