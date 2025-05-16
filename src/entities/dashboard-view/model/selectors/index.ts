@@ -3,6 +3,7 @@ import { ViewItem, ViewItemId, ViewItemStylesField } from '../types';
 import { DashboardViewEntities, StateSchemaDashboardView } from '../slice/state-schema';
 import { getChildren, getParents } from '../utils';
 import { createSelector } from '@reduxjs/toolkit';
+import { getChanges } from 'shared/helpers/objects';
 
 
 export const selectModule       = createSelector([(state: StateSchema) => state.dashboardView || {} as StateSchemaDashboardView], (state: StateSchemaDashboardView) => state);
@@ -37,6 +38,12 @@ export const makeSelectChildrenViewItems = (parentId?: ViewItemId) => createSele
 
 export const selectViewItemById = createSelector(selectEntities, selectSelectedId,
   (entities: DashboardViewEntities, selectedId: string) => entities[selectedId] || {});
+
+// Возвращает объект с изменившимися полями
+export const selectChangedViewItem = createSelector(selectModule, selectEntities,
+  (state: StateSchemaDashboardView, entities: DashboardViewEntities) =>
+    getChanges(state.newStoredViewItem, entities?.[state.selectedId]));
+
 
 // export const selectViewItemStyle = createSelector(selectEntities, selectSelectedId,
 //   (entities: DashboardViewEntities, selectedId: string) => entities[selectedId]?.styles || {});

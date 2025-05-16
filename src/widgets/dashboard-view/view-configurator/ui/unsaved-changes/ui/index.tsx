@@ -3,10 +3,11 @@ import { useDashboardView } from 'entities/dashboard-view';
 import { Box, Typography } from '@mui/material';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
-import { getChanges, isEmpty, isNotEmpty } from 'shared/helpers/objects';
+import { isEmpty, isNotEmpty } from 'shared/helpers/objects';
 import { f, pxToRem } from 'shared/styles';
 import { useCompany } from 'entities/company';
 import { CircularProgress } from 'shared/ui/circular-progress';
+import { isChangedViewItem } from '../model/utils';
 
 
 
@@ -44,53 +45,27 @@ const useStyles = (theme: CustomTheme, loading: boolean) => ({
 
 
 export const UnsavedChanges: FC = memo(() => {
-  const { companyId, storedCompany, company, serviceUpdateCompany, cancelCustomSettings } = useCompany();
-  const { loading, selectedId, newStoredViewItem, entities, serviceUpdateViewItem, cancelUpdateViewItem } = useDashboardView();
+  const { companyId, changedCompany, serviceUpdateCompany, cancelCustomSettings } = useCompany();
+  const { loading, selectedId, changedViewItem, serviceUpdateViewItem, cancelUpdateViewItem } = useDashboardView();
   const sx = useStyles(useTheme(), loading);
 
-  const changedCompany = useMemo(() => getChanges(storedCompany, company)
-    , [selectedId, newStoredViewItem, entities, storedCompany, company]);
-  
-  const changedStyles = useMemo(() => getChanges(newStoredViewItem, entities?.[selectedId])
-    , [selectedId, newStoredViewItem, entities, storedCompany, company]);
-
-  /** Есть ли не сохранённые изменения в SelectedItem */
-  const isChanges = useMemo(() => {
-    if (! selectedId) return false;
-    
-    if (isNotEmpty(changedCompany)) {
-      return true
-    }
-    if (isNotEmpty(changedStyles)) {
-      console.log('changedStyles: ', changedStyles);
-      return true
-    }
-    return false
-  }
-  , [selectedId, changedCompany, changedStyles]);
+  const isChanges = useMemo(() => isChangedViewItem(selectedId, changedCompany, changedViewItem)
+    , [selectedId, changedCompany, changedViewItem]);
   
 
   const handleCancel = useCallback(() => {
-    /** Отменить изменившиеся customSettings */
-    if (isNotEmpty(changedCompany)) cancelCustomSettings();
-
-    /** Отменить изменившиеся поля | стили */
-    if (isEmpty(changedStyles)) return
-
-    cancelUpdateViewItem();
-  }, [selectedId, changedCompany, changedStyles]);
+    if (isNotEmpty(changedCompany)) cancelCustomSettings(); /** Отменить изменившиеся customSettings */
+    if (isNotEmpty(changedViewItem)) cancelUpdateViewItem(); /** Отменить изменившиеся поля | стили */
+  }, [selectedId, changedCompany, changedViewItem]);
 
 
   const handleChange = useCallback(() => {
-    /** Сохраняем изменившиеся customSettings */
-    if (isNotEmpty(changedCompany)) serviceUpdateCompany({ id: companyId, ...changedCompany });
-
+    if (isNotEmpty(changedCompany)) serviceUpdateCompany({ id: companyId, ...changedCompany }); /** Сохраняем изменившиеся customSettings */
+    if (isEmpty(changedViewItem)) return
     /** Сохраняем изменившиеся поля | стили */
-    if (isEmpty(changedStyles)) return
-
-    const viewItem = { id: selectedId, ...changedStyles };
+    const viewItem = { id: selectedId, ...changedViewItem };
     serviceUpdateViewItem({ companyId, viewItem, newStoredViewItem: viewItem });
-  }, [selectedId, changedCompany, changedStyles]);
+  }, [selectedId, changedCompany, changedViewItem]);
 
 
   if (! isChanges) return null;

@@ -25,6 +25,7 @@ export const useCompany = (config: Config = {}) => {
     companyId            = company?.id as ActivatedCompanyId,
     storedCompany        = useSelector(s.selectStoredCompany),
     customSettings       = useSelector(s.selectCustomSettings),
+    changedCompany       = useSelector(s.selectChangedCompany), // Объект с изменившимися полями
     updateCustomSettings = (data: Partial<CustomSettings>) => dispatch(a.updateCustomSettings(data)),
     cancelCustomSettings = () => dispatch(a.cancelCustomSettings()),
     serviceUpdateCompany = (company: Partial<Company>) => dispatch(updateCompany(company));
@@ -42,6 +43,7 @@ export const useCompany = (config: Config = {}) => {
     companyId,
     storedCompany,
     customSettings,
+    changedCompany,
     updateCustomSettings,
     cancelCustomSettings,
     serviceUpdateCompany,

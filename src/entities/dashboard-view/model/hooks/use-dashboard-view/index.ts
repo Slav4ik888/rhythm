@@ -60,6 +60,7 @@ export const useDashboardView = (config: Config = {}) => {
     selectChildrenViewItems = s.makeSelectChildrenViewItems(parentId as ViewItemId),
     childrenViewItems   = useSelector(selectChildrenViewItems),
     parentChildrenIds   = childrenViewItems.map(item => item.id),
+    changedViewItem     = useSelector(s.selectChangedViewItem), // Объект с изменившимися полями
 
     // Styles
     changeOneStyleField = (data: ChangeSelectedStyle) => dispatch(a.changeOneStyleField(data)),
@@ -110,6 +111,7 @@ export const useDashboardView = (config: Config = {}) => {
     newStoredViewItem,
     prevStoredViewItem,
     childrenViewItems,
+    changedViewItem,
 
     // Movement
     activatedMovementId,

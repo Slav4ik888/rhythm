@@ -6,37 +6,22 @@ import { ViewItemId, PartialViewItem, useDashboardView, NO_PARENT_ID } from 'ent
 import { useCompany } from 'entities/company';
 import { getCopyViewItem } from 'features/dashboard-view';
 import { useUser } from 'entities/user';
-import { getChanges, isEmpty, isNotEmpty } from 'shared/helpers/objects';
+import { isEmpty, isNotEmpty } from 'shared/helpers/objects';
+import { isChangedViewItem } from '../view-configurator/ui/unsaved-changes';
 
 
 
 export const DashboardBodyContent = memo(() => {
   const { userId } = useUser();
-  const { companyId, storedCompany, company, serviceUpdateCompany } = useCompany();
+  const { companyId, changedCompany, serviceUpdateCompany } = useCompany();
   const {
-    loading, editMode, newSelectedId, newStoredViewItem, selectedId, selectedItem, activatedMovementId,
+    loading, editMode, newSelectedId, changedViewItem, selectedId, selectedItem, activatedMovementId,
     parentsViewItems, viewItems, entities, activatedCopiedId, setNewSelectedId,
     setDashboardView, setSelectedId, updateViewItem, serviceUpdateViewItem, serviceCreateGroupViewItems
   } = useDashboardView();
 
-
-  const changedCompany = useMemo(() => getChanges(storedCompany, company)
-    , [selectedId, newStoredViewItem, entities, storedCompany, company]);
-  
-  const changedStyles = useMemo(() => getChanges(newStoredViewItem, entities?.[selectedId])
-    , [selectedId, newStoredViewItem, entities, storedCompany, company]);
-
   /** Есть ли не сохранённые изменения в SelectedItem */
-  const isChanges = useMemo(() => {
-    if (! selectedId) return false;
-    
-    if (isNotEmpty(changedCompany)) return true
-    if (isNotEmpty(changedStyles)) {
-      console.log('changedStyles: ', changedStyles);
-      return true
-    }
-    return false
-  }, [selectedId, changedCompany, changedStyles]);
+  const isChanges = useMemo(() => isChangedViewItem(selectedId, changedCompany, changedViewItem), [selectedId, changedCompany, changedViewItem]);
   
   
   useEffect(() => {
@@ -82,9 +67,9 @@ export const DashboardBodyContent = memo(() => {
         if (isNotEmpty(changedCompany)) serviceUpdateCompany({ id: companyId, ...changedCompany });
 
         /** Сохраняем изменившиеся поля | стили */
-        if (isEmpty(changedStyles)) return
+        if (isEmpty(changedViewItem)) return
 
-        const viewItem = { id: selectedId, ...changedStyles };
+        const viewItem = { id: selectedId, ...changedViewItem };
         serviceUpdateViewItem({ companyId, viewItem, newStoredViewItem: viewItem });
         setNewSelectedId(id); // Здесь сохраняется в newSelectedId а активация выбранного id происходит в useEffect
       }
