@@ -25,17 +25,17 @@ export const ItemChart: FC<Props> = memo(({ item, onSelect }) => {
   const itemsData = useMemo(() => item.settings?.charts?.map(chart => activeEntities[chart?.kod || ''] as DashboardStatisticItem<number>)|| []
     , [activeEntities, item]);
   
-  const dates = useMemo(() => {
-    if (notPie) {
-      return itemsData
-        ? activeDates[itemsData?.[0]?.periodType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC))
-        : []
-    }
-    else return [] // dates не нужен для 'doughnut'
-  }, [activeDates, itemsData]);
+  // const dates = useMemo(() => {
+  //   if (notPie) {
+  //     return itemsData
+  //       ? activeDates[itemsData?.[0]?.periodType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC))
+  //       : []
+  //   }
+  //   else return [] // dates не нужен для 'doughnut'
+  // }, [activeDates, itemsData]);
 
   const type    = item.settings?.charts?.[0]?.chartType || 'line';
-  const data    = notPie ? getData(dates, itemsData, item) : getDataDoughnut(itemsData, item);
+  const data    = notPie ? getData(activeDates, itemsData, item) : getDataDoughnut(itemsData, item);
   const options = getOptions(type, item.settings?.chartOptions || {});
 
 

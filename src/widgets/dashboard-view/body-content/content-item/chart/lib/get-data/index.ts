@@ -1,9 +1,12 @@
 import { ChartConfig, ChartConfigDatasets, fixPointRadius } from 'entities/charts';
-import { checkInvertData, DashboardStatisticItem } from 'entities/dashboard-data';
+import { checkInvertData, DashboardDataDates, DashboardStatisticItem } from 'entities/dashboard-data';
 import { ViewItem } from 'entities/dashboard-view';
+import { StatisticPeriodType } from 'entities/statistic-type';
+import { formatDate, SUB } from 'shared/helpers/dates';
 import { setValue } from 'shared/lib/charts';
 import { isArr, isStr } from 'shared/lib/validators';
 import { calcTrend2 } from '../calc-trend-2';
+import { prepareDatesForGreatestPeriod, isDifferentTypes } from './utils';
 
 
 
@@ -12,16 +15,23 @@ import { calcTrend2 } from '../calc-trend-2';
  * и наполняет datasets всеми вложенными в item графиками
  */
 export const getData = (
-  dates     : string[],
-  itemsData : DashboardStatisticItem<number>[],
-  viewItem  : ViewItem
+  allActiveDates : DashboardDataDates,
+  // dates     : string[],
+  itemsData      : DashboardStatisticItem<number>[],
+  viewItem       : ViewItem
 ): ChartConfig => {
   
   // TODO: надо учесть приход 5 графиков и у них 3 тренда
   //  - order графиков должен быть на 1 меньше его тренда
 
+  const { dates, greatestPeriodType } = prepareDatesForGreatestPeriod(allActiveDates, itemsData);
+  const formattedDates = dates.map(date => formatDate(date, 'DD mon YY', SUB.RU_ABBR_DEC));
+  
+  // Проверка на разный тип periodType
+  const isDiffType = isDifferentTypes(itemsData);
+
   const config = {
-    labels   : dates, // any[] // Dates (метки на оси X)
+    labels   : formattedDates, // any[] // Dates (метки на оси X)
     datasets : [      // ChartConfigDatasets[]
       ...itemsData.map((itemData, idx) => {
         const datasets = viewItem?.settings?.charts?.[idx].datasets || {} as ChartConfigDatasets;
@@ -50,7 +60,7 @@ export const getData = (
   viewItem?.settings?.charts?.forEach((itemChart, idx) => {
     // Если активирована линия тренда, рассчитываем данные тренда и добавляем как график
     if (itemChart.isTrend) {
-      const trendData = calcTrend2(dates, config.datasets?.[idx]?.data);
+      const trendData = calcTrend2(formattedDates, config.datasets?.[idx]?.data);
 
       // Цвет родителя в виде строки (если там массив) | шаблон
       const baseBColor = 'rgb(19, 40, 162)';
@@ -59,12 +69,12 @@ export const getData = (
 
       config.datasets.push({
         label           : 'Тренд',
+        type            : 'line',
         data            : trendData,
         pointRadius     : 0,
         borderColor     : setValue(itemChart?.trendDataSets?.borderColor, parentBorderColor),
         borderWidth     : setValue(itemChart?.trendDataSets?.borderWidth, 3),
         order           : idx, // поверх (на 1<) графика parentChartsIdx
-        type            : 'line',
         parentChartsIdx : idx // чтобы знать чей это тренд
       });
     }
