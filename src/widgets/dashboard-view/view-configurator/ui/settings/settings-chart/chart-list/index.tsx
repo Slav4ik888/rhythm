@@ -14,6 +14,7 @@ import { ChartTrendWidth } from './chart-settings/trend/width';
 import { AddNewChart, DelChart } from 'features/dashboard-view';
 import { ChartKods } from './chart-settings/chart-kods';
 import { isNotPie } from 'entities/charts';
+import { ChartSpanGaps } from './chart-settings/span-gaps';
 
 
 
@@ -52,6 +53,7 @@ export const ViewItemChartSettingsList: FC<Props> = memo(({ selectedItem }) => {
                     <ChartBorderWidth     index={index} selectedItem={selectedItem} />
                     <ChartBorderColor     index={index} selectedItem={selectedItem} />
                     <ChartBackgroundColor index={index} selectedItem={selectedItem} />
+                    <ChartSpanGaps        index={index} selectedItem={selectedItem} />
 
                     <ConfiguratorTitle title='Линия тренда' type='subtitle1' />
                     <ChartTrendCheckbox index={index} selectedItem={selectedItem} />

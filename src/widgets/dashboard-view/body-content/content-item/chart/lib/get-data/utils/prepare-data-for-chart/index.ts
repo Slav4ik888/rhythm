@@ -15,6 +15,8 @@ export const prepareDataForChart = (
   allActiveDates     : DashboardDataDates,
   greatestPeriodType : StatisticPeriodType,
 ): number[] => {
+  if (! itemData) return []
+
   // Если отличается от greatestPeriodType
   if (itemData.periodType === greatestPeriodType) return itemData.data
 

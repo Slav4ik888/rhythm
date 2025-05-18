@@ -5,15 +5,16 @@ import { isNotEmpty } from 'shared/helpers/objects';
 
 /** Есть ли не сохранённые изменения в SelectedItem */
 export const isChangedViewItem = (
-  selectedId      : string,
-  changedCompany  : Partial<Company>,
-  changedViewItem : Partial<ViewItem>
+  selectedId       : string,
+  changedCompany   : Partial<Company>,
+  changedViewItem  : Partial<ViewItem>,
+  _devShowConsole? : boolean // чтобы не во всех компонентах, где используется, выводился в консоль
 ): boolean => {
   if (! selectedId) return false;
   
   if (isNotEmpty(changedCompany)) return true
   if (isNotEmpty(changedViewItem)) {
-    console.log('changedViewItem: ', changedViewItem);
+    _devShowConsole && console.log('changedViewItem: ', changedViewItem);
     return true
   }
   return false

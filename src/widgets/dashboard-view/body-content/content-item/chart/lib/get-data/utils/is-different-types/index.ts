@@ -1,6 +1,9 @@
 import { DashboardStatisticItem } from 'entities/dashboard-data'
 
-/** Есть ли различия между periodType во всех выбранных кодах статистик */
+/**
+ * НЕ ИСПОЛЬЗУЕТСЯ
+ * Есть ли различия между periodType во всех выбранных кодах статистик
+ */
 export const isDifferentTypes = (itemsData: DashboardStatisticItem<number>[]) => {
   if (! itemsData || ! itemsData.length) return false
   

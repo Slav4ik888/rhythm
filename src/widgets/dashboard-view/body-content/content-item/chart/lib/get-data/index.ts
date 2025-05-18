@@ -1,12 +1,11 @@
 import { ChartConfig, ChartConfigDatasets, fixPointRadius } from 'entities/charts';
 import { checkInvertData, DashboardDataDates, DashboardStatisticItem } from 'entities/dashboard-data';
 import { ViewItem } from 'entities/dashboard-view';
-import { StatisticPeriodType } from 'entities/statistic-type';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { setValue } from 'shared/lib/charts';
 import { isArr, isStr } from 'shared/lib/validators';
 import { calcTrend2 } from '../calc-trend-2';
-import { prepareDatesForGreatestPeriod, isDifferentTypes } from './utils';
+import { prepareDatesForGreatestPeriod, prepareDataForChart } from './utils';
 
 
 
@@ -25,11 +24,8 @@ export const getData = (
   //  - order графиков должен быть на 1 меньше его тренда
 
   const { dates, greatestPeriodType } = prepareDatesForGreatestPeriod(allActiveDates, itemsData);
-  const formattedDates = dates.map(date => formatDate(date, 'DD mon YY', SUB.RU_ABBR_DEC));
+  const formattedDates = dates?.map(date => formatDate(date, 'DD mon YY', SUB.RU_ABBR_DEC));
   
-  // Проверка на разный тип periodType
-  const isDiffType = isDifferentTypes(itemsData);
-
   const config = {
     labels   : formattedDates, // any[] // Dates (метки на оси X)
     datasets : [      // ChartConfigDatasets[]
@@ -39,7 +35,9 @@ export const getData = (
         const result: ChartConfigDatasets = {
           type                 : setValue(viewItem?.settings?.charts?.[idx].chartType, 'line'),
           label                : setValue(datasets.label, `График ${idx + 1}`),
-          data                 : checkInvertData(viewItem?.settings, itemData).map(item => isStr(item) ? NaN : item), // Empty value changes for NaN
+          data: checkInvertData(viewItem?.settings, 
+            prepareDataForChart(itemData, allActiveDates, greatestPeriodType)
+          ).map(item => isStr(item) ? NaN : item), // Empty value changes for NaN
           tension              : 0,
           pointRadius          : setValue(datasets.pointRadius, fixPointRadius(dates)), // Толщика точки (круглешков)
           pointBorderColor     : 'transparent',
@@ -49,7 +47,8 @@ export const getData = (
           backgroundColor      : setValue(datasets.backgroundColor, 'transparent'),
           fill                 : setValue(datasets.fill, true),
           maxBarThickness      : 6,
-          order                : setValue(datasets.order, idx + 1)
+          order                : setValue(datasets.order, idx + 1),
+          spanGaps             : setValue(datasets.spanGaps, false),
         };
 
         return result

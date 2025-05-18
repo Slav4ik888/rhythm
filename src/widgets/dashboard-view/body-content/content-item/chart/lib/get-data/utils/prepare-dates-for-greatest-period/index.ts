@@ -16,7 +16,7 @@ export const prepareDatesForGreatestPeriod = (
   // - [] из всех periodType in itemsData
   const periodTypesSet = new Set<StatisticPeriodType>();
   itemsData.forEach(itemData => {
-    periodTypesSet.add(itemData.periodType);
+    if (itemData) periodTypesSet.add(itemData.periodType);
   });
 
   const periodTypes: StatisticPeriodType[] = Array.from(periodTypesSet);

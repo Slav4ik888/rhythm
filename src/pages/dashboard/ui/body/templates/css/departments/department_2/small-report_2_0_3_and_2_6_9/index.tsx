@@ -70,7 +70,7 @@ export const SmallReport_2_0_3_and_2_6_9 = memo(() => {
   const chartData_2_0_3 = createConfig({
     labels: dates_2_0_3,
     datasets: [{
-      data                 : checkInvertData(reportConfig, itemData_2_0_3),
+      data                 : checkInvertData(reportConfig, itemData_2_0_3?.data),
       pointBackgroundColor : 'rgb(141 97 183)',
       backgroundColor      : 'rgb(141 97 183 / 70%)',
       borderWidth          : 0,
@@ -89,7 +89,7 @@ export const SmallReport_2_0_3_and_2_6_9 = memo(() => {
   const chartData_2_6_9 = createConfig({
     labels: dates_2_6_9,
     datasets: [{
-      data                 : checkInvertData(reportConfig, itemData_2_6_9),
+      data                 : checkInvertData(reportConfig, itemData_2_6_9?.data),
       pointBackgroundColor : 'rgb(141 97 183)',
       backgroundColor      : 'rgb(141 97 183 / 70%)',
       borderWidth          : 0,

@@ -51,7 +51,7 @@ export const DashboardReportContainer7_0_4 = memo(() => {
   const chartData: ChartConfig = {
     labels: dates,
     datasets: [{
-      data                 : checkInvertData(reportConfig, itemData),
+      data                 : checkInvertData(reportConfig, itemData?.data),
       pointBackgroundColor : 'rgb(80 141 222 / 100%)',
       backgroundColor      : 'rgb(80 141 222 / 30%)',
       borderColor          : 'rgb(80 141 222 / 100%)',

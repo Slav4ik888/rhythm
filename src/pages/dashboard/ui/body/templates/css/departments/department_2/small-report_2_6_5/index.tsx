@@ -54,7 +54,7 @@ export const SmallReport_2_6_5 = memo(() => {
   const chartData = createConfig({
     labels: dates,
     datasets: [{
-      data                 : checkInvertData(reportConfig, itemData),
+      data                 : checkInvertData(reportConfig, itemData?.data),
       pointBackgroundColor : 'rgb(141 97 183)',
       backgroundColor      : 'rgb(141 97 183 / 70%)',
       borderWidth          : 0,

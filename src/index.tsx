@@ -28,7 +28,7 @@ root.render(
 );
 
 
-// git add . && git commit -m "add prepareDataForChart" && git push -u origin main
+// git add . && git commit -m "much small fixs && add ChartSpanGaps" && git push -u origin main
 // Сделать:
 //  - Добавление/удаление нескольких графиков в одном Chart
 //  - Inverted add individual in chart, if need that first chart is not inverted, but second chart is inverted

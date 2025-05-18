@@ -58,7 +58,7 @@ export const SmallReport_2_tay_ob = memo(() => {
   const chartData = createConfig({
     labels: dates,
     datasets: [{
-      data                 : checkInvertData(reportConfig, itemData),
+      data                 : checkInvertData(reportConfig, itemData?.data),
       pointBackgroundColor : 'rgb(141 97 183)',
       backgroundColor      : 'rgb(141 97 183 / 30%)',
       borderColor          : 'rgb(141 97 183)',

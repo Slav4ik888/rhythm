@@ -10,7 +10,7 @@ export type Increased = 1 | -1 | 0
 /** For chips: StatisticType | ConditionType */
 export interface DashboardItemType {
   label       : string
-  periodMs    : number // Period between two value
+  // periodMs    : number // Period between two value
   description : string // Tooltip
 }
 

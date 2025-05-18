@@ -49,7 +49,7 @@ export const UnsavedChanges: FC = memo(() => {
   const { loading, selectedId, changedViewItem, serviceUpdateViewItem, cancelUpdateViewItem } = useDashboardView();
   const sx = useStyles(useTheme(), loading);
 
-  const isChanges = useMemo(() => isChangedViewItem(selectedId, changedCompany, changedViewItem)
+  const isChanges = useMemo(() => isChangedViewItem(selectedId, changedCompany, changedViewItem, true)
     , [selectedId, changedCompany, changedViewItem]);
   
 
