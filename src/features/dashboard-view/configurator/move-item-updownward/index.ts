@@ -1,1 +1,1 @@
-export { MoveItemUpdownward } from './ui'
+export { MoveItemUpdownward } from './ui/move-item-up-downward'

@@ -33,9 +33,10 @@ export const Toward: FC<Props> = memo(({ type, onClick }) => {
     <Box>
       <Tooltip title={`Переместить элемент ${up ? 'вверх' : 'вниз'}`}>
         <MDButton
-          variant = 'outlined'
-          color   = 'dark'
-          onClick = {() => onClick(type)}
+          variant     = 'outlined'
+          color       = 'dark'
+          data-testid = {up ? 'btn-up' : 'btn-down'}
+          onClick     = {() => onClick(type)}
         >
           {up ? <UpwardIcon sx={sx.icon} /> : <DownwardIcon sx={sx.icon} />}
         </MDButton>

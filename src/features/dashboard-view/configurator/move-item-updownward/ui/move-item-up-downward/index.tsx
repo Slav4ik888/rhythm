@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { ViewItem, useDashboardView } from 'entities/dashboard-view';
 import { Toward, TowardType } from './toward';
-import { calcNewOrder } from '../model/utils/calc-new-order';
+import { calcNewOrder } from '../../model/utils/calc-new-order';
 import { sortingArr } from 'shared/helpers/sorting';
 
 
