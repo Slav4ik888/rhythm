@@ -1,9 +1,12 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { ChipContainer, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { SelectValue } from 'shared/ui/configurators-components/select';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { useDashboardData } from 'entities/dashboard-data';
 import { SelectKodItem } from '../../../../../select-kod/item';
+import { StatisticPeriodTypeChip } from 'entities/statistic-type';
+import { Box } from '@mui/material';
+import { f } from 'shared/styles';
 
 
 
@@ -14,7 +17,7 @@ interface Props {
 
 /** Выбор кода */
 export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
-  const { kods } = useDashboardData();
+  const { kods, startEntities } = useDashboardData();
   const { changeOneChartsItem } = useDashboardView();
   const [selectedValue, setSelectedValue] = useState<string>('');
 
@@ -33,12 +36,16 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
     <RowWrapper>
       <ConfiguratorTextTitle bold title='Код' toolTitle='Укажите код статистики для графика' />
 
-      <SelectValue
-        selectedValue = {selectedValue}
-        array         = {kods}
-        component     = {SelectKodItem}
-        onSelect      = {handleSelectedValue}
-      />
+      <Box sx={f('-c-c')}>
+        <StatisticPeriodTypeChip type={startEntities[selectedItem?.settings?.charts?.[index]?.kod || '']?.periodType} />
+
+        <SelectValue
+          selectedValue = {selectedValue}
+          array         = {kods}
+          component     = {SelectKodItem}
+          onSelect      = {handleSelectedValue}
+        />
+      </Box>
     </RowWrapper>
   )
 });
