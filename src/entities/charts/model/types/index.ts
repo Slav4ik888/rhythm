@@ -33,6 +33,7 @@ export interface ChartConfigDatasets {
   cutout?               : string  // Doughnut in percent
   hoverOffset?          : number  // For Doughnut
   spanGaps?             : boolean // For Line соединять линию есть есть пропуск NaN
+  shiftValues?          : number  // Для сдвига графика (выше или ниже)
 }
 
 // Для Тренда

@@ -36,7 +36,7 @@ export const getData = (
           type                 : setValue(viewItem?.settings?.charts?.[idx].chartType, 'line'),
           label                : setValue(datasets.label, `График ${idx + 1}`),
           data: checkInvertData(viewItem?.settings, 
-            prepareDataForChart(itemData, allActiveDates, greatestPeriodType)
+            prepareDataForChart(itemData, datasets, allActiveDates, greatestPeriodType)
           ).map(item => isStr(item) ? NaN : item), // Empty value changes for NaN
           tension              : 0,
           pointRadius          : setValue(datasets.pointRadius, fixPointRadius(dates)), // Толщика точки (круглешков)
@@ -49,6 +49,7 @@ export const getData = (
           maxBarThickness      : 6,
           order                : setValue(datasets.order, idx + 1),
           spanGaps             : setValue(datasets.spanGaps, false),
+          shiftValues          : setValue(datasets.shiftValues, 0),
         };
 
         return result
