@@ -50,6 +50,7 @@ export const getData = (
           order                : setValue(datasets.order, idx + 1),
           spanGaps             : setValue(datasets.spanGaps, false),
           shiftValues          : setValue(datasets.shiftValues, 0),
+          hidden               : setValue(datasets.hidden, false),
         };
 
         return result

@@ -16,6 +16,7 @@ import { ChartKods } from './chart-settings/chart-kods';
 import { isNotPie } from 'entities/charts';
 import { ChartSpanGaps } from './chart-settings/span-gaps';
 import { ChartShiftValues } from './chart-settings/shift-values';
+import { ChartHidden } from './chart-settings/hidden';
 
 
 
@@ -38,8 +39,8 @@ export const ViewItemChartSettingsList: FC<Props> = memo(({ selectedItem }) => {
             <ConfiguratorTitle title='Общие настройки' type='subtitle1' />
             <SelectChartType index={index} selectedItem={selectedItem} />
             <ChartKods       index={index} selectedItem={selectedItem} />
-            
             <ChartLabel      index={index} selectedItem={selectedItem} />
+            <ChartHidden     index={index} selectedItem={selectedItem} />
             {/* Выбрать период дат: общий или уникальный */}
             
             {

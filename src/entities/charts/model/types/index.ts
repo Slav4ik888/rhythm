@@ -34,6 +34,7 @@ export interface ChartConfigDatasets {
   hoverOffset?          : number  // For Doughnut
   spanGaps?             : boolean // For Line соединять линию есть есть пропуск NaN
   shiftValues?          : number  // Для сдвига графика (выше или ниже)
+  hidden?               : boolean // Скрытие графика
 }
 
 // Для Тренда

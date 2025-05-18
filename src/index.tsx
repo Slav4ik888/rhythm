@@ -28,7 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "add ShiftValues" && git push -u origin main
-// Сделать:
-//  - Добавление/удаление нескольких графиков в одном Chart
-//  - Inverted add individual in chart, if need that first chart is not inverted, but second chart is inverted
+// git add . && git commit -m "add Hidden" && git push -u origin main
