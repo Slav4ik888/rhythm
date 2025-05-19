@@ -1,17 +1,17 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MoveItemUpdownward } from '..';
-import { TowardType } from '../toward'; // Предполагается, что тип TowardType определен здесь
-import { useDashboardView, ViewItem } from 'entities/dashboard-view';
-import { setupRender, StoreProvider } from 'shared/lib/tests';
-import { StateSchema } from 'app/providers/store';
+import { TowardType } from 'shared/ui/configurators-components';
+import { DashboardViewEntities, useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { setupRender } from 'shared/lib/tests';
+import { StateSchema, StoreProvider } from 'app/providers/store';
 import { UIConfiguratorProvider } from 'app/providers/theme';
+import { cloneObj } from 'shared/helpers/objects';
 
 
 
 // Мокаем хук useDashboardView
 jest.mock('entities/dashboard-view');
-StoreProvider
+
 const mockViewItem = {
   id: 'item-1',
   parentId: 'parent-1',
@@ -24,23 +24,31 @@ const mockChildrenViewItems = [
   { id: 'item-3', parentId: 'parent-1', order: 3000 },
 ];
 
+const mockedStoreBase: DeepPartial<StateSchema> = {
+  user: {},
+  dashboardView: {
+    selectedId: 'parent-1',
+    entities: [
+      { id: 'item-1', parentId: 'parent-1', order: 1000 },
+      { id: 'item-2', parentId: 'parent-1', order: 2000 },
+      { id: 'item-3', parentId: 'parent-1', order: 3000 },
+    ] as unknown as DashboardViewEntities,
+    loading : false,
+    errors  : {}
+  }
+};
+
 describe('MoveItemUpdownward', () => {
-  beforeEach(() => {
-    (useDashboardView as jest.Mock).mockReturnValue({
-      childrenViewItems: mockChildrenViewItems,
-      updateViewItem: jest.fn(),
-    });
-  });
+  // beforeEach(() => {
+  //   (useDashboardView as jest.Mock).mockReturnValue({
+  //     childrenViewItems: mockChildrenViewItems,
+  //     updateViewItem: jest.fn(),
+  //   });
+  // });
 
   it('рендерит кнопки "вверх" и "вниз"', () => {
     // render(<MoveItemUpdownward viewItem={mockViewItem} />);
-    const mockedStore: DeepPartial<StateSchema> = {
-      user: {},
-      dashboardView: {
-        loading : true,
-        errors  : {}
-      }
-    };
+    const mockedStore: DeepPartial<StateSchema> = cloneObj(mockedStoreBase);
 
     const { user, debug, getByTestId, getByRole, getByText } = setupRender(
       <StoreProvider initialState={mockedStore}>
@@ -62,7 +70,7 @@ describe('MoveItemUpdownward', () => {
     const mockedStore: DeepPartial<StateSchema> = {
       user: {},
       dashboardView: {
-        loading : true,
+        loading : false,
         errors  : {}
       }
     };
@@ -88,7 +96,7 @@ describe('MoveItemUpdownward', () => {
     const mockedStore: DeepPartial<StateSchema> = {
       user: {},
       dashboardView: {
-        loading : true,
+        loading : false,
         errors  : {}
       }
     };

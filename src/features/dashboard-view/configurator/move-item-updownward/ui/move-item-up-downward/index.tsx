@@ -1,6 +1,6 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { ViewItem, useDashboardView } from 'entities/dashboard-view';
-import { Toward, TowardType } from './toward';
+import { Toward, TowardType } from '../../../../../../shared/ui/configurators-components/toward';
 import { calcNewOrder } from '../../model/utils/calc-new-order';
 import { sortingArr } from 'shared/helpers/sorting';
 
@@ -16,12 +16,12 @@ interface Props {
 export const MoveItemUpdownward: FC<Props> = memo(({ viewItem }) => {
   const { childrenViewItems, updateViewItem } = useDashboardView({ parentId: viewItem.parentId });
 
-  const handleClick = (type: TowardType) => {
+  const handleClick = useCallback((type: TowardType) => {
     updateViewItem({
       id    : viewItem.id,
       order : calcNewOrder(type, sortingArr(childrenViewItems, 'order'), viewItem)
     });
-  };
+  }, [childrenViewItems, updateViewItem, viewItem.parentId]);
 
   return (
     <>

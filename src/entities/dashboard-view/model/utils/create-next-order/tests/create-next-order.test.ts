@@ -5,8 +5,10 @@ import { createNextOrder } from '..';
 describe('createNextOrder', () => {
   test('data is valid', () => {
     const children = [
-      { order: 1000 }, { order: 2000 }, { order: 30000 }
-    ] as ViewItem[];
+      { order: 1000 },
+      { order: 2000 },
+      { order: 30000 }
+    ];
 
     expect(createNextOrder(children)).toEqual(31000);
   });

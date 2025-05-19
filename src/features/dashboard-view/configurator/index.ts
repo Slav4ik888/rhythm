@@ -7,4 +7,4 @@ export { UpdateViewItem, updateViewItem } from './update-view-item'
 export {
   PanelAddViewItemBtns, addNewViewItem, AddNewViewItem, AddViewItemElementBtns, AddViewItemIndicatorsBtns
 } from './add-new-item'
-export { AddNewChart, DelChart } from './charts'
+export { AddNewChart, ControlChartBar } from './charts'

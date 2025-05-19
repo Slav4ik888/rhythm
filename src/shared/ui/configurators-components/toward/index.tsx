@@ -24,6 +24,7 @@ interface Props {
 }
 
 
+/** Кнопки вверх/вниз */
 export const Toward: FC<Props> = memo(({ type, onClick }) => {
   const sx = useStyles(useTheme());
   const up = type === 'up';

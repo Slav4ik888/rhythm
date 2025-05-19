@@ -28,7 +28,10 @@ export const selectViewItems = createSelector(selectEntities,
   (entities: DashboardViewEntities) => Object.values(entities));
 
 /** Returns object ParentsViewItems { [parentId: string]: ViewItem[] } */
-export const selectParentsViewItems = createSelector(selectViewItems, (items: ViewItem[]) => getParents(items));
+export const selectParentsViewItems = createSelector(selectViewItems, (items: ViewItem[]) => {
+  console.log('items: ', items);
+  return getParents(items);
+});
 
 /** Parent`s children by parentId  */
 export const makeSelectChildrenViewItems = (parentId?: ViewItemId) => createSelector(

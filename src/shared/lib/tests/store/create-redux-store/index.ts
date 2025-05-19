@@ -5,7 +5,7 @@ import { StateSchema } from 'app/providers/store';
 import { createReducerManager } from 'app/providers/store/config/reducer-manager';
 import { reducerCompany } from 'entities/company';
 import { reducerUser } from 'entities/user';
-import { reducerTransactions } from 'entities/transactions';
+import { reducerDashboardView } from 'entities/dashboard-view';
 
 
 
@@ -16,8 +16,9 @@ export function createReduxStore(initialState: DeepPartial<StateSchema>) {
       ui           : reducerUI,
       user         : reducerUser,
       company      : reducerCompany,
-      // transactions : reducerTransactions,
-      // Features
+      
+      // @ts-ignore
+      dashboardView : reducerDashboardView,
     },
     reducerManager = createReducerManager(rootReducers),
     extraArg = {
@@ -27,7 +28,6 @@ export function createReduxStore(initialState: DeepPartial<StateSchema>) {
   const store = configureStore({
     reducer        : reducerManager.reduce,
     devTools       : __IS_DEV__,
-    // @ts-ignore
     preloadedState : initialState || {},
     // @ts-ignore
     middleware     : getDefaultMiddleware => getDefaultMiddleware({

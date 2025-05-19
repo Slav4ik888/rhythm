@@ -11,7 +11,7 @@ import { ViewItem } from 'entities/dashboard-view';
 import { ChartTrendCheckbox } from './chart-settings/trend/checkbox';
 import { ChartTrendColor } from './chart-settings/trend/сolor';
 import { ChartTrendWidth } from './chart-settings/trend/width';
-import { AddNewChart, DelChart } from 'features/dashboard-view';
+import { AddNewChart, ControlChartBar } from 'features/dashboard-view';
 import { ChartKods } from './chart-settings/chart-kods';
 import { isNotPie } from 'entities/charts';
 import { ChartSpanGaps } from './chart-settings/span-gaps';
@@ -68,7 +68,7 @@ export const ViewItemChartSettingsList: FC<Props> = memo(({ selectedItem }) => {
                   </>
             }
 
-            <DelChart index={index} />
+            <ControlChartBar index={index} />
           </ConfiguratorSubBoxWrapper>
         ))
       }

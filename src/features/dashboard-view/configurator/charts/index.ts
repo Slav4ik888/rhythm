@@ -1,2 +1,2 @@
 export { AddNewChart } from './add-chart'
-export { DelChart } from './del-chart'
+export { ControlChartBar } from './control-chart-bar'

@@ -2,7 +2,7 @@ import { FC, memo, useCallback } from 'react';
 import { Tooltip } from 'shared/ui/tooltip';
 import { MDButton } from 'shared/ui/mui-design-components';
 import AddCardIcon from '@mui/icons-material/AddCard';
-import { useDashboardView } from 'entities/dashboard-view';
+import { createNextOrder, useDashboardView } from 'entities/dashboard-view';
 import { isPie } from 'entities/charts';
 
 
