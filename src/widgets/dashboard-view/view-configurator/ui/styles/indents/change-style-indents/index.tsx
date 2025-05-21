@@ -15,6 +15,7 @@ const useStyles = () => ({
   },
   row: {
     ...f('-fs-sb'),
+    maxWidth: 'calc(100% - 1rem)'
   }
 });
 

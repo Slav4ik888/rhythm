@@ -1,7 +1,7 @@
 import { isNotObj, isUndefined } from 'shared/lib/validators';
 
 
-type Obj = {
+export type Obj = {
   [key: string]: any
 }
 
@@ -10,7 +10,6 @@ type Obj = {
  * @param obj   - объект в который добавлять field со значением value
  * @param field - название поля
  * @param value - значение
- * @returns 
  */
 export function setIfNotUndefined<T extends Obj>(
   obj   : T,

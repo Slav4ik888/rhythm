@@ -2,6 +2,7 @@ import { FC, memo, useCallback } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { ViewItemStyles, ViewItemStylesField, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { ChangeStyleItemIndents } from './change-style-indents';
+import { setFieldEmpty } from 'shared/helpers/objects';
 
 
 
@@ -14,50 +15,42 @@ export const Indents: FC<Props> = memo(({ selectedItem }) => {
   const { setSelectedStyles } = useDashboardView();
 
 
-  const handleSubmit = useCallback((field: ViewItemStylesField, value: number | string) => {
+  const handleChange = useCallback((field: ViewItemStylesField, value: number | string) => {
     let newStyles: ViewItemStyles = {
       ...selectedItem?.styles,
       [field]: value,
     };
 
-    /** Проверяем есть ли такое поле и если есть обнуляем */
-    const setEmpty = (field: any) => {
-      if (newStyles?.[field as ViewItemStylesField] === undefined) return
-      // @ts-ignore
-      newStyles[field] = '';
-    };
-
-
     // If p => clear (py, px, pt, pb, pl, pr) | if m => clear (my, mx, mt, mb, ml, mr)
     if (field === 'p' || field === 'm') {
-      setEmpty(field + 't');
-      setEmpty(field + 'b');
-      setEmpty(field + 'r');
-      setEmpty(field + 'l');
-      setEmpty(field + 'y');
-      setEmpty(field + 'x');
+      setFieldEmpty(newStyles, field + 't' as keyof ViewItemStyles);
+      setFieldEmpty(newStyles, field + 'b' as keyof ViewItemStyles);
+      setFieldEmpty(newStyles, field + 'r' as keyof ViewItemStyles);
+      setFieldEmpty(newStyles, field + 'l' as keyof ViewItemStyles);
+      setFieldEmpty(newStyles, field + 'y' as keyof ViewItemStyles);
+      setFieldEmpty(newStyles, field + 'x' as keyof ViewItemStyles);
     }
     // If py | my => clear p, pt, pb
     else if (field === 'py' || field === 'my') {
-      setEmpty(field.slice(0, 1));
-      setEmpty(field.slice(0, 1) + 't');
-      setEmpty(field.slice(0, 1) + 'b');
+      setFieldEmpty(newStyles, field.slice(0, 1) as keyof ViewItemStyles);
+      setFieldEmpty(newStyles, field.slice(0, 1) + 't' as keyof ViewItemStyles);
+      setFieldEmpty(newStyles, field.slice(0, 1) + 'b' as keyof ViewItemStyles);
     }
     // If px | mx => clear p, pl, pr
     else if (field === 'px' || field === 'mx') {
-      setEmpty(field.slice(0, 1));
-      setEmpty(field.slice(0, 1) + 'r');
-      setEmpty(field.slice(0, 1) + 'l');
+      setFieldEmpty(newStyles, field.slice(0, 1) as keyof ViewItemStyles);
+      setFieldEmpty(newStyles, field.slice(0, 1) + 'r' as keyof ViewItemStyles);
+      setFieldEmpty(newStyles, field.slice(0, 1) + 'l' as keyof ViewItemStyles);
     }
     // If pt | pb | mt | mb => clear p, py | m, my
     else if (field === 'pt' || field === 'pb' || field === 'mt' || field === 'mb') {
-      setEmpty(field.slice(0, 1));
-      setEmpty(field.slice(0, 1) + 'y');
+      setFieldEmpty(newStyles, field.slice(0, 1) as keyof ViewItemStyles);
+      setFieldEmpty(newStyles, field.slice(0, 1) + 'y' as keyof ViewItemStyles);
     }
     // If pl | pr | ml | mr => clear p, px | m, mx
     else if (field === 'pl' || field === 'pr' || field === 'ml' || field === 'mr') {
-      setEmpty(field.slice(0, 1));
-      setEmpty(field.slice(0, 1) + 'x');
+      setFieldEmpty(newStyles, field.slice(0, 1) as keyof ViewItemStyles);
+      setFieldEmpty(newStyles, field.slice(0, 1) + 'x' as keyof ViewItemStyles);
     }
 
     setSelectedStyles(newStyles);
@@ -72,7 +65,7 @@ export const Indents: FC<Props> = memo(({ selectedItem }) => {
         toolTitle    = 'Отступ вокруг элемента'
         baseField    = 'm'
         selectedItem = {selectedItem}
-        onChange     = {handleSubmit}
+        onChange     = {handleChange}
       />
       <ChangeStyleItemIndents
         bold
@@ -80,7 +73,7 @@ export const Indents: FC<Props> = memo(({ selectedItem }) => {
         toolTitle    = 'Отступ внутри элемента'
         baseField    = 'p'
         selectedItem = {selectedItem}
-        onChange     = {handleSubmit}
+        onChange     = {handleChange}
       />
     </SubHeader>
   )

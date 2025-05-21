@@ -55,7 +55,13 @@ export interface ViewItemStyles {
   // border
   borderStyle?  : BorderStyleType
   borderWidth?  : number | string // In px
-  borderRadius? : number | string // In px
+
+  borderRadius?            : number | string // In px
+  borderTopLeftRadius?     : number | string
+  borderTopRightRadius?    : number | string
+  borderBottomLeftRadius?  : number | string
+  borderBottomRightRadius? : number | string
+
   borderColor?  : string
 
   // shadow      offset-x | offset-y | blur-radius | spread-radius | color 

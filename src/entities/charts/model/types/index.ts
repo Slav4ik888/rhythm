@@ -27,8 +27,11 @@ export interface ChartConfigDatasets {
   backgroundColor?      : string | string[] // Несколько цветов [], если нужно каждый столбик раскрасить разным цветом
   fill?                 : boolean
   maxBarThickness?      : number
-  type?                 : ChartType // Если на 1 графике несколько Charts и 1й 'bar', but not 'line' 
-  // order?                : number  // Убрал тк заменил перемещение графиков изменением местоположения в массиве charts. Если на 1 графике несколько Charts и нужно упорядочить их
+  type?                 : ChartType // Если на 1 графике несколько Charts и 1й 'bar', but not 'line'
+  // Если на 1 графике несколько Charts, то упорядочиваются они
+  // изменением местоположения (перемещением) в массиве charts.
+  // order нужно оставить для вывода тренда поверх parent графика
+  order?                : number
   parentChartsIdx?      : number  // For trendLine чтобы знать чей это тренд charts
   cutout?               : string  // Doughnut in percent
   hoverOffset?          : number  // For Doughnut

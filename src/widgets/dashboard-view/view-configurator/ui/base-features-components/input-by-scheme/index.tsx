@@ -98,7 +98,7 @@ export const InputByScheme: FC<Props> = memo(({ selectedItem, scheme, width, sx:
         onSubmit     = {handleSubmit}
       />
       {
-        value
+        value || value === 0
           ? <ClearIcon sx={sx.clearBtn} onClick={handleClear} />
           : ''
       }
