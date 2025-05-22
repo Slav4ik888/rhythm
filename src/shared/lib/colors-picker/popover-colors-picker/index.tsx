@@ -1,12 +1,18 @@
 import { FC, memo, useState, useRef, useCallback } from 'react';
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import { f, pxToRem, SxCard } from 'shared/styles';
 import { useClickOutside } from 'shared/lib/hooks';
 import { HexColorInput, RgbaColorPicker, RgbaColor  } from 'react-colorful';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import s from './index.module.scss';
 import { MDButton } from 'shared/ui/mui-design-components';
-import { hexToRgba, rgba, rgbaToHexWithAlpha } from '../utils';
+import { hexToRgba, isValidRGBA, rgba, rgbaToHexWithAlpha } from '../utils';
+import { Tooltip } from 'shared/ui/tooltip';
+import PasteIcon from '@mui/icons-material/ContentPaste';
+import CopyIcon from '@mui/icons-material/ContentCopy';
+import TransparentIcon from '@mui/icons-material/BlurOn';
+import { copyToClipboard, getClipboardText } from 'shared/lib/clipboard';
+import { isStr } from 'shared/lib/validators';
 console.log('MODULE STYLE: ', s);
 
 
@@ -50,7 +56,11 @@ const useStyles = (theme: CustomTheme, sx: SxCard | undefined, backgroundColor: 
         fontSize : pxToRem(10),
         // width    : '60px',
       }
-    }
+    },
+    icon: {
+      color    : theme.palette.dark.main,
+      fontSize : '20px',
+    },
   }
 };
 
@@ -67,14 +77,21 @@ export const PopoverColorsPicker: FC<Props> = memo(({ sx: style, color, onChange
   const popoverRef = useRef();
   const [isOpen, toggle] = useState(false);
 
-  const handleOpen = useCallback(() => toggle(true), []);
-  const handleClose = useCallback(() => toggle(false), []);
+  const handleOpen = useCallback(() => toggle(true), [toggle]);
+  const handleClose = useCallback(() => toggle(false), [toggle]);
   
   useClickOutside(popoverRef, handleClose);
 
-  const handleChange = (newColor: RgbaColor) => onChange(newColor);
-  const handleChangeHex   = (hex: string) => onChange(hexToRgba(hex));
-  const handleTransparent = () => onChange({ r: 255, g: 255, b: 255, a: 0 });
+  const handleChange = useCallback((newColor: RgbaColor) => onChange(newColor), [onChange]);
+  const handleChangeHex = useCallback((hex: string) => onChange(hexToRgba(hex)), [onChange]);
+  
+  const handleCopyColor = useCallback(() => copyToClipboard(rgbaToHexWithAlpha(rgba(color))), [color]);
+  const handlePasteColor = useCallback(async () => {
+    const copied = await getClipboardText();
+    if (isValidRGBA(copied)) handleChangeHex(copied);
+  }, [handleChangeHex]);
+
+  const handleTransparent = useCallback(() => onChange({ r: 255, g: 255, b: 255, a: 0 }), [onChange]);
 
   return (
     <Box sx={sx.root}>
@@ -92,18 +109,38 @@ export const PopoverColorsPicker: FC<Props> = memo(({ sx: style, color, onChange
               alpha
               prefixed
               color    = {rgbaToHexWithAlpha(rgba(color))}
-              style    = {{ width: 100 }}
+              style    = {{ width: 100, marginRight: 4 }}
               onChange = {handleChangeHex}
             />
-            <MDButton
-              variant = 'outlined'
-              color   = 'dark'
-              size    = 'small'
-              sx      = {sx.transparent}
-              onClick = {handleTransparent}
-            >
-              Transparent
-            </MDButton>
+            <Tooltip title='Скопировать цвет'>
+              <IconButton  size='small' onClick={handleCopyColor}>
+                <CopyIcon sx={sx.icon} />
+              </IconButton>
+            </Tooltip>
+
+            <Tooltip title='Вставить скопированный цвет'>
+              <IconButton  size='small' onClick={handlePasteColor}>
+                <PasteIcon sx={sx.icon} />
+              </IconButton>
+            </Tooltip>
+            
+            <Tooltip title='Прозрачность 100%'>
+              <IconButton  size='small' onClick={handleTransparent}>
+                <TransparentIcon sx={sx.icon} />
+              </IconButton>
+            </Tooltip>
+
+            {/* <Tooltip title='Прозрачность 100%'>
+              <MDButton
+                variant = 'outlined'
+                color   = 'dark'
+                size    = 'small'
+                sx      = {sx.transparent}
+                onClick = {handleTransparent}
+              >
+                <TransparentIcon sx={sx.icon} />
+              </MDButton>
+            </Tooltip> */}
           </Box>
         </Box>
       )}

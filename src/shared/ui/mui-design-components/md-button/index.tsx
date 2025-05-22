@@ -43,7 +43,7 @@ interface Props {
   component? : ElementType
   children?  : ReactNode
   sx?        : SxCard
-  onClick?   : () => void
+  onClick?   : (e?: any) => void
 }
 
 

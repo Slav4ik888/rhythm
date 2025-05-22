@@ -1,3 +1,4 @@
+export * from './is-valid-rgba'
 export * from './rgba'
 export * from './rgba-string-to-rgba'
 export * from './hex-to-rgba'
