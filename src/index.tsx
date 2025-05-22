@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refact Borders" && git push -u origin main
+// git add . && git commit -m "add periodType next to kods" && git push -u origin main

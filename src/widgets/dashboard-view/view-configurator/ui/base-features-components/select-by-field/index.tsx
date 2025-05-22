@@ -18,8 +18,8 @@ export const SelectByField: FC<Props> = memo(({ selectedItem, scheme, array, com
   const [selectedValue, setSelectedValue] = useState(getValueByScheme(selectedItem, scheme) || '');
 
   useEffect(() => {
-    setSelectedValue(getValueByScheme(selectedItem, scheme) || '')
-  }, [selectedItem, scheme]);
+    setSelectedValue(getValueByScheme(selectedItem, scheme) || '');
+  }, [selectedItem, scheme, setSelectedValue]);
 
   const handleUpdate = useCallback((v: string | number) => {
     if (! selectedItem) return;

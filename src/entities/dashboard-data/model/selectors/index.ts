@@ -21,7 +21,13 @@ export const selectKods = createSelector(selectStartEntities, (startEntities: Da
     'value'
   )
 });
-  
+
+/** Returns StatisticItem by kod */
+export const makeSelectItemByKod = (kod: string | undefined) => createSelector(
+  [selectStartEntities],
+  (startEntities: DashboardDataEntities) => startEntities[kod || ''] || ''
+);
+
 export const selectLastUpdated    = createSelector(selectModule, (state: StateSchemaDashboardData) => state.lastUpdated);
 
 

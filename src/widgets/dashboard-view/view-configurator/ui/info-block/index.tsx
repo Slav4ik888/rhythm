@@ -7,6 +7,8 @@ import { KodLabel } from './kod-label';
 import { ItemOrder } from './order';
 import { TypeRow } from './type-row';
 import { getKod } from './utils/get-kod';
+import { StatisticPeriodType, StatisticPeriodTypeChip } from 'entities/statistic-type';
+import { pxToRem } from 'shared/styles';
 
 
 
@@ -14,8 +16,20 @@ import { getKod } from './utils/get-kod';
 export const InfoBlock: FC = memo(() => {
   const { startEntities } = useDashboardData();
   const { selectedItem } = useDashboardView();
-  const kod = useMemo(() => getKod(selectedItem), [selectedItem]);
-  const title = useMemo(() => startEntities[kod]?.title || '', [selectedItem, startEntities]);
+
+  const { kod, title, periodType } = useMemo((): {
+    kod        : string;
+    title      : string;
+    periodType : StatisticPeriodType;
+  } => {
+    const kod = getKod(selectedItem);
+
+    return {
+      kod,
+      title      : startEntities[kod]?.title || '',
+      periodType : startEntities[kod]?.periodType || ''
+    }
+  }, [selectedItem, startEntities]);
 
 
   return (
@@ -24,7 +38,7 @@ export const InfoBlock: FC = memo(() => {
       <TypeRow type={selectedItem?.type} />
       {
         kod && <>
-          <Kod kod={kod} />
+          <Kod kod={kod} periodType={periodType} />
           <KodLabel title={title} /> 
         </>
       }

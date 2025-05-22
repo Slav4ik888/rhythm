@@ -4,11 +4,15 @@ import { STATISTIC_PERIOD_TYPE } from '../../model/config';
 import { StatisticPeriodType } from '../../model/types';
 import { Tooltip } from 'shared/ui/tooltip';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-import { f, pxToRem } from 'shared/styles';
+import { f, pxToRem, SxCard } from 'shared/styles';
 
 
 
-const useStyle = ({ palette: { statisticPeriodTypeChip } }: CustomTheme, type: StatisticPeriodType) => ({
+const useStyle = ({
+  palette: { statisticPeriodTypeChip } }: CustomTheme,
+  type : StatisticPeriodType,
+  sx?  : SxCard
+) => ({
   tooltip: {
     ...f('-c'),
     height     : pxToRem(20),
@@ -20,18 +24,20 @@ const useStyle = ({ palette: { statisticPeriodTypeChip } }: CustomTheme, type: S
     fontSize   : pxToRem(12),
     color      : statisticPeriodTypeChip[type]?.color,
     background : statisticPeriodTypeChip[type]?.background,
+    ...sx?.root,
   },
 });
 
 
 interface Props {
-  type?: StatisticPeriodType
+  type? : StatisticPeriodType
+  sx?   : SxCard
 }
 
 
 /** Chip для типа статистики: День | Нед | Мес | */
-export const StatisticPeriodTypeChip: FC<Props> = memo(({ type = '' as StatisticPeriodType }) => {
-  const sx = useStyle(useTheme(), type);
+export const StatisticPeriodTypeChip: FC<Props> = memo(({ type = '' as StatisticPeriodType, sx: styles }) => {
+  const sx = useStyle(useTheme(), type, styles);
   const { label, description } = STATISTIC_PERIOD_TYPE[type] || {};
 
   

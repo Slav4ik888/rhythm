@@ -1,10 +1,10 @@
-import { FC, memo, useEffect, useMemo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { ViewItem, ViewItemId } from 'entities/dashboard-view';
 import { ItemWrapper } from '../../wrapper-item';
 import "chart.js/auto";
 import { Chart } from "react-chartjs-2";
 import { DashboardStatisticItem, useDashboardData } from 'entities/dashboard-data';
-import { formatDate, SUB } from 'shared/helpers/dates';
+// import { formatDate, SUB } from 'shared/helpers/dates';
 import { getData, getDataDoughnut, getOptions } from '../lib';
 import { isNotPie } from 'entities/charts';
 

@@ -11,11 +11,12 @@ import { Company } from 'entities/company';
 
 
 interface Config {
+  kod?: string
 }
 
 export const useDashboardData = (config: Config = {}) => {
   const
-    {} = config,
+    { kod } = config,
     dispatch = useAppDispatch(),
 
     loading             = useSelector(s.selectLoading),
@@ -29,6 +30,8 @@ export const useDashboardData = (config: Config = {}) => {
     // getStartEntity      = (kod: string) => startEntities[kod],
     startDates          = useSelector(s.selectStartDates),
     kods                = useSelector(s.selectKods),
+    selectItemByKod     = s.makeSelectItemByKod(kod),
+    itemByKod           = useSelector(selectItemByKod),
 
     activeEntities      = useSelector(s.selectActiveEntities),
     // getActiveEntity     = (kod: string) => activeEntities[kod],
@@ -62,6 +65,7 @@ export const useDashboardData = (config: Config = {}) => {
     startEntities,
     startDates,
     kods,
+    itemByKod,
     
     activeEntities,
     activeDates,

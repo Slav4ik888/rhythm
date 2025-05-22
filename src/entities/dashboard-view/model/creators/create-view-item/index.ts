@@ -50,8 +50,8 @@ export const createViewItem = (
       ...viewItem.styles,
       width        : 'max-content',
       // boxShadow    : '1px 1px 3px 0px rgba(184, 184, 184, 1)',
-      background   : 'rgba(255, 255, 255, 1)',
-      color        : 'rgba(70, 70, 70, 1)',
+      background   : 'rgba(255, 255, 255, 0)', // Прозрачный фон
+      color        : 'rgb(32, 32, 32)',
     };
   }
 
