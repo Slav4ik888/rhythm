@@ -11,7 +11,7 @@ export type ViewItemId = string
 
 
 /** v.2025-05-05 */
-export interface ViewItemCharts {
+export interface ViewItemChart {
   kod?           : string
   fromGlobalKod? : boolean // Если true, то Глобальны kod, будет автоматически подтягиваться в этот элемент
   chartType?     : ChartType
@@ -20,7 +20,7 @@ export interface ViewItemCharts {
   trendDataSets? : ChartConfigTrendDatasets
 }
 
-export type ViewItemChartsField = keyof ViewItemCharts
+export type ViewItemChartField = keyof ViewItemChart
 
 export type ChipType = 'condition' | 'period' | 'company' | 'product' | 'custom'
 export type BaseChipType = 'periodType' | 'companyType' | 'productType'
@@ -35,7 +35,7 @@ export const chipOptions: Record<ChipType, { label: string; value: ChipType }> =
 export const arrayChipLabel = Object.values(chipOptions).map(item => item.label);
 
 
-/** v.2025-02-04 */
+/** v.2025-05-23 */
 export type ViewItemSettings = IndicatorsConfig & {
   // Global settings
   display?        : boolean // Показывать ли элемент
@@ -49,7 +49,7 @@ export type ViewItemSettings = IndicatorsConfig & {
   unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
   
   // Chart settings
-  charts?         : ViewItemCharts[]
+  charts?         : ViewItemChart[]
   chartOptions?   : ChartConfigOptions
 
   // Chips settings

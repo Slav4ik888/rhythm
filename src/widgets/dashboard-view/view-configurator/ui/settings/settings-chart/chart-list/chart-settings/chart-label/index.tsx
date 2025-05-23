@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, MouseEvent } from 'react';
-import { ViewItemCharts, useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { ViewItemChart, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { InputByScheme } from 'widgets/dashboard-view/view-configurator/ui/base-features-components';
 import { pxToRem } from 'shared/styles';
@@ -31,7 +31,7 @@ export const ChartLabel: FC<Props> = memo(({ index, selectedItem }) => {
         selectedItem = {selectedItem}
         width        = '100%'
         sx           = {{ field: { height: pxToRem(40)}}}
-        transform    = {(v) => (v as unknown as ViewItemCharts[] | undefined)?.[index]?.datasets?.label as string}
+        transform    = {(v) => (v as unknown as ViewItemChart[] | undefined)?.[index]?.datasets?.label as string}
         onChange     = {(e: MouseEvent, v: string | number) => {}}
         onBlur       = {(e: MouseEvent, v: string | number) => handleChange(v)}
         onSubmit     = {(e: MouseEvent, v: string | number) => handleChange(v)}

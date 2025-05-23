@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, MouseEvent } from 'react';
-import { ViewItemCharts, useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { ViewItemChart, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { InputByScheme } from '../../../base-features-components';
 import { isNotPie } from 'entities/charts';
@@ -35,7 +35,7 @@ export const ChartCutout: FC<Props> = memo(({ selectedItem }) => {
           selectedItem = {selectedItem}
           scheme       = 'settings.charts'
           width        = '3rem'
-          transform    = {(v) => getDigit((v as unknown as ViewItemCharts[] | undefined)?.[0]?.datasets?.cutout || '')}
+          transform    = {(v) => getDigit((v as unknown as ViewItemChart[] | undefined)?.[0]?.datasets?.cutout || '')}
           onChange     = {(e: MouseEvent, v: string | number) => handleChange(v)}
           onBlur       = {(e: MouseEvent, v: string | number) => handleChange(v)}
           onSubmit     = {(e: MouseEvent, v: string | number) => handleChange(v)}

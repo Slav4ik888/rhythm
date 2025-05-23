@@ -2,7 +2,7 @@ export {
   ViewItemId, ViewItem, BorderStyleType, arrayBorderStyles, FlexDirectionType, FlexWrapType,
   AlignItemsType, JustifyContentType, ViewItemStyles, ViewItemStylesField, PartialViewItem, RgbaString,
   FontStyleType, arrayFontStyles, FontWeightType, arrayFontWeights, ViewItemSettings, ViewItemSettingsField,
-  ViewItemCharts, ViewItemChartsField, ChipType, arrayChipLabel, chipOptions, BaseChipType, IndicatorsConfig,
+  ViewItemChart, ViewItemChartField, ChipType, arrayChipLabel, chipOptions, BaseChipType, IndicatorsConfig,
   arrayEndingType, arrayEndingDiffType, EndingType, EndingDiffType, ViewItemType, TextAlignType
 } from './model/types'
 export { actions as actionsDashboardView, reducer as reducerDashboardView } from './model/slice'

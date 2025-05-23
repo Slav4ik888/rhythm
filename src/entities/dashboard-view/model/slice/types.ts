@@ -1,5 +1,5 @@
 import { ChartConfigDatasetsField } from 'entities/charts';
-import { ViewItem, ViewItemId, ViewItemStylesField, ViewItemSettingsField, ViewItemChartsField } from '../types';
+import { ViewItem, ViewItemId, ViewItemStylesField, ViewItemSettingsField, ViewItemChartField } from '../types';
 
 
 
@@ -25,7 +25,7 @@ export interface ChangeOneSettingsField {
 }
 
 export interface ChangeOneChartsItem {
-  field      : ViewItemChartsField
+  field      : ViewItemChartField
   index      : number // № графика
   value      : any
 }

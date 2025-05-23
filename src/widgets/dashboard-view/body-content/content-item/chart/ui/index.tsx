@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { ViewItem, ViewItemId } from 'entities/dashboard-view';
+import { useDashboardView, ViewItem, ViewItemId } from 'entities/dashboard-view';
 import { ItemWrapper } from '../../wrapper-item';
 import "chart.js/auto";
 import { Chart } from "react-chartjs-2";
@@ -7,6 +7,7 @@ import { DashboardStatisticItem, useDashboardData } from 'entities/dashboard-dat
 // import { formatDate, SUB } from 'shared/helpers/dates';
 import { getData, getDataDoughnut, getOptions } from '../lib';
 import { isNotPie } from 'entities/charts';
+import { getKod } from '../../../../model/utils';
 
 
 
@@ -18,11 +19,13 @@ interface Props {
 /** Item chart */
 export const ItemChart: FC<Props> = memo(({ item, onSelect }) => {
   const { activeDates, activeEntities } = useDashboardData();
+  const { entities } = useDashboardView();
+
 
   // TODO: упростить, всё засунуть в 1 useMemo, после того как заработает 'doughnut'
   const notPie = isNotPie(item);
 
-  const itemsData = useMemo(() => item.settings?.charts?.map(chart => activeEntities[chart?.kod || ''] as DashboardStatisticItem<number>)|| []
+  const itemsData = useMemo(() => item.settings?.charts?.map(chart => activeEntities[getKod(entities, item, chart)] as DashboardStatisticItem<number>)|| []
     , [activeEntities, item]);
   
   // const dates = useMemo(() => {
