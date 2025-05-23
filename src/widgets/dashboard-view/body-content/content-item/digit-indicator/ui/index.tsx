@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { ViewItem, ViewItemId } from 'entities/dashboard-view';
+import { useDashboardView, ViewItem, ViewItemId } from 'entities/dashboard-view';
 import { ItemWrapper } from '../../wrapper-item';
 import { DashboardStatisticItem, Increased, useDashboardData } from 'entities/dashboard-data';
 import { getColorByIncreased, getComparisonValues, getIncreased, getReversedIndicators, ValueStringAndReduction } from '../model/utils';
@@ -10,6 +10,7 @@ import { ItemDigitIndicatorPlusMinus } from './plus-minus';
 import { getFixedFraction, getReducedWithReduction } from 'shared/helpers/numbers';
 import { calcGrowthChange } from '../../growth-icon/model/utils';
 import { isNotUndefined } from 'shared/lib/validators';
+import { getKod } from '../../../../model/utils';
 
 
 
@@ -35,11 +36,14 @@ interface Props {
 
 /** Item digitIndicator */
 export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
+  const { entities } = useDashboardView();
   const { activeEntities } = useDashboardData();
-  const increased = useMemo(() => getIncreased(item, activeEntities), [item, activeEntities]);
+  const kod = useMemo(() => getKod(entities, item), [item, entities]);
+  
+  const increased = useMemo(() => getIncreased(item, activeEntities, kod), [item, activeEntities, kod]);
   const color = useStyles(useTheme(), item, increased);
 
-  const statisticItem = useMemo(() => activeEntities[item.settings?.kod || ''] as DashboardStatisticItem<number>, [activeEntities, item]);
+  const statisticItem = useMemo(() => activeEntities[kod] as DashboardStatisticItem<number>, [activeEntities, item, kod]);
   const indicators = getReversedIndicators(statisticItem?.data, item?.settings?.valueNumber);
   const [lastValue, prevValue] = indicators;
 

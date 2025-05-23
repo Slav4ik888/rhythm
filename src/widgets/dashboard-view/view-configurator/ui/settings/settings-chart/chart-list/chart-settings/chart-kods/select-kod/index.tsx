@@ -5,8 +5,9 @@ import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-compo
 import { useDashboardData } from 'entities/dashboard-data';
 import { SelectKodItem } from '../../../../../select-kod/item';
 import { StatisticPeriodTypeChip } from 'entities/statistic-type';
-import { Box } from '@mui/material';
+import { Box, Checkbox } from '@mui/material';
 import { f } from 'shared/styles';
+import { Tooltip } from 'shared/ui/tooltip';
 
 
 
@@ -19,12 +20,27 @@ interface Props {
 export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
   const { kods, startEntities } = useDashboardData();
   const { changeOneChartsItem } = useDashboardView();
+
+  const [checked, setChecked] = useState(() => Boolean(selectedItem?.settings?.charts?.[index]?.fromGlobalKod));
+
+  useEffect(() => {
+    setChecked(Boolean(selectedItem?.settings?.charts?.[index]?.fromGlobalKod));
+  }, [selectedItem]);
+
+  const handleToggle = useCallback(() => {
+    changeOneChartsItem({
+      field : 'fromGlobalKod',
+      value : ! Boolean(selectedItem?.settings?.charts?.[index]?.fromGlobalKod),
+      index
+    });
+  }, [selectedItem, changeOneChartsItem]);
+
+
   const [selectedValue, setSelectedValue] = useState<string>('');
 
   useEffect(() => {
     setSelectedValue(selectedItem?.settings?.charts?.[index]?.kod || '');
   }, [selectedItem?.settings?.charts?.[index]?.kod]);
-
 
   const handleSelectedValue = useCallback((value: string) => {
     setSelectedValue(value);
@@ -37,6 +53,16 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
       <ConfiguratorTextTitle bold title='Код' toolTitle='Укажите код статистики для графика' />
 
       <Box sx={f('-c-c')}>
+        fromGlobalKod
+        <Tooltip title = 'Если true, то kod будет автоматически подтягиваться от ближайшего parent у которых стоит галка (isGlobalKod)'>
+          <Checkbox
+            size       = 'small'
+            checked    = {checked}
+            inputProps = {{ 'aria-label': 'fromGlobalKod' }}
+            onChange   = {handleToggle}
+          />
+        </Tooltip>
+
         <StatisticPeriodTypeChip type={startEntities[selectedItem?.settings?.charts?.[index]?.kod || '']?.periodType} />
 
         <SelectValue

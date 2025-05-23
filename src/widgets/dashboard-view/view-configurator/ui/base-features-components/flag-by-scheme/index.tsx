@@ -3,6 +3,7 @@ import { PartialViewItem, useDashboardView, ViewItem } from 'entities/dashboard-
 import { getValueByScheme, setValueByScheme } from 'shared/helpers/objects';
 import { Tooltip } from 'shared/ui/tooltip';
 import { Checkbox } from '@mui/material';
+import { SxCard } from 'shared/styles';
 
 
 
@@ -11,12 +12,13 @@ interface Props {
   scheme       : string // начиная с 1го уровня
   title        : string
   toolTitle    : string
+  sx?          : SxCard
 }
 
 /**
  * По схеме сохраняет изменени flags в selectedItem
  */
-export const FlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, toolTitle }) => {
+export const FlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, toolTitle, sx }) => {
   const { updateViewItem } = useDashboardView();
   const [checked, setChecked] = useState(() => Boolean(getValueByScheme(selectedItem, scheme)));
 
@@ -45,6 +47,7 @@ export const FlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, tool
         size       = 'small'
         checked    = {checked}
         inputProps = {{ 'aria-label': title }}
+        sx         = {sx?.root}
         onChange   = {handleToggle}
       />
     </Tooltip>

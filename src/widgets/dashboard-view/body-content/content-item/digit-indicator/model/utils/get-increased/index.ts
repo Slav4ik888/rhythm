@@ -6,9 +6,10 @@ import { getReversedIndicators } from '../get-reversed-indicators';
 
 export const getIncreased = (
   item           : ViewItem,
-  activeEntities : DashboardDataEntities
+  activeEntities : DashboardDataEntities,
+  kod            : string
 ): Increased => {
-  const data = activeEntities[item.settings?.kod || '']?.data as number[] || [];
+  const data = activeEntities[kod]?.data as number[] || [];
   
   const [lastValue, prevValue] = getReversedIndicators(data);
 

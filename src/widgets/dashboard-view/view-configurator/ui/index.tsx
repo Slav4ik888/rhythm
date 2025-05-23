@@ -29,6 +29,7 @@ export const ViewItemConfigurator: FC = memo(() => {
   const { editMode, selectedId, selectedItem, entities, prevStoredViewItem, setSelectedId, setEditMode, serviceUpdateViewItem } = useDashboardView();
   const [value, setValue] = useState('1');
   const isSettings = useMemo(() =>
+    selectedItem?.type === 'box'        ||
     selectedItem?.type === 'chart'      ||
     selectedItem?.type === 'chip'       ||
     selectedItem?.type === 'growthIcon' ||

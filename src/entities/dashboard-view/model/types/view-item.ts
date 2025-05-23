@@ -13,6 +13,7 @@ export type ViewItemId = string
 /** v.2025-05-05 */
 export interface ViewItemCharts {
   kod?           : string
+  fromGlobalKod? : boolean // Если true, то Глобальны kod, будет автоматически подтягиваться в этот элемент
   chartType?     : ChartType
   datasets?      : ChartConfigDatasets
   isTrend?       : boolean // Показывать ли линию тренда
@@ -38,7 +39,12 @@ export const arrayChipLabel = Object.values(chipOptions).map(item => item.label)
 export type ViewItemSettings = IndicatorsConfig & {
   // Global settings
   display?        : boolean // Показывать ли элемент
-  kod?            : string  // Код для одиночного элемента Chip | GrowthItem |
+
+  // Kod settings
+  kod?            : string  // Код для одиночного элемента Box | Chip | GrowthItem | Indicator
+  isGlobalKod?    : boolean // Если true, то это kod, будет автоматически подтягиваться всем children где стоит галка (fromGlobalKod)
+  fromGlobalKod?  : boolean // Если true, то это Глобальны kod, будет автоматически подтягиваться в этот элемент
+
   inverted?       : boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
   unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
   

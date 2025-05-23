@@ -7,6 +7,7 @@ export interface ParentsViewItems {
 }
 
 /**
+ * Объект с родителями, а внутри родителя все его дети
  * Returns object ParentsViewItems {
  *   [parentId: string]: ViewItem[]
  * }

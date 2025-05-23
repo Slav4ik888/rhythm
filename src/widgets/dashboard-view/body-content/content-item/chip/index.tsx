@@ -1,11 +1,12 @@
 import { FC, memo, useMemo } from 'react';
-import { ViewItem, ViewItemId, ChipContainer, stylesToSx } from 'entities/dashboard-view';
+import { ViewItem, ViewItemId, ChipContainer, stylesToSx, useDashboardView } from 'entities/dashboard-view';
 import { ItemWrapper } from '../wrapper-item';
 import { CONDITION_TYPE, DashboardConditionType, getConditionType } from 'entities/condition-type';
 import { useDashboardData } from 'entities/dashboard-data';
 import { useTheme } from 'app/providers/theme';
 import { StatisticPeriodType } from 'entities/statistic-type';
 import { useCompany } from 'entities/company';
+import { getKod } from '../../../model/utils';
 
 
 
@@ -19,9 +20,10 @@ export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
   const theme = useTheme();
   const { customSettings } = useCompany();
   const { activeEntities } = useDashboardData();
+  const { entities } = useDashboardView();
 
   const { label, toolTitle, color, background } = useMemo(() => { 
-    const kod  = item.settings?.kod || '';
+    const kod  = getKod(entities, item);
     const type = item.settings?.chipType || '';
     let label = 'Test label', toolTitle = 'Test toolTitle', color = '#fff', background = 'red';
 

@@ -1,15 +1,21 @@
 import { FC, memo, ReactNode, useMemo } from 'react';
-import { ViewItem, ViewItemId, stylesToSx, ViewItemStyles, useDashboardView } from 'entities/dashboard-view';
+import { ViewItem, ViewItemId, stylesToSx, useDashboardView, DashboardViewEntities } from 'entities/dashboard-view';
 import { Box } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
 import { useDashboardData } from 'entities/dashboard-data';
+import { isFirstGlobalKodInBranch } from '../../../model/utils';
 
 
 
-const useStyles = (styles: ViewItemStyles, editMode: boolean) => {
+const useStyles = (
+  item       : ViewItem,
+  editMode   : boolean,
+  entities   : DashboardViewEntities,
+  selectedId : ViewItemId
+) => {
   const root: any = {
     position: 'relative',
-    ...stylesToSx(styles),
+    ...stylesToSx(item?.styles),
   };
 
   const hover: any = {
@@ -24,6 +30,12 @@ const useStyles = (styles: ViewItemStyles, editMode: boolean) => {
   if (editMode) {
     hover['&:hover'] = {
       border: '3px solid rgb(62 255 10)'
+    };
+    // Рамку вокруг Box с isGlobalKod если у текущего выбрано fromGlobalKod
+    if (isFirstGlobalKodInBranch(entities, selectedId, item.id)
+      && (item.settings?.fromGlobalKod || item.settings?.charts?.filter(it => it.fromGlobalKod)?.length)
+    ) {
+      hover.border = '2px solid #f31a64';
     }
   }
 
@@ -41,9 +53,9 @@ interface Props {
 
 /** Item wrapper */
 export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
-  const { editMode } = useDashboardView();
+  const { editMode, selectedId, entities } = useDashboardView();
   const { kods } = useDashboardData();
-  const sx = useStyles(item.styles, editMode);
+  const sx = useStyles(item, editMode, entities, selectedId);
 
   const toolTitle = useMemo(() => {
     const result = kods.find(it => it?.value === item.settings?.kod);
