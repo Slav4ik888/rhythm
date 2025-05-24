@@ -3,7 +3,7 @@ import { ViewItemId } from '../../types';
 
 
 /** Возвращает ветку всех существующих родителей */
-export function getParentBranch(entities: DashboardViewEntities, targetId: ViewItemId) {
+export function getParentBranch(entities: DashboardViewEntities, targetId: ViewItemId | undefined) {
   const branch = [];
   let currentId = targetId;
   const visitedIds = new Set<ViewItemId>(); // Для отслеживания посещённых узлов

@@ -1,9 +1,10 @@
 import { StateSchema } from 'app/providers/store';
-import { ViewItem, ViewItemId, ViewItemStylesField } from '../types';
+import { ViewItem, ViewItemId } from '../types';
 import { DashboardViewEntities, StateSchemaDashboardView } from '../slice/state-schema';
-import { getChildren, getKod, getParents } from '../utils';
+import { getChildren, getKod, getParents, getFirstItemInBranchWithGlobalKod } from '../utils';
 import { createSelector } from '@reduxjs/toolkit';
 import { getChanges } from 'shared/helpers/objects';
+
 
 
 export const selectModule       = createSelector([(state: StateSchema) => state.dashboardView || {} as StateSchemaDashboardView], (state: StateSchemaDashboardView) => state);
@@ -21,6 +22,7 @@ export const selectSelectedId   = createSelector(selectModule, (state: StateSche
 export const selectSelectedItem = createSelector(selectEntities, selectSelectedId,
   (entities: DashboardViewEntities, selectedId: string) => entities[selectedId] || {});
 
+export const selectLight              =  createSelector(selectModule, (state: StateSchemaDashboardView) => state.light);
 export const selectNewStoredViewItem  = createSelector(selectModule, (state: StateSchemaDashboardView) => state.newStoredViewItem);
 export const selectPrevStoredViewItem = createSelector(selectModule, (state: StateSchemaDashboardView) => state.prevStoredViewItem);
 
@@ -46,6 +48,9 @@ export const selectChangedViewItem = createSelector(selectModule, selectEntities
 
 export const selectFromGlobalKod = createSelector(selectEntities, selectSelectedId,
   (entities: DashboardViewEntities, selectedId: string) => getKod(entities, entities[selectedId]));
+
+export const selectGlobalKodParent = createSelector(selectEntities, selectSelectedId,
+  (entities: DashboardViewEntities, selectedId: string) => getFirstItemInBranchWithGlobalKod(entities, entities[selectedId]?.id));
 
 // export const selectViewItemStyle = createSelector(selectEntities, selectSelectedId,
 //   (entities: DashboardViewEntities, selectedId: string) => entities[selectedId]?.styles || {});

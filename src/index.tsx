@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "ended getKod" && git push -u origin main
+// git add . && git commit -m "Перемещение в isGlobal & highlight" && git push -u origin main

@@ -23,6 +23,7 @@ const initialState: StateSchemaDashboardView = {
   entities            : {},
   newSelectedId       : '',
   selectedId          : '',
+  light               : false,
   newStoredViewItem   : undefined, // Начальные значения выбранного элемента
   prevStoredViewItem  : undefined, // Начальные значения предыдущего выбранного элемента
 
@@ -38,6 +39,7 @@ export const slice = createSlice({
     setInitial: (state, { payload }: PayloadAction<StateSchemaDashboardView>) => {
       state.entities           = payload.entities           || {},
       state.selectedId         = payload.selectedId,
+      state.light              = false,
       state.newStoredViewItem  = payload.newStoredViewItem  || undefined,
       state.prevStoredViewItem = payload.prevStoredViewItem || undefined,
       state.editMode           = payload.editMode           || false;
@@ -81,6 +83,11 @@ export const slice = createSlice({
       state.newSelectedId      = '';
       state.prevStoredViewItem = state.newStoredViewItem;
       state.newStoredViewItem  = state.entities[payload] || {};
+    },
+
+    /** Подсветка выбранного элемента (selectedId) */
+    highlightItem:  (state, { payload }: PayloadAction<boolean>) => {
+      state.light = payload;
     },
 
     /** Обновление изменившихся полей, при сохранении через UnsavedChanges */

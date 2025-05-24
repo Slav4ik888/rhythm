@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from 'react';
 import { ViewItem, useDashboardView } from 'entities/dashboard-view';
-import { Toward, TowardType } from '../../../../../../shared/ui/configurators-components/toward';
+import { Toward, TowardType } from '../../../../../../../shared/ui/configurators-components/toward';
 import { calcNewOrder } from '../../model/utils/calc-new-order';
 import { sortingArr } from 'shared/helpers/sorting';
 

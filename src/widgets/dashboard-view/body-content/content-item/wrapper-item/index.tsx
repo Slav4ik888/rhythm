@@ -10,12 +10,22 @@ const useStyles = (
   item         : ViewItem, // Отрисовываемый элемент на Дашборде
   editMode     : boolean,
   entities     : DashboardViewEntities,
-  selectedItem : ViewItem
+  selectedItem : ViewItem,
+  light        : boolean
 ) => {
   const root: any = {
     position: 'relative',
     ...stylesToSx(item?.styles),
   };
+  
+  if (light && item?.id === selectedItem?.id) { // Только для выбранного элемента
+    root.boxShadow = '0px 0px 10px 10px rgb(229 12 12)';
+    root.transition = 'box-shadow 0.5s ease-in-out'; /* Плавное изменение тени */
+  }
+  else {
+    root.boxShadow = 'none';
+    if (item?.styles?.boxShadow) root.boxShadow = item.styles.boxShadow;
+  }
 
   const hover: any = {
     position : 'absolute',
@@ -52,9 +62,9 @@ interface Props {
 
 /** Item wrapper */
 export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
-  const { editMode, selectedItem, entities } = useDashboardView();
+  const { editMode, selectedItem, entities, light } = useDashboardView();
   const { kods } = useDashboardData();
-  const sx = useStyles(item, editMode, entities, selectedItem);
+  const sx = useStyles(item, editMode, entities, selectedItem, light);
 
   const toolTitle = useMemo(() => {
     if (item.type === 'box') return ''; // Тк в 'box' это только для настройки isGlobalKod

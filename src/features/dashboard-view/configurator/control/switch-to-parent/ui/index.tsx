@@ -4,7 +4,6 @@ import { Box } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
 import { MDButton } from 'shared/ui/mui-design-components';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-import { pxToRem } from 'shared/styles';
 import SelectedIcon from '@mui/icons-material/TabUnselected';
 
 
@@ -12,15 +11,6 @@ import SelectedIcon from '@mui/icons-material/TabUnselected';
 const useStyles = (theme: CustomTheme) => ({
   root: {
     position: 'relative',
-  },
-  helperText: {
-    position  : 'absolute',
-    top       : '100%',
-    right     : 0,
-    width     : pxToRem(400),
-    maxWidth  : pxToRem(400),
-    fontSize  : '0.8rem',
-    color     : theme.palette.error.dark,
   },
   icon: {
     color    : theme.palette.dark.main,
@@ -30,25 +20,25 @@ const useStyles = (theme: CustomTheme) => ({
 
 
 /**
- * Активация родительского элемента
+ * Переключение на родительский элемент
  * для тех случаев когда его размер совпадает с текущим
  */
-export const SelectParentViewItem: FC = memo(() => {
+export const SwitchToParentViewItem: FC = memo(() => {
   const sx = useStyles(useTheme());
   const { selectedItem, setSelectedId } = useDashboardView();
 
-  const handleToggleActiveCopying = useCallback(() => {
+  const handleClick = useCallback(() => {
     setSelectedId(selectedItem.parentId);
   }, [selectedItem, setSelectedId]);
 
 
   return (
     <Box sx={sx.root}>
-      <Tooltip title='Активация родительского элемента, если его размер совпадает с текущим элементов и с помощью курсора нельзя выделить'>
+      <Tooltip title='Переключение на родительский элемент - если его размер совпадает с текущим элементов и с помощью курсора его нельзя выделить'>
         <MDButton
           variant   = 'outlined'
           color     = 'dark'
-          onClick   = {handleToggleActiveCopying}
+          onClick   = {handleClick}
         >
           <SelectedIcon sx={sx.icon} />
         </MDButton>

@@ -1,6 +1,8 @@
 import { FC, memo } from 'react';
-import { ViewMain } from './view-main';
+import { AddRows } from './add-row';
 import { DangerZone } from './danger-zone';
+import { MovementRow } from './movement-row';
+import { SwitchRow } from './switch-row';
 
 
 
@@ -9,7 +11,9 @@ export const ViewItemControlConfigurator: FC = memo(() => {
 
   return (
     <>
-      <ViewMain />
+      <SwitchRow />
+      <MovementRow />
+      <AddRows />
       {/* DisplayShow - показать/скрыть элемент, "скрытый" - показывается только в режиме редактирования */}
       <DangerZone />
     </>

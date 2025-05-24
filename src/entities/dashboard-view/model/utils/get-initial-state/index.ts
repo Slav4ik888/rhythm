@@ -16,6 +16,8 @@ export const getInitialState = (companyId: ActivatedCompanyId): StateSchemaDashb
     editMode            : LS.getDashboardViewEditMode(companyId),
     newSelectedId       : '',
     selectedId          : '',
+    light               : false,
+    
     entities            : addEntities({}, LS.getDashboardView(companyId)) || {},
     newStoredViewItem   : undefined, // Начальные значения выбранного элемента
     prevStoredViewItem  : undefined, // Начальные значения предыдущего выбранного элемента

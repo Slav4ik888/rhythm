@@ -6,7 +6,7 @@ import { getParentBranch } from '../get-parent-branch';
 /** Возвращает первого родителя с isGlobalKod === true в ветке */
 export function getFirstItemInBranchWithGlobalKod(
   entities : DashboardViewEntities,
-  targetId : ViewItemId,
+  targetId : ViewItemId | undefined,
 ): ViewItem | undefined {
   const branch = getParentBranch(entities, targetId);
   if (! branch || ! branch.length) return;

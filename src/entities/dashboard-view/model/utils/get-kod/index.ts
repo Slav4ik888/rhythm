@@ -3,7 +3,10 @@ import { ViewItem, ViewItemChart } from '../../types';
 import { getFirstItemInBranchWithGlobalKod } from '../get-first-item-in-branch-with-global-kod';
 
 
-/** Возвращает Kod для всех типов item.type */
+/**
+ * Возвращает Kod от isGlobalKod или код самого элемента (item.settings.kod || chart?.kod)
+ *  - для всех типов item.type
+ */
 export const getKod = (
   entities : DashboardViewEntities,
   item     : ViewItem | undefined,

@@ -1,5 +1,5 @@
 import { ORDER_STEP } from 'entities/dashboard-view';
-import { TowardType } from '../../../../../../../shared/ui/configurators-components/toward';
+import { TowardType } from '../../../../../../../../shared/ui/configurators-components/toward';
 
 
 
