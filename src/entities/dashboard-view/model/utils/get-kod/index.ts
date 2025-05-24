@@ -1,11 +1,12 @@
-import { ViewItem, DashboardViewEntities, ViewItemChart } from 'entities/dashboard-view';
+import { DashboardViewEntities } from '../../slice/state-schema';
+import { ViewItem, ViewItemChart } from '../../types';
 import { getFirstItemInBranchWithGlobalKod } from '../get-first-item-in-branch-with-global-kod';
 
 
 /** Возвращает Kod для всех типов item.type */
 export const getKod = (
   entities : DashboardViewEntities,
-  item     : ViewItem,
+  item     : ViewItem | undefined,
   chart?   : ViewItemChart
 ) => {
   if (! item) return '';

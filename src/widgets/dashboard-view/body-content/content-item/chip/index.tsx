@@ -1,12 +1,11 @@
 import { FC, memo, useMemo } from 'react';
-import { ViewItem, ViewItemId, ChipContainer, stylesToSx, useDashboardView } from 'entities/dashboard-view';
+import { ViewItem, ViewItemId, ChipContainer, stylesToSx, useDashboardView, getKod } from 'entities/dashboard-view';
 import { ItemWrapper } from '../wrapper-item';
 import { CONDITION_TYPE, DashboardConditionType, getConditionType } from 'entities/condition-type';
 import { useDashboardData } from 'entities/dashboard-data';
 import { useTheme } from 'app/providers/theme';
 import { StatisticPeriodType } from 'entities/statistic-type';
 import { useCompany } from 'entities/company';
-import { getKod } from '../../../model/utils';
 
 
 

@@ -1,6 +1,8 @@
 export * from './get-initial-state'
+export { getKod } from './get-kod'
 export * from './get-children'
 export * from './get-parents'
+export { isFirstGlobalKodInBranch } from './is-first-global-kod-in-branch'
 export * from './create-next-order'
 export * from './styles-to-sx'
 export * from './sx-to-styles'

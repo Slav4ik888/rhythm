@@ -1,4 +1,5 @@
-import { DashboardViewEntities, ViewItemId } from 'entities/dashboard-view';
+import { DashboardViewEntities } from '../../slice/state-schema';
+import { ViewItemId } from '../../types';
 import { getParentBranch } from '../get-parent-branch';
 
 export function isFirstGlobalKodInBranch(

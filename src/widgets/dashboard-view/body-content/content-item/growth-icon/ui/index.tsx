@@ -1,10 +1,9 @@
 import { FC, memo, useMemo } from 'react';
-import { useDashboardView, ViewItem, ViewItemId } from 'entities/dashboard-view';
+import { useDashboardView, ViewItem, ViewItemId, getKod } from 'entities/dashboard-view';
 import { ItemWrapper } from '../../wrapper-item';
 import { useDashboardData } from 'entities/dashboard-data';
 import { GrowthIconComponent } from './component';
 import { getIncreased } from '../../digit-indicator';
-import { getKod } from '../../../../model/utils';
 
 
 

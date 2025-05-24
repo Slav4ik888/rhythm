@@ -2,6 +2,7 @@ import { ViewItem } from 'entities/dashboard-view';
 
 
 /** 
+ * DEPRECATED
  * Если это chart то берём код 1го графика
  * Если это состояние, тогда убираем '-C', чтобы вывелся title названия статистики
  */

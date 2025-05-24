@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refact getKod for charts" && git push -u origin main
+// git add . && git commit -m "ended getKod" && git push -u origin main

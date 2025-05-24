@@ -10,10 +10,11 @@ interface Props {
   scheme       : string
   array        : string[] | any[] // any if component present
   component?   : FC<any> // Если нужен не стандартный компонент вместо item
+  disabled?    : boolean
 }
 
 /** Выбор ByField */
-export const SelectByField: FC<Props> = memo(({ selectedItem, scheme, array, component }) => {
+export const SelectByField: FC<Props> = memo(({ selectedItem, scheme, array, disabled, component }) => {
   const { updateViewItem } = useDashboardView();
   const [selectedValue, setSelectedValue] = useState(getValueByScheme(selectedItem, scheme) || '');
 
@@ -36,6 +37,7 @@ export const SelectByField: FC<Props> = memo(({ selectedItem, scheme, array, com
   return (
     <SelectValue
       selectedValue = {selectedValue}
+      disabled      = {disabled}
       array         = {array}
       component     = {component}
       onSelect      = {handleUpdate}

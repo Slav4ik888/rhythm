@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { useDashboardView, ViewItem, ViewItemId } from 'entities/dashboard-view';
+import { getKod, useDashboardView, ViewItem, ViewItemId } from 'entities/dashboard-view';
 import { ItemWrapper } from '../../wrapper-item';
 import { DashboardStatisticItem, Increased, useDashboardData } from 'entities/dashboard-data';
 import { getColorByIncreased, getComparisonValues, getIncreased, getReversedIndicators, ValueStringAndReduction } from '../model/utils';
@@ -10,7 +10,6 @@ import { ItemDigitIndicatorPlusMinus } from './plus-minus';
 import { getFixedFraction, getReducedWithReduction } from 'shared/helpers/numbers';
 import { calcGrowthChange } from '../../growth-icon/model/utils';
 import { isNotUndefined } from 'shared/lib/validators';
-import { getKod } from '../../../../model/utils';
 
 
 

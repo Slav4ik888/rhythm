@@ -1,17 +1,16 @@
 import { FC, memo, ReactNode, useMemo } from 'react';
-import { ViewItem, ViewItemId, stylesToSx, useDashboardView, DashboardViewEntities } from 'entities/dashboard-view';
+import { ViewItem, ViewItemId, stylesToSx, useDashboardView, DashboardViewEntities, isFirstGlobalKodInBranch, getKod } from 'entities/dashboard-view';
 import { Box } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
 import { useDashboardData } from 'entities/dashboard-data';
-import { isFirstGlobalKodInBranch } from '../../../model/utils';
 
 
 
 const useStyles = (
-  item       : ViewItem,
-  editMode   : boolean,
-  entities   : DashboardViewEntities,
-  selectedId : ViewItemId
+  item         : ViewItem, // Отрисовываемый элемент на Дашборде
+  editMode     : boolean,
+  entities     : DashboardViewEntities,
+  selectedItem : ViewItem
 ) => {
   const root: any = {
     position: 'relative',
@@ -32,8 +31,8 @@ const useStyles = (
       border: '3px solid rgb(62 255 10)'
     };
     // Рамку вокруг Box с isGlobalKod если у текущего выбрано fromGlobalKod
-    if (isFirstGlobalKodInBranch(entities, selectedId, item.id)
-      && (item.settings?.fromGlobalKod || item.settings?.charts?.filter(it => it.fromGlobalKod)?.length)
+    if (isFirstGlobalKodInBranch(entities, selectedItem?.id, item.id)
+      && (selectedItem.settings?.fromGlobalKod || selectedItem.settings?.charts?.filter(it => it.fromGlobalKod)?.length)
     ) {
       hover.border = '2px solid #f31a64';
     }
@@ -53,19 +52,22 @@ interface Props {
 
 /** Item wrapper */
 export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
-  const { editMode, selectedId, entities } = useDashboardView();
+  const { editMode, selectedItem, entities } = useDashboardView();
   const { kods } = useDashboardData();
-  const sx = useStyles(item, editMode, entities, selectedId);
+  const sx = useStyles(item, editMode, entities, selectedItem);
 
   const toolTitle = useMemo(() => {
-    const result = kods.find(it => it?.value === item.settings?.kod);
+    if (item.type === 'box') return ''; // Тк в 'box' это только для настройки isGlobalKod
+
+    const kod = getKod(entities, item);
+    const result = kods.find(it => it?.value === kod);
 
     if (editMode) return result
       ? result.value + ' ' + result.title
-      : item.settings?.kod ? item.settings?.kod : '';
+      : kod;
     
     else return '';
-  } , [item, kods, editMode]);
+  } , [item, kods, entities, editMode]);
 
   const handleClick = (e: any) => {
     e.stopPropagation();

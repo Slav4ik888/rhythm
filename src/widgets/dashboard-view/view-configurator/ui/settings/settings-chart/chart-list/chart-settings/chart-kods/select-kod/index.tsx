@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { ChipContainer, useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { SelectValue } from 'shared/ui/configurators-components/select';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { useDashboardData } from 'entities/dashboard-data';
@@ -8,6 +8,7 @@ import { StatisticPeriodTypeChip } from 'entities/statistic-type';
 import { Box, Checkbox } from '@mui/material';
 import { f } from 'shared/styles';
 import { Tooltip } from 'shared/ui/tooltip';
+import { GetFromGlobalKod } from '../../../../../../base-features-components';
 
 
 
@@ -19,7 +20,7 @@ interface Props {
 /** Выбор кода */
 export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
   const { kods, startEntities } = useDashboardData();
-  const { changeOneChartsItem } = useDashboardView();
+  const { fromGlobalKod: kod, changeOneChartsItem } = useDashboardView();
 
   const [checked, setChecked] = useState(() => Boolean(selectedItem?.settings?.charts?.[index]?.fromGlobalKod));
 
@@ -62,6 +63,7 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
             onChange   = {handleToggle}
           />
         </Tooltip>
+        <GetFromGlobalKod index={index} />
 
         <StatisticPeriodTypeChip type={startEntities[selectedItem?.settings?.charts?.[index]?.kod || '']?.periodType} />
 

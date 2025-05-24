@@ -53,6 +53,7 @@ export const useDashboardView = (config: Config = {}) => {
     setNewSelectedId    = (id: ViewItemId) => dispatch(a.setNewSelectedId(id)),
     setSelectedId       = (id: ViewItemId) => dispatch(a.setSelectedId(id)),
     selectedItem        = useSelector(s.selectSelectedItem),
+    fromGlobalKod       = useSelector(s.selectFromGlobalKod),
 
     newStoredViewItem   = useSelector(s.selectNewStoredViewItem),
     prevStoredViewItem  = useSelector(s.selectPrevStoredViewItem),
@@ -108,6 +109,8 @@ export const useDashboardView = (config: Config = {}) => {
     selectedId,
     setSelectedId,
     selectedItem,
+    fromGlobalKod,
+    
     newStoredViewItem,
     prevStoredViewItem,
     childrenViewItems,

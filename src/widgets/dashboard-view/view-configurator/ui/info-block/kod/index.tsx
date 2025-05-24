@@ -3,6 +3,7 @@ import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-compo
 import { Box } from '@mui/material';
 import { f, pxToRem } from 'shared/styles';
 import { StatisticPeriodType, StatisticPeriodTypeChip } from 'entities/statistic-type';
+import { GetFromGlobalKod } from '../../base-features-components';
 
 
 
@@ -22,10 +23,7 @@ export const Kod: FC<Props> = memo(({ kod, periodType }) => {
           type = {periodType}
           sx   = {{ root: { width: pxToRem(70), maxWidth: pxToRem(70), mr: 2 } }}
         />
-
-        <Box sx={{ fontSize: '1rem' }}>
-          {kod}
-        </Box>
+        <GetFromGlobalKod showItemKod />
       </Box>
     </RowWrapper>
   )

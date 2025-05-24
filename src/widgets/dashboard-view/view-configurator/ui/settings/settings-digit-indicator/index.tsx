@@ -12,8 +12,6 @@ interface Props {
 
 /** Вкладка Settings for DigitIndicator */
 export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => {
-
-
   return (
     <>
       <SubHeader title='Общие настройки'>

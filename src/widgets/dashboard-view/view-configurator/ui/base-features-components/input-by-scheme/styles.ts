@@ -38,6 +38,5 @@ export const useStyles = (theme: CustomTheme, sx?: SxInputByScheme, width?: stri
     cursor   : 'pointer',
     fontSize : '0.9rem',
     color    : theme.palette.dark.light,
-    zIndex   : 1000,
   },
 });
