@@ -19,7 +19,7 @@ const useStyles = (
   };
   
   if (light && item?.id === selectedItem?.id) { // Только для выбранного элемента
-    root.boxShadow = '0px 0px 10px 10px rgb(229 12 12)';
+    root.boxShadow = '0px 0px 8px 8px rgb(229 12 12)';
     root.transition = 'box-shadow 0.5s ease-in-out'; /* Плавное изменение тени */
   }
   else {

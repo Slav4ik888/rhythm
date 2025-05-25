@@ -1,5 +1,5 @@
-import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { getKod, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { SelectValue } from 'shared/ui/configurators-components/select';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { useDashboardData } from 'entities/dashboard-data';
@@ -20,7 +20,7 @@ interface Props {
 /** Выбор кода */
 export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
   const { kods, startEntities } = useDashboardData();
-  const { fromGlobalKod: kod, changeOneChartsItem } = useDashboardView();
+  const { entities, changeOneChartsItem } = useDashboardView();
 
   const [checked, setChecked] = useState(() => Boolean(selectedItem?.settings?.charts?.[index]?.fromGlobalKod));
 
@@ -37,17 +37,21 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
   }, [selectedItem, changeOneChartsItem]);
 
 
+  const kod = useMemo(() => getKod(entities, selectedItem, selectedItem?.settings?.charts?.[index])
+    , [entities, index, selectedItem]);
+  
   const [selectedValue, setSelectedValue] = useState<string>('');
 
   useEffect(() => {
-    setSelectedValue(selectedItem?.settings?.charts?.[index]?.kod || '');
-  }, [selectedItem?.settings?.charts?.[index]?.kod]);
+    setSelectedValue(kod);
+  }, [kod]);
 
   const handleSelectedValue = useCallback((value: string) => {
     setSelectedValue(value);
     changeOneChartsItem({ field: 'kod', value, index });
   }, [selectedItem, changeOneChartsItem]);
 
+  const disabled = selectedItem?.settings?.charts?.[index]?.fromGlobalKod;
 
   return (
     <RowWrapper>
@@ -63,16 +67,20 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
             onChange   = {handleToggle}
           />
         </Tooltip>
-        <GetFromGlobalKod index={index} />
+        <Tooltip title={disabled ? 'Чтобы выбрать другой код, снимите галку с "fromGlobalKod".' : ''}>
+          <GetFromGlobalKod index={index} />
+        </Tooltip>
 
-        <StatisticPeriodTypeChip type={startEntities[selectedItem?.settings?.charts?.[index]?.kod || '']?.periodType} />
+        <StatisticPeriodTypeChip type={startEntities[kod]?.periodType} />
 
-        <SelectValue
-          selectedValue = {selectedValue}
-          array         = {kods}
-          component     = {SelectKodItem}
-          onSelect      = {handleSelectedValue}
-        />
+        {
+          ! disabled && <SelectValue
+            selectedValue = {selectedValue}
+            array         = {kods}
+            component     = {SelectKodItem}
+            onSelect      = {handleSelectedValue}
+          />
+        }
       </Box>
     </RowWrapper>
   )

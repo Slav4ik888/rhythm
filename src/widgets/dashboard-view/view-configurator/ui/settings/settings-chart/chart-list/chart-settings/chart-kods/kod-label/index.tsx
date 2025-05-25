@@ -2,7 +2,7 @@ import { FC, memo, useMemo } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { useDashboardData } from 'entities/dashboard-data';
 import { Box } from '@mui/material';
-import { ViewItem } from 'entities/dashboard-view';
+import { getKod, useDashboardView, ViewItem } from 'entities/dashboard-view';
 
 
 
@@ -14,8 +14,11 @@ interface Props {
 /** Label графика как в гугл таблице */
 export const ChartKodLabel: FC<Props> = memo(({ index, selectedItem }) => {
   const { startEntities } = useDashboardData();
-  const title = useMemo(() => startEntities[selectedItem?.settings?.charts?.[index]?.kod || '']?.title || ''
-    , [selectedItem, startEntities]);
+  const { entities } = useDashboardView();
+  const kod = useMemo(() => getKod(entities, selectedItem, selectedItem?.settings?.charts?.[index])
+    , [entities, index, selectedItem]);
+  
+  const title = useMemo(() => startEntities[kod]?.title || '', [selectedItem, startEntities]);
 
 
   return (

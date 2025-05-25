@@ -3,7 +3,6 @@ import { Chip, FormControl, MenuItem } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { f, SxCard, pxToRem } from 'shared/styles';
 import { isStr } from 'shared/lib/validators';
-import { Tooltip } from 'shared/ui/tooltip';
 
 
 
@@ -55,13 +54,11 @@ export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, d
 
   return (
     <FormControl sx={sx.root}>
-      <Tooltip title={disabled ? 'Чтобы выбрать другой код, снимите галку с "fromGlobalKod".' : ''}>
-        <Chip
-          label   = {selectedValue}
-          sx      = {sx.chip}
-          onClick = {handleClickChip}
-        />
-      </Tooltip>
+      <Chip
+        label   = {selectedValue}
+        sx      = {sx.chip}
+        onClick = {handleClickChip}
+      />
 
       {
         openSelect && 

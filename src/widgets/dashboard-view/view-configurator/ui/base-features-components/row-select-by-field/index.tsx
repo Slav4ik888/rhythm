@@ -1,11 +1,14 @@
 import { FC, memo } from 'react';
 import { Box } from '@mui/material';
-import { ViewItem } from 'entities/dashboard-view';
-import { f } from 'shared/styles';
+import { useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { f, pxToRem } from 'shared/styles';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { FlagByScheme } from '../flag-by-scheme';
 import { SelectByField } from '../select-by-field';
 import { GetFromGlobalKod } from '../get-from-global-kod';
+import { StatisticPeriodTypeChip } from 'entities/statistic-type';
+import { useDashboardData } from 'entities/dashboard-data';
+import { Tooltip } from 'shared/ui/tooltip';
 
 
 
@@ -19,6 +22,11 @@ interface Props {
 }
 
 export const RowSelectByField: FC<Props> = memo(({ selectedItem, scheme, title, toolTitle, array, component }) => {
+  const { startEntities } = useDashboardData();
+  const { fromGlobalKod: kod } = useDashboardView();
+
+  const disabled = selectedItem?.settings?.fromGlobalKod;
+  
   return (
     <RowWrapper>
       <ConfiguratorTextTitle bold title={title} toolTitle={toolTitle} />
@@ -45,18 +53,24 @@ export const RowSelectByField: FC<Props> = memo(({ selectedItem, scheme, title, 
               title        = 'fromGlobalKod'
               toolTitle    = 'Если true, то kod будет автоматически подтягиваться от ближайшего parent у которых стоит галка (isGlobalKod)'
               selectedItem = {selectedItem} 
-              // sx           = {{ root: {  } }}
             />
-            <GetFromGlobalKod />
+            <StatisticPeriodTypeChip
+              type = {startEntities[kod]?.periodType || ''}
+              sx   = {{ root: { width: pxToRem(70), maxWidth: pxToRem(70), mr: 2 } }}
+            />
+            <Tooltip title={disabled ? 'Чтобы выбрать другой код, снимите галку с "fromGlobalKod".' : ''}>
+              <GetFromGlobalKod />
+            </Tooltip>
           </Box>)
         }
-        <SelectByField
-          scheme       = {scheme}
-          disabled     = {selectedItem?.settings?.fromGlobalKod}
-          array        = {array}
-          component    = {component}
-          selectedItem = {selectedItem}
-        />
+        {
+          ! disabled && <SelectByField
+            scheme       = {scheme}
+            array        = {array}
+            component    = {component}
+            selectedItem = {selectedItem}
+          />
+        }
       </Box>
     </RowWrapper>
   )
