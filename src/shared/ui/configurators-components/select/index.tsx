@@ -19,6 +19,7 @@ const useStyles = (sx?: SxCard, disabled?: boolean) => ({
     top      : 0,
     right    : 0,
     height   : pxToRem(24),
+    minWidth : 'max-content',
     color    : disabled ? 'rgba(0,0,0,0.38)' : 'inherit',
   },
   select: {
@@ -55,7 +56,7 @@ export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, d
   return (
     <FormControl sx={sx.root}>
       <Chip
-        label   = {selectedValue}
+        label   = {selectedValue || 'Выберите'}
         sx      = {sx.chip}
         onClick = {handleClickChip}
       />

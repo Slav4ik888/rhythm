@@ -26,8 +26,26 @@ describe('getCopyViewItem', () => {
     { id: '20', order: '2000', parentId: '18',          oldId: '20', oldParentId: '18'           },
   ];
 
+  test('Valid data, coping first item', () => {
+    const result = getCopyViewItem({ type: 'firstOnly', id: '4' }, 'no_parentId', items as unknown as ViewItem[], 'userId_123');
+    // console.log(result);
+
+    const resultOldData = result.map(item => ({
+      // @ts-ignore
+      oldId: item.oldId, oldParentId : item.oldParentId,
+    }));
+    
+    expect(result[0].order).toEqual(7000);
+    expect(result[0].parentId).toEqual('no_parentId');
+    expect(result[0].lastChange.userId).toEqual('userId_123');
+    expect(result.length).toEqual(1);
+  
+    expect(resultOldData).toEqual([{ oldId: '4',  oldParentId: '1' }]);
+  });
+
+
   test('Valid data to no_parentId', () => {
-    const result = getCopyViewItem('4', 'no_parentId', items as unknown as ViewItem[], 'userId_123');
+    const result = getCopyViewItem({ type: 'all', id: '4' }, 'no_parentId', items as unknown as ViewItem[], 'userId_123');
     // console.log(result);
 
     const resultOldData = result.map(item => ({
@@ -38,6 +56,7 @@ describe('getCopyViewItem', () => {
     expect(result[0].order).toEqual(7000);
     expect(result[0].parentId).toEqual('no_parentId');
     expect(result[1].parentId).toEqual(result[0].id);
+    expect(result.length).toEqual(9);
     expect(result[0].lastChange.userId).toEqual('userId_123');
   
     
@@ -55,7 +74,7 @@ describe('getCopyViewItem', () => {
   });
 
   test('Valid data to 111', () => {
-    const result = getCopyViewItem('4', '111', items as unknown as ViewItem[], 'userId_123');
+    const result = getCopyViewItem({ type: 'all', id: '4' }, '111', items as unknown as ViewItem[], 'userId_123');
 
     const resultOldData = result.map(item => ({
       // @ts-ignore
@@ -65,6 +84,7 @@ describe('getCopyViewItem', () => {
     expect(result[0].order).toEqual(1000);
     expect(result[0].parentId).toEqual('111');
     expect(result[1].parentId).toEqual(result[0].id);
+    expect(result.length).toEqual(9);
     expect(result[0].lastChange.userId).toEqual('userId_123');
   
     
@@ -83,13 +103,13 @@ describe('getCopyViewItem', () => {
 
 
   test('Invalid items', () => {
-    const result = getCopyViewItem('4', '111', undefined as unknown as ViewItem[], 'userId_123');
+    const result = getCopyViewItem({ type: 'all', id: '4' }, '111', undefined as unknown as ViewItem[], 'userId_123');
     
     expect(result).toEqual([]);
   });
 
   test('Incorrect copiedId', () => {
-    const result = getCopyViewItem('100500', '111', items as unknown as ViewItem[], 'userId_123');
+    const result = getCopyViewItem({ type: 'all', id: '100500' }, '111', items as unknown as ViewItem[], 'userId_123');
     
     expect(result).toEqual([]);
   });

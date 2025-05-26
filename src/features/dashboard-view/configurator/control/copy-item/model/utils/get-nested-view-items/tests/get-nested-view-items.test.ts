@@ -47,6 +47,10 @@ describe('getNestedViewItems', () => {
     expect(getNestedViewItems(items as ViewItem[], '100500')).toEqual([]);
   });
 
+  test('Invalid selectedId is undefined', () => {
+    expect(getNestedViewItems(items as ViewItem[], undefined)).toEqual([]);
+  });
+
   test('Invalid items', () => {
     const result = getNestedViewItems(undefined as unknown as ViewItem[], '100500');
     // console.log(result);

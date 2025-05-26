@@ -2,6 +2,11 @@ import { Errors } from 'shared/lib/validators';
 import { ViewItem, ViewItemId } from '../types';
 
 
+export type ActivatedCopiedType = 'firstOnly' | 'all';
+export interface ActivatedCopied {
+  type : ActivatedCopiedType
+  id   : ViewItemId
+}
 
 export interface DashboardViewEntities {
   [viewItemId: ViewItemId]: ViewItem
@@ -32,6 +37,7 @@ export interface StateSchemaDashboardView {
 
   // Активированный Id перемещаемого элемента
   activatedMovementId : ViewItemId
+
   // Активированный Id копируемого элемента
-  activatedCopiedId   : ViewItemId
+  activatedCopied     : ActivatedCopied | undefined
 }

@@ -57,7 +57,7 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
     <RowWrapper>
       <ConfiguratorTextTitle bold title='Код' toolTitle='Укажите код статистики для графика' />
 
-      <Box sx={f('-c-c')}>
+      <Box sx={{ ...f('-c-c'), gap: 1 }}>
         fromGlobalKod
         <Tooltip title = 'Если true, то kod будет автоматически подтягиваться от ближайшего parent у которых стоит галка (isGlobalKod)'>
           <Checkbox
@@ -67,11 +67,12 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
             onChange   = {handleToggle}
           />
         </Tooltip>
+
+        <StatisticPeriodTypeChip type={startEntities[kod]?.periodType} />
+
         <Tooltip title={disabled ? 'Чтобы выбрать другой код, снимите галку с "fromGlobalKod".' : ''}>
           <GetFromGlobalKod index={index} />
         </Tooltip>
-
-        <StatisticPeriodTypeChip type={startEntities[kod]?.periodType} />
 
         {
           ! disabled && <SelectValue

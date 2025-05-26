@@ -10,7 +10,7 @@ import { getFirstItemInBranchWithGlobalKod } from '../get-first-item-in-branch-w
 export const getKod = (
   entities : DashboardViewEntities,
   item     : ViewItem | undefined,
-  chart?   : ViewItemChart
+  chart?   : ViewItemChart // В некоторых ситуациях передаётся сам chart, чтобы вернуть его Код если не подпадёт под другие условия
 ) => {
   if (! item) return '';
   
@@ -25,7 +25,7 @@ export const getKod = (
     return item?.settings?.kod || '';
   }
   else {
-    if (chart?.fromGlobalKod) {
+    if (item?.settings?.charts?.some(it => it.fromGlobalKod)) { // У одного из charts - fromGlobalKod
       // Если Kod должен браться fromGlobalKod, то проверяем есть ли он in parentGlobalItem
       if (globalItem?.settings?.isGlobalKod && globalItem?.settings?.kod) return globalItem.settings.kod
     }

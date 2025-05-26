@@ -7,7 +7,7 @@ import { ChangeOneSettingsField, ChangeSelectedStyle, ChangeOneDatasetsItem, Cha
 import { ActivatedCompanyId } from 'entities/company';
 import { ViewItem, ViewItemId, ViewItemStyles, PartialViewItem } from '../../types';
 import { addNewViewItem, CreateGroupViewItems, createGroupViewItems, deleteViewItem, DeleteViewItem, UpdateViewItem, updateViewItem as updateViewItemOnServer } from 'features/dashboard-view';
-import { StateSchemaDashboardView } from '../../slice/state-schema';
+import { ActivatedCopied, StateSchemaDashboardView } from '../../slice/state-schema';
 
 
 
@@ -43,9 +43,9 @@ export const useDashboardView = (config: Config = {}) => {
     clearActivatedMovementId = () => dispatch(a.clearActivatedMovementId()),
 
     // Copying
-    activatedCopiedId = useSelector(s.selectActivatedCopiedId),
-    setActiveCopiedId = () => dispatch(a.setActiveCopiedId()),
-    clearActivatedCopiedId = () => dispatch(a.clearActivatedCopiedId()),
+    activatedCopied        = useSelector(s.selectActivatedCopied),
+    setActiveCopied        = (data: ActivatedCopied) => dispatch(a.setActiveCopied(data)),
+    clearActivatedCopied   = () => dispatch(a.clearActivatedCopied()),
 
     // View
     newSelectedId       = useSelector(s.selectNewSelectedId),
@@ -129,9 +129,9 @@ export const useDashboardView = (config: Config = {}) => {
     clearActivatedMovementId,
 
     // Copying
-    activatedCopiedId,
-    setActiveCopiedId,
-    clearActivatedCopiedId,
+    activatedCopied,
+    setActiveCopied,
+    clearActivatedCopied,
 
     // Styles
     changeOneStyleField,

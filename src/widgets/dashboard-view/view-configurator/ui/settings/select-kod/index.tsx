@@ -7,10 +7,10 @@ import { ViewItem } from 'entities/dashboard-view';
 
 
 interface Props {
-  selectedItem: ViewItem | undefined
+  selectedItem : ViewItem | undefined
 }
 
-export const SelectKod: FC<Props> = memo(({ selectedItem }) => {
+export const SelectKod: FC<Props> = memo((props) => {
   const { kods } = useDashboardData();
 
   return (
@@ -20,7 +20,7 @@ export const SelectKod: FC<Props> = memo(({ selectedItem }) => {
       toolTitle    = 'Укажите код статистики для графика'
       array        = {kods}
       component    = {SelectKodItem}
-      selectedItem = {selectedItem}
+      {...props}
     />
   )
 });

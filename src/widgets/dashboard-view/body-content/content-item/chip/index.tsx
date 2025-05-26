@@ -1,7 +1,7 @@
 import { FC, memo, useMemo } from 'react';
 import { ViewItem, ViewItemId, ChipContainer, stylesToSx, useDashboardView, getKod } from 'entities/dashboard-view';
 import { ItemWrapper } from '../wrapper-item';
-import { CONDITION_TYPE, DashboardConditionType, getConditionType } from 'entities/condition-type';
+import { CONDITION_TYPE, DashboardConditionType, getConditionKod, getConditionType } from 'entities/condition-type';
 import { useDashboardData } from 'entities/dashboard-data';
 import { useTheme } from 'app/providers/theme';
 import { StatisticPeriodType } from 'entities/statistic-type';
@@ -27,7 +27,8 @@ export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
     let label = 'Test label', toolTitle = 'Test toolTitle', color = '#fff', background = 'red';
 
     if (type === 'condition') {
-      const condition = kod ? getConditionType(activeEntities[kod]?.data) : DashboardConditionType.NULL;
+      const conditionKode = getConditionKod(type, kod);
+      const condition = conditionKode ? getConditionType(activeEntities[conditionKode]?.data) : DashboardConditionType.NULL;
       label      = CONDITION_TYPE[condition].label;
       toolTitle  = CONDITION_TYPE[condition].description;
       color      = theme.palette.conditionTypeChip[condition]?.color;

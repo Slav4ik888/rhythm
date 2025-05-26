@@ -6,7 +6,7 @@ export {
   arrayEndingType, arrayEndingDiffType, EndingType, EndingDiffType, ViewItemType, TextAlignType
 } from './model/types'
 export { actions as actionsDashboardView, reducer as reducerDashboardView } from './model/slice'
-export { DashboardViewEntities, StateSchemaDashboardView } from './model/slice/state-schema'
+export { DashboardViewEntities, StateSchemaDashboardView, ActivatedCopiedType, ActivatedCopied } from './model/slice/state-schema'
 export { getInitialState, ParentsViewItems, stylesToSx, createNextOrder, getKod, isFirstGlobalKodInBranch } from './model/utils'
 export { useDashboardView } from './model/hooks'
 export { createViewItem } from './model/creators/'

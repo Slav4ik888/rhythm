@@ -11,6 +11,7 @@ const useStyles = (theme: CustomTheme) => ({
     ...f('c'),
     width: '100%',
     pt: 2,
+    pr: 2,
   },
 });
 

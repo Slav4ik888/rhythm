@@ -7,7 +7,6 @@ import { f, pxToRem } from 'shared/styles';
 
 
 
-
 export const MovementRow: FC = memo(() => {
   const { selectedItem } = useDashboardView();
 
@@ -17,7 +16,8 @@ export const MovementRow: FC = memo(() => {
       <RowWrapper sx={{ ...f('-c-fe'), gap: pxToRem(8) }}>
         <MoveToAnotherItem />
         <MoveItemUpdownward viewItem={selectedItem} />
-        <CopyViewItem />
+        <CopyViewItem type='firstOnly' />
+        <CopyViewItem type='all' />
       </RowWrapper>
     </SubHeader>
   )

@@ -62,5 +62,5 @@ export const selectGlobalKodParent = createSelector(selectEntities, selectSelect
 // );
 
 export const selectActivatedMovementId = createSelector(selectModule, (state: StateSchemaDashboardView) => state.activatedMovementId);
-export const selectActivatedCopiedId = createSelector(selectModule, (state: StateSchemaDashboardView) => state.activatedCopiedId);
+export const selectActivatedCopied     = createSelector(selectModule, (state: StateSchemaDashboardView) => state.activatedCopied);
   

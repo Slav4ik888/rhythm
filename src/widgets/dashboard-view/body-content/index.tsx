@@ -16,7 +16,7 @@ export const DashboardBodyContent = memo(() => {
   const { companyId, changedCompany, serviceUpdateCompany } = useCompany();
   const {
     loading, editMode, newSelectedId, changedViewItem, selectedId, selectedItem, activatedMovementId,
-    parentsViewItems, viewItems, entities, activatedCopiedId, setNewSelectedId,
+    parentsViewItems, viewItems, entities, activatedCopied, setNewSelectedId,
     setDashboardView, setSelectedId, updateViewItem, serviceUpdateViewItem, serviceCreateGroupViewItems
   } = useDashboardView();
 
@@ -33,7 +33,7 @@ export const DashboardBodyContent = memo(() => {
 
   const handleSelectViewItem = useCallback((id: ViewItemId) => {
     if (! editMode || id === selectedId) return
-    if (! activatedCopiedId && id === NO_PARENT_ID) return // Активировать NO_PARENT_ID можно только для копирования
+    if (! activatedCopied && id === NO_PARENT_ID) return // Активировать NO_PARENT_ID можно только для копирования
 
     // Если активирован выбранный элемент для ПЕРЕМЕЩЕНИЯ то его перемещаем в родительский элемент
     // НЕ активируя selectedId
@@ -53,11 +53,12 @@ export const DashboardBodyContent = memo(() => {
 
     // Если активирован выбранный элемент для КОПИРОВАНИЯ то его вставляем в выбранный элемент
     // НЕ активируя selectedId
-    else if (activatedCopiedId) {
+    else if (activatedCopied) {
       if (selectedId === id) return // Нажали на этот же элемент
       if (entities[id]?.type !== 'box' && id !== NO_PARENT_ID) return // Перемещать можно только в Box или корневой элемент
       
-      const copiedViewItems = getCopyViewItem(activatedCopiedId, id, viewItems, userId);
+      const copiedViewItems = getCopyViewItem({ type: activatedCopied.type, id: activatedCopied.id }, id, viewItems, userId);
+
       setDashboardView({ companyId, viewItems: copiedViewItems }); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
       serviceCreateGroupViewItems({ companyId, viewItems: copiedViewItems });
     }
@@ -77,7 +78,7 @@ export const DashboardBodyContent = memo(() => {
         setNewSelectedId(id); // Здесь сохраняется в newSelectedId а активация выбранного id происходит в useEffect
       }
     }
-  }, [editMode, selectedId, activatedMovementId, activatedCopiedId, viewItems, entities, userId, isChanges, setSelectedId, setDashboardView]);
+  }, [editMode, selectedId, activatedMovementId, activatedCopied, viewItems, entities, userId, isChanges, setSelectedId, setDashboardView]);
 
 
   return (

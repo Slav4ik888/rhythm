@@ -12,7 +12,8 @@ describe('getKod', () => {
     settings : {
       kod?           : string,
       fromGlobalKod? : boolean,
-      isGlobalKod?   : boolean
+      isGlobalKod?   : boolean,
+      charts?        : ViewItemChart[]
     } = {},
     parentId : string = ''
   ): ViewItem => ({
@@ -94,9 +95,8 @@ describe('getKod', () => {
 
     it('should return global kod when fromGlobalKod is true and global parent exists', () => {
       const entities: DashboardViewEntities = {
-        // @ts-ignore
-        '1': createItem('1', 'container', { isGlobalKod: true, kod: 'global-kod' }),
-        '2': createItem('2', 'chart', {}, '1'),
+        '1': createItem('1', 'box', { isGlobalKod: true, kod: 'global-kod' }),
+        '2': createItem('2', 'chart', { charts: [{ fromGlobalKod: true } as unknown as ViewItemChart] }, '1'),
       };
       const chart = createChart(undefined, true);
       

@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
 import { getPayloadError as getError } from 'shared/lib/errors';
-import { StateSchemaDashboardView } from './state-schema';
+import { ActivatedCopied, StateSchemaDashboardView } from './state-schema';
 import { deleteViewItem, DeleteViewItem, AddNewViewItem, addNewViewItem, UpdateViewItem, updateViewItem } from 'features/dashboard-view';
 import { SetDashboardView, ChangeSelectedStyle, ChangeOneSettingsField, ChangeOneDatasetsItem, ChangeOneChartsItem, SetEditMode } from './types';
 import { addEntities } from 'entities/base';
@@ -15,20 +15,20 @@ import { ChartConfigDatasets } from 'entities/charts';
 
 
 const initialState: StateSchemaDashboardView = {
-  loading             : false,
-  errors              : {},
-  _isMounted          : true,
+  loading               : false,
+  errors                : {},
+  _isMounted            : true,
 
-  editMode            : false,
-  entities            : {},
-  newSelectedId       : '',
-  selectedId          : '',
-  light               : false,
-  newStoredViewItem   : undefined, // Начальные значения выбранного элемента
-  prevStoredViewItem  : undefined, // Начальные значения предыдущего выбранного элемента
+  editMode              : false,
+  entities              : {},
+  newSelectedId         : '',
+  selectedId            : '',
+  light                 : false,
+  newStoredViewItem     : undefined, // Начальные значения выбранного элемента
+  prevStoredViewItem    : undefined, // Начальные значения предыдущего выбранного элемента
 
-  activatedMovementId : '', // Активированный Id перемещаемого элемента
-  activatedCopiedId   : '', // Активированный Id копируемого элемента
+  activatedMovementId   : '',        // Активированный Id перемещаемого элемента
+  activatedCopied       : undefined, // Активированный Id копируемого элемента
 };
 
 
@@ -56,7 +56,7 @@ export const slice = createSlice({
     setDashboardView: (state, { payload }: PayloadAction<SetDashboardView>) => {
       state.entities            = addEntities(state.entities, payload.viewItems);
       state.activatedMovementId = '';
-      state.activatedCopiedId   = '';
+      state.activatedCopied     = undefined;
     },
 
     setEditMode: (state, { payload }: PayloadAction<SetEditMode>) => {
@@ -98,21 +98,21 @@ export const slice = createSlice({
     // Перемещение выбранного View-item в другой
     setActiveMovementId: (state) => {
       state.activatedMovementId = state.selectedId;
-      state.activatedCopiedId   = '';
+      state.activatedCopied     = undefined;
     },
     clearActivatedMovementId: (state) => {
       state.activatedMovementId = '';
-      state.activatedCopiedId   = '';
+      state.activatedCopied     = undefined;
     },
 
     // Копирование выбранного View-item в другой
-    setActiveCopiedId: (state) => {
-      state.activatedCopiedId   = state.selectedId;
+    setActiveCopied: (state, { payload }: PayloadAction<ActivatedCopied>) => {
       state.activatedMovementId = '';
+      state.activatedCopied     = { ...payload };
     },
-    clearActivatedCopiedId: (state) => {
-      state.activatedCopiedId   = '';
+    clearActivatedCopied: (state) => {
       state.activatedMovementId = '';
+      state.activatedCopied     = undefined;
     },
 
     // Update View-item
@@ -194,9 +194,9 @@ export const slice = createSlice({
 
         state.entities = addEntities(state.entities, [viewItem]);
         state.activatedMovementId = '';
-        state.activatedCopiedId   = '';
-        state.loading = false;
-        state.errors  = {};
+        state.activatedCopied     = undefined;
+        state.loading             = false;
+        state.errors              = {};
 
         LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
       })
@@ -219,7 +219,7 @@ export const slice = createSlice({
           state.newStoredViewItem = updateObject(state.newStoredViewItem, newStoredViewItem);
         }
         state.activatedMovementId = '';
-        state.activatedCopiedId   = '';
+        state.activatedCopied     = undefined;
         state.loading             = false;
         state.errors              = {};
 
@@ -247,7 +247,7 @@ export const slice = createSlice({
         state.newStoredViewItem   = undefined;
         state.prevStoredViewItem  = undefined;
         state.activatedMovementId = '';
-        state.activatedCopiedId   = '';
+        state.activatedCopied     = undefined;
         state.loading             = false;
         state.errors              = {};
 

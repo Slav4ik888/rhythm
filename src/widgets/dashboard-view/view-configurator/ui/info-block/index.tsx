@@ -20,7 +20,7 @@ export const InfoBlock: FC = memo(() => {
       <TypeRow type={selectedItem?.type} />
       {
         kod && <>
-          <Kod kod={kod} periodType={startEntities[kod]?.periodType || ''} />
+          <Kod periodType={startEntities[kod]?.periodType || ''} />
           <KodLabel title={startEntities[kod]?.title || ''} /> 
         </>
       }

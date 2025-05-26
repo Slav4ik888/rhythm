@@ -59,7 +59,7 @@ export const RowSelectByField: FC<Props> = memo(({ selectedItem, scheme, title, 
               sx   = {{ root: { width: pxToRem(70), maxWidth: pxToRem(70), mr: 2 } }}
             />
             <Tooltip title={disabled ? 'Чтобы выбрать другой код, снимите галку с "fromGlobalKod".' : ''}>
-              <GetFromGlobalKod />
+              <GetFromGlobalKod type={selectedItem?.settings?.chipType} />
             </Tooltip>
           </Box>)
         }
