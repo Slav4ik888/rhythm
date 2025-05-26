@@ -23,6 +23,7 @@ export const LabelRow: FC<Props> = memo(({ selectedItem }) => {
           height   : pxToRem(40),
         }
       }}
+      onChange={() => { }} // Чтобы при вводе текста не происходило обновления
     />
   )
 });

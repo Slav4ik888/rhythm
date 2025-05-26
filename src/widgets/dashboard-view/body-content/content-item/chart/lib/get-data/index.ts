@@ -46,7 +46,9 @@ export const getData = (
           borderWidth          : setValue(datasets.borderWidth, 3), // Толщика линии
           backgroundColor      : setValue(datasets.backgroundColor, 'transparent'),
           fill                 : setValue(datasets.fill, true),
-          maxBarThickness      : 6,
+          // maxBarThickness      : 6,
+          barPercentage        : setValue(datasets.barPercentage, 0.8),
+          categoryPercentage   : setValue(datasets.categoryPercentage, 0.8),
           order                : setValue(datasets.order, idx + 1),
           spanGaps             : setValue(datasets.spanGaps, false),
           shiftValues          : setValue(datasets.shiftValues, 0),

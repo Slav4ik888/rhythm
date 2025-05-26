@@ -27,6 +27,9 @@ export interface ChartConfigDatasets {
   backgroundColor?      : string | string[] // Несколько цветов [], если нужно каждый столбик раскрасить разным цветом
   fill?                 : boolean
   maxBarThickness?      : number
+  barPercentage?        : number // For Bar - Ширина колонок графика
+  categoryPercentage?   : number // For Bar - Ширина колонок графика
+
   type?                 : ChartType // Если на 1 графике несколько Charts и 1й 'bar', but not 'line'
   // Если на 1 графике несколько Charts, то упорядочиваются они
   // изменением местоположения (перемещением) в массиве charts.

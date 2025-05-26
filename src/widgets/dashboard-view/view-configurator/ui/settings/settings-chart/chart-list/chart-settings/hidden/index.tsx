@@ -32,7 +32,7 @@ export const ChartHidden: FC<Props> = memo(({ index, selectedItem }) => {
 
   return (
     <RowWrapper>
-      <ConfiguratorTextTitle bold title='hidden' toolTitle={`Скрыть / показать ${isPie(selectedItem)} ? 'дугу' : 'график'`} />
+      <ConfiguratorTextTitle bold title='Hidden' toolTitle={`Скрыть / показать ${isPie(selectedItem)} ? 'дугу' : 'график'`} />
       <Checkbox
         size       = 'small'
         checked    = {checked}

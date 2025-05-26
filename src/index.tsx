@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refact ChartKod" && git push -u origin main
+// git add . && git commit -m "refact ViewItemChartSettingsList: разделил поля для bar | line" && git push -u origin main

@@ -33,6 +33,7 @@ export const SelectChipType: FC<Props> = memo(({ selectedItem }) => {
       <SelectValue
         selectedValue = {selectedValue}
         array         = {arrayChipLabel}
+        sx            = {{ root: { width: '10rem' } }}
         onSelect      = {handleSelectedValue}
       />
     </RowWrapper>

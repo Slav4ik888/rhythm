@@ -17,6 +17,8 @@ import { isNotPie } from 'entities/charts';
 import { ChartSpanGaps } from './chart-settings/span-gaps';
 import { ChartShiftValues } from './chart-settings/shift-values';
 import { ChartHidden } from './chart-settings/hidden';
+import { ChartBarPercentage } from './chart-settings/bar-percentage';
+import { ChartCategoryPercentage } from './chart-settings/category-percentage';
 
 
 
@@ -47,16 +49,29 @@ export const ViewItemChartSettingsList: FC<Props> = memo(({ selectedItem }) => {
               notPie
                 ?
                   <>
-                    <ConfiguratorTitle title='Точки' type='subtitle1' />
-                    <ChartPointRadius          index={index} selectedItem={selectedItem} />
-                    <ChartPointBackgroundColor index={index} selectedItem={selectedItem} />
+                    {
+                      item?.chartType === 'line' && <>
+                        <ConfiguratorTitle title='Точки' type='subtitle1' />
+                        <ChartPointRadius          index={index} selectedItem={selectedItem} />
+                        <ChartPointBackgroundColor index={index} selectedItem={selectedItem} />
+                      </>
+                    }
+                    
 
                     <ConfiguratorTitle title='Линия графика' type='subtitle1' />
-                    <ChartBorderWidth     index={index} selectedItem={selectedItem} />
-                    <ChartBorderColor     index={index} selectedItem={selectedItem} />
-                    <ChartBackgroundColor index={index} selectedItem={selectedItem} />
-                    <ChartSpanGaps        index={index} selectedItem={selectedItem} />
-                    <ChartShiftValues     index={index} selectedItem={selectedItem} />
+                    <ChartBorderWidth        index={index} selectedItem={selectedItem} />
+                    <ChartBorderColor        index={index} selectedItem={selectedItem} />
+                    <ChartBackgroundColor    index={index} selectedItem={selectedItem} />
+                    
+                    {
+                      item?.chartType === 'bar' && <>
+                        <ChartBarPercentage      index={index} selectedItem={selectedItem} />
+                        <ChartCategoryPercentage index={index} selectedItem={selectedItem} />
+                      </>
+                    }
+                    
+                    <ChartSpanGaps           index={index} selectedItem={selectedItem} />
+                    <ChartShiftValues        index={index} selectedItem={selectedItem} />
 
                     <ConfiguratorTitle title='Линия тренда' type='subtitle1' />
                     <ChartTrendCheckbox index={index} selectedItem={selectedItem} />
