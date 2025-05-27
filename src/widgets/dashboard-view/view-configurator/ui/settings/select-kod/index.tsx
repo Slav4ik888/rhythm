@@ -15,11 +15,11 @@ export const SelectKod: FC<Props> = memo((props) => {
 
   return (
     <RowSelectByField
-      scheme       = 'settings.kod'
-      title        = 'Код'
-      toolTitle    = 'Укажите код статистики для графика'
-      array        = {kods}
-      component    = {SelectKodItem}
+      scheme         = 'settings.kod'
+      title          = 'Код'
+      toolTitle      = 'Укажите код статистики для графика'
+      array          = {kods}
+      component      = {SelectKodItem}
       {...props}
     />
   )

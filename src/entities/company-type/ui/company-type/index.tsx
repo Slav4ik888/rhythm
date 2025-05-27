@@ -1,13 +1,12 @@
 import { FC, memo } from 'react';
 import { Chip } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
-import { COMPANY_COLORS_CONFIG } from '../../model/config';
-import { ActivatedCompanyId } from 'entities/company';
-import { f, pxToRem } from 'shared/styles';
+import { CustomSettings } from 'entities/company';
+import { f, pxToRem, SxCard } from 'shared/styles';
 
 
 
-const useStyle = (companyType: string) => ({
+const useStyle = (companyType: string, customSettings : CustomSettings, sx?: SxCard) => ({
   tooltip: {
     ...f('-c'),
     height     : pxToRem(20),
@@ -17,14 +16,16 @@ const useStyle = (companyType: string) => ({
     width      : pxToRem(70),
     height     : pxToRem(15),
     fontSize   : pxToRem(12),
-    color      : COMPANY_COLORS_CONFIG[ActivatedCompanyId.CSS][companyType]?.color,
-    background : COMPANY_COLORS_CONFIG[ActivatedCompanyId.CSS][companyType]?.background,
+    color      : customSettings?.companyType?.[companyType]?.color || '#999',
+    background : customSettings?.companyType?.[companyType]?.background || '#eee',
+    ...sx?.root,
   }
 });
 
 interface Props {
-  // colorConfig : CompanyColorsConfig
-  type?: string
+  type?          : string
+  customSettings : CustomSettings
+  sx?            : SxCard
 }
 
 
@@ -32,10 +33,8 @@ interface Props {
  * TODO: сделать ярлыком влевом верхнем углу карточки статистики (поз: абсолют)
  * Chip для статистики типа компании: Общая | Да-Телеком | Бэдком |
  */
-export const CompanyTypeChip: FC<Props> = memo(({ type = '' }) => {
-  const sx = useStyle(type);
-  // const { label, description } = DASHBOARD_STATISTIC_TYPE[type] || {};
-
+export const CompanyTypeChip: FC<Props> = memo(({ type = '', sx: styles, customSettings }) => {
+  const sx = useStyle(type, customSettings, styles);
 
   return (
     <Tooltip

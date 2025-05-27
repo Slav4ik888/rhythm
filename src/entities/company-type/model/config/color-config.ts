@@ -1,7 +1,7 @@
 import { ColorsConfig } from 'app/providers/theme';
 import { ActivatedCompanyId } from 'entities/company';
 
-
+/** DEPRECATED */
 export const COMPANY_COLORS_CONFIG: Record<ActivatedCompanyId, ColorsConfig> = {
   [ActivatedCompanyId.OSNOVA]: {
   },

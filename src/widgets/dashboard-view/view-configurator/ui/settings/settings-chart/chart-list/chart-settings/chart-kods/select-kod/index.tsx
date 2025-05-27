@@ -9,6 +9,7 @@ import { Box, Checkbox } from '@mui/material';
 import { f } from 'shared/styles';
 import { Tooltip } from 'shared/ui/tooltip';
 import { GetFromGlobalKod } from '../../../../../../base-features-components';
+import { useCompany } from 'entities/company';
 
 
 
@@ -19,6 +20,7 @@ interface Props {
 
 /** Выбор кода */
 export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
+  const { customSettings } = useCompany();
   const { kods, startEntities } = useDashboardData();
   const { entities, changeOneChartsItem } = useDashboardView();
 

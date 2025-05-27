@@ -3,6 +3,7 @@ import { useDashboardData } from 'entities/dashboard-data';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { SetColorsItem } from './item';
 import { BaseChipType } from 'entities/dashboard-view';
+import { useCompany } from 'entities/company';
 
 
 
@@ -13,6 +14,7 @@ interface Props {
 /** Настройка базовых 'periodType' | 'companyType' | 'productType' */
 export const SetupChipsColorsByType: FC<Props> = memo(({ type }) => {
   const { startEntities } = useDashboardData();
+  const { customSettings, updateCustomSettings } = useCompany();
   const chipValues = useMemo(() => {
     const result = new Set<string>();
 
@@ -28,9 +30,11 @@ export const SetupChipsColorsByType: FC<Props> = memo(({ type }) => {
     <SubHeader title='Настройка цветов'>
       {
         chipValues.map(label => <SetColorsItem
-          key   = {label}
-          type  = {type}
-          label = {label}
+          key      = {label}
+          type     = {type}
+          label    = {label}
+          settings = {customSettings}
+          onSubmit = {updateCustomSettings}
         />)
       }
     </SubHeader>

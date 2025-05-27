@@ -4,12 +4,15 @@ import { Tooltip } from 'shared/ui/tooltip';
 import { f, pxToRem } from 'shared/styles';
 import { StatisticPeriodTypeChip } from 'entities/statistic-type';
 import { useDashboardData } from 'entities/dashboard-data';
+import { CompanyTypeChip } from 'entities/company-type';
+import { useCompany } from 'entities/company';
 
 
 
 const useStyles = () => ({
   root: {
     ...f(),
+    gap: 1,
   },
   kod: {
     width    : pxToRem(100),
@@ -21,8 +24,11 @@ const useStyles = () => ({
   },
   title: {
     maxWidth : pxToRem(300),
-    ml       : 1,
+    // ml       : 1,
   },
+  company: {
+
+  }
 });
 
 
@@ -33,15 +39,26 @@ interface Props {
   }
 }
 
+/** Компонент для  */
 export const SelectKodItem: FC<Props> = memo(({ item }) => {
   const sx = useStyles();
+  const { customSettings } = useCompany();
   const { itemByKod } = useDashboardData({ kod: item?.value });
 
   return (
     <Tooltip title={item?.title}>
       <Box sx={sx.root}>
         <Typography sx={sx.kod}>{item?.value}</Typography>
-        <StatisticPeriodTypeChip type={itemByKod?.periodType} sx={{ root: sx.chip }} />
+
+        <CompanyTypeChip
+          type           = {itemByKod?.companyType}
+          customSettings = {customSettings}
+          sx             = {{ root: sx.chip }}
+        />
+        <StatisticPeriodTypeChip
+          type = {itemByKod?.periodType}
+          sx   = {{ root: sx.chip }}
+        />
         <Typography sx={sx.title}>{item?.title}</Typography>
       </Box>
     </Tooltip>
