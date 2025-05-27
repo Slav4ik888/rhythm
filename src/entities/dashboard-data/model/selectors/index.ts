@@ -17,8 +17,14 @@ export const selectStartDates     = createSelector(selectModule, (state: StateSc
 /** Returns sorted list of all kods */
 export const selectKods = createSelector(selectStartEntities, (startEntities: DashboardDataEntities) => {
   return sortingArr(
-    Object.values(startEntities).map(entity => ({ value: entity.kod, title: entity.title })),
-    'value'
+    Object.values(startEntities).map(entity => ({
+      value   : entity.kod, // value тк в SelectValue используется value
+      title   : entity.title,
+      company : entity.companyType,
+      product : entity.productType,
+      period  : entity.periodType,
+    })),
+    'kod'
   )
 });
 

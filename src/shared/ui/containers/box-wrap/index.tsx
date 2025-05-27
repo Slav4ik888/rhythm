@@ -1,17 +1,32 @@
 import { FC, memo, ReactNode } from 'react';
 import Box from '@mui/material/Box';
+import { SxCard } from 'shared/styles';
+
 
 
 type Props = {
-  children? : ReactNode
-  sx?       : any
+  fullWidth? : boolean
+  children?  : ReactNode
+  sx?        : SxCard
 }
 
-/** v.2023-06-12 */
-export const BoxWrap: FC<Props> = memo(({ sx, children }) => (
-  <Box sx={sx?.root}>
-    {
-      children
+/** v.2025-05-27 */
+export const BoxWrap: FC<Props> = memo(({ sx: style, children, fullWidth }) => {
+  let sx = { ...(style || {}) };
+
+  if (fullWidth) {
+    sx.root = {
+      ...sx?.root,
+      width: '100%',
     }
-  </Box>
-));
+  };
+  
+
+  return (
+    <Box sx={sx.root}>
+      {
+        children
+      }
+    </Box>
+  )
+});

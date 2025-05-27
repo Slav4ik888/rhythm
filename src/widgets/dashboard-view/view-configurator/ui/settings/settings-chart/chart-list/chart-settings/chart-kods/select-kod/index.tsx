@@ -20,7 +20,6 @@ interface Props {
 
 /** Выбор кода */
 export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
-  const { customSettings } = useCompany();
   const { kods, startEntities } = useDashboardData();
   const { entities, changeOneChartsItem } = useDashboardView();
 
@@ -72,17 +71,19 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
 
         <StatisticPeriodTypeChip type={startEntities[kod]?.periodType} />
 
-        <Tooltip title={disabled ? 'Чтобы выбрать другой код, снимите галку с "fromGlobalKod".' : ''}>
-          <GetFromGlobalKod index={index} />
-        </Tooltip>
-
         {
-          ! disabled && <SelectValue
-            selectedValue = {selectedValue}
-            array         = {kods}
-            component     = {SelectKodItem}
-            onSelect      = {handleSelectedValue}
-          />
+          disabled
+            ?
+            <Tooltip title='Чтобы выбрать другой код, снимите галку с "fromGlobalKod".'>
+              <GetFromGlobalKod index={index} />
+            </Tooltip>
+            :
+            <SelectValue
+              selectedValue = {selectedValue}
+              array         = {kods}
+              component     = {SelectKodItem}
+              onSelect      = {handleSelectedValue}
+            />
         }
       </Box>
     </RowWrapper>

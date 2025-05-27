@@ -39,7 +39,7 @@ interface Props {
   }
 }
 
-/** Компонент для  */
+/** Item вместо стандартного li для списка */
 export const SelectKodItem: FC<Props> = memo(({ item }) => {
   const sx = useStyles();
   const { customSettings } = useCompany();

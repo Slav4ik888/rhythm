@@ -1,8 +1,10 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback, useState } from 'react';
 import { RowSelectByField } from '../../base-features-components';
 import { useDashboardData } from 'entities/dashboard-data';
 import { SelectKodItem } from './item';
 import { ViewItem } from 'entities/dashboard-view';
+import { RowSelectKodChildren } from './children';
+import { SelectKodItemSearchBox } from './search-box';
 
 
 
@@ -10,17 +12,34 @@ interface Props {
   selectedItem : ViewItem | undefined
 }
 
-export const SelectKod: FC<Props> = memo((props) => {
+export const SelectKod: FC<Props> = memo(({ selectedItem }) => {
   const { kods } = useDashboardData();
+  const [searcheďKods, setSearchedKods] = useState(kods);
+
+  const handleSearch = useCallback((value: string) => {
+    setSearchedKods(
+      kods.filter((kod) => kod.title.toLowerCase().includes(value.toLowerCase()))
+    );
+  }, [kods]);
+
+  const disabled = Boolean(selectedItem?.settings?.fromGlobalKod);
 
   return (
     <RowSelectByField
-      scheme         = 'settings.kod'
-      title          = 'Код'
-      toolTitle      = 'Укажите код статистики для графика'
-      array          = {kods}
-      component      = {SelectKodItem}
-      {...props}
-    />
+      scheme       = 'settings.kod'
+      title        = 'Код'
+      toolTitle    = 'Укажите код статистики для элемента'
+      disabled     = {disabled}
+      array        = {searcheďKods}
+      component    = {SelectKodItem}
+      selectedItem = {selectedItem}
+      searchBox    = {SelectKodItemSearchBox}
+      onSearch     = {handleSearch}
+    >
+      <RowSelectKodChildren
+        selectedItem = {selectedItem}
+        disabled     = {disabled}
+      />
+    </RowSelectByField>
   )
 });

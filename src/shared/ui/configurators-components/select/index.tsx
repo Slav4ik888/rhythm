@@ -25,6 +25,7 @@ const useStyles = (sx?: SxCard, disabled?: boolean) => ({
   select: {
     visibility : 'hidden',
     opacity    : 0,
+    top      : pxToRem(40),
     height     : pxToRem(38),
   }
 });
@@ -33,14 +34,18 @@ const useStyles = (sx?: SxCard, disabled?: boolean) => ({
 interface Props<T> {
   selectedValue : T
   array         : T[] | any[] // any if component present
+  searchBox?    : FC<any> // Если нужен не стандартный поиск in SelectValue
   component?    : FC<any> // Если нужен не стандартный компонент вместо item
   disabled?     : boolean
   sx?           : SxCard
   onSelect      : (value: T) => void
+  onSearch?     : (value: string) => void
 }
 
 
-export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, disabled, array, component: ComponentItem, onSelect }: Props<T>) => {
+export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, disabled, array, component: ComponentItem,
+  searchBox: SearchBox, onSelect, onSearch }: Props<T>) => {
+
   const sx = useStyles(style, disabled);
   const [openSelect, setOpenSelect] = useState(false);
 
@@ -71,6 +76,11 @@ export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, d
             onClose      = {handleSelectClose}
             onChange     = {handleChange}
           >
+            {
+              SearchBox
+                ? <SearchBox onSearch={onSearch} />
+                : null
+            }
             {
               array.map((item) => <MenuItem
                 key   = {isStr(item) ? item : item?.value}
