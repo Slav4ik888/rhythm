@@ -1,14 +1,14 @@
 import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { getKod, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { SelectValue } from 'shared/ui/configurators-components/select';
-import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
+import { RowWrapperTitle } from 'shared/ui/configurators-components';
 import { useDashboardData } from 'entities/dashboard-data';
-import { SelectKodItem } from '../../../../../select-kod/item';
+import { SelectKodItem } from '../../../../../select-kod/select-kod-item';
 import { StatisticPeriodTypeChip } from 'entities/statistic-type';
 import { Box, Checkbox } from '@mui/material';
 import { f } from 'shared/styles';
 import { Tooltip } from 'shared/ui/tooltip';
-import { GetFromGlobalKod } from '../../../../../../base-features-components';
+import { FlagByScheme, GetFromGlobalKod } from '../../../../../../base-features-components';
 import { useCompany } from 'entities/company';
 
 
@@ -23,19 +23,19 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
   const { kods, startEntities } = useDashboardData();
   const { entities, changeOneChartsItem } = useDashboardView();
 
-  const [checked, setChecked] = useState(() => Boolean(selectedItem?.settings?.charts?.[index]?.fromGlobalKod));
+  // const [checked, setChecked] = useState(() => Boolean(selectedItem?.settings?.charts?.[index]?.fromGlobalKod));
 
-  useEffect(() => {
-    setChecked(Boolean(selectedItem?.settings?.charts?.[index]?.fromGlobalKod));
-  }, [selectedItem]);
+  // useEffect(() => {
+  //   setChecked(Boolean(selectedItem?.settings?.charts?.[index]?.fromGlobalKod));
+  // }, [selectedItem]);
 
-  const handleToggle = useCallback(() => {
-    changeOneChartsItem({
-      field : 'fromGlobalKod',
-      value : ! Boolean(selectedItem?.settings?.charts?.[index]?.fromGlobalKod),
-      index
-    });
-  }, [selectedItem, changeOneChartsItem]);
+  // const handleToggle = useCallback(() => {
+  //   changeOneChartsItem({
+  //     field : 'fromGlobalKod',
+  //     value : ! Boolean(selectedItem?.settings?.charts?.[index]?.fromGlobalKod),
+  //     index
+  //   });
+  // }, [selectedItem, changeOneChartsItem]);
 
 
   const kod = useMemo(() => getKod(entities, selectedItem, selectedItem?.settings?.charts?.[index])
@@ -55,19 +55,23 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
   const disabled = selectedItem?.settings?.charts?.[index]?.fromGlobalKod;
 
   return (
-    <RowWrapper>
-      <ConfiguratorTextTitle bold title='Код' toolTitle='Укажите код статистики для графика' />
-
+    <RowWrapperTitle title='Код' toolTitle='Укажите код статистики для графика'>
       <Box sx={{ ...f('-c-c'), gap: 1 }}>
         fromGlobalKod
-        <Tooltip title = 'Если true, то kod будет автоматически подтягиваться от ближайшего parent у которых стоит галка (isGlobalKod)'>
+        <FlagByScheme
+          scheme       = {`settings.charts.[${index}].fromGlobalKod`}
+          title        = 'fromGlobalKod'
+          toolTitle    = 'Если true, то kod будет автоматически подтягиваться от ближайшего parent у которых стоит галка (isGlobalKod)'
+          selectedItem = {selectedItem} 
+        />
+        {/* <Tooltip title = 'Если true, то kod будет автоматически подтягиваться от ближайшего parent у которых стоит галка (isGlobalKod)'>
           <Checkbox
             size       = 'small'
             checked    = {checked}
             inputProps = {{ 'aria-label': 'fromGlobalKod' }}
             onChange   = {handleToggle}
           />
-        </Tooltip>
+        </Tooltip> */}
 
         <StatisticPeriodTypeChip type={startEntities[kod]?.periodType} />
 
@@ -86,6 +90,6 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
             />
         }
       </Box>
-    </RowWrapper>
+    </RowWrapperTitle>
   )
 });

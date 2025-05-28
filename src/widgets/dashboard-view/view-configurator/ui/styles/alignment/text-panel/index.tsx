@@ -13,7 +13,7 @@ interface Props {
 
 export const TextPanelAlignment: FC<Props> = memo(({ selectedItem, onChange }) => {
   return (
-    <RowWrapper sx={f('--fe')}>
+    <RowWrapper sx={{ root: { ...f('--fe') } }}>
       <TextAlignment
         value    = {selectedItem?.styles?.textAlign}
         onChange = {onChange}

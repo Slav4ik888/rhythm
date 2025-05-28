@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { InvertedData } from '../inverted-data';
-import { SelectKod } from '../select-kod';
+import { SelectKodRow } from '../select-kod';
 import { UnchangedBlack } from './unchanged-black';
 import { IsLeft } from './is-left';
 import { ScaleValue } from './scale-value';
@@ -21,7 +21,7 @@ export const ViewItemGrowthIconSettingsConfigurator: FC<Props> = memo(({ selecte
       <InvertedData selectedItem={selectedItem} />
 
       {/* GROWTH ICON SETTINGS */}
-      <SelectKod      selectedItem={selectedItem} />
+      <SelectKodRow   selectedItem={selectedItem} />
       <UnchangedBlack selectedItem={selectedItem} />
       <IsLeft         selectedItem={selectedItem} />
       <ScaleValue     selectedItem={selectedItem} />

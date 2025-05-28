@@ -1,8 +1,9 @@
 import { FC, memo, MouseEvent } from 'react';
 import { ViewItem } from 'entities/dashboard-view';
-import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
+import { RowWrapperTitle } from 'shared/ui/configurators-components';
 import { InputType } from 'shared/ui/containers';
-import { InputByScheme } from '..';
+import { InputByScheme } from '../..';
+import { SxCard } from 'shared/styles';
 
 
 
@@ -14,23 +15,22 @@ interface Props {
   toolTitle    : string
   width?       : string
   clear?       : any
-  sx?          : any
+  sx?          : SxCard
   onChange?    : (e: MouseEvent, v: string | number) => void // Если нужна не стандартная обработка
 }
 
 export const RowInputByScheme: FC<Props> = memo(({ selectedItem, scheme, type, title, toolTitle, width, clear, sx, onChange }) => {
   return (
-    <RowWrapper sx={sx}>
-      <ConfiguratorTextTitle bold title={title} toolTitle={toolTitle} />
-      
+    <RowWrapperTitle title={title} toolTitle={toolTitle} sx={sx}>
       <InputByScheme
         type         = {type}
         scheme       = {scheme}
         width        = {width}
         clear        = {clear}
         selectedItem = {selectedItem}
+        sx           = {sx}
         onChange     = {onChange}
       />
-    </RowWrapper>
+    </RowWrapperTitle>
   )
 });

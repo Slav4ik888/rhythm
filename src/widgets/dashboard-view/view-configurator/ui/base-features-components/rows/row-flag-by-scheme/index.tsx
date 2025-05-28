@@ -1,7 +1,7 @@
 import { ViewItem } from 'entities/dashboard-view';
 import { FC, memo } from 'react';
-import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { FlagByScheme } from '..';
+import { RowWrapperTitle } from 'shared/ui/configurators-components';
+import { FlagByScheme } from '../..';
 
 
 
@@ -15,15 +15,13 @@ interface Props {
 
 export const RowFlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, toolTitle, sx }) => {
   return (
-    <RowWrapper sx={sx}>
-      <ConfiguratorTextTitle bold title={title} toolTitle={toolTitle} />
-      
+    <RowWrapperTitle title={title} toolTitle={toolTitle} sx={sx}>
       <FlagByScheme
         scheme       = {scheme}
         title        = {title}
         toolTitle    = {toolTitle}
         selectedItem = {selectedItem}
       />
-    </RowWrapper>
+    </RowWrapperTitle>
   )
 });

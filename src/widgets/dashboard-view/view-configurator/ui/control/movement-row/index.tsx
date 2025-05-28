@@ -13,7 +13,7 @@ export const MovementRow: FC = memo(() => {
 
   return (
     <SubHeader title='Перемещение'>
-      <RowWrapper sx={{ ...f('-c-fe'), gap: pxToRem(8) }}>
+      <RowWrapper sx={{ root: { ...f('-c-fe'), gap: pxToRem(8) } }}>
         <MoveToAnotherItem />
         <MoveItemUpdownward viewItem={selectedItem} />
         <CopyViewItem type='firstOnly' />

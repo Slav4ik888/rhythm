@@ -3,7 +3,7 @@ import { InvertedData } from '../inverted-data';
 import { SelectChipType } from './select-chip';
 import { ViewItem } from 'entities/dashboard-view';
 import { SetupChipsColorsByType } from './setup-chips-colors-by-type';
-import { SelectKod } from '../select-kod';
+import { SelectKodRow } from '../select-kod';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 
 
@@ -18,7 +18,7 @@ export const ViewItemChipSettingsConfigurator: FC<Props> = memo(({ selectedItem 
     <>
       <SubHeader title='Общие настройки'>
         <InvertedData   selectedItem={selectedItem} />
-        <SelectKod      selectedItem={selectedItem} />
+        <SelectKodRow   selectedItem={selectedItem} />
         <SelectChipType selectedItem={selectedItem} />
       </SubHeader>
 

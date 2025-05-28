@@ -1,6 +1,6 @@
 import { ViewItem } from 'entities/dashboard-view';
 import { FC, memo } from 'react';
-import { RowInputByScheme } from '../../../base-features-components/row-input-by-scheme';
+import { RowInputByScheme } from '../../../base-features-components/rows/row-input-by-scheme';
 
 
 

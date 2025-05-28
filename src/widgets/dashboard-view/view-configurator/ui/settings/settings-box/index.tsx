@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { SelectKod } from '../select-kod';
+import { SelectKodRow } from '../select-kod';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { ViewItem } from 'entities/dashboard-view';
 
@@ -14,7 +14,7 @@ export const ViewItemBoxSettingsConfigurator: FC<Props> = memo(({ selectedItem }
   return (
     <>
       <SubHeader title='Общие настройки'>
-        <SelectKod selectedItem={selectedItem} />
+        <SelectKodRow selectedItem={selectedItem} />
       </SubHeader>
     </>
   )

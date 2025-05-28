@@ -10,7 +10,7 @@ import { f, pxToRem } from 'shared/styles';
 export const SwitchRow: FC = memo(() => {
   return (
     <SubHeader title='Переключение'>
-      <RowWrapper sx={{ ...f('-c-fe'), gap: pxToRem(8) }}>
+      <RowWrapper sx={{ root: { ...f('-c-fe'), gap: pxToRem(8) } }}>
         <SwitchToParentViewItem />
         <SwitchToIsGlobalKod />
       </RowWrapper>

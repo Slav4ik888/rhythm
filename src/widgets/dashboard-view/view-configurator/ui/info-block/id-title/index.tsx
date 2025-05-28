@@ -60,7 +60,7 @@ export const IdTitle: FC<Props> = memo(({ selectedId }) => {
 
 
   return (
-    <RowWrapper sx={sx.root}>
+    <RowWrapper sx={{ root: { ...sx.root } }}>
       <ConfiguratorTextTitle bold title='Id' toolTitle='Item id' />
       <Box sx={sx.box}>
         {selectedId}

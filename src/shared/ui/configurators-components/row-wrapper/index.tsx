@@ -1,28 +1,26 @@
 import { FC, memo, ReactNode } from 'react';
 import { Box } from '@mui/material';
-import { f, pxToRem } from 'shared/styles';
+import { f, SxCard } from 'shared/styles';
 
 
 
-const useStyles = (style?: any) => ({
+const useStyles = (sx?: SxCard) => ({
   root: {
     ...f('-c-sb'),
-    position  : 'relative',
-    // minHeight : pxToRem(46),
-    py        : 0.5,
-    ...style
+    position : 'relative',
+    py       : 0.5,
+    ...sx?.root
   }
 });
 
 
 interface Props {
-  sx?      : any
+  sx?      : SxCard
   children : ReactNode
 }
 
 export const RowWrapper: FC<Props> = memo(({ children, sx: style }) => {
   const sx = useStyles(style);
-
 
   return (
     <Box sx={sx.root}>

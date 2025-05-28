@@ -35,11 +35,11 @@ export const AddRows: FC = memo(() => {
 
   return (
     <SubHeader title='Добавление элементов'>
-      <RowWrapper sx={{ ...f('-c-fe'), flexWrap: 'wrap', gap: pxToRem(8) } }>
+      <RowWrapper sx={{ root: { ...f('-c-fe'), flexWrap: 'wrap', gap: pxToRem(8) } }}>
         <AddViewItemElementBtns onClick={handleAdd} />
       </RowWrapper>
 
-      <RowWrapper sx={{ ...f('-c-fe'), flexWrap: 'wrap', gap: pxToRem(8) } }>
+      <RowWrapper sx={{ root: { ...f('-c-fe'), flexWrap: 'wrap', gap: pxToRem(8) } }}>
         {/* TODO: select chart type: line | bar ... */}
         <AddViewItemIndicatorsBtns onClick={handleAdd} />
       </RowWrapper>

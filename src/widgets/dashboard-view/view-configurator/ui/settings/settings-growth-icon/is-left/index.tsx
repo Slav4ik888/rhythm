@@ -1,6 +1,6 @@
 import { ViewItem } from 'entities/dashboard-view';
 import { FC, memo } from 'react';
-import { RowFlagByScheme } from '../../../base-features-components/row-flag-by-scheme';
+import { RowFlagByScheme } from '../../../base-features-components/rows/row-flag-by-scheme';
 
 
 

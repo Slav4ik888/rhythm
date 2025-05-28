@@ -6,10 +6,83 @@ type Obj = {
 
 /**
  * Set into Obj value in object by scheme
+ * max вложенность не ограничена
+ * Особенности работы:
+ *  - Создание промежуточных структур - если какого-то пути не существует, функция создаст нужные объекты/массивы
+ *  - Безопасная работа с массивами - проверяет что текущий элемент действительно массив и что индекс в допустимых границах
+ *  - Возвращает boolean - true если значение успешно установлено, false если произошла ошибка
+ *  - Поддержка всех случаев:
+ *  - Обычные поля объектов (obj.field)
+ *  - Элементы массивов (obj.array.[0])
+ *  - Комбинации (obj.field.array.[0].subfield)
+ * v.2025-05-28
+ */
+export function setValueByScheme(obj: Obj | undefined, scheme: string, value: any) {
+  if (!obj || !scheme) return false;
+
+  const fields = scheme.split('.');
+  let current = obj;
+
+  for (let i = 0; i < fields.length - 1; i++) {
+    const field = fields[i];
+    
+    if (field.startsWith('[') && field.endsWith(']')) {
+      // Обработка массива
+      const index = parseInt(field.slice(1, -1));
+      if (!Array.isArray(current)) return false;
+      
+      // Разрешаем добавлять новые элементы если индекс равен длине массива
+      if (index < 0 || index > current.length) return false;
+      
+      // Если элемент не существует - создаем объект (для следующего уровня)
+      if (index === current.length) {
+        current.push({});
+      }
+      current = current[index];
+    } else {
+      // Обработка объекта
+      if (current[field] === undefined) {
+        // Создаем новый объект или массив в зависимости от следующего поля
+        const nextField = fields[i + 1];
+        current[field] = nextField.startsWith('[') ? [] : {};
+      }
+      current = current[field];
+    }
+  }
+
+  // Устанавливаем значение в последнее поле
+  const lastField = fields[fields.length - 1];
+  
+  if (lastField.startsWith('[') && lastField.endsWith(']')) {
+    // Установка значения в массив
+    const index = parseInt(lastField.slice(1, -1));
+    if (!Array.isArray(current)) return false;
+    
+    // Разрешаем добавлять новые элементы если индекс равен длине массива
+    if (index < 0 || index > current.length) return false;
+    
+    // Устанавливаем значение
+    if (index === current.length) {
+      current.push(value);
+    } else {
+      current[index] = value;
+    }
+  } else {
+    // Установка значения в объект
+    current[lastField] = value;
+  }
+
+  return true;
+}
+
+
+/**
+ * DEPRECATED 2025-05-28
+ * Set into Obj value in object by scheme
  * max вложенность = 8
  * v.2023-05-15
  */
-export function setValueByScheme(obj: Obj | undefined, scheme: string, value: any) {
+export function setValueBySchemeOld(obj: Obj | undefined, scheme: string, value: any) {
   if (! obj || ! scheme) return undefined;
 
   const

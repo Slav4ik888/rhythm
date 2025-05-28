@@ -4,15 +4,16 @@ interface objStr {
 }
 
 /**
- * v.2024-02-08
+ * v.2025-05-28
  */
 export interface SxCard {
   root?        : objStr
   label?       : objStr // For Label
   children?    : objStr
   content?     : objStr
-  field?       : objStr // For input field
+  input?       : objStr // For input
   bg?          : objStr // For around input field
+  field?       : objStr // For input field
   column?      : objStr
   row?         : objStr
   hiddenLabel? : objStr // For hiddenLabel

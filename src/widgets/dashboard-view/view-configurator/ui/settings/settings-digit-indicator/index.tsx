@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { RowFlagByScheme, RowInputByScheme, RowSelectByField } from '../../base-features-components';
-import { SelectKod } from '../select-kod';
+import { SelectKodRow } from '../select-kod';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { arrayEndingDiffType, arrayEndingType, ViewItem } from 'entities/dashboard-view';
 
@@ -15,7 +15,7 @@ export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ sel
   return (
     <>
       <SubHeader title='Общие настройки'>
-        <SelectKod selectedItem={selectedItem} />
+        <SelectKodRow selectedItem={selectedItem} />
         <RowInputByScheme
           scheme       = 'settings.valueNumber'
           type         = 'number'

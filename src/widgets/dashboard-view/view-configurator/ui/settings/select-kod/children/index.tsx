@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { Box } from '@mui/material';
 import { useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { f, pxToRem } from 'shared/styles';
-import { FlagByScheme } from '../../../base-features-components/flag-by-scheme';
+import { FlagByScheme } from '../../../base-features-components/by-scheme/flag-by-scheme';
 import { GetFromGlobalKod } from '../../../base-features-components/get-from-global-kod';
 import { StatisticPeriodTypeChip } from 'entities/statistic-type';
 import { useDashboardData } from 'entities/dashboard-data';

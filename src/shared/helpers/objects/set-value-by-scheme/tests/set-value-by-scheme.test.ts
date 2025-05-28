@@ -72,6 +72,63 @@ describe('setValueByScheme', () => {
     // @ts-ignore
     expect(CLONE_MOCK.first.second.third.non_fourth.fifth.sixs.sevens.eights).toEqual({ newField: '123 ' });
   });
+
+  // With array & some test from DeepSeek
+  const data = {
+    user: {
+      name: "John",
+      hobbies: [
+        { type: "sport", name: "football" },
+        { type: "music", name: "guitar" }
+      ],
+      friends: []
+    }
+  };
+  
+  test('Изменение простого поля', () => {
+    const CLONE_MOCK = cloneObj(data);
+    setValueByScheme(CLONE_MOCK, 'user.name', 'Mike');
+    expect(CLONE_MOCK.user.name).toEqual('Mike');
+  });
+
+  test('Изменение вложенного объекта в массиве', () => {
+    const CLONE_MOCK = cloneObj(data);
+    setValueByScheme(CLONE_MOCK, 'user.hobbies.[0].name', 'basketball');
+    expect(CLONE_MOCK.user.hobbies[0].name).toEqual('basketball');
+    expect(CLONE_MOCK.user.hobbies[0].type).toEqual('sport');
+    // не тронутый объект не должен быть изменен
+    expect(CLONE_MOCK.user.hobbies[1]).toEqual({ type: "music", name: "guitar" });
+  });
+
+  test('Добавление нового поля', () => {
+    const CLONE_MOCK = cloneObj(data);
+    setValueByScheme(CLONE_MOCK, 'user.age', 30);
+    // @ts-ignore
+    expect(CLONE_MOCK.user.age).toEqual(30);
+  });
+
+  test('Добавление элемента в массив', () => {
+    const CLONE_MOCK = cloneObj(data);
+    setValueByScheme(CLONE_MOCK, 'user.friends.[0]', 'David');
+    expect(CLONE_MOCK.user.friends[0]).toEqual('David');
+  });
+
+  test('Создание новой структуры', () => {
+    const CLONE_MOCK = cloneObj(data);
+    setValueByScheme(CLONE_MOCK, 'user.address.city', 'New York');
+    // @ts-ignore
+    expect(CLONE_MOCK.user.address.city).toEqual('New York');
+  });
+  
+  test('Создание новой структуры с добавление массива в массив', () => {
+    const CLONE_MOCK = cloneObj(data);
+    setValueByScheme(CLONE_MOCK, 'user.hobbies.[2].families.[0]', { city: 'New York', family: ['Sandy', 'Garry'] });
+    // @ts-ignore
+    expect(CLONE_MOCK.user.hobbies[2].families[0].family[1]).toEqual('Garry');
+    setValueByScheme(CLONE_MOCK, 'user.hobbies.[2].families.[0].family.[1]', 'Lizzy');
+    // @ts-ignore
+    expect(CLONE_MOCK.user.hobbies[2].families[0].family[1]).toEqual('Lizzy');
+  });
 });
 
 // npm run test:unit set-value-by-scheme.test.ts

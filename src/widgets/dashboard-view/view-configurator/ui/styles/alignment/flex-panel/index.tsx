@@ -19,7 +19,7 @@ interface Props {
 export const FlexPanelAlignment: FC<Props> = memo(({ selectedItem, onChange }) => {
 
   return (
-    <RowWrapper sx={f('-fs-sb')}>
+    <RowWrapper sx={{ root: { ...f('-fs-sb') }}}>
       <FlexDirection
         value    = {selectedItem?.styles?.flexDirection as FlexDirectionType}
         onChange = {onChange}

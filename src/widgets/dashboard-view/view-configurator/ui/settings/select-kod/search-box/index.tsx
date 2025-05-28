@@ -22,7 +22,6 @@ interface Props {
 /** SearchBox для поиска внутри списка Kods */
 export const SelectKodItemSearchBox: FC<Props> = memo(({ onSearch }) => {
   const sx = useStyles();
-  // const { itemByKod } = useDashboardData({ kod: item?.value });
   console.log('Rendered SearchBox');
   const onChange = (e: any) => {
     console.log(e.target.value);

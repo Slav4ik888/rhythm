@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { ConfiguratorTitle } from 'shared/ui/configurators-components';
 import { ChartSetColorByScheme } from '../set-сolor';
-import { RowFlagByScheme } from '../../../base-features-components/row-flag-by-scheme';
+import { RowFlagByScheme } from '../../../base-features-components/rows/row-flag-by-scheme';
 import { ViewItem } from 'entities/dashboard-view';
 
 
