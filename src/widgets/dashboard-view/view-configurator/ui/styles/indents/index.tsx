@@ -3,6 +3,7 @@ import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-comp
 import { ViewItemStyles, ViewItemStylesField, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { ChangeStyleItemIndents } from './change-style-indents';
 import { setFieldEmpty } from 'shared/helpers/objects';
+import { GapsRow } from './gaps';
 
 
 
@@ -75,6 +76,7 @@ export const Indents: FC<Props> = memo(({ selectedItem }) => {
         selectedItem = {selectedItem}
         onChange     = {handleChange}
       />
+      <GapsRow selectedItem={selectedItem} />
     </SubHeader>
   )
 });

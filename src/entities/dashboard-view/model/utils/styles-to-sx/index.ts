@@ -20,12 +20,18 @@ export const stylesToSx = (style?: ViewItemStyles): any => {
   if (! style) return sx;
 
   const {
+    gap, rowGap, columnGap,
     width, minWidth, maxWidth, height, minHeight, maxHeight,
     borderWidth, borderRadius, fontSize,
     p, px, py, pt, pb, pr, pl,
     m, mx, my, mt, mb, mr, ml,
    } = style;
 
+  // gaps
+  if (is(gap))       sx.gap       = getDimensions(gap);
+  if (is(rowGap))    sx.rowGap    = getDimensions(rowGap);
+  if (is(columnGap)) sx.columnGap = getDimensions(columnGap);
+  
   // width
   if (is(width))    sx.width    = getDimensions(width);
   if (is(minWidth)) sx.minWidth = getDimensions(minWidth);

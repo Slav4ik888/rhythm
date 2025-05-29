@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refact getKod && added updater to bySheme components" && git push -u origin main
+// git add . && git commit -m "refact ItemWrapper && added GapsRow" && git push -u origin main

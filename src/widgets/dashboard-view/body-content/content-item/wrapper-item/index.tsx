@@ -74,7 +74,7 @@ export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
 
     if (editMode) return result
       ? result.value + ' ' + result.title
-      : kod;
+      : kod || '';
     
     else return '';
   } , [item, kods, entities, editMode]);
@@ -85,20 +85,21 @@ export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
   };
 
 
-  return (
+  const component = (<Box
+    id      = {item.id}
+    sx      = {sx.root}
+    onClick = {handleClick}
+  >
+    {
+      editMode && <Box sx={sx.hover} />
+    }
+    {children}
+  </Box>);
+
+  if (item.type === 'box') return component;
+  else return (
     <Tooltip title={toolTitle} enterDelay={0} enterNextDelay={0}>
-      <Box
-        id      = {item.id}
-        sx      = {sx.root}
-        onClick = {handleClick}
-      >
-        {
-          editMode && <Box sx={sx.hover} />
-        }
-        {
-          children
-        }
-      </Box>
+      {component}
     </Tooltip>
   )
 });

@@ -31,6 +31,9 @@ export interface ViewItemStyles {
   alignItems?     : AlignItemsType
   justifyContent? : JustifyContentType
 
+  gap?       : number | string
+  rowGap?    : number | string
+  columnGap? : number | string
 
   // padding - 1 === 8px
   p? : number
