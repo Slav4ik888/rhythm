@@ -1,7 +1,8 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { useDashboardView, PartialViewItem, ViewItem } from 'entities/dashboard-view';
+import { useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { SelectValue } from 'shared/ui/configurators-components/select';
-import { getValueByScheme, setValueByScheme } from 'shared/helpers/objects';
+import { getValueByScheme } from 'shared/helpers/objects';
+import { updater } from '../utils';
 
 
 
@@ -15,7 +16,10 @@ interface Props {
   onSearch?    : (value: string) => void
 }
 
-/** Выбор ByField */
+/** 
+ * Выбор ByField и сохраняет по схеме измененя в selectedItem
+ * в том числе scheme with array
+ */
 export const SelectByField: FC<Props> = memo(({ selectedItem, scheme, array, disabled, component, searchBox, onSearch }) => {
   const { updateViewItem } = useDashboardView();
   const [selectedValue, setSelectedValue] = useState(getValueByScheme(selectedItem, scheme) || '');
@@ -25,14 +29,7 @@ export const SelectByField: FC<Props> = memo(({ selectedItem, scheme, array, dis
   }, [selectedItem, scheme, setSelectedValue]);
 
   const handleUpdate = useCallback((v: string | number) => {
-    if (! selectedItem) return;
-
-    const result: PartialViewItem = {
-      id: selectedItem.id
-    };
-
-    setValueByScheme(result, scheme, v);
-    updateViewItem(result);
+    updater(v, selectedItem, scheme, updateViewItem);
   }, [selectedItem, scheme, updateViewItem]);
 
 

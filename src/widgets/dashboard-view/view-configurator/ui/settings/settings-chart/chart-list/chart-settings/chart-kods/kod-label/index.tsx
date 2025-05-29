@@ -18,7 +18,7 @@ export const ChartKodLabel: FC<Props> = memo(({ index, selectedItem }) => {
   const kod = useMemo(() => getKod(entities, selectedItem, selectedItem?.settings?.charts?.[index])
     , [entities, index, selectedItem]);
   
-  const title = useMemo(() => startEntities[kod]?.title || '', [selectedItem, startEntities]);
+  const title = useMemo(() => startEntities[kod]?.title || '', [kod, selectedItem, startEntities]);
 
 
   return (

@@ -1,11 +1,10 @@
 import { FC, memo } from 'react';
 import { Box, Typography } from '@mui/material';
-import { useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { ViewItem } from 'entities/dashboard-view';
 import { f, pxToRem } from 'shared/styles';
 import { FlagByScheme } from '../../../base-features-components/by-scheme/flag-by-scheme';
 import { GetFromGlobalKod } from '../../../base-features-components/get-from-global-kod';
 import { ChipBySelectedItem } from 'entities/statistic-type';
-import { useDashboardData } from 'entities/dashboard-data';
 import { Tooltip } from 'shared/ui/tooltip';
 import { FlagFromGlobalKod } from './flag-from-global-kod';
 

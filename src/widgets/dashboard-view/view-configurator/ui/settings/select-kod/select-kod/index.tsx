@@ -8,11 +8,12 @@ import { SelectKodItemSearchBox } from '../search-box';
 
 
 interface Props {
+  scheme       : string
   selectedItem : ViewItem | undefined
 }
 
-/**  */
-export const SelectKod: FC<Props> = memo(({ selectedItem }) => {
+/** Универсальный Select для выбора Кодов в обычных ViewItem и Charts */
+export const SelectKod: FC<Props> = memo(({ selectedItem, scheme }) => {
   const { kods } = useDashboardData();
   const [searcheďKods, setSearchedKods] = useState(kods);
 
@@ -28,7 +29,7 @@ export const SelectKod: FC<Props> = memo(({ selectedItem }) => {
 
   return (
     <SelectByField
-      scheme       = 'settings.kod'
+      scheme       = {scheme}
       array        = {searcheďKods}
       component    = {SelectKodItem}
       selectedItem = {selectedItem}

@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { SelectKod } from './select-kod';
+import { ChartSelectKod } from './select-kod';
 import { ChartKodLabel } from './kod-label';
 import { ViewItem } from 'entities/dashboard-view';
 
@@ -14,8 +14,8 @@ interface Props {
 export const ChartKods: FC<Props> = memo(({ index, selectedItem }) => {
   return (
     <>
-      <SelectKod     index={index} selectedItem={selectedItem} />
-      <ChartKodLabel index={index} selectedItem={selectedItem} />
+      <ChartSelectKod index={index} selectedItem={selectedItem} />
+      <ChartKodLabel  index={index} selectedItem={selectedItem} />
     </>
   )
 });

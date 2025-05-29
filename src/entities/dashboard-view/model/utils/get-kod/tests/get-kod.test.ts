@@ -97,6 +97,46 @@ describe('getKod', () => {
       expect(getKod(entities, entities['2'], chart)).toBe('global-kod');
     });
 
+    it('should return item kod when fromGlobalKod is true but global kod is not set', () => {
+      const entities: DashboardViewEntities = {
+        '1': createItem('1', 'box', { isGlobalKod: true, kod: '' }),
+        '2': createItem('2', 'chart', {
+          charts: [{
+            fromGlobalKod: false,
+            kod: 'item-kod-1'
+          } as unknown as ViewItemChart,
+          {
+            fromGlobalKod: true,
+            kod: 'item-kod-2'
+          }
+          ]
+        }, '1'),
+      };
+      const chart = createChart('item-kod-2', true);
+      
+      expect(getKod(entities, entities['2'], chart)).toBe('item-kod-2');
+    });
+
+    it('should return item kod when fromGlobalKod is false but global kod is set', () => {
+      const entities: DashboardViewEntities = {
+        '1': createItem('1', 'box', { isGlobalKod: true, kod: 'global-kod' }),
+        '2': createItem('2', 'chart', {
+          charts: [{
+            fromGlobalKod: true,
+            kod: 'item-kod-1'
+          } as unknown as ViewItemChart,
+          {
+            fromGlobalKod: false,
+            kod: 'item-kod-2'
+          }
+          ]
+        }, '1'),
+      };
+      const chart = createChart('item-kod-2', false);
+      
+      expect(getKod(entities, entities['2'], chart)).toBe('item-kod-2');
+    });
+
     it('should return empty string when fromGlobalKod is true but no global parent exists', () => {
       const entities: DashboardViewEntities = {
         '1': createItem('1', 'box', { kod: 'not-global' }),

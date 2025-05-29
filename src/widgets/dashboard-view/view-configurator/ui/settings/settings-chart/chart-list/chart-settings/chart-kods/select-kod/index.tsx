@@ -1,15 +1,14 @@
-import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { getKod, useDashboardView, ViewItem } from 'entities/dashboard-view';
-import { SelectValue } from 'shared/ui/configurators-components/select';
 import { RowWrapperTitle } from 'shared/ui/configurators-components';
 import { useDashboardData } from 'entities/dashboard-data';
-import { SelectKodItem } from '../../../../../select-kod/select-kod-item';
 import { StatisticPeriodTypeChip } from 'entities/statistic-type';
 import { Box } from '@mui/material';
 import { f } from 'shared/styles';
 import { Tooltip } from 'shared/ui/tooltip';
 import { GetFromGlobalKod } from '../../../../../../base-features-components';
 import { FlagFromGlobalKod } from '../../../../../../settings/select-kod';
+import { SelectKod } from '../../../../../select-kod';
 
 
 
@@ -19,24 +18,12 @@ interface Props {
 }
 
 /** Выбор кода */
-export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
-  const { kods, startEntities } = useDashboardData();
-  const { entities, changeOneChartsItem } = useDashboardView();
+export const ChartSelectKod: FC<Props> = memo(({ index, selectedItem }) => {
+  const { startEntities } = useDashboardData();
+  const { entities } = useDashboardView();
 
-  const kod = useMemo(() => getKod(entities, selectedItem, selectedItem?.settings?.charts?.[index])
-    , [entities, index, selectedItem]);
+  const kod = useMemo(() => getKod(entities, selectedItem, selectedItem?.settings?.charts?.[index]), [entities, index, selectedItem]);
   
-  const [selectedValue, setSelectedValue] = useState<string>('');
-
-  useEffect(() => {
-    setSelectedValue(kod);
-  }, [kod]);
-
-  const handleSelectedValue = useCallback((value: string) => {
-    setSelectedValue(value);
-    changeOneChartsItem({ field: 'kod', value, index });
-  }, [selectedItem, changeOneChartsItem]);
-
   const disabled = selectedItem?.settings?.charts?.[index]?.fromGlobalKod;
 
   return (
@@ -46,9 +33,7 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
           scheme       = {`settings.charts.[${index}].fromGlobalKod`}
           selectedItem = {selectedItem} 
         />
-
         <StatisticPeriodTypeChip type={startEntities[kod]?.periodType} />
-
         {
           disabled
             ?
@@ -56,11 +41,9 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
               <GetFromGlobalKod />
             </Tooltip>
             :
-            <SelectValue
-              selectedValue = {selectedValue}
-              array         = {kods}
-              component     = {SelectKodItem}
-              onSelect      = {handleSelectedValue}
+            <SelectKod
+              scheme       = {`settings.charts.[${index}].kod`}
+              selectedItem = {selectedItem}
             />
         }
       </Box>

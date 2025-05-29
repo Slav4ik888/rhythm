@@ -1,11 +1,12 @@
 import { FC, memo, useCallback, MouseEvent, useMemo } from 'react';
 import { Input, InputType } from 'shared/ui/containers';
-import { PartialViewItem, useDashboardView, ViewItem } from 'entities/dashboard-view';
-import { getValueByScheme, setValueByScheme } from 'shared/helpers/objects';
+import { useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { getValueByScheme } from 'shared/helpers/objects';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useTheme } from 'app/providers/theme';
 import { Box } from '@mui/material';
 import { SxInputByScheme, useStyles } from './styles';
+import { updater } from '../utils';
 
 
 
@@ -27,7 +28,11 @@ interface Props {
 }
 
 
-/** Input update ViewItem */
+/** 
+ * Input update ViewItem
+ * По схеме сохраняет изменени в selectedItem
+ * в том числе scheme with array
+ */
 export const InputByScheme: FC<Props> = memo(({ selectedItem, scheme, width, sx: style, helperText, toolTitle, clear, disabled,
   type = 'text',
   transform, onClear, onBlur, onChange, onSubmit
@@ -44,14 +49,7 @@ export const InputByScheme: FC<Props> = memo(({ selectedItem, scheme, width, sx:
 
 
   const handleUpdate = useCallback((v: string | number) => {
-    if (! selectedItem) return '';
-
-    const result: PartialViewItem = {
-      id: selectedItem.id
-    };
-
-    setValueByScheme(result, scheme, v);
-    updateViewItem(result);
+    updater(v, selectedItem, scheme, updateViewItem);
   }, [selectedItem, scheme, updateViewItem]);
 
 

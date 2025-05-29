@@ -17,22 +17,16 @@ export const SelectKodRow: FC<Props> = memo(({ selectedItem }) => {
   const disabled = Boolean(selectedItem?.settings?.fromGlobalKod);
 
   return (
-    // <RowSelectByField
-    //   scheme       = 'settings.kod'
-    //   disabled     = {disabled}
-    //   array        = {searcheďKods}
-    //   component    = {SelectKodItem}
-    //   selectedItem = {selectedItem}
-    //   searchBox    = {SelectKodItemSearchBox}
-    //   onSearch     = {handleSearch}
-    // >
     <RowWrapperTitle title='Код' toolTitle='Укажите код статистики для элемента'>
       <Box sx={f('-c')}>
         <RowSelectKodChildren
           selectedItem = {selectedItem}
           disabled     = {disabled}
         />
-        <SelectKod selectedItem={selectedItem} />
+        <SelectKod
+          scheme       = 'settings.kod'
+          selectedItem = {selectedItem}
+        />
       </Box>
     </RowWrapperTitle>
   )

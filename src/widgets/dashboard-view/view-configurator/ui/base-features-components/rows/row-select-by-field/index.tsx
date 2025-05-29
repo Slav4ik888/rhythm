@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { ViewItem } from 'entities/dashboard-view';
 import { f } from 'shared/styles';
 import { RowWrapperTitle } from 'shared/ui/configurators-components';
-import { SelectByField } from '../../select-by-field';
+import { SelectByField } from '../../by-scheme/select-by-field';
 
 
 

@@ -1,9 +1,10 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { PartialViewItem, useDashboardView, ViewItem } from 'entities/dashboard-view';
-import { cloneObj, getValueByScheme, setValueByScheme } from 'shared/helpers/objects';
+import { useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { getValueByScheme } from 'shared/helpers/objects';
 import { Tooltip } from 'shared/ui/tooltip';
 import { Checkbox } from '@mui/material';
 import { SxCard } from 'shared/styles';
+import { updater } from '../utils';
 
 
 
@@ -29,20 +30,7 @@ export const FlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, tool
 
 
   const handleToggle = useCallback(() => {
-    if (! selectedItem) return;
-
-    let result: PartialViewItem = {
-      id: selectedItem.id
-    };
-
-    const resultValue = ! Boolean(getValueByScheme(selectedItem, scheme));
-
-    if (scheme.includes('[')) { // scheme = 'settings.charts.[index].fromGlobalKod'
-      result = cloneObj(selectedItem);
-    }
-
-    setValueByScheme(result, scheme, resultValue);
-    updateViewItem(result);
+    updater(! Boolean(getValueByScheme(selectedItem, scheme)), selectedItem, scheme, updateViewItem);
   }, [selectedItem, updateViewItem]);
 
 
