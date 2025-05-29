@@ -1,7 +1,6 @@
 import { FC, memo } from 'react';
 import { Chip } from '@mui/material';
 import { ChipType, useDashboardView } from 'entities/dashboard-view';
-import { isNotUndefined, isUndefined } from 'shared/lib/validators';
 import { getConditionKod } from 'entities/condition-type';
 
 
@@ -14,20 +13,15 @@ const useStyles = () => ({
 });
 
 interface Props {
-  showItemKod? : boolean // Показать код Item даже если isGlobal отсутствует
-  index?       : number // For charts
-  type?        : ChipType
+  type?: ChipType // Если тип condition, а в kodе нет суффикса'-C', то добавляем его для всех других типов, просто возвращаем код как есть
 }
 
 /** Код в зависимости используется ли isGlobalKod или нет */
-export const GetFromGlobalKod: FC<Props> = memo(({ index, showItemKod, type }) => {
-  const { selectedItem, fromGlobalKod: kod } = useDashboardView();
+export const GetFromGlobalKod: FC<Props> = memo(({ type }) => {
   const sx = useStyles();
+  const { fromGlobalKod: kod } = useDashboardView();
 
-  if (! kod ||
-    (isUndefined(index) && ! selectedItem?.settings?.fromGlobalKod && ! showItemKod) || // Not chart
-    (isNotUndefined(index) && ! selectedItem?.settings?.charts?.[index as number]?.fromGlobalKod && ! showItemKod) // Chart
-  ) return null;
+  if (! kod) return null;
 
   return (
     <Chip

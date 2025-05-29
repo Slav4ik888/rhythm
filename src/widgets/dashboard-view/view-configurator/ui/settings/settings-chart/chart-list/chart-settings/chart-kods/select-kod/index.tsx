@@ -5,11 +5,11 @@ import { RowWrapperTitle } from 'shared/ui/configurators-components';
 import { useDashboardData } from 'entities/dashboard-data';
 import { SelectKodItem } from '../../../../../select-kod/select-kod-item';
 import { StatisticPeriodTypeChip } from 'entities/statistic-type';
-import { Box, Checkbox } from '@mui/material';
+import { Box } from '@mui/material';
 import { f } from 'shared/styles';
 import { Tooltip } from 'shared/ui/tooltip';
-import { FlagByScheme, GetFromGlobalKod } from '../../../../../../base-features-components';
-import { useCompany } from 'entities/company';
+import { GetFromGlobalKod } from '../../../../../../base-features-components';
+import { FlagFromGlobalKod } from '../../../../../../settings/select-kod';
 
 
 
@@ -22,21 +22,6 @@ interface Props {
 export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
   const { kods, startEntities } = useDashboardData();
   const { entities, changeOneChartsItem } = useDashboardView();
-
-  // const [checked, setChecked] = useState(() => Boolean(selectedItem?.settings?.charts?.[index]?.fromGlobalKod));
-
-  // useEffect(() => {
-  //   setChecked(Boolean(selectedItem?.settings?.charts?.[index]?.fromGlobalKod));
-  // }, [selectedItem]);
-
-  // const handleToggle = useCallback(() => {
-  //   changeOneChartsItem({
-  //     field : 'fromGlobalKod',
-  //     value : ! Boolean(selectedItem?.settings?.charts?.[index]?.fromGlobalKod),
-  //     index
-  //   });
-  // }, [selectedItem, changeOneChartsItem]);
-
 
   const kod = useMemo(() => getKod(entities, selectedItem, selectedItem?.settings?.charts?.[index])
     , [entities, index, selectedItem]);
@@ -57,21 +42,10 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
   return (
     <RowWrapperTitle title='Код' toolTitle='Укажите код статистики для графика'>
       <Box sx={{ ...f('-c-c'), gap: 1 }}>
-        fromGlobalKod
-        <FlagByScheme
+        <FlagFromGlobalKod
           scheme       = {`settings.charts.[${index}].fromGlobalKod`}
-          title        = 'fromGlobalKod'
-          toolTitle    = 'Если true, то kod будет автоматически подтягиваться от ближайшего parent у которых стоит галка (isGlobalKod)'
           selectedItem = {selectedItem} 
         />
-        {/* <Tooltip title = 'Если true, то kod будет автоматически подтягиваться от ближайшего parent у которых стоит галка (isGlobalKod)'>
-          <Checkbox
-            size       = 'small'
-            checked    = {checked}
-            inputProps = {{ 'aria-label': 'fromGlobalKod' }}
-            onChange   = {handleToggle}
-          />
-        </Tooltip> */}
 
         <StatisticPeriodTypeChip type={startEntities[kod]?.periodType} />
 
@@ -79,7 +53,7 @@ export const SelectKod: FC<Props> = memo(({ index, selectedItem }) => {
           disabled
             ?
             <Tooltip title='Чтобы выбрать другой код, снимите галку с "fromGlobalKod".'>
-              <GetFromGlobalKod index={index} />
+              <GetFromGlobalKod />
             </Tooltip>
             :
             <SelectValue

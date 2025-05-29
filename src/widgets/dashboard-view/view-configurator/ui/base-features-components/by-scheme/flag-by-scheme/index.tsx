@@ -17,6 +17,7 @@ interface Props {
 
 /**
  * По схеме сохраняет изменени flags в selectedItem
+ * в том числе scheme with array
  */
 export const FlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, toolTitle, sx }) => {
   const { updateViewItem } = useDashboardView();

@@ -35,8 +35,11 @@ interface Props {
 }
 
 
-/** Chip для типа статистики: День | Нед | Мес | */
+/**
+ * Chip для типа статистики: День | Нед | Мес |
+ */
 export const StatisticPeriodTypeChip: FC<Props> = memo(({ type = '' as StatisticPeriodType, sx: styles }) => {
+  // TODO: вначале брать цвета из customSettings from useCompany()
   const sx = useStyle(useTheme(), type, styles);
   const { label, description } = STATISTIC_PERIOD_TYPE[type] || {};
 

@@ -39,26 +39,22 @@ describe('getKod', () => {
   describe('for non-chart items', () => {
     it('should return item kod when fromGlobalKod is false/undefined', () => {
       const entities: DashboardViewEntities = {};
-    // @ts-ignore
-      const item = createItem('1', 'widget', { kod: 'local-kod' });
+      const item = createItem('1', 'box', { kod: 'local-kod' });
       
       expect(getKod(entities, item)).toBe('local-kod');
     });
 
     it('should return empty string when item has no kod and fromGlobalKod is false', () => {
       const entities: DashboardViewEntities = {};
-      // @ts-ignore
-      const item = createItem('1', 'widget', {});
+      const item = createItem('1', 'box', {});
       
       expect(getKod(entities, item)).toBe('');
     });
 
     it('should return global kod when fromGlobalKod is true and global parent exists', () => {
       const entities: DashboardViewEntities = {
-        // @ts-ignore
-        '1': createItem('1', 'container', { isGlobalKod: true, kod: 'global-kod' }),
-        // @ts-ignore
-        '2': createItem('2', 'widget', { fromGlobalKod: true }, '1'),
+        '1': createItem('1', 'box', { isGlobalKod: true, kod: 'global-kod' }),
+        '2': createItem('2', 'chip', { fromGlobalKod: true }, '1'),
       };
       
       expect(getKod(entities, entities['2'])).toBe('global-kod');
@@ -66,10 +62,8 @@ describe('getKod', () => {
 
     it('should return empty string when fromGlobalKod is true but no global parent exists', () => {
       const entities: DashboardViewEntities = {
-        // @ts-ignore
-        '1': createItem('1', 'container', { kod: 'not-global' }),
-        // @ts-ignore
-        '2': createItem('2', 'widget', { fromGlobalKod: true }, '1'),
+        '1': createItem('1', 'box', { kod: 'not-global' }),
+        '2': createItem('2', 'chip', { fromGlobalKod: true }, '1'),
       };
       
       expect(getKod(entities, entities['2'])).toBe('');
@@ -105,8 +99,7 @@ describe('getKod', () => {
 
     it('should return empty string when fromGlobalKod is true but no global parent exists', () => {
       const entities: DashboardViewEntities = {
-        // @ts-ignore
-        '1': createItem('1', 'container', { kod: 'not-global' }),
+        '1': createItem('1', 'box', { kod: 'not-global' }),
         '2': createItem('2', 'chart', {}, '1'),
       };
       const chart = createChart(undefined, true);
@@ -141,13 +134,20 @@ describe('getKod', () => {
 
     it('should handle circular references without infinite loop', () => {
       const entities: DashboardViewEntities = {
-        // @ts-ignore
-        '1': createItem('1', 'widget', { fromGlobalKod: true }, '2'),
-        // @ts-ignore
-        '2': createItem('2', 'container', { isGlobalKod: true, kod: 'circular-global' }, '1'),
+        '1': createItem('1', 'box', { fromGlobalKod: true }, '2'),
+        '2': createItem('2', 'chart', { isGlobalKod: true, kod: 'circular-global' }, '1'),
       };
       
       expect(getKod(entities, entities['1'])).toBe('circular-global');
+    });
+
+    it('should return the kod of the chart[0]', () => {
+      const entities: DashboardViewEntities = {
+        '1': createItem('1', 'box', { isGlobalKod: true }, '500'),
+        '2': createItem('2', 'chart', { charts: [{ fromGlobalKod: false, kod: '100500' }] }, '1'),
+      };
+      
+      expect(getKod(entities, entities['2'])).toBe('100500');
     });
   });
 });

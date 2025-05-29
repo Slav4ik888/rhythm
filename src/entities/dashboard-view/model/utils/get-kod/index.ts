@@ -29,7 +29,7 @@ export const getKod = (
       // Если Kod должен браться fromGlobalKod, то проверяем есть ли он in parentGlobalItem
       if (globalItem?.settings?.isGlobalKod && globalItem?.settings?.kod) return globalItem.settings.kod
     }
-    // Возвращаем Kod текущего chart
-    return chart?.kod || '';
+    // Возвращаем Kod текущего chart или если не передали то из первого графика
+    return chart?.kod || item?.settings?.charts?.[0]?.kod || '';
   }
 }

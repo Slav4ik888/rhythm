@@ -1,12 +1,13 @@
 import { FC, memo } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { f, pxToRem } from 'shared/styles';
 import { FlagByScheme } from '../../../base-features-components/by-scheme/flag-by-scheme';
 import { GetFromGlobalKod } from '../../../base-features-components/get-from-global-kod';
-import { StatisticPeriodTypeChip } from 'entities/statistic-type';
+import { ChipBySelectedItem } from 'entities/statistic-type';
 import { useDashboardData } from 'entities/dashboard-data';
 import { Tooltip } from 'shared/ui/tooltip';
+import { FlagFromGlobalKod } from './flag-from-global-kod';
 
 
 
@@ -17,14 +18,12 @@ interface Props {
 
 /** Вставка для RowSelectByField */
 export const RowSelectKodChildren: FC<Props> = memo(({ selectedItem, disabled }) => {
-  const { startEntities } = useDashboardData();
-  const { fromGlobalKod: kod } = useDashboardView();
 
   return (
     <>
       {
         selectedItem?.type === 'box' && <>
-          isGlobalKod
+          <Typography sx={{ fontSize: pxToRem(12) }}>isGlobalKod</Typography>
           <FlagByScheme
             scheme       = 'settings.isGlobalKod'
             title        = 'isGlobalKod'
@@ -38,17 +37,11 @@ export const RowSelectKodChildren: FC<Props> = memo(({ selectedItem, disabled })
         ( selectedItem?.type === 'chip' ||
           selectedItem?.type === 'digitIndicator' ||
           selectedItem?.type === 'growthIcon') && (<Box sx={{ ...f('-c'), gap: 2, my: 2 }}>
-          fromGlobalKod
-          <FlagByScheme
+          <FlagFromGlobalKod
             scheme       = 'settings.fromGlobalKod'
-            title        = 'fromGlobalKod'
-            toolTitle    = 'Если true, то kod будет автоматически подтягиваться от ближайшего parent у которых стоит галка (isGlobalKod)'
             selectedItem = {selectedItem} 
           />
-          <StatisticPeriodTypeChip
-            type = {startEntities[kod]?.periodType || ''}
-            sx   = {{ root: { width: pxToRem(70), maxWidth: pxToRem(70) } }}
-          />
+          <ChipBySelectedItem />
           {
             disabled && <Tooltip title={disabled ? 'Чтобы выбрать другой код, снимите галку с "fromGlobalKod".' : ''}>
               <GetFromGlobalKod type={selectedItem?.settings?.chipType} />
