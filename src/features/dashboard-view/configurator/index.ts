@@ -9,3 +9,4 @@ export {
   PanelAddViewItemBtns, addNewViewItem, AddNewViewItem, AddViewItemElementBtns, AddViewItemIndicatorsBtns
 } from './add-new-item'
 export { AddNewChart, ControlChartBar } from './charts'
+export { CopyStylesViewItemBtn, CopyStylesItem, copyStylesViewItem } from './styles/copy-styles'

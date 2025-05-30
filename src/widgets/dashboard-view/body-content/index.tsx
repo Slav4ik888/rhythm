@@ -16,7 +16,7 @@ export const DashboardBodyContent = memo(() => {
   const { companyId, changedCompany, serviceUpdateCompany } = useCompany();
   const {
     loading, editMode, newSelectedId, changedViewItem, selectedId, selectedItem, activatedMovementId,
-    parentsViewItems, viewItems, entities, activatedCopied, setNewSelectedId,
+    parentsViewItems, viewItems, entities, activatedCopied, setNewSelectedId, serviceCopyStyles,
     setDashboardView, setSelectedId, updateViewItem, serviceUpdateViewItem, serviceCreateGroupViewItems
   } = useDashboardView();
 
@@ -39,7 +39,7 @@ export const DashboardBodyContent = memo(() => {
     // НЕ активируя selectedId
     if (activatedMovementId) {
       if (selectedId === id) return // Нажали на этот же элемент
-      if (activatedMovementId === selectedItem.parentId) return // Нажали на родительский элемент
+      if (activatedMovementId === selectedItem.parentId) return // Нажали на родительский элемент (по сути не оставляем в том же месте)
       if (entities[id]?.type !== 'box') return // Перемещать можно только в Box
 
       // У activatedMovementId изменяем parentId на выбранный id
@@ -51,9 +51,14 @@ export const DashboardBodyContent = memo(() => {
       serviceUpdateViewItem({ companyId, viewItem });
     }
 
+    else if (activatedCopied?.type === 'copyStyles') {
+      if (selectedId === id) return // Нажали на этот же элемент
+      serviceCopyStyles({ companyId, viewItem: { id, styles: { ...selectedItem.styles } } });
+    }
+
     // Если активирован выбранный элемент для КОПИРОВАНИЯ то его вставляем в выбранный элемент
     // НЕ активируя selectedId
-    else if (activatedCopied) {
+    else if (activatedCopied?.type === 'copyItemAll' || activatedCopied?.type === 'copyItemFirstOnly') {
       if (selectedId === id) return // Нажали на этот же элемент
       if (entities[id]?.type !== 'box' && id !== NO_PARENT_ID) return // Перемещать можно только в Box или корневой элемент
       

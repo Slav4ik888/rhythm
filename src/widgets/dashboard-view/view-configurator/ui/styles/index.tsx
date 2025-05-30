@@ -6,6 +6,7 @@ import { Borders } from './borders';
 import { Background } from './background';
 import { Alignment } from './alignment';
 import { CardLabel } from './label';
+import { StyleControl } from './style-control';
 
 
 
@@ -28,6 +29,7 @@ export const ViewItemStylesConfigurator: FC = memo(() => {
       <Dimensions selectedItem={selectedItem} onChange={handleChange} />
       <Indents    selectedItem={selectedItem} />
       <Borders    selectedItem={selectedItem} onChange={handleChange} />
+      <StyleControl />
     </>
   )
 });

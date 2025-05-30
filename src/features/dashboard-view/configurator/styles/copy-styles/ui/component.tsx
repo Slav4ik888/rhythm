@@ -5,7 +5,6 @@ import { MDButton } from 'shared/ui/mui-design-components';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { pxToRem } from 'shared/styles';
 import CopyIcon from '@mui/icons-material/ContentCopy';
-import { ActivatedCopiedType } from 'entities/dashboard-view';
 
 
 
@@ -38,26 +37,24 @@ const useStyles = (theme: CustomTheme) => ({
 
 
 interface Props {
-  type        : ActivatedCopiedType
   selectedId  : string
   activatedId : string | undefined // Id of the activated item, нужен, чтобы вывести подсказку что сделать с выбранным элементом
   onToggle    : () => void
 }
 
-export const CopyViewItemComponent: FC<Props> = memo(({ selectedId, type, activatedId, onToggle}) => {
+export const CopyStylesViewItemComponent: FC<Props> = memo(({ selectedId, activatedId, onToggle}) => {
   const sx = useStyles(useTheme());
-  const isAll = type === 'copyItemAll';
 
   return (
     <Box sx={sx.root}>
       {
         selectedId && selectedId === activatedId
           ? <Box sx={sx.helperText}>
-            Кликните на тот элемент, в который хотите его поместить скопированный. Для отмены - повторно нажмите на кнопку копирования.
+            Кликните на тот элемент, в который хотите поместить скопированный стиль. Для отмены - повторно нажмите на кнопку копирования.
           </Box>
           : null
       }
-      <Tooltip title={`Копировать этот элемент в другой (${isAll ? 'со всеми вложенными элементами' : 'без вложений'})`}>
+      <Tooltip title='Копировать стиль этого элемента'>
         <MDButton
           variant   = 'outlined'
           color     = 'dark'
@@ -65,7 +62,7 @@ export const CopyViewItemComponent: FC<Props> = memo(({ selectedId, type, activa
         >
           <CopyIcon sx={sx.icon} />
           <Box sx={sx.prefix}>
-            {isAll ? 'All' : '1'}
+            Styles
           </Box>
         </MDButton>
       </Tooltip>

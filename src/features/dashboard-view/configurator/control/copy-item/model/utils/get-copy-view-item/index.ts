@@ -19,7 +19,7 @@ export const getCopyViewItem = (
   const copyingItem = viewItems?.find(it => it.id === copiedItem?.id) || {} as ViewItem;
 
   // Coping first item or all nested items
-  const isAll = copiedItem?.type === 'all';
+  const isAll = copiedItem?.type === 'copyItemAll';
   const copyNestedItems = cloneObj(isAll ? getNestedViewItems(viewItems, copiedItem?.id) : [copyingItem]);
   
   // Create new ids & set its as parentId for all nested items

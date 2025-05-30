@@ -16,8 +16,8 @@ export const MovementRow: FC = memo(() => {
       <RowWrapper sx={{ root: { ...f('-c-fe'), gap: pxToRem(8) } }}>
         <MoveToAnotherItem />
         <MoveItemUpdownward viewItem={selectedItem} />
-        <CopyViewItem type='firstOnly' />
-        <CopyViewItem type='all' />
+        <CopyViewItem type='copyItemFirstOnly' />
+        <CopyViewItem type='copyItemAll' />
       </RowWrapper>
     </SubHeader>
   )

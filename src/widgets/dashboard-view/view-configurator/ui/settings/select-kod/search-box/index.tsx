@@ -1,7 +1,6 @@
 import { FC, memo } from 'react';
 import { Box } from '@mui/material';
 import { f } from 'shared/styles';
-import { useDashboardData } from 'entities/dashboard-data';
 import { Input } from 'shared/ui/containers';
 
 
@@ -22,11 +21,7 @@ interface Props {
 /** SearchBox для поиска внутри списка Kods */
 export const SelectKodItemSearchBox: FC<Props> = memo(({ onSearch }) => {
   const sx = useStyles();
-  console.log('Rendered SearchBox');
-  const onChange = (e: any) => {
-    console.log(e.target.value);
-    onSearch(e.target.value);
-  };
+  const onChange = (e: any) => onSearch(e.target.value);
 
   return (
     <Box sx={sx.root}>

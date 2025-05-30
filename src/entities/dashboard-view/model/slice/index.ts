@@ -7,10 +7,10 @@ import { deleteViewItem, DeleteViewItem, AddNewViewItem, addNewViewItem, UpdateV
 import { SetDashboardView, ChangeSelectedStyle, ChangeOneSettingsField, ChangeOneDatasetsItem, ChangeOneChartsItem, SetEditMode } from './types';
 import { addEntities } from 'entities/base';
 import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem } from '../types';
-// import { NO_PARENT_ID } from '../consts';
 import { cloneObj, updateObject } from 'shared/helpers/objects';
 import { updateChartsItem } from '../utils';
 import { ChartConfigDatasets } from 'entities/charts';
+import { CopyStylesItem, copyStylesViewItem } from 'features/dashboard-view/configurator';
 
 
 
@@ -89,11 +89,6 @@ export const slice = createSlice({
     highlightItem:  (state, { payload }: PayloadAction<boolean>) => {
       state.light = payload;
     },
-
-    /** Обновление изменившихся полей, при сохранении через UnsavedChanges */
-    // updateNewStoredViewItem: (state, { payload }: PayloadAction<PartialViewItem>) => {
-    //   state.newStoredViewItem = updateObject(state.newStoredViewItem, payload);
-    // },
     
     // Перемещение выбранного View-item в другой
     setActiveMovementId: (state) => {
@@ -226,12 +221,40 @@ export const slice = createSlice({
         LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
       })
       .addCase(updateViewItem.rejected, (state, { payload }) => {
-        console.log("🚀 ~ .addCase ~ payload:", payload)
         state.newStoredViewItem = undefined; // Раз обновление завершилось с ошибкой, то нельзя переключаться на новый элемент
         state.errors  = getError(payload);
         state.loading = false;
       }),
 
+    // COPY-STYLES - стили activatedCopied?.id копируются поверх стилей выбранного элемента
+    builder
+      .addCase(copyStylesViewItem.pending, (state) => {
+        state.loading = true;
+        state.errors  = {};
+      })
+      .addCase(copyStylesViewItem.fulfilled, (state, { payload }: PayloadAction<CopyStylesItem>) => {
+        const { viewItem, companyId } = payload;
+
+        if (state.activatedCopied?.id) {
+          state.entities[viewItem.id] = {
+            ...state.entities[viewItem.id],
+            styles: { ...state.entities[state.activatedCopied.id].styles }
+          }
+        }
+        state.newSelectedId       = viewItem.id;
+        state.activatedMovementId = '';
+        state.activatedCopied     = undefined;
+        state.loading             = false;
+        state.errors              = {};
+
+        LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
+      })
+      .addCase(copyStylesViewItem.rejected, (state, { payload }) => {
+        state.newStoredViewItem = undefined; // Раз обновление завершилось с ошибкой, то нельзя переключаться на новый элемент
+        state.errors  = getError(payload);
+        state.loading = false;
+      }),
+       
     // DELETE-VIEW
     builder
       .addCase(deleteViewItem.pending, (state) => {

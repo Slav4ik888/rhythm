@@ -3,6 +3,6 @@ export {
   MoveToAnotherItem, UpdateViewItem, updateViewItem, MoveItemUpdownward,
   CopyViewItem, getCopyViewItem, CreateGroupViewItems, createGroupViewItems,
   DeleteItemContainer, deleteViewItem, DeleteViewItem, SwitchToParentViewItem, AddNewChart,
-  ControlChartBar, SwitchToIsGlobalKod
+  ControlChartBar, SwitchToIsGlobalKod, CopyStylesViewItemBtn
 } from './configurator'
 export { DashboardSetEditBtn } from './set-edit-btn'

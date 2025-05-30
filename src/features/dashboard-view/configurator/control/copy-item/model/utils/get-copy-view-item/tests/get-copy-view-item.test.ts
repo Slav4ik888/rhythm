@@ -27,7 +27,7 @@ describe('getCopyViewItem', () => {
   ];
 
   test('Valid data, coping first item', () => {
-    const result = getCopyViewItem({ type: 'firstOnly', id: '4' }, 'no_parentId', items as unknown as ViewItem[], 'userId_123');
+    const result = getCopyViewItem({ type: 'copyItemFirstOnly', id: '4' }, 'no_parentId', items as unknown as ViewItem[], 'userId_123');
     // console.log(result);
 
     const resultOldData = result.map(item => ({
@@ -45,7 +45,7 @@ describe('getCopyViewItem', () => {
 
 
   test('Valid data to no_parentId', () => {
-    const result = getCopyViewItem({ type: 'all', id: '4' }, 'no_parentId', items as unknown as ViewItem[], 'userId_123');
+    const result = getCopyViewItem({ type: 'copyItemAll', id: '4' }, 'no_parentId', items as unknown as ViewItem[], 'userId_123');
     // console.log(result);
 
     const resultOldData = result.map(item => ({
@@ -74,7 +74,7 @@ describe('getCopyViewItem', () => {
   });
 
   test('Valid data to 111', () => {
-    const result = getCopyViewItem({ type: 'all', id: '4' }, '111', items as unknown as ViewItem[], 'userId_123');
+    const result = getCopyViewItem({ type: 'copyItemAll', id: '4' }, '111', items as unknown as ViewItem[], 'userId_123');
 
     const resultOldData = result.map(item => ({
       // @ts-ignore
@@ -103,13 +103,13 @@ describe('getCopyViewItem', () => {
 
 
   test('Invalid items', () => {
-    const result = getCopyViewItem({ type: 'all', id: '4' }, '111', undefined as unknown as ViewItem[], 'userId_123');
+    const result = getCopyViewItem({ type: 'copyItemAll', id: '4' }, '111', undefined as unknown as ViewItem[], 'userId_123');
     
     expect(result).toEqual([]);
   });
 
   test('Incorrect copiedId', () => {
-    const result = getCopyViewItem({ type: 'all', id: '100500' }, '111', items as unknown as ViewItem[], 'userId_123');
+    const result = getCopyViewItem({ type: 'copyItemAll', id: '100500' }, '111', items as unknown as ViewItem[], 'userId_123');
     
     expect(result).toEqual([]);
   });
