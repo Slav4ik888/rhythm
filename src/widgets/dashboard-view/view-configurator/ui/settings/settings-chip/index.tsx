@@ -16,7 +16,7 @@ interface Props {
 export const ViewItemChipSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => {
   return (
     <>
-      <SubHeader title='Общие настройки'>
+      <SubHeader title='Базовые настройки'>
         <InvertedData   selectedItem={selectedItem} />
         <SelectKodRow   selectedItem={selectedItem} />
         <SelectChipType selectedItem={selectedItem} />

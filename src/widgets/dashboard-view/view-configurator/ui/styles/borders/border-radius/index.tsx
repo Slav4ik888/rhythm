@@ -39,10 +39,10 @@ export const BorderRadiusRow: FC<Props> = memo(({ selectedItem }) => {
     };
 
     if (field === 'borderRadius') {
-      setFieldEmpty(selectedItem.styles, 'borderTopLeftRadius');
-      setFieldEmpty(selectedItem.styles, 'borderTopRightRadius');
-      setFieldEmpty(selectedItem.styles, 'borderBottomLeftRadius');
-      setFieldEmpty(selectedItem.styles, 'borderBottomRightRadius');
+      setFieldEmpty(newStyles, 'borderTopLeftRadius');
+      setFieldEmpty(newStyles, 'borderTopRightRadius');
+      setFieldEmpty(newStyles, 'borderBottomLeftRadius');
+      setFieldEmpty(newStyles, 'borderBottomRightRadius');
     }
     
     setSelectedStyles(newStyles);

@@ -24,7 +24,7 @@ describe('setFieldEmpty', () => {
     };
 
     // @ts-ignore
-    setFieldEmpty(obj, 'field1')
+    setFieldEmpty(obj, 'field1');
     expect(obj).toEqual({
       a: 1
     });

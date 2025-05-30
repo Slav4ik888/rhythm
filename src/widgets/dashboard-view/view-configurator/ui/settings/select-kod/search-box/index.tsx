@@ -32,6 +32,7 @@ export const SelectKodItemSearchBox: FC<Props> = memo(({ onSearch }) => {
     <Box sx={sx.root}>
       <Input
         fullWidth
+        autoFocus
         label    = 'Поиск'
         onChange = {onChange}
       />

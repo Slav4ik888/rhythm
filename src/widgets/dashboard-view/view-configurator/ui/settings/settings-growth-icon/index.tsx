@@ -5,6 +5,7 @@ import { UnchangedBlack } from './unchanged-black';
 import { IsLeft } from './is-left';
 import { ScaleValue } from './scale-value';
 import { ViewItem } from 'entities/dashboard-view';
+import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 
 
 
@@ -18,13 +19,17 @@ export const ViewItemGrowthIconSettingsConfigurator: FC<Props> = memo(({ selecte
   return (
     <>
       {/* GLOBAL SETTINGS */}
-      <InvertedData selectedItem={selectedItem} />
+      <SubHeader title='Базовые настройки'>
+        <SelectKodRow selectedItem={selectedItem} />
+      </SubHeader>
 
       {/* GROWTH ICON SETTINGS */}
-      <SelectKodRow   selectedItem={selectedItem} />
-      <UnchangedBlack selectedItem={selectedItem} />
-      <IsLeft         selectedItem={selectedItem} />
-      <ScaleValue     selectedItem={selectedItem} />
+      <SubHeader title='Особые настройки'>
+        <InvertedData   selectedItem={selectedItem} />
+        <UnchangedBlack selectedItem={selectedItem} />
+        <IsLeft         selectedItem={selectedItem} />
+        <ScaleValue     selectedItem={selectedItem} />
+      </SubHeader>
     </>
   )
 });

@@ -3,6 +3,7 @@ import { RowFlagByScheme, RowInputByScheme, RowSelectByField } from '../../base-
 import { SelectKodRow } from '../select-kod';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { arrayEndingDiffType, arrayEndingType, ViewItem } from 'entities/dashboard-view';
+import { InvertedData } from '../inverted-data';
 
 
 
@@ -14,8 +15,9 @@ interface Props {
 export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => {
   return (
     <>
-      <SubHeader title='Общие настройки'>
+      <SubHeader title='Базовые настройки'>
         <SelectKodRow selectedItem={selectedItem} />
+        <InvertedData selectedItem={selectedItem} />
         <RowInputByScheme
           scheme       = 'settings.valueNumber'
           type         = 'number'

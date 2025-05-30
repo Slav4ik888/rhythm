@@ -156,6 +156,8 @@ export const Input: FC<Props> = memo((props) => {
           value           = {value} 
           inputRef        = {focusRef}
           autoFocus       = {autoFocus}
+          // При автофокусе, в ненужном месте появляется блок подсказка (возможно при монтировании большого компонента, но убрал всё равно)
+          autoComplete    = {autoFocus ? 'off' : 'on'}
           tabIndex        = {tabIndex}
           onChange        = {handlerChange}
           onKeyUp         = {(event: any) => {

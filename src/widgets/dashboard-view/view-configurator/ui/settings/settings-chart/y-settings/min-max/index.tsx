@@ -1,5 +1,5 @@
 import { ViewItem } from 'entities/dashboard-view';
-import { FC, memo } from 'react';
+import { FC, memo, MouseEvent } from 'react';
 import { ConfiguratorTitle } from 'shared/ui/configurators-components';
 import { RowInputByScheme } from '../../../../base-features-components';
 
@@ -22,6 +22,7 @@ export const ViewItemChartScaleYMinMax: FC<Props> = memo(({ selectedItem }) => {
         toolTitle    = 'Изменить min'
         width        = '7rem'
         clear        = {null}
+        onChange     = {(e: MouseEvent, v: string | number) => {}}
       />
       <RowInputByScheme
         type         = 'number'
@@ -31,6 +32,7 @@ export const ViewItemChartScaleYMinMax: FC<Props> = memo(({ selectedItem }) => {
         toolTitle    = 'Изменить max'
         width        = '7rem'
         clear        = {null}
+        onChange     = {(e: MouseEvent, v: string | number) => {}}
       />
       <RowInputByScheme
         type         = 'number'
@@ -40,6 +42,7 @@ export const ViewItemChartScaleYMinMax: FC<Props> = memo(({ selectedItem }) => {
         toolTitle    = 'Изменить suggestedMin'
         width        = '7rem'
         clear        = {null}
+        onChange     = {(e: MouseEvent, v: string | number) => {}}
       />
       <RowInputByScheme
         type         = 'number'
@@ -49,6 +52,7 @@ export const ViewItemChartScaleYMinMax: FC<Props> = memo(({ selectedItem }) => {
         toolTitle    = 'Изменить suggestedMax'
         width        = '7rem'
         clear        = {null}
+        onChange     = {(e: MouseEvent, v: string | number) => {}}
       />
     </>
   )
