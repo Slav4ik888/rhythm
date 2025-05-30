@@ -1,23 +1,25 @@
+import { FC, memo, MouseEvent } from 'react';
 import { ViewItem } from 'entities/dashboard-view';
-import { FC, memo } from 'react';
 import { RowInputByScheme } from '../../../base-features-components';
 
 
 
 interface Props {
-  selectedItem: ViewItem | undefined
+  scheme       : string
+  selectedItem : ViewItem | undefined
 }
 
 /** Set fontSize */
-export const FontSizeRow: FC<Props> = memo(({ selectedItem }) => {
+export const FontSizeRow: FC<Props> = memo(({ selectedItem, scheme }) => {
   return (
     <RowInputByScheme
-      scheme       = 'styles.fontSize'
+      scheme       = {scheme}
       type         = 'number'
       title        = 'font-size'
       toolTitle    = 'font-size'
       width        = '5rem'
       selectedItem = {selectedItem}
+      onChange     = {(e: MouseEvent, v: string | number) =>{}}
     />
   )
 });

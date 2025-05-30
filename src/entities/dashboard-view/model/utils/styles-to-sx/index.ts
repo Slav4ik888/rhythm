@@ -22,7 +22,7 @@ export const stylesToSx = (style?: ViewItemStyles): any => {
   const {
     gap, rowGap, columnGap,
     width, minWidth, maxWidth, height, minHeight, maxHeight,
-    borderWidth, borderRadius, fontSize,
+    borderWidth, borderRadius, fontSize, dirFontSize,
     p, px, py, pt, pb, pr, pl,
     m, mx, my, mt, mb, mr, ml,
    } = style;
@@ -65,7 +65,8 @@ export const stylesToSx = (style?: ViewItemStyles): any => {
   if (is(borderRadius)) sx.borderRadius = borderRadius + 'px';
 
   // font-size
-  if (is(fontSize)) sx.fontSize = fontSize + 'px';
-
+  if (is(fontSize))    sx.fontSize    = fontSize    + 'px';
+  if (is(dirFontSize)) sx.dirFontSize = dirFontSize + 'px';
+  
   return sx
 }

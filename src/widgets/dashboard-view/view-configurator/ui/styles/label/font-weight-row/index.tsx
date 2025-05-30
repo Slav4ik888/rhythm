@@ -1,23 +1,23 @@
 import { FC, memo } from 'react';
-import { ViewItem, ViewItemStylesField } from 'entities/dashboard-view';
-import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { SelectFontWeight } from './select-font-weight';
+import { arrayFontWeights, ViewItem } from 'entities/dashboard-view';
+import { RowSelectByField } from '../../../base-features-components';
 
 
 
 interface Props {
+  scheme       : string
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
 /** Set fontWeight */
-export const FontWeightRow: FC<Props> = memo(({ selectedItem, onChange }) => {
-
+export const FontWeightRow: FC<Props> = memo(({ selectedItem, scheme }) => {
   return (
-    <RowWrapper>
-      <ConfiguratorTextTitle title='font-weight' toolTitle='font-weight' bold />
-
-      <SelectFontWeight selectedItem={selectedItem} onChange={onChange} />
-    </RowWrapper>
+    <RowSelectByField
+      scheme       = {scheme}
+      title        = 'font-weight'
+      toolTitle    = 'font-weight'
+      array        = {arrayFontWeights}
+      selectedItem = {selectedItem}
+    />
   )
 });

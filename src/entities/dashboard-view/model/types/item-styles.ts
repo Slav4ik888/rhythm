@@ -83,6 +83,14 @@ export interface ViewItemStyles {
   fontFamily?   : string
   lineHeight?   : number
 
+  // digitIndicators
+  //  - font
+  //    - reduction
+  dirFontSize?   : number // In rem
+  dirFontWeight? : number
+  //    - ending
+  
+
   textAlign?    : TextAlignType
   // textDecoration?: string
   // textTransform?: string
