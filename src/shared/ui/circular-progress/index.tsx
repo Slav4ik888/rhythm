@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Box, CircularProgress as Circular } from '@mui/material';
 import { f } from 'shared/styles';
 import { getTopCenter } from './utils';
+import { useEffect } from 'react';
 
 
   
@@ -20,14 +21,9 @@ type Props = {
 }
 
 
-/** v.2023.08.20 */
 const useStyles = (
-  // sx: SxCard
   { id = 'CircularId', size = 30, top, bottom, right, left, sx, center, block, color }: Props
-  // parentDimentions: ElementDimentions
 ) => {
-  // const h = getCenterHeight(id);//parentDimentions?.height);
-
   const style = {
     root: {
       position   : 'absolute',
@@ -37,19 +33,11 @@ const useStyles = (
       right      : right  || 0,
       bottom     : bottom || 0,
       left       : left   || 0,
-      zIndex     : 2000,
-      opacity    : block ? '60%'  : 'inherit',
+      zIndex     : 9999,
       ...f('-c-c'),
       ...sx?.root
     },
     circular: {
-      position : 'absolute',
-      // color    : '#909040',
-      top      : () => center ? getTopCenter(id, size) : top ? top : '',
-      // bottom   : () => bottom ? bottom : '0px',
-      // left     : () => center ? `calc(${parentDimentions?.width / 2}px - ${size / 2}px)` : left ? left : '0px',
-      // right    : () => right ? right : '0px',
-      // zIndex   : 2010,
       '&.MuiCircularProgress-root': {
         color: color || '#7a7a7a'
       },
@@ -58,27 +46,56 @@ const useStyles = (
   }
 
   // @ts-ignore
-  if (block) style.root.background = '#c7c7c7';
+  if (block) {
+    style.root.position      = 'fixed';
+    style.root.pointerEvents = 'none';
+    style.root.overflow      = 'hidden';
+    style.root.touchAction   = 'none'; /* Для мобилок */
+    style.root.background    = '#dadada';
+    style.root.opacity       = '60%';
+  }
+  else {
+    style.circular.position = 'absolute';
+    style.circular.top = center ? getTopCenter(id, size) : top ? top : '';
+  }
 
   return style
 };
 
 
-/** 2024-11-17 */
+/** 2025-05-31 */
 export const CircularProgress: React.FC<Props> = (props) => {
   const
     {
-      loading,
+      loading, block,
       id   = 'CircularId',
       size = 30
     } = props,
     // ref = React.useRef(null),
     // parentDimentions = React.useMemo(() => getParentDimentions(document.getElementById(id)), [ref.current]),
     sx = useStyles(props);//, parentDimentions);
-  
+
+
+  // При block - блокируем прокрутку и фокус
+  useEffect(() => {
+    if (loading && block) {
+      document.body.style.overflow = 'hidden';
+      document.body.setAttribute('inert', ''); // Отключает фокус клавиатуры
+    }
+    else if (! loading && block) {
+      document.body.style.overflow = '';
+      document.body.removeAttribute('inert');
+    }
+    return () => {
+      if (! loading && block) {
+        document.body.style.overflow = '';
+        document.body.removeAttribute('inert');
+      }
+    }
+  }, [loading]);
+
 
   if (! loading) return null;
-  
   
   return (
     <Box

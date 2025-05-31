@@ -11,14 +11,16 @@ import { Footer } from "widgets/footer";
 import { UIConfigurator } from 'widgets/ui-configurator';
 import { Navbar } from 'widgets/navbar';
 import { LayoutWrapper } from './wrapper';
+import { useDashboardView } from 'entities/dashboard-view';
 
 
 
 export const Layout: FC = memo(() => {
   console.log('Layout');
   const { loading: dashboardLoading } = useDashboardData();
+  const { loading: viewLoading } = useDashboardView();
   const { pageLoading, errors, setWarningMessage } = useUI();
-  const loading = pageLoading || dashboardLoading || false;
+  const loading = pageLoading || dashboardLoading || viewLoading || false;
   
   
   // Global show errors
@@ -30,10 +32,10 @@ export const Layout: FC = memo(() => {
   return (
     <LayoutWrapper>
       <CssBaseline />
+      <PageLoader loading={loading} />
       <ScrollToTop />
       <Navbar />
       <MessageBar />
-      <PageLoader loading={loading} />
       <UIConfigurator />
 
       <Outlet />
