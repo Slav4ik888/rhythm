@@ -35,7 +35,7 @@ export const CompanyProfilePageComponent: FC<Props> = memo(({ loading, auth, err
       
       {
         ! auth
-          ? <PageLoader loading={true} />
+          ? <PageLoader loading={! auth} />
           : <>
               <TextfieldItem
                 label      = 'Название компании'

@@ -87,10 +87,8 @@ export const CircularProgress: React.FC<Props> = (props) => {
       document.body.removeAttribute('inert');
     }
     return () => {
-      if (! loading && block) {
-        document.body.style.overflow = '';
-        document.body.removeAttribute('inert');
-      }
+      document.body.style.overflow = '';
+      document.body.removeAttribute('inert');
     }
   }, [loading]);
 

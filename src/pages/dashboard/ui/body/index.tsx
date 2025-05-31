@@ -26,7 +26,7 @@ export const DashboardBody = memo(() => {
   }, [companyId, isMounted]);
 
   // Вначале должен смонтироваться dashboardReducer
-  if (! isMounted)  return  <PageLoader loading={true} />
+  if (! isMounted)  return  <PageLoader loading={! isMounted} />
 
 
   return companyId

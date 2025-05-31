@@ -10,7 +10,7 @@ import { cloneObj } from 'shared/helpers/objects';
 
 
 // Мокаем хук useDashboardView
-jest.mock('entities/dashboard-view');
+// jest.mock('entities/dashboard-view');
 
 const mockViewItem = {
   id: 'item-1',

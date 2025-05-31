@@ -35,7 +35,7 @@ export const UserProfilePageComponent: FC<Props> = memo(({ loading, auth, errors
       
       {
         ! auth
-          ? <PageLoader loading={true} />
+          ? <PageLoader loading={! auth} />
           : <>
               <TextfieldItem
                 label      = 'Фамилия'

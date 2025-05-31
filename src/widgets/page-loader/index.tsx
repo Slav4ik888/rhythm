@@ -10,7 +10,7 @@ type Props = {
  * v.2023-08-20
  * Center & block loader
  */
-export const PageLoader: FC<Props> = memo(({ loading = true }) => (
+export const PageLoader: FC<Props> = memo(({ loading = false }) => (
   <CircularProgress
     block
     center
