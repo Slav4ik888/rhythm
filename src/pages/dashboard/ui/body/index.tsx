@@ -1,13 +1,11 @@
 import { memo, useEffect } from 'react';
 import { useCompany } from 'entities/company';
 import { getInitialState as getInitialStateData, useDashboardData } from 'entities/dashboard-data';
-import { COMPANIES_CONFIG } from '../../model/config';
 import { CircularProgress } from 'shared/ui/circular-progress';
 import { DashboardBodyWrapper } from './wrapper';
 import { PageLoader } from 'widgets';
 import { DashboardBodyPanel, ViewItemConfigurator, DashboardBodyContent } from 'widgets/dashboard-view';
 import { getInitialState as getInitialStateView, useDashboardView } from 'entities/dashboard-view';
-// import { DashboardBody_demo_pecar } from './templates';
 
 
 
@@ -34,8 +32,6 @@ export const DashboardBody = memo(() => {
         <DashboardBodyPanel />
         <ViewItemConfigurator />
         <DashboardBodyContent />
-      
-        {COMPANIES_CONFIG[companyId].dashboard}
       </DashboardBodyWrapper>
     
     : <CircularProgress
@@ -43,5 +39,4 @@ export const DashboardBody = memo(() => {
         size = {70}
         sx   = {{ root: { top: -100 } }}
       />
-      // <DashboardBody_demo_pecar />
 });

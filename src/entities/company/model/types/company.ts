@@ -2,19 +2,6 @@ import { FixDate } from 'entities/base';
 import { ReactElement } from 'react';
 
 
-/**
- * Временно для компаний которых я подключил к Ритму
- * До тех пор пока не сделаю возможность настройки dashboard в виде Конструктора
- * с сохранением конструкции в аккаунте компании
- * 
- * Need double in Server
- */
-export enum ActivatedCompanyId {
-  OSNOVA     = "89MM9qHJLJlY5DZp1T9S",
-  CSS        = "jOiXJDIY0nJeiIuBMtI4",
-  DEMO_PECAR = "demo_pecar",
-}
-
 
 export enum CompanyStatus {
   NEW     = 'NEW',    // 'Зарегистрирован'
