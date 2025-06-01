@@ -1,14 +1,15 @@
 import { FC, memo } from 'react';
 import { ViewItem, stylesToSx } from 'entities/dashboard-view';
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { Increased } from 'entities/dashboard-data';
 
 
 
 const useStyles = (item: ViewItem, color: string) => {
   const root: any = {};
-
-  if (item?.styles?.fontSize) root.fontSize = stylesToSx(item?.styles)?.fontSize;
+  
+  // Не все стили, тк ширина и подобное нужно только для главного элемента
+  if (item?.styles?.fontSize)   root.fontSize   = stylesToSx(item?.styles)?.fontSize;
   if (item?.styles?.lineHeight) root.lineHeight = stylesToSx(item?.styles)?.lineHeight;
 
   return {

@@ -21,6 +21,7 @@ export interface UIConfiguratorProviderState {
   isSidebar             : boolean // Отображён или нет
   sidebarWidth          : number
   sidebarMini           : boolean
+  sidebarHidden         : boolean // Скрыт или нет
   sidebarColor          : SidebarColorName // Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
   //     - Active theme color : Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
   //     - Background image   : Без фона | С фоном

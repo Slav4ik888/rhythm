@@ -1,1 +1,0 @@
-export { MiniSidebarSwitcher } from './ui';

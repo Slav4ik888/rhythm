@@ -7,7 +7,7 @@ import { useCompany } from 'entities/company';
 import { getCopyViewItem } from 'features/dashboard-view';
 import { useUser } from 'entities/user';
 import { isEmpty, isNotEmpty } from 'shared/helpers/objects';
-import { isChangedViewItem } from '../view-configurator/ui/unsaved-changes';
+// import { isChangedViewItem } from '../view-configurator/ui/unsaved-changes';
 
 
 
@@ -15,20 +15,20 @@ export const DashboardBodyContent = memo(() => {
   const { userId } = useUser();
   const { companyId, changedCompany, serviceUpdateCompany } = useCompany();
   const {
-    loading, editMode, newSelectedId, changedViewItem, selectedId, selectedItem, activatedMovementId,
+    loading, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId, selectedItem, activatedMovementId,
     parentsViewItems, viewItems, entities, activatedCopied, setNewSelectedId, serviceCopyStyles,
     setDashboardView, setSelectedId, updateViewItem, serviceUpdateViewItem, serviceCreateGroupViewItems
   } = useDashboardView();
 
   /** Есть ли не сохранённые изменения в SelectedItem */
-  const isChanges = useMemo(() => isChangedViewItem(selectedId, changedCompany, changedViewItem), [selectedId, changedCompany, changedViewItem]);
+  // const isChanges = useMemo(() => isChangedViewItem(selectedId, changedCompany, changedViewItem), [selectedId, changedCompany, changedViewItem]);
   
   
   useEffect(() => {
-    if (newSelectedId && !loading && newSelectedId !== selectedId && ! isChanges) {
+    if (newSelectedId && !loading && newSelectedId !== selectedId && ! isUnsaved) {
       setSelectedId(newSelectedId);
     }
-  }, [newSelectedId, loading, selectedId, isChanges, setSelectedId]);
+  }, [newSelectedId, loading, selectedId, isUnsaved, setSelectedId]);
 
 
   const handleSelectViewItem = useCallback((id: ViewItemId) => {
@@ -68,7 +68,7 @@ export const DashboardBodyContent = memo(() => {
       serviceCreateGroupViewItems({ companyId, viewItems: copiedViewItems });
     }
     else {
-      if (isChanges) {
+      if (isUnsaved) {
         /** Сохраняем изменившиеся customSettings */
         if (isNotEmpty(changedCompany)) serviceUpdateCompany({ id: companyId, ...changedCompany });
 
@@ -83,12 +83,12 @@ export const DashboardBodyContent = memo(() => {
         setNewSelectedId(id); // Здесь сохраняется в newSelectedId а активация выбранного id происходит в useEffect
       }
     }
-  }, [editMode, selectedId, activatedMovementId, activatedCopied, viewItems, entities, userId, isChanges, setSelectedId, setDashboardView]);
+  }, [editMode, selectedId, activatedMovementId, activatedCopied, viewItems, entities, userId, isUnsaved, setSelectedId, setDashboardView]);
 
 
   return (
     <Box
-      sx      = {{ ...f('c') }}
+      sx      = {{ ...f('c'), width: editMode  ? 'calc(100% + 500px)' : '100%' }}
       onClick = {() => handleSelectViewItem(NO_PARENT_ID)}
     >
       <ContentRender

@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useMemo } from 'react';
+import { FC, memo, useCallback, useEffect, useMemo } from 'react';
 import { useDashboardView } from 'entities/dashboard-view';
 import { Box, Typography } from '@mui/material';
 import { CustomTheme, useTheme } from 'app/providers/theme';
@@ -46,11 +46,16 @@ const useStyles = (theme: CustomTheme, loading: boolean) => ({
 
 export const UnsavedChanges: FC = memo(() => {
   const { companyId, changedCompany, serviceUpdateCompany, cancelCustomSettings } = useCompany();
-  const { loading, selectedId, changedViewItem, serviceUpdateViewItem, cancelUpdateViewItem } = useDashboardView();
+  const { loading, selectedId, changedViewItem, isUnsaved, setIsUnsaved, serviceUpdateViewItem, cancelUpdateViewItem } = useDashboardView();
   const sx = useStyles(useTheme(), loading);
 
-  const isChanges = useMemo(() => isChangedViewItem(selectedId, changedCompany, changedViewItem, true)
-    , [selectedId, changedCompany, changedViewItem]);
+  // const isChanges = useMemo(() => isChangedViewItem(selectedId, changedCompany, changedViewItem, true)
+  //   , [selectedId, changedCompany, changedViewItem]);
+  useEffect(() => {
+    isChangedViewItem(selectedId, changedCompany, changedViewItem, true)
+      ? setIsUnsaved(true)
+      : setIsUnsaved(false);
+  }, [selectedId, changedCompany, changedViewItem]);
   
 
   const handleCancel = useCallback(() => {
@@ -68,7 +73,7 @@ export const UnsavedChanges: FC = memo(() => {
   }, [selectedId, changedCompany, changedViewItem]);
 
 
-  if (! isChanges) return null;
+  if (! isUnsaved) return null;
   
 
   return (
@@ -78,7 +83,7 @@ export const UnsavedChanges: FC = memo(() => {
           <Typography sx={sx.text}>Отменить</Typography>
         </Tooltip>
       </Box>
-      <Box sx={{ ...sx.btn, ...sx.save }} onClick={handleChange}>
+      <Box id='saveBtn' sx={{ ...sx.btn, ...sx.save }} onClick={handleChange}>
         <Tooltip
           title='Для сохранения изменений нажмите эту кнопку,
                 или выберите любой другой элемент или закройти конфигуратор.'

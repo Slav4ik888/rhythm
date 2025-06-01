@@ -7,8 +7,7 @@ import { Box } from '@mui/material';
 import { f } from 'shared/styles';
 import { Tooltip } from 'shared/ui/tooltip';
 import { GetFromGlobalKod } from '../../../../../../base-features-components';
-import { FlagFromGlobalKod } from '../../../../../../settings/select-kod';
-import { SelectKod } from '../../../../../select-kod';
+import { FlagFromGlobalKod, SelectKod } from '../../../../../base-components';
 
 
 

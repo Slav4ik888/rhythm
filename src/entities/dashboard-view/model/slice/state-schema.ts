@@ -28,6 +28,7 @@ export interface StateSchemaDashboardView {
   selectedId          : ViewItemId // Id выбранного элемента (при editMode === true)
   light               : boolean    // Подсветка выбранного элемента (selectedId)
 
+  isUnsaved           : boolean // Наличие не сохраненных изменений (в тч customSettings in Company)
   // Начальные значения выбранного элемента, чтобы затем перевести его в статус prevStoredView
   // само по себе используется только в UnsavedChanges, а также для промежуточного хранения
   newStoredViewItem   : ViewItem | undefined

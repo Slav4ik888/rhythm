@@ -1,6 +1,7 @@
 import { FC, memo, useCallback } from 'react';
 import { useDashboardView } from 'entities/dashboard-view';
 import { CopyStylesViewItemComponent } from './component';
+import { useUI } from 'entities/ui';
 
 
 
@@ -12,12 +13,14 @@ interface Props {
  * Для этого его активируем, а затем тыкаем на элемент в который нужно вставить
  */
 export const CopyStylesViewItemBtn: FC<Props> = memo(({ }) => {
-  const { selectedId, activatedCopied, setActiveCopied, clearActivatedCopied } = useDashboardView();
+  const { setWarningMessage } = useUI();
+  const { isUnsaved, selectedId, activatedCopied, setActiveCopied, clearActivatedCopied } = useDashboardView();
 
   const handleToggle = useCallback(() => {
     if (activatedCopied) clearActivatedCopied()
+    else if (isUnsaved) setWarningMessage('Вначале сохраните изменения')
     else setActiveCopied({ type: 'copyStyles', id: selectedId })
-  }, [selectedId, activatedCopied, setActiveCopied, clearActivatedCopied]);
+  }, [isUnsaved, selectedId, activatedCopied, setActiveCopied, clearActivatedCopied]);
 
 
   return (

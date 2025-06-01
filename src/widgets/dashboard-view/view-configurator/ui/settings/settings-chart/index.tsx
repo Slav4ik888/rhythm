@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { ChartLegends } from './chart-legends';
-import { InvertedData } from '../inverted-data';
+import { InvertedData } from '../base-components';
 import { ViewItemChartSettingsList } from './chart-list';
 import { ViewItemChartScaleYSettings } from './y-settings';
 import { ViewItemChartScaleXSettings } from './x-settings';

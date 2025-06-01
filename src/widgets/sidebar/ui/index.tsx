@@ -6,7 +6,7 @@ import { SidebarContainer } from './container';
 
 export const Sidebar: FC = memo(() => {
   const [configuratorState, dispatch] = useUIConfiguratorController();
-  const { sidebarMini, mode } = configuratorState;
+  const { sidebarMini, sidebarHidden } = configuratorState;
  
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   
@@ -26,6 +26,7 @@ export const Sidebar: FC = memo(() => {
     }
   };
 
+  if (sidebarHidden) return null;
 
   return (
     <SidebarContainer

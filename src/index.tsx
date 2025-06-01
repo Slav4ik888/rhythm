@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "remove old Templates codes" && git push -u origin main
+// git add . && git commit -m "refact unchanges & body width & added sidebar hidden" && git push -u origin main

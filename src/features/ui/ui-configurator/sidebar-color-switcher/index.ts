@@ -1,1 +1,0 @@
-export { SidebarColorSwitcher } from './ui';

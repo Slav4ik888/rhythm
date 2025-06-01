@@ -3,7 +3,7 @@ import { actions as a } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
-import { ActivatedCompanyId, Company, CustomSettings } from '../../types';
+import { Company, CustomSettings } from '../../types';
 import { updateCompany } from 'features/company';
 
 
@@ -22,7 +22,7 @@ export const useCompany = (config: Config = {}) => {
     clearErrors          = () => dispatch(a.setErrors({})),
 
     company              = useSelector(s.selectCompany),
-    companyId            = company?.id as ActivatedCompanyId,
+    companyId            = company?.id,
     storedCompany        = useSelector(s.selectStoredCompany),
     customSettings       = useSelector(s.selectCustomSettings),
     changedCompany       = useSelector(s.selectChangedCompany), // Объект с изменившимися полями

@@ -54,7 +54,7 @@ export const IdTitle: FC<Props> = memo(({ selectedId }) => {
     // Отменяем подсветку
     setTimeout(() => {
       highlightItem(false);
-    }, 2000);
+    }, 3000);
 
   }, [selectedId, highlightItem]);
 

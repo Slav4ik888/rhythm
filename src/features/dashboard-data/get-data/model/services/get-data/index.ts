@@ -6,12 +6,12 @@ import { getEntities } from './utils';
 import { StartEntitiesData } from '../../types';
 import { LS } from 'shared/lib/local-storage';
 import { apiWithoutCookie } from 'shared/api';
-import { ActivatedCompanyId, Company } from 'entities/company';
+import { Company } from 'entities/company';
 
 
 
 export interface ResGetGoogleData {
-  companyId : ActivatedCompanyId
+  companyId : string
   data      : StartEntitiesData
 }
 
@@ -33,13 +33,13 @@ export const getData = createAsyncThunk<
       // For development - сохраняем входящие данные в localStorage
       // const data = LS.devGetGSData(company.id as ActivatedCompanyId);
       console.log('GS data: ', data);
-      LS.devSetGSData(company.id as ActivatedCompanyId, data);
+      LS.devSetGSData(company.id, data);
 
       const gsData = getEntities(data);
       console.log('gsData: ', gsData);
       dispatch(actionsUI.setSuccessMessage("Данные с гугл-таблицы загружены"));
     
-      return { companyId: company.id as ActivatedCompanyId, data: gsData };
+      return { companyId: company.id, data: gsData };
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);

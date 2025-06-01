@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { setIsOpenConfigurator, useUIConfiguratorController } from 'app/providers/theme';
 import DrawerStyled from './styled';
-import { PaletteModeSwitcher, MiniSidebarSwitcher, SidebarColorSwitcher } from 'features/ui';
+import { PaletteModeSwitcher, SwitcherSidebarMini, SwitcherSidebarColor, SwitcherSidebarHidden } from 'features/ui';
 import { MDDivider } from 'shared/ui/mui-design-components';
 import { ConfiguratorSubHeader as SubHeader, ConfiguratorMainHeader as MainHeader } from 'shared/ui/configurators-components';
 
@@ -29,8 +29,9 @@ export const UIConfigurator = memo(() => {
       <MDDivider />
       
       <SubHeader title='Боковая панель'>
-        <MiniSidebarSwitcher />
-        <SidebarColorSwitcher />
+        <SwitcherSidebarMini />
+        <SwitcherSidebarHidden />
+        <SwitcherSidebarColor />
       </SubHeader>
 
       {/* <SubHeader title='Верхняя панель'/> */}

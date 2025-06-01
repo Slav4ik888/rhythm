@@ -1,12 +1,11 @@
 import { addEntities } from 'entities/base';
-import { ActivatedCompanyId } from 'entities/company';
 import { LS } from 'shared/lib/local-storage';
 import { StateSchemaDashboardView } from '../../slice/state-schema';
 
 
 
 /** Returns initialState из данных сохранённых в LS by companyId */
-export const getInitialState = (companyId: ActivatedCompanyId): StateSchemaDashboardView => {
+export const getInitialState = (companyId: string): StateSchemaDashboardView => {
 
   const initialState: StateSchemaDashboardView = {
     loading               : false,
@@ -17,6 +16,7 @@ export const getInitialState = (companyId: ActivatedCompanyId): StateSchemaDashb
     newSelectedId         : '',
     selectedId            : '',
     light                 : false,
+    isUnsaved             : false, // Наличие не сохраненных изменений (в тч customSettings in Company)
     
     entities              : addEntities({}, LS.getDashboardView(companyId)) || {},
     newStoredViewItem     : undefined, // Начальные значения выбранного элемента

@@ -7,15 +7,12 @@ import { Tooltip } from 'shared/ui/tooltip';
 
 
 const useStyles = (item: ViewItem, color: string) => {
-  const root: any = {};
-
-  if (item?.styles?.fontSize) root.fontSize = stylesToSx(item?.styles)?.fontSize;
-  if (item?.styles?.lineHeight) root.lineHeight = stylesToSx(item?.styles)?.lineHeight;
+  const root: any = stylesToSx(item?.styles) || {};
 
   return {
     root: {
-      ...root,
       cursor: 'default',
+      ...root,
       color,
     },
   }

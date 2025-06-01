@@ -30,13 +30,13 @@ const useStyles = (item: ViewItem, color: string) => {
       cursor: 'default',
       ...root,
       color,
-      ml: 0.5
+      ml: 0.5,
     },
     ending: {
       cursor: 'default',
       ...root,
       color,
-      ml: 0.5
+      ml: 0.5,
     },
   }
 };

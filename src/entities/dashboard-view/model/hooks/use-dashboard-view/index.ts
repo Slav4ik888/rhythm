@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
 import { ChangeOneSettingsField, ChangeSelectedStyle, ChangeOneDatasetsItem, ChangeOneChartsItem, SetDashboardView, SetEditMode } from '../../slice/types';
-import { ActivatedCompanyId } from 'entities/company';
 import { ViewItem, ViewItemId, ViewItemStyles, PartialViewItem } from '../../types';
 import { addNewViewItem, CreateGroupViewItems, createGroupViewItems, deleteViewItem, DeleteViewItem, UpdateViewItem, updateViewItem as updateViewItemOnServer } from 'features/dashboard-view';
 import { ActivatedCopied, StateSchemaDashboardView } from '../../slice/state-schema';
@@ -65,6 +64,10 @@ export const useDashboardView = (config: Config = {}) => {
     selectChildrenViewItems  = s.makeSelectChildrenViewItems(parentId as ViewItemId),
     childrenViewItems        = useSelector(selectChildrenViewItems),
     parentChildrenIds        = childrenViewItems.map(item => item.id),
+
+    // Changes
+    isUnsaved                = useSelector(s.selectIsUnsaved),
+    setIsUnsaved             = (status: boolean) => dispatch(a.setIsUnsaved(status)),
     changedViewItem          = useSelector(s.selectChangedViewItem), // Объект с изменившимися полями
 
     // Styles
@@ -79,7 +82,7 @@ export const useDashboardView = (config: Config = {}) => {
 
     // Services
     serviceAddNewViewItem = (
-      companyId   : ActivatedCompanyId,
+      companyId   : string,
       viewItem    : ViewItem,
     ) => dispatch(addNewViewItem({ companyId, viewItem })),
     serviceCreateGroupViewItems = (data: CreateGroupViewItems) => dispatch(createGroupViewItems(data)),
@@ -121,6 +124,10 @@ export const useDashboardView = (config: Config = {}) => {
     newStoredViewItem,
     prevStoredViewItem,
     childrenViewItems,
+
+    // Changes
+    isUnsaved,
+    setIsUnsaved,
     changedViewItem,
 
     // Movement

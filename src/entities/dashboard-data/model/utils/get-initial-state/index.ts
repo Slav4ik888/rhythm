@@ -1,4 +1,3 @@
-import { ActivatedCompanyId } from 'entities/company';
 import { LS } from 'shared/lib/local-storage';
 import { DashboardPeriodType } from '../../config';
 import { StateSchemaDashboardData } from '../../slice/state-schema';
@@ -7,7 +6,7 @@ import { DashboardPeriod } from '../../types';
 
 
 /** Returns initialState из данных сохранённых в LS by companyId */
-export const getInitialState = (companyId: ActivatedCompanyId): StateSchemaDashboardData => {
+export const getInitialState = (companyId: string): StateSchemaDashboardData => {
   const emptyPeriod: DashboardPeriod = {
     type  : DashboardPeriodType.NINE_MONTHS,
     start : undefined,

@@ -3,12 +3,11 @@ import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/stor
 import { Errors } from 'shared/lib/validators';
 import { paths } from 'shared/api';
 import { ViewItem } from 'entities/dashboard-view';
-import { ActivatedCompanyId } from 'entities/company';
 
 
 
 export interface CreateGroupViewItems {
-  companyId : ActivatedCompanyId
+  companyId : string
   viewItems : ViewItem[]
 }
 

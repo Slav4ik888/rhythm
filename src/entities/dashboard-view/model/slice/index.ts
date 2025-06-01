@@ -24,6 +24,8 @@ const initialState: StateSchemaDashboardView = {
   newSelectedId         : '',
   selectedId            : '',
   light                 : false,
+  isUnsaved             : false, // Наличие не сохраненных изменений (в тч customSettings in Company)
+
   newStoredViewItem     : undefined, // Начальные значения выбранного элемента
   prevStoredViewItem    : undefined, // Начальные значения предыдущего выбранного элемента
 
@@ -88,6 +90,11 @@ export const slice = createSlice({
     /** Подсветка выбранного элемента (selectedId) */
     highlightItem:  (state, { payload }: PayloadAction<boolean>) => {
       state.light = payload;
+    },
+
+    /** Наличие не сохраненных изменений (в тч customSettings in Company) */
+    setIsUnsaved: (state, { payload }: PayloadAction<boolean>) => {
+      state.isUnsaved = payload;
     },
     
     // Перемещение выбранного View-item в другой
@@ -215,6 +222,7 @@ export const slice = createSlice({
         }
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
+        state.isUnsaved           = false;
         state.loading             = false;
         state.errors              = {};
 
@@ -244,6 +252,7 @@ export const slice = createSlice({
         state.newSelectedId       = viewItem.id;
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
+        state.isUnsaved           = false;
         state.loading             = false;
         state.errors              = {};
 
@@ -271,6 +280,7 @@ export const slice = createSlice({
         state.prevStoredViewItem  = undefined;
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
+        state.isUnsaved           = false;
         state.loading             = false;
         state.errors              = {};
 

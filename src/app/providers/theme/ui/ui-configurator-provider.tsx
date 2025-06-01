@@ -21,6 +21,7 @@ const initialState: UIConfiguratorProviderState = {
   isSidebar          : false,
   sidebarWidth       : fromLS.sidebarWidth       || 250,
   sidebarMini        : fromLS.sidebarMini        || false,
+  sidebarHidden      : fromLS.sidebarHidden      || false,
   sidebarColor       : fromLS.sidebarColor       || 'sidebar_black',
 };
 

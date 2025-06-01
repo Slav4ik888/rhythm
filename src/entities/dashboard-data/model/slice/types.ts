@@ -1,14 +1,13 @@
-import { ActivatedCompanyId } from 'entities/company';
 import { DashboardPeriod } from '../types';
 
 
 
 export interface SetActivePeriod {
-  companyId : ActivatedCompanyId
+  companyId : string
   period    : DashboardPeriod
 }
 
 export interface SetSelectedPeriod {
-  companyId : ActivatedCompanyId
+  companyId : string
   period    : Partial<DashboardPeriod>
 }
