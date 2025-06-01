@@ -1,7 +1,19 @@
 import * as React from 'react';
-import { Box, Tooltip as MuiTooltip, TooltipProps } from '@mui/material';
+import { Box, styled, Tooltip as MuiTooltip, TooltipProps, tooltipClasses, Typography } from '@mui/material';
 import { isEmpty } from 'shared/helpers/objects';
 
+
+const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
+  <MuiTooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: 'rgba(211, 211, 211, 0.87)',
+    color: 'rgba(0, 0, 0, 0.87)',
+    maxWidth: 300,
+    fontSize: theme.typography.pxToRem(12),
+    border: '1px solid #dadde9',
+  },
+}));
 
 const useStyles = (cfg?: AbsoluteType) => {
   if (isEmpty(cfg)) return
@@ -34,7 +46,7 @@ interface AbsoluteType {
 }
 
 type Props = {
-  title?          : string
+  title?          : React.ReactNode
   arrow?          : boolean
   enterDelay?     : number 
   enterNextDelay? : number
@@ -47,8 +59,8 @@ type Props = {
 };
 
 
-/** v.2024-12-02 */
-export const Tooltip: React.FC<Props> = React.memo(({
+/** v.2025-06-01 */
+export const TooltipHTML: React.FC<Props> = React.memo(({
   sxRoot,
   sxSpan,
   children,
@@ -62,7 +74,7 @@ export const Tooltip: React.FC<Props> = React.memo(({
   const sx = useStyles(absolute);
   
   const component = (
-    <MuiTooltip
+    <HtmlTooltip
       arrow          = {arrow}
       title          = {title}
       placement      = {placement}
@@ -73,8 +85,9 @@ export const Tooltip: React.FC<Props> = React.memo(({
       <span style={{ ...sxSpan, cursor: 'default' }}>
         {children}
       </span>
-    </MuiTooltip>
+    </HtmlTooltip>
   );
+    
 
   const wrapped = (
     <Box sx={{ ...sx?.wrap, ...sxRoot }}>

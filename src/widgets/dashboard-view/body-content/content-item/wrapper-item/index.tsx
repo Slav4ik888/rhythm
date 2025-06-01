@@ -1,8 +1,7 @@
-import { FC, memo, ReactNode, useMemo } from 'react';
+import { FC, memo, ReactNode } from 'react';
 import { ViewItem, ViewItemId, stylesToSx, useDashboardView, DashboardViewEntities, isFirstGlobalKodInBranch, getKod } from 'entities/dashboard-view';
 import { Box } from '@mui/material';
-import { Tooltip } from 'shared/ui/tooltip';
-import { useDashboardData } from 'entities/dashboard-data';
+import { ItemWrapperTooltip } from './tooltip';
 
 
 
@@ -63,27 +62,12 @@ interface Props {
 /** Item wrapper */
 export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
   const { editMode, selectedItem, entities, light } = useDashboardView();
-  const { kods } = useDashboardData();
   const sx = useStyles(item, editMode, entities, selectedItem, light);
-
-  const toolTitle = useMemo(() => {
-    if (item.type === 'box') return ''; // Тк в 'box' это только для настройки isGlobalKod
-
-    const kod = getKod(entities, item);
-    const result = kods.find(it => it?.value === kod);
-
-    if (editMode) return result
-      ? result.value + ' ' + result.title
-      : kod || '';
-    
-    else return '';
-  } , [item, kods, entities, editMode]);
 
   const handleClick = (e: any) => {
     e.stopPropagation();
     onSelect(item.id);
   };
-
 
   const component = (<Box
     id      = {item.id}
@@ -96,10 +80,11 @@ export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
     {children}
   </Box>);
 
-  if (item.type === 'box') return component;
+  if (item.type === 'box' || item.type === 'text') return component;
+
   else return (
-    <Tooltip title={toolTitle} enterDelay={0} enterNextDelay={0}>
+    <ItemWrapperTooltip item={item}>
       {component}
-    </Tooltip>
+    </ItemWrapperTooltip>
   )
 });

@@ -35,7 +35,7 @@ export const SetColorsItem: FC<Props> = memo(({ type, label, settings, onSubmit 
     <RowWrapper>
       <ChipContainer
         label     = {label}
-        toolTitle = {label}
+        // toolTitle = {label}
         sx        = {{ color, background }}
       />
 
