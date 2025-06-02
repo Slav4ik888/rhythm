@@ -22,7 +22,7 @@ export const selectSelectedId   = createSelector(selectModule, (state: StateSche
 export const selectSelectedItem = createSelector(selectEntities, selectSelectedId,
   (entities: DashboardViewEntities, selectedId: string) => entities[selectedId] || {});
 
-export const selectLight              = createSelector(selectModule, (state: StateSchemaDashboardView) => state.light);
+export const selectBright             = createSelector(selectModule, (state: StateSchemaDashboardView) => state.bright);
 export const selectIsUnsaved          = createSelector(selectModule, (state: StateSchemaDashboardView) => state.isUnsaved);
 export const selectNewStoredViewItem  = createSelector(selectModule, (state: StateSchemaDashboardView) => state.newStoredViewItem);
 export const selectPrevStoredViewItem = createSelector(selectModule, (state: StateSchemaDashboardView) => state.prevStoredViewItem);

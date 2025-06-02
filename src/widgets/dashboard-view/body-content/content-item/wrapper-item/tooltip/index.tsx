@@ -4,18 +4,8 @@ import { TooltipHTML } from 'shared/ui/tooltip';
 import { useDashboardData } from 'entities/dashboard-data';
 import { useCompany } from 'entities/company';
 import { pxToRem } from 'shared/styles';
-import { Box, tooltipClasses } from '@mui/material';
+import { Box } from '@mui/material';
 
-
-
-
-const useStyles = (
-  ) => {
-  
-  return {
-    
-  }
-};
 
 
 interface Props {
@@ -28,7 +18,6 @@ export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
   const { startEntities } = useDashboardData();
   const { entities: entitiesView } = useDashboardView();
   const { kods } = useDashboardData();
-  const sx = useStyles();
   const kod = useMemo(() => getKod(entitiesView, item), [item, entitiesView]);
 
 

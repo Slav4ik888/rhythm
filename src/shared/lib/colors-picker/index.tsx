@@ -6,6 +6,7 @@ import { rgba, rgbaStringToRgba } from './utils';
 import { SxCard } from 'shared/styles';
 import { ___devShow } from 'shared/helpers/strings/___dev-show';
 import { RgbaColor } from 'react-colorful';
+import { isNotUndefined } from '../validators';
 
 
 
@@ -44,8 +45,11 @@ export const ColorPicker: FC<Props> = memo(({ sx, defaultColor, onChange }) => {
     }
     else {
       if (rgba(color) !== defaultColor) {
-        setIsChanges(true);
-        onChange(rgba(color));
+        if (isNotUndefined(color?.r)) {
+          setIsChanges(true);
+          onChange(rgba(color));
+        }
+        else console.log('ПОПЫТКА СОХРАНИТЬ UNDEFINED');
       }
     }
   }, 20, [isChanges, prevDefaultColorRef.current, defaultColor, color, onChange]);

@@ -23,7 +23,7 @@ const initialState: StateSchemaDashboardView = {
   entities              : {},
   newSelectedId         : '',
   selectedId            : '',
-  light                 : false,
+  bright                : false,
   isUnsaved             : false, // Наличие не сохраненных изменений (в тч customSettings in Company)
 
   newStoredViewItem     : undefined, // Начальные значения выбранного элемента
@@ -41,7 +41,7 @@ export const slice = createSlice({
     setInitial: (state, { payload }: PayloadAction<StateSchemaDashboardView>) => {
       state.entities           = payload.entities           || {},
       state.selectedId         = payload.selectedId,
-      state.light              = false,
+      state.bright             = false,
       state.newStoredViewItem  = payload.newStoredViewItem  || undefined,
       state.prevStoredViewItem = payload.prevStoredViewItem || undefined,
       state.editMode           = payload.editMode           || false;
@@ -59,6 +59,7 @@ export const slice = createSlice({
       state.entities            = addEntities(state.entities, payload.viewItems);
       state.activatedMovementId = '';
       state.activatedCopied     = undefined;
+      state.bright              = false;
     },
 
     setEditMode: (state, { payload }: PayloadAction<SetEditMode>) => {
@@ -83,13 +84,14 @@ export const slice = createSlice({
     setSelectedId: (state, { payload }: PayloadAction<ViewItemId>) => {
       state.selectedId         = payload;
       state.newSelectedId      = '';
+      state.bright             = false;
       state.prevStoredViewItem = state.newStoredViewItem;
       state.newStoredViewItem  = state.entities[payload] || {};
     },
 
     /** Подсветка выбранного элемента (selectedId) */
-    highlightItem:  (state, { payload }: PayloadAction<boolean>) => {
-      state.light = payload;
+    setBright:  (state, { payload }: PayloadAction<boolean>) => {
+      state.bright = payload;
     },
 
     /** Наличие не сохраненных изменений (в тч customSettings in Company) */
@@ -101,26 +103,31 @@ export const slice = createSlice({
     setActiveMovementId: (state) => {
       state.activatedMovementId = state.selectedId;
       state.activatedCopied     = undefined;
+      state.bright              = false;
     },
     clearActivatedMovementId: (state) => {
       state.activatedMovementId = '';
       state.activatedCopied     = undefined;
+      state.bright              = false;
     },
 
     // Копирование выбранного View-item в другой
     setActiveCopied: (state, { payload }: PayloadAction<ActivatedCopied>) => {
       state.activatedMovementId = '';
       state.activatedCopied     = { ...payload };
+      state.bright              = false;
     },
     clearActivatedCopied: (state) => {
       state.activatedMovementId = '';
       state.activatedCopied     = undefined;
+      state.bright              = false;
     },
 
     // Update View-item
     updateViewItem: (state, { payload }: PayloadAction<PartialViewItem>) => {
       state.entities[payload.id] = updateObject(state.entities[payload.id], payload);
-      state.activatedMovementId = '';
+      state.activatedMovementId  = '';
+      state.bright               = false;
     },
 
     cancelUpdateViewItem: (state) => {
@@ -197,6 +204,7 @@ export const slice = createSlice({
         state.entities = addEntities(state.entities, [viewItem]);
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
+        state.bright              = false;
         state.loading             = false;
         state.errors              = {};
 
@@ -222,6 +230,7 @@ export const slice = createSlice({
         }
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
+        state.bright              = false;
         state.isUnsaved           = false;
         state.loading             = false;
         state.errors              = {};
@@ -252,6 +261,7 @@ export const slice = createSlice({
         state.newSelectedId       = viewItem.id;
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
+        state.bright              = false;
         state.isUnsaved           = false;
         state.loading             = false;
         state.errors              = {};
@@ -280,6 +290,7 @@ export const slice = createSlice({
         state.prevStoredViewItem  = undefined;
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
+        state.bright              = false;
         state.isUnsaved           = false;
         state.loading             = false;
         state.errors              = {};

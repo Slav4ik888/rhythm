@@ -1,7 +1,8 @@
 import { FC, memo, ReactNode } from 'react';
-import { ViewItem, ViewItemId, stylesToSx, useDashboardView, DashboardViewEntities, isFirstGlobalKodInBranch, getKod } from 'entities/dashboard-view';
+import { ViewItem, ViewItemId, stylesToSx, useDashboardView, DashboardViewEntities, isFirstGlobalKodInBranch } from 'entities/dashboard-view';
 import { Box } from '@mui/material';
 import { ItemWrapperTooltip } from './tooltip';
+import { cl } from 'shared/lib/styles/cl';
 
 
 
@@ -10,29 +11,32 @@ const useStyles = (
   editMode     : boolean,
   entities     : DashboardViewEntities,
   selectedItem : ViewItem,
-  light        : boolean
 ) => {
   const root: any = {
     position: 'relative',
     ...stylesToSx(item?.styles),
   };
   
-  if (light && item?.id === selectedItem?.id) { // Только для выбранного элемента
-    root.boxShadow = '0px 0px 8px 8px rgb(229 12 12)';
-    root.transition = 'box-shadow 0.5s ease-in-out'; /* Плавное изменение тени */
-  }
-  else {
-    root.boxShadow = 'none';
-    if (item?.styles?.boxShadow) root.boxShadow = item.styles.boxShadow;
-  }
-
-  const hover: any = {
+  const absolute: any = {
     position : 'absolute',
     top      : '-1px',
     bottom   : '-1px',
     left     : '-1px',
     right    : '-1px',
-    zIndex   : 1000,
+  };
+
+  // Подсветка выбранного элемента
+  const bright: any = {
+    ...absolute,
+    boxShadow  : '0px 0px 8px 8px rgb(229 12 12)',
+    transition : 'box-shadow 0.5s ease-in-out', /* Плавное изменение тени */
+    zIndex     : 2000,
+  };
+
+  
+  const hover = {
+    ...absolute,
+    zIndex: 1000,
   };
 
   if (editMode) {
@@ -48,7 +52,7 @@ const useStyles = (
   }
 
   return {
-    root, hover
+    root, hover, bright
   }
 };
 
@@ -61,8 +65,8 @@ interface Props {
 
 /** Item wrapper */
 export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
-  const { editMode, selectedItem, entities, light } = useDashboardView();
-  const sx = useStyles(item, editMode, entities, selectedItem, light);
+  const { editMode, selectedItem, entities, bright } = useDashboardView();
+  const sx = useStyles(item, editMode, entities, selectedItem);
 
   const handleClick = (e: any) => {
     e.stopPropagation();
@@ -75,7 +79,7 @@ export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
     onClick = {handleClick}
   >
     {
-      editMode && <Box sx={sx.hover} />
+      editMode && <Box sx={{ ...sx.hover, ...cl(sx.bright, bright && item?.id === selectedItem?.id) }} />
     }
     {children}
   </Box>);

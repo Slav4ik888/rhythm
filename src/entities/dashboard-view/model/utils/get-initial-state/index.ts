@@ -15,7 +15,7 @@ export const getInitialState = (companyId: string): StateSchemaDashboardView => 
     editMode              : LS.getDashboardViewEditMode(companyId),
     newSelectedId         : '',
     selectedId            : '',
-    light                 : false,
+    bright                : false,
     isUnsaved             : false, // Наличие не сохраненных изменений (в тч customSettings in Company)
     
     entities              : addEntities({}, LS.getDashboardView(companyId)) || {},

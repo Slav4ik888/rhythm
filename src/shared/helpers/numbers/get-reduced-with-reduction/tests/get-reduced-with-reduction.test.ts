@@ -3,16 +3,18 @@ import { getReducedWithReduction } from '..';
 
 describe('getReducedWithReduction', () => {
   // invalid input
-  test('undefined', () => expect(getReducedWithReduction(undefined)).toEqual({ value: undefined }));
+  test('undefined', () => expect(getReducedWithReduction(undefined)).toEqual({ value: undefined, reduction: '' }));
 
   // without changes
-  test('0', () => expect(getReducedWithReduction(0)).toEqual({ value: 0 }));
-  test('1', () => expect(getReducedWithReduction(1)).toEqual({ value: 1 }));
-  test('999', () => expect(getReducedWithReduction(999)).toEqual({ value: 999 }));
-  test('-999', () => expect(getReducedWithReduction(-999)).toEqual({ value: -999 }));
+  test('0', () => expect(getReducedWithReduction(0)).toEqual({ value: 0, reduction: '' }));
+  test('1', () => expect(getReducedWithReduction(1)).toEqual({ value: 1, reduction: '' }));
+  test('999', () => expect(getReducedWithReduction(999)).toEqual({ value: 999, reduction: '' }));
+  test('-999', () => expect(getReducedWithReduction(-999)).toEqual({ value: -999, reduction: '' }));
 
   // changed
+  test('999', () => expect(getReducedWithReduction(999)).toEqual({ value: 999, reduction: '' }));
   test('1999', () => expect(getReducedWithReduction(1999)).toEqual({ value: 1.999, reduction: 'тыс' }));
+  test('111222', () => expect(getReducedWithReduction(111222)).toEqual({ value: 111.222, reduction: 'тыс' }));
   test('1222333', () => expect(getReducedWithReduction(1222333)).toEqual({ value: 1.222333, reduction: 'млн' }));
   test('111222333', () => expect(getReducedWithReduction(111222333)).toEqual({ value: 111.222333, reduction: 'млн' }));
   test('-111222333444', () => expect(getReducedWithReduction(-111222333444)).toEqual({ value: -111.222333444, reduction: 'млрд' }));

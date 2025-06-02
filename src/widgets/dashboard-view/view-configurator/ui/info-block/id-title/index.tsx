@@ -37,7 +37,7 @@ interface Props {
 
 export const IdTitle: FC<Props> = memo(({ selectedId }) => {
   const sx = useStyles(useTheme());
-  const { highlightItem } = useDashboardView();
+  const { setBright } = useDashboardView();
 
   const handleClick = useCallback(() => {
     const element = document.getElementById(selectedId);
@@ -49,14 +49,14 @@ export const IdTitle: FC<Props> = memo(({ selectedId }) => {
       });
     }
     // Подсвечиваем элемент
-    highlightItem(true);
+    setBright(true);
     
     // Отменяем подсветку
     setTimeout(() => {
-      highlightItem(false);
+      setBright(false);
     }, 3000);
 
-  }, [selectedId, highlightItem]);
+  }, [selectedId, setBright]);
 
 
   return (

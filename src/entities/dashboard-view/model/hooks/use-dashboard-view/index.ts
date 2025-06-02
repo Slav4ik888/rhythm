@@ -51,8 +51,8 @@ export const useDashboardView = (config: Config = {}) => {
     selectedId               = useSelector(s.selectSelectedId),
     setNewSelectedId         = (id: ViewItemId) => dispatch(a.setNewSelectedId(id)),
     setSelectedId            = (id: ViewItemId) => dispatch(a.setSelectedId(id)),
-    light                    = useSelector(s.selectLight),
-    highlightItem            = (status: boolean) => dispatch(a.highlightItem(status)),
+    bright                   = useSelector(s.selectBright),
+    setBright                = (status: boolean) => dispatch(a.setBright(status)),
 
     selectedItem             = useSelector(s.selectSelectedItem),
     fromGlobalKod            = useSelector(s.selectFromGlobalKod),
@@ -116,8 +116,8 @@ export const useDashboardView = (config: Config = {}) => {
     selectedId,
     setSelectedId,
     selectedItem,
-    light,
-    highlightItem,
+    bright,
+    setBright,
     fromGlobalKod,
     globalKodParent,
     

@@ -116,7 +116,7 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
       {/* Сокращение - (тыс млн) | Ед изменения */}
       <ItemDigitIndicatorEnding
         item      = {item}
-        reduction = {calcedValue.reduction || values[0]?.reduction}
+        reduction = {isNotUndefined(calcedValue.reduction) ? calcedValue.reduction : values[0]?.reduction}
         color     = {color}
       />
     </ItemWrapper>

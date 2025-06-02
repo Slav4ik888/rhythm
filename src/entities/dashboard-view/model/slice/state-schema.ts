@@ -26,7 +26,7 @@ export interface StateSchemaDashboardView {
   // После loading === false, должно произойти selectedId = newSelectedId
   newSelectedId       : ViewItemId
   selectedId          : ViewItemId // Id выбранного элемента (при editMode === true)
-  light               : boolean    // Подсветка выбранного элемента (selectedId)
+  bright              : boolean    // Подсветка выбранного элемента (selectedId)
 
   isUnsaved           : boolean // Наличие не сохраненных изменений (в тч customSettings in Company)
   // Начальные значения выбранного элемента, чтобы затем перевести его в статус prevStoredView
