@@ -6,7 +6,7 @@ import { useDashboardData } from 'entities/dashboard-data';
 
 
 /** In ViewItem show chip by kod */
-export const ChipBySelectedItem: FC = memo(() => {
+export const StatisticPeriodChipBySelectedItem: FC = memo(() => {
   const { startEntities } = useDashboardData();
   const { fromGlobalKod: kod } = useDashboardView();
 

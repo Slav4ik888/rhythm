@@ -2,7 +2,6 @@ import { FC, memo, ReactNode } from 'react';
 import { ViewItem, ViewItemId, stylesToSx, useDashboardView, DashboardViewEntities, isFirstGlobalKodInBranch } from 'entities/dashboard-view';
 import { Box } from '@mui/material';
 import { ItemWrapperTooltip } from './tooltip';
-import { cl } from 'shared/lib/styles/cl';
 
 
 
@@ -79,9 +78,14 @@ export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
     onClick = {handleClick}
   >
     {
-      editMode && <Box sx={{ ...sx.hover, ...cl(sx.bright, bright && item?.id === selectedItem?.id) }} />
+      editMode && <Box sx={sx.hover} />
     }
-    {children}
+    {
+      editMode && bright && item?.id === selectedItem?.id && <Box sx={sx.bright} />
+    }
+    {
+      children
+    }
   </Box>);
 
   if (item.type === 'box' || item.type === 'text') return component;

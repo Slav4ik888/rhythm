@@ -4,9 +4,10 @@ import { ViewItem } from 'entities/dashboard-view';
 import { f, pxToRem } from 'shared/styles';
 import { FlagByScheme } from '../../../../base-features-components/by-scheme/flag-by-scheme';
 import { GetFromGlobalKod } from '../../../../base-features-components/get-from-global-kod';
-import { ChipBySelectedItem } from 'entities/statistic-type';
+import { StatisticPeriodChipBySelectedItem } from 'entities/statistic-type';
 import { Tooltip } from 'shared/ui/tooltip';
 import { FlagFromGlobalKod } from './flag-from-global-kod';
+import { CompanyChipBySelectedItem } from 'entities/company-type';
 
 
 
@@ -40,7 +41,8 @@ export const RowSelectKodChildren: FC<Props> = memo(({ selectedItem, disabled })
             scheme       = 'settings.fromGlobalKod'
             selectedItem = {selectedItem} 
           />
-          <ChipBySelectedItem />
+          <CompanyChipBySelectedItem />
+          <StatisticPeriodChipBySelectedItem />
           {
             disabled && <Tooltip title={disabled ? 'Чтобы выбрать другой код, снимите галку с "fromGlobalKod".' : ''}>
               <GetFromGlobalKod type={selectedItem?.settings?.chipType} />

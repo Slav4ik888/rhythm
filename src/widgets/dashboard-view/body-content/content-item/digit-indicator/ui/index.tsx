@@ -79,10 +79,9 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
       reduction = p;
     }
     else {
-      if (isNotUndefined(value) && isNotUndefined(count)) {
-        if (isNotUndefined(values[count - 1]?.value)) {
-          value = values[count - 1]?.value;
-        }
+      if (isNotUndefined(values[count - 1]?.value)) {
+        value = values[count - 1]?.value;
+        reduction = values[count - 1]?.reduction;
       }
     }
 
@@ -92,9 +91,11 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
         ? String(value).replace('-', '').replace('.', ',') // Удаляем знак минус, если выбрано plusMinus, чтобы не дублировался тк будет выведен в ItemDigitIndicatorPlusMinus
         : String(value).replace('.', ','),
     }
-  }, [activeEntities, lastValue, prevValue, values, item]);
+  }, [activeEntities, lastValue, prevValue, indicators, values, count, item]);
 
 
+  // const emptyEndingDiffType = item?.settings?.endingDiffType !== '% соотношение' && item?.settings?.endingDiffType !== 'Разница';
+  
 
   return (
     <ItemWrapper item={item} onSelect={onSelect}>
@@ -116,7 +117,7 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
       {/* Сокращение - (тыс млн) | Ед изменения */}
       <ItemDigitIndicatorEnding
         item      = {item}
-        reduction = {isNotUndefined(calcedValue.reduction) ? calcedValue.reduction : values[0]?.reduction}
+        reduction = {calcedValue.reduction} // || values[0]?.reduction}
         color     = {color}
       />
     </ItemWrapper>

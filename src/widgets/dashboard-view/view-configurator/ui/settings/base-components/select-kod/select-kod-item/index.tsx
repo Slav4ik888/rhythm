@@ -11,7 +11,7 @@ import { useCompany } from 'entities/company';
 
 const useStyles = () => ({
   root: {
-    ...f(),
+    ...f('-c'),
     gap: 1,
   },
   kod: {
@@ -51,7 +51,7 @@ export const SelectKodItem: FC<Props> = memo(({ item }) => {
         <Typography sx={sx.kod}>{item?.value}</Typography>
 
         <CompanyTypeChip
-          type           = {itemByKod?.companyType}
+          label          = {itemByKod?.companyType}
           customSettings = {customSettings}
           sx             = {{ root: sx.chip }}
         />

@@ -82,9 +82,7 @@ export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
 
   return (
     <TooltipHTML
-      enterDelay     = {0}
-      enterNextDelay = {0}
-      title          = {<Fragment>
+      title={<Fragment>
         {companyProductPeriod && <Box>{companyProductPeriod}</Box>}
         {toolTitle}
       </Fragment>}

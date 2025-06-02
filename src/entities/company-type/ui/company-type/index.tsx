@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { Chip } from '@mui/material';
-import { Tooltip } from 'shared/ui/tooltip';
+// import { Tooltip } from 'shared/ui/tooltip';
 import { CustomSettings } from 'entities/company';
 import { f, pxToRem, SxCard } from 'shared/styles';
 
@@ -23,30 +23,29 @@ const useStyle = (companyType: string, customSettings : CustomSettings, sx?: SxC
 });
 
 interface Props {
-  type?          : string
+  label?         : string
   customSettings : CustomSettings
   sx?            : SxCard
 }
 
 
 /**
- * TODO: сделать ярлыком влевом верхнем углу карточки статистики (поз: абсолют)
  * Chip для статистики типа компании: Общая | Да-Телеком | Бэдком |
  */
-export const CompanyTypeChip: FC<Props> = memo(({ type = '', sx: styles, customSettings }) => {
-  const sx = useStyle(type, customSettings, styles);
+export const CompanyTypeChip: FC<Props> = memo(({ label = '', sx: styles, customSettings }) => {
+  const sx = useStyle(label, customSettings, styles);
 
   return (
-    <Tooltip
-      title     = {`Компания ${type}`}
-      placement = 'top-start'
-      sxSpan    = {sx.tooltip}
-    >
-      <Chip
-        label = {type}
-        size  = 'small'
-        sx    = {sx.chip}
-      />
-    </Tooltip>
+    // <Tooltip
+    //   title     = {`Компания ${label}`}
+    //   placement = 'top-start'
+    //   sxSpan    = {sx.tooltip}
+    // >
+    <Chip
+      label = {label}
+      size  = 'small'
+      sx    = {sx.chip}
+    />
+    // </Tooltip>
   )
 });

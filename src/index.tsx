@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "fix ColorPicker & refacted highlight to setBright" && git push -u origin main
+// git add . && git commit -m "fix ItemDigitIndicator & refacted bright in WrapperItem" && git push -u origin main
