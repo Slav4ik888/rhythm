@@ -7,10 +7,8 @@ export const buildBabelLoader = (isDev: boolean) => ({
     options: {
       presets: ['@babel/preset-env'],
       plugins: [
-        [
-          isDev && require.resolve('react-refresh/babel')
-        ].filter(Boolean)
-      ]
+        isDev && require.resolve('react-refresh/babel')
+      ].filter(Boolean) || []
     }
   }
 });
