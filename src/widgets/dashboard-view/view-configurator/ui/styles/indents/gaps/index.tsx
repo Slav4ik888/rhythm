@@ -27,6 +27,7 @@ export const GapsRow: FC<Props> = memo(({ selectedItem }) => {
           toolTitle    = 'Универсальный отступ - единое значение для row-gap и column-gap'
           width        = '2rem'
           selectedItem = {selectedItem}
+          onChange     = {() => {}}
         />
         row-gap
         <InputByScheme
@@ -35,6 +36,7 @@ export const GapsRow: FC<Props> = memo(({ selectedItem }) => {
           toolTitle    = 'Вертикальный отступ (между строками)'
           width        = '2rem'
           selectedItem = {selectedItem}
+          onChange     = {() => {}}
         />
         column-gap
         <InputByScheme
@@ -43,6 +45,7 @@ export const GapsRow: FC<Props> = memo(({ selectedItem }) => {
           toolTitle    = 'Горизонтальный отступ (между колонками)'
           width        = '2rem'
           selectedItem = {selectedItem}
+          onChange     = {() => {}}
         />
       </Box>
     </RowWrapper>

@@ -2,7 +2,7 @@ import { FC, memo, useCallback, useEffect, useMemo } from 'react';
 import { useDashboardView } from 'entities/dashboard-view';
 import { Box, Typography } from '@mui/material';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-import { Tooltip } from 'shared/ui/tooltip';
+import { Tooltip, TooltipHTML } from 'shared/ui/tooltip';
 import { isEmpty, isNotEmpty } from 'shared/helpers/objects';
 import { f, pxToRem } from 'shared/styles';
 import { useCompany } from 'entities/company';
@@ -72,12 +72,37 @@ export const UnsavedChanges: FC = memo(() => {
     serviceUpdateViewItem({ companyId, viewItem, newStoredViewItem: viewItem });
   }, [selectedId, changedCompany, changedViewItem]);
 
+  const handleConsole = useCallback(() => {
+    if (isNotEmpty(changedCompany)) {
+      console.log('changedCompany:');
+      console.log(JSON.stringify(changedCompany, null, 2));
+    }
+    if (isNotEmpty(changedViewItem)) {
+      console.log('changedViewItem:');
+      console.log(JSON.stringify(changedViewItem, null, 2));
+    }
+  }, [selectedId, changedCompany, changedViewItem]);
+
 
   if (! isUnsaved) return null;
   
 
   return (
     <Box sx={sx.isChanges}>
+      <Box sx={{ ...sx.btn, ...sx.cancel }} onClick={handleConsole}>
+        <TooltipHTML title={<>
+          {isNotEmpty(changedCompany) && <>
+            <p>changedCompany:</p>
+            <pre><code>{JSON.stringify(changedCompany, null, 2)}</code></pre>
+          </>}
+          {isNotEmpty(changedViewItem) && <>
+            <p>changedViewItem:</p>
+            <pre><code>{JSON.stringify(changedViewItem, null, 2)}</code></pre>
+          </>}
+        </>}>
+          <Typography sx={sx.text}>k</Typography>
+        </TooltipHTML>
+      </Box>
       <Box sx={{ ...sx.btn, ...sx.cancel }} onClick={handleCancel}>
         <Tooltip title='Отменить внесённые изменения'>
           <Typography sx={sx.text}>Отменить</Typography>

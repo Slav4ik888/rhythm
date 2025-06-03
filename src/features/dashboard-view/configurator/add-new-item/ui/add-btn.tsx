@@ -4,6 +4,7 @@ import { MDButton } from 'shared/ui/mui-design-components';
 import AddCardIcon from '@mui/icons-material/AddCard';
 import { ViewItemType } from 'entities/dashboard-view';
 import { capitalizeFirst } from 'shared/helpers/strings';
+import { pxToRem } from 'shared/styles';
 
 
 
@@ -16,7 +17,7 @@ const useStyles = (color: string) => ({
   },
   icon: {
     color,
-    fontSize : '20px',
+    fontSize : pxToRem(20),
   },
 });
 

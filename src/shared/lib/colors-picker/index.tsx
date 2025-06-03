@@ -18,6 +18,7 @@ interface Props {
 
 
 export const ColorPicker: FC<Props> = memo(({ sx, defaultColor, onChange }) => {
+  // TODO: найти ошибку - когда отсутствует цвет в новом SelectItem то в него подтягивается из предыдущего (откуда перешли)
   const [color, setColor] = useState<RgbaColor | undefined>();
   // Для того, чтобы при переключении между элементами, в выбранны не подтягивался цвет предыдущего
   // для этого храним предыдущее значение defaultColor

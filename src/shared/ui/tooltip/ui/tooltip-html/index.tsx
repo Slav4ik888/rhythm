@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, styled, Tooltip as MuiTooltip, TooltipProps, tooltipClasses, Typography } from '@mui/material';
+import { Box, styled, Tooltip as MuiTooltip, TooltipProps, tooltipClasses } from '@mui/material';
 import { isEmpty } from 'shared/helpers/objects';
 
 
@@ -7,11 +7,11 @@ const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
   <MuiTooltip {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: 'rgba(211, 211, 211, 0.87)',
-    color: 'rgba(0, 0, 0, 0.87)',
-    maxWidth: 300,
+    backgroundColor: 'rgba(196, 195, 195, 0.87)',
+    color: 'rgb(24, 24, 24)',
+    maxWidth: 500,
     fontSize: theme.typography.pxToRem(12),
-    border: '1px solid #dadde9',
+    border: '1px solid rgb(177, 177, 177)',
   },
 }));
 

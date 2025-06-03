@@ -127,6 +127,7 @@ export const slice = createSlice({
     updateViewItem: (state, { payload }: PayloadAction<PartialViewItem>) => {
       state.entities[payload.id] = updateObject(state.entities[payload.id], payload);
       state.activatedMovementId  = '';
+      state.activatedCopied      = undefined;
       state.bright               = false;
     },
 

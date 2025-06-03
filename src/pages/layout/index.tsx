@@ -16,7 +16,6 @@ import { useDashboardView } from 'entities/dashboard-view';
 
 
 export const Layout: FC = memo(() => {
-  console.log('Layout');
   const { loading: dashboardLoading } = useDashboardData();
   const { loading: viewLoading } = useDashboardView();
   const { pageLoading, errors, setWarningMessage } = useUI();

@@ -1,6 +1,5 @@
 import { FC, memo } from 'react';
 import { Chip } from '@mui/material';
-// import { Tooltip } from 'shared/ui/tooltip';
 import { CustomSettings } from 'entities/company';
 import { f, pxToRem, SxCard } from 'shared/styles';
 
@@ -36,16 +35,10 @@ export const CompanyTypeChip: FC<Props> = memo(({ label = '', sx: styles, custom
   const sx = useStyle(label, customSettings, styles);
 
   return (
-    // <Tooltip
-    //   title     = {`Компания ${label}`}
-    //   placement = 'top-start'
-    //   sxSpan    = {sx.tooltip}
-    // >
     <Chip
       label = {label}
       size  = 'small'
       sx    = {sx.chip}
     />
-    // </Tooltip>
   )
 });

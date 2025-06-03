@@ -1,13 +1,12 @@
-import { memo, useCallback, useEffect, useMemo } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { ContentRender } from './render-items';
 import { Box } from '@mui/material';
 import { f } from 'shared/styles';
-import { ViewItemId, PartialViewItem, useDashboardView, NO_PARENT_ID } from 'entities/dashboard-view';
+import { ViewItemId, PartialViewItem, useDashboardView, NO_PARENT_ID, createNextOrder, getChildren } from 'entities/dashboard-view';
 import { useCompany } from 'entities/company';
 import { getCopyViewItem } from 'features/dashboard-view';
 import { useUser } from 'entities/user';
 import { isEmpty, isNotEmpty } from 'shared/helpers/objects';
-// import { isChangedViewItem } from '../view-configurator/ui/unsaved-changes';
 
 
 
@@ -20,10 +19,7 @@ export const DashboardBodyContent = memo(() => {
     setDashboardView, setSelectedId, updateViewItem, serviceUpdateViewItem, serviceCreateGroupViewItems
   } = useDashboardView();
 
-  /** Есть ли не сохранённые изменения в SelectedItem */
-  // const isChanges = useMemo(() => isChangedViewItem(selectedId, changedCompany, changedViewItem), [selectedId, changedCompany, changedViewItem]);
-  
-  
+
   useEffect(() => {
     if (newSelectedId && !loading && newSelectedId !== selectedId && ! isUnsaved) {
       setSelectedId(newSelectedId);
@@ -44,8 +40,9 @@ export const DashboardBodyContent = memo(() => {
 
       // У activatedMovementId изменяем parentId на выбранный id
       const viewItem: PartialViewItem = {
-        id: activatedMovementId,
-        parentId: id // Новый родительский элемент
+        id       : activatedMovementId,
+        parentId : id,                                         // New parent`s id
+        order    : createNextOrder(getChildren(viewItems, id)) // Next order in new parent
       };
       updateViewItem(viewItem); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
       serviceUpdateViewItem({ companyId, viewItem });

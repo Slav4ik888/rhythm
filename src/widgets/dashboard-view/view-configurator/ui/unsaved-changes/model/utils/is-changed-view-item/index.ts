@@ -14,7 +14,10 @@ export const isChangedViewItem = (
   
   if (isNotEmpty(changedCompany)) return true
   if (isNotEmpty(changedViewItem)) {
-    _devShowConsole && console.log('changedViewItem: ', changedViewItem);
+    if (_devShowConsole) {
+      console.log('changedViewItem');
+      console.log(changedViewItem);
+    }
     return true
   }
   return false

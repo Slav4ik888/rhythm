@@ -18,7 +18,6 @@ const initialReducers: ReducersList = {
 
 
 const DashboardPage: FC = memo(() => {
-  console.log('DashboardPage');
   const [_, dispatch] = useUIConfiguratorController();
 
   useInitialEffect(() => setIsSidebar(dispatch, true));
