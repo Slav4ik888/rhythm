@@ -30,13 +30,16 @@ export const setStorageData = (storageName: string, data: any) => {
 };
 
 
-/** Достаём из LocalStorage */
-export function getStorageData<A>(storageName: string): A {
-  if (checkError(storageName, '"Имя хранилища"')) return {} as A;
+/**
+ * v.2025-06-05
+ * Достаём из LocalStorage
+ */
+export function getStorageData<A>(storageName: string): A | null {
+  if (checkError(storageName, '"Имя хранилища"')) return null;
 
   let data = localStorage.getItem(PREFIX + storageName);
   if (data) return JSON.parse(data);
-  return data as unknown as A;
+  return null;
 }
 
 /** Clear item by storageName */

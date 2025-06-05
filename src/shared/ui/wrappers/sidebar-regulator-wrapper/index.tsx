@@ -32,7 +32,7 @@ interface Props {
  */
 export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
   const [configuratorState] = useUIConfiguratorController();
-  const { isSidebar, sidebarMini, sidebarWidth, sidebarHidden } = configuratorState;
+  const { isSidebar, sidebarMini, sidebarWidth } = configuratorState;
   
   const isBody   = body;
   const isNavbar = ! isBody;
@@ -52,13 +52,11 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
           ? 'calc(100vh - 200px)'
           : 0,
 
-        marginLeft: sidebarHidden
-          ? 0
-          : isSidebar
-            ? sidebarMini
-              ? pxToRem(104)
-              : pxToRem(sidebarWidth + 8)
-            : 0,
+        marginLeft: isSidebar
+          ? sidebarMini
+            ? pxToRem(104)
+            : pxToRem(sidebarWidth + 8)
+          : 0,
 
         px: 3,
         pt: isNavbar 

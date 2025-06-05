@@ -1,7 +1,7 @@
 export { UIConfiguratorProvider } from './ui/ui-configurator-provider'
 export { useUIConfiguratorController } from './model/lib/use-ui-configurator-controller'
 export {
-  setIsOpenConfigurator, setMode, setSidebarMini, setIsSidebar, setSidebarColor, setSidebarHidden
+  setIsOpenConfigurator, setMode, setSidebarMini, setIsSidebar, setSidebarColor
  } from './model/lib/reducer'
 export {
   CustomTheme, ColoredShadowsName, UIConfiguratorProviderState, ColorName, GradientColorName, GreyColor,

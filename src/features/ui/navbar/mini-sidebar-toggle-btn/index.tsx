@@ -1,7 +1,7 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import RightIcon from '@mui/icons-material/FormatAlignRight';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { useTheme, useUIConfiguratorController, CustomTheme, setSidebarMini, setIsSidebar } from 'app/providers/theme';
 import { sxNavbarIconsStyle } from '../../../../shared/lib/styles/navbar';
 
@@ -13,11 +13,11 @@ const useStyles = (
   light             : boolean | undefined
 ) => ({
   button: {
-    display    : "inline-block",
+    display    : 'inline-block',
     lineHeight : 0,
 
-    [theme.breakpoints.up("xl")]: {
-      display: "none",
+    [theme.breakpoints.down('xl')]: {
+      display: 'none',
     },
   },
   icon   : sxNavbarIconsStyle(theme, navbarTransparent, light)
@@ -34,23 +34,23 @@ export const MiniSidebarToggleBtn: FC<Props> = memo(({ light }) => {
   const sx = useStyles(useTheme(), configuratorState.navbarTransparent, light);
   const { sidebarMini, isSidebar } = configuratorState;
 
-  const handleMiniSidebar = () => {
+  const handleMiniSidebar = useCallback(() => {
     setSidebarMini(dispatch, ! sidebarMini);
     if (! isSidebar) setIsSidebar(dispatch, true);
-  };
+  }, [sidebarMini, isSidebar, setSidebarMini, setIsSidebar]);
 
 
   return (
     <IconButton
       disableRipple
-      color   = "inherit"
+      color   = 'inherit'
       sx      = {sx.button}
       onClick = {handleMiniSidebar}
     >
       {
         sidebarMini
-          ? <RightIcon sx={sx.icon} fontSize="small" />
-          : <MenuIcon sx={sx.icon} fontSize="small" />
+          ? <MenuIcon sx={sx.icon} fontSize='small' />
+          : <MenuOpenIcon sx={sx.icon} fontSize='small' />
       }
     </IconButton>
   )

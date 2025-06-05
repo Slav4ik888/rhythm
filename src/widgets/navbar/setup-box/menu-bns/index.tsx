@@ -19,9 +19,9 @@ export const MenuBtns: FC<Props> = ({ light, isMini = false }) => {
   return (
     <MDBox sx={(theme: CustomTheme) => sxNavbarRow(theme, isMini)}>
       <MDBox display="flex" alignItems="center" color={light ? "white" : "inherit"}>
-        <DashboardSetEditBtn light={light} />
+        <DashboardSetEditBtn     light={light} />
         <OpenNotificationMenuBtn light={light} />
-        <OpenUIConfiguratorBtn light={light} />
+        <OpenUIConfiguratorBtn   light={light} />
         <ProfilesMenuRoot />
       </MDBox>
     </MDBox>

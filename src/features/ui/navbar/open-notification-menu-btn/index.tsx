@@ -3,7 +3,7 @@ import { IconButton, Menu, Icon } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useTheme, useUIConfiguratorController, CustomTheme, UIConfiguratorProviderState } from 'app/providers/theme';
 import { sxNavbarIconButton, sxNavbarIconsStyle } from '../../../../shared/lib/styles/navbar';
-import NotificationItem from "shared/ui/items/notification-item";
+import { NotificationItem } from "shared/ui/items";
 
 
 
@@ -27,7 +27,7 @@ export const OpenNotificationMenuBtn: FC<Props> = memo(({ light }) => {
   const sx = useStyles(useTheme(), configuratorState.navbarTransparent, light);
   const [openMenu, setOpenMenu] = useState<Element | null>(null);
 
-  const handleOpenMenu = (event: any) => setOpenMenu(event.currentTarget);
+  const handleOpenMenu = (event: any) => { }; // setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(null);
 
 

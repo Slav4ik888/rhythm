@@ -9,7 +9,7 @@ import { User } from '../../types';
 import { SetUser } from '../../slice/types';
 import { LS } from 'shared/lib/local-storage';
 import cfg from 'app/config';
-import { cloneObj } from 'shared/helpers/objects';
+import { cloneObj, setIfNotUndefined } from 'shared/helpers/objects';
 
 
 
@@ -50,10 +50,10 @@ export const getStartResourseData = createAsyncThunk<
         LS.setDashboardView(companyId, viewItems);
       }
       else { // На случай отсутствия интернета (для разработки)
-        companyId = LS.getLastCompanyId();
-        user      = LS.getUserState(companyId)?.user;
-        company   = LS.getCompanyState(companyId)?.company;
-        viewItems = LS.getDashboardView(companyId);
+        setIfNotUndefined(companyId, LS.getLastCompanyId());
+        setIfNotUndefined(user,      LS.getUserState(companyId)?.user);
+        setIfNotUndefined(company,   LS.getCompanyState(companyId)?.company);
+        setIfNotUndefined(viewItems, LS.getDashboardView(companyId));
       }
 
       dispatch(actionsCompany.setCompany({ companyId, company }));

@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from 'react';
-import { setSidebarHidden, useUIConfiguratorController } from 'app/providers/theme';
+import { setIsSidebar, useUIConfiguratorController } from 'app/providers/theme';
 import { SwitcherItem } from '../../components/switcher-item';
 
 
@@ -7,13 +7,13 @@ import { SwitcherItem } from '../../components/switcher-item';
 export const SwitcherSidebarHidden = memo(() => {
   const [checked, setChecked] = useState<boolean>(false);
   const [configuratorState, dispatch] = useUIConfiguratorController();
-  const { sidebarHidden } = configuratorState;
+  const { isSidebar } = configuratorState;
 
   useEffect(() => {
-    setChecked(sidebarHidden);
-  }, [sidebarHidden]);
+    setChecked(! isSidebar);
+  }, [isSidebar]);
   
-  const toggle = () => setSidebarHidden(dispatch, ! sidebarHidden);
+  const toggle = () => setIsSidebar(dispatch, ! isSidebar);
 
 
   return (

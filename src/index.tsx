@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "fixed LS.setEditMode" && git push -u origin main
+// git add . && git commit -m "fixed webpack.config & added MenuItem & remove sidebarHidden & refact LS helpers" && git push -u origin main

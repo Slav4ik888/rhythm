@@ -1,4 +1,4 @@
-import { FC, memo, useState } from 'react';
+import { FC, memo, useState, useCallback } from 'react';
 import { setSidebarMini, useUIConfiguratorController } from 'app/providers/theme';
 import { SidebarContainer } from './container';
 
@@ -6,32 +6,34 @@ import { SidebarContainer } from './container';
 
 export const Sidebar: FC = memo(() => {
   const [configuratorState, dispatch] = useUIConfiguratorController();
-  const { sidebarMini, sidebarHidden } = configuratorState;
+  const { sidebarMini, isSidebar } = configuratorState;
  
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   
+
   // Open sidebar when mouse enter on mini sidebar
-  const handleOnMouseEnter = () => {
-    if (sidebarMini && !onMouseEnter) {
+  const handleOnMouseEnter = useCallback(() => {
+    if (sidebarMini && ! onMouseEnter) {
       setSidebarMini(dispatch, false);
       setOnMouseEnter(true);
     }
-  };
+  }, [onMouseEnter, sidebarMini, dispatch, setSidebarMini, setOnMouseEnter]);
+
 
   // Close sidebar when mouse leave mini sidebar
-  const handleOnMouseLeave = () => {
+  const handleOnMouseLeave = useCallback(() => {
     if (onMouseEnter) {
       setSidebarMini(dispatch, true);
       setOnMouseEnter(false);
     }
-  };
+  }, [onMouseEnter, dispatch, setSidebarMini, setOnMouseEnter]);
 
-  if (sidebarHidden) return null;
+  if (! isSidebar) return null;
 
   return (
     <SidebarContainer
-      onMouseEnter={handleOnMouseEnter}
-      onMouseLeave={handleOnMouseLeave}
+      onMouseEnter = {handleOnMouseEnter}
+      onMouseLeave = {handleOnMouseLeave}
     />
   );
 });

@@ -93,7 +93,7 @@ export const slice = createSlice({
       
       // Тк при первом запуске setSelectedPeriod вызывается автоматически, поэтому нужно НЕ затереть имеющиеся данные
       // TODO: перепроверить, возможно это уже надо убрать
-      const oldData = LS.getDashboardState(payload.companyId); // Save state to local storage
+      const oldData = LS.getDashboardState(payload.companyId) || {} as StateSchemaDashboardData; // Save state to local storage
       LS.setDashboardState(
         payload.companyId,
         {

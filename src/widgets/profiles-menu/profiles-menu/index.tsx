@@ -1,20 +1,19 @@
-import { FC } from 'react';
-import { MenuItem, Menu } from '@mui/material';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import { FC, useCallback } from 'react';
+import { Menu } from '@mui/material';
 import { KeyboardReturn, AccountCircle, Home as HomeIcon } from '@mui/icons-material';
 import { useUser } from 'entities/user';
 import { RoutePath } from 'app/providers/routes';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { MDDivider } from 'shared/ui/mui-design-components';
+import { MenuItem } from 'shared/ui/items/menu-item';
 
 
 
 type Props = {
-  open       : boolean;
-  anchorEl   : HTMLElement | null;
-  menuId     : string;
-  onClose    : () => void;
+  open     : boolean
+  anchorEl : HTMLElement | null
+  menuId   : string
+  onClose  : () => void
 };
 
 
@@ -24,11 +23,12 @@ export const ProfilesMenu: FC<Props> = ({ open, anchorEl, menuId, onClose }) => 
   const navigate = useNavigate();
 
   // Выход из аккаунта
-  const handleUserLogout = () => {
+  const handleUserLogout = useCallback(() => {
     onClose();
     serviceLogout();
     navigate(RoutePath.ROOT);
-  };
+  }, [onClose, serviceLogout]);
+
   
   // const type = role === Role.SUPER ? WhoInProfile.SUPER : WhoInProfile.USER;
   
@@ -42,32 +42,26 @@ export const ProfilesMenu: FC<Props> = ({ open, anchorEl, menuId, onClose }) => 
       transformOrigin = {{ vertical: 'top', horizontal: 'right' }}
       onClose         = {onClose}
     >
-      <Link to={RoutePath.USER_PROFILE} onClick={onClose}>
-        <MenuItem>
-          <ListItemIcon>
-            <AccountCircle fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Ваш профиль" />
-        </MenuItem>
-      </Link>
-
-      <Link to={RoutePath.COMPANY_PROFILE} onClick={onClose}>
-        <MenuItem>
-            <ListItemIcon>
-              <HomeIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary="Аккаунт компании" />
-        </MenuItem>
-      </Link>
+      <MenuItem
+        label   = 'Ваш профиль'
+        route   = {RoutePath.USER_PROFILE}
+        icon    = {<AccountCircle fontSize='small' />}
+        onClick = {onClose}
+      />
+      <MenuItem
+        label   = 'Аккаунт компании'
+        route   = {RoutePath.COMPANY_PROFILE}
+        icon    = {<HomeIcon fontSize='small' />}
+        onClick = {onClose}
+      />
 
       <MDDivider />
 
-      <MenuItem onClick={handleUserLogout}>
-        <ListItemIcon>
-          <KeyboardReturn fontSize="small" />
-        </ListItemIcon>
-        <ListItemText primary="Выйти" />
-      </MenuItem>
+      <MenuItem
+        label   = 'Выйти'
+        icon    = {<KeyboardReturn fontSize='small' />}
+        onClick = {handleUserLogout}
+      />
     </Menu>
   )
 };

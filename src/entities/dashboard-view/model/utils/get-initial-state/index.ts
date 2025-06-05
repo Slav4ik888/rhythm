@@ -18,7 +18,7 @@ export const getInitialState = (companyId: string): StateSchemaDashboardView => 
     bright                : false,
     isUnsaved             : false, // Наличие не сохраненных изменений (в тч customSettings in Company)
     
-    entities              : addEntities({}, LS.getDashboardView(companyId)) || {},
+    entities              : addEntities({}, LS.getDashboardView(companyId) || []),
     newStoredViewItem     : undefined, // Начальные значения выбранного элемента
     prevStoredViewItem    : undefined, // Начальные значения предыдущего выбранного элемента
 

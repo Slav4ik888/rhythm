@@ -13,9 +13,9 @@ export const customPalette = {
   },
 
   text: {
-    main: '#6c6c6c',
-    focus: '#6c6c6c',
-    primary: '#000000',
+    main: '#2e2e2e',
+    focus: '#2e2e2e',
+    primary: '#2e2e2e',
     secondary: '#000000',
     disabled: '#000000',
   },
@@ -51,7 +51,7 @@ export const customPalette = {
 
   secondary: {
     light: '#000000',
-    main: '#6c6c6c',
+    main: '#2e2e2e',
     dark: '#000000',
     focus: '#8f93a9',
     contrastText: '#000000',

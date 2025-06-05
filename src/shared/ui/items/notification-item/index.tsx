@@ -32,7 +32,7 @@ interface Props {
   title: string;
 }
 
-const NotificationItem: FC<Props> = forwardRef(({ icon, title, ...rest }, ref) => (
+export const NotificationItem: FC<Props> = forwardRef(({ icon, title, ...rest }, ref) => (
   <MenuItem
     {...rest}
     ref={ref}
@@ -50,6 +50,3 @@ const NotificationItem: FC<Props> = forwardRef(({ icon, title, ...rest }, ref) =
     </MDBox>
   </MenuItem>
 ));
-
-
-export default NotificationItem;

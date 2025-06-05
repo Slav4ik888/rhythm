@@ -30,6 +30,8 @@ export const signupByEmail = createAsyncThunk<
       console.log('data: ', newUserData, newCompanyData, message);
       const companyId = newCompanyData?.id || LS.getLastCompanyId();
 
+      if (! companyId) return
+
       dispatch(actionsUser.setUser({ companyId, user: newUserData }));
       dispatch(actionsCompany.setCompany({ companyId, company: newCompanyData }));
       dispatch(actionsUI.setSuccessMessage(message));

@@ -13,21 +13,22 @@ export const getInitialState = (companyId: string): StateSchemaDashboardData => 
     end   : undefined
   };
 
-  const activePeriod = LS.getDashboardState(companyId).activePeriod || { ...emptyPeriod };
+  const state = LS.getDashboardState(companyId);
+  const activePeriod = state?.activePeriod || { ...emptyPeriod };
   
   const initialState: StateSchemaDashboardData = {
     loading        : false,
     errors         : {},
     _isMounted     : true,
 
-    startEntities  : LS.getDashboardState(companyId).startEntities  || {},
-    startDates     : LS.getDashboardState(companyId).startDates     || {},
-    lastUpdated    : LS.getDashboardState(companyId).lastUpdated    || undefined, // Дата последнего обновления
+    startEntities  : state?.startEntities  || {},
+    startDates     : state?.startDates     || {},
+    lastUpdated    : state?.lastUpdated    || undefined, // Дата последнего обновления
     
     selectedPeriod : activePeriod,
     activePeriod,
-    activeEntities : LS.getDashboardState(companyId).activeEntities || {},
-    activeDates    : LS.getDashboardState(companyId).activeDates    || {},
+    activeEntities : state?.activeEntities || {},
+    activeDates    : state?.activeDates    || {},
   };
 
   return initialState;
