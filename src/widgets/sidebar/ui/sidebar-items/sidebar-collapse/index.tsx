@@ -14,18 +14,18 @@ Coded by www.creative-tim.com
 */
 
 import { FC, ReactNode } from 'react';
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Icon from "@mui/material/Icon";
-import MDBox from "shared/ui/mui-design-components/md-box";
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Icon from '@mui/material/Icon';
+import MDBox from 'shared/ui/mui-design-components/md-box';
 import {
   collapseItem,
   collapseIconBox,
   collapseIcon,
   collapseText,
-} from "./styles";
-import { CustomTheme, useUIConfiguratorController } from "app/providers/theme";
+} from './styles';
+import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
 
 
 
@@ -42,13 +42,13 @@ export const SidebarCollapse: FC<Props> = ({ icon, title, active, ...rest }) => 
   const { sidebarMini, mode } = configuratorState;
 
   return (
-    <ListItem component="li">
+    <ListItem component='li'>
       <MDBox
         {...rest}
         sx={(theme: CustomTheme) => collapseItem(theme, { active })}
       >
         <ListItemIcon sx={(theme) => collapseIconBox(theme as CustomTheme, { active })}>
-          {typeof icon === "string" ? (
+          {typeof icon === 'string' ? (
             <Icon sx={(theme) => collapseIcon(theme as CustomTheme, { active })}>{icon}</Icon>
           ) : (
             icon

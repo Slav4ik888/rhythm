@@ -26,7 +26,7 @@ import { boxShadow } from "./boxShadow";
 
 
 export const getBoxShadows = ({ palette: { black, white, tabs, coloredShadows, dark }}: CustomTheme) => {
-  
+
   return {
     xs: boxShadow([0, 2], [9, -5], black.main, 0.15),
     sm: boxShadow([0, 5], [10, 0], black.main, 0.12),

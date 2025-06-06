@@ -35,7 +35,7 @@ export function sxNavbar(theme: CustomTheme, ownerState: OwnerState) {
   const { borderRadius } = borders;
 
   return {
-    boxShadow       : navbarTransparent || absolute ? 'none' : navbarBoxShadow,
+    boxShadow       : navbarTransparent || absolute || darkMode ? 'none' : navbarBoxShadow,
     backdropFilter  : navbarTransparent || absolute ? 'none' : `saturate(200%) blur(${pxToRem(30)})`,
     backgroundColor :
       navbarTransparent || absolute

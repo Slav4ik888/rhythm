@@ -12,7 +12,7 @@ import { SidebarTitle } from '../sidebar-items/sidebar-title';
 export const renderRoutes = (routesList: SidebarRouteListItem[], activeName: string, textColor: ColorName) => routesList.map(({ type, title, icon, noCollapse, key, href, route }) => {
     let returnValue;
 
-    if (type === "collapse") {
+    if (type === 'collapse') {
       returnValue = href ? (
         <SidebarLink
           href       = {href}
@@ -30,7 +30,7 @@ export const renderRoutes = (routesList: SidebarRouteListItem[], activeName: str
         />
       );
     }
-    else if (type === "title") {
+    else if (type === 'title') {
       returnValue = (
         <SidebarTitle
           textColor = {textColor}
@@ -38,7 +38,7 @@ export const renderRoutes = (routesList: SidebarRouteListItem[], activeName: str
         />
       );
     }
-    else if (type === "divider") {
+    else if (type === 'divider') {
       returnValue = <MDDivider />;
     }
   

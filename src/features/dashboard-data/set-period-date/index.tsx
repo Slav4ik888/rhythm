@@ -1,10 +1,10 @@
 import { ChangeEvent, FC, memo, MutableRefObject, useEffect, useMemo, useRef } from 'react';
 import { pxToRem } from 'shared/styles';
-import { TextField } from '@mui/material';
 import { calculateStartDate, getMsFromRef } from './utils';
 import { DashboardPeriodType, useDashboardData } from 'entities/dashboard-data';
 import { formatDate } from 'shared/helpers/dates';
 import { useCompany } from 'entities/company';
+import { MDInput } from 'shared/ui/mui-design-components';
 
 
 
@@ -24,11 +24,12 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
   
   const disabled = useMemo(() => dateStart && periodNotCustom, [storePeriodType]);
   
+  console.log('ref.current: ', ref?.current?.value);
   
   // Устанавливаем начальные значения
   useEffect(() => {
     if (storeDate && ref.current) { // && ! ref.current?.value) {
-      ref.current.value = formatDate(storeDate, "YYYY-MM-DD");
+      ref.current.value = formatDate(storeDate, 'YYYY-MM-DD');
     }
     if (dateStart && periodNotCustom) {
       const start = calculateStartDate(selectedPeriod.end, storePeriodType);
@@ -46,6 +47,8 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
 
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log('e.target.value: ', e.target.value);
+
     // Validate correct date & > 01-01-1900
     if (new Date(e.target.value)?.getTime() > -2208997817000) {
 
@@ -58,11 +61,14 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
 
 
   return (
-    <TextField
-      inputRef = {ref}
-      variant  = "outlined"
-      type     = "date"
-      size     = "small"
+    // <TextField
+    // inputRef = {ref}
+    <MDInput
+      // @ts-ignore
+      ref      = {ref}
+      variant  = 'outlined'
+      type     = 'date'
+      size     = 'small'
       disabled = {disabled}
       sx       = {{ width: pxToRem(140), mr: 1 }}
       onChange = {handleChange}

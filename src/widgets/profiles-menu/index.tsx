@@ -26,7 +26,7 @@ export const ProfilesMenuRoot: FC<Props> = ({ sx }) => {
   return (
     <>
       <IconButton
-        disableRipple
+        // disableRipple
         aria-label    = 'account of current user'
         aria-controls = {menuId}
         aria-haspopup = 'true'

@@ -14,9 +14,9 @@ export const DashboardLastUpdatedText: FC = memo(() => {
     <Tooltip
       title      = {`Последнее обновление было в ${formatDate(lastUpdated, 'D Month YYYY HH:MM', SUB.RU)}`}
       enterDelay = {500}
-      sxSpan     = {{ cursor: "default" }}
+      sxSpan     = {{ cursor: 'default' }}
     >
-      <MDTypography fontSize={pxToRem(10)}>{formatDate(lastUpdated, "DD.MM.YY HH:MM")}</MDTypography>
+      <MDTypography fontSize={pxToRem(10)}>{formatDate(lastUpdated, 'DD.MM.YY HH:MM')}</MDTypography>
     </Tooltip>
   )
 });

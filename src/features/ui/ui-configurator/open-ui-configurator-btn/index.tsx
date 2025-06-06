@@ -18,7 +18,7 @@ export const OpenUIConfiguratorBtn: FC<Props> = memo(({ sx }) => {
 
   return (
     <IconButton
-      disableRipple
+      // disableRipple
       color   = 'inherit'
       sx      = {sx.button}
       onClick = {handleOpenConfigurator}

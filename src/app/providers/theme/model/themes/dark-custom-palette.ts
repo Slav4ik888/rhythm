@@ -7,7 +7,7 @@ export const customPalette: CustomPalette = {
   mode: 'dark' as PaletteMode,
 
   background: {
-    default: '#f0f2f5',
+    default: '#171717',
     card: '#000000',
     paper: '#000000',
   },
@@ -43,9 +43,9 @@ export const customPalette: CustomPalette = {
 
   primary: {
     light: '#000000',
-    main: '#e91e63',
+    main: '#3fa111',
     dark: '#000000',
-    focus: '#e91e63',
+    focus: '#3fa111',
     contrastText: '#000000',
   },
 
@@ -98,9 +98,9 @@ export const customPalette: CustomPalette = {
   },
 
   dark: {
-    light: '#000000',
-    main: '#4a4a4a',
-    dark: '#000000',
+    light: '#313131',
+    main: '#7f7f7f',
+    dark: '#505050',
     focus: '#232323',
     contrastText: '#000000',
   },

@@ -56,6 +56,7 @@ export const SwitcherSidebarColor = memo(() => {
                 {
                   ...sx.item,
                   background : theme.main,
+                  cursor     : 'pointer',
                   border     : name === sidebarColor ? `${pxToRem(ACTIVE_INDENT)} solid #ffffff` : 'none',
                 }
               }

@@ -20,7 +20,7 @@ export const OpenNotificationMenuBtn: FC<Props> = memo(({ sx }) => {
   return (
     <>
       <IconButton
-        disableRipple
+        // disableRipple
         color         = 'inherit'
         aria-controls = 'notification-menu'
         aria-haspopup = 'true'

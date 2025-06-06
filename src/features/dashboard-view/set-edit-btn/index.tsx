@@ -28,7 +28,7 @@ export const DashboardSetEditBtn: FC<Props> = memo(({ sx }) => {
     <Box onClick={handleToggle}>
       <Tooltip title={text}>
         <IconButton
-          disableRipple
+          // disableRipple
           color = {editMode ? 'primary' : 'inherit'}
           sx    = {sx.button}
         >

@@ -37,7 +37,7 @@ interface OwnerState {
 export default styled(Typography)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
   const { palette } = theme;
   const { color, textTransform, verticalAlign, fontWeight = 'regular', opacity, textGradient, darkMode } = ownerState;
-  const { gradients, transparent, white } = palette;
+  const { gradients, transparent, dark } = palette;
   const { fontWeightLight, fontWeightRegular, fontWeightMedium, fontWeightBold } = getTypography(theme);
 
 
@@ -62,13 +62,15 @@ export default styled(Typography)(({ theme, ownerState }: { theme: CustomTheme, 
     zIndex: 1,
   });
 
-  // color value                          если нет цвета, то inherit
-  let colorValue = color === 'inherit' || ! palette[color] ? 'inherit' : palette[color].main;
+  // color value
+  let colorValue = color === 'inherit' || ! palette[color]
+    ? 'inherit' // если нет цвета, то inherit
+    : palette[color].main;
 
   if (darkMode && (color === 'inherit' || ! palette[color])) {
     colorValue = 'inherit';
   }
-  else if (darkMode && color === 'dark') colorValue = white.main;
+  else if (darkMode && color === 'dark') colorValue = dark.main;
 
 
   return {

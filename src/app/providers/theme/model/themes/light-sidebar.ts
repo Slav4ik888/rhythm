@@ -22,7 +22,7 @@ export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
       contrastText : '#000000',
 
       gradients: {
-        main  : 'rgba(66, 66, 74, 1)',
+        main  : 'rgba(34, 34, 34, 1)',
         state : 'rgba(25, 25, 25, 1)',
       },
     }

@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refacted BodyContent added isRendering" && git push -u origin main
+// git add . && git commit -m "refacted Styles" && git push -u origin main

@@ -25,10 +25,11 @@ interface Props {
 }
 
 const MDInput: FC<Props> = forwardRef(({ error, success, disabled, ...rest }, ref) => (
+  // @ts-ignore
   <MDInputRoot
     {...rest}
     // @ts-ignore
-    ref={ref}
+    inputRef={ref}
     ownerState={{ error, success, disabled }}
   />
 ));
