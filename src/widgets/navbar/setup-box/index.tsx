@@ -2,16 +2,18 @@ import { FC, memo } from "react";
 import { useUser } from 'entities/user';
 import { MenuBtns } from './menu-bns';
 import { AuthBtns } from './auth-btns';
+import { SxNavbarIcon } from '..';
 
 
 
 interface Props {
-  isMini? : boolean
+  isMini?: boolean
+  sx: SxNavbarIcon
 }
 
 
 /** Кнопки Navbar авторизация и профилей */
-export const NavbarSetupBox: FC<Props> = memo(({ isMini = false }) => {
+export const NavbarSetupBox: FC<Props> = memo(({ isMini = false, sx }) => {
   const { auth } = useUser();
 
   // Не понимаю что это
@@ -21,7 +23,7 @@ export const NavbarSetupBox: FC<Props> = memo(({ isMini = false }) => {
   return (
     <>
       {
-        auth ? <MenuBtns /> : <AuthBtns />
+        auth ? <MenuBtns sx={sx} /> : <AuthBtns sx={sx} />
       }
     </>
   );

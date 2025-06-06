@@ -3,16 +3,16 @@ import { IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { useTheme, useUIConfiguratorController, CustomTheme, setSidebarMini, setIsSidebar } from 'app/providers/theme';
-import { sxNavbarIconsStyle } from '../../../../shared/lib/styles/navbar';
+import { SxNavbarIcon } from 'widgets/navbar';
 
 
 
 const useStyles = (
-  theme             : CustomTheme,
-  navbarTransparent : boolean,
-  light             : boolean | undefined
+  theme : CustomTheme,
+  sx    : SxNavbarIcon
 ) => ({
   button: {
+    ...sx.button,
     display    : 'inline-block',
     lineHeight : 0,
 
@@ -20,18 +20,20 @@ const useStyles = (
       display: 'none',
     },
   },
-  icon   : sxNavbarIconsStyle(theme, navbarTransparent, light)
+  icon: {
+    ...sx.icon,
+  }
 });
 
 
 interface Props {
-  light: boolean | undefined
+  sx: SxNavbarIcon
 }
 
 
-export const MiniSidebarToggleBtn: FC<Props> = memo(({ light }) => {
+export const MiniSidebarToggleBtn: FC<Props> = memo(({ sx: styles }) => {
   const [configuratorState, dispatch] = useUIConfiguratorController();
-  const sx = useStyles(useTheme(), configuratorState.navbarTransparent, light);
+  const sx = useStyles(useTheme(), styles);
   const { sidebarMini, isSidebar } = configuratorState;
 
   const handleMiniSidebar = useCallback(() => {

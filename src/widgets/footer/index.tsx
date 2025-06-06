@@ -14,11 +14,12 @@ Coded by www.creative-tim.com
 */
 
 import { FC } from 'react';
-import Link from "@mui/material/Link";
-import { MDBox, MDTypography } from "shared/ui/mui-design-components";
-import { useTheme } from "app/providers/theme";
+import Link from '@mui/material/Link';
+import { MDBox, MDTypography } from 'shared/ui/mui-design-components';
+import { useTheme } from 'app/providers/theme';
 import { CustomTheme } from 'app/providers/theme';
 import { pxToRem, getTypography } from 'shared/styles';
+import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 
 
 
@@ -35,11 +36,11 @@ interface Props {
 
 
 export const Footer: FC<Props> = ({
-  company = { href: "https://rhythm.thm.su/", name: "Учебный центр Основа" },
+  company = { href: 'https://rhy.thm.su/', name: 'Учебный центр Основа' },
   links = [
-    { href: "https://rhythm.thm.su/", name: "Creative Rhythm" },
-    { href: "https://rhythm.thm.su/", name: "About Us" },
-    { href: "https://rhythm.thm.su/", name: "License" },
+    { href: 'https://rhy.thm.su/', name: 'Creative Rhythm' },
+    { href: 'https://rhy.thm.su/', name: 'About Us' },
+    { href: 'https://rhy.thm.su/', name: 'License' },
   ] }) => {
   const { href, name } = company;
   const theme = useTheme();
@@ -47,9 +48,9 @@ export const Footer: FC<Props> = ({
 
   const renderLinks = () =>
     links.map((link) => (
-      <MDBox key={link.name} component="li" px={2} lineHeight={1}>
-        <Link href={link.href} target="_blank">
-          <MDTypography variant="button" fontWeight="regular" color="text">
+      <MDBox key={link.name} component='li' px={2} lineHeight={1}>
+        <Link href={link.href} target='_blank'>
+          <MDTypography variant='button' fontWeight='regular' color='text'>
             {link.name}
           </MDTypography>
         </Link>
@@ -57,50 +58,52 @@ export const Footer: FC<Props> = ({
     ));
 
   return (
-    <MDBox
-      width="100%"
-      height={pxToRem(85)}
-      display="flex"
-      flexDirection={{ xs: "column", lg: "row" }}
-      justifyContent="space-between"
-      alignItems="center"
-      px={1.5}
-    >
+    <SidebarRegulatorWrapper>
       <MDBox
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexWrap="wrap"
-        color="text"
-        fontSize={size.sm}
+        display='flex'
+        flexDirection={{ xs: 'column', lg: 'row' }}
+        justifyContent='space-between'
+        alignItems='center'
+        width='100%'
+        height={pxToRem(85)}
         px={1.5}
       >
-        &copy; {new Date().getFullYear()}, 
-        <Link href={href} target="_blank">
-          <MDTypography variant="button" fontWeight="medium">
-            &nbsp;{name}&nbsp;
-          </MDTypography>
-        </Link>
-      </MDBox>
-      <MDBox
-        component="ul"
-        sx={({ breakpoints }: CustomTheme) => ({
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "center",
-          listStyle: "none",
-          mt: 3,
-          mb: 0,
-          p: 0,
+        <MDBox
+          display='flex'
+          justifyContent='center'
+          alignItems='center'
+          flexWrap='wrap'
+          color='text'
+          fontSize={size.sm}
+          px={1.5}
+        >
+          &copy;{new Date().getFullYear()}&nbsp; 
+          <Link href={href} target='_blank' sx={{ textDecoration: 'none' }}>
+            <MDTypography variant='button'  color='text'>
+              {name}
+            </MDTypography>
+          </Link>
+        </MDBox>
+        <MDBox
+          component='ul'
+          sx={({ breakpoints }: CustomTheme) => ({
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'center',
+            listStyle: 'none',
+            mt: 3,
+            mb: 0,
+            p: 0,
 
-          [breakpoints.up("lg")]: {
-            mt: 0,
-          },
-        })}
-      >
-        {renderLinks()}
+            [breakpoints.up('lg')]: {
+              mt: 0,
+            },
+          })}
+        >
+          {/* {renderLinks()} */}
+        </MDBox>
       </MDBox>
-    </MDBox>
+    </SidebarRegulatorWrapper>
   );
 }

@@ -13,21 +13,21 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { forwardRef, FC } from "react";
-import MDTypographyRoot from "./md-typography-root";
-import { ColorName, useUIConfiguratorController } from "app/providers/theme";
+import { forwardRef, FC } from 'react';
+import MDTypographyRoot from './md-typography-root';
+import { ColorName, useUIConfiguratorController } from 'app/providers/theme';
 import { TypographyOwnProps } from '@mui/material';
 
 
 
 interface Props extends TypographyOwnProps {
-  display?       : 'block' | "flex"
+  display?       : 'block' | 'flex'
   color?         : ColorName
-  textTransform? : "none" | "capitalize" | "uppercase" | "lowercase"
-  verticalAlign? : "unset" | "baseline" | "sub" | "super" | "text-top" | "text-bottom" | "middle" | "top" | "bottom"
+  textTransform? : 'none' | 'capitalize' | 'uppercase' | 'lowercase'
+  verticalAlign? : 'unset' | 'baseline' | 'sub' | 'super' | 'text-top' | 'text-bottom' | 'middle' | 'top' | 'bottom'
   textGradient?  : boolean
   fontSize?      : string
-  fontWeight?    : "light" | "regular" | "medium" | "bold"
+  fontWeight?    : 'light' | 'regular' | 'medium' | 'bold'
   opacity?       : number
   cursor?        : string
   component?     : React.ElementType
@@ -39,12 +39,12 @@ interface Props extends TypographyOwnProps {
 const MDTypography: FC<Props> = forwardRef(
   (
     {
-      color         = "dark",
+      color         = 'dark',
       fontWeight    = false,
-      textTransform = "none",
-      verticalAlign = "unset",
+      verticalAlign = 'unset',
       textGradient  = false,
       opacity       = 1,
+      textTransform,
       children,
       ...rest
     },
@@ -52,7 +52,7 @@ const MDTypography: FC<Props> = forwardRef(
   ) => {
     const [configuratorState] = useUIConfiguratorController();
     const { mode } = configuratorState;
-    const darkMode = mode === "dark";
+    const darkMode = mode === 'dark';
 
     return (
       <MDTypographyRoot

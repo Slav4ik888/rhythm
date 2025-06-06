@@ -1,10 +1,9 @@
 import { FC, memo } from 'react';
 import { MDBox } from 'shared/ui/mui-design-components';
 import { sxNavbarRow } from '../styles';
-import { DashboardDatebar } from 'widgets/dashboard-data';
-import { MiniSidebarToggleBtn } from 'features/ui';
 import { CustomTheme } from 'app/providers/theme';
 import { SxNavbarIcon } from '..';
+import Breadcrumbs from 'shared/ui/breadcrumbs';
 
 
 
@@ -14,8 +13,7 @@ interface Props {
 }
 
 
-/** For Dashboard page */
-export const NavbarControlBox: FC<Props> = memo(({ isMini = false, sx }) => {
+export const NavbarLinksBox: FC<Props> = memo(({ isMini = false, sx }) => {
 
   return (
     <MDBox
@@ -23,8 +21,11 @@ export const NavbarControlBox: FC<Props> = memo(({ isMini = false, sx }) => {
       mb    = {{ xs: 1, md: 0 }}
       sx    = {(theme: CustomTheme) => sxNavbarRow(theme, isMini)}
     >
-      <MiniSidebarToggleBtn sx={sx} />
-      <DashboardDatebar sx={sx} />
+      <Breadcrumbs
+        title={route[route.length - 1]}
+        route={route}
+        light={light}
+      />
     </MDBox>
   );
 })

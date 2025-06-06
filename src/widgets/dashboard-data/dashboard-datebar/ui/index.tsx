@@ -2,12 +2,17 @@ import { FC, memo } from 'react';
 import { MDBox } from 'shared/ui/mui-design-components';
 import { SettingDatePeriod } from './setting-date-period';
 import { DashboardRefresh } from './dashboard-refresh';
+import { SxNavbarIcon } from 'widgets/navbar';
 
 
 
-export const DashboardDatebar: FC = memo(() => (
-  <MDBox display="flex" alignItems='center'>
+interface Props {
+  sx: SxNavbarIcon
+}
+
+export const DashboardDatebar: FC<Props> = memo(({ sx }) => (
+  <MDBox display='flex' alignItems='center'>
     <SettingDatePeriod /> 
-    <DashboardRefresh />
+    <DashboardRefresh sx={sx} />
   </MDBox>
 ));

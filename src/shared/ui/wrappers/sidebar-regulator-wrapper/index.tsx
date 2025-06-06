@@ -19,6 +19,8 @@ import { useUIConfiguratorController } from 'app/providers/theme';
 import MDBox from 'shared/ui/mui-design-components/md-box';
 import { CustomTheme } from 'app/providers/theme';
 import { pxToRem } from 'shared/styles';
+import { useLocation } from 'react-router-dom';
+import { isDashboardPage } from 'pages/dashboard';
 
 
 
@@ -33,6 +35,8 @@ interface Props {
 export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
   const [configuratorState] = useUIConfiguratorController();
   const { isSidebar, sidebarMini, sidebarWidth } = configuratorState;
+  const location = useLocation();
+  const isNotDashboard = ! isDashboardPage(location);
   
   const isBody   = body;
   const isNavbar = ! isBody;
@@ -52,11 +56,13 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
           ? 'calc(100vh - 200px)'
           : 0,
 
-        marginLeft: isSidebar
-          ? sidebarMini
-            ? pxToRem(104)
-            : pxToRem(sidebarWidth + 8)
-          : 0,
+        marginLeft: isNotDashboard
+          ? 0
+          : isSidebar
+            ? sidebarMini
+              ? pxToRem(104)
+              : pxToRem(sidebarWidth + 8)
+            : 0,
 
         px: 3,
         pt: isNavbar 
@@ -64,9 +70,11 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
           : '',
         
         [breakpoints.down('sm')]: {
-          marginLeft: isSidebar
-            ? sidebarMini ? 0 : pxToRem(sidebarWidth)
-            : 0,
+          marginLeft: isNotDashboard
+            ? 0
+            : isSidebar
+              ? sidebarMini ? 0 : pxToRem(sidebarWidth)
+              : 0,
         },
         [breakpoints.up('xl')]: {
           transition: transitions.create(['margin-left', 'margin-right'], {

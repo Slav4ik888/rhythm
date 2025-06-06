@@ -1,30 +1,16 @@
 import { FC, memo, useState } from 'react';
 import { IconButton, Menu, Icon } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { useTheme, useUIConfiguratorController, CustomTheme, UIConfiguratorProviderState } from 'app/providers/theme';
-import { sxNavbarIconButton, sxNavbarIconsStyle } from '../../../../shared/lib/styles/navbar';
-import { NotificationItem } from "shared/ui/items";
+import { NotificationItem } from 'shared/ui/items';
+import { SxNavbarIcon } from 'widgets/navbar';
 
-
-
-const useStyles = (
-  theme             : CustomTheme,
-  navbarTransparent : boolean,
-  light             : boolean | undefined
-) => ({
-  button : sxNavbarIconButton(theme),
-  icon   : sxNavbarIconsStyle(theme, navbarTransparent, light)
-});
 
 
 interface Props {
-  light: boolean | undefined
+  sx: SxNavbarIcon
 }
 
-
-export const OpenNotificationMenuBtn: FC<Props> = memo(({ light }) => {
-  const [configuratorState] = useUIConfiguratorController();
-  const sx = useStyles(useTheme(), configuratorState.navbarTransparent, light);
+export const OpenNotificationMenuBtn: FC<Props> = memo(({ sx }) => {
   const [openMenu, setOpenMenu] = useState<Element | null>(null);
 
   const handleOpenMenu = (event: any) => { }; // setOpenMenu(event.currentTarget);
@@ -35,29 +21,29 @@ export const OpenNotificationMenuBtn: FC<Props> = memo(({ light }) => {
     <>
       <IconButton
         disableRipple
-        color         = "inherit"
-        aria-controls = "notification-menu"
-        aria-haspopup = "true"
+        color         = 'inherit'
+        aria-controls = 'notification-menu'
+        aria-haspopup = 'true'
         sx            = {sx.button}
         onClick       = {handleOpenMenu}
       >
-        <NotificationsIcon sx={sx.icon} fontSize="small" />
+        <NotificationsIcon sx={sx.icon} fontSize='small' />
       </IconButton>
 
       <Menu
         anchorEl={openMenu}
         // anchorReference={null}
         anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
+          vertical: 'bottom',
+          horizontal: 'left',
         }}
         open={Boolean(openMenu)}
         onClose={handleCloseMenu}
         sx={{ mt: 2 }}
       >
-        <NotificationItem icon={<Icon>email</Icon>} title="Check new messages" />
-        <NotificationItem icon={<Icon>podcasts</Icon>} title="Manage Podcast sessions" />
-        <NotificationItem icon={<Icon>shopping_cart</Icon>} title="Payment successfully completed" />
+        <NotificationItem icon={<Icon>email</Icon>} title='Check new messages' />
+        <NotificationItem icon={<Icon>podcasts</Icon>} title='Manage Podcast sessions' />
+        <NotificationItem icon={<Icon>shopping_cart</Icon>} title='Payment successfully completed' />
       </Menu>
     </>
   )

@@ -7,6 +7,7 @@ import { styles } from './styles';
 import brandDark from 'shared/assets/logo_small.png';
 import { useUIConfiguratorController } from 'app/providers/theme';
 import { MDDivider } from '../../../../shared/ui/mui-design-components';
+import { f } from 'shared/styles';
 
 
 
@@ -22,14 +23,18 @@ export const SidebarLogoLabel = memo(() => {
     <>
       <MDBox pt={3} pb={1} px={3} mb={2} textAlign='center'>
         {/* <ArrowBackBtn /> */}
-        <MDBox component={NavLink} to='/' display='flex' alignItems='center' justifyContent='center'>
+        <MDBox
+          component={NavLink}
+          to = '/'
+          sx = {{ ...f('-c-c'), cursor: 'pointer'}}
+        >
           {brand && <MDBox component='img' src={brand} alt='Brand' width='2rem' />}
 
           {
             ! sidebarMini && <MDBox sx={(theme: CustomTheme) => styles(theme, { sidebarMini })}>
               <MDTypography
                 component  = 'h6'
-                variant    = 'button'
+                variant    = 'body1'
                 fontWeight = 'medium'
                 textAlign  = 'left'
                 color      = 'white'

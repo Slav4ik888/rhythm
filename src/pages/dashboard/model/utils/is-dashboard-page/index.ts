@@ -1,4 +1,4 @@
-import { Location } from "react-router-dom";
+import { Location } from 'react-router-dom';
 import { RouteName } from 'app/providers/routes';
 
 
@@ -7,7 +7,7 @@ import { RouteName } from 'app/providers/routes';
  * @param route 
  */
 export const isDashboardPage = (location: Location<any>): boolean => {
-  const route = location?.pathname?.split("/")?.slice(1);
+  const route = location?.pathname?.split('/')?.slice(1);
 
-  return route[0] === RouteName.DASHBOARD;
+  return route?.[0] === RouteName.DASHBOARD;
 };

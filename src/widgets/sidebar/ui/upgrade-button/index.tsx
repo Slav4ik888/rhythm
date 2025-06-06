@@ -11,7 +11,7 @@ export const SidebarUpgradeButton: FC = memo(({  }) => {
   
 
   return (
-    <MDBox p={2} mt="auto">
+    <MDBox p={2} mt='auto'>
       <MDButton
         fullWidth
         component = 'a'

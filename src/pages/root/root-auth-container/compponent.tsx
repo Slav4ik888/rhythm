@@ -1,4 +1,6 @@
+import { Box } from '@mui/material';
 import { FC, memo } from 'react';
+import { f } from 'shared/styles';
 
 
 
@@ -11,10 +13,9 @@ export const RootAuthComponent: FC = memo(() => {
   // if (isDisplayDemoSubscribeOffer(company?.courseAccess))return <DemoSubscribeOffer />
   // if (isDisplaySubscribeOffer(company, isVerified, isSuper)) return <SubscribeOffer />
 
-  return (<>
-    <div>RootAuthComponent ...</div>
-    {
-      [...new Array(100)].map((_, idx) => <p key={idx}>Any some text...</p>)
-    }
-  </>)
+  return (
+    <Box sx={f('c-c-c')}>
+      Rhythm of Company
+    </Box>
+  )
 });

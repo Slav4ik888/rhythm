@@ -2,21 +2,19 @@ import { FC, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { ProfilesMenu } from './profiles-menu';
-import { sxNavbarIconButton, sxNavbarIconsStyle } from 'shared/lib/styles/navbar';
-import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
+import { SxNavbarIcon } from 'widgets/navbar';
 
 
 
 interface Props {
-  light?  : boolean
+  sx: SxNavbarIcon
 }
 
 /**
  * Widjet ProfilesMenu
  * Кнопка входа в личные кабинеты активация открытия / закрытия
  */
-export const ProfilesMenuRoot: FC<Props> = ({ light }) => {
-  const [configuratorState] = useUIConfiguratorController();
+export const ProfilesMenuRoot: FC<Props> = ({ sx }) => {
   const [anchorPro, setAnchorPro] = useState<HTMLElement | null>(null);
   const isProfilesOpen = Boolean(anchorPro);
   const menuId         = 'profile-menu';
@@ -32,14 +30,13 @@ export const ProfilesMenuRoot: FC<Props> = ({ light }) => {
         aria-label    = 'account of current user'
         aria-controls = {menuId}
         aria-haspopup = 'true'
-        // color         = 'inherit'
         edge          = 'end' 
-        sx            = {(theme) => sxNavbarIconButton(theme as CustomTheme)} 
+        sx            = {sx.button} 
         onClick       = {handleProfilesMenuOpen}
       >
         <AccountCircle
           fontSize='small'
-          sx={(theme) => sxNavbarIconsStyle(theme as CustomTheme, configuratorState.navbarTransparent, light)}
+          sx={sx.icon}
         />
       </IconButton>
 

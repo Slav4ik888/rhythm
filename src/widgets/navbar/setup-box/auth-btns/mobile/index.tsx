@@ -2,10 +2,15 @@ import { FC, memo, MouseEvent, useState } from 'react';
 import { MobileAuthBtn } from './menu';
 import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { SxNavbarIcon } from 'widgets/navbar';
 
 
 
-export const MobileAuthBtns: FC = memo(() => {
+interface Props {
+  sx: SxNavbarIcon
+}
+
+export const MobileAuthBtns: FC<Props> = memo(({ sx }) => {
   const
     [anchorEl, setAnchorEl] = useState<Element | null>(null),
     open = Boolean(anchorEl),
@@ -21,9 +26,10 @@ export const MobileAuthBtns: FC = memo(() => {
         aria-controls = 'basic-menu'
         aria-haspopup = 'true'
         aria-expanded = {open ? 'true' : undefined}
+        sx            = {sx.button}
         onClick       = {(e) => handleClick(e)}
       >
-        <AccountCircle />
+        <AccountCircle sx={sx.icon} />
       </IconButton>
 
       <MobileAuthBtn
