@@ -12,7 +12,8 @@ const useStyles = (
   selectedItem : ViewItem,
 ) => {
   const root: any = {
-    position: 'relative',
+    position : 'relative',
+    cursor   : 'default',
     ...stylesToSx(item?.styles),
   };
   

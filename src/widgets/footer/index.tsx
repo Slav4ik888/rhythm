@@ -16,22 +16,16 @@ Coded by www.creative-tim.com
 import { FC } from 'react';
 import Link from '@mui/material/Link';
 import { MDBox, MDTypography } from 'shared/ui/mui-design-components';
-import { useTheme } from 'app/providers/theme';
-import { CustomTheme } from 'app/providers/theme';
+import { useTheme, CustomTheme } from 'app/providers/theme';
+import { LinkType } from 'app/providers/routes';
 import { pxToRem, getTypography } from 'shared/styles';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 
 
 
 interface Props {
-  company?: {
-    href: string;
-    name: string;
-  };
-  links?: {
-    href: string;
-    name: string;
-  }[];
+  company? : LinkType
+  links?   : LinkType[]
 }
 
 

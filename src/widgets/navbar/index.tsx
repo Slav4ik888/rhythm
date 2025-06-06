@@ -101,7 +101,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
           {
             isDashboard
               ? <NavbarControlBox isMini={isMini} sx={sx} />
-              : <NavbarLinksBox isMini={isMini} sx={sx} />
+              : <NavbarLinksBox isMini={isMini} />
           }
           <NavbarSetupBox   sx={sx} isMini={isMini} /> 
         </Toolbar>

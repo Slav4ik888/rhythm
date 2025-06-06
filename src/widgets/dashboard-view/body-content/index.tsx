@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { ContentRender } from './render-items';
 import { Box } from '@mui/material';
 import { f } from 'shared/styles';
@@ -7,6 +7,7 @@ import { useCompany } from 'entities/company';
 import { getCopyViewItem } from 'features/dashboard-view';
 import { useUser } from 'entities/user';
 import { isEmpty, isNotEmpty } from 'shared/helpers/objects';
+import { PageLoader } from 'widgets/page-loader';
 
 
 
@@ -19,6 +20,19 @@ export const DashboardBodyContent = memo(() => {
     setDashboardView, setSelectedId, updateViewItem, serviceUpdateViewItem, serviceCreateGroupViewItems
   } = useDashboardView();
 
+  const [isRendering, setIsRendering] = useState(true);
+
+  useLayoutEffect(() => {
+    // Проверяем завершение рендера в RAF (после paint)
+    const checkRenderComplete = () => {
+      requestAnimationFrame(() => {
+        setIsRendering(false);
+      });
+    };
+
+    checkRenderComplete();
+  }, []);
+  
 
   useEffect(() => {
     if (newSelectedId && !loading && newSelectedId !== selectedId && ! isUnsaved) {
@@ -88,11 +102,15 @@ export const DashboardBodyContent = memo(() => {
       sx      = {{ ...f('c'), width: editMode  ? 'calc(100% + 500px)' : '100%' }}
       onClick = {() => handleSelectViewItem(NO_PARENT_ID)}
     >
-      <ContentRender
-        parentsViewItems = {parentsViewItems}
-        parentId         = 'no_parentId'
-        onSelect         = {handleSelectViewItem}
-      />
+      {
+        isRendering
+          ? <PageLoader loading={isRendering} />
+          : <ContentRender
+              parentsViewItems = {parentsViewItems}
+              parentId         = 'no_parentId'
+              onSelect         = {handleSelectViewItem}
+            />
+      }
     </Box>
   )
 });
