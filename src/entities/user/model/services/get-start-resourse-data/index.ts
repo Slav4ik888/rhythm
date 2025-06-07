@@ -9,7 +9,7 @@ import { User } from '../../types';
 import { SetUser } from '../../slice/types';
 import { LS } from 'shared/lib/local-storage';
 import cfg from 'app/config';
-import { cloneObj, setIfNotUndefined } from 'shared/helpers/objects';
+import { cloneObj } from 'shared/helpers/objects';
 
 
 
@@ -39,8 +39,16 @@ export const getStartResourseData = createAsyncThunk<
     
     try {
       let user = {} as User, company = {} as Company, viewItems = [] as ViewItem[], companyId = '';
-
-      if (!cfg.IS_DEV) {
+      
+      // На время разработки, использовать данные сохраннённые в LS,
+      // а также случай отсутствия интернета (для разработки)
+      if (cfg.IS_DEV) {
+        companyId = LS.getLastCompanyId() || '';
+        user      = LS.getUserState(companyId)?.user || {} as User;
+        company   = LS.getCompanyState(companyId)?.company as Company;
+        viewItems = LS.getDashboardView(companyId) as ViewItem[];
+      }
+      else {
         const { data: { userData, companyData, dashboardView } } = await extra.api
           .get<ResGetStartResourseData>(`${paths.user.getStartResourseData}/${sheetId}`);
         user      = cloneObj(userData);
@@ -49,16 +57,12 @@ export const getStartResourseData = createAsyncThunk<
         companyId = companyData.id;
         LS.setDashboardView(companyId, viewItems);
       }
-      else { // На случай отсутствия интернета (для разработки)
-        setIfNotUndefined(companyId, LS.getLastCompanyId());
-        setIfNotUndefined(user,      LS.getUserState(companyId)?.user);
-        setIfNotUndefined(company,   LS.getCompanyState(companyId)?.company);
-        setIfNotUndefined(viewItems, LS.getDashboardView(companyId));
+
+      if (companyId) { // Чтобы при отсутствии companyId, не затёрлись данные в LS
+        dispatch(actionsCompany.setCompany({ companyId, company }));
+        dispatch(actionsDashboardView.setDashboardView({ companyId, viewItems }));
       }
 
-      dispatch(actionsCompany.setCompany({ companyId, company }));
-      dispatch(actionsDashboardView.setDashboardView({ companyId, viewItems }));
-      
       return { companyId, user };
     }
     catch (e) {

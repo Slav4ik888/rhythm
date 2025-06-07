@@ -24,7 +24,6 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
   
   const disabled = useMemo(() => dateStart && periodNotCustom, [storePeriodType]);
   
-  console.log('ref.current: ', ref?.current?.value);
   
   // Устанавливаем начальные значения
   useEffect(() => {
@@ -47,8 +46,6 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
 
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log('e.target.value: ', e.target.value);
-
     // Validate correct date & > 01-01-1900
     if (new Date(e.target.value)?.getTime() > -2208997817000) {
 
@@ -61,8 +58,6 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
 
 
   return (
-    // <TextField
-    // inputRef = {ref}
     <MDInput
       // @ts-ignore
       ref      = {ref}

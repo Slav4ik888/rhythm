@@ -13,8 +13,8 @@ export const setUserState = (companyId: string, state: StateSchemaUser) => setSt
 export const getUserState = (companyId: string) => getStorageData<StateSchemaUser>(`UserState-${companyId}`);
 
 // Company
-export const setLastCompanyId = (companyId: string) => setStorageData('LastCompanyState', { companyId });
-export const getLastCompanyId = () => getStorageData<{ companyId: string }>('LastCompanyState')?.companyId;
+export const setLastCompanyId = (companyId: string) => setStorageData('LastCompanyId', { companyId });
+export const getLastCompanyId = () => getStorageData<{ companyId: string }>('LastCompanyId')?.companyId;
 
 export const setCompanyState = (companyId: string, state: StateSchemaCompany) => setStorageData(`CompanyState-${companyId}`, state);
 export const getCompanyState = (companyId: string) => getStorageData<StateSchemaCompany>(`CompanyState-${companyId}`);

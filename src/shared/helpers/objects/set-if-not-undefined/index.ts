@@ -1,4 +1,5 @@
-import { isNotObj, isObj, isUndefined } from 'shared/lib/validators';
+import { isNotObj, isUndefined } from 'shared/lib/validators';
+
 
 
 export type Obj = {
@@ -6,8 +7,8 @@ export type Obj = {
 }
 
 /**
- * 
- * @param obj   - объект в который добавлять field со значением value или строка
+ * Меняет поле объекта если value не undefined. Если obj не объект, то возвращает value
+ * @param obj
  * @param value - значение, если undefined, то ничего не добавляется
  * @param field - название поля (если obj объект)
  */
@@ -15,22 +16,21 @@ export function setIfNotUndefined<T extends Obj | string>(
   obj    : T,
   value  : any,
   field? : keyof T,
-) {
-  if (isUndefined(value)) return
+): T | string {
+  if (isUndefined(value)) return obj
 
   if (field) {
     if (isNotObj(obj)) {
-      obj = value;
+      return value;
     }
     else {
       // @ts-ignore
       if (isUndefined(obj[field])) (obj)[field] = '';
       obj[field] = value;
+      return obj;
     }
   }
   else {
-    if (isNotObj(obj)) {
-      obj = value;
-    }
+    return value;
   }
 };

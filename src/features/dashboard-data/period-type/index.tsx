@@ -23,9 +23,7 @@ const useStyles = (theme: CustomTheme) => ({
   },
   // Фон списка
   selectOpened: {
-    backgroundColor: theme.palette.mode === 'light'
-      ? theme.palette.light.main
-      : theme.palette.dark.light
+    backgroundColor: theme.palette.navbar.bg
   }
 });
 
@@ -68,6 +66,7 @@ export const PeriodType: FC = memo(() => {
           arrayDashboardPeriodType.map((item) => <MenuItem
             key   = {item}
             value = {item}
+            sx    = {(theme) => ({ color: (theme as CustomTheme).palette.navbar.contrastText })}
           >
             {DASHBOARD_PERIOD_TEXT[item]}
           </MenuItem>)

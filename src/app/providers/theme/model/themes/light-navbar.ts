@@ -1,34 +1,37 @@
-import { ThemeColorItem } from '../types';
+
 
 export type NavbarColorName = 'navbar_white' | 'navbar_green' | 'navbar_grey'
-export type NavbarTheme = { navbar: ThemeColorItem }
+export interface ThemeNavbarItem {
+  bg: string
+  color: string
+  // iconColor: string
+  contrastText: string
+}
+export type NavbarTheme = { navbar: ThemeNavbarItem }
 
 export const navbarThemes: Record<NavbarColorName, NavbarTheme> = {
   'navbar_white': {
     navbar: {
-      light : '#000000',
-      main  : 'rgba(255, 255, 255, 0.8)',
-      dark  : '#000000',
-      focus : 'rgba(255, 255, 255, 0.8)',
-      contrastText: '#000000',
+      bg: '#ffffff',
+      color: '#7f7f7f',
+      contrastText: '#2e2e2e',
+      // iconColor: '#7f7f7f',
     }
   },
   'navbar_green': {
     navbar: {
-      light : '#000000',
-      main  : 'rgb(76 175 80)',
-      dark  : '#000000',
-      focus : 'rgb(76 175 80)',
-      contrastText: '#000000',
+      bg: '#ffffff',
+      color: '#7f7f7f',
+      contrastText: '#2e2e2e',
+      // iconColor: '#7f7f7f',
     }
   },
   'navbar_grey': {
     navbar: {
-      light : '#000000',
-      main  : 'rgb(184 184 184)',
-      dark  : '#000000',
-      focus : 'rgb(184 184 184)',
-      contrastText: '#000000',
+      bg: '#ffffff',
+      color: '#7f7f7f',
+      contrastText: '#2e2e2e',
+      // iconColor: '#7f7f7f',
     }
   },
 }

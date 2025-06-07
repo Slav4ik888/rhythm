@@ -9,13 +9,13 @@ export const customPalette: CustomPalette = {
   background: {
     default: '#171717',
     card: '#000000',
-    paper: '#000000',
+    paper: '#0a0a0a',
   },
 
   text: {
-    main: '#7b809a',
+    main: '#a2a2a2',
     focus: '#7b809a',
-    primary: '#000000',
+    primary: '#7f7f7f',
     secondary: '#000000',
     disabled: '#000000',
   },
@@ -36,7 +36,7 @@ export const customPalette: CustomPalette = {
   },
 
   black: {
-    light: '#000000',
+    light: '#0e0e0e',
     main: '#000000',
     focus: '#000000',
   },
@@ -91,7 +91,7 @@ export const customPalette: CustomPalette = {
 
   light: {
     light: '#000000',
-    main: '#f0f2f5',
+    main: '#7f7f7f',
     dark: '#000000',
     focus: '#f0f2f5',
     contrastText: '#000000',
@@ -102,7 +102,7 @@ export const customPalette: CustomPalette = {
     main: '#7f7f7f',
     dark: '#505050',
     focus: '#232323',
-    contrastText: '#000000',
+    contrastText: '#ffffff',
   },
 
   orange: {
@@ -124,7 +124,7 @@ export const customPalette: CustomPalette = {
     800: '#343a40',
     900: '#212529',
   } as Color,
-
+  
   configuratorTitle: {
     title1    : '#288995', // title1
     title2    : '#576593', // title2

@@ -102,7 +102,7 @@ export const customPalette = {
     main: '#7f7f7f',
     dark: '#000000',
     focus: '#232323',
-    contrastText: '#000000',
+    contrastText: '#ffffff',
   },
 
   orange: {
@@ -124,7 +124,7 @@ export const customPalette = {
     800: '#343a40',
     900: '#212529',
   } as Color,
-  
+
   configuratorTitle: {
     title1    : '#288995', // title1
     title2    : '#576593', // title2

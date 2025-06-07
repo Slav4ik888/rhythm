@@ -6,6 +6,7 @@ import { RoutePath } from 'app/providers/routes';
 import { useNavigate } from 'react-router-dom';
 import { MDDivider } from 'shared/ui/mui-design-components';
 import { MenuItem } from 'shared/ui/items/menu-item';
+import { CustomTheme } from 'app/providers/theme';
 
 
 
@@ -40,6 +41,13 @@ export const ProfilesMenu: FC<Props> = ({ open, anchorEl, menuId, onClose }) => 
       anchorEl        = {anchorEl}
       anchorOrigin    = {{ vertical: 'top', horizontal: 'right' }}
       transformOrigin = {{ vertical: 'top', horizontal: 'right' }}
+      slotProps       = {{
+        paper: {
+          sx: {
+            backgroundColor: (theme) => (theme as CustomTheme).palette.navbar.bg
+          }
+        }
+      }}
       onClose         = {onClose}
     >
       <MenuItem

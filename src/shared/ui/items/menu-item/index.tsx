@@ -20,10 +20,17 @@ export const MenuItem: FC<Props> = ({ label, icon, route ='', onClick }) => {
   return (
     <Link to={route} onClick={onClick}>
       <MuiMenuItem>
-        <ListItemIcon>
+        <ListItemIcon
+          sx={(theme) => ({ '& svg, svg g': {
+            color: (theme as CustomTheme).palette.navbar.color,
+          }})}
+        >
           {icon}
         </ListItemIcon>
-        <ListItemText primary={label} sx={(theme) => ({ color: (theme as CustomTheme)?.palette?.text?.primary })} />
+        <ListItemText
+          primary = {label}
+          sx      = {(theme) => ({ color: (theme as CustomTheme).palette.navbar.contrastText })}
+        />
       </MuiMenuItem>
     </Link>
   )

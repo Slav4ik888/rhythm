@@ -23,5 +23,7 @@ import { hexToRgb } from "./hexToRgb";
 
 
 export function rgbaFromHex(color: string, opacity: number) {
+  if (! color) return '';
+  
   return `rgba(${hexToRgb(color)}, ${opacity})`;
 }

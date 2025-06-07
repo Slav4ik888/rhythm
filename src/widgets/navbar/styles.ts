@@ -30,7 +30,7 @@ export function sxNavbar(theme: CustomTheme, ownerState: OwnerState) {
   const { palette, transitions, breakpoints, borders } = theme;
   const { navbarTransparent, absolute, light, darkMode } = ownerState;
 
-  const { dark, white, text, transparent, background } = palette;
+  const { dark, white, text, transparent, navbar } = palette;
   const { navbarBoxShadow } = getBoxShadows(theme);
   const { borderRadius } = borders;
 
@@ -40,7 +40,7 @@ export function sxNavbar(theme: CustomTheme, ownerState: OwnerState) {
     backgroundColor :
       navbarTransparent || absolute
         ? `${transparent.main} !important`
-        : rgbaFromHex(darkMode ? background.default : white.main, 0.8),
+        : rgbaFromHex(navbar.bg, 0.8),
 
     color: () => {
       let color;
@@ -52,7 +52,7 @@ export function sxNavbar(theme: CustomTheme, ownerState: OwnerState) {
         color = text.main;
       }
       else {
-        color = dark.main;
+        color = navbar.color;
       }
 
       return color;
@@ -64,7 +64,7 @@ export function sxNavbar(theme: CustomTheme, ownerState: OwnerState) {
     borderRadius  : borderRadius.xl,
     paddingTop    : pxToRem(8),
     paddingBottom : pxToRem(8),
-    paddingRight  : absolute ? pxToRem(8)  : 0,
+    paddingRight  : pxToRem(8),
     paddingLeft   : absolute ? pxToRem(16) : 0,
 
     '& > *': {

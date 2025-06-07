@@ -3,6 +3,7 @@ import { Box, CircularProgress as Circular } from '@mui/material';
 import { f } from 'shared/styles';
 import { getTopCenter } from './utils';
 import { useEffect } from 'react';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 
 
   
@@ -22,6 +23,7 @@ type Props = {
 
 
 const useStyles = (
+  theme: CustomTheme,
   { id = 'CircularId', size = 30, top, bottom, right, left, sx, center, block, color }: Props
 ) => {
   const style = {
@@ -51,7 +53,7 @@ const useStyles = (
     style.root.pointerEvents = 'none';
     style.root.overflow      = 'hidden';
     style.root.touchAction   = 'none'; /* Для мобилок */
-    style.root.background    = '#dadada';
+    style.root.background    = theme.palette.background.default;
     style.root.opacity       = '60%';
   }
   else {
@@ -63,7 +65,7 @@ const useStyles = (
 };
 
 
-/** 2025-05-31 */
+/** 2025-06-07 */
 export const CircularProgress: React.FC<Props> = (props) => {
   const
     {
@@ -73,7 +75,7 @@ export const CircularProgress: React.FC<Props> = (props) => {
     } = props,
     // ref = React.useRef(null),
     // parentDimentions = React.useMemo(() => getParentDimentions(document.getElementById(id)), [ref.current]),
-    sx = useStyles(props);//, parentDimentions);
+    sx = useStyles(useTheme(), props);//, parentDimentions);
 
 
   // При block - блокируем прокрутку и фокус

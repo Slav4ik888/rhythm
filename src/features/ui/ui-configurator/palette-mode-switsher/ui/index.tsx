@@ -1,7 +1,7 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 // import Brightness4Icon from '@mui/icons-material/Brightness4';
 // import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { setMode, useUIConfiguratorController } from 'app/providers/theme';
+import { setMode, setSidebarColor, useUIConfiguratorController } from 'app/providers/theme';
 import { SwitcherItem } from '../../components/switcher-item';
 
 
@@ -15,7 +15,10 @@ export const PaletteModeSwitcher = memo(() => {
     setChecked(mode === 'light');
   }, [mode]);
   
-  const togglePaletteMode = () => setMode(dispatch, mode === 'dark' ? 'light' : 'dark');
+  const togglePaletteMode = useCallback(() => {
+    setMode(dispatch, mode === 'dark' ? 'light' : 'dark');
+    setSidebarColor(dispatch, mode === 'dark' ? 'sidebar_grey' : 'sidebar_black');
+  }, [mode, dispatch]);
 
 
   return (

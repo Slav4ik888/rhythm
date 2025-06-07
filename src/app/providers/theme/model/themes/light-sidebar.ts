@@ -1,4 +1,4 @@
-import { GradientsItem, ThemeColorItem } from '../types';
+import { GradientsItem } from '../types';
 
 
 
@@ -6,7 +6,7 @@ export type SidebarColorName = 'sidebar_black' | 'sidebar_blue' | 'sidebar_grey'
 
 
 export type SidebarTheme = {
-  sidebar: ThemeColorItem & {
+  sidebar: any & {
     gradients: GradientsItem
   }
 }

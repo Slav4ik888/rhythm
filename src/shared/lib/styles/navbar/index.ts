@@ -32,16 +32,16 @@ export const sxNavbarIconsStyle = (
   navbarTransparent : boolean,
   light             : boolean | undefined
 ) => {
-  const { palette: { dark, white, text, mode } } = theme;
+  const { palette: { navbar, white, text, mode } } = theme;
   const darkMode = mode === 'dark';
 
   return {
     color: () => {
-      let colorValue = dark.main;
+      let colorValue = navbar.color;
 
-      if (navbarTransparent && ! light) {
-        colorValue = darkMode ? rgbaFromHex(text.main, 0.6) : text.main;
-      }
+      // if (navbarTransparent && ! light) {
+      //   colorValue = darkMode ? rgbaFromHex(text.main, 0.6) : text.main;
+      // }
 
       return colorValue;
     },

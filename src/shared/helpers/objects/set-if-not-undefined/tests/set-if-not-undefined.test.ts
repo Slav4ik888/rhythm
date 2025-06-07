@@ -50,6 +50,12 @@ describe('setIfNotUndefined', () => {
     setIfNotUndefined(obj, 'newValue', 'a');
     expect(obj.a).toBe('newValue'); // Поле инициализировано
   });
+
+  // 8. 
+  it('should set string', () => {
+    const str = setIfNotUndefined('string', 'newValue');
+    expect(str).toBe('newValue'); // Поле инициализировано
+  });
 });
 
 

@@ -8,13 +8,16 @@ import { Gradients } from './gradients';
 
 
 
-export interface ThemeColorItem {
-  light        : string
-  main         : string
-  dark         : string
-  focus        : string
-  contrastText : string
-}
+// export interface ThemeColorItem {
+//   light?        : string
+//   main?         : string
+//   dark?         : string
+//   focus?        : string
+//   contrastText? : string
+
+//   bg?           : string
+//   color?        : string
+// }
 
 export interface ColorsConfig {
   [k: string]: {
