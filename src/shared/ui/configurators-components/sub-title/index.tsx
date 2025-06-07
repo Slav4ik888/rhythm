@@ -35,13 +35,13 @@ const getFontSize = (type: Type): string => {
 
 const getFontColor = (theme: CustomTheme, type: Type): string => {
   switch (type) {
-    case 'title1'    : return theme.palette.configuratorTitle.title1;
-    case 'title2'    : return theme.palette.configuratorTitle.title2;
-    case 'subtitle1' : return theme.palette.configuratorTitle.subtitle1;
-    case 'subtitle2' : return theme.palette.configuratorTitle.subtitle2;
-    case 'subtitle3' : return theme.palette.configuratorTitle.subtitle3;
+    case 'title1'    : return theme.palette.configurator.title.title1;
+    case 'title2'    : return theme.palette.configurator.title.title2;
+    case 'subtitle1' : return theme.palette.configurator.title.subtitle1;
+    case 'subtitle2' : return theme.palette.configurator.title.subtitle2;
+    case 'subtitle3' : return theme.palette.configurator.title.subtitle3;
 
-    default          : return theme.palette.configuratorTitle.subtitle1;
+    default          : return theme.palette.configurator.title.subtitle1;
   }
 };
 
@@ -67,7 +67,7 @@ const useStyles = (theme: CustomTheme, type: Type, justify?: Justify) => {
       justifyContent : getJustify(justify),
       fontSize       : getFontSize(type),
       color          : getFontColor(theme, type),
-      textShadow     : `0px 0px 1px #a7a7a7`,
+      // textShadow     : `0px 0px 1px #a7a7a7`,
       // textShadow : `0px 0px 3px ${theme.palette.dark.main}`,
       my             : getMY(type),
     },

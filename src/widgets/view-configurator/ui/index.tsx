@@ -15,6 +15,7 @@ import { UnsavedChanges } from './unsaved-changes';
 import { ViewItemConfiguratorSettings } from './settings';
 import { ViewItemControlConfigurator } from './control';
 import { InfoBlock } from './info-block';
+import { PaletteModeSwitcher } from 'features/ui';
 
 
 
@@ -99,6 +100,7 @@ export const ViewItemConfigurator: FC = memo(() => {
           <ViewItemConfiguratorSettings selectedItem={selectedItem} />
         </TabPanel>
       </TabContext>
+      <PaletteModeSwitcher />
     </DrawerStyled>
   )
 });

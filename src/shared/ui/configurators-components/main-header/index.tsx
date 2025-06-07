@@ -8,25 +8,32 @@ import { f, getTypography } from 'shared/styles';
 
 
 const useStyles = (theme: CustomTheme) => {
-  const { dark, white, mode } = theme.palette;
-  const darkMode = mode === 'dark';
+  const {  configurator } = theme.palette;
   const { size } = getTypography(theme);
 
   return {
     root: {
-      ...f('--fe'),
+      ...f('-fs-sb'),
       pt : 4,
       pb : 0.5,
-      mb : 2,
+      mb : 4,
+    },
+    titleBox: {
+      ...f('c-fs'),
+      width: '100%',
     },
     title: {
-      fontSize    : size.xl, // `${size.lg} !important`,
-      color       : darkMode ? white.main : dark.main,
-      textAlign   : 'center',
+      fontSize    : size['2xl'], // `${size.lg} !important`,
+      color       : configurator.title.headerColor,
+      mb          : 1
+    },
+    subtitle: {
+      fontSize    : size.md,
+      color       : configurator.title.headerSubtitle,
     },
     icon: {
       fontSize    : `${size.lg} !important`,
-      color       : darkMode ? white.main : dark.main,
+      color       : configurator.title.headerIcon,
       stroke      : 'currentColor',
       strokeWidth : '1px',
       cursor      : 'pointer',
@@ -47,13 +54,13 @@ export const ConfiguratorMainHeader: FC<Props> = memo(({ onClose }) => {
   return (
     <>
       <Box sx={sx.root}>
-        <Box width='100%'>
+        <Box sx={sx.titleBox}>
           <Typography sx={sx.title}>
-            Настройки элемента
+            Настройки интерфейса
           </Typography>
-          {/* <Typography variant='body2' color='text'>
-            See our dashboard options.
-          </Typography> */}
+          <Typography sx={sx.subtitle}>
+            Подберите для себя удобные опции.
+          </Typography>
         </Box>
 
         <IconButton

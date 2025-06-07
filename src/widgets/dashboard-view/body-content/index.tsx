@@ -102,7 +102,7 @@ export const DashboardBodyContent = memo(() => {
       sx      = {{ ...f('c'), width: editMode  ? 'calc(100% + 500px)' : '100%' }}
       onClick = {() => handleSelectViewItem(NO_PARENT_ID)}
     >
-      {
+      {/* {
         isRendering
           ? <PageLoader loading={isRendering} />
           : <ContentRender
@@ -110,7 +110,7 @@ export const DashboardBodyContent = memo(() => {
               parentId         = 'no_parentId'
               onSelect         = {handleSelectViewItem}
             />
-      }
+      } */}
     </Box>
   )
 });

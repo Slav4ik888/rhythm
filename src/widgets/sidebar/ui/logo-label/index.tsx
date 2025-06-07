@@ -1,13 +1,12 @@
 import { memo } from 'react';
-import MDBox from 'shared/ui/mui-design-components/md-box';
-import MDTypography from 'shared/ui/mui-design-components/md-typography';
 import { CustomTheme } from 'app/providers/theme';
 import { NavLink } from 'react-router-dom';
 import { styles } from './styles';
 import brandDark from 'shared/assets/logo_small.png';
 import { useUIConfiguratorController } from 'app/providers/theme';
-import { MDDivider } from '../../../../shared/ui/mui-design-components';
+import { MDDivider, MDBox } from 'shared/ui/mui-design-components';
 import { f } from 'shared/styles';
+import { Typography } from '@mui/material';
 
 
 
@@ -32,15 +31,14 @@ export const SidebarLogoLabel = memo(() => {
 
           {
             ! sidebarMini && <MDBox sx={(theme: CustomTheme) => styles(theme, { sidebarMini })}>
-              <MDTypography
+              <Typography
                 component  = 'h6'
                 variant    = 'body1'
-                fontWeight = 'medium'
                 textAlign  = 'left'
-                color      = 'white'
+                sx         = {(theme) => ({ color: (theme as CustomTheme).palette.sidebar.logo})}
               >
                 {brandName}
-              </MDTypography>
+              </Typography>
             </MDBox>
           }
         </MDBox>

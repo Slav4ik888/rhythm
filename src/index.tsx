@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "start refacted Dark scheme for Configurators" && git push -u origin main
+// git add . && git commit -m "refacted Dark scheme UIConfigurator" && git push -u origin main

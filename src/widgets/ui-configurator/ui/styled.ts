@@ -26,7 +26,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
   const { transitions, palette: { configurator } } = theme as CustomTheme;
   const { isOpenConfigurator } = ownerState;
 
-  const configuratorWidth = 360;
+  const configuratorWidth = 400;
 
   // drawer styles when openConfigurator={true}
   const drawerOpenStyles = () => ({
@@ -40,7 +40,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
 
   // drawer styles when openConfigurator={false}
   const drawerCloseStyles = () => ({
-    right : pxToRem(-350),
+    right : pxToRem(-390),
     transition: transitions.create('all', {
       easing   : transitions.easing.sharp,
       duration : transitions.duration.short,

@@ -8,6 +8,7 @@ export type SidebarTheme = {
     main         : string
     focus        : string
     contrastText : string
+    logo         : string
   } & {
     gradients: GradientsItem
   }
@@ -17,11 +18,10 @@ export type SidebarTheme = {
 export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
   'sidebar_black': {
     sidebar: {
-      // light        : 'rgba(66, 66, 74, 1)',
       main         : 'rgba(66, 66, 74, 1)',
-      // dark         : 'rgba(66, 66, 74, 1)',
       focus        : 'rgba(66, 66, 74, 1)',
       contrastText : '#ffffff',
+      logo         : '#ffffff',
 
       gradients: {
         main  : 'rgba(34, 34, 34, 1)',
@@ -31,12 +31,10 @@ export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
   },
   'sidebar_blue': {
     sidebar: {
-      // light        : 'rgba(31, 63, 94, 1)',
       main         : 'rgba(31, 63, 94, 1)',
-      // dark         : 'rgba(31, 63, 94, 1)',
       focus        : 'rgba(31, 63, 94, 1)',
       contrastText : '#ffffff',
-
+      logo         : '#ffffff',
       gradients: {
         main  : 'rgba(31, 63, 94, 1)',
         state : 'rgba(4, 20, 34, 1)',
@@ -45,11 +43,10 @@ export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
   },
   'sidebar_grey': {
     sidebar: {
-      // light        : 'rgb(72 72 72)',
       main         : 'rgb(72 72 72)',
-      // dark         : 'rgb(72 72 72)',
       focus        : 'rgb(72 72 72)',
       contrastText : '#ffffff',
+      logo         : '#ffffff',
 
       gradients: {
         main  : 'rgb(72 72 72)',

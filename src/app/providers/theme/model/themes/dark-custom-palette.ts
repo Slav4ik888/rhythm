@@ -31,7 +31,7 @@ export const customPalette: CustomPalette = {
   },
 
   white: {
-    main: '#ffffff',
+    main: '#e2e2e2',
     focus: '#ffffff',
   },
 
@@ -133,13 +133,18 @@ export const customPalette: CustomPalette = {
       main  : 'rgba(53, 53, 53, 1)',
       state : 'rgba(27, 27, 27, 1)',
     },
-  },
-  configuratorTitle: {
-    title1    : '#288995', // title1
-    title2    : '#576593', // title2
-    subtitle1 : '#378f9e', // subtitle1
-    subtitle2 : '#7a7a7a', // subtitle2
-    subtitle3 : '#7a7a7a', // subtitle3
+    title: {
+      headerColor: '#e2e2e2',
+      headerSubtitle: '#7b7b7b',
+      headerIcon: '#737373',
+      itemColor: '#bebebe',
+      // ViewItemConfigurator
+      title1: '#5d5d5d', // title1
+      title2: '#576593', // title2
+      subtitle1: '#378f9e', // subtitle1
+      subtitle2: '#7a7a7a', // subtitle2
+      subtitle3: '#7a7a7a', // subtitle3
+    }
   },
 
   // Заголовок в ReportsLineChart

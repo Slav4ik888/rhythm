@@ -40,7 +40,7 @@ const MDTypography: FC<Props> = forwardRef(
   (
     {
       color         = 'dark',
-      fontWeight    = false,
+      fontWeight    = 'regular',
       verticalAlign = 'unset',
       textGradient  = false,
       opacity       = 1,
