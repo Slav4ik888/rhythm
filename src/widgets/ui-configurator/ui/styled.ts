@@ -17,13 +17,13 @@ Coded by www.creative-tim.com
 import Drawer from '@mui/material/Drawer';
 import { styled } from '@mui/material/styles';
 import { CustomTheme } from 'app/providers/theme';
-import { getBoxShadows, pxToRem } from 'shared/styles';
+import { getBoxShadows, linearGradient, pxToRem } from 'shared/styles';
 
 
 
 // @ts-ignore
 export default styled(Drawer)(({ theme, ownerState }) => {
-  const { transitions } = theme;
+  const { transitions, palette: { configurator } } = theme as CustomTheme;
   const { isOpenConfigurator } = ownerState;
 
   const configuratorWidth = 360;
@@ -52,6 +52,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
     '& .MuiDrawer-paper': {
       height       : '100%', // 'max-content', // '100vh',
       left         : 'initial',
+      background    : linearGradient(configurator.gradients.main, configurator.gradients.state),
       margin       : 0,
       padding      : `0 ${pxToRem(24)}`,
       borderRadius : 0,

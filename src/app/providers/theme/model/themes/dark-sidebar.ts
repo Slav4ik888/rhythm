@@ -5,9 +5,9 @@ import { SidebarColorName, SidebarTheme } from './light-sidebar';
 export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
   'sidebar_black': {
     sidebar: {
-      light        : 'rgba(66, 66, 74, 1)',
+      // light        : 'rgba(66, 66, 74, 1)',
       main         : 'rgba(66, 66, 74, 1)',
-      dark         : 'rgba(66, 66, 74, 1)',
+      // dark         : 'rgba(66, 66, 74, 1)',
       focus        : 'rgba(66, 66, 74, 1)',
       contrastText : '#000000',
 
@@ -19,9 +19,9 @@ export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
   },
   'sidebar_blue': {
     sidebar: {
-      light        : 'rgba(31, 63, 94, 1)',
+      // light        : 'rgba(31, 63, 94, 1)',
       main         : 'rgba(31, 63, 94, 1)',
-      dark         : 'rgba(31, 63, 94, 1)',
+      // dark         : 'rgba(31, 63, 94, 1)',
       focus        : 'rgba(31, 63, 94, 1)',
       contrastText : '#000000',
 
@@ -33,9 +33,9 @@ export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
   },
   'sidebar_grey': {
     sidebar: {
-      light        : 'rgb(72 72 72)',
+      // light        : 'rgb(72 72 72)',
       main         : 'rgb(72 72 72)',
-      dark         : 'rgb(72 72 72)',
+      // dark         : 'rgb(72 72 72)',
       focus        : 'rgb(72 72 72)',
       contrastText : '#000000',
 

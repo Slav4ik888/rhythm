@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { AppRouteProps, AppRoutes, routeConfig, RoutePath } from '../config';
 import { Layout } from 'pages/layout';
 import { RootPage } from 'pages/root';
-import { PageLoader } from 'widgets';
+import { PageLoader } from 'widgets/page-loader';
 
 
 

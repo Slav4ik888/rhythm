@@ -66,7 +66,7 @@ export type MUIColors = 'amber' | 'blue' | 'blueGrey' | 'brown' | 'common' | 'cy
   'indigo' | 'lightBlue' | 'lightGreen' | 'lime' | 'orange' | 'pink' | 'purple' | 'red' | 'teal' | 'yellow'
 
 /** Только те которые есть в Palette */
-export type ColorName = BaseColorName | 'sidebar' | 'navbar' // | SidebarColorName | NavbarColorName
+export type ColorName = BaseColorName | 'sidebar' // | 'navbar' // | SidebarColorName | NavbarColorName
 
 export type ColoredShadowsName =
   | 'primary'

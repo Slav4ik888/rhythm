@@ -2,7 +2,7 @@ import { FC, useMemo, memo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 import Box from '@mui/material/Box';
-import { PageLoader } from 'widgets';
+import { PageLoader } from 'widgets/page-loader';
 import { useDocs } from 'entities/docs';
 
 

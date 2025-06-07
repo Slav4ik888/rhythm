@@ -3,9 +3,10 @@ import { useCompany } from 'entities/company';
 import { getInitialState as getInitialStateData, useDashboardData } from 'entities/dashboard-data';
 import { CircularProgress } from 'shared/ui/circular-progress';
 import { DashboardBodyWrapper } from './wrapper';
-import { PageLoader } from 'widgets';
-import { DashboardBodyPanel, ViewItemConfigurator, DashboardBodyContent } from 'widgets/dashboard-view';
+import { PageLoader } from 'widgets/page-loader';
+import { DashboardBodyPanel, DashboardBodyContent } from 'widgets/dashboard-view';
 import { getInitialState as getInitialStateView, useDashboardView } from 'entities/dashboard-view';
+import { ViewItemConfigurator } from 'widgets/view-configurator';
 
 
 
@@ -34,9 +35,10 @@ export const DashboardBody = memo(() => {
         <DashboardBodyContent />
       </DashboardBodyWrapper>
     
-    : <CircularProgress
-        loading
-        size = {70}
-        sx   = {{ root: { top: -100 } }}
-      />
+    : <PageLoader loading={true} />
+    // : <CircularProgress
+    //     loading
+    //     size = {70}
+    //     sx   = {{ root: { top: -100 } }}
+    //   />
 });

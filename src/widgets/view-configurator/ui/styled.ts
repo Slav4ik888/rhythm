@@ -17,7 +17,7 @@ Coded by www.creative-tim.com
 import Drawer from '@mui/material/Drawer';
 import { styled } from '@mui/material/styles';
 import { CustomTheme } from 'app/providers/theme';
-import { getBoxShadows, pxToRem } from 'shared/styles';
+import { getBoxShadows, linearGradient, pxToRem } from 'shared/styles';
 
 
 
@@ -27,7 +27,7 @@ interface OwnerState {
 
 // @ts-ignore
 export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
-  const { transitions, borders: { borderRadius } } = theme;
+  const { transitions, borders: { borderRadius }, palette: { configurator } } = theme;
   const { editMode } = ownerState;
 
   const configuratorWidth = 460;
@@ -57,7 +57,7 @@ export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, owne
       height        : 'calc(100vh - 2rem)',
       left          : 'initial',
       margin        : '1rem 1rem 1rem 0 !important',
-      background    : '#e1e1e1',
+      background    : linearGradient(configurator.gradients.main, configurator.gradients.state),
       padding       : `0 ${pxToRem(24)}`,
       paddingBottom : pxToRem(60),
       borderRadius  : borderRadius.xl,

@@ -106,7 +106,7 @@ export default styled(Box)(({ theme, ownerState }: { theme: CustomTheme, ownerSt
       : white.main;
   }
   else if (validColors.find((el) => el === bgColor)) {
-    backgroundValue = palette[bgColor as ColorName] ? palette[bgColor as ColorName].main : greyColors[bgColor as GreyColor];
+    backgroundValue = palette[bgColor as ColorName] ? palette[bgColor as ColorName]?.main : greyColors[bgColor as GreyColor];
   }
   else {
     backgroundValue = bgColor;

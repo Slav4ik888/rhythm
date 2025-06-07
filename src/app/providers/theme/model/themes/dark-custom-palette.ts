@@ -125,6 +125,15 @@ export const customPalette: CustomPalette = {
     900: '#212529',
   } as Color,
   
+  // Configurator
+  configurator: {
+    main: 'rgba(53, 53, 53, 1)',
+    color: '#e2e2e2',
+    gradients: {
+      main  : 'rgba(53, 53, 53, 1)',
+      state : 'rgba(27, 27, 27, 1)',
+    },
+  },
   configuratorTitle: {
     title1    : '#288995', // title1
     title2    : '#576593', // title2

@@ -2,7 +2,7 @@ import { FC, memo, useEffect, useState, MouseEvent } from 'react';
 import { Box } from '@mui/material';
 import { ViewItem, ViewItemStylesField } from 'entities/dashboard-view';
 import { f } from 'shared/styles';
-import { SelectValue } from '../../../../../../../shared/ui/configurators-components/select';
+import { SelectValue } from '../../../../../../shared/ui/configurators-components/select';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { getDimension, isPx } from './utils';
 import { InputByScheme } from '../../../base-features-components';
