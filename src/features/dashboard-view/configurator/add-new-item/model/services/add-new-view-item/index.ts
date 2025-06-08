@@ -18,7 +18,6 @@ export const addNewViewItem = createAsyncThunk<
 >(
   'features/dashboardView/addNewViewItem',
   async (data, thunkApi) => {
-
     const { dispatch, rejectWithValue, extra } = thunkApi;
     const { viewItem } = data;
 
@@ -29,7 +28,9 @@ export const addNewViewItem = createAsyncThunk<
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in features/dashboardView/addNewViewItem' });
+      return rejectWithValue((e as CustomAxiosError).response.data || {
+        general: 'Error in features/dashboardView/addNewViewItem'
+      });
     }
   }
 );

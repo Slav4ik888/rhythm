@@ -1,9 +1,9 @@
 import { FC, memo } from 'react';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import CloseIcon from '@mui/icons-material/Close';
-import { MDDivider } from 'shared/ui/mui-design-components';
+import { MDDivider } from '../../mui-design-components';
 import { Box, IconButton, Typography } from '@mui/material';
-import { f, getTypography } from 'shared/styles';
+import { f, getTypography } from '../../../styles';
 
 
 

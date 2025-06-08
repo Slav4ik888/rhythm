@@ -23,14 +23,12 @@ export function setIfNotUndefined<T extends Obj | string>(
     if (isNotObj(obj)) {
       return value;
     }
-    else {
+
       // @ts-ignore
       if (isUndefined(obj[field])) (obj)[field] = '';
       obj[field] = value;
       return obj;
-    }
   }
-  else {
+
     return value;
-  }
-};
+}

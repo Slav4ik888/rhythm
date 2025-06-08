@@ -1,3 +1,4 @@
+import { __devLog } from '../__dev-log';
 
 /**
  * v.2025-03-21
@@ -13,10 +14,10 @@ export const __devShow = (
 ) => {
   if (mark === markValue) {
     if (value !== undefined) {
-      console.log(`[${label}]:`, value);
+      __devLog(`[${label}]:`, value);
     }
     else {
-      console.log(label);
+      __devLog(label);
     }
   }
 };

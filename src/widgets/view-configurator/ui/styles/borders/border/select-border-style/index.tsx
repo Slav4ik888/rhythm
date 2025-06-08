@@ -17,7 +17,7 @@ export const SelectBorderStyle: FC<Props> = memo(({ selectedItem, onChange }) =>
     <SelectValue
       selectedValue = {selectedItem?.styles?.borderStyle || 'none'}
       array         = {arrayBorderStyles}
-      sx            = {{ root: { width: '80px', mr: 1 }}}
+      sx            = {{ root: { width: '80px', mr: 1 } }}
       // @ts-ignore
       onSelect      = {handleSelectedStyle}
     />

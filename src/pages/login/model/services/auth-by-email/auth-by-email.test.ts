@@ -6,7 +6,7 @@ import { authByLogin, ResAuthByLogin } from '.';
 
 describe('authByLogin', () => {
   test('Succes login', async () => {
-    const data: ResAuthByLogin = { 
+    const data: ResAuthByLogin = {
       status: 'success'
     };
 
@@ -26,14 +26,14 @@ describe('authByLogin', () => {
 
 
   test('Error login', async () => {
-    // const data: ResAuthByLogin = { 
+    // const data: ResAuthByLogin = {
     //   general: 'Данный аккаунт отключен. Обратитесь в службу технической поддержки.'
     // };
 
     const thunk = new TestAsyncThunk(authByLogin);
 
     // @ts-ignore
-    thunk.api.post.mockReturnValue(Promise.reject());//{ data }));
+    thunk.api.post.mockReturnValue(Promise.reject());// { data }));
 
     const result = await thunk.callThunk({ email: '123', password: '123' });
 

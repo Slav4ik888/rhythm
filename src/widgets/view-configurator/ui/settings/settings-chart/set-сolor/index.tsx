@@ -21,7 +21,7 @@ export const ChartSetColorByScheme: FC<Props> = memo(({ selectedItem, scheme, ti
     const result = {};
     const chartOptionsScheme = scheme.split('.').slice(2).join('.'); // Убираем вступление
     setValueByScheme(result, chartOptionsScheme, value);
-    
+
     changeOneSettingsField({
       field: 'chartOptions',
       value: updateObject(
@@ -29,7 +29,7 @@ export const ChartSetColorByScheme: FC<Props> = memo(({ selectedItem, scheme, ti
         result
       )
     });
-  }, [selectedItem, changeOneSettingsField]);
+  }, [scheme, selectedItem, changeOneSettingsField]);
 
 
   return (

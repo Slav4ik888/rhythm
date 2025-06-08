@@ -12,8 +12,7 @@ interface Props {
 }
 
 /** Настройки на осях - Ticks */
-export const ViewItemChartScaleTicks: FC<Props> = memo(({ scale, selectedItem }) => {
-  return (
+export const ViewItemChartScaleTicks: FC<Props> = memo(({ scale, selectedItem }) => (
     <>
       <ConfiguratorTitle title='Ticks' type='title2' />
       <RowFlagByScheme
@@ -29,5 +28,4 @@ export const ViewItemChartScaleTicks: FC<Props> = memo(({ scale, selectedItem })
         selectedItem = {selectedItem}
       />
     </>
-  )
-});
+  ));

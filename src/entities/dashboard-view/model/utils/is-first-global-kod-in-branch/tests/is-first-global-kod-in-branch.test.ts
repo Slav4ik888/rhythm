@@ -5,22 +5,22 @@ import { isFirstGlobalKodInBranch } from '..';
 describe('isFirstGlobalKodInBranch', () => {
   const entities = {
     // Корень дерева (не isGlobalKod)
-    'root': { id: 'root', parentId: null, settings: { isGlobalKod: false } },
-    
+    root: { id: 'root', parentId: null, settings: { isGlobalKod: false } },
+
     // Элементы с isGlobalKod = true
-    'global1': { id: 'global1', parentId: 'root', settings: { isGlobalKod: true } },
-    'global2': { id: 'global2', parentId: 'global1', settings: { isGlobalKod: true } },
-    
+    global1: { id: 'global1', parentId: 'root', settings: { isGlobalKod: true } },
+    global2: { id: 'global2', parentId: 'global1', settings: { isGlobalKod: true } },
+
     // Обычные элементы (isGlobalKod = false)
-    'child1': { id: 'child1', parentId: 'global1', settings: { isGlobalKod: false } },
-    'child2': { id: 'child2', parentId: 'child1', settings: { isGlobalKod: false } },
-    'child3': { id: 'child3', parentId: 'global2', settings: { isGlobalKod: false } },
-    
+    child1: { id: 'child1', parentId: 'global1', settings: { isGlobalKod: false } },
+    child2: { id: 'child2', parentId: 'child1', settings: { isGlobalKod: false } },
+    child3: { id: 'child3', parentId: 'global2', settings: { isGlobalKod: false } },
+
     // Элемент без родителя (сирота)
-    'orphan': { id: 'orphan', parentId: 'nonexistent', settings: { isGlobalKod: true } },
+    orphan: { id: 'orphan', parentId: 'nonexistent', settings: { isGlobalKod: true } },
   } as unknown as DashboardViewEntities;
 
-  //=== Позитивные тесты ===//
+  //= == Позитивные тесты ===//
   it('возвращает true, если targetId - первый isGlobalKod в ветке selectedId', () => {
     // Ветка для child2: ['global1', 'root']
     expect(isFirstGlobalKodInBranch(entities, 'child2', 'global1')).toBe(true);
@@ -32,7 +32,7 @@ describe('isFirstGlobalKodInBranch', () => {
     expect(isFirstGlobalKodInBranch(entities, 'child3', 'global1')).toBe(false);
   });
 
-  //=== Граничные случаи ===//
+  //= == Граничные случаи ===//
   it('возвращает false, если у selectedId нет isGlobalKod в ветке', () => {
     // Ветка для child1: ['global1', 'root'] → isGlobalKod есть, но проверяем неверный targetId
     expect(isFirstGlobalKodInBranch(entities, 'child1', 'root')).toBe(false);
@@ -46,7 +46,7 @@ describe('isFirstGlobalKodInBranch', () => {
     expect(isFirstGlobalKodInBranch(entities, 'orphan', 'orphan')).toBe(false);
   });
 
-  //=== Обработка ошибок ===//
+  //= == Обработка ошибок ===//
   it('возвращает false при несуществующем selectedId', () => {
     expect(isFirstGlobalKodInBranch(entities, 'nonexistent', 'global1')).toBe(false);
   });
@@ -55,12 +55,12 @@ describe('isFirstGlobalKodInBranch', () => {
     expect(isFirstGlobalKodInBranch(entities, 'child1', 'nonexistent')).toBe(false);
   });
 
-  //=== Специальные случаи ===//
+  //= == Специальные случаи ===//
   it('возвращает true, если targetId - единственный isGlobalKod в ветке', () => {
     const localEntities = {
       ...entities,
-      'onlyGlobal': { id: 'onlyGlobal', parentId: 'root', settings: { isGlobalKod: true } },
-      'deepChild': { id: 'deepChild', parentId: 'onlyGlobal', settings: { isGlobalKod: false } },
+      onlyGlobal: { id: 'onlyGlobal', parentId: 'root', settings: { isGlobalKod: true } },
+      deepChild: { id: 'deepChild', parentId: 'onlyGlobal', settings: { isGlobalKod: false } },
     } as unknown as DashboardViewEntities;
     // Ветка для deepChild: ['onlyGlobal', 'root']
     expect(isFirstGlobalKodInBranch(localEntities, 'deepChild', 'onlyGlobal')).toBe(true);

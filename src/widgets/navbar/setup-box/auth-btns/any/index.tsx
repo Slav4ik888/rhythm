@@ -6,7 +6,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Tooltip } from 'shared/ui/tooltip';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { MDBox, MDButton } from 'shared/ui/mui-design-components';
-import { SxNavbarIcon } from 'widgets/navbar';
+import { SxNavbarIcon } from '../../..';
 
 
 
@@ -31,7 +31,7 @@ export const AnyAuthBtns: FC<Props> = memo(({ sx }) => {
   const { signup } = useStyles(useTheme());
 
   return (
-    <MDBox >
+    <MDBox>
       <Link to={RoutePath.SIGNUP}>
         <MDButton sx={{ root: signup }} variant='text' color='text'>
           Регистрация

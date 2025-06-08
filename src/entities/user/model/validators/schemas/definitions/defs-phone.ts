@@ -12,8 +12,8 @@ export const definitions = {
     number: {
       type      : 'string',
       maxLength : 20
-    },           
-    
+    },
+
     // Ext field in '(213) 373-42-53 ext. 1234' => '1234'
     extension: {
       type      : 'string',
@@ -24,7 +24,7 @@ export const definitions = {
     countryCallingCode : {
       type      : 'string',
       maxLength : 7
-    },            
+    },
 
     // Default 'RU'
     countryCode : { isCountryCode: 'string' },

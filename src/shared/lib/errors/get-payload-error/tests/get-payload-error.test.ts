@@ -1,4 +1,4 @@
-import { Errors } from 'shared/lib/validators';
+import { Errors } from '../../../validators';
 import { getPayloadError } from '..';
 
 const BIG_OBJ = {

@@ -11,7 +11,7 @@ describe('deepEqual', () => {
       arr: [{ a: 1 }, { b: 2 }]
     }
   };
-  
+
   test('Not changes, without array', () => {
     const newObj = {
       id: 1,
@@ -22,7 +22,7 @@ describe('deepEqual', () => {
         arr: [{ a: 1 }, { b: 2 }]
       }
     };
-      
+
     expect(deepEqual(prevObj, newObj)).toEqual(true);
   });
 
@@ -36,7 +36,7 @@ describe('deepEqual', () => {
         arr: [{ a: 1 }, { b: 2 }]
       }
     };
-      
+
     expect(deepEqual(prevObj, newObj)).toEqual(false);
   });
 
@@ -51,7 +51,7 @@ describe('deepEqual', () => {
         arr: [{ a: 1 }, { b: 2 }]
       }
     };
-      
+
     expect(deepEqual(prevObj, newObj)).toEqual(false);
   });
 
@@ -65,10 +65,9 @@ describe('deepEqual', () => {
         arr: [{ a: 1 }, { b: 333 }]
       }
     };
-      
+
     expect(deepEqual(prevObj, newObj)).toEqual(false);
   });
-
 });
 
 // npm run test:unit deep-equal.test.ts

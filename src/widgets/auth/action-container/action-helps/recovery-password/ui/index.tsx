@@ -29,11 +29,11 @@ export const RecoveryPassword: FC<Props> = memo(({ type }) => {
   const handlerClick = useCallback(() => {
     setErrors();
     hookOpen.setOpen();
-  }, []);
+  }, [hookOpen, setErrors]);
 
-  
+
   if (type === 'signup') return null
-  
+
   return (
     <>
       <Typography
@@ -41,7 +41,7 @@ export const RecoveryPassword: FC<Props> = memo(({ type }) => {
         sx      = {style}
         onClick = {handlerClick}
       >
-        {'Восстановить пароль'}
+        Восстановить пароль
       </Typography>
 
       <RecoveryPasswordModal hookOpen={hookOpen} />

@@ -7,7 +7,6 @@ import { isNotStr } from '../../is-str';
  * False if not string | > maxLength
  */
 export const isValidMaxL = (maxLength: number, str: string): boolean => {
-
   if (!str && isNotStr(str)) return false;
   if (str?.length < maxLength || str?.length === maxLength) return true;
 
@@ -22,7 +21,7 @@ export const isValidMaxL500  = (str: string): boolean => isValidMaxL(500, str);
 export const isValidMaxL1000 = (str: string): boolean => isValidMaxL(1000, str);
 
 
-export const noValidMaxL     = (maxLength: number,str: string): boolean => !isValidMaxL(maxLength, str);
+export const noValidMaxL     = (maxLength: number, str: string): boolean => !isValidMaxL(maxLength, str);
 export const noValidMaxL30   = (str: string): boolean => !isValidMaxL(30, str);
 export const noValidMaxL50   = (str: string): boolean => !isValidMaxL(50, str);
 export const noValidMaxL100  = (str: string): boolean => !isValidMaxL(100, str);

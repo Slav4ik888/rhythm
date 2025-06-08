@@ -11,8 +11,7 @@ interface Props {
 /**
  * График перевёрнутый или нет. Пример - если задолженность уменьшается то это рост
  */
-export const InvertedData: FC<Props> = memo(({ selectedItem }) => {
-  return (
+export const InvertedData: FC<Props> = memo(({ selectedItem }) => (
     <RowFlagByScheme
       scheme       = 'settings.inverted'
       title        = 'Inverted'
@@ -20,5 +19,4 @@ export const InvertedData: FC<Props> = memo(({ selectedItem }) => {
       selectedItem = {selectedItem}
       sx           = {{ mt: 2 }}
     />
-  )
-});
+  ));

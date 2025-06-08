@@ -16,4 +16,4 @@ export function addEntities<T extends Item>(entities: Entities<T>, payload: T[] 
       return acc;
     }, {})
   }
-};
+}

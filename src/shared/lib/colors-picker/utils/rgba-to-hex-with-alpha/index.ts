@@ -1,9 +1,8 @@
 
-
 /**
- * 
+ *
  * @param rgba - "rgba(100, 154, 163, 1)"
- * @returns 
+ * @returns
  */
 export function rgbaToHexWithAlpha(rgba: string) {
   // Удаляем "rgba(" и ")" из строки, затем разбиваем на компоненты
@@ -14,16 +13,16 @@ export function rgbaToHexWithAlpha(rgba: string) {
   const g = parseInt(parts[1] ? parts[1].trim() : '0', 10);
   const b = parseInt(parts[2] ? parts[2].trim() : '0', 10);
   let a = parseFloat(parts[3] ? parts[3].trim() : '1'); // Если альфа не указана, используем 1
-  
+
   // Преобразуем альфа-канал из [0, 1] в [0, 255] и округляем
   a = Math.round(a * 255);
-  
+
   // Преобразуем каждый компонент в 2-значный HEX
   const toHex = (value: number) => {
     const hex = value.toString(16);
-    return hex.length === 1 ? '0' + hex : hex;
+    return hex.length === 1 ? `0${hex}` : hex;
   };
-  
+
   // Собираем HEX-строку
   return `#${toHex(r)}${toHex(g)}${toHex(b)}${toHex(a)}`;
 }

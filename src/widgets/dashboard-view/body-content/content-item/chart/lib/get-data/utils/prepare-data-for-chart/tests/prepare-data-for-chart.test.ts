@@ -4,8 +4,8 @@ import { prepareDataForChart } from '..';
 
 
 describe('prepareDataForChart', () => {
-  const allActiveDates_1 = {
-    'week': [
+  const allActiveDates1 = {
+    week: [
       1747353600000, // '16.05.2025', 2
       1747958400000, // '23.05.2025',
       1748563200000, // '30.05.2025',
@@ -27,7 +27,7 @@ describe('prepareDataForChart', () => {
       1758240000000, // '19.09.2025',
       1758844800000  // '26.09.2025'
     ],
-    'month': [
+    month: [
       1747342800000, // '16.05.2025', 1
       1749157200000, // '06.06.2025',
       1751576400000, // '04.07.2025',
@@ -41,7 +41,7 @@ describe('prepareDataForChart', () => {
       periodType :  'week',
       data       : [1, 2, 3, 4, 5]
     }
-    expect(prepareDataForChart(monthItemData as DashboardStatisticItem<number>, { data: [] }, allActiveDates_1, 'week'))
+    expect(prepareDataForChart(monthItemData as DashboardStatisticItem<number>, { data: [] }, allActiveDates1, 'week'))
       .toEqual([1, 2, 3, 4, 5]);
   });
 
@@ -51,17 +51,17 @@ describe('prepareDataForChart', () => {
       data       : [1, 2, 3, 4, 5]
     };
 
-    const result = prepareDataForChart(monthItemData as DashboardStatisticItem<number>, { data: [] }, allActiveDates_1, 'week');
+    const result = prepareDataForChart(monthItemData as DashboardStatisticItem<number>, { data: [] }, allActiveDates1, 'week');
 
     expect(result).toEqual([1, NaN, NaN, 2, NaN, NaN, NaN, 3, NaN, NaN, NaN, 4, NaN, NaN, NaN, NaN, 5, NaN, NaN, NaN]);
-    expect(result.length).toEqual(allActiveDates_1.week.length);
+    expect(result.length).toEqual(allActiveDates1.week.length);
   });
 
 
 
   test('periodType !== greatest, isFirstGreatestDate = true', () => {
-    const allActiveDates_2 = {
-      'week': [
+    const allActiveDates2 = {
+      week: [
         1747342100000, // '16.05.2025', 1
         1747353600000, // '16.05.2025', 3
         1747958400000, // '23.05.2025',
@@ -84,7 +84,7 @@ describe('prepareDataForChart', () => {
         1758240000000, // '19.09.2025',
         1758844800000  // '26.09.2025'
       ],
-      'month': [
+      month: [
         1747342800000, // '16.05.2025', 2
         1749157200000, // '06.06.2025',
         1751576400000, // '04.07.2025',
@@ -98,17 +98,17 @@ describe('prepareDataForChart', () => {
       data       : [1, 2, 3, 4, 5]
     };
 
-    const result = prepareDataForChart(monthItemData as DashboardStatisticItem<number>, { data: [] }, allActiveDates_2, 'week');
+    const result = prepareDataForChart(monthItemData as DashboardStatisticItem<number>, { data: [] }, allActiveDates2, 'week');
 
     expect(result).toEqual([NaN, 1, NaN, NaN, 2, NaN, NaN,  NaN, 3, NaN, NaN, NaN, 4, NaN, NaN, NaN, NaN, 5, NaN, NaN, NaN]);
-    expect(result.length).toEqual(allActiveDates_2.week.length);
+    expect(result.length).toEqual(allActiveDates2.week.length);
   });
 
 
 
   // Там где есть равные даты
-  const allActiveDates_3 = {
-    'week': [
+  const allActiveDates3 = {
+    week: [
       1747342800000, // '16.05.2025',
       1747958400000, // '23.05.2025',
       1748563200000, // '30.05.2025',
@@ -130,39 +130,37 @@ describe('prepareDataForChart', () => {
       1758240000000, // '19.09.2025',
       1758844800000  // '26.09.2025'
     ],
-    'month': [
+    month: [
       1747342800000, // '16.05.2025', +
       1749157200000, // '06.06.2025', +
       1751576400000, // '04.07.2025',
       1753995600000, // '01.08.2025',
-      1757019600000  // '05.09.2025', + 
+      1757019600000  // '05.09.2025', +
     ]
   };
 
   test('periodType !== greatest, isFirstGreatestDate = true + есть равные даты', () => {
-
     const monthItemData = {
       periodType :  'month',
       data       : [1, 2, 3, 4, 5]
     };
 
-    const result = prepareDataForChart(monthItemData as DashboardStatisticItem<number>, { data: [] }, allActiveDates_3, 'week');
+    const result = prepareDataForChart(monthItemData as DashboardStatisticItem<number>, { data: [] }, allActiveDates3, 'week');
 
     expect(result).toEqual([1, NaN, NaN, 2, NaN, NaN,  NaN, 3, NaN, NaN, NaN, 4, NaN, NaN, NaN, NaN, 5, NaN, NaN, NaN]);
-    expect(result.length).toEqual(allActiveDates_3.week.length);
+    expect(result.length).toEqual(allActiveDates3.week.length);
   });
 
   test('periodType !== greatest, shiftValues = 10', () => {
-
     const monthItemData = {
       periodType :  'month',
       data       : [1, 2, 3, 4, 5]
     };
 
-    const result = prepareDataForChart(monthItemData as DashboardStatisticItem<number>, { data: [], shiftValues: -10 }, allActiveDates_3, 'week');
+    const result = prepareDataForChart(monthItemData as DashboardStatisticItem<number>, { data: [], shiftValues: -10 }, allActiveDates3, 'week');
 
     expect(result).toEqual([-9, NaN, NaN, -8, NaN, NaN,  NaN, -7, NaN, NaN, NaN, -6, NaN, NaN, NaN, NaN, -5, NaN, NaN, NaN]);
-    expect(result.length).toEqual(allActiveDates_3.week.length);
+    expect(result.length).toEqual(allActiveDates3.week.length);
   });
 });
 

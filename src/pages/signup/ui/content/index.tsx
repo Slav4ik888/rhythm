@@ -22,7 +22,7 @@ export const SignupContent: React.FC<Props> = ({ firstNameRef, emailRef, passwor
   const
     sx = useStylesAuth(useTheme()),
     { errors } = useSignup();
-  
+
 
   return (
     <>
@@ -31,7 +31,7 @@ export const SignupContent: React.FC<Props> = ({ firstNameRef, emailRef, passwor
         name       = 'companyName'
         scheme     = 'companyName'
         grid       = {{ sm: 12 }}
-        sx         = {{ root: sx.gridItem, bg: sx.textField } }
+        sx         = {{ root: sx.gridItem, bg: sx.textField }}
         group      = {S}
         errorField = 'companyName'
         errors     = {errors}

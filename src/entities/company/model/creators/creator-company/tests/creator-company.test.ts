@@ -1,7 +1,7 @@
 import { MOCK_COMPANY_EMPTY } from '../../../mocks';
 import { cloneObj } from 'shared/helpers/objects';
 import { creatorCompany } from '..';
-import { Company } from 'entities/company';
+import { Company } from '../../../types';
 
 
 
@@ -29,7 +29,7 @@ describe('creatorCompany', () => {
     const
       res = creatorCompany(undefined),
       company = cloneObj(MOCK_COMPANY_EMPTY);
-    
+
     company.id                = '';
     company.ownerId           = '';
     company.createdAt.userId  = '';

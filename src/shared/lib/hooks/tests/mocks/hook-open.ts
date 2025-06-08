@@ -25,7 +25,7 @@ export const mockHookOpen = {
 //   close: boolean;
 //   isChange = false;
 //   confirm  = false;
-  
+
 //   constructor(initOpen?: boolean, initIsChange?: boolean) {
 //     this.open     = initOpen     || false;
 //     this.close    = !initOpen    || true;

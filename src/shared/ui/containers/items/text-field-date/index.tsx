@@ -49,10 +49,10 @@ export const TextfieldDateItem: FC<Props> = memo((props) => {
     const value = getMsFromDate(date);
     changeGroup(G, [{ value, scheme }]);
     onBlur && onBlur();
-  }, [scheme, G]);
+  }, [scheme, G, onBlur]);
 
-  
-  const handlerSetChanges = useCallback(() => setChanges(G), [setChanges]);
+
+  const handlerSetChanges = useCallback(() => setChanges(G), [G]);
 
 
   return (

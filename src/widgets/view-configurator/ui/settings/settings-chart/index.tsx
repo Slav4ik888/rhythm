@@ -14,8 +14,7 @@ interface Props {
 }
 
 /** Вкладка Settings для графиков */
-export const ViewItemChartSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => {
-  return (
+export const ViewItemChartSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => (
     <>
       {/* GLOBAL SETTINGS */}
       <InvertedData selectedItem={selectedItem} />
@@ -29,5 +28,4 @@ export const ViewItemChartSettingsConfigurator: FC<Props> = memo(({ selectedItem
       <ViewItemChartScaleYSettings selectedItem={selectedItem} />
       <ViewItemChartScaleXSettings selectedItem={selectedItem} />
     </>
-  )
-});
+  ));

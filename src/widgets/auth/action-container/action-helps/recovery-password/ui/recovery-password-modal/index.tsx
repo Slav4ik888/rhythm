@@ -16,7 +16,7 @@ export const RecoveryPasswordModal: FC<Props> = memo(({ hookOpen: O }) => {
   const
     { setErrors } = useLogin(),
     emailRef = useRef(null);
-  
+
   const handlerClose = () => {
     setErrors();
     O.setClose();
@@ -25,7 +25,7 @@ export const RecoveryPasswordModal: FC<Props> = memo(({ hookOpen: O }) => {
   return (
     <DialogInfo
       hookOpen = {O}
-      title    = {'Восстановление пароля'}
+      title    = 'Восстановление пароля'
       maxWidth = 'xs'
       onClose  = {handlerClose}
     >

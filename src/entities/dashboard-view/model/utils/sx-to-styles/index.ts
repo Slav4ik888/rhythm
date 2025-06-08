@@ -27,13 +27,13 @@ export const sxToStyles = (sx?: ViewItemStyles): ViewItemStyles => {
     p, px, py, pt, pb, pr, pl,
     m, mx, my, mt, mb, mr, ml,
   } = sx;
-  
+
   // width
   if (width)    style.width    = getDimensions(width);
   if (minWidth) style.minWidth = getDimensions(minWidth);
   if (maxWidth) style.maxWidth = getDimensions(maxWidth);
 
-  // height 
+  // height
   if (height)    style.height    = getDimensions(height);
   if (minHeight) style.minHeight = getDimensions(minHeight);
   if (maxHeight) style.maxHeight = getDimensions(maxHeight);

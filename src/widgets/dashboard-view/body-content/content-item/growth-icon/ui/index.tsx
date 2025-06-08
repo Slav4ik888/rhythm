@@ -17,15 +17,16 @@ export const ItemGrowthIcon: FC<Props> = memo(({ item, onSelect }) => {
   const { entities } = useDashboardView();
   const { activeEntities } = useDashboardData();
   // const { display, fractionDigits, addZero, kod = '' } = item.settings || {};
-  
+
   // const [lastValue, prevValue] = useMemo(() => {
   //   const data = activeEntities[item.settings?.kod || '']?.data as number[] || [];
   //   return getReversedIndicators(data)
   // }, [activeEntities]);
 
   // const increased: Increased = calcIncreased(lastValue, prevValue, item.settings?.inverted);
-  
-  const increased = useMemo(() => getIncreased(item, activeEntities, getKod(entities, item)), [activeEntities, entities, item]);
+
+  const increased = useMemo(() => getIncreased(item, activeEntities, getKod(entities, item)),
+    [activeEntities, entities, item]);
 
   return (
     <ItemWrapper item={item} onSelect={onSelect}>

@@ -46,7 +46,7 @@
 //   return (
 //     <>
 //       <LineChartContainer bgColor={bgColor} chart={chart} />
-      
+
 //       <MDBox pt={3} pb={1} px={1}>
 //         <MDBox sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
 //         <ChipsContainer item={item} config={config} condition={condition} />

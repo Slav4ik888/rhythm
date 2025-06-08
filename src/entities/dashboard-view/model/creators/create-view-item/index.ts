@@ -26,8 +26,8 @@ const BASE_SX: ViewItemStyles = {
 
 
 export const createViewItem = (
-  cfg    : Partial<ViewItem> = {} as ViewItem,
-  userId : string
+  userId : string,
+  cfg    : Partial<ViewItem> = {} as ViewItem
 ): ViewItem => {
   const viewItem: ViewItem = cloneObj({
     id          : cfg.id          || uuidv4(),

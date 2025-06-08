@@ -11,6 +11,7 @@ export function isFirstGlobalKodInBranch(
   if (! branch || ! branch.length) return false;
 
   // Ищем первого родителя с isGlobalKod === true в ветке
+  /* eslint-disable-next-line */
   for (const parentId of branch) {
     const parent = entities[parentId];
     if (parent?.settings?.isGlobalKod) {

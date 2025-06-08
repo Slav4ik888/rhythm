@@ -51,7 +51,7 @@ interface Props {
 /** Префикс */
 export const ItemDigitIndicatorEnding: FC<Props> = memo(({ item, reduction, color }) => {
   const sx = useStyles(item, color);
-  
+
   const endingType = item?.settings?.endingType;
 
   return (

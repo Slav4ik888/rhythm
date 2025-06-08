@@ -4,4 +4,4 @@ export enum EntityType {
   DOCUMENT_CARD = 'documentCard',
   RULE          = 'rule',
   RULE_CARD     = 'ruleCard'
-};
+}

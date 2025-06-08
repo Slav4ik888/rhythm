@@ -21,15 +21,15 @@ export const sendEmailConfirmation = createAsyncThunk <
   ThunkConfig<Errors>
 >(
   'entities/user/sendEmailConfirmation',
+  /* eslint-disable-next-line consistent-return */
   async (email, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
-    
+
     try {
-      const { data: { message } } = await extra.api.get<ResSendEmailConfirmation>(`${paths.user.sendEmailConfirmation}/${email}`);
-      
+      const { data: { message } } = await extra.api
+        .get<ResSendEmailConfirmation>(`${paths.user.sendEmailConfirmation}/${email}`);
+
       dispatch(actionsUI.setSuccessMessage(message));
-    
-      return;
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);

@@ -12,10 +12,7 @@ interface Props {
 }
 
 /** Item box */
-export const ItemBox: FC<Props> = memo(({ parentsViewItems, item, onSelect }) => {
-
-
-  return (
+export const ItemBox: FC<Props> = memo(({ parentsViewItems, item, onSelect }) => (
     <ItemWrapper item={item} onSelect={onSelect}>
       {
         item.label
@@ -27,5 +24,4 @@ export const ItemBox: FC<Props> = memo(({ parentsViewItems, item, onSelect }) =>
             />
       }
     </ItemWrapper>
-  )
-});
+  ));

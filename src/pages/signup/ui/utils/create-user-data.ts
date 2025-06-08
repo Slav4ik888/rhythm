@@ -10,4 +10,3 @@ export const createUserData = (isMobile: boolean): SignupData => ({
     permissions     : false,
     isMobile
 });
-  

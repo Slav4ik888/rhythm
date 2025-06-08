@@ -38,7 +38,8 @@ interface Props {
 export const TextareaItem: FC<Props> = memo((props) => {
   const
     {
-      name, sx, disabled, tabIndex, placeholder, keyEnterSubmit, changesValue, autoFocus, scheme, errors, grid, minRows, maxRows,
+      name, sx, disabled, tabIndex, placeholder, keyEnterSubmit, changesValue, autoFocus, scheme, errors, grid,
+      minRows, maxRows,
       group      : G,
       label      = '',
       errorField = getErrorFieldByScheme(scheme),
@@ -47,7 +48,7 @@ export const TextareaItem: FC<Props> = memo((props) => {
       onSubmit
     } = props,
 
-  
+
     handlerSubmit = (e: MouseEvent, value: string) => {
       changeGroup(G, [{ value, scheme }]);
       onSubmit && onSubmit(e, value);
@@ -59,8 +60,8 @@ export const TextareaItem: FC<Props> = memo((props) => {
     },
 
     handlerSetChanges = () => setChanges(G);
-    
-  
+
+
   return (
     <Textarea
       grid           = {grid}

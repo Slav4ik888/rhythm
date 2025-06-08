@@ -5,7 +5,7 @@ import { ButtonType, Variant } from './types';
 
 export const useStyles = (
   theme    : CustomTheme,
-  sx       : any = {},
+  sx       : any,
   type     : ButtonType,
   variant  : Variant,
   disabled : boolean | undefined
@@ -19,7 +19,7 @@ export const useStyles = (
       ? theme.palette.primary.contrastText : theme.palette.secondary.contrastText
     : isPrimary
       ? theme.palette.primary.main : theme.palette.secondary.main;
-  
+
   const background = disabled
     ? 'inherit'
     : isContained

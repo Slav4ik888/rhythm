@@ -11,57 +11,55 @@ type Justify = 'center' | 'left' | 'right'
 
 const getJustify = (justify?: Justify): string => {
   switch (justify) {
-    case 'center' : return 'center';
-    case 'left'   : return 'flexStart';
-    case 'right'  : return 'flexEnd';
+    case 'center': return 'center';
+    case 'left': return 'flexStart';
+    case 'right': return 'flexEnd';
 
-    default       : return 'center';
+    default: return 'center';
   }
 };
 
 
 const getFontSize = (type: Type): string => {
   switch (type) {
-    case 'title1'    : return '1.4rem';
-    case 'title2'    : return '1.3rem';
-    case 'subtitle1' : return '1.2rem';
-    case 'subtitle2' : return '1.1rem';
-    case 'subtitle3' : return '1rem';
+    case 'title1': return '1.4rem';
+    case 'title2': return '1.3rem';
+    case 'subtitle1': return '1.2rem';
+    case 'subtitle2': return '1.1rem';
+    case 'subtitle3': return '1rem';
 
-    default          : return '1rem';
+    default: return '1rem';
   }
 };
 
 
 const getFontColor = (theme: CustomTheme, type: Type): string => {
   switch (type) {
-    case 'title1'    : return theme.palette.configurator.title.title1;
-    case 'title2'    : return theme.palette.configurator.title.title2;
-    case 'subtitle1' : return theme.palette.configurator.title.subtitle1;
-    case 'subtitle2' : return theme.palette.configurator.title.subtitle2;
-    case 'subtitle3' : return theme.palette.configurator.title.subtitle3;
+    case 'title1': return theme.palette.configurator.title.title1;
+    case 'title2': return theme.palette.configurator.title.title2;
+    case 'subtitle1': return theme.palette.configurator.title.subtitle1;
+    case 'subtitle2': return theme.palette.configurator.title.subtitle2;
+    case 'subtitle3': return theme.palette.configurator.title.subtitle3;
 
-    default          : return theme.palette.configurator.title.subtitle1;
+    default: return theme.palette.configurator.title.subtitle1;
   }
 };
 
 
 const getMY = (type: Type): number => {
   switch (type) {
-    case 'title1'    : return 1;
-    case 'title2'    : return 1;
-    case 'subtitle1' : return 0;
-    case 'subtitle2' : return 0;
-    case 'subtitle3' : return 0;
+    case 'title1': return 1;
+    case 'title2': return 1;
+    case 'subtitle1': return 0;
+    case 'subtitle2': return 0;
+    case 'subtitle3': return 0;
 
-    default          : return 0;
+    default: return 0;
   }
 };
 
 
-const useStyles = (theme: CustomTheme, type: Type, justify?: Justify) => {
-
-  return {
+const useStyles = (theme: CustomTheme, type: Type, justify?: Justify) => ({
     root: {
       ...f('-c'),
       justifyContent : getJustify(justify),
@@ -71,8 +69,7 @@ const useStyles = (theme: CustomTheme, type: Type, justify?: Justify) => {
       // textShadow : `0px 0px 3px ${theme.palette.dark.main}`,
       my             : getMY(type),
     },
-  }
-};
+  });
 
 
 interface Props {

@@ -17,5 +17,5 @@ export const capitalize = (
   const { first } = cfg;
 
   if (first) return str[0].toLocaleUpperCase() + str.slice(1)
-  else return str.toLocaleUpperCase()
+  return str.toLocaleUpperCase()
 }

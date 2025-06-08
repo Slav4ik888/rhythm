@@ -9,13 +9,11 @@ interface Props {
 }
 
 /** order in parents */
-export const ItemOrder: FC<Props> = memo(({ order }) => {
-  return (
+export const ItemOrder: FC<Props> = memo(({ order }) => (
     <RowWrapper>
       <ConfiguratorTextTitle bold title='Order' toolTitle='' />
       <Box sx={{ fontSize: '1rem' }}>
         {order}
       </Box>
     </RowWrapper>
-  )
-});
+  ));

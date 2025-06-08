@@ -7,4 +7,4 @@ export function getArrWithoutItemById(items: Items, value: string | number): Ite
   if (isNotStr(value) && isNotNum(value)) return items;
 
   return getArrWithoutItem(items, { id: value } as unknown as Partial<Item>)
-};
+}

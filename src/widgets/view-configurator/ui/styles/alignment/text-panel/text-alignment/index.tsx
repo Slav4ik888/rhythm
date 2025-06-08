@@ -15,7 +15,6 @@ interface Props {
 
 /** text-align */
 export const TextAlignment: FC<Props> = memo(({ value, onChange }) => {
-
   const handleChange = useCallback((e: MouseEvent<HTMLElement>, newAlignment: TextAlignType) => {
     onChange('textAlign', newAlignment);
   }, [onChange]);
@@ -33,7 +32,7 @@ export const TextAlignment: FC<Props> = memo(({ value, onChange }) => {
           <FormatAlignLeftIcon />
         </ToggleButton>
       </Tooltip>
-      
+
       <Tooltip title='По центру'>
         <ToggleButton value='center' aria-label='center'>
           <FormatAlignCenterIcon />

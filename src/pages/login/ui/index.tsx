@@ -20,16 +20,17 @@ const LoginPage: FC = memo(() => {
     emailRef    = useRef(null),
     passwordRef = useRef(null);
 
-  
+
   useEffect(() => {
     if (auth) navigate(RoutePath.DASHBOARD);
-  }, [auth]);
-  
+  }, [auth, navigate]);
+
   useEffect(() => {
     // Обнулить если была записана ошибка, например 401, 403...
     setErrorStatus(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   const handlerSubmit = useCallback(() => {
     if (loading) return;
 
@@ -41,11 +42,11 @@ const LoginPage: FC = memo(() => {
     const { valid, errors } = validateAuthByLogin(userData);
     if (! valid) setErrors(errors);
     else serviceAuthByLogin(userData);
-  }, [loading]);
+  }, [loading, serviceAuthByLogin, setErrors]);
 
 
   return (
-    <LoginPageComponent 
+    <LoginPageComponent
       emailRef    = {emailRef}
       passwordRef = {passwordRef}
       errors      = {errors}

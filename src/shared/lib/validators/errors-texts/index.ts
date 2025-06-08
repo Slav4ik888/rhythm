@@ -7,8 +7,9 @@ export enum ErrorText {
   PASSWORD_EMPTY          = 'Поле пароль" не должно быть пустым',
   PASSWORD_MIN_L          = 'Пароль должен содержать более 5 символов',
   PASSWORD_NOT_EQUAL_CONF = 'Значение в поле подтверждение пароля, не совпадает с введёным паролем',
+  // eslint-disable-next-line max-len
   PERMISSONS_DISABLED     = 'Для регистрации, заполните необходимые поля и предоставьте согласие на обработку персональных данных',
-  
+
   INVALID_FIELD_PRESENT   = 'Присутствует недопустимое поле',
 
   REG_PROT_CASE_INVALID   = 'Некорректные данные',
@@ -19,7 +20,8 @@ export enum ErrorText {
 
   NUM_LESS_THAN           = 'Меньше минимального значения',
   NUM_MORE_THAN           = 'Больше максимального значения',
-  
+
+  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
   INVALID_DATA            = 'Некорректные данные',
   NOT_BE_UNDEFINED        = 'Поле не может быть undefined',
   REQUIRED                = 'Отсутствует обязательное поле',

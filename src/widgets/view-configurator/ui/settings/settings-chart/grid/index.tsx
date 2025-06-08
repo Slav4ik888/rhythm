@@ -12,8 +12,7 @@ interface Props {
 }
 
 /** Настройки на осях - Grid */
-export const ViewItemChartScaleGrid: FC<Props> = memo(({ selectedItem, scale }) => {
-  return (
+export const ViewItemChartScaleGrid: FC<Props> = memo(({ selectedItem, scale }) => (
     <>
       <ConfiguratorTitle title='Grid' type='title2' />
       <RowFlagByScheme
@@ -47,5 +46,4 @@ export const ViewItemChartScaleGrid: FC<Props> = memo(({ selectedItem, scale }) 
         selectedItem = {selectedItem}
       />
     </>
-  )
-});
+  ));

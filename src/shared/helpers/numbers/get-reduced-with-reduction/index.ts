@@ -12,10 +12,10 @@ export function getReducedWithReduction(value?: number): ValueAndReduction {
   if (! value || isNotNum(value)) return { value, reduction: '' };
 
   if      (value >= 1e12 || value <= -1e12) return { value: (value / 1e12), reduction: 'трлн' }; // триллионы
-  else if (value >= 1e9  || value <= -1e9)  return { value: (value / 1e9),  reduction: 'млрд' }; // миллиарды
-  else if (value >= 1e6  || value <= -1e6)  return { value: (value / 1e6),  reduction: 'млн' };  // миллионы
-  else if (value >= 1e3  || value <= -1e3)  return { value: (value / 1e3),  reduction: 'тыс' };  // тысячи
-  else return { value, reduction: '' }; // если число меньше 1000
+  if (value >= 1e9  || value <= -1e9)  return { value: (value / 1e9),  reduction: 'млрд' }; // миллиарды
+  if (value >= 1e6  || value <= -1e6)  return { value: (value / 1e6),  reduction: 'млн' };  // миллионы
+  if (value >= 1e3  || value <= -1e3)  return { value: (value / 1e3),  reduction: 'тыс' };  // тысячи
+  return { value, reduction: '' }; // если число меньше 1000
 }
 
 // Пример использования:

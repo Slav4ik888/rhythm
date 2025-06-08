@@ -42,10 +42,10 @@ export enum OperationArgumentFormatType {
 }
 
 // BACKGROUND
-// ['bg', '#213492'] 
+// ['bg', '#213492']
 
 // COLOR
-// ['c', '#213492'] 
+// ['c', '#213492']
 
 // LINK
 // ['a', , 'https://www.thm.su']
@@ -75,7 +75,7 @@ export interface OperationArgumentFormat {
   version?          : number  // Don`t now
 }
 
-export type OperationArgument = OperationArgumentContent | OperationArgumentFormat //["Welcome to Notion", 'b'] | last_edited_time: 1708427107309
+export type OperationArgument = OperationArgumentContent | OperationArgumentFormat // ["Welcome to Notion", 'b'] | last_edited_time: 1708427107309
 
 
 // OPERATION
@@ -124,15 +124,16 @@ const demo: Req = {
             table   : 'block'
           },
           args: [
-            ["Hello ", []],
-            ["my ", [ // ["b"], ["u"], ["i"], ["bg", "blue"]
-              [OperationArgumentFormatType.BOLD, ""],
-              [OperationArgumentFormatType.UNDERLINE, ""],
-              [OperationArgumentFormatType.ITALIC, ""],
-              [OperationArgumentFormatType.BACKGROUND, "blue"]
+            ['Hello ', []],
+            ['my ', [ // ["b"], ["u"], ["i"], ["bg", "blue"]
+              [OperationArgumentFormatType.BOLD, ''],
+              [OperationArgumentFormatType.UNDERLINE, ''],
+              [OperationArgumentFormatType.ITALIC, ''],
+              [OperationArgumentFormatType.BACKGROUND, 'blue']
               ]
             ],
-            ["friend!!!", [[OperationArgumentFormatType.LINK, "https://www.thm.su"], [OperationArgumentFormatType.BACKGROUND, "orange"]]]
+            ['friend!!!', [[OperationArgumentFormatType.LINK, 'https://www.thm.su'],
+            [OperationArgumentFormatType.BACKGROUND, 'orange']]]
           ]
         }
       ]
@@ -156,4 +157,4 @@ const demo: Req = {
 // 3 - Возвращае видимость этого Item_2 + указываем заново parent_id и parent_table в который переместили
 // 4 - В parent_id в 'content' перемещ Item_2 (arg: { id: Item_2_Id, after: item_id })
 // 5 - Item_2 last_edited_time
-// 5 - parent_id last_edited_time 
+// 5 - parent_id last_edited_time

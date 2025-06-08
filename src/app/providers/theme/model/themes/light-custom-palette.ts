@@ -5,7 +5,7 @@ import { amber, blue, deepPurple, green, grey, orange, pink, yellow } from '@mui
 
 export const customPalette = {
   mode: 'light' as PaletteMode,
-  
+
   background: {
     default : '#f0f2f5',
     card    : '#dbe0e8',
@@ -152,7 +152,7 @@ export const customPalette = {
     main: '#7a7a7a',
     focus: '#7a7a7a',
   },
-  
+
   // Цифры сравнения - последнее значение
   comparisonIndicators_1: {
     main: '#3a3a3a',
@@ -209,7 +209,7 @@ export const customPalette = {
       background : '#02bf02',
     },
   },
-  
+
 
   // My colors for departments
   department_7_title: {
@@ -359,7 +359,7 @@ export const customPalette = {
       background : '#000',
     },
   },
-  
+
   badgeColors: {
     primary: {
       background: '#f8b3ca',

@@ -71,8 +71,10 @@ export const Footer: FC<Props> = ({
           fontSize={size.sm}
           px={1.5}
         >
-          &copy;{new Date().getFullYear()}&nbsp; 
-          <Link href={href} target='_blank' sx={{ textDecoration: 'none' }}>
+          &copy;
+{new Date().getFullYear()}
+&nbsp;
+<Link href={href} target='_blank' sx={{ textDecoration: 'none' }}>
             <MDTypography variant='button'  color='text'>
               {name}
             </MDTypography>

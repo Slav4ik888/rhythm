@@ -1,5 +1,5 @@
 import { RgbaColor } from 'react-colorful';
-import chroma from "chroma-js";
+import chroma from 'chroma-js';
 
 
 export function hexToRgba(color: string): RgbaColor {

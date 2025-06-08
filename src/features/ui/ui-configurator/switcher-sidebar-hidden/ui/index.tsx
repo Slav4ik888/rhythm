@@ -12,7 +12,7 @@ export const SwitcherSidebarHidden = memo(() => {
   useEffect(() => {
     setChecked(! isSidebar);
   }, [isSidebar]);
-  
+
   const toggle = () => setIsSidebar(dispatch, ! isSidebar);
 
 

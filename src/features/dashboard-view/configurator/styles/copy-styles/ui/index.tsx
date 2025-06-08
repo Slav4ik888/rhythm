@@ -5,14 +5,11 @@ import { useUI } from 'entities/ui';
 
 
 
-interface Props {
-}
-
 /**
  * Копирование стилей текущего элемента.
  * Для этого его активируем, а затем тыкаем на элемент в который нужно вставить
  */
-export const CopyStylesViewItemBtn: FC<Props> = memo(({ }) => {
+export const CopyStylesViewItemBtn: FC = memo(() => {
   const { setWarningMessage } = useUI();
   const { isUnsaved, selectedId, activatedCopied, setActiveCopied, clearActivatedCopied } = useDashboardView();
 
@@ -20,7 +17,7 @@ export const CopyStylesViewItemBtn: FC<Props> = memo(({ }) => {
     if (activatedCopied) clearActivatedCopied()
     else if (isUnsaved) setWarningMessage('Вначале сохраните изменения')
     else setActiveCopied({ type: 'copyStyles', id: selectedId })
-  }, [isUnsaved, selectedId, activatedCopied, setActiveCopied, clearActivatedCopied]);
+  }, [isUnsaved, selectedId, activatedCopied, setActiveCopied, clearActivatedCopied, setWarningMessage]);
 
 
   return (

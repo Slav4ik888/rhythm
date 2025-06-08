@@ -16,7 +16,7 @@ export function createReduxStore(initialState: DeepPartial<StateSchema>) {
       ui           : reducerUI,
       user         : reducerUser,
       company      : reducerCompany,
-      
+
       // @ts-ignore
       dashboardView : reducerDashboardView,
     },

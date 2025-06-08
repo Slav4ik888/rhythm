@@ -14,11 +14,11 @@ export const DeleteItemContainer: FC = memo(() => {
 
 
   const handleDel = useCallback(() => {
-    let allIds: ViewItemId[] = []; // Ids всех вложенных элементов
+    const allIds: ViewItemId[] = []; // Ids всех вложенных элементов
     getAllChildrenIds(viewItems, selectedId, allIds);
 
     serviceDeleteViewItem({ companyId, allIds });
-  }, [selectedId, viewItems, serviceDeleteViewItem]);
+  }, [selectedId, viewItems, companyId, serviceDeleteViewItem]);
 
 
   return (

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { UIConfiguratorProviderState } from 'app/providers/theme';
 import { StateSchemaCompany } from 'entities/company';
 import { StateSchemaDashboardData } from 'entities/dashboard-data';

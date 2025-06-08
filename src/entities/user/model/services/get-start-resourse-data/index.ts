@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig, errorHandlers, CustomAxiosError } from 'app/providers/store';
-import { ViewItem, NO_SHEET_ID } from 'entities/dashboard-view';
+import { ViewItem, NO_SHEET_ID, actionsDashboardView } from 'entities/dashboard-view';
 import { actionsCompany, Company } from 'entities/company';
-import { actionsDashboardView } from 'entities/dashboard-view';
 import { paths } from 'shared/api';
 import { Errors } from 'shared/lib/validators';
 import { User } from '../../types';
@@ -33,13 +32,16 @@ export const getStartResourseData = createAsyncThunk<
   ThunkConfig<Errors>
 >(
   'entities/user/getStartResourseData',
-  async(data = {}, thunkApi) => {
+  async (data, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
-    const { pathname, sheetId = NO_SHEET_ID } = data;
-    
+    const { pathname, sheetId = NO_SHEET_ID } = data || {};
+
     try {
-      let user = {} as User, company = {} as Company, viewItems = [] as ViewItem[], companyId = '';
-      
+      let user = {} as User,
+        company = {} as Company,
+        viewItems = [] as ViewItem[],
+        companyId = '';
+
       // На время разработки, использовать данные сохраннённые в LS,
       // а также случай отсутствия интернета (для разработки)
       if (cfg.IS_DEV) {
@@ -67,7 +69,9 @@ export const getStartResourseData = createAsyncThunk<
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch, pathname);
-      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in entitiesUser/getStartResourseData' });
+      return rejectWithValue((e as CustomAxiosError).response.data || {
+        general: 'Error in entitiesUser/getStartResourseData'
+      });
     }
   }
 );

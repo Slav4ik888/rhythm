@@ -9,13 +9,13 @@ interface Props {
   scheme       : string
 }
 
-export const FlagFromGlobalKod: FC<Props> = memo(({ selectedItem, scheme }) => {
-  return (
-    <FlagByScheme
-      scheme       = {scheme}
-      title        = 'fromGlobalKod'
-      toolTitle    = '"fromGlobalKod" - если true, то kod будет автоматически подтягиваться от ближайшего parent у которых стоит галка (isGlobalKod)'
-      selectedItem = {selectedItem} 
-    />
-  )
-});
+export const FlagFromGlobalKod: FC<Props> = memo(({ selectedItem, scheme }) => (
+  <FlagByScheme
+    scheme       = {scheme}
+    title        = 'fromGlobalKod'
+    // eslint-disable-next-line max-len
+    toolTitle    = {`"fromGlobalKod" - если true, то kod будет автоматически подтягиваться от ближайшего parent
+ у которых стоит галка (isGlobalKod)`}
+    selectedItem = {selectedItem}
+  />
+));

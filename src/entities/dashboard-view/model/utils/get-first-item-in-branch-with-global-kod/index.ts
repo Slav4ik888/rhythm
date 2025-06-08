@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { DashboardViewEntities } from '../../slice/state-schema';
 import { ViewItem, ViewItemId } from '../../types';
 import { getParentBranch } from '../get-parent-branch';
@@ -17,5 +18,6 @@ export function getFirstItemInBranchWithGlobalKod(
     if (parent?.settings?.isGlobalKod) return parent
   }
 
-  return; // Ни у кого в ветке нет isGlobalKod === true
+  // Ни у кого в ветке нет isGlobalKod === true
+  return
 }

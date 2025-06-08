@@ -76,7 +76,7 @@ export const DashboardBoxContainer: FC<Props> = memo(({ title, titleColor, child
     <Card sx={sx.root}>
       {
         title && <Box sx={sx.title}>
-          <MDTypography color={titleColor} variant="h3" textTransform="none">
+          <MDTypography color={titleColor} variant='h3' textTransform='none'>
             {title}
           </MDTypography>
         </Box>

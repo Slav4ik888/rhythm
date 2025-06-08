@@ -15,7 +15,7 @@ export const getInitialState = (companyId: string): StateSchemaDashboardData => 
 
   const state = LS.getDashboardState(companyId);
   const activePeriod = state?.activePeriod || { ...emptyPeriod };
-  
+
   const initialState: StateSchemaDashboardData = {
     loading        : false,
     errors         : {},
@@ -24,7 +24,7 @@ export const getInitialState = (companyId: string): StateSchemaDashboardData => 
     startEntities  : state?.startEntities  || {},
     startDates     : state?.startDates     || {},
     lastUpdated    : state?.lastUpdated    || undefined, // Дата последнего обновления
-    
+
     selectedPeriod : activePeriod,
     activePeriod,
     activeEntities : state?.activeEntities || {},

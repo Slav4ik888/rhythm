@@ -20,7 +20,7 @@ Coded by www.creative-tim.com
  */
 
 // Material Dashboard 2 React Helper Functions
-import { pxToRem } from "../../../../../../shared/styles/functions/pxToRem";
+import { pxToRem } from '../../../../../../shared/styles/functions/pxToRem';
 
 
 export const borders = {

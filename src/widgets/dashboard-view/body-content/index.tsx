@@ -2,7 +2,9 @@ import { memo, useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { ContentRender } from './render-items';
 import { Box } from '@mui/material';
 import { f } from 'shared/styles';
-import { ViewItemId, PartialViewItem, useDashboardView, NO_PARENT_ID, createNextOrder, getChildren } from 'entities/dashboard-view';
+import {
+  ViewItemId, PartialViewItem, useDashboardView, NO_PARENT_ID, createNextOrder, getChildren
+ } from 'entities/dashboard-view';
 import { useCompany } from 'entities/company';
 import { getCopyViewItem } from 'features/dashboard-view';
 import { useUser } from 'entities/user';
@@ -32,7 +34,7 @@ export const DashboardBodyContent = memo(() => {
 
     checkRenderComplete();
   }, []);
-  
+
 
   useEffect(() => {
     if (newSelectedId && !loading && newSelectedId !== selectedId && ! isUnsaved) {
@@ -72,14 +74,18 @@ export const DashboardBodyContent = memo(() => {
     else if (activatedCopied?.type === 'copyItemAll' || activatedCopied?.type === 'copyItemFirstOnly') {
       if (selectedId === id) return // Нажали на этот же элемент
       if (entities[id]?.type !== 'box' && id !== NO_PARENT_ID) return // Перемещать можно только в Box или корневой элемент
-      
-      const copiedViewItems = getCopyViewItem({ type: activatedCopied.type, id: activatedCopied.id }, id, viewItems, userId);
+
+      const copiedViewItems = getCopyViewItem(
+        { type: activatedCopied.type, id: activatedCopied.id },
+        id,
+        viewItems,
+        userId
+      );
 
       setDashboardView({ companyId, viewItems: copiedViewItems }); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
       serviceCreateGroupViewItems({ companyId, viewItems: copiedViewItems });
     }
-    else {
-      if (isUnsaved) {
+    else if (isUnsaved) {
         /** Сохраняем изменившиеся customSettings */
         if (isNotEmpty(changedCompany)) serviceUpdateCompany({ id: companyId, ...changedCompany });
 
@@ -93,8 +99,10 @@ export const DashboardBodyContent = memo(() => {
       else {
         setNewSelectedId(id); // Здесь сохраняется в newSelectedId а активация выбранного id происходит в useEffect
       }
-    }
-  }, [editMode, selectedId, activatedMovementId, activatedCopied, viewItems, entities, userId, isUnsaved, setSelectedId, setDashboardView]);
+  }, [editMode, selectedId, activatedMovementId, activatedCopied, viewItems, entities, userId, isUnsaved,
+    changedCompany, changedViewItem, companyId, selectedItem.parentId, selectedItem.styles,
+    serviceCopyStyles, serviceCreateGroupViewItems, serviceUpdateCompany, serviceUpdateViewItem,
+    setNewSelectedId, updateViewItem, setDashboardView]);
 
 
   return (
@@ -102,7 +110,7 @@ export const DashboardBodyContent = memo(() => {
       sx      = {{ ...f('c'), width: editMode  ? 'calc(100% + 500px)' : '100%' }}
       onClick = {() => handleSelectViewItem(NO_PARENT_ID)}
     >
-      {/* {
+      {
         isRendering
           ? <PageLoader loading={isRendering} />
           : <ContentRender
@@ -110,7 +118,7 @@ export const DashboardBodyContent = memo(() => {
               parentId         = 'no_parentId'
               onSelect         = {handleSelectViewItem}
             />
-      } */}
+      }
     </Box>
   )
 });

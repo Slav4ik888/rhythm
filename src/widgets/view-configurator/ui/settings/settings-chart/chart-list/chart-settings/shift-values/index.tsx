@@ -1,7 +1,7 @@
 import { FC, memo, useCallback, MouseEvent } from 'react';
 import { ViewItemChart, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { InputByScheme } from 'widgets/view-configurator/ui/base-features-components';
+import { InputByScheme } from '../../../../../base-features-components';
 
 
 
@@ -16,7 +16,7 @@ export const ChartShiftValues: FC<Props> = memo(({ index, selectedItem }) => {
 
   const handleChange = useCallback((value: string | number) => {
     changeOneDatasetsItem({ field: 'shiftValues', value, index });
-  }, [changeOneDatasetsItem]);
+  }, [index, changeOneDatasetsItem]);
 
 
   return (

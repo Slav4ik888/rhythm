@@ -23,8 +23,8 @@ import { Breadcrumbs as MuiBreadcrumbs } from '@mui/material';
 import Home from '@mui/icons-material/Home';
 
 // Material Dashboard 2 React components
-import MDBox from 'shared/ui/mui-design-components/md-box';
-import MDTypography from 'shared/ui/mui-design-components/md-typography';
+import MDBox from '../mui-design-components/md-box';
+import MDTypography from '../mui-design-components/md-typography';
 
 
 

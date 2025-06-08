@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 /**
-  The pxToRem() function helps you to convert a px unit into a rem unit, 
+  The pxToRem() function helps you to convert a px unit into a rem unit,
  */
 
 export function pxToRem(number: number | undefined = 0, baseNumber = 16) {

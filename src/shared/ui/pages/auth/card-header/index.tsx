@@ -38,7 +38,7 @@ export const AuthCardHeader: FC<Props> = memo(({ type }) => {
           <LockOutlinedIcon />
         </Avatar>
       }
-      <Typography component="h1" variant="h5" sx={sx.pageTitle}>
+      <Typography component='h1' variant='h5' sx={sx.pageTitle}>
         {title}
       </Typography>
     </>

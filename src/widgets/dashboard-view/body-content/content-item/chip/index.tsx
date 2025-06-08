@@ -21,14 +21,18 @@ export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
   const { activeEntities } = useDashboardData();
   const { entities } = useDashboardView();
 
-  const { label, color, background } = useMemo(() => { 
+  const { label, color, background } = useMemo(() => {
     const kod  = getKod(entities, item);
     const type = item.settings?.chipType || '';
-    let label = 'Test label', color = '#fff', background = 'red';
+
+    let label      = 'Test label';
+    let color      = '#fff';
+    let background = 'red';
 
     if (type === 'condition') {
       const conditionKode = getConditionKod(type, kod);
-      const condition = conditionKode ? getConditionType(activeEntities[conditionKode]?.data) : DashboardConditionType.NULL;
+      const condition = conditionKode
+        ? getConditionType(activeEntities[conditionKode]?.data) : DashboardConditionType.NULL;
       label      = CONDITION_TYPE[condition].label;
       color      = theme.palette.conditionTypeChip[condition]?.color;
       background = theme.palette.conditionTypeChip[condition]?.background;
@@ -54,9 +58,9 @@ export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
     else if (type === 'custom') {
       // TODO:
     }
-    
+
     return { label, color, background };
-  }, [item.settings, activeEntities, customSettings]);
+  }, [item, theme.palette.conditionTypeChip, activeEntities, entities, customSettings]);
 
 
   return (

@@ -36,7 +36,7 @@ interface Props {
 /** Кнопка "Зарегистрироваться" | "Войти" */
 export const ActionMainComponent: FC<Props> = memo(({ textBtn, loading, errors, disabled, onSubmit }) => {
   const { root, error, button } = useStyles();
-  
+
 
   return (
     <Box sx={root}>

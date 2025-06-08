@@ -21,7 +21,7 @@ export const MoveItemUpdownward: FC<Props> = memo(({ viewItem }) => {
       id    : viewItem.id,
       order : calcNewOrder(type, sortingArr(childrenViewItems, 'order'), viewItem)
     });
-  }, [childrenViewItems, updateViewItem, viewItem.parentId]);
+  }, [childrenViewItems, viewItem, updateViewItem]);
 
   return (
     <>

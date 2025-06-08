@@ -12,12 +12,12 @@ type Props = {
 /**
  * v.2024-02-08
  */
-export const Label: FC<Props> = memo(({sx: styles, label}) => {
+export const Label: FC<Props> = memo(({ sx: styles, label }) => {
   const sx = useStyles(styles, label.length);
 
 
   if (! label) return null
-  
+
   return (
     <>
       <Box sx={{ ...sx.hiddenLabelBG }} />

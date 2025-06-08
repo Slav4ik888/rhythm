@@ -1,7 +1,8 @@
 import { FC, memo } from 'react';
-import { Box, Tab } from '@mui/material';
+import { Box } from '@mui/material';
 import { f } from 'shared/styles';
 import { CustomTheme } from 'app/providers/theme';
+
 
 
 export const Unselected: FC = memo(() => (

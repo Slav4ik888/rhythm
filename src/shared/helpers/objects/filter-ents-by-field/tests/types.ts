@@ -19,14 +19,15 @@ interface MockItem<O extends object> {
   field       : string;
   value       : string | string[];
   includes?   : boolean;
+  // eslint-disable-next-line
   validFunc?  : Function;
-};
+}
 
 type MockResult<O extends object> = Entities<O>;
 
 interface Mock<O extends object> extends Array<MockItem<O> | MockResult<O>> {
   0: MockItem<O>;
   1: MockResult<O>;
-};
+}
 
 export type Mocks<O extends object> = Array<Mock<O>>;

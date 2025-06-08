@@ -22,17 +22,19 @@ interface Props {
 }
 
 
-export const CompanyProfilePageComponent: FC<Props> = memo(({ loading, auth, errors, group: C, onCancel, onSubmit }) => {
+export const CompanyProfilePageComponent: FC<Props> = memo(({
+  loading, auth, errors, group: C, onCancel, onSubmit
+}) => {
   const sx = useStylesAuth(useTheme());
 
 
   return (
     <InnerPageWrapper containerType='md'>
-      <MDTypography variant="h6" textAlign="center" textTransform="none" mb={2}>
+      <MDTypography variant='h6' textAlign='center' textTransform='none' mb={2}>
         Профиль компании
       </MDTypography>
       <MDDivider />
-      
+
       {
         ! auth
           ? <PageLoader loading={! auth} />
@@ -42,7 +44,7 @@ export const CompanyProfilePageComponent: FC<Props> = memo(({ loading, auth, err
                 name       = 'companyName'
                 scheme     = 'companyName'
                 // grid       = {{ md: 4, sm: 6 }}
-                sx         = {{ root: sx.gridItem, bg: sx.textField } }
+                sx         = {{ root: sx.gridItem, bg: sx.textField }}
                 group      = {C}
                 errorField = 'companyName'
                 errors     = {errors}
@@ -53,7 +55,7 @@ export const CompanyProfilePageComponent: FC<Props> = memo(({ loading, auth, err
                 name       = 'url'
                 scheme     = 'googleData.url'
                 // grid       = {{ md: 4, sm: 6 }}
-                sx         = {{ root: sx.gridItem, bg: sx.textField } }
+                sx         = {{ root: sx.gridItem, bg: sx.textField }}
                 group      = {C}
                 errorField = 'googleData.url'
                 errors     = {errors}
@@ -65,7 +67,7 @@ export const CompanyProfilePageComponent: FC<Props> = memo(({ loading, auth, err
                 name       = 'owner'
                 scheme     = 'owner'
                 grid       = {{ md: 6, sm: 6 }}
-                sx         = {{ root: sx.gridItem, bg: sx.textField } }
+                sx         = {{ root: sx.gridItem, bg: sx.textField }}
                 group      = {C}
                 errorField = 'owner'
                 errors     = {errors}
@@ -77,7 +79,7 @@ export const CompanyProfilePageComponent: FC<Props> = memo(({ loading, auth, err
                 name       = 'status'
                 scheme     = 'status'
                 grid       = {{ md: 6, sm: 6 }}
-                sx         = {{ root: sx.gridItem, bg: sx.textField } }
+                sx         = {{ root: sx.gridItem, bg: sx.textField }}
                 group      = {C}
                 errorField = 'status'
                 errors     = {errors}

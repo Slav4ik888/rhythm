@@ -1,4 +1,4 @@
-import { cloneObj } from 'shared/helpers/objects';
+import { cloneObj } from '../../objects';
 
 type A = {
   [k: string]: unknown
@@ -7,8 +7,8 @@ type A = {
 /**
  * v.2023-06-30
  * Сортируем по arr по полю fieldName
- * @param {array} arr 
- * @param {string} fieldName 
+ * @param {array} arr
+ * @param {string} fieldName
  * @param {boolean} decrease // если нужно на убывание
  * @return {array} - result
  */
@@ -18,12 +18,12 @@ export function sortingArr<T>(
   decrease?: boolean
 ): Array<T> {
   if (! arr?.length || arr.length === 1) return arr;
-  
-  let result = arr.map(item => cloneObj(item));
+
+  const result = arr.map(item => cloneObj(item));
 
   const L = decrease ? 1 : -1;
   const G = decrease ? -1 : 1;
-  
+
   return result.sort((a, b) => {
     // @ts-ignore
     if (a[fieldName] < b[fieldName]) {
@@ -34,5 +34,5 @@ export function sortingArr<T>(
       return G;
     }
     return 0;
-  }); 
-};
+  });
+}

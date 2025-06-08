@@ -28,18 +28,19 @@ interface Props {
 }
 
 
-/** 
+/**
  * Input update ViewItem
  * По схеме сохраняет изменени в selectedItem
  * в том числе scheme with array
  */
-export const InputByScheme: FC<Props> = memo(({ selectedItem, scheme, width, sx: style, helperText, toolTitle, clear, disabled,
+export const InputByScheme: FC<Props> = memo(({
+  selectedItem, scheme, width, sx: style, helperText, toolTitle, clear, disabled,
   type = 'text',
   transform, onClear, onBlur, onChange, onSubmit
 }) => {
   const sx = useStyles(useTheme(), style, width);
   const { updateViewItem } = useDashboardView();
-  
+
   const value = useMemo(() => {
     if (! selectedItem) return '';
 
@@ -57,28 +58,25 @@ export const InputByScheme: FC<Props> = memo(({ selectedItem, scheme, width, sx:
   const handleChange = useCallback((e: MouseEvent, v: string | number) => {
     if (onChange) onChange(e, v);
     else handleUpdate(v);
-  }, [selectedItem, scheme, handleUpdate]);
-
-
-  // Blur
-  const handleBlur = useCallback((e: MouseEvent, v: string | number) => {
-    if (onBlur) onBlur(e, v);
-    else handleSubmit(e, v);
-  }, [selectedItem, scheme, onBlur]);
-
+  }, [handleUpdate, onChange]);
 
   // Submit
   const handleSubmit = useCallback((e: MouseEvent, v: string | number) => {
     if (onSubmit) onSubmit(e, v);
     else handleUpdate(v);
-  }, [selectedItem, scheme, handleUpdate, onSubmit]);
-  
-  
+  }, [handleUpdate, onSubmit]);
+
+  // Blur
+  const handleBlur = useCallback((e: MouseEvent, v: string | number) => {
+    if (onBlur) onBlur(e, v);
+    else handleSubmit(e, v);
+  }, [handleSubmit, onBlur]);
+
   // Clear
   const handleClear = useCallback((e: MouseEvent) => {
     if (onClear) onClear()
     else handleSubmit(e, clear !== undefined ? clear : '');
-  }, [onClear, handleChange]);
+  }, [clear, onClear, handleSubmit]);
 
 
   return (

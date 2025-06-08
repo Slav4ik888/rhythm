@@ -1,5 +1,5 @@
 import * as ReactDOM from 'react-dom/client';
-import "regenerator-runtime/runtime";
+import 'regenerator-runtime/runtime';
 import { BrowserRouter } from 'react-router-dom';
 import { StoreProvider } from 'app/providers/store';
 import { ErrorBoundary } from 'app/providers/error-boundary';
@@ -7,13 +7,16 @@ import { App } from './app';
 
 import cfg from 'app/config';
 import { UIConfiguratorProvider } from 'app/providers/theme';
+import { __devLog } from 'shared/lib/tests/__dev-log';
+
+/* eslint-disable-next-line no-console */
 console.log(`Version: ${cfg.ASSEMBLY_DATE}`);
-console.log(cfg.IS_DEV ? 'OFFLINE STATUS' : 'Online status');
+__devLog(cfg.IS_DEV ? 'OFFLINE STATUS' : 'Online status');
 
 
 
 // @ts-ignore
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <BrowserRouter>
@@ -28,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "added eslint" && git push -u origin main
+// git add . && git commit -m "finished eslint" && git push -u origin main

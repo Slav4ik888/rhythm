@@ -10,7 +10,7 @@ export function toNumber(str: string | number): number {
   const dot = commaToDot(str);
   const spa = delSpace(dot);
   const num = parseFloat(spa);
-  
+
   if (! num) return 0;
   return num;
-};
+}

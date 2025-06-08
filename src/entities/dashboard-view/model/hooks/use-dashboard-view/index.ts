@@ -3,9 +3,15 @@ import { actions as a } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
-import { ChangeOneSettingsField, ChangeSelectedStyle, ChangeOneDatasetsItem, ChangeOneChartsItem, SetDashboardView, SetEditMode } from '../../slice/types';
+import {
+  ChangeOneSettingsField, ChangeSelectedStyle, ChangeOneDatasetsItem, ChangeOneChartsItem,
+  SetDashboardView, SetEditMode
+} from '../../slice/types';
 import { ViewItem, ViewItemId, ViewItemStyles, PartialViewItem } from '../../types';
-import { addNewViewItem, CreateGroupViewItems, createGroupViewItems, deleteViewItem, DeleteViewItem, UpdateViewItem, updateViewItem as updateViewItemOnServer } from 'features/dashboard-view';
+import {
+  addNewViewItem, CreateGroupViewItems, createGroupViewItems, deleteViewItem,
+  DeleteViewItem, UpdateViewItem, updateViewItem as updateViewItemOnServer
+} from 'features/dashboard-view';
 import { ActivatedCopied, StateSchemaDashboardView } from '../../slice/state-schema';
 import { CopyStylesItem, copyStylesViewItem } from 'features/dashboard-view/configurator';
 
@@ -73,7 +79,7 @@ export const useDashboardView = (config: Config = {}) => {
     // Styles
     changeOneStyleField      = (data: ChangeSelectedStyle) => dispatch(a.changeOneStyleField(data)),
     setSelectedStyles        = (data: ViewItemStyles) => dispatch(a.setSelectedStyles(data)),
- 
+
     // Settings
     changeOneSettingsField   = (data: ChangeOneSettingsField) => dispatch(a.changeOneSettingsField(data)),
     changeOneChartsItem      = (data: ChangeOneChartsItem)    => dispatch(a.changeOneChartsItem(data)),
@@ -91,7 +97,7 @@ export const useDashboardView = (config: Config = {}) => {
     serviceCopyStyles     = (data: CopyStylesItem) => dispatch(copyStylesViewItem(data)),
     serviceDeleteViewItem = (data: DeleteViewItem) => dispatch(deleteViewItem(data));
 
-  
+
   return {
     loading,
     errors,
@@ -120,7 +126,7 @@ export const useDashboardView = (config: Config = {}) => {
     setBright,
     fromGlobalKod,
     globalKodParent,
-    
+
     newStoredViewItem,
     prevStoredViewItem,
     childrenViewItems,

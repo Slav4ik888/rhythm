@@ -21,8 +21,8 @@ import { GradientColorName, GreyColor, ColorName } from 'app/providers/theme';
 import { FC } from 'react';
 
 // Material Dashboard 2 React components
-import MDBox from 'shared/ui/mui-design-components/md-box';
-import MDTypography from 'shared/ui/mui-design-components/md-typography';
+import MDBox from '../../mui-design-components/md-box';
+import MDTypography from '../../mui-design-components/md-typography';
 
 
 interface Props {
@@ -47,8 +47,7 @@ export const ComplexStatisticsCard: FC<Props> = ({
     label: '',
   },
   icon
-}) => {
-  return (
+}) => (
     <Card>
       <MDBox display='flex' justifyContent='space-between' pt={1} px={2}>
         <MDBox
@@ -86,9 +85,9 @@ export const ComplexStatisticsCard: FC<Props> = ({
           >
             {percentage.amount}
           </MDTypography>
-          &nbsp;{percentage.label}
+          &nbsp;
+{percentage.label}
         </MDTypography>
       </MDBox>
     </Card>
-  );
-}
+  )

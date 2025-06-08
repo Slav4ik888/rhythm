@@ -16,12 +16,12 @@ import { Theme } from '@mui/material';
 export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProviderState): CustomTheme => {
   const { mode, navbarColor, sidebarColor } = controller;
 
-  let theme = {
+  const theme = {
     ...muiTheme,
     borders: { ...borders },
     breakpoints: { ...breakpoints },
   } as unknown as CustomTheme;
-  
+
   if (mode === 'light') {
     theme.palette = {
       ...muiTheme.palette,

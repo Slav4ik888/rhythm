@@ -18,17 +18,19 @@ Coded by www.creative-tim.com
  */
 
 // Material Dashboard 2 React helper functions
-import { pxToRem } from "./pxToRem";
+import { pxToRem } from './pxToRem';
 import { Offset, Radius } from '../../../app/providers/theme/model/types';
 import { rgbaFromHex } from './rgba-from-hex';
 
 
 export function boxShadow(
+  // eslint-disable-next-line default-param-last
   offset  : Offset = [],
+  // eslint-disable-next-line default-param-last
   radius  : Radius = [],
   color   : string,
   opacity : number,
-  inset = ""
+  inset = ''
 ): string {
   const [x, y] = offset;
   const [blur, spread] = radius;

@@ -19,18 +19,18 @@ interface Props {
   onChange?    : (e: MouseEvent, v: string | number) => void // Если нужна не стандартная обработка
 }
 
-export const RowInputByScheme: FC<Props> = memo(({ selectedItem, scheme, type, title, toolTitle, width, clear, sx, onChange }) => {
-  return (
-    <RowWrapperTitle title={title} toolTitle={toolTitle} sx={sx}>
-      <InputByScheme
-        type         = {type}
-        scheme       = {scheme}
-        width        = {width}
-        clear        = {clear}
-        selectedItem = {selectedItem}
-        sx           = {sx}
-        onChange     = {onChange}
-      />
-    </RowWrapperTitle>
-  )
-});
+export const RowInputByScheme: FC<Props> = memo(({
+  selectedItem, scheme, type, title, toolTitle, width, clear, sx, onChange
+}) => (
+  <RowWrapperTitle title={title} toolTitle={toolTitle} sx={sx}>
+    <InputByScheme
+      type         = {type}
+      scheme       = {scheme}
+      width        = {width}
+      clear        = {clear}
+      selectedItem = {selectedItem}
+      sx           = {sx}
+      onChange     = {onChange}
+    />
+  </RowWrapperTitle>
+));

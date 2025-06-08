@@ -21,7 +21,8 @@ export const DashboardSetEditBtn: FC<Props> = memo(({ sx }) => {
     setText(editMode ? 'Выключить режим редактирования' : 'Включить режим редактирования');
   }, [editMode]);
 
-  const handleToggle = useCallback(() => setEditMode({ editMode: ! editMode, companyId }), [editMode, setEditMode]);
+  const handleToggle = useCallback(() => setEditMode({ editMode: ! editMode, companyId }),
+    [editMode, companyId, setEditMode]);
 
 
   return (

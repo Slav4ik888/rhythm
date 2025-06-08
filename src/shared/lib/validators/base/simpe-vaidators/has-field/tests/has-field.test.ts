@@ -22,8 +22,6 @@ describe('isHasField', () => {
     // @ts-ignore
     expect(isHasField(undefined, 'data')).toEqual(false);
   });
-
-  
 });
 
 // npm run test:unit has-field.test.ts

@@ -15,7 +15,7 @@ export const LabelRow: FC<Props> = memo(({ selectedItem }) => (
     title        = 'Заголовок'
     toolTitle    = 'Заголовок'
     width        = '100%'
-    selectedItem = { selectedItem }
+    selectedItem = {selectedItem}
     sx={{
       input: {
         fontSize : `${pxToRem(18)} !important`,

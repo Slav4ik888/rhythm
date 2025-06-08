@@ -15,7 +15,6 @@ describe('calcGrowthChange', () => {
   // Not valid data
   test('last 0, prev 200, result -100', () => expect(calcGrowthChange(0, 200)).toEqual(-100));
   test('last 2000, prev 0, result ', () => expect(calcGrowthChange(2000, 0)).toEqual(undefined));
-
 });
 
 // npm run test:unit calc-growth-change.test.ts

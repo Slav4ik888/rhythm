@@ -6,12 +6,14 @@ export {
   arrayEndingType, arrayEndingDiffType, EndingType, EndingDiffType, ViewItemType, TextAlignType
 } from './model/types'
 export { actions as actionsDashboardView, reducer as reducerDashboardView } from './model/slice'
-export { DashboardViewEntities, StateSchemaDashboardView, ActivatedCopiedType, ActivatedCopied } from './model/slice/state-schema'
+export {
+  DashboardViewEntities, StateSchemaDashboardView, ActivatedCopiedType, ActivatedCopied
+} from './model/slice/state-schema'
 export {
   getInitialState, ParentsViewItems, stylesToSx, createNextOrder, getKod, isFirstGlobalKodInBranch,
   getChildren
  } from './model/utils'
 export { useDashboardView } from './model/hooks'
-export { createViewItem } from './model/creators/'
+export { createViewItem } from './model/creators'
 export { NO_SHEET_ID, NO_PARENT_ID, ORDER_STEP } from './model/consts'
 export { ChipContainer, SxChipContainer } from './ui'

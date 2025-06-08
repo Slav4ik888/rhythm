@@ -20,14 +20,14 @@ interface Props {
 export const SetColorsItem: FC<Props> = memo(({ type, label, settings, onSubmit }) => {
   const color = settings?.[type]?.[label]?.color || '';
   const background = settings?.[type]?.[label]?.background || '';
-  
+
   const handleChangeColor = (colorType: ColorSettingsType, value: string) => {
     onSubmit({
       [type]: {
         [label]: {
           [colorType]: value
         }
-    }});
+    } });
   };
 
 
@@ -53,7 +53,7 @@ export const SetColorsItem: FC<Props> = memo(({ type, label, settings, onSubmit 
       <Box sx={f()}>
         <ColorPicker
           defaultColor = {color}
-          sx           = {{ root: { mr: 1 }}}
+          sx           = {{ root: { mr: 1 } }}
           onChange     = {(value: string) => handleChangeColor('color', value)}
         />
         <ColorPicker

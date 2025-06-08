@@ -27,7 +27,6 @@ describe('hasAnyField', () => {
   test('Object with many any fields', () => {
     expect(hasAnyField(objWithManyAnyFields, schema)).toEqual(true);
   });
-  
 });
 
 // npm run test:unit has-any-field.test.ts

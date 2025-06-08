@@ -3,14 +3,20 @@ import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { ActivatedCopied, StateSchemaDashboardView } from './state-schema';
-import { deleteViewItem, DeleteViewItem, AddNewViewItem, addNewViewItem, UpdateViewItem, updateViewItem } from 'features/dashboard-view';
-import { SetDashboardView, ChangeSelectedStyle, ChangeOneSettingsField, ChangeOneDatasetsItem, ChangeOneChartsItem, SetEditMode } from './types';
+import {
+  deleteViewItem, DeleteViewItem, AddNewViewItem, addNewViewItem, UpdateViewItem, updateViewItem
+} from 'features/dashboard-view';
+import {
+  SetDashboardView, ChangeSelectedStyle, ChangeOneSettingsField, ChangeOneDatasetsItem,
+  ChangeOneChartsItem, SetEditMode
+} from './types';
 import { addEntities } from 'entities/base';
 import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem } from '../types';
 import { cloneObj, updateObject } from 'shared/helpers/objects';
 import { updateChartsItem } from '../utils';
 import { ChartConfigDatasets } from 'entities/charts';
 import { CopyStylesItem, copyStylesViewItem } from 'features/dashboard-view/configurator';
+import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 
@@ -39,11 +45,11 @@ export const slice = createSlice({
   initialState,
   reducers: {
     setInitial: (state, { payload }: PayloadAction<StateSchemaDashboardView>) => {
-      state.entities           = payload.entities           || {},
-      state.selectedId         = payload.selectedId,
-      state.bright             = false,
-      state.newStoredViewItem  = payload.newStoredViewItem  || undefined,
-      state.prevStoredViewItem = payload.prevStoredViewItem || undefined,
+      state.entities           = payload.entities           || {};
+      state.selectedId         = payload.selectedId;
+      state.bright             = false;
+      state.newStoredViewItem  = payload.newStoredViewItem  || undefined;
+      state.prevStoredViewItem = payload.prevStoredViewItem || undefined;
       state.editMode           = payload.editMode           || false;
       state.loading            = payload.loading;
       state.errors             = payload.errors;
@@ -66,12 +72,12 @@ export const slice = createSlice({
       const { editMode, companyId } = payload;
       state.editMode = editMode;
       LS.setDashboardViewEditMode(companyId, editMode);
-      
+
       if (! editMode) {
         state.selectedId = '';
       }
     },
-    
+
     /** Вначале newSelectedId а затем по условию из useEffect */
     setNewSelectedId: (state, { payload }: PayloadAction<ViewItemId>) => {
       state.newSelectedId = payload;
@@ -98,7 +104,7 @@ export const slice = createSlice({
     setIsUnsaved: (state, { payload }: PayloadAction<boolean>) => {
       state.isUnsaved = payload;
     },
-    
+
     // Перемещение выбранного View-item в другой
     setActiveMovementId: (state) => {
       state.activatedMovementId = state.selectedId;
@@ -137,7 +143,7 @@ export const slice = createSlice({
       }
       else {
         // Optionally handle missing data, e.g., throw error or log warning
-        console.warn('newStoredViewItem is undefined or invalid');
+        __devLog('newStoredViewItem is undefined or invalid');
       }
     },
 
@@ -155,8 +161,8 @@ export const slice = createSlice({
     // Изменение 1 field в settings
     changeOneSettingsField: (state, { payload }: PayloadAction<ChangeOneSettingsField>) => {
       const { field, value } = payload;
-      const selectedId = state.selectedId;
-      
+      const { selectedId } = state;
+
       if (state.entities[selectedId]) {
         if (! state.entities[selectedId]?.settings) state.entities[selectedId].settings = {};
         (state.entities[selectedId].settings as ViewItemSettings)[field] = value;
@@ -166,34 +172,45 @@ export const slice = createSlice({
     // Изменение 1 field в settings.charts[index]
     changeOneChartsItem: (state, { payload }: PayloadAction<ChangeOneChartsItem>) => {
       const { field, index, value } = payload;
-      const selectedId   = state.selectedId;
+      const { selectedId } = state;
       const selectedItem = state.entities[selectedId];
 
       if (state.entities[selectedId]) {
         if (! state.entities[selectedId]?.settings) state.entities[selectedId].settings = {};
-        (state.entities[selectedId].settings as ViewItemSettings).charts = updateChartsItem(selectedItem, index, field, value);
+        (state.entities[selectedId].settings as ViewItemSettings).charts = updateChartsItem(
+          selectedItem,
+          index,
+          field,
+          value
+        );
       }
     },
 
     // Изменение 1 field в settings.charts[index].datasets
     changeOneDatasetsItem: (state, { payload }: PayloadAction<ChangeOneDatasetsItem>) => {
       const { field, index, value } = payload;
-      const selectedId   = state.selectedId;
+      const { selectedId } = state;
       const selectedItem = state.entities[selectedId];
       const datasets     = cloneObj(selectedItem?.settings?.charts?.[index]?.datasets || {}) as ChartConfigDatasets;
       datasets[field] = value as never;
 
       if (state.entities[selectedId]) {
         if (! state.entities[selectedId]?.settings) state.entities[selectedId].settings = {};
-        (state.entities[selectedId].settings as ViewItemSettings).charts = updateChartsItem(selectedItem, index, 'datasets', datasets);
+        (state.entities[selectedId].settings as ViewItemSettings).charts = updateChartsItem(
+          selectedItem,
+          index,
+          'datasets',
+          datasets
+        );
       }
     },
-    
+
   },
 
 
   extraReducers: builder => {
     // ADD-NEW-ITEM
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     builder
       .addCase(addNewViewItem.pending, (state) => {
         state.loading = true;
@@ -214,9 +231,10 @@ export const slice = createSlice({
       .addCase(addNewViewItem.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
-      }),
-    
+      })
+
     // UPDATE-VIEW-ITEM
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     builder
       .addCase(updateViewItem.pending, (state) => {
         state.loading = true;
@@ -224,7 +242,7 @@ export const slice = createSlice({
       })
       .addCase(updateViewItem.fulfilled, (state, { payload }: PayloadAction<UpdateViewItem>) => {
         const { viewItem, companyId, newStoredViewItem } = payload;
-        
+
         state.entities[viewItem.id] = updateObject(state.entities[viewItem.id], viewItem);
         if (newStoredViewItem) {
           state.newStoredViewItem = updateObject(state.newStoredViewItem, newStoredViewItem);
@@ -242,9 +260,10 @@ export const slice = createSlice({
         state.newStoredViewItem = undefined; // Раз обновление завершилось с ошибкой, то нельзя переключаться на новый элемент
         state.errors  = getError(payload);
         state.loading = false;
-      }),
+      })
 
     // COPY-STYLES - стили activatedCopied?.id копируются поверх стилей выбранного элемента
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     builder
       .addCase(copyStylesViewItem.pending, (state) => {
         state.loading = true;
@@ -273,9 +292,10 @@ export const slice = createSlice({
         state.newStoredViewItem = undefined; // Раз обновление завершилось с ошибкой, то нельзя переключаться на новый элемент
         state.errors  = getError(payload);
         state.loading = false;
-      }),
-       
+      })
+
     // DELETE-VIEW
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     builder
       .addCase(deleteViewItem.pending, (state) => {
         state.loading = true;
@@ -302,7 +322,6 @@ export const slice = createSlice({
         state.errors  = getError(payload);
         state.loading = false;
       })
-      
   }
 })
 

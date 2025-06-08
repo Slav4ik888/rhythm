@@ -15,12 +15,13 @@ export const mocks: Mocks = [
           d: undefined,
           e: NaN,
           f: null,
-          ['g']: 'myndy'
+          g: 'myndy'
         },
         last: 123
       }
     },
-    'error: , mask: Какой-то текcт, obj: { a: 1, b: str, c: [{\"a\":123}], d: undefined, e: NaN, f: null, g: myndy }, last: 123'
+    // eslint-disable-next-line
+    'error: , mask: Какой-то текcт, obj: { a: 1, b: str, c: [{"a":123}], d: undefined, e: NaN, f: null, g: myndy }, last: 123'
   ],
   [
     {
@@ -42,6 +43,6 @@ export const mocks: Mocks = [
       description: 'Obj is array',
       obj: [{ a: 1 }]
     },
-    "[{\"a\":1}]"
+    '[{"a":1}]'
   ],
 ]

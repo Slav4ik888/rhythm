@@ -18,7 +18,6 @@ interface Props {
 
 /** align-items */
 export const AlignItems: FC<Props> = memo(({ value, onChange }) => {
-
   const handleChange = useCallback((e: MouseEvent<HTMLElement>, newAlignment: AlignItemsType) => {
     onChange('alignItems', newAlignment);
   }, [onChange]);
@@ -43,7 +42,7 @@ export const AlignItems: FC<Props> = memo(({ value, onChange }) => {
           <AlignVerticalBottomIcon />
         </ToggleButton>
       </Tooltip>
-      
+
       <Tooltip title='По центру'>
         <ToggleButton value='center' aria-label='center'>
           <AlignVerticalCenterIcon />

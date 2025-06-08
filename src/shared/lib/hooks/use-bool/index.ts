@@ -17,4 +17,4 @@ export function useBool(initValue?: boolean): UseBool  {
   return {
     bool, setTrue, setFalse
   }
-};
+}

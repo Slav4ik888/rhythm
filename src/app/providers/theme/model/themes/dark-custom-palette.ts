@@ -112,7 +112,7 @@ export const customPalette: CustomPalette = {
     focus: '',
     contrastText: '#000000',
   },
-  
+
   grey: {
     100: '#f8f9fa',
     200: '#f0f2f5',
@@ -124,7 +124,7 @@ export const customPalette: CustomPalette = {
     800: '#343a40',
     900: '#212529',
   } as Color,
-  
+
   // Configurator
   configurator: {
     main: 'rgba(53, 53, 53, 1)',
@@ -152,7 +152,7 @@ export const customPalette: CustomPalette = {
     main: '#7a7a7a',
     focus: '#7a7a7a',
   },
-  
+
   // Цифры сравнения - последнее значение
   comparisonIndicators_1: {
     main: '#3a3a3a',
@@ -163,7 +163,7 @@ export const customPalette: CustomPalette = {
     main: '#8a8a8a',
     focus: '#8a8a8a',
   },
-  
+
   // Рост | Падение | Без изменений - результатов
   growth: {
     main: '#02bf02',
@@ -210,7 +210,7 @@ export const customPalette: CustomPalette = {
       background : '#02bf02',
     },
   },
-  
+
 
   // My colors for departments
   department_7_title: {
@@ -359,7 +359,7 @@ export const customPalette: CustomPalette = {
       background : '#000',
     },
   },
-  
+
   badgeColors: {
     primary: {
       background: '#f8b3ca',

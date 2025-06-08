@@ -5,14 +5,11 @@ import { DeleteItemContainer as DeleteItem } from 'features/dashboard-view';
 
 
 
-export const DangerZone: FC = memo(() => {
-
-  return (
+export const DangerZone: FC = memo(() => (
     <>
       <MDDivider mt={8} mb={2} />
-    
+
       <ConfiguratorTitle title='Опасная зона' type='title1' />
       <DeleteItem />
     </>
-  )
-});
+  ));

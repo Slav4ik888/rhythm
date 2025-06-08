@@ -5,10 +5,10 @@ import { MDBox } from 'shared/ui/mui-design-components';
 
 
 
-export const SidebarUpgradeButton: FC = memo(({  }) => {
+export const SidebarUpgradeButton: FC = memo(() => {
   const [configuratorState] = useUIConfiguratorController();
   const { sidebarMini } = configuratorState;
-  
+
 
   return (
     <MDBox p={2} mt='auto'>

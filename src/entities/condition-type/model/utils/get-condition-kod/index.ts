@@ -7,5 +7,5 @@ import { ChipType } from 'entities/dashboard-view';
 export const getConditionKod = (type: ChipType | undefined, kod: string) => {
   if (type !== 'condition' || ! kod) return kod
   if (kod.endsWith('-C')) return kod
-  else return kod + '-C'
+  return `${kod}-C`
 }

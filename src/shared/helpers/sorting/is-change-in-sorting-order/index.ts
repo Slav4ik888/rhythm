@@ -8,4 +8,4 @@ export function isChangeInSortingOrder<T extends object & {[k: string]: unknown}
   field    : string
 ): boolean {
   return Boolean(lastSort.find((lastItem, i) => lastItem?.[field] !== newSort?.[i]?.[field]));
-};
+}

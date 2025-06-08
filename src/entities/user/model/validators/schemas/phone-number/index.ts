@@ -14,7 +14,7 @@ export const schema = {
     countryCallingCode : { $ref: `${SCHEMA_NAME.DEFS_PHONE}#/definitions/countryCallingCode` },
     countryCode        : { $ref: `${SCHEMA_NAME.DEFS_PHONE}#/definitions/countryCode` },
     schema             : { $ref: `${SCHEMA_NAME.DEFS_PHONE}#/definitions/schema` },
-  
+
     // ITEM-BASE
     id                 : { $ref: `${SCHEMA_NAME.DEFS_ITEM_BASE}#/definitions/id` },
     condition          : { $ref: `${SCHEMA_NAME.DEFS_ITEM_BASE}#/definitions/condition` },
@@ -23,7 +23,7 @@ export const schema = {
     comment            : { $ref: `${SCHEMA_NAME.DEFS_ITEM_BASE}#/definitions/comment` },
     order              : { $ref: `${SCHEMA_NAME.DEFS_ITEM_BASE}#/definitions/order` },
 
-    createdAt          : { $ref: SCHEMA_NAME.FIX_DATE},
-    lastChange         : { $ref: SCHEMA_NAME.FIX_DATE}
+    createdAt          : { $ref: SCHEMA_NAME.FIX_DATE },
+    lastChange         : { $ref: SCHEMA_NAME.FIX_DATE }
   }
 };

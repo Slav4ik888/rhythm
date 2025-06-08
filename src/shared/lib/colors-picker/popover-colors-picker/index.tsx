@@ -1,7 +1,7 @@
 import { FC, memo, useState, useRef, useCallback } from 'react';
 import { Box, IconButton } from '@mui/material';
 import { f, pxToRem, SxCard } from 'shared/styles';
-import { useClickOutside } from 'shared/lib/hooks';
+import { useClickOutside } from '../../hooks';
 import { HexColorInput, RgbaColorPicker, RgbaColor  } from 'react-colorful';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import s from './index.module.scss';
@@ -11,14 +11,15 @@ import { Tooltip } from 'shared/ui/tooltip';
 import PasteIcon from '@mui/icons-material/ContentPaste';
 import CopyIcon from '@mui/icons-material/ContentCopy';
 import TransparentIcon from '@mui/icons-material/BlurOn';
-import { copyToClipboard, getClipboardText } from 'shared/lib/clipboard';
-import { isStr } from 'shared/lib/validators';
-console.log('MODULE STYLE: ', s);
+import { copyToClipboard, getClipboardText } from '../../clipboard';
+import { isStr } from '../../validators';
+import { __devLog } from '../../tests/__dev-log';
+
+__devLog('MODULE STYLE: ', s);
 
 
 
-const useStyles = (theme: CustomTheme, sx: SxCard | undefined, backgroundColor: RgbaColor | undefined) => {
-  return {
+const useStyles = (theme: CustomTheme, sx: SxCard | undefined, backgroundColor: RgbaColor | undefined) => ({
     root: {
       position: 'relative',
       ...sx?.root,
@@ -41,7 +42,7 @@ const useStyles = (theme: CustomTheme, sx: SxCard | undefined, backgroundColor: 
       ...f('c'),
       gap          : 1,
       p            : 0.5,
-      pb           : 1,   
+      pb           : 1,
       borderRadius : '9px',
       boxShadow    : '0 6px 12px rgba(0, 0, 0, 0.15)',
       background   : theme.palette.background.paper,
@@ -61,8 +62,7 @@ const useStyles = (theme: CustomTheme, sx: SxCard | undefined, backgroundColor: 
       color    : theme.palette.dark.main,
       fontSize : '20px',
     },
-  }
-};
+  });
 
 
 interface Props {
@@ -79,12 +79,12 @@ export const PopoverColorsPicker: FC<Props> = memo(({ sx: style, color, onChange
 
   const handleOpen = useCallback(() => toggle(true), [toggle]);
   const handleClose = useCallback(() => toggle(false), [toggle]);
-  
+
   useClickOutside(popoverRef, handleClose);
 
   const handleChange = useCallback((newColor: RgbaColor) => onChange(newColor), [onChange]);
   const handleChangeHex = useCallback((hex: string) => onChange(hexToRgba(hex)), [onChange]);
-  
+
   const handleCopyColor = useCallback(() => copyToClipboard(rgbaToHexWithAlpha(rgba(color))), [color]);
   const handlePasteColor = useCallback(async () => {
     const copied = await getClipboardText();
@@ -123,7 +123,7 @@ export const PopoverColorsPicker: FC<Props> = memo(({ sx: style, color, onChange
                 <PasteIcon sx={sx.icon} />
               </IconButton>
             </Tooltip>
-            
+
             <Tooltip title='Прозрачность 100%'>
               <IconButton  size='small' onClick={handleTransparent}>
                 <TransparentIcon sx={sx.icon} />

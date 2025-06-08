@@ -9,17 +9,17 @@ import { useDocs } from 'entities/docs';
 
 export const ShowPolicyText: FC = memo(() => {
   const { loading, policy, serviceGetPolicy } = useDocs();
-  
+
   const policyLoaded = useMemo(() => {
     if (! policy) serviceGetPolicy();
     return policy;
-  }, [policy]);
+  }, [policy, serviceGetPolicy]);
 
   return (
     <Box sx={{ minHeight: 100 }}>
       <PageLoader loading={loading} />
       {/* @ts-ignore */}
-      <ReactMarkdown plugins={[gfm]} linkTarget="_blank" children={policyLoaded} />
+      <ReactMarkdown plugins={[gfm]} linkTarget='_blank' children={policyLoaded} />
     </Box>
   );
 });

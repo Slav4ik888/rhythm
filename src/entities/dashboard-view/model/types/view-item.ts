@@ -26,11 +26,11 @@ export type ChipType = 'condition' | 'period' | 'company' | 'product' | 'custom'
 export type BaseChipType = 'periodType' | 'companyType' | 'productType'
 
 export const chipOptions: Record<ChipType, { label: string; value: ChipType }> = {
-  'condition' : { label: 'Состояние',     value: 'condition' },
-  'period'    : { label: 'Периодичность', value: 'period' },
-  'company'   : { label: 'Компания',      value: 'company' },
-  'product'   : { label: 'Продукт',       value: 'product' },
-  'custom'    : { label: 'Без привязки',  value: 'custom' },
+  condition : { label: 'Состояние',     value: 'condition' },
+  period    : { label: 'Периодичность', value: 'period' },
+  company   : { label: 'Компания',      value: 'company' },
+  product   : { label: 'Продукт',       value: 'product' },
+  custom    : { label: 'Без привязки',  value: 'custom' },
 };
 export const arrayChipLabel = Object.values(chipOptions).map(item => item.label);
 
@@ -47,7 +47,7 @@ export type ViewItemSettings = IndicatorsConfig & {
 
   inverted?       : boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
   unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
-  
+
   // Chart settings
   charts?         : ViewItemChart[]
   chartOptions?   : ChartConfigOptions

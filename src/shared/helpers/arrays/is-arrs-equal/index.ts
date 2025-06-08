@@ -8,7 +8,7 @@ export function isArrsEqual(arr1: any[], arr2: any[]): boolean {
 
   return arr1.every((item, idx) => {
     if (isObj(item)) return JSON.stringify(item) === JSON.stringify(arr2[idx])
-    else if (isArr(item)) return isArrsEqual(item, arr2[idx])
+    if (isArr(item)) return isArrsEqual(item, arr2[idx])
     return item === arr2[idx]
   })
-};
+}

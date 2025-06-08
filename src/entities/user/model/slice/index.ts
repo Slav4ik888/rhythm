@@ -43,6 +43,7 @@ export const slice = createSlice({
 
   extraReducers: builder => {
     // GET-USER-AND-COMPANY
+    // eslint-disable-line @typescript-eslint/no-unused-expressions
     builder
       .addCase(getStartResourseData.pending, (state) => {
         state.errors  = {};
@@ -76,8 +77,8 @@ export const slice = createSlice({
       .addCase(serviceUpdateUser.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
-      }),
-    
+      })
+
     // DELETE-USER
     // builder
     //   .addCase(deleteUser.pending, (state) => {
@@ -92,7 +93,7 @@ export const slice = createSlice({
     //     state.errors  = payload;
     //     state.loading = false;
     //   })
-    
+
     // LOGOUT-USER
     builder
       .addCase(serviceLogout.pending, (state) => {
@@ -109,7 +110,7 @@ export const slice = createSlice({
         state.errors  = payload || {};
         state.loading = false;
       })
-    
+
     // SEND-EMAIL-CONFIRMATION
     // builder
     //   .addCase(sendEmailConfirmation.pending, (state) => {

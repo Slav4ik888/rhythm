@@ -20,8 +20,8 @@ export const useDocs = () => {
     policy         = useSelector(s.selectPolicy),
 
     serviceGetPolicy     = () => dispatch(getPolicy());
-    
-  
+
+
   return {
     loading,
     errors,

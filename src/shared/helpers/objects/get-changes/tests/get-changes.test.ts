@@ -1,5 +1,5 @@
-import { getChanges } from "..";
-import { mocks } from "./mocks";
+import { getChanges } from '..';
+import { mocks } from './mocks';
 
 
 describe('getChanges', () => {

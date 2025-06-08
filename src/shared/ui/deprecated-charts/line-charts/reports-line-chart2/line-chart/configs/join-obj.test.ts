@@ -63,7 +63,7 @@ describe('updateObject', () => {
     expect(obj.f.tt.sss.ssss).toEqual(5);
     expect(obj.s.tt.sss.tttt).toEqual('6');
     expect(obj.s.tt.ttt).toEqual(7);
-    
+
     // старые с изменениями
     expect(obj.f.ff).toEqual('1');
     expect(obj.f.tt.sss.ffff).toEqual(8);

@@ -10,7 +10,7 @@ export const getValueIfNotUndefined = (
   if (isUndefined(field)) return str
 
   if (! wrapper) return field as string
-  
+
   const posField = wrapper.indexOf('###');
   if (posField === -1) return field as string
 

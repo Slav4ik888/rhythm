@@ -17,17 +17,16 @@ interface Props {
 
 
 /** One View item */
-export const DashboardBodyContentItem: FC<Props> = memo(({ item, parentsViewItems, onSelect }) => {
-
+export const DashboardBodyContentItem: FC<Props> = memo(({ item, parentsViewItems: pvi, onSelect }) => {
   switch (item.type) {
     case 'box':
-    case 'text':           return <ItemBox            item={item} onSelect={onSelect} parentsViewItems={parentsViewItems} />;
+    case 'text':           return <ItemBox            item={item} onSelect={onSelect} parentsViewItems={pvi} />;
     case 'divider':        return <ItemDivider        item={item} onSelect={onSelect} />;
     case 'chart':          return <ItemChart          item={item} onSelect={onSelect} />;
     case 'chip':           return <ItemChip           item={item} onSelect={onSelect} />;
     case 'growthIcon':     return <ItemGrowthIcon     item={item} onSelect={onSelect} />;
     case 'digitIndicator': return <ItemDigitIndicator item={item} onSelect={onSelect} />;
 
-    default: return <ItemBox item={item} onSelect={onSelect} parentsViewItems={parentsViewItems} />;
+    default: return <ItemBox item={item} onSelect={onSelect} parentsViewItems={pvi} />;
   }
 });

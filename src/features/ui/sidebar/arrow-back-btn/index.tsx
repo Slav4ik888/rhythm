@@ -2,15 +2,14 @@ import { memo } from 'react';
 import { IconButton } from '@mui/material';
 import MDBox from 'shared/ui/mui-design-components/md-box';
 import ArrowBack from '@mui/icons-material/ArrowBackIos';
-import { setSidebarMini } from 'app/providers/theme';
-import { useUIConfiguratorController } from 'app/providers/theme';
+import { setSidebarMini, useUIConfiguratorController } from 'app/providers/theme';
 
 
 
 export const ArrowBackBtn = memo(() => {
   const [configuratorState, dispatch] = useUIConfiguratorController();
   const { sidebarMini } = configuratorState;
-  
+
   const handleSetSidebarMini = () => setSidebarMini(dispatch, ! sidebarMini);
   const handleCloseSidebar = () => setSidebarMini(dispatch, true);
 

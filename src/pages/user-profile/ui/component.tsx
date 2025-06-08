@@ -28,11 +28,11 @@ export const UserProfilePageComponent: FC<Props> = memo(({ loading, auth, errors
 
   return (
     <InnerPageWrapper containerType='md'>
-      <MDTypography variant="h6" textAlign="center" textTransform="none" mb={2}>
+      <MDTypography variant='h6' textAlign='center' textTransform='none' mb={2}>
         Профиль пользователя
       </MDTypography>
       <MDDivider />
-      
+
       {
         ! auth
           ? <PageLoader loading={! auth} />
@@ -42,7 +42,7 @@ export const UserProfilePageComponent: FC<Props> = memo(({ loading, auth, errors
                 name       = 'secondName'
                 scheme     = 'person.fio.secondName'
                 // grid       = {{ md: 4, sm: 6 }}
-                sx         = {{ root: sx.gridItem, bg: sx.textField } }
+                sx         = {{ root: sx.gridItem, bg: sx.textField }}
                 group      = {U}
                 errorField = 'secondName'
                 errors     = {errors}
@@ -53,7 +53,7 @@ export const UserProfilePageComponent: FC<Props> = memo(({ loading, auth, errors
                 name       = 'firstName'
                 scheme     = 'person.fio.firstName'
                 // grid       = {{ md: 4, sm: 6 }}
-                sx         = {{ root: sx.gridItem, bg: sx.textField } }
+                sx         = {{ root: sx.gridItem, bg: sx.textField }}
                 group      = {U}
                 errorField = 'firstName'
                 errors     = {errors}
@@ -65,7 +65,7 @@ export const UserProfilePageComponent: FC<Props> = memo(({ loading, auth, errors
                 name       = 'middleName'
                 scheme     = 'person.fio.middleName'
                 // grid       = {{ md: 4, sm: 6 }}
-                sx         = {{ root: sx.gridItem, bg: sx.textField } }
+                sx         = {{ root: sx.gridItem, bg: sx.textField }}
                 group      = {U}
                 errorField = 'middleName'
                 errors     = {errors}

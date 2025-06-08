@@ -13,8 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 import { CustomTheme } from 'app/providers/theme';
-import { getBoxShadows, rgbaFromHex, pxToRem } from 'shared/styles';
-import { f } from 'shared/styles';
+import { getBoxShadows, rgbaFromHex, pxToRem, f } from 'shared/styles';
 
 
 

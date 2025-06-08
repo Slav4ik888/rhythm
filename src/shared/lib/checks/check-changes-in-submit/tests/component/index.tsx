@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Box from '@mui/material/Box';
-import { useGroup } from 'shared/lib/hooks';
+import { useGroup } from '../../../../hooks';
 import { isChangesInSubmit } from '../..';
 
 
@@ -14,16 +14,14 @@ type Props = {
 
 const Component: FC<Props> = ({ storeData, newData, exit, onNull, onSubmit }) => {
   const group = useGroup<unknown>();
-  
+
   const handleSubmit = () => {
     if (! isChangesInSubmit(group, storeData, newData, exit)) return onNull();
-    else return onSubmit();
+    return onSubmit();
   };
 
   return (
-    <Box id="id" onClick={handleSubmit}>
-      
-    </Box>
+    <Box id='id' onClick={handleSubmit} />
   );
 };
 

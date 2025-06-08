@@ -11,7 +11,7 @@ export const definitions = {
       minLength : 28,
       maxLength : 28
     },
-    
+
     // Разрешения на обработку персональных данных
     permissions: {
       type: 'boolean'
@@ -29,7 +29,7 @@ export const definitions = {
       },
       maxItems: 50
     },
-   
+
 
     // ITEM-BASE
     condition   : { $ref: `${SCHEMA_NAME.DEFS_ITEM_BASE}#/definitions/condition` },
@@ -38,7 +38,7 @@ export const definitions = {
     comment     : { $ref: `${SCHEMA_NAME.DEFS_ITEM_BASE}#/definitions/comment` },
     order       : { $ref: `${SCHEMA_NAME.DEFS_ITEM_BASE}#/definitions/order` },
 
-    createdAt   : { $ref: SCHEMA_NAME.FIX_DATE},
-    lastChange  : { $ref: SCHEMA_NAME.FIX_DATE}
+    createdAt   : { $ref: SCHEMA_NAME.FIX_DATE },
+    lastChange  : { $ref: SCHEMA_NAME.FIX_DATE }
   }
 }

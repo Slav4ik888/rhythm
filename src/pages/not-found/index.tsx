@@ -7,7 +7,6 @@ import MDButton from 'shared/ui/mui-design-components/md-button';
 
 
 
-
 const useStyles = () => ({
   root: {
     ...f('c-c'),
@@ -41,9 +40,9 @@ export const NotFoundPage: FC = memo(() => {
         Извините, запрошенная страница не найдена...
       </Box>
       <MDButton
-        variant = "gradient"
-        color   = "info"
-        type    = "button"
+        variant = 'gradient'
+        color   = 'info'
+        type    = 'button'
         sx      = {{ root: sx.btn }}
         onClick = {handleClick}
       >

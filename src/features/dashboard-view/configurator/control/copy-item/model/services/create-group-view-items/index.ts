@@ -18,7 +18,6 @@ export const createGroupViewItems = createAsyncThunk<
 >(
   'features/dashboardView/createGroupViewItems',
   async (data, thunkApi) => {
-
     const { dispatch, rejectWithValue, extra } = thunkApi;
     const { viewItems } = data;
 
@@ -29,7 +28,9 @@ export const createGroupViewItems = createAsyncThunk<
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in features/dashboardView/createGroupViewItems' });
+      return rejectWithValue((e as CustomAxiosError).response.data || {
+        general: 'Error in features/dashboardView/createGroupViewItems'
+      });
     }
   }
 );

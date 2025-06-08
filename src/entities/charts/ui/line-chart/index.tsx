@@ -1,7 +1,7 @@
-import { FC } from "react";
-import "chart.js/auto";
-import { Chart } from "react-chartjs-2";
-import { lineConfig } from "./config";
+import { FC } from 'react';
+import 'chart.js/auto';
+import { Chart } from 'react-chartjs-2';
+import { lineConfig } from './config';
 import { ChartConfig } from '../../model/types';
 
 
@@ -16,6 +16,6 @@ export const LineChart: FC<Props> = ({ chart }) => {
 
 
   return (
-    <Chart type="line" data={data} options={options} />
+    <Chart type='line' data={data} options={options} />
   );
 }

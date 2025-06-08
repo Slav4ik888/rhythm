@@ -1,12 +1,11 @@
 import { FC, memo, useEffect } from 'react';
 import { TextField } from '@mui/material';
-import { GridWrap } from '../../grid-wrap';
+import { GridWrap, GridStyle } from '../../grid-wrap';
 import { BoxWrap } from '../../box-wrap';
-import { Tooltip } from 'shared/ui/tooltip';
-import { useValue } from 'shared/lib/hooks';
-import { GridStyle } from '../../grid-wrap';
-import { Errors } from 'shared/lib/validators';
-import { formatDate } from 'shared/helpers/dates';
+import { Tooltip } from '../../../tooltip';
+import { useValue } from '../../../../lib/hooks';
+import { Errors } from '../../../../lib/validators';
+import { formatDate } from '../../../../helpers/dates';
 
 
 
@@ -60,21 +59,22 @@ export const TextFieldDate: FC<Props> = memo((props) => {
     sx   = useStyles(styles),
     Wrap = box ? BoxWrap : GridWrap,
     S    = useValue(defaultValue || '');
-  
+
 
   useEffect(() => {
     const date = defaultValue ? formatDate(defaultValue, 'YYYY-MM-DD') : '';
     S.setValue(date);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
   useEffect(() => {
     changesValue !== undefined && S.setValue(changesValue);
-  }, [changesValue]);
-  
+  }, [S, changesValue]);
+
 
   const handlerChange = (e: any) => {
-    if (disabled) return null;
+    if (disabled) return undefined;
     S.setValue(e.target.value);
 
     onCallback && onCallback();
@@ -82,9 +82,10 @@ export const TextFieldDate: FC<Props> = memo((props) => {
     if (e.keyCode === 13 || e.keyCode === 27) {
       onSubmit && onSubmit(S.value as number | string);
       onBlur && onBlur(S.value as number | string);
-      return
+      return undefined
     }
     onBlur && onBlur(S.value as number | string);
+    return undefined
   };
 
   const handlerBlur = () => {

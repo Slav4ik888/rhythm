@@ -7,6 +7,7 @@ import { StartEntitiesData } from '../../types';
 import { LS } from 'shared/lib/local-storage';
 import { apiWithoutCookie } from 'shared/api';
 import { Company } from 'entities/company';
+import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 
@@ -23,27 +24,28 @@ export const getData = createAsyncThunk<
 >(
   'features/dashboard/getData',
   async (company, thunkApi) => {
-
     const { dispatch, rejectWithValue } = thunkApi;
-    
+
     try {
       const { data } = await apiWithoutCookie.get(company.googleData.url);
 
       // **
       // For development - сохраняем входящие данные в localStorage
       // const data = LS.devGetGSData(company.id as ActivatedCompanyId);
-      console.log('GS data: ', data);
+      __devLog('GS data: ', data);
       LS.devSetGSData(company.id, data);
 
       const gsData = getEntities(data);
-      console.log('gsData: ', gsData);
-      dispatch(actionsUI.setSuccessMessage("Данные с гугл-таблицы загружены"));
-    
+      __devLog('gsData: ', gsData);
+      dispatch(actionsUI.setSuccessMessage('Данные с гугл-таблицы загружены'));
+
       return { companyId: company.id, data: gsData };
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in features/dashboard/getData' });
+      return rejectWithValue((e as CustomAxiosError).response.data || {
+        general: 'Error in features/dashboard/getData'
+      });
     }
   }
 );

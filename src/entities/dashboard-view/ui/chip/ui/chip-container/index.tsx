@@ -13,9 +13,7 @@ export interface SxChipContainer {
 }
 
 
-const useStyle = (sx: SxChipContainer) => {
-
-  return {
+const useStyle = (sx: SxChipContainer) => ({
     tooltip: {
       ...f('-c'),
       height     : pxToRem(20),
@@ -29,8 +27,7 @@ const useStyle = (sx: SxChipContainer) => {
       background : sx.background || '#eee',
       mr         : sx.mr         || 'inherit',
     },
-  }
-};
+  });
 
 
 interface Props {
@@ -43,11 +40,11 @@ interface Props {
  */
 export const ChipContainer: FC<Props> = memo(({ label, sx: style }) => {
   const sx = useStyle(style);
-  
+
   return (
     <Chip
       label = {label}
-      size  = "small"
+      size  = 'small'
       sx    = {sx?.chip}
     />
   )

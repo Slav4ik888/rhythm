@@ -16,7 +16,7 @@ export const ChartBorderWidth: FC<Props> = memo(({ index, selectedItem }) => {
 
   const handleChange = useCallback((value: string | number) => {
     changeOneDatasetsItem({ field: 'borderWidth', value, index });
-  }, [changeOneDatasetsItem]);
+  }, [index, changeOneDatasetsItem]);
 
 
   return (

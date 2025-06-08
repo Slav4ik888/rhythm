@@ -20,16 +20,14 @@ const useStyles = () => ({
 });
 
 
-interface Props {
-}
-
 /** AddNewChart into the charts */
-export const AddNewChart: FC<Props> = memo(({ }) => {
+export const AddNewChart: FC = memo(() => {
   const sx = useStyles();
   const { selectedItem, changeOneSettingsField } = useDashboardView();
 
   const handleClick = useCallback(() => {
-    const value = selectedItem.settings?.charts ? [...selectedItem.settings?.charts] : [];
+    const charts = selectedItem?.settings?.charts;
+    const value = charts ? [...charts] : [];
     value.push({ chartType: selectedItem?.settings?.charts?.[0].chartType || 'line' });
 
     changeOneSettingsField({ field: 'charts', value });

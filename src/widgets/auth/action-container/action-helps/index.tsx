@@ -10,12 +10,9 @@ type Props = {
   type: AuthType;
 }
 
-export const ActionHelps: FC<Props> = memo(({ type }) => {
-
-  return (
+export const ActionHelps: FC<Props> = memo(({ type }) => (
     <Box sx={{ mt: 2, mb: 2, textAlign: 'center' }}>
       <ActionToggle type={type} />
       <RecoveryPassword type={type} />
     </Box>
-  )
-});
+  ));

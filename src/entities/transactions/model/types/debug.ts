@@ -1,11 +1,11 @@
-/** 
+/**
  * 2024-12-14
  */
 export enum DebugUserAction {
 
-  
+
   // FOLDER
-  FOLDER_PANEL_ADD_BTN        = 'Folder.panel.addBtn', 
+  FOLDER_PANEL_ADD_BTN        = 'Folder.panel.addBtn',
   FOLDER_CHANGE_LABEL         = 'Folder.change.label',
   FOLDER_UPDATE_LABEL         = 'Folder.update.label',
 

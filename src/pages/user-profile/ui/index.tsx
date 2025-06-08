@@ -8,6 +8,7 @@ import { useGroup } from 'shared/lib/hooks';
 import { getChanges, isEmpty } from 'shared/helpers/objects';
 import { useFeaturesUser } from 'features/user';
 import { creatorFixDate } from 'entities/base';
+import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 
@@ -16,15 +17,15 @@ const UserProfilePage: FC = memo(() => {
   const { serviceUpdateUser } = useFeaturesUser();
   const { setErrorStatus } = useUI();
   const U = useGroup<User>(creatorUser());
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  
+
   useEffect(() => {
     // Обнулить если была записана ошибка, например 401, 403...
     setErrorStatus(0);
     U.setGroup(userState, { isChanges: false });
-  }, [auth]);
-  
+  }, [U, userState, setErrorStatus]);
+
 
   const handleSubmit = useCallback(async () => {
     if (loading) return;
@@ -37,7 +38,7 @@ const UserProfilePage: FC = memo(() => {
     updatedData.companyId = userState.companyId;
     updatedData.lastChange = creatorFixDate(userState.id);
 
-    console.log('updatedData: ', updatedData);
+    __devLog('updatedData: ', updatedData);
     if (isEmpty(updatedData)) return;
 
     // TODO: validate
@@ -45,17 +46,17 @@ const UserProfilePage: FC = memo(() => {
     // valid ? serviceUpdateUser(updatedData) : setErrors(errors);
     serviceUpdateUser(updatedData);
     U.setIsChanges(false);
-  }, [U.group, userState]);
-  
+  }, [U, userState, loading, serviceUpdateUser]);
+
 
   const handleCancel = useCallback(async () => {
     U.setGroup(userState, { isChanges: false });
-  }, [U.group, userState]);
+  }, [U, userState]);
 
   // if (! auth) return;
 
   return (
-    <UserProfilePageComponent 
+    <UserProfilePageComponent
       group    = {U}
       auth     = {auth}
       loading  = {loading}

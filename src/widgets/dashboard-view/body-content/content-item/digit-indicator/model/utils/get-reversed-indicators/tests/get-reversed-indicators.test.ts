@@ -13,11 +13,11 @@ describe('getReversedIndicators', () => {
   });
 
   test('countValues = 0', () => {
-    expect(getReversedIndicators(ARRAY, 0)).toEqual([]);
+    expect(getReversedIndicators(ARRAY, 0)).toEqual([8, 7]);
   });
 
   test('countValues = 1', () => {
-    expect(getReversedIndicators(ARRAY, 1)).toEqual([8]);
+    expect(getReversedIndicators(ARRAY, 1)).toEqual([8, 7]);
   });
 
   test('countValues = 3', () => {

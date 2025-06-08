@@ -41,19 +41,21 @@ export const MoveToNewItem: FC = memo(() => {
   const { selectedItem, serviceAddNewViewItem, serviceUpdateViewItem } = useDashboardView();
   const { userId } = useUser();
   const { companyId } = useCompany();
-    
+
 
   const handleClick = useCallback(() => {
     if (! selectedItem?.id) return;
-    
+
     // New Box is creating
-    const newBoxItem = createViewItem({
-      sheetId  : selectedItem.sheetId,
-      parentId : selectedItem.parentId,
-      order    : selectedItem.order,
-      type     : 'box',
-    }, userId);
-    
+    const newBoxItem = createViewItem(
+      userId, {
+        sheetId  : selectedItem.sheetId,
+        parentId : selectedItem.parentId,
+        order    : selectedItem.order,
+        type     : 'box',
+      }
+    );
+
     serviceAddNewViewItem(companyId, newBoxItem);
 
     // SelectedItem is moving to new Box
@@ -65,7 +67,7 @@ export const MoveToNewItem: FC = memo(() => {
     serviceUpdateViewItem({ companyId, viewItem: updatedItem, newStoredViewItem: updatedItem });
   }, [userId, companyId, selectedItem, serviceAddNewViewItem, serviceUpdateViewItem]);
 
-  
+
   return (
     <Tooltip title='Создать новый Box и переместить в него этот элемент'>
       <MDButton

@@ -44,33 +44,36 @@ interface Props {
 
 /** For Panel */
 export const PanelAddViewItemBtns: FC<Props> = memo(({ parentId }) => {
-  const { selectedId, childrenViewItems, parentChildrenIds, serviceAddNewViewItem } = useDashboardView({ parentId });
+  const { selectedId, childrenViewItems, serviceAddNewViewItem } = useDashboardView({ parentId });
   const { userId } = useUser();
   const { companyId } = useCompany();
   const sx = useStyles(useTheme());
 
   const [openSelect, setOpenSelect] = useState(false);
 
-
-  const handleChange = (e: SelectChangeEvent) => {
-    handleAdd(e.target.value as ViewItemType);
-    setOpenSelect(false);
-  };
-
   const handleSelectOpen = () => setOpenSelect(true);
   const handleSelectClose = () => setOpenSelect(false);
 
 
   const handleAdd = useCallback((type: ViewItemType) => {
-    const viewItem = createViewItem({
-      sheetId  : NO_SHEET_ID,
-      parentId : parentId || selectedId, // Если нажали из панели то создастся на 1м уровне
-      order    : createNextOrder(childrenViewItems),
-      type,
-    }, userId);
-    
+    const viewItem = createViewItem(
+      userId,
+      {
+        sheetId  : NO_SHEET_ID,
+        parentId : parentId || selectedId, // Если нажали из панели то создастся на 1м уровне
+        order    : createNextOrder(childrenViewItems),
+        type,
+      }
+    );
+
     serviceAddNewViewItem(companyId, viewItem);
-  }, [parentChildrenIds, childrenViewItems, serviceAddNewViewItem]);
+  }, [userId, companyId, selectedId, parentId, childrenViewItems, serviceAddNewViewItem]);
+
+
+  const handleChange = useCallback((e: SelectChangeEvent) => {
+    handleAdd(e.target.value as ViewItemType);
+    setOpenSelect(false);
+  }, [handleAdd]);
 
 
   return (

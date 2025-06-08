@@ -1,5 +1,7 @@
 import { FC, memo, ReactNode } from 'react';
-import { ViewItem, ViewItemId, stylesToSx, useDashboardView, DashboardViewEntities, isFirstGlobalKodInBranch } from 'entities/dashboard-view';
+import {
+  ViewItem, ViewItemId, stylesToSx, useDashboardView, DashboardViewEntities, isFirstGlobalKodInBranch
+ } from 'entities/dashboard-view';
 import { Box } from '@mui/material';
 import { ItemWrapperTooltip } from './tooltip';
 
@@ -16,7 +18,7 @@ const useStyles = (
     cursor   : 'default',
     ...stylesToSx(item?.styles),
   };
-  
+
   const absolute: any = {
     position : 'absolute',
     top      : '-1px',
@@ -33,7 +35,7 @@ const useStyles = (
     zIndex     : 2000,
   };
 
-  
+
   const hover = {
     ...absolute,
     zIndex: 1000,
@@ -91,7 +93,7 @@ export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
 
   if (item.type === 'box' || item.type === 'text') return component;
 
-  else return (
+  return (
     <ItemWrapperTooltip item={item}>
       {component}
     </ItemWrapperTooltip>

@@ -1,3 +1,4 @@
+import { __devLog } from '../../tests/__dev-log';
 
 /**
  * Копирует текст в буфер обмена
@@ -9,6 +10,6 @@ export async function copyToClipboard(text: string) {
     // console.log("Текст скопирован в буфер");
   }
   catch (err) {
-    console.error("Ошибка записи в буфер:", err);
+    __devLog('Ошибка записи в буфер:', err);
   }
 }

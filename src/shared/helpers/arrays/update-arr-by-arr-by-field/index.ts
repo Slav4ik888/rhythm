@@ -8,7 +8,7 @@ export function updateArrByArrByField(
 ): Item[]  {
   if (! lastArr?.length) return newArr;
 
-  let updatedArr = [...newArr];
+  const updatedArr = [...newArr];
 
   lastArr.forEach(item => {
     const res = updatedArr.find(updated => updated[field] === item[field]);
@@ -16,4 +16,4 @@ export function updateArrByArrByField(
   });
 
   return updatedArr;
-};
+}

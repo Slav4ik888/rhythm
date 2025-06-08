@@ -17,7 +17,7 @@ export const ActionMain: FC<Props> = memo(({ type, disabled = false, onSubmit })
   const
     { loading: loginLoading, errors: loginErrors } = useLogin(),
     { loading: signupLoading, errors: signupErrors } = useSignup(),
-    
+
     { textBtn, loading, errors } = useMemo(() => {
       const login = type === 'login';
 
@@ -27,7 +27,7 @@ export const ActionMain: FC<Props> = memo(({ type, disabled = false, onSubmit })
         errors  : login ? loginErrors  : signupErrors
       }
     }, [type, loginLoading, loginErrors, signupLoading, signupErrors]);
-  
+
 
   return (
     <ActionMainComponent

@@ -1,4 +1,4 @@
-// 
+//
 // DashboardLayout (Главный контейнер для Dashboard, там DashboardNavbar, DashboardBody, DashboardFooter)
 //    |-- DashboardBody (Тело Dashboard`а - контент)
 //        |-- DashboardBlock
@@ -8,33 +8,33 @@
 //                 |-- Chart
 //                 |-- Indicators
 //                 |-- Marks
-//     
+//
 //            |-- DashboardReport
 //                 |-- Title
 //                 |-- Description
 //                 |-- Chart
 //                 |-- Indicators
 //                 |-- Marks
-//     
+//
 //            |-- DashboardReport
 //                 |-- Title
 //                 |-- Description
 //                 |-- Chart
 //                 |-- Indicators
 //                 |-- Marks
-//     
-//     
+//
+//
 //        |-- DashboardBlock
 //             |-- DashboardReport
 //                 ...
-//      
+//
 //        |-- DashboardBlock
 //             |-- DashboardReport
 //                 ...
-//      
+//
 
 
-// 
+//
 // LAYERS
 // ======================
 // App
@@ -45,14 +45,14 @@
 // Entities
 // Shared
 // ----------------------
-// 
+//
 // SLISES
 // ======================
 // user
 // post
 // comment
 // ----------------------
-// 
+//
 // SEGMENTS
 // ======================
 // UI
@@ -62,4 +62,4 @@
 // Api
 // Public API
 // ----------------------
-// 
+//

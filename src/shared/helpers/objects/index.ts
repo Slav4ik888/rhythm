@@ -11,7 +11,6 @@ export * from './get-first-field-key';
 export * from './get-key-by-value';
 export { getValuePosition, getMajorStatus } from './get-major-status'; // v.2023-07-15
 export * from './get-object-without-field';
-export * from './get-scheme';
 export * from './get-value-by-scheme';
 export * from './is-changes';
 export * from './is-field';                // v.2024-11-09

@@ -15,9 +15,8 @@ Coded by www.creative-tim.com
 
 import { FC, ReactNode } from 'react';
 // import { useLocation } from 'react-router-dom';
-import { useUIConfiguratorController } from 'app/providers/theme';
-import MDBox from 'shared/ui/mui-design-components/md-box';
-import { CustomTheme } from 'app/providers/theme';
+import { useUIConfiguratorController, CustomTheme } from 'app/providers/theme';
+import MDBox from '../../mui-design-components/md-box';
 import { pxToRem } from 'shared/styles';
 import { useLocation } from 'react-router-dom';
 import { isDashboardPage } from 'pages/dashboard';
@@ -37,7 +36,7 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
   const { isSidebar, sidebarMini, sidebarWidth } = configuratorState;
   const location = useLocation();
   const isNotDashboard = ! isDashboardPage(location);
-  
+
   const isBody   = body;
   const isNavbar = ! isBody;
   // const { pathname } = useLocation();
@@ -52,7 +51,7 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
       sx={({ breakpoints, transitions }: CustomTheme) => ({
         position   : 'relative',
         overflowX  : 'scroll',
-        minHeight  : isBody 
+        minHeight  : isBody
           ? 'calc(100vh - 200px)'
           : 0,
 
@@ -65,10 +64,10 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
             : 0,
 
         px: 3,
-        pt: isNavbar 
+        pt: isNavbar
           ? 'calc(1rem + 2px)'
           : '',
-        
+
         [breakpoints.down('sm')]: {
           marginLeft: isNotDashboard
             ? 0

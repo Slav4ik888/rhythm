@@ -35,7 +35,7 @@ export const UIConfiguratorProvider: FC<Props> = ({ initial, children }) => {
   const muiTheme = useMUITheme();
 
   const value = useMemo(() => [controller, dispatch] as UIConfiguratorContextType, [controller, dispatch]);
-  const theme = useMemo(() => createTheme(getThemeByName(muiTheme, controller)), [controller]);
+  const theme = useMemo(() => createTheme(getThemeByName(muiTheme, controller)), [muiTheme, controller]);
 
 
   return (

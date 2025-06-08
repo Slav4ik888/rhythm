@@ -1,3 +1,4 @@
+import { __devLog } from '../../tests/__dev-log';
 
 /**
  * Копирует текст в буфер обмена
@@ -10,8 +11,8 @@ export async function getClipboardText() {
     return text;
   }
   catch (err) {
-    console.error("Ошибка чтения буфера:", err);
-    return "";
+    __devLog('Ошибка чтения буфера:', err);
+    return '';
   }
 }
 

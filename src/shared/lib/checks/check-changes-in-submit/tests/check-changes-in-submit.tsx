@@ -4,14 +4,14 @@ import Component from './component/index';
 import { Mocks } from './types';
 
 
-const mocks: Mocks = [
-  [{ storeData: { id: 10, name: `Slava`, any: `any 1`, some: `some 1` }, newData: { id: 10, name: `Slava`, any: `any 1`,     some: `some 1` }, exit: true }, { res: false, open: false, close: true, confirm: false }],
-  [{ storeData: { id: 10, name: `Slava`, any: `any 1`, some: `some 1` }, newData: { id: 10,                any: `any 1`,     some: `some 1` }, exit: true }, { res: true,  open: false, close: true, confirm: false }],
-  [{ storeData: { id: 10, name: `Slava`, any: `any 1`, some: `some 1` }, newData: { id: 1,  name: `Slava`, any: `any 1 +++`, some: `some 1` }, exit: true }, { res: true,  open: false, close: true, confirm: false }]
-];
+// const mocks: Mocks = [
+//   [{ storeData: { id: 10, name: 'Slava', any: 'any 1', some: 'some 1' }, newData: { id: 10, name: 'Slava', any: 'any 1',     some: 'some 1' }, exit: true }, { res: false, open: false, close: true, confirm: false }],
+//   [{ storeData: { id: 10, name: 'Slava', any: 'any 1', some: 'some 1' }, newData: { id: 10,                any: 'any 1',     some: 'some 1' }, exit: true }, { res: true,  open: false, close: true, confirm: false }],
+//   [{ storeData: { id: 10, name: 'Slava', any: 'any 1', some: 'some 1' }, newData: { id: 1,  name: 'Slava', any: 'any 1 +++', some: 'some 1' }, exit: true }, { res: true,  open: false, close: true, confirm: false }]
+// ];
 
 
-describe(`checkChangesInSubmit`, () => {
+describe('checkChangesInSubmit', () => {
   beforeEach(() => jest.clearAllMocks());
 
   const onSubmit = jest.fn();
@@ -31,7 +31,7 @@ describe(`checkChangesInSubmit`, () => {
   //   component.find(`#id`).simulate(`click`);
   //   expect(onSubmit).toHaveBeenCalledTimes(boolToNumber(m[1].res));
   //   expect(onNull).toHaveBeenCalledTimes(boolToNumber(!m[1].res));
-      
+
   // }))
 });
 

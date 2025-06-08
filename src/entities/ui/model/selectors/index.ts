@@ -3,7 +3,8 @@ import { StateSchema } from 'app/providers/store';
 import { StateSchemaUI } from '../types';
 
 
-export const selectModule  = createSelector([(state: StateSchema) => state.ui || {} as StateSchemaUI], (state: StateSchemaUI) => state);
+export const selectModule = createSelector([(state: StateSchema) => state.ui || {} as StateSchemaUI],
+  (state: StateSchemaUI) => state);
 
 export const selectLoading = createSelector(selectModule, (state: StateSchemaUI) => state.loading);
 export const selectErrors  = createSelector(selectModule, (state: StateSchemaUI) => state.errors);

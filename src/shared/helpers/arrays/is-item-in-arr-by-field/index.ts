@@ -6,4 +6,4 @@ import { getItemFromArrByField } from '../get-item-from-arr-by-field';
 export function isItemInArrByField(items: Item[], itemField: string, value: string | number): boolean {
   const result = getItemFromArrByField(items, itemField, value);
   return Boolean(result);
-};
+}

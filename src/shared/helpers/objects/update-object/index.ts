@@ -1,5 +1,5 @@
-import { isArrsEqual } from 'shared/helpers/arrays';
-import { isArr, isObj, isUndefined, isNotObj } from 'shared/lib/validators';
+import { isArrsEqual } from '../../arrays';
+import { isArr, isObj, isUndefined, isNotObj } from '../../../lib/validators';
 import { cloneObj } from '../objects';
 import { setValueByScheme } from '../set-value-by-scheme';
 
@@ -9,9 +9,15 @@ import { setValueByScheme } from '../set-value-by-scheme';
  * Check updObj of new field, that absent in prevObj
  * Add new field to newObj
  */
-const addNewField = (newObj: object | undefined, prevObj: object | undefined, updObj: object | undefined, prevScheme: string = ''): void => {
+const addNewField = (
+  newObj     : object | undefined,
+  prevObj    : object | undefined,
+  updObj     : object | undefined,
+  prevScheme : string = ''
+): void => {
   if (isNotObj(updObj)) return
-  
+
+  // eslint-disable-next-line
   for (const key in updObj) {
     const scheme = prevScheme ? `${prevScheme}.${key}` : key;
 
@@ -22,6 +28,7 @@ const addNewField = (newObj: object | undefined, prevObj: object | undefined, up
       // @ts-ignore
       if (isUndefined(prevObj[key])) { // New field
         setValueByScheme(newObj, scheme, updValue);
+        // eslint-disable-next-line
         continue;
       }
 
@@ -46,7 +53,13 @@ const addChanges = (newObj: object | undefined, prevValue: unknown, updValue: un
 
 
 /** Add changes */
-const checkAndAddChanges = (newObj: object | undefined, prevObj: object| undefined, updObj: object| undefined, prevScheme: string = ''): void => {
+const checkAndAddChanges = (
+  newObj     : object | undefined,
+  prevObj    : object | undefined,
+  updObj     : object | undefined,
+  prevScheme: string = ''
+): void => {
+  // eslint-disable-next-line
   for (const key in prevObj) {
     const scheme = prevScheme ? `${prevScheme}.${key}` : key;
 
@@ -57,6 +70,7 @@ const checkAndAddChanges = (newObj: object | undefined, prevObj: object| undefin
         // @ts-ignore
         updValue = updObj[key];
 
+      // eslint-disable-next-line
       if (isUndefined(updValue)) continue; // В этом элементе не было изменений
 
       if (isObj(value)) {
@@ -81,18 +95,17 @@ export function updateObject<T extends object | undefined, O extends Partial<T &
   prevObj   : T,
   updFields : O
 ): T & O | T {
-
   if (! prevObj && ! updFields) return {} as T;
-  if (  prevObj && ! updFields) return prevObj;
+  if (prevObj && ! updFields) return prevObj;
   if (! prevObj &&   updFields) return updFields as unknown as T;
 
   const newObj = cloneObj(prevObj);
 
   // CHECK prevObj
   checkAndAddChanges(newObj, prevObj, updFields);
-  
-  // CHECK new field in updFields 
+
+  // CHECK new field in updFields
   addNewField(newObj, prevObj, updFields);
 
   return newObj;
-};
+}

@@ -19,6 +19,7 @@ describe('getReducedWithReduction', () => {
   test('111222333', () => expect(getReducedWithReduction(111222333)).toEqual({ value: 111.222333, reduction: 'млн' }));
   test('-111222333444', () => expect(getReducedWithReduction(-111222333444)).toEqual({ value: -111.222333444, reduction: 'млрд' }));
   test('-111222333444555', () => expect(getReducedWithReduction(-111222333444555)).toEqual({ value: -111.222333444555, reduction: 'трлн' }));
+  // eslint-disable-next-line
   test('111222333444555666', () => expect(getReducedWithReduction(111222333444555666)).toEqual({ value: 111222.333444555666, reduction: 'трлн' }));
 
   // 'трлн' 'млрд' 'млн' 'тыс'

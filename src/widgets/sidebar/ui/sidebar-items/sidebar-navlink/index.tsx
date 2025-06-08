@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import SidebarCollapse from "../sidebar-collapse";
+import SidebarCollapse from '../sidebar-collapse';
 import { NavLink, To } from 'react-router-dom';
 
 
@@ -20,4 +20,3 @@ export const SidebarNavLink: FC<Props> = memo(({ activeName, icon, title, route 
   </NavLink>
 ));
 
-    

@@ -1,16 +1,17 @@
-// v.2024-08-26
+// v.2025-06-08
+import { __devLog } from '../../tests/__dev-log';
 
 const PREFIX = 'Rhythm-';
 
 /** Вывод ошибки в консоль */
-const showError = (text: string, fieldName: string) => console.log(`${text}: ${fieldName}`);
+const showError = (text: string, fieldName: string) => __devLog(`${text}: ${fieldName}`);
 
 
 /**
  * Проверка на ошибку
  * Вывод ошибки
  * Ответ есть ли ошибка - true при наличии
- */ 
+ */
 const checkError = (data: any, fieldName: string) => {
   if (!data) {
     showError('Не указано значение', fieldName);
@@ -37,7 +38,7 @@ export const setStorageData = (storageName: string, data: any) => {
 export function getStorageData<A>(storageName: string): A | null {
   if (checkError(storageName, '"Имя хранилища"')) return null;
 
-  let data = localStorage.getItem(PREFIX + storageName);
+  const data = localStorage.getItem(PREFIX + storageName);
   if (data) return JSON.parse(data);
   return null;
 }

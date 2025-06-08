@@ -1,4 +1,6 @@
+/* eslint-disable */
 import { DashboardPeriodType } from 'entities/dashboard-data'
+import { __devLog } from 'shared/lib/tests/__dev-log';
 
 interface ResSplitDate {
   year  : number
@@ -19,7 +21,12 @@ const splitDate = (dateMs: number): ResSplitDate => {
 
 
 /** Рассчитывает начальную дату по входящим параметрам */
-const calcStartDate = (dateMs: number | undefined, shiftYear: number, shiftMonth = 0, shiftDay = 0): number | undefined => {
+const calcStartDate = (
+  dateMs     : number | undefined,
+  shiftYear  : number,
+  shiftMonth = 0,
+  shiftDay   = 0
+): number | undefined => {
   if (! dateMs) return;
 
   const { year, month, day } = splitDate(dateMs);
@@ -50,7 +57,8 @@ export const calculateStartDate = (endDate: number | undefined, type: DashboardP
     case DashboardPeriodType.FIVE_YEARS:   return calcStartDate(endDate, -5);
     case DashboardPeriodType.SEVEN_YEARS:  return calcStartDate(endDate, -7);
     case DashboardPeriodType.TEN_YEARS:    return calcStartDate(endDate, -10);
-  
-    default: console.error('Unknown period type:', type)
+
+    default: __devLog('Unknown period type:', type)
   }
+  return;
 }

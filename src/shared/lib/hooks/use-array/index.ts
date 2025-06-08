@@ -22,4 +22,4 @@ export function useArray(initArray: Item[]): UseArray<Item> {
   return {
     array, setArray, updateArray, clearArray
   }
-};
+}

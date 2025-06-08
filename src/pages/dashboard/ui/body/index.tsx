@@ -7,11 +7,12 @@ import { PageLoader } from 'widgets/page-loader';
 import { DashboardBodyPanel, DashboardBodyContent } from 'widgets/dashboard-view';
 import { getInitialState as getInitialStateView, useDashboardView } from 'entities/dashboard-view';
 import { ViewItemConfigurator } from 'widgets/view-configurator';
+import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 
 export const DashboardBody = memo(() => {
-  console.log('DashboardBody ');
+  __devLog('DashboardBody ');
   const { companyId } = useCompany();
   const { isMounted, setInitial: setInitialData } = useDashboardData();
   const { setInitial: setInitialView } = useDashboardView();
@@ -22,6 +23,7 @@ export const DashboardBody = memo(() => {
       setInitialData(getInitialStateData(companyId));
       setInitialView(getInitialStateView(companyId));
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [companyId, isMounted]);
 
   // Вначале должен смонтироваться dashboardReducer
@@ -34,8 +36,8 @@ export const DashboardBody = memo(() => {
         <ViewItemConfigurator />
         <DashboardBodyContent />
       </DashboardBodyWrapper>
-    
-    : <PageLoader loading={true} />
+
+    : <PageLoader loading />
     // : <CircularProgress
     //     loading
     //     size = {70}

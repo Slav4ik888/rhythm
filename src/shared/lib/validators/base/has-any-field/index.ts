@@ -3,11 +3,11 @@
 /**
  * Return true if obj has a field other than the schema
  */
-export function hasAnyField<O extends Object, S extends Object>(obj: O, schema: S): boolean {
+export function hasAnyField<O extends object, S extends object>(obj: O, schema: S): boolean {
   let result = false;
-  
+
   if (! obj || ! schema) return result;
-  
+
 
   const
     schemaFields = Object.keys(schema),

@@ -42,7 +42,7 @@ export interface ItemBase {
    */
   order        : number
   display?     : boolean // Видимый или невидимый (удалённый) элемент
-  
+
   // changes?     : Array<Change>, // Сохранённые предыдущие состояния
   createdAt    : FixDate
   lastChange   : FixDate

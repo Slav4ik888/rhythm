@@ -7,9 +7,9 @@ import { SidebarContainer } from './container';
 export const Sidebar: FC = memo(() => {
   const [configuratorState, dispatch] = useUIConfiguratorController();
   const { sidebarMini, isSidebar } = configuratorState;
- 
+
   const [onMouseEnter, setOnMouseEnter] = useState(false);
-  
+
 
   // Open sidebar when mouse enter on mini sidebar
   const handleOnMouseEnter = useCallback(() => {
@@ -17,7 +17,7 @@ export const Sidebar: FC = memo(() => {
       setSidebarMini(dispatch, false);
       setOnMouseEnter(true);
     }
-  }, [onMouseEnter, sidebarMini, dispatch, setSidebarMini, setOnMouseEnter]);
+  }, [onMouseEnter, sidebarMini, dispatch, setOnMouseEnter]);
 
 
   // Close sidebar when mouse leave mini sidebar
@@ -26,7 +26,7 @@ export const Sidebar: FC = memo(() => {
       setSidebarMini(dispatch, true);
       setOnMouseEnter(false);
     }
-  }, [onMouseEnter, dispatch, setSidebarMini, setOnMouseEnter]);
+  }, [onMouseEnter, dispatch, setOnMouseEnter]);
 
   if (! isSidebar) return null;
 

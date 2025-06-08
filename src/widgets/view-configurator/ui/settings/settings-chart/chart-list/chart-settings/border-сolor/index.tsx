@@ -16,7 +16,7 @@ export const ChartBorderColor: FC<Props> = memo(({ index, selectedItem }) => {
 
   const handleChange = useCallback((value: string | number) => {
     changeOneDatasetsItem({ field: 'borderColor', value, index });
-  }, [selectedItem, changeOneDatasetsItem]);
+  }, [index, changeOneDatasetsItem]);
 
 
   return (

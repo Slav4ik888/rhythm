@@ -22,7 +22,7 @@ import { useUIConfiguratorController, ColorName, setSidebarMini, setIsSidebar, u
 import { SidebarLogoLabel } from '../logo-label';
 import { SidebarUpgradeButton } from '../upgrade-button';
 import { renderRoutes } from '../render-routes';
-import { routesList_css_1d3r8 } from 'entities/dashboard-data';
+import { routesListCss1d3r8 } from 'entities/dashboard-data';
 
 
 
@@ -43,13 +43,13 @@ export const SidebarContainer: FC<Props> = ({ ...rest }) => {
 
   const textColor: ColorName = useMemo(() => {
     if (! darkMode) return 'dark';
-    else if (darkMode) return 'inherit';
-    else return 'white' as ColorName
+    if (darkMode) return 'inherit';
+    return 'white' as ColorName
   }, [darkMode]);
 
   // TODO: вставлять routesList в функцию по companyId
-  const routes = useMemo(() => renderRoutes(routesList_css_1d3r8, activeName, textColor), [routesList_css_1d3r8, activeName, textColor]);
-  
+  const routes = useMemo(() => renderRoutes(routesListCss1d3r8, activeName, textColor), [activeName, textColor]);
+
 
   useEffect(() => {
     // A function that sets the mini state of the sidebar.
@@ -65,7 +65,7 @@ export const SidebarContainer: FC<Props> = ({ ...rest }) => {
     handleSidebarChanges();
 
     return () => window.removeEventListener('resize', handleSidebarChanges);
-  }, [dispatch, location]);
+  }, [dispatch, location, isSidebar, sidebarMini, sm, xl]);
 
 
   return (

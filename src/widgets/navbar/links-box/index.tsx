@@ -12,7 +12,6 @@ interface Props {
 }
 
 export const NavbarLinksBox: FC<Props> = memo(({ isMini = false }) => {
-
   const links: LinkType[] = [
     {
       name: 'Перейти в Dashboard',
@@ -38,7 +37,7 @@ export const NavbarLinksBox: FC<Props> = memo(({ isMini = false }) => {
         </Link>
       </MDBox>
     ));
-  
+
   return (
     <MDBox
       color = 'inherit'

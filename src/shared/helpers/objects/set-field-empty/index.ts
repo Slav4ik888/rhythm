@@ -11,4 +11,4 @@ export function setFieldEmpty<T>(obj: T, field: keyof T): void {
   if (isNotObj(obj) || isUndefined(obj[field])) return
 
   (obj as Record<keyof T, any>)[field] = '';
-};
+}

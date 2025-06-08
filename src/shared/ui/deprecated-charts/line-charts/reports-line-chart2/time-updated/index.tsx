@@ -1,8 +1,8 @@
-import { FC } from "react";
-import { MDBox, MDTypography } from "shared/ui/mui-design-components";
+import { FC } from 'react';
+import { MDBox, MDTypography } from '../../../../mui-design-components';
 import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { pxToRem, rgbaFromHex } from 'shared/styles';
+import { pxToRem, rgbaFromHex } from '../../../../../styles';
 
 
 
@@ -16,8 +16,8 @@ interface Props {
 export const TimeUpdated: FC<Props> = ({ light = false, date }) => {
   const [configuratorState] = useUIConfiguratorController();
   const { mode } = configuratorState;
-  const darkMode = mode === "dark";
-  
+  const darkMode = mode === 'dark';
+
   // For Icon style
   const iconsStyle = ({ palette: { dark, white, text } }: CustomTheme) => ({
     width  : pxToRem(12),
@@ -37,9 +37,9 @@ export const TimeUpdated: FC<Props> = ({ light = false, date }) => {
 
 
   return (
-    <MDBox display="flex" alignItems="center">
-      <AccessTimeIcon sx={(theme) => iconsStyle(theme as CustomTheme)} fontSize="small" />
-      <MDTypography variant="button" color="text" fontWeight="light">
+    <MDBox display='flex' alignItems='center'>
+      <AccessTimeIcon sx={(theme) => iconsStyle(theme as CustomTheme)} fontSize='small' />
+      <MDTypography variant='button' color='text' fontWeight='light'>
         {date}
       </MDTypography>
     </MDBox>

@@ -1,11 +1,10 @@
 import { FC, memo, useEffect, useRef, MouseEvent } from 'react';
 import { TextareaAutosize, Box } from '@mui/material';
-import { GridWrap } from '../../grid-wrap';
+import { GridWrap, GridStyle } from '../../grid-wrap';
 import { BoxWrap } from '../../box-wrap';
 import { ErrorBox } from '../../error-box';
 import { useValue } from 'shared/lib/hooks';
 import { Errors, isNotUndefined } from 'shared/lib/validators';
-import { GridStyle } from '../../grid-wrap';
 import { useStyles } from './styles';
 import { Label } from './label';
 
@@ -39,14 +38,15 @@ type Props = {
  * v.2024-02-08
  */
 export const Textarea: FC<Props> = memo((props) => {
-  const 
+  const
     {
-      grid, errors, autoFocus, label, defaultValue, name, changesValue, maxRows, keyEnterSubmit, errorField, placeholder, disabled, tabIndex,
+      grid, errors, autoFocus, label, defaultValue, name, changesValue, maxRows, keyEnterSubmit,
+      errorField, placeholder, disabled, tabIndex,
       sx: styles,
-      minRows = 1, 
+      minRows = 1,
       onBlur, onClick, onCallback
     } = props;
-  
+
   const
     sx       = useStyles(styles),
     focusRef = useRef(null),
@@ -56,18 +56,20 @@ export const Textarea: FC<Props> = memo((props) => {
   useEffect(() => {
     // @ts-ignore
     autoFocus && focusRef.current?.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (isNotUndefined(changesValue)) S.setValue(changesValue as string);
-  }, [changesValue]);
+  }, [S, changesValue]);
 
 
   const handlerChange = (e: any) => {
-    if (disabled) return null;
+    if (disabled) return undefined;
     S.setValue(e.target.value);
 
     onCallback && onCallback();
+    return undefined;
   };
 
   const handlerBlur = (e: any) => {
@@ -76,7 +78,7 @@ export const Textarea: FC<Props> = memo((props) => {
   };
 
   const handlerKeyDown = (e: any) => {
-    if (e.keyCode === 27 || e.keyCode === 13 && keyEnterSubmit) {
+    if (e.keyCode === 27 || (e.keyCode === 13 && keyEnterSubmit)) {
       onBlur && onBlur(e, S.value);
     }
   }
@@ -101,8 +103,8 @@ export const Textarea: FC<Props> = memo((props) => {
           onChange        = {handlerChange}
           onBlur          = {handlerBlur}
         />
-              
-        <Label sx={sx} label={label}/>
+
+        <Label sx={sx} label={label} />
       </Box>
 
       <ErrorBox field={errorField} errors={errors} />

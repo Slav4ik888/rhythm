@@ -13,14 +13,14 @@ const useStyles = () => ({
 
 interface Props {
   document: Document
-};
+}
 
 
 export const ArrowToWorkSpaceBtn: FC<Props> = ({ document }) => {
   const
     sx = useStyles(),
     navigate = useNavigate();
-  
+
 
   const handlerBack = () => {
 

@@ -1,9 +1,9 @@
 
 export interface AjvErr {
   dataPath: string
-};
+}
 
-export interface AjvErrors { 
+export interface AjvErrors {
   dataPath: string
   keyword : string
   message : string
@@ -12,4 +12,4 @@ export interface AjvErrors {
     missingProperty?    : string
   }
   schemaPath: string
-};
+}

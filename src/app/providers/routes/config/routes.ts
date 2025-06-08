@@ -1,7 +1,7 @@
 
 export enum AppRoutes {
   ROOT            = 'ROOT',
-  
+
   // Auth
   SIGNUP          = 'SIGNUP',
   LOGIN           = 'LOGIN',

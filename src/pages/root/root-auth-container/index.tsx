@@ -3,12 +3,8 @@ import { RootAuthComponent } from './compponent';
 
 
 
-const RootAuthContainer: FC = memo(() => {
-  
-  
-  return (
+const RootAuthContainer: FC = memo(() => (
     <RootAuthComponent />
-  );
-});
+  ));
 
 export default RootAuthContainer;

@@ -36,14 +36,14 @@ export const RecoveryPasswordContent: FC<Props> = memo(({ emailRef }) => {
   return (
     <DialogContent sx={sx.root}>
       <Typography sx={sx.text}>
-        {'Введите ваш email, мы отправим на него ссылку для восстановления пароля.'}
+        Введите ваш email, мы отправим на него ссылку для восстановления пароля.
       </Typography>
 
       <TextField
         fullWidth
         name       = 'email'
         type       = 'email'
-        label      = {'Введите email'}
+        label      = 'Введите email'
         inputRef   = {emailRef}
         helperText = {errors?.email}
         error      = {errors?.email ? true : false}

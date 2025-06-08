@@ -1,10 +1,10 @@
-import {addSpaceBetweenNumbers} from "."
+import { addSpaceBetweenNumbers } from '.'
 
 
 interface Mock extends Array<number | string> {
   0: number | string;
   1: string;
-};
+}
 
 type Mocks = Array<Mock>;
 

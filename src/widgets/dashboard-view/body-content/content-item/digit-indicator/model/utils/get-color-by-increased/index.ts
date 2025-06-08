@@ -10,6 +10,6 @@ export const getColorByIncreased = (
   unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
 ) => {
   const type = getGrowIconTypeByIncreased(increased, unchangedBlack);
-  
+
   return palette[type].main;
 };

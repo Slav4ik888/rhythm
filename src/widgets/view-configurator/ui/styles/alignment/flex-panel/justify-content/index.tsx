@@ -18,7 +18,6 @@ interface Props {
 
 /** justify-content */
 export const JustifyContent: FC<Props> = memo(({ value, onChange }) => {
-
   const handleChange = useCallback((e: MouseEvent<HTMLElement>, newAlignment: JustifyContentType) => {
     onChange('justifyContent', newAlignment);
   }, [onChange]);
@@ -42,7 +41,7 @@ export const JustifyContent: FC<Props> = memo(({ value, onChange }) => {
           <AlignHorizontalRightIcon />
         </ToggleButton>
       </Tooltip>
-      
+
       <Tooltip title='По центру'>
         <ToggleButton value='center' aria-label='center'>
           <AlignHorizontalCenterIcon />

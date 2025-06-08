@@ -21,8 +21,9 @@ export const ChartSelectKod: FC<Props> = memo(({ index, selectedItem }) => {
   const { startEntities } = useDashboardData();
   const { entities } = useDashboardView();
 
-  const kod = useMemo(() => getKod(entities, selectedItem, selectedItem?.settings?.charts?.[index]), [entities, index, selectedItem]);
-  
+  const kod = useMemo(() => getKod(entities, selectedItem, selectedItem?.settings?.charts?.[index]),
+    [entities, index, selectedItem]);
+
   const disabled = selectedItem?.settings?.charts?.[index]?.fromGlobalKod;
 
   return (
@@ -30,19 +31,17 @@ export const ChartSelectKod: FC<Props> = memo(({ index, selectedItem }) => {
       <Box sx={{ ...f('-c-c'), gap: 1 }}>
         <FlagFromGlobalKod
           scheme       = {`settings.charts.[${index}].fromGlobalKod`}
-          selectedItem = {selectedItem} 
+          selectedItem = {selectedItem}
         />
         <StatisticPeriodTypeChip type={startEntities[kod]?.periodType} />
         {
           disabled
-            ?
-            <Tooltip title='Чтобы выбрать другой код, снимите галку с "fromGlobalKod".'>
+            ?            <Tooltip title='Чтобы выбрать другой код, снимите галку с "fromGlobalKod".'>
               <GetFromGlobalKod />
             </Tooltip>
-            :
-            <SelectKod
-              scheme       = {`settings.charts.[${index}].kod`}
-              selectedItem = {selectedItem}
+            :            <SelectKod
+                scheme       = {`settings.charts.[${index}].kod`}
+                selectedItem = {selectedItem}
             />
         }
       </Box>

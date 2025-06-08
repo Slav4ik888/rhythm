@@ -26,7 +26,6 @@ describe('isFieldValueBool', () => {
   test('Field value is null', () => {
     expect(isFieldValueBool({ data: null }, 'data')).toEqual(false);
   });
-  
 });
 
 // npm run test:unit is-field-value-bool.test.ts

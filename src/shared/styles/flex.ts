@@ -13,18 +13,16 @@ export const f = (str?: string): Flex => {
     display: 'flex'
   };
 
-
-  let kod;
-
   if (! str) return style
 
-  kod = str.split('-');
+  const kod = str.split('-');
 
   switch (kod[0]) {
     case 'r':  style.flexDirection = 'row'; break;
     case 'c':  style.flexDirection = 'column'; break;
     case 'rr': style.flexDirection = 'row-reverse'; break;
     case 'cc': style.flexDirection = 'column-reverse'; break;
+    default: break;
   }
 
   switch (kod[1]) {
@@ -32,6 +30,7 @@ export const f = (str?: string): Flex => {
     case 'fs': style.alignItems = 'flex-start'; break;
     case 'fe': style.alignItems = 'flex-end'; break;
     case 'b':  style.alignItems = 'baseline'; break;
+    default: break;
   }
 
   switch (kod[2]) {
@@ -41,6 +40,7 @@ export const f = (str?: string): Flex => {
     case 'sb': style.justifyContent = 'space-between'; break;
     case 'sa': style.justifyContent = 'space-around'; break;
     case 'b':  style.justifyContent = 'baseline'; break;
+    default: break;
   }
 
   return style

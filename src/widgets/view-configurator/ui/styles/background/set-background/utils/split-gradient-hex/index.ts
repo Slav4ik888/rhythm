@@ -6,18 +6,18 @@
 export const splitGradinetHex = (str: string): string[] => {
   let result: string[] = [];
   if (! str || ! str.startsWith('linear-gradient')) return result
-  
+
   result = str
     .split(',')
     .map((item, idx) => {
-      let str = item.trim();
-      
+      const str = item.trim();
+
       if (idx === 0) {
         return str.split('(')?.[1]?.replace('deg', '');
       }
-      else return str.replace(')', '');
+      return str.replace(')', '');
     });
-  
+
 
   return result;
 }

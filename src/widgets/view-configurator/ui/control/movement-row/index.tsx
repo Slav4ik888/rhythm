@@ -1,8 +1,7 @@
 import { FC, memo } from 'react';
-import { RowWrapper } from 'shared/ui/configurators-components';
+import { RowWrapper, ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { useDashboardView } from 'entities/dashboard-view';
 import { MoveToAnotherItem, MoveItemUpdownward, CopyViewItem, MoveToNewItem } from 'features/dashboard-view';
-import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { f, pxToRem } from 'shared/styles';
 
 

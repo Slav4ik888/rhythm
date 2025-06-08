@@ -16,18 +16,22 @@ export const resetEmailPassword = createAsyncThunk<
   ThunkConfig<Errors>
 >(
   'pagesLogin/resetEmailPassword',
+  // eslint-disable-next-line consistent-return
   async (email, thunkApi) => {
     const { extra, rejectWithValue, dispatch } = thunkApi;
 
     try {
-      const { data: { message } } = await extra.api.post<ResResetEmailPassword>(paths.auth.login.resetEmailPassword, { email });
-      
+      const { data: { message } } = await extra.api
+        .post<ResResetEmailPassword>(paths.auth.login.resetEmailPassword, { email });
+
       dispatch(actionsUI.setSuccessMessage(message));
-      return;
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error pagesLogin/resetEmailPassword' });
+      // eslint-disable-next-line consistent-return
+      return rejectWithValue((e as CustomAxiosError).response.data || {
+        general: 'Error pagesLogin/resetEmailPassword'
+      });
     }
   }
 );

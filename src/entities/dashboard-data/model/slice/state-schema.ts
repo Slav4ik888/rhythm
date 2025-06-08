@@ -27,5 +27,5 @@ export interface StateSchemaDashboardData {
   selectedPeriod : DashboardPeriod       // Выбранный на панели, но не активированный период дат
   activePeriod   : DashboardPeriod       // Текущий период, по которому отрисованы графики
   activeEntities : DashboardDataEntities
-  activeDates    : DashboardDataDates    // 
+  activeDates    : DashboardDataDates    //
 }

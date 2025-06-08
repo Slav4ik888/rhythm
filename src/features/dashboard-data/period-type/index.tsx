@@ -1,6 +1,8 @@
 import { FC, memo, useState } from 'react';
 import { pxToRem } from 'shared/styles';
-import { arrayDashboardPeriodType, DashboardPeriodType, DASHBOARD_PERIOD_TEXT, useDashboardData } from 'entities/dashboard-data';
+import {
+  arrayDashboardPeriodType, DashboardPeriodType, DASHBOARD_PERIOD_TEXT, useDashboardData
+} from 'entities/dashboard-data';
 import { FormControl, MenuItem } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { PeriodTypeChip } from './chip';

@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, memo } from 'react';
 import { Checkbox, Box, FormControlLabel } from '@mui/material';
-import { CustomTheme, useTheme } from 'app/providers/theme';
+import { useTheme } from 'app/providers/theme';
 import { Button, ButtonType } from 'shared/ui/buttons';
 import { useStyles } from './styles';
 
@@ -13,15 +13,14 @@ interface Props {
 }
 
 export const AcceptCookieComponent: FC<Props> = memo(({ check, onChange, onAccept }) => {
-  const
-    { root, form, btn } = useStyles(useTheme());
-  
+  const { root, form, btn } = useStyles(useTheme());
 
   return (
     <Box sx={root}>
       <FormControlLabel
         value          = 'Разрешаю'
-        label          = 'Этот сайт использует cookie и другие технологии для вашего удобства пользования сайтом. Продолжая использование сайта, Вы даете согласие на работу с этими файлами.'
+        label          = {`Этот сайт использует cookie и другие технологии для вашего удобства пользования сайтом.
+ Продолжая использование сайта, Вы даете согласие на работу с этими файлами.`}
         labelPlacement = 'end'
         sx             = {form}
         control        = {<Checkbox

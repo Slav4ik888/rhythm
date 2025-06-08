@@ -27,7 +27,7 @@ export const getValueAndReduction = (startValue: number, config: Config = {} as 
   if (isNum(resultValue)) {
     resultValue = getFixedFraction(resultValue, { fractionDigits, addZero });
   }
-    
+
   return {
     reduction,
     value: noSpace ? resultValue : addSpaceBetweenNumbers(resultValue as number)

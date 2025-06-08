@@ -6,12 +6,10 @@ import cfg from 'app/config';
 
 
 
-const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
+const Alert = forwardRef<HTMLDivElement, AlertProps>((
   props,
   ref,
-) {
-  return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
-});
+) => <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />);
 
 
 const useStyles = () => ({
@@ -62,13 +60,13 @@ export const MessageBar: FC = memo(() => {
 
   useEffect(() => {
     message?.message && setIsSnack(true);
-  }, [message, message?.message]);
+  }, [message?.message]);
 
   const handleCloseMessageBar = () => {
     clearMessage();
     setIsSnack(false);
   };
-  
+
 
   if (! message?.message) return null;
 

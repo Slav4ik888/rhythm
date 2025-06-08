@@ -44,7 +44,7 @@ export const useDashboardData = (config: Config = {}) => {
     activeDateStart     = activePeriod?.start,
     activeDateEnd       = activePeriod?.end,
     setActivePeriod     = (data: SetActivePeriod) => dispatch(a.setActivePeriod(data)),
-    
+
     selectedPeriod      = useSelector(s.selectSelectedPeriod),
     selectedPeriodType  = selectedPeriod?.type,
     selectedDateStart   = selectedPeriod?.start,
@@ -53,7 +53,7 @@ export const useDashboardData = (config: Config = {}) => {
 
     serviceGetData      = (company: Company) => dispatch(getData(company));
 
-  
+
   return {
     loading,
     errors,
@@ -66,7 +66,7 @@ export const useDashboardData = (config: Config = {}) => {
     startDates,
     kods,
     itemByKod,
-    
+
     activeEntities,
     activeDates,
 

@@ -3,10 +3,9 @@ import { splitShadow } from '../split-shadow';
 
 /** По индексу, возвращает цифровое значение теней или цвет */
 export const getBoxShadowValue = (
-  value: number | string | undefined = '',
-  index: number
+  index: number,
+  value: number | string | undefined = ''
 ): number | string => {
-
   const [oX = 1, oY = 1, bR = 3, sR = 0, clr = 'rgba(184, 184, 184, 1)'] = splitShadow(value);
 
   switch (index) {

@@ -17,12 +17,12 @@ export function getEntitiesByPeriod(
   startDates    : DashboardDataDates,
   period        : DashboardPeriodDates
 ): PayloadGetEntitiesByPeriod {
-
   const activeEntities: DashboardDataEntities = {};
   const activeDates: DashboardDataDates = {};
-  
 
-  // Обрабатываем каждую вкладку 
+
+  // Обрабатываем каждую вкладку
+  /* eslint-disable no-restricted-syntax */
   for (const periodType in startDates) {
     if (Object.prototype.hasOwnProperty.call(startDates, periodType)) {
       const startIdx = getStartIdx(startDates[periodType], period);
@@ -30,6 +30,7 @@ export function getEntitiesByPeriod(
       activeDates[periodType] = [...startDates[periodType].slice(startIdx, endIdx + 1)];
 
       // Перебрать все startEntities и для текущего periodType обрезать нужный период дат
+      /* eslint-disable no-restricted-syntax */
       for (const kod in startEntities) {
         if (Object.prototype.hasOwnProperty.call(startEntities, kod)) {
           if (startEntities[kod].periodType === periodType) {

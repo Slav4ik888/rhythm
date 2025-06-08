@@ -9,6 +9,7 @@ import { Company, creatorCompany, useCompany } from 'entities/company';
 import { useFeaturesCompany } from 'features/company/model/hooks/use-features-company';
 import { getChanges, isEmpty } from 'shared/helpers/objects';
 import { creatorFixDate } from 'entities/base';
+import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 
@@ -20,25 +21,25 @@ const CompanyProfilePage: FC = memo(() => {
   const C = useGroup<Company>(creatorCompany());
   const navigate = useNavigate();
 
-  
+
   useEffect(() => {
     // Обнулить если была записана ошибка, например 401, 403...
     setErrorStatus(0);
     C.setGroup(companyState, { isChanges: false });
-  }, [auth]);
-  
+  }, [auth, C, companyState, setErrorStatus]);
+
 
   const handleSubmit = useCallback(async () => {
     if (loading) return;
 
     const data = await C.getGroup();
 
-    const updatedData: Partial<Company> = getChanges(companyState, data);;
+    const updatedData: Partial<Company> = getChanges(companyState, data);
 
     updatedData.id = companyState.id;
     updatedData.lastChange = creatorFixDate(userId);
 
-    console.log('updatedData: ', updatedData);
+    __devLog('updatedData: ', updatedData);
     if (isEmpty(updatedData)) return;
 
     // TODO: validate
@@ -46,12 +47,12 @@ const CompanyProfilePage: FC = memo(() => {
     // valid ? serviceUpdateCompany(updatedData) : setErrors(errors);
     serviceUpdateCompany(updatedData);
     C.setIsChanges(false);
-  }, [auth, C.group, companyState]);
-  
+  }, [loading, userId, C, companyState, serviceUpdateCompany]);
+
 
   const handleCancel = useCallback(async () => {
     C.setGroup(companyState, { isChanges: false });
-  }, [C.group, companyState]);
+  }, [C, companyState]);
 
 
   // if (! auth) return;

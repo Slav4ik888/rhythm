@@ -1,5 +1,6 @@
-import { isChanges } from 'shared/helpers/objects';
-import { UseGroup } from 'shared/lib/hooks';
+import { isChanges } from '../../../helpers/objects';
+import { UseGroup } from '../../hooks';
+import { __devLog } from '../../tests/__dev-log';
 
 /**
  * 2023-12-02
@@ -12,22 +13,20 @@ export function isChangesInSubmit<T>(
   newData   : T,
   exit?     : boolean // Нужно ли закрыть окно при submit
 ): boolean {
-
   const resultCheck = isChanges(storeData, newData);
-    
+
   // hookOpen.setIsChange(false);
   hookOpen.setIsConfirm(false);
 
-  console.log('isChanges: ', newData, `-`, resultCheck);
+  __devLog('isChanges: ', newData, '-', resultCheck);
   if (! resultCheck) {
     if (exit) hookOpen.setClose();
     return false;
   }
-  else {
+
     // if (exit) hookOpen.setClose();
 
     // Если есть изменения то не закрываем, чтобы далее если при валидации
     // вылезет ошибка, пользователь увидел её
     return true;
-  }
 }

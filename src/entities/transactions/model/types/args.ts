@@ -9,10 +9,10 @@ export enum OperationArgumentFormatType {
 }
 
 // BACKGROUND
-// ['bg', '#213492'] 
+// ['bg', '#213492']
 
 // COLOR
-// ['c', '#213492'] 
+// ['c', '#213492']
 
 // LINK
 // ['a', , 'https://www.thm.su']
@@ -32,6 +32,7 @@ export interface OperationArgumentContent extends Array<string | OperationArgume
 
 
 /** 2024-03-02 */
+/* eslint-disable */
 export interface OperationArgumentFormat {
   // id?         : string  // ItemId "3f8f899a-794d-4f30-b3ae-65be393c4292"
   // after?      : string  // ItemId после которого надо добавить
@@ -40,4 +41,4 @@ export interface OperationArgumentFormat {
   // type?       : string  // ItemType => "text" | "image" | ...
 }
 
-export type OperationArguments = OperationArgumentContent[] | any //["Welcome to Notion", 'b'] | last_edited_time: 1708427107309
+export type OperationArguments = OperationArgumentContent[] | any // ["Welcome to Notion", 'b'] | last_edited_time: 1708427107309

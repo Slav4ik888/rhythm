@@ -25,15 +25,15 @@ export const definitions = {
       //   $ref: SubscribesCompany
       // },
     },
-    
+
     status: {
       isCompanyStatus: 'string'
     },
 
-    createdAt  : { $ref: SCHEMA_NAME.FIX_DATE},
-    lastChange : { $ref: SCHEMA_NAME.FIX_DATE}
+    createdAt  : { $ref: SCHEMA_NAME.FIX_DATE },
+    lastChange : { $ref: SCHEMA_NAME.FIX_DATE }
 
-    
+
     // payers: {
     //   type : 'object',
     //   required: ['selected', 'payers'],

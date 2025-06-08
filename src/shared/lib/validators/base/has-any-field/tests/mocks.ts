@@ -1,7 +1,7 @@
 interface Schema {
   id               : number
-  condition        : {}
-  status           : {}
+  condition        : any
+  status           : any
   userId           : string
   companyId        : string
   taskId           : string

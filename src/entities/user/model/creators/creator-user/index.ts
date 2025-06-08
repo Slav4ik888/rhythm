@@ -21,7 +21,7 @@ export const creatorUser = (cfg: Partial<User> = {}): User => {
     permissions   : cfg.permissions   || false, // Разрешения на обработку персональных данных
     status        : cfg.status        || UserStatus.NEW,
     order         : cfg.order         || 100,
-    
+
     createdAt     : cfg.createdAt     || creatorFixDate(cfg.id),
     lastChange    : cfg.lastChange    || creatorFixDate(cfg.id)
   };

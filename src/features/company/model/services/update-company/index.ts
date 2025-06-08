@@ -18,12 +18,12 @@ export const updateCompany = createAsyncThunk <
   'features/company/update',
   async (companyData, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
-    
+
     try {
       await extra.api.post(paths.company.update, { companyData });
-      
+
       dispatch(actionsUI.setSuccessMessage('Сохранено'));
-    
+
       return companyData;
     }
     catch (e) {
@@ -33,4 +33,3 @@ export const updateCompany = createAsyncThunk <
   }
 );
 
-    

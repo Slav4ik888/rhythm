@@ -18,4 +18,4 @@ export function isTimeOut(
     currentTimeMs = getCurrentMs();
 
   return waiting < currentTimeMs - lastTimeMs;
-};
+}

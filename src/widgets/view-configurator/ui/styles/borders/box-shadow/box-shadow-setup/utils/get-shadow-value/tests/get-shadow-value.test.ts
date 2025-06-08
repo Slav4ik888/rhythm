@@ -5,12 +5,12 @@ describe('getBoxShadowValue', () => {
   test('getBoxShadowValue', () => {
     const value = '5px 1px 3px 0px rgba(184, 184, 184, 1)';
 
-    expect(getBoxShadowValue(value, 0)).toEqual(5);
-    expect(getBoxShadowValue(value, 1)).toEqual(1);
-    expect(getBoxShadowValue(value, 2)).toEqual(3);
-    expect(getBoxShadowValue(value, 3)).toEqual(0);
-    expect(getBoxShadowValue(value, 4)).toEqual('rgba(184, 184, 184, 1)');
-    expect(getBoxShadowValue(value, 10)).toEqual('rgba(184, 184, 184, 1)');
+    expect(getBoxShadowValue(0, value)).toEqual(5);
+    expect(getBoxShadowValue(1, value)).toEqual(1);
+    expect(getBoxShadowValue(2, value)).toEqual(3);
+    expect(getBoxShadowValue(3, value)).toEqual(0);
+    expect(getBoxShadowValue(4, value)).toEqual('rgba(184, 184, 184, 1)');
+    expect(getBoxShadowValue(10, value)).toEqual('rgba(184, 184, 184, 1)');
   });
 });
 

@@ -1,6 +1,6 @@
 import { AsyncThunkAction } from '@reduxjs/toolkit';
 import axios, { AxiosStatic } from 'axios';
-import { Errors } from 'shared/lib/validators';
+import { Errors } from '../../validators';
 import { StateSchema } from 'app/providers/store';
 
 

@@ -46,7 +46,7 @@ export const GettingPermissionsContainer: FC<Props> = memo(({ group: S }) => {
     sx = useStyles(useTheme()),
     { errors } = useSignup();
 
-  
+
   return (
     <Box sx={sx.root}>
       <Box sx={sx.boxCheck}>

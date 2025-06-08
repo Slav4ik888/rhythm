@@ -17,10 +17,10 @@ export const getPolicy = createAsyncThunk<
   'features/docs/getPolicy',
   async (_, thunkApi) => {
     const { extra, rejectWithValue, dispatch } = thunkApi;
-    
+
     try {
       const { data: { policy } } = await extra.api.get<ResGetPolicy>('/getPolicy');
-      
+
       return policy;
     }
     catch (e) {

@@ -51,7 +51,7 @@ describe('sortingArrByIds', () => {
   });
 
   test('Item absent & unchanged sequence', () => {
-    const ids = ['111', '222', '333', '444', '555','666'];
+    const ids = ['111', '222', '333', '444', '555', '666'];
 
     expect(sortingArrByIds(MOCK_ARR_WITHOUT_ITEM, ids))
       .toEqual([
@@ -76,7 +76,7 @@ describe('sortingArrByIds', () => {
 
 
   // CHANGED SEQUENCE
-  
+
   test('Changed sequence & arr contains ids only in Ids', () => {
     const ids = ['555', '111', '222', '333', '444'];
 

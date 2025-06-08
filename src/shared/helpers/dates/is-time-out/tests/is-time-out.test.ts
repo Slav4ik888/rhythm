@@ -1,4 +1,4 @@
-import { getCurrentMs } from 'shared/helpers/dates';
+import { getCurrentMs } from '../..';
 import { isTimeOut } from '..';
 
 
@@ -8,7 +8,7 @@ describe('isTimeOut', () => {
     const
       lastTime = new Date().toISOString(),
       waiting = 1000;
-    
+
     expect(isTimeOut(lastTime, waiting)).toEqual(false);
   });
 
@@ -16,7 +16,7 @@ describe('isTimeOut', () => {
     const
       lastTime = new Date(getCurrentMs() - 1).toISOString(),
       waiting = 0;
-    
+
     expect(isTimeOut(lastTime, waiting)).toEqual(true);
   });
 
@@ -25,7 +25,7 @@ describe('isTimeOut', () => {
     const
       lastTime = getCurrentMs(),
       waiting = 1000;
-    
+
     expect(isTimeOut(lastTime, waiting)).toEqual(false);
   });
 
@@ -33,12 +33,9 @@ describe('isTimeOut', () => {
     const
       lastTime = getCurrentMs() - 1,
       waiting = 0;
-    
+
     expect(isTimeOut(lastTime, waiting)).toEqual(true);
   });
-  
-  
-  
 });
 
 // npm run test:unit is-time-out.test.ts

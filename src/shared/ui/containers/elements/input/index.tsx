@@ -1,10 +1,9 @@
-import { FC, memo, MouseEvent, useEffect, useRef, useState } from 'react';
+import { FC, memo, MouseEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { TextField as MuiTextField } from '@mui/material';
-import { GridWrap } from '../../grid-wrap';
+import { GridWrap, GridStyle } from '../../grid-wrap';
 import { BoxWrap } from '../../box-wrap';
 import { Tooltip } from '../../../tooltip';
 import { Errors } from 'shared/lib/validators';
-import { GridStyle } from '../../grid-wrap';
 import { getStrNumber, toNumber } from 'shared/helpers/numbers';
 
 
@@ -18,7 +17,7 @@ const prepareValue = (typeNum: boolean, defaultValue: Value): string => typeNum
   : defaultValue as string || '';
 
 
-  
+
 export interface SxTextfield {
   root?  : any
   field? : any
@@ -36,7 +35,7 @@ const useStyles = (sx?: SxTextfield) => ({
       ...sx?.field
     },
     '& .MuiInputBase-input': {
-      ...sx?.input 
+      ...sx?.input
     },
     '& .MuiInputLabel-root': {
       // top: '7px'
@@ -80,7 +79,8 @@ interface Props {
  */
 export const Input: FC<Props> = memo((props) => {
   const {
-    grid, toolTitle, label, errors, name, tabIndex, autoFocus, small, placeholder, shrink, disabled, fullWidth, helperText,
+    grid, toolTitle, label, errors, name, tabIndex, autoFocus, small, placeholder, shrink, disabled,
+    fullWidth, helperText,
     type         = 'text',
     defaultValue = '',
     changesValue = '',
@@ -94,8 +94,8 @@ export const Input: FC<Props> = memo((props) => {
   const Wrap = grid ? GridWrap : BoxWrap;
   const typeNum = type === 'number';
   const [value, setValue] = useState(prepareValue(typeNum, defaultValue));
-    
-  
+
+
   useEffect(() => {
     // @ts-ignore
     autoFocus && focusRef.current && focusRef.current.focus();
@@ -103,6 +103,7 @@ export const Input: FC<Props> = memo((props) => {
     //   const value = onTransform<string | number, string | number>(S.value);
     //   S.setValue(value);
     // }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
@@ -110,18 +111,18 @@ export const Input: FC<Props> = memo((props) => {
     // if (isNotUndefined(changesValue) && ! onTransform) {
     setValue(prepareValue(typeNum, changesValue));
     // }
-  }, [changesValue]);
+  }, [typeNum, changesValue]);
 
 
-  const handlerChange = (e: any) => {
-    if (disabled) return null;
+  const handlerChange = useCallback((e: any) => {
+    if (disabled) return;
 
-    const valuePrep = onPrepeare ? onPrepeare(e.target.value) : e.target.value;
+    const valuePrep = onPrepeare ? onPrepeare(e.target?.value) : e.target?.value;
     setValue(prepareValue(typeNum, valuePrep));
 
     onCallback && onCallback(e, typeNum ? toNumber(valuePrep) : valuePrep);
     onChange && onChange(e, typeNum ? toNumber(valuePrep) : valuePrep);
-    
+
     if (e.keyCode === 13) {
       onSubmit && onSubmit(e, typeNum ? toNumber(value) : value);
       // @ts-ignore
@@ -132,15 +133,15 @@ export const Input: FC<Props> = memo((props) => {
       // @ts-ignore
       focusRef.current && focusRef.current.blur();
     }
-  };
-  
+  }, [typeNum, value, disabled, onBlur, onCallback, onPrepeare, onChange, onSubmit]);
 
-  const handlerBlur = (e: any) => {
+
+  const handlerBlur = useCallback((e: any) => {
     onCallback && onCallback(e, typeNum ? toNumber(value) : value);
     onBlur && onBlur(e, typeNum ? toNumber(value) : value);
-  };
+  }, [typeNum, value, onCallback, onBlur]);
 
-  
+
   return (
     <Wrap {...props}>
       <Tooltip title={toolTitle || ''}>
@@ -149,11 +150,11 @@ export const Input: FC<Props> = memo((props) => {
           type            = {typeNum ? 'text' : type}
           name            = {name}
           fullWidth       = {fullWidth}
-          size            = {small ? 'small' : 'medium'}  
+          size            = {small ? 'small' : 'medium'}
           sx              = {sx.textField}
           disabled        = {disabled}
           placeholder     = {placeholder}
-          value           = {value} 
+          value           = {value}
           inputRef        = {focusRef}
           autoFocus       = {autoFocus}
           // При автофокусе, в ненужном месте появляется блок подсказка (возможно при монтировании большого компонента, но убрал всё равно)

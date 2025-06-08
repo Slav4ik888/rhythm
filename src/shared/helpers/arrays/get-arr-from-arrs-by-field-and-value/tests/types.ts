@@ -4,7 +4,7 @@ interface MockItem<A> {
   arr         : Array<A>;
   fieldArr    : string;
   value       : string;
-};
+}
 
 type MockResult<A> = Array<A>;
 

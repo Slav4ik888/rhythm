@@ -12,7 +12,7 @@ describe('createNextOrder', () => {
 
     expect(createNextOrder(children)).toEqual(31000);
   });
-  
+
   test('data is undefined', () => {
     expect(createNextOrder(undefined as unknown as ViewItem[])).toEqual(1000);
   });

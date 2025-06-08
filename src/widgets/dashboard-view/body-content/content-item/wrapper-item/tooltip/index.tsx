@@ -23,20 +23,20 @@ export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
 
   const toolTitle = useMemo(() => {
     if (item.type === 'box' || item.type === 'text') return ''; // Тк в 'box' это только для настройки isGlobalKod
-    
+
     const result = kods.find(it => it?.value === kod);
 
     return result
-      ? result.value + ' ' + (result.title ? ' - ' + result.title : '')
+      ? `${result.value} ${result.title ? ` - ${result.title}` : ''}`
       : kod || '';
-  } , [item, kods, entitiesView]);
+  }, [item, kod, kods]);
 
 
   const companyProductPeriod = useMemo(() => {
     const companyType = startEntities[kod]?.companyType;
     const productType = startEntities[kod]?.productType;
     const periodType  = startEntities[kod]?.periodType;
-    
+
     const companyText = ! companyType ? '' : <span>
       <Chip
         label = {companyType}
@@ -46,7 +46,8 @@ export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
           width  : pxToRem(90),
           height : pxToRem(16),
         }}
-      />&nbsp;
+      />
+      &nbsp;
     </span>;
 
     const productText = !productType
@@ -61,31 +62,34 @@ export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
             mr         : 1
           }}
         />;
-    
-    const periodText = ! periodType ? '' : <span>
-      <Chip
-        label = {periodType}
-        sx    = {{
-          color      : customSettings?.periodType?.[periodType]?.color      || 'black',
-          background : customSettings?.periodType?.[periodType]?.background || 'rgb(111, 111, 111)',
-          width  : pxToRem(70),
-          height : pxToRem(16),
-        }}
-      />&nbsp;
-    </span>;
-    
-    return <Fragment>
+
+    const periodText = ! periodType
+      ? ''
+      : <span>
+          <Chip
+            label = {periodType}
+            sx    = {{
+              color      : customSettings?.periodType?.[periodType]?.color      || 'black',
+              background : customSettings?.periodType?.[periodType]?.background || 'rgb(111, 111, 111)',
+              width  : pxToRem(70),
+              height : pxToRem(16),
+            }}
+          />
+          &nbsp;
+        </span>;
+
+    return <>
       {companyText}{productText}{periodText}
-    </Fragment>
-  }, [item]);
-  
+    </>
+  }, [customSettings?.companyType, customSettings?.periodType, customSettings?.productType, kod, startEntities]);
+
 
   return (
     <TooltipHTML
-      title={<Fragment>
+      title={<>
         {companyProductPeriod && <Box>{companyProductPeriod}</Box>}
         {toolTitle}
-      </Fragment>}
+      </>}
     >
       {children}
     </TooltipHTML>

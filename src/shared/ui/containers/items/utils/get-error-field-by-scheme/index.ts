@@ -9,7 +9,7 @@ export const getErrorFieldByScheme = (scheme: string) => {
   if (!scheme) return '';
 
   const splited = scheme.split('.');
-  
+
   if (splited.length === 1) return scheme;
 
   let result = splited[0];

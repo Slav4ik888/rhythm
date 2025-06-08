@@ -42,7 +42,7 @@ interface Props {
   onToggle    : () => void
 }
 
-export const CopyStylesViewItemComponent: FC<Props> = memo(({ selectedId, activatedId, onToggle}) => {
+export const CopyStylesViewItemComponent: FC<Props> = memo(({ selectedId, activatedId, onToggle }) => {
   const sx = useStyles(useTheme());
 
   return (
@@ -50,7 +50,8 @@ export const CopyStylesViewItemComponent: FC<Props> = memo(({ selectedId, activa
       {
         selectedId && selectedId === activatedId
           ? <Box sx={sx.helperText}>
-            Кликните на тот элемент, в который хотите поместить скопированный стиль. Для отмены - повторно нажмите на кнопку копирования.
+            Кликните на тот элемент, в который хотите поместить скопированный стиль.
+            Для отмены - повторно нажмите на кнопку копирования.
           </Box>
           : null
       }

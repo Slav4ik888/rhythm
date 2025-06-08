@@ -11,22 +11,25 @@ export function sizeOf(data: Item | number | string): number {
     case 'number':
       bytes += 8;
       break;
-    
+
     case 'string':
       bytes += calcBytes(data);
       break;
-    
+
     case 'boolean':
       bytes += 4;
       break;
-    
+
     case 'object':
-      for (let key in data) {
+      // eslint-disable-next-line
+      for (const key in data) {
         bytes += sizeOf(key);
         bytes += sizeOf(data[key] as Item);
       }
       break;
+
+    default: break;
   }
 
   return bytes;
-};
+}

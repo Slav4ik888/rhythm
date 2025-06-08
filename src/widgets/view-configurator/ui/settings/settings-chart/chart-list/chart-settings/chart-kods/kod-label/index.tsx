@@ -15,10 +15,10 @@ interface Props {
 export const ChartKodLabel: FC<Props> = memo(({ index, selectedItem }) => {
   const { startEntities } = useDashboardData();
   const { entities } = useDashboardView();
-  const kod = useMemo(() => getKod(entities, selectedItem, selectedItem?.settings?.charts?.[index])
-    , [entities, index, selectedItem]);
-  
-  const title = useMemo(() => startEntities[kod]?.title || '', [kod, selectedItem, startEntities]);
+  const kod = useMemo(() => getKod(entities, selectedItem, selectedItem?.settings?.charts?.[index]),
+     [entities, index, selectedItem]);
+
+  const title = useMemo(() => startEntities[kod]?.title || '', [kod, startEntities]);
 
 
   return (

@@ -19,7 +19,10 @@ export const ActionToggleButton: FC<Props> = memo(({ text, link, linkText }) => 
     <Typography variant='body2'>
       {text}
       <Link to={RoutePath[link]}>
-        <span style={{ color: theme.palette.secondary.main }}>&nbsp;{linkText}</span>
+        <span style={{ color: theme.palette.secondary.main }}>
+&nbsp;
+{linkText}
+</span>
       </Link>
     </Typography>
   )

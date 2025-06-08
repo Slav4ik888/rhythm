@@ -43,9 +43,10 @@ interface Props<T> {
 }
 
 
-export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, disabled, array, component: ComponentItem,
-  searchBox: SearchBox, onSelect, onSearch }: Props<T>) => {
-
+export const SelectValue = memo(<T extends string>({
+  sx: style, selectedValue, disabled, array, component: ComponentItem,
+  searchBox: SearchBox, onSelect, onSearch }: Props<T>
+) => {
   const sx = useStyles(style, disabled);
   const [openSelect, setOpenSelect] = useState(false);
 
@@ -67,8 +68,8 @@ export const SelectValue = memo(<T extends string>({ sx: style, selectedValue, d
       />
 
       {
-        openSelect && 
-          <Select
+        openSelect
+          && <Select
             variant      = 'standard'
             open         = {openSelect}
             defaultValue = ''

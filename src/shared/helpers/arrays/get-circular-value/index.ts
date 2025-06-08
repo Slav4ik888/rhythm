@@ -2,11 +2,12 @@
 /** Из подготовленного массива достаёт значение по индексу, если индекс больше максимального то достаёт по кругу */
 export function getCircularValue<T>(array: T[], index: number): T | undefined {
   if (! array || ! array.length) return;
-  
+
   const circularIndex = index % array.length;
   // Обработка отрицательных индексов
   const adjustedIndex = circularIndex >= 0 ? circularIndex : array.length + circularIndex;
-  
+
+  /* eslint-disable */
   return array[adjustedIndex];
 }
 

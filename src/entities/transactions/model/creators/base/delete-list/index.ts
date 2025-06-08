@@ -16,4 +16,4 @@ export const createDeleteList = (
   OperationCommand.DELETE_LIST,
   path
 );
-  
+

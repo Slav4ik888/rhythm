@@ -5,7 +5,7 @@
  */
 export const changeSequence = (arr: string[], id: string, after?: string): string[] => {
   if (! arr || ! arr.length) return [id]
-  
+
   const newArr = [];
   let pushed = false;
 

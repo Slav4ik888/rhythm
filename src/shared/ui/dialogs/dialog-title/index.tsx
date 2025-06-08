@@ -67,15 +67,15 @@ export const DialogTitle: React.FC<Props> = (props: Props) => {
       sx={sx.root}
       {...other}
     >
-      <Typography variant="h6" component="div" sx={sx.title}>
+      <Typography variant='h6' component='div' sx={sx.title}>
         {
           children
         }
       </Typography>
       {
         question ? (
-          <Tooltip title={question} placement="bottom" arrow>
-            <IconButton aria-label="question" sx={sx.icon}>
+          <Tooltip title={question} placement='bottom' arrow>
+            <IconButton aria-label='question' sx={sx.icon}>
               {
                 helpIcon
               }
@@ -85,7 +85,7 @@ export const DialogTitle: React.FC<Props> = (props: Props) => {
       }
       {
         onClose ? (
-          <IconButton onClick={onClose} aria-label="close" sx={sx.iconClose}>
+          <IconButton onClick={onClose} aria-label='close' sx={sx.iconClose}>
             <CloseIcon />
           </IconButton>
         ) : null

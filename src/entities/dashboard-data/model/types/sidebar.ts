@@ -1,8 +1,8 @@
 
 type SidebarRouteListItemType =
-  | "collapse" // Для route | href
-  | "title"    // Заголовки
-  | "divider"  // Разделитель
+  | 'collapse' // Для route | href
+  | 'title'    // Заголовки
+  | 'divider'  // Разделитель
   // | "examples" // Примеры
   // | "auth"     // Авторизация
 

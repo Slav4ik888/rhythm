@@ -10,10 +10,11 @@
 export function __devLog(...args: any[]): void {
   // const isProduction = process.env.NODE_ENV === 'production';
   const hasForceFlag = args.includes('--force');
-  
+
   if (__IS_DEV__ || hasForceFlag) {
     // Фильтруем аргументы, исключая флаг '--force'
     const filteredArgs = args.filter(arg => arg !== '--force');
+    // eslint-disable-next-line no-console
     console.log(...filteredArgs);
   }
 }

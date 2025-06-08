@@ -11,20 +11,21 @@ interface Props {
 
 /** Выбор ChipType */
 export const SelectChipType: FC<Props> = memo(({ selectedItem }) => {
+  const chipType = selectedItem?.settings?.chipType;
   const { changeOneSettingsField } = useDashboardView();
-  const [selectedValue, setSelectedValue] = useState(() => chipOptions[selectedItem?.settings?.chipType || 'condition'].label);
+  const [selectedValue, setSelectedValue] = useState(() => chipOptions[chipType || 'condition'].label);
 
   useEffect(() => {
-    setSelectedValue(chipOptions[selectedItem?.settings?.chipType || 'condition'].label);
-  }, [selectedItem?.settings?.chipType]);
+    setSelectedValue(chipOptions[chipType || 'condition'].label);
+  }, [chipType]);
 
 
   const handleSelectedValue = useCallback((label: string) => {
     const value = Object.values(chipOptions).find(item => item.label === label)?.value || '';
     setSelectedValue(value);
     changeOneSettingsField({ field: 'chipType', value });
-  }, [selectedItem, changeOneSettingsField]);
-        
+  }, [changeOneSettingsField]);
+
 
   return (
     <RowWrapper>

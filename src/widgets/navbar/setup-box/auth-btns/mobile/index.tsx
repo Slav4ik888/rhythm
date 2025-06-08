@@ -2,7 +2,7 @@ import { FC, memo, MouseEvent, useState } from 'react';
 import { MobileAuthBtn } from './menu';
 import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { SxNavbarIcon } from 'widgets/navbar';
+import { SxNavbarIcon } from '../../..';
 
 
 

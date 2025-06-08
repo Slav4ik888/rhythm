@@ -33,7 +33,9 @@ export const updateViewItem = createAsyncThunk<
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in features/dashboardView/updateViewItem' });
+      return rejectWithValue((e as CustomAxiosError).response.data || {
+        general: 'Error in features/dashboardView/updateViewItem'
+      });
     }
   }
 );

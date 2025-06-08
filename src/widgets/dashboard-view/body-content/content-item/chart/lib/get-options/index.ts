@@ -7,10 +7,10 @@ import { getLineOptions } from './get-line-options';
 
 export const getOptions = (type: ChartType, options: ChartConfigOptions): ChartConfigOptions => {
   switch (type) {
-    case 'line'     : return getLineOptions(options)
-    case 'bar'      : return getBarOptions(options)
+    case 'line': return getLineOptions(options)
+    case 'bar': return getBarOptions(options)
     case 'pie':
-    case 'doughnut' : return getDoughnutOptions(options)
+    case 'doughnut': return getDoughnutOptions(options)
 
     default: return getLineOptions(options)
   }

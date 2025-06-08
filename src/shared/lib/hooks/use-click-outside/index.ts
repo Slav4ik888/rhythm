@@ -1,4 +1,4 @@
-import { useEffect, MouseEvent } from "react";
+import { useEffect, MouseEvent } from 'react';
 
 // Improved version of https://usehooks.com/useOnClickOutside/
 export const useClickOutside = (

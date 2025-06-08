@@ -7,8 +7,7 @@ interface Props {
   type: string
 }
 
-export const TypeRow: FC<Props> = memo(({ type }) => {
-  return (
+export const TypeRow: FC<Props> = memo(({ type }) => (
     <RowWrapper>
       <ConfiguratorTextTitle
         bold
@@ -17,5 +16,4 @@ export const TypeRow: FC<Props> = memo(({ type }) => {
       />
       {type}
     </RowWrapper>
-  )
-});
+  ));

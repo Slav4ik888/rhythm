@@ -50,12 +50,11 @@ export const IdTitle: FC<Props> = memo(({ selectedId }) => {
     }
     // Подсвечиваем элемент
     setBright(true);
-    
+
     // Отменяем подсветку
     setTimeout(() => {
       setBright(false);
     }, 3000);
-
   }, [selectedId, setBright]);
 
 

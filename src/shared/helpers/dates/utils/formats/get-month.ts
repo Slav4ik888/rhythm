@@ -11,6 +11,6 @@ export const getMonth = (date: Date, sub: SUB): string => {
     case SUB.RU_ABBR:     return `${MONTH_NAME_RU_ABBR[idx]}`;
     case SUB.RU_ABBR_DEC: return `${MONTH_NAME_RU_ABBR_DEC[idx]}`;
 
-    default: return `` 
+    default: return ''
   }
 };

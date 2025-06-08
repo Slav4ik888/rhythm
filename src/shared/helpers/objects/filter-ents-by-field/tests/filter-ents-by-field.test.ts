@@ -1,9 +1,9 @@
-import { filterEntsByField } from "..";
-import { Entities, Item, Mocks } from "./types";
+import { filterEntsByField } from '..';
+import { Entities, Item, Mocks } from './types';
 
 
 const entities: Entities<Item> = {
-  'id_1': {
+  id_1: {
     id    : 'id_1',
     name  : 'string',
     value : true,
@@ -13,7 +13,7 @@ const entities: Entities<Item> = {
     },
     arr: ['foo', 'bae', 'string888']
   },
-  'id_2': {
+  id_2: {
     id    : 'id_2',
     name  : 'string888',
     value : true,
@@ -22,7 +22,7 @@ const entities: Entities<Item> = {
       bae: 2
     }
   },
-  'id_3': {
+  id_3: {
     id    : 'id_3',
     name  : 'string',
     value : true,
@@ -32,7 +32,7 @@ const entities: Entities<Item> = {
     },
     arr: ['string888']
   },
-  'id_4': {
+  id_4: {
     id    : 'id_4',
     name  : 'string888',
     value : true,
@@ -42,7 +42,7 @@ const entities: Entities<Item> = {
     },
     arr: ['foo', 'bae', '']
   },
-  'id_5': {
+  id_5: {
     id    : 'id_5',
     name  : 'chebyrek',
     value : false,
@@ -64,8 +64,8 @@ const mocks: Mocks<Item> = [
       value: 'string888'
     },
     {
-      'id_2': { ...entities['id_2'] },
-      'id_4': { ...entities['id_4'] },
+      id_2: { ...entities.id_2 },
+      id_4: { ...entities.id_4 },
     },
   ],
   [
@@ -108,8 +108,8 @@ const mocks: Mocks<Item> = [
       includes    : true
     },
     {
-      'id_1': { ...entities['id_1'] },
-      'id_3': { ...entities['id_3'] },
+      id_1: { ...entities.id_1 },
+      id_3: { ...entities.id_3 },
     },
   ],
 
@@ -122,8 +122,8 @@ const mocks: Mocks<Item> = [
       value       : ['may', 'string888', 'foo', 'bae'],
     },
     {
-      'id_2': { ...entities['id_2'] },
-      'id_4': { ...entities['id_4'] },
+      id_2: { ...entities.id_2 },
+      id_4: { ...entities.id_4 },
     },
   ],
 
@@ -137,9 +137,9 @@ const mocks: Mocks<Item> = [
       validFunc   : (type: string) => type === 'chebyrek' || type === 'string888'
     },
     {
-      'id_2': { ...entities['id_2'] },
-      'id_4': { ...entities['id_4'] },
-      'id_5': { ...entities['id_5'] },
+      id_2: { ...entities.id_2 },
+      id_4: { ...entities.id_4 },
+      id_5: { ...entities.id_5 },
     },
   ],
 ];

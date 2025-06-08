@@ -13,26 +13,32 @@ interface Props {
 
 /** Скрыть / показать дугу|график */
 export const ChartHidden: FC<Props> = memo(({ index, selectedItem }) => {
+  const isHidden = Boolean(selectedItem?.settings?.charts?.[index]?.datasets?.hidden);
+
   const { changeOneDatasetsItem } = useDashboardView();
-  const [checked, setChecked] = useState(() => Boolean(selectedItem?.settings?.charts?.[index]?.datasets?.hidden));
+  const [checked, setChecked] = useState(() => isHidden);
 
   useEffect(() => {
-    setChecked(Boolean(selectedItem?.settings?.charts?.[index]?.datasets?.hidden));
-  }, [selectedItem]);
-  
+    setChecked(isHidden);
+  }, [isHidden]);
+
 
   const handleToggle = useCallback(() => {
     changeOneDatasetsItem({
       field : 'hidden',
-      value : ! Boolean(selectedItem?.settings?.charts?.[index]?.datasets?.hidden),
+      value : ! isHidden,
       index
     });
-  }, [selectedItem, changeOneDatasetsItem]);
+  }, [index, isHidden, changeOneDatasetsItem]);
 
 
   return (
     <RowWrapper>
-      <ConfiguratorTextTitle bold title='Hidden' toolTitle={`Скрыть / показать ${isPie(selectedItem)} ? 'дугу' : 'график'`} />
+      <ConfiguratorTextTitle
+        bold
+        title     = 'Hidden'
+        toolTitle = {`Скрыть / показать ${isPie(selectedItem)} ? 'дугу' : 'график'`}
+      />
       <Checkbox
         size       = 'small'
         checked    = {checked}

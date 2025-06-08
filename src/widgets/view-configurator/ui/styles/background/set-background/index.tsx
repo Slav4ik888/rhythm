@@ -12,7 +12,7 @@ import { pxToRem, SxCard } from 'shared/styles';
 
 const sx: SxCard = {
   popover: {
-    bottom: pxToRem(-260) 
+    bottom: pxToRem(-260)
   }
 };
 
@@ -26,13 +26,14 @@ export const SetBackground: FC<Props> = memo(({ selectedItem, onChange }) => {
   const gradients = useMemo(() => splitGradinetRgba(selectedItem?.styles?.background as string), [selectedItem]);
 
   const [checked, setChecked] = useState(gradients.length === 3); // if 'linear-gradient(195deg, #bbdefb, #64b5f6)';
-  const handleToggle = useCallback(() => setChecked(! checked), [checked, setChecked, onChange]);
-  
+  const handleToggle = useCallback(() => setChecked(! checked), [checked, setChecked]);
+
   useEffect(() => {
     setChecked(gradients.length === 3);
-  }, [selectedItem, setChecked]);
-  
-  const handleBackground = useCallback((value: string) => onChange('background', value as unknown as string), [onChange]);
+  }, [selectedItem, gradients.length, setChecked]);
+
+  const handleBackground = useCallback((value: string) => onChange('background', value as unknown as string),
+     [onChange]);
 
 
   return (

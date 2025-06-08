@@ -15,4 +15,4 @@ export const createDelete = (
   OperationCommand.DELETE,
   path
 );
-  
+

@@ -10,6 +10,6 @@ export const getDMonthYYYYHHMM = (date: Date, sub: SUB): string => {
   const year  = date.getFullYear();
   const hours = withZero(date.getHours());
   const mins  = withZero(date.getMinutes());
-  
+
   return `${day} ${month} ${year} ${hours}:${mins}` // `D Month YYYY HH:MM`
 };

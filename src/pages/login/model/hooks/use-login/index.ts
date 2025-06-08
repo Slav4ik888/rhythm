@@ -10,7 +10,7 @@ import { Errors } from 'shared/lib/validators';
 export const useLogin = () => {
   const
     dispatch   = useAppDispatch(),
-    
+
     loading    = useSelector(s.selectLoading),
     resetEmailResult = useSelector(s.selectResetEmailResult),
     setResetEmailResult = (result?: boolean | undefined) => dispatch(a.setResetEmailResult(result)),
@@ -20,7 +20,7 @@ export const useLogin = () => {
 
     serviceAuthByLogin        = (data: AuthByLogin) => dispatch(authByLogin(data)),
     serviceResetEmailPassword = (email: string)     => dispatch(resetEmailPassword(email));
-  
+
   return {
     loading,
     resetEmailResult,

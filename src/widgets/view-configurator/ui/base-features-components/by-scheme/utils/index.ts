@@ -1,1 +1,1 @@
-export { updater } from "./updater";
+export { updater } from './updater';

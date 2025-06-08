@@ -4,8 +4,8 @@ import { ViewItemStylesField } from 'entities/dashboard-view';
 import { f, SxCard } from 'shared/styles';
 import { useValue } from 'shared/lib/hooks';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-import { ConfiguratorTextfieldItem } from 'shared/ui/configurators-components';
-import { Tooltip } from 'shared/ui/tooltip';
+import { ConfiguratorTextfieldItem } from '../../configurators-components';
+import { Tooltip } from '../../tooltip';
 import ClearIcon from '@mui/icons-material/Clear';
 
 
@@ -62,19 +62,21 @@ interface Props {
   onClear?    : () => void // Для очистки значения если нужно чтобы было не пустая строка ''
   onCallback? : (field: ViewItemStylesField, value: number | string) => void
   onSubmit    : (field: ViewItemStylesField, value: number | string) => void
-}``
+}
 
 /**
  * DEPRECATED - оставил только для образца или где-то позже модель пригодится
- * 
+ *
  * Изначально Box, при клике меняется на TextField,
  * для того, чтобы при изменении входных значений в открывающемся TextField
  * появлялись новые значения
  */
-export const ChangeStyleItem: FC<Props> = memo(({ type, sx: style, value, width, field, title, toolTitle, disabled, onClear, onCallback, onSubmit }) => {
+export const ChangeStyleItem: FC<Props> = memo(({
+  type, sx: style, value, width, field, title, toolTitle, disabled, onClear, onCallback, onSubmit
+}) => {
   const sx = useStyles(useTheme(), style, width);
   const hookOpen = useValue();
-  
+
   const handleOpen = () => {
     if (disabled) return;
     hookOpen.setOpen();
@@ -82,22 +84,20 @@ export const ChangeStyleItem: FC<Props> = memo(({ type, sx: style, value, width,
 
 
   const handleCallback = useCallback((e: MouseEvent, _value: number | string) => {
-    if (onCallback) {
-      onCallback(field as ViewItemStylesField, _value as number);
-    }
-  },[value, field, onCallback]);
+    onCallback && onCallback(field as ViewItemStylesField, _value as number);
+  }, [field, onCallback]);
 
 
   const handleSubmit = useCallback((e: MouseEvent, _value: number | string) => {
     onSubmit(field as ViewItemStylesField, _value as number);
     hookOpen.setClose();
-  },[value, field, hookOpen.setClose, onSubmit]);
-  
-  
+  }, [field, hookOpen, onSubmit]);
+
+
   const handleClear = () => {
     if (onClear) onClear()
     else onSubmit(field as ViewItemStylesField, '' as unknown as number)
-    
+
     hookOpen.setClose();
   };
 

@@ -10,20 +10,6 @@ export interface ReportsBaseConfig {
 }
 
 
-/** Result changes configuration */
-export interface ReportsResultChangesConfig extends ReportsBaseConfig {
-  resultChanges?: {
-    // Список значений: последний результат и предыдущие 
-    comparisonIndicators? : {
-      valuesCount?    : number  // Сколько значений показывать
-      reduce?         : boolean // Убрать разряды: 12 500 700 => 12.5 млн
-      fractionDigits? : number  // Количество знаков после запятой
-      addZero?        : boolean // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
-    }
-    growthResult?: GrowthResultConfig
-  }
-}
-
 /** Результат прироста/падения, % | шт, и иконка треуголькин */
 export interface GrowthResultConfig {
   // Для процентов
@@ -43,6 +29,21 @@ export interface GrowthResultConfig {
 }
 
 
+/** Result changes configuration */
+export interface ReportsResultChangesConfig extends ReportsBaseConfig {
+  resultChanges?: {
+    // Список значений: последний результат и предыдущие
+    comparisonIndicators? : {
+      valuesCount?    : number  // Сколько значений показывать
+      reduce?         : boolean // Убрать разряды: 12 500 700 => 12.5 млн
+      fractionDigits? : number  // Количество знаков после запятой
+      addZero?        : boolean // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+    }
+    growthResult?: GrowthResultConfig
+  }
+}
+
+
 export interface ReportsLineChartConfig extends ReportsResultChangesConfig {
 
   // Chips - показывать или не показывать
@@ -57,11 +58,9 @@ export interface ReportsLineChartConfig extends ReportsResultChangesConfig {
 
 /** Делает invertData (если нужно) */
 export const checkInvertData = (config: ReportsBaseConfig | undefined,  data: number[]): number[] => {
-
   if (! data) return []
-  
+
   return config?.inverted
     ? invertData(data)
     : data
 }
-  

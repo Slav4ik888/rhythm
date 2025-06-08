@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 
 
-  
+
 type Props = {
   loading : boolean
   id?     : string
@@ -75,7 +75,7 @@ export const CircularProgress: React.FC<Props> = (props) => {
     } = props,
     // ref = React.useRef(null),
     // parentDimentions = React.useMemo(() => getParentDimentions(document.getElementById(id)), [ref.current]),
-    sx = useStyles(useTheme(), props);//, parentDimentions);
+    sx = useStyles(useTheme(), props);// , parentDimentions);
 
 
   // При block - блокируем прокрутку и фокус
@@ -92,11 +92,11 @@ export const CircularProgress: React.FC<Props> = (props) => {
       document.body.style.overflow = '';
       document.body.removeAttribute('inert');
     }
-  }, [loading]);
+  }, [loading, block]);
 
 
   if (! loading) return null;
-  
+
   return (
     <Box
       id = {id}

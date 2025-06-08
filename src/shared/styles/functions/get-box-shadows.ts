@@ -21,13 +21,11 @@ Coded by www.creative-tim.com
 
 // Material Dashboard 2 React Helper Functions
 import { CustomTheme } from '../../../app/providers/theme/model/types';
-import { boxShadow } from "./boxShadow";
+import { boxShadow } from './boxShadow';
 
 
 
-export const getBoxShadows = ({ palette: { black, white, tabs, coloredShadows, dark }}: CustomTheme) => {
-
-  return {
+export const getBoxShadows = ({ palette: { black, white, tabs, coloredShadows, dark } }: CustomTheme) => ({
     xs: boxShadow([0, 2], [9, -5], black.main, 0.15),
     sm: boxShadow([0, 5], [10, 0], black.main, 0.12),
     md: `${boxShadow([0, 4], [6, -1], black.main, 0.1)}, ${boxShadow(
@@ -49,7 +47,7 @@ export const getBoxShadows = ({ palette: { black, white, tabs, coloredShadows, d
       0.04
     )}`,
     xxl: boxShadow([0, 20], [27, 0], black.main, 0.05),
-    inset: boxShadow([0, 1], [2, 0], black.main, 0.075, "inset"),
+    inset: boxShadow([0, 1], [2, 0], black.main, 0.075, 'inset'),
     colored: {
       primary: `${boxShadow([0, 4], [20, 0], black.main, 0.14)}, ${boxShadow(
         [0, 7],
@@ -101,7 +99,7 @@ export const getBoxShadows = ({ palette: { black, white, tabs, coloredShadows, d
       )}`,
     },
 
-    navbarBoxShadow: `${boxShadow([0, 0], [1, 1], white.main, 0.9, "inset")}, ${boxShadow(
+    navbarBoxShadow: `${boxShadow([0, 0], [1, 1], white.main, 0.9, 'inset')}, ${boxShadow(
       [0, 20],
       [27, 0],
       dark.main,
@@ -113,5 +111,4 @@ export const getBoxShadows = ({ palette: { black, white, tabs, coloredShadows, d
     tabsBoxShadow: {
       indicator: boxShadow([0, 1], [5, 1], tabs.indicator.boxShadow, 1),
     },
-  }
-};
+  });

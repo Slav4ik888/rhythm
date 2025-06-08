@@ -29,7 +29,7 @@ describe('isDifferentTypes', () => {
       { periodType: 'day' },
       { periodType: 'day' },
     ];
-    
+
     expect(isDifferentTypes(items as unknown as DashboardStatisticItem<number>[])).toEqual(false);
   });
 });

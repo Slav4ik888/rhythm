@@ -86,7 +86,10 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-unused-expressions': [
       "error",
-      { "allowTernary": true }
+      {
+        "allowShortCircuit": true,  // Разрешает a && b()
+        "allowTernary": true // Разрешает a ? b() : c()
+      }
     ],
     'react/jsx-indent': 0,
     'react/display-name': 0,
@@ -98,13 +101,15 @@ module.exports = {
     'react/jsx-wrap-multilines': 0,
     'react/no-array-index-key': 0,
     'react/jsx-props-no-spreading': 0,
+    'react/no-unused-prop-types': 0,
+    'react/jsx-one-expression-per-line': 0,
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
     'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
     'react/no-children-prop': 0,
     'react/require-default-props': 0,
     'react/jsx-closing-tag-location': 0,
     'react/jsx-closing-bracket-location': 0,
-    'react/jsx-curly-spacing': 0,
+    // 'react/jsx-curly-spacing': 0,
     'react/prop-types': 0,
     'jsx-quotes': ['error', 'prefer-single'],
     'slavchik888-plugin/path-checker': 'error',
@@ -115,3 +120,6 @@ module.exports = {
     __PROJECT__: true
   }
 };
+
+// npx eslint "**/*.{ts,tsx}" --fix --rule 'arrow-body-style: error'
+// /* eslint-disable */

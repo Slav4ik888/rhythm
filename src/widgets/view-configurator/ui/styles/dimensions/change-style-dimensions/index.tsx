@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, useState, MouseEvent } from 'react';
+import { FC, memo, useEffect, useState, MouseEvent, useCallback } from 'react';
 import { Box } from '@mui/material';
 import { ViewItem, ViewItemStylesField } from 'entities/dashboard-view';
 import { f } from 'shared/styles';
@@ -22,7 +22,6 @@ interface Props {
 /** Размеры */
 export const ChangeStyleItemDimensions: FC<Props> = memo(({ selectedItem, field, bold, toolTitle, title,
   value = '', onChange }) => {
-
   const [selectedValue, setSelectedValue] = useState<string>(''); // Если не строка или она пуста то это число
   const [isValueNumber, setIsValuerNumber] = useState(isPx(value));
 
@@ -32,14 +31,15 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ selectedItem, field,
   }, [value]);
 
 
-  const handleSelectedValue = (selected: string) => {
+  const handleSelectedValue = useCallback((selected: string) => {
     setSelectedValue(selected);
 
     if (selected !== 'in px') return onChange(field, selected);
     if (selected === 'in px') return onChange(field, 0);
 
     setIsValuerNumber(true);
-  };
+    return undefined
+  }, [field, setSelectedValue, setIsValuerNumber, onChange]);
 
 
   return (

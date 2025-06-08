@@ -73,8 +73,8 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
   //     setnavbarTransparent(dispatch, (navbarFixed && window.scrollY === 0) || !navbarFixed);
   //   }
 
-  //   /** 
-  //    The event listener that's calling the handlenavbarTransparent function when 
+  //   /**
+  //    The event listener that's calling the handlenavbarTransparent function when
   //    scrolling the window.
   //   */
   //   window.addEventListener('scroll', handlenavbarTransparent);
@@ -103,7 +103,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
               ? <NavbarControlBox isMini={isMini} sx={sx} />
               : <NavbarLinksBox isMini={isMini} />
           }
-          <NavbarSetupBox   sx={sx} isMini={isMini} /> 
+          <NavbarSetupBox   sx={sx} isMini={isMini} />
         </Toolbar>
       </AppBar>
     </SidebarRegulatorWrapper>

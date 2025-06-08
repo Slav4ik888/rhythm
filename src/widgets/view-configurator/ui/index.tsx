@@ -26,15 +26,17 @@ const sxTabPanel = {
 
 export const ViewItemConfigurator: FC = memo(() => {
   const { companyId, storedCompany, company, serviceUpdateCompany } = useCompany();
-  const { editMode, selectedId, selectedItem, entities, prevStoredViewItem, setSelectedId, setEditMode, serviceUpdateViewItem } = useDashboardView();
+  const { editMode, selectedId, selectedItem, entities, prevStoredViewItem,
+    setSelectedId, setEditMode, serviceUpdateViewItem } = useDashboardView();
+
   const [value, setValue] = useState('1');
   const isSettings = useMemo(() =>
-    selectedItem?.type === 'box'        ||
-    selectedItem?.type === 'chart'      ||
-    selectedItem?.type === 'chip'       ||
-    selectedItem?.type === 'growthIcon' ||
-    selectedItem?.type === 'digitIndicator', [selectedItem]);
-  
+    selectedItem?.type === 'box'
+    ||        selectedItem?.type === 'chart'
+    ||      selectedItem?.type === 'chip'
+    ||       selectedItem?.type === 'growthIcon'
+    || selectedItem?.type === 'digitIndicator', [selectedItem]);
+
   const handleChange = (event: SyntheticEvent, newValue: string) => setValue(newValue);
 
   useEffect(() => {
@@ -43,7 +45,7 @@ export const ViewItemConfigurator: FC = memo(() => {
     /** Сохраняем изменившиеся customSettings */
     const changedCompany = getChanges(storedCompany, company);
     if (isNotEmpty(changedCompany)) serviceUpdateCompany({ id: companyId, ...changedCompany });
-    
+
     /** Вроде как при закрытии Конфигуратора - сохраняем изменившиеся поля | стили */
     const prevId = (prevStoredViewItem as ViewItem)?.id; // Так как selectedId это уже нововыбранный
     if (! prevId) return // Например, выбрали первый раз или удалили карточку
@@ -53,7 +55,8 @@ export const ViewItemConfigurator: FC = memo(() => {
 
     const viewItem = { id: prevId, ...changedFields };
     serviceUpdateViewItem({ companyId, viewItem });
-  }, [selectedId]);
+  }, [value, companyId, company, selectedId, entities, isSettings, prevStoredViewItem, storedCompany,
+    serviceUpdateCompany, serviceUpdateViewItem]);
 
 
   /** Закрываем конфигуратор */
@@ -61,7 +64,7 @@ export const ViewItemConfigurator: FC = memo(() => {
     setValue('1');
     setEditMode({ editMode: false, companyId });
     setSelectedId(''); // Убираем, чтобы prevStoredViewItem обновился и произошло сохранение
-  }, [selectedId, setEditMode, setSelectedId]);
+  }, [companyId, setValue, setEditMode, setSelectedId]);
 
 
   return (
@@ -70,31 +73,33 @@ export const ViewItemConfigurator: FC = memo(() => {
       <MainHeader onClose={handleClose} />
       <UnsavedChanges />
       {! selectedId && <Unselected />}
-      <InfoBlock />
-      
-      <TabContext value={value}>
-        <Box sx={{ mt: 2, borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label='lab API tabs example'>
-            <Tab label='Control' value='1' />
-            <Tab label='Styles'  value='2' />
-            <Tab
-              label = {isSettings ? 'Settings' : null}
-              value = '3'
-            />
-            
-          </TabList>
-        </Box>
+      {selectedId && <InfoBlock />}
 
-        <TabPanel value='1' keepMounted sx={sxTabPanel}>
-          <ViewItemControlConfigurator />
-        </TabPanel>
-        <TabPanel value='2' keepMounted sx={sxTabPanel}>
-          <ViewItemStylesConfigurator />
-        </TabPanel>
-        <TabPanel value='3' keepMounted sx={sxTabPanel}>
-          <ViewItemConfiguratorSettings selectedItem={selectedItem} />
-        </TabPanel>
-      </TabContext>
+      {
+        selectedId && <TabContext value={value}>
+          <Box sx={{ mt: 2, borderBottom: 1, borderColor: 'divider' }}>
+            <TabList onChange={handleChange} aria-label='lab API tabs example'>
+              <Tab label='Control' value='1' />
+              <Tab label='Styles'  value='2' />
+              <Tab
+                label = {isSettings ? 'Settings' : null}
+                value = '3'
+              />
+
+            </TabList>
+          </Box>
+
+          <TabPanel value='1' keepMounted sx={sxTabPanel}>
+            <ViewItemControlConfigurator />
+          </TabPanel>
+          <TabPanel value='2' keepMounted sx={sxTabPanel}>
+            <ViewItemStylesConfigurator />
+          </TabPanel>
+          <TabPanel value='3' keepMounted sx={sxTabPanel}>
+            <ViewItemConfiguratorSettings selectedItem={selectedItem} />
+          </TabPanel>
+        </TabContext>
+      }
       <PaletteModeSwitcher />
     </DrawerStyled>
   )

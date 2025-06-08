@@ -57,7 +57,7 @@ describe('MoveItemUpdownward', () => {
         </UIConfiguratorProvider>
       </StoreProvider>
     );
-    
+
     expect(getByTestId('btn-up')).toBeInTheDocument()
     expect(getByTestId('btn-down')).toBeInTheDocument()
 
@@ -83,7 +83,7 @@ describe('MoveItemUpdownward', () => {
     );
 
     fireEvent.click(getByTestId('btn-up'));
-    
+
     // Ожидаем, что order изменится с 1000 → 4000 (потому что item-2 имеет order=1)
     expect(updateViewItem).toHaveBeenCalledWith({
       id: 'item-1',
@@ -109,7 +109,7 @@ describe('MoveItemUpdownward', () => {
     );
 
     fireEvent.click(getByTestId('btn-down'));
-    
+
     // Ожидаем, что order изменится с 2 → 3 (потому что item-3 имеет order=3)
     expect(updateViewItem).toHaveBeenCalledWith({
       id: 'item-1',

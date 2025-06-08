@@ -10,4 +10,4 @@ describe('objectFieldsToString', () => {
     }));
 });
 
-// npm run unit object-fields-to-string.test.ts
+// npm run test:unit object-fields-to-string.test.ts

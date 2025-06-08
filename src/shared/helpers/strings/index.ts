@@ -1,6 +1,6 @@
 // v.2025-03-21
 export * from './capitalize';
-export * from './capitalize-first/'
+export * from './capitalize-first'
 export * from './get-item-by-pos';
 export * from './get-mock-str-length';
 export * from './get-value-if-not-undefined';

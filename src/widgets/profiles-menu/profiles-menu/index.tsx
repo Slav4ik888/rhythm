@@ -28,11 +28,11 @@ export const ProfilesMenu: FC<Props> = ({ open, anchorEl, menuId, onClose }) => 
     onClose();
     serviceLogout();
     navigate(RoutePath.ROOT);
-  }, [onClose, serviceLogout]);
+  }, [onClose, serviceLogout, navigate]);
 
-  
+
   // const type = role === Role.SUPER ? WhoInProfile.SUPER : WhoInProfile.USER;
-  
+
   return (
     <Menu
       keepMounted

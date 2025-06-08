@@ -16,11 +16,13 @@ interface Props {
   onSearch?    : (value: string) => void
 }
 
-/** 
+/**
  * Выбор ByField и сохраняет по схеме измененя в selectedItem
  * в том числе scheme with array
  */
-export const SelectByField: FC<Props> = memo(({ selectedItem, scheme, array, disabled, component, searchBox, onSearch }) => {
+export const SelectByField: FC<Props> = memo(({
+  selectedItem, scheme, array, disabled, component, searchBox, onSearch
+}) => {
   const { updateViewItem } = useDashboardView();
   const [selectedValue, setSelectedValue] = useState(getValueByScheme(selectedItem, scheme) || '');
 

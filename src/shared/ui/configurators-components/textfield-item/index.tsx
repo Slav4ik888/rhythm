@@ -1,7 +1,7 @@
 import { FC, memo, MouseEvent } from 'react';
-import { SxCard } from 'shared/styles';
-import { TextField } from 'shared/ui/containers';
-import { Tooltip } from 'shared/ui/tooltip';
+import { SxCard } from '../../../styles';
+import { TextField } from '../../containers';
+import { Tooltip } from '../../tooltip';
 
 
 
@@ -35,7 +35,9 @@ interface Props {
 }
 
 
-export const ConfiguratorTextfieldItem: FC<Props> = memo(({ defaultValue = '', toolTitle, sx: style, type, disabled, autoFocus, width, onCallback, onSubmit }) => {
+export const ConfiguratorTextfieldItem: FC<Props> = memo(({ defaultValue = '', toolTitle, sx: style, type,
+  disabled, autoFocus, width, onCallback, onSubmit
+}) => {
   const sx = useStyles(style, width);
 
   return (

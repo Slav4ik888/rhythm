@@ -10,13 +10,12 @@ interface Props {
 }
 
 /** Настройки Min | max - на оси Y */
-export const ViewItemChartScaleYMinMax: FC<Props> = memo(({ selectedItem }) => {
-  return (
+export const ViewItemChartScaleYMinMax: FC<Props> = memo(({ selectedItem }) => (
     <>
       <ConfiguratorTitle title='Min | max' type='title2' />
       <RowInputByScheme
         type         = 'number'
-        selectedItem = {selectedItem} 
+        selectedItem = {selectedItem}
         scheme       = 'settings.chartOptions.scales.y.min'
         title        = 'min'
         toolTitle    = 'Изменить min'
@@ -26,7 +25,7 @@ export const ViewItemChartScaleYMinMax: FC<Props> = memo(({ selectedItem }) => {
       />
       <RowInputByScheme
         type         = 'number'
-        selectedItem = {selectedItem} 
+        selectedItem = {selectedItem}
         scheme       = 'settings.chartOptions.scales.y.max'
         title        = 'max'
         toolTitle    = 'Изменить max'
@@ -36,7 +35,7 @@ export const ViewItemChartScaleYMinMax: FC<Props> = memo(({ selectedItem }) => {
       />
       <RowInputByScheme
         type         = 'number'
-        selectedItem = {selectedItem} 
+        selectedItem = {selectedItem}
         scheme       = 'settings.chartOptions.scales.y.suggestedMin'
         title        = 'suggestedMin'
         toolTitle    = 'Изменить suggestedMin'
@@ -46,7 +45,7 @@ export const ViewItemChartScaleYMinMax: FC<Props> = memo(({ selectedItem }) => {
       />
       <RowInputByScheme
         type         = 'number'
-        selectedItem = {selectedItem} 
+        selectedItem = {selectedItem}
         scheme       = 'settings.chartOptions.scales.y.suggestedMax'
         title        = 'suggestedMax'
         toolTitle    = 'Изменить suggestedMax'
@@ -55,5 +54,4 @@ export const ViewItemChartScaleYMinMax: FC<Props> = memo(({ selectedItem }) => {
         onChange     = {(e: MouseEvent, v: string | number) => {}}
       />
     </>
-  )
-});
+  ));

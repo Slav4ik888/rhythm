@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { UseGroup, useValue } from 'shared/lib/hooks';
-import { ConfirmType, DialogConfirm } from 'shared/ui/dialogs';
-import { MDButton } from 'shared/ui/mui-design-components';
+import { ConfirmType, DialogConfirm } from '../../dialogs';
+import { MDButton } from '../../mui-design-components';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Tooltip } from 'shared/ui/tooltip';
-import { SxCard } from 'shared/styles';
+import { Tooltip } from '../../tooltip';
+import { SxCard } from '../../../styles';
 
 
 
@@ -21,7 +21,7 @@ type Props = {
 /** v.2025-05-01 */
 export const DeleteButton: React.FC<Props> = ({ sx, disabled, toolTitle = '', hookOpen, onClose, onDel }) => {
   const confirm = useValue();
-  
+
 
   const handlerDel = () => {
     confirm.setClose();
@@ -36,7 +36,7 @@ export const DeleteButton: React.FC<Props> = ({ sx, disabled, toolTitle = '', ho
 
 
   if (! onDel) return null
-  
+
 
   return (
     <>
@@ -51,7 +51,7 @@ export const DeleteButton: React.FC<Props> = ({ sx, disabled, toolTitle = '', ho
           onClick   = {confirm.setOpen}
         />
       </Tooltip>
-      
+
       <DialogConfirm
         open     = {confirm.open}
         typeOk   = {ConfirmType.DEL}

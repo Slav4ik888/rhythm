@@ -10,8 +10,7 @@ interface Props {
 }
 
 /** Row with chart elements btns */
-export const AddViewItemElementBtns: FC<Props> = memo(({ onClick }) => {
-  return (
+export const AddViewItemElementBtns: FC<Props> = memo(({ onClick }) => (
     <>
       <AddBtn
         type    = 'box'
@@ -29,5 +28,4 @@ export const AddViewItemElementBtns: FC<Props> = memo(({ onClick }) => {
         onClick = {onClick}
       />
     </>
-  )
-});
+  ));

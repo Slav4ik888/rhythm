@@ -10,7 +10,7 @@ describe('getCircularValue', () => {
     'rgb(162, 12, 150)',
     'rgb(202, 90, 21)',
   ];
-  
+
   test('arr is undefined', () => {
     // @ts-ignore
     expect(getCircularValue(undefined, 1)).toEqual(undefined);

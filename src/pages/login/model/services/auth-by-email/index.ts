@@ -26,22 +26,23 @@ export const authByLogin = createAsyncThunk<
   ThunkConfig<Errors>
 >(
   'pagesLogin/authByLogin',
+  // eslint-disable-next-line consistent-return
   async (authByLogin, thunkApi) => {
     const
       { extra, dispatch, rejectWithValue } = thunkApi,
       csrfToken = getCookie(cfg.COOKIE_NAME);
-    
+
     try {
       await extra.api.post(paths.auth.login.byEmail, { authByLogin, csrfToken });
-      
+
       dispatch(actionsUser.setAuth(true));
       dispatch(getStartResourseData());
-
-      return;
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in pagesLogin/authByLogin' });
+      return rejectWithValue((e as CustomAxiosError).response.data || {
+        general: 'Error in pagesLogin/authByLogin'
+      });
     }
   }
 );

@@ -2,8 +2,8 @@ import { FC, memo } from 'react';
 import UpwardIcon from '@mui/icons-material/ArrowUpward';
 import DownwardIcon from '@mui/icons-material/ArrowDownward';
 import { Box } from '@mui/material';
-import { Tooltip } from 'shared/ui/tooltip';
-import { MDButton } from 'shared/ui/mui-design-components';
+import { Tooltip } from '../../tooltip';
+import { MDButton } from '../../mui-design-components';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 
 

@@ -15,9 +15,7 @@ interface Props {
 
 
 /** For Dashboard page */
-export const NavbarControlBox: FC<Props> = memo(({ isMini = false, sx }) => {
-
-  return (
+export const NavbarControlBox: FC<Props> = memo(({ isMini = false, sx }) => (
     <MDBox
       color = 'inherit'
       mb    = {{ xs: 1, md: 0 }}
@@ -26,5 +24,4 @@ export const NavbarControlBox: FC<Props> = memo(({ isMini = false, sx }) => {
       <MiniSidebarToggleBtn sx={sx} />
       <DashboardDatebar sx={sx} />
     </MDBox>
-  );
-})
+  ))

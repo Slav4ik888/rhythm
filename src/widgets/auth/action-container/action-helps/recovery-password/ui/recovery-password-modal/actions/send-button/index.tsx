@@ -17,18 +17,18 @@ export const RecoveryPasswordSendButton: FC<Props> = memo(({ hookOpen: O, emailR
   const
     { loading, resetEmailResult, setResetEmailResult, serviceResetEmailPassword, setErrors } = useLogin();
 
-  
+
   useEffect(() => {
     if (resetEmailResult) O.setClose()
     setResetEmailResult();
-  }, [resetEmailResult, loading]);
-  
+  }, [O, resetEmailResult, loading, setResetEmailResult]);
+
 
   const handlerSend = () => {
     const
       email = getRefValue(emailRef),
       { valid, errors } = validateRecoveryPassword(email);
-    
+
     if (valid) {
       serviceResetEmailPassword(email);
       setErrors();
@@ -40,7 +40,7 @@ export const RecoveryPasswordSendButton: FC<Props> = memo(({ hookOpen: O, emailR
   return (
     <Button
       loading = {loading}
-      text    = {'Отправить'}
+      text    = 'Отправить'
       onClick = {handlerSend}
     />
   )

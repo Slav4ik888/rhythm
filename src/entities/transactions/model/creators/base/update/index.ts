@@ -12,4 +12,4 @@ export const createUpdate = (
   OperationCommand.UPDATE,
   path
 );
-  
+

@@ -19,12 +19,12 @@ export const ChartCutout: FC<Props> = memo(({ selectedItem }) => {
 
   const handleChange = useCallback((value: string | number) => {
     if (! selectedItem?.settings?.charts?.length) return // Для сохранения должен быть добавлен хотя бы 1 график
-    
-    changeOneDatasetsItem({ field: 'cutout', value: value + '%', index: 0 });
-  }, [changeOneDatasetsItem]);
+
+    changeOneDatasetsItem({ field: 'cutout', value: `${value}%`, index: 0 });
+  }, [selectedItem?.settings?.charts?.length, changeOneDatasetsItem]);
 
   if (isNotPie(selectedItem)) return null;
-  
+
   return (
     <RowWrapper>
       <ConfiguratorTextTitle bold title='Cutout' toolTitle='Вырез по центру графика' />

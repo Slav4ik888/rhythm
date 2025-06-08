@@ -16,16 +16,16 @@ interface Props {
 }
 
 
-/** background linear-gradient*/
+/** background linear-gradient */
 export const SetLinearGradient: FC<Props> = memo(({ selectedItem, sx, defaultValue = '', gradients, onChange }) => {
   const [deg, setDeg]     = useState(gradients[0] as unknown as number || 15);
   const [main, setMain]   = useState(gradients[1] || defaultValue as string);
   const [state, setState] = useState(gradients[2] || defaultValue as string);
 
   useEffect(() => {
-    setDeg   (gradients[0] as unknown as number || 15);
-    setMain  (gradients[1] || defaultValue as string);
-    setState (gradients[2] || defaultValue as string);
+    setDeg(gradients[0] as unknown as number || 15);
+    setMain(gradients[1] || defaultValue as string);
+    setState(gradients[2] || defaultValue as string);
   }, [defaultValue, gradients, setDeg, setMain, setState]);
 
   const handleDeg = useCallback((e: MouseEvent, value: number | string) => {
@@ -42,7 +42,7 @@ export const SetLinearGradient: FC<Props> = memo(({ selectedItem, sx, defaultVal
     setState(value);
     onChange('background', linearGradient(main, value, deg as number));
   }, [main, deg, setState, onChange]);
- 
+
 
   return (
     <>

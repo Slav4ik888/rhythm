@@ -11,14 +11,13 @@ interface Props {
 }
 
 /** Отображать легенду на графиках или нет */
-export const ChartLegends: FC<Props> = memo(({ selectedItem }) => {
-  return (
+export const ChartLegends: FC<Props> = memo(({ selectedItem }) => (
     <RowWrapper>
       <ConfiguratorTextTitle bold title='Chart label' toolTitle='Показать метки для графика' />
       <FlagByScheme
         scheme       = 'settings.chartOptions.plugins.legend.display'
         title        = 'Chart label'
-        toolTitle    = 'Показать метки для графика'     
+        toolTitle    = 'Показать метки для графика'
         selectedItem = {selectedItem}
       />
 
@@ -29,5 +28,4 @@ export const ChartLegends: FC<Props> = memo(({ selectedItem }) => {
         selectedItem = {selectedItem}
       />
     </RowWrapper>
-  )
-});
+  ));

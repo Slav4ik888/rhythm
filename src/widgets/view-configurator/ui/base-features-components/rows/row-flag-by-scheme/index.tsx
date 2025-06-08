@@ -13,8 +13,7 @@ interface Props {
   sx?          : any
 }
 
-export const RowFlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, toolTitle, sx }) => {
-  return (
+export const RowFlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, toolTitle, sx }) => (
     <RowWrapperTitle title={title} toolTitle={toolTitle} sx={sx}>
       <FlagByScheme
         scheme       = {scheme}
@@ -23,5 +22,4 @@ export const RowFlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, t
         selectedItem = {selectedItem}
       />
     </RowWrapperTitle>
-  )
-});
+  ));

@@ -13,9 +13,7 @@ interface Props {
 }
 
 /** Рамки */
-export const Borders: FC<Props> = memo(({ selectedItem, onChange }) => {
-
-  return (
+export const Borders: FC<Props> = memo(({ selectedItem, onChange }) => (
     <SubHeader title='Рамка'>
       <BorderRow
         selectedItem = {selectedItem}
@@ -29,5 +27,4 @@ export const Borders: FC<Props> = memo(({ selectedItem, onChange }) => {
         onChange     = {onChange}
       />
     </SubHeader>
-  )
-});
+  ));

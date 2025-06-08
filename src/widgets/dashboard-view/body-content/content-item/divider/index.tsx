@@ -11,12 +11,8 @@ interface Props {
 }
 
 /** Item divider */
-export const ItemDivider: FC<Props> = memo(({ item, onSelect }) => {
-
-
-  return (
+export const ItemDivider: FC<Props> = memo(({ item, onSelect }) => (
     <ItemWrapper item={item} onSelect={onSelect}>
       <MDDivider />
     </ItemWrapper>
-  )
-});
+  ));

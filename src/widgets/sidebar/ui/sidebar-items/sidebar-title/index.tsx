@@ -13,10 +13,10 @@ interface Props {
 export const SidebarTitle: FC<Props> = memo(({ textColor, title }) => (
   <MDTypography
     color         = {textColor}
-    display       = "block"
-    variant       = "caption"
-    fontWeight    = "bold"
-    textTransform = "uppercase"
+    display       = 'block'
+    variant       = 'caption'
+    fontWeight    = 'bold'
+    textTransform = 'uppercase'
     pl            = {3}
     mt            = {2}
     mb            = {1}
@@ -26,4 +26,3 @@ export const SidebarTitle: FC<Props> = memo(({ textColor, title }) => (
   </MDTypography>
 ));
 
-    

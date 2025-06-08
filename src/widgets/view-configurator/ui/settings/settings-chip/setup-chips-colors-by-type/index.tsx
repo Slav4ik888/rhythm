@@ -21,9 +21,9 @@ export const SetupChipsColorsByType: FC<Props> = memo(({ type }) => {
     Object.values(startEntities).forEach(item => {
       if (item[type]) result.add(item[type])
     });
-    
+
     return Array.from(result) || [];
-  }, [startEntities]);
+  }, [type, startEntities]);
 
 
   return (

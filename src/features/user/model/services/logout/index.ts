@@ -14,14 +14,14 @@ export const serviceLogout = createAsyncThunk <
   ThunkConfig<Errors>
 >(
   'features/user/logout',
+  // eslint-disable-next-line consistent-return
   async (_, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
-    
+
     try {
       await extra.api.get(paths.user.logout);
-      
-      dispatch(actionsCompany.setCompany({ companyId: '', company: {} as Company}));
-      return;
+
+      dispatch(actionsCompany.setCompany({ companyId: '', company: {} as Company }));
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
@@ -29,8 +29,3 @@ export const serviceLogout = createAsyncThunk <
     }
   }
 );
-
-
-
-
-    

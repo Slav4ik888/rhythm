@@ -30,7 +30,7 @@ export const BorderRow: FC<Props> = memo(({ selectedItem, onChange }) => {
           width        = '2.5rem'
           selectedItem = {selectedItem}
         />
-        
+
         <SelectBorderStyle
           selectedItem = {selectedItem}
           onChange     = {onChange}

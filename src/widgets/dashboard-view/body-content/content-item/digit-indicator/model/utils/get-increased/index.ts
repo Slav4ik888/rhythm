@@ -10,7 +10,7 @@ export const getIncreased = (
   kod            : string
 ): Increased => {
   const data = activeEntities[kod]?.data as number[] || [];
-  
+
   const [lastValue, prevValue] = getReversedIndicators(data);
 
   return calcIncreased(lastValue, prevValue, item.settings?.inverted);

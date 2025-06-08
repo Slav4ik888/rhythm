@@ -12,12 +12,14 @@ interface Props {
 
 /** Выбор типа графика */
 export const SelectChartType: FC<Props> = memo(({ index, selectedItem }) => {
+  const chartType = selectedItem?.settings?.charts?.[index]?.chartType;
+
   const { newStoredViewItem, changeOneChartsItem } = useDashboardView();
-  const [selectedValue, setSelectedValue] = useState<ChartType>(selectedItem?.settings?.charts?.[index]?.chartType || 'line');
+  const [selectedValue, setSelectedValue] = useState<ChartType>(chartType || 'line');
 
   useEffect(() => {
-    setSelectedValue(selectedItem?.settings?.charts?.[index]?.chartType || 'line');
-  }, [selectedItem?.settings?.charts?.[index]?.chartType]);
+    setSelectedValue(chartType || 'line');
+  }, [chartType]);
 
 
   const handleSelectedValue = useCallback((value: string) => {
@@ -25,7 +27,7 @@ export const SelectChartType: FC<Props> = memo(({ index, selectedItem }) => {
     if (isPie(newStoredViewItem) && value !== 'pie' && value !== 'doughnut') return
     setSelectedValue(value as ChartType);
     changeOneChartsItem({ field: 'chartType', value, index });
-  }, [selectedItem, changeOneChartsItem, setSelectedValue]);
+  }, [index, newStoredViewItem, changeOneChartsItem, setSelectedValue]);
 
 
   return (

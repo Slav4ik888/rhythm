@@ -15,7 +15,9 @@ Coded by www.creative-tim.com
 
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import { CustomTheme, ColorName, GradientColorName, RadiusName, GreyColor, Shadows, ColoredShadowsName } from 'app/providers/theme';
+import {
+  CustomTheme, ColorName, GradientColorName, RadiusName, GreyColor, Shadows, ColoredShadowsName
+ } from 'app/providers/theme';
 import { linearGradient, getBoxShadows } from 'shared/styles';
 
 
@@ -50,7 +52,7 @@ export default styled(Box)(({ theme, ownerState }: { theme: CustomTheme, ownerSt
     'grey-800': grey[800],
     'grey-900': grey[900],
   };
-  
+
 
   const validGradients: GradientColorName[] = [
     'primary',
@@ -106,7 +108,9 @@ export default styled(Box)(({ theme, ownerState }: { theme: CustomTheme, ownerSt
       : white.main;
   }
   else if (validColors.find((el) => el === bgColor)) {
-    backgroundValue = palette[bgColor as ColorName] ? palette[bgColor as ColorName]?.main : greyColors[bgColor as GreyColor];
+    backgroundValue = palette[bgColor as ColorName]
+      ? palette[bgColor as ColorName]?.main
+      : greyColors[bgColor as GreyColor];
   }
   else {
     backgroundValue = bgColor;

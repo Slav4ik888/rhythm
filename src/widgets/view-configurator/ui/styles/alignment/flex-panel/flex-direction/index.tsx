@@ -14,7 +14,6 @@ interface Props {
 
 /** flex-direction */
 export const FlexDirection: FC<Props> = memo(({ value = 'row', onChange }) => {
-
   const handleChange = useCallback((e: MouseEvent<HTMLElement>, newAlignment: FlexDirectionType) => {
     onChange('flexDirection', newAlignment);
   }, [onChange]);

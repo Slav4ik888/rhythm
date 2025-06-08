@@ -3,16 +3,16 @@ import { useAppDispatch } from 'shared/lib/hooks';
 import { serviceUpdateUser as updateUser } from '../../services';
 
 
+// interface Config {
+// }
 
-interface Config {
-}
-
-export const useFeaturesUser = (config: Config = {}) => {
-  const { } = config;
+export const useFeaturesUser = () => {
+  // export const useFeaturesUser = (config: Config = {}) => {
+  // const { } = config;
   const dispatch = useAppDispatch();
 
   const serviceUpdateUser = (user: Partial<User>) => dispatch(updateUser(user));
-  
+
   return {
     serviceUpdateUser,
   }

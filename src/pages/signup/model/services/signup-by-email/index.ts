@@ -7,6 +7,7 @@ import { actionsUI } from 'entities/ui';
 import { Errors } from 'shared/lib/validators';
 import { paths } from 'shared/api';
 import { LS } from 'shared/lib/local-storage';
+import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 
@@ -22,25 +23,29 @@ export const signupByEmail = createAsyncThunk<
   ThunkConfig<Errors>
 >(
   'pagesSignup/signupByEmail',
+  // eslint-disable-next-line consistent-return
   async (signupData, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
-    
+
     try {
-      const { data: { newUserData, newCompanyData, message } } = await extra.api.post<ResSignup>(paths.auth.signup.byEmail, { signupData });
-      console.log('data: ', newUserData, newCompanyData, message);
+      const { data: { newUserData, newCompanyData, message } } = await extra.api
+        .post<ResSignup>(paths.auth.signup.byEmail, { signupData });
+
+      __devLog('data: ', newUserData, newCompanyData, message);
       const companyId = newCompanyData?.id || LS.getLastCompanyId();
 
-      if (! companyId) return
+      if (! companyId) return undefined
 
       dispatch(actionsUser.setUser({ companyId, user: newUserData }));
       dispatch(actionsCompany.setCompany({ companyId, company: newCompanyData }));
       dispatch(actionsUI.setSuccessMessage(message));
-    
-      return;
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in pagesSignup/signupByEmail' });
+      // eslint-disable-next-line consistent-return
+      return rejectWithValue((e as CustomAxiosError)?.response?.data || {
+        general: 'Error in pagesSignup/signupByEmail'
+      });
     }
   }
 );

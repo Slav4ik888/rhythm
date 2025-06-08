@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { isNotUndefined, isStr } from 'shared/lib/validators';
+import { isNotUndefined, isStr } from '../../validators';
 import { UseValue } from './types';
+
 export { UseValue };
 
 /**
@@ -9,13 +10,16 @@ export { UseValue };
 export function useValue<I>(initValue?: I, initOpen?: boolean, initIsChange?: boolean): UseValue<I>  {
   const
     [value, _setValue] = useState((initValue as I)),
+    [open, _setOpen] = useState(initOpen || false),
     setValue = (value: I, open?: boolean) => {
       _setValue(prev => value);
       if (isNotUndefined(open)) _setOpen(open as boolean);
     },
     clearValue = () => _setValue((isStr(initValue) ? '' : 0) as unknown as I),
 
-    [open, _setOpen] = useState(initOpen || false),
+    [isChanges, _setIsChange] = useState(initIsChange || false),
+    setIsChanges = (v: boolean) => _setIsChange(v),
+
     setOpen = (c?: boolean) => {
       _setOpen(true);
       if (isNotUndefined(c)) setIsChanges(c as boolean);
@@ -25,17 +29,20 @@ export function useValue<I>(initValue?: I, initOpen?: boolean, initIsChange?: bo
       if (isNotUndefined(c)) setIsChanges(c as boolean);
     },
 
-    [isChanges, _setIsChange] = useState(initIsChange || false),
-    setIsChanges = (v: boolean) => _setIsChange(v),
-
     [isConfirm, _setIsConfirm] = useState(false),
     setIsConfirm = (v: boolean) => _setIsConfirm(v);
 
-  
+
   return {
-    value,     setValue,    clearValue,
-    open,      setOpen,     setClose,
-    isChanges, setIsChanges,
-    isConfirm, setIsConfirm
+    value,
+    setValue,
+    clearValue,
+    open,
+    setOpen,
+    setClose,
+    isChanges,
+    setIsChanges,
+    isConfirm,
+    setIsConfirm
   }
-};
+}

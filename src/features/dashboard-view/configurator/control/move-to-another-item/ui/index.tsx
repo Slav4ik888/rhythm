@@ -39,7 +39,7 @@ export const MoveToAnotherItem: FC = memo(() => {
   const handleToggleActiveMovement = useCallback(() => {
     if (activatedMovementId) clearActivatedMovementId()
     else setActiveMovementId()
-  }, [activatedMovementId]);
+  }, [activatedMovementId, clearActivatedMovementId, setActiveMovementId]);
 
 
   return (

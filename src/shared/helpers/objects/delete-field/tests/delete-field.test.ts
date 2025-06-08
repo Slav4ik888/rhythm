@@ -11,7 +11,7 @@ describe('deleteField', () => {
 
     deleteField(obj, 'anyField');
 
-    expect(obj).toEqual({ some: 'field'});
+    expect(obj).toEqual({ some: 'field' });
   });
 
   test('field is apsent', () => {

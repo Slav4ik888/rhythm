@@ -1,8 +1,9 @@
 import { isNotObj } from 'shared/lib/validators';
 
+/* eslint-disable */
 
 export function extend<A, B>(a: A, b: B): A & B {
-  return Object.assign({}, a, b);
+  return { ...a, ...b };
 }
 
 /** do nothing for test */
@@ -14,7 +15,7 @@ export function cloneObj<O>(obj: O): O {
 
   const newObj = JSON.stringify(obj);
   return JSON.parse(newObj);
-};
+}
 
 
 /**
@@ -25,12 +26,13 @@ export function objectLength<O extends object>(obj: O | undefined): number {
   if (isNotObj(obj)) return 0;
 
   let result = 0;
-  for (let key in obj) {
+
+  for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) result++;
   }
 
   return result;
-};
+}
 
 
 /**
@@ -51,20 +53,20 @@ export function isNotEmpty<O extends object>(obj: O | undefined): boolean {
 
 /**
  * True if all "obj" fields is empty value
- * @param {object} obj - 
+ * @param {object} obj -
  */
 export function isEmptyFields<O extends object>(
   obj: O // simple obj
 ): boolean {
   if (isNotObj(obj)) return true;
 
-  for (let key in obj) {
+  for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
       if (obj[key]) return false
     }
   }
   return true;
-};
+}
 
 /**
  * False if one of any fields in "obj" with value
@@ -78,17 +80,17 @@ export function isNoEmptyFields<O extends object>(
 
 
 export function arrFromObj<T extends object>(obj: T): Array<T> {
-  let arr = [] as T[];
+  const arr = [] as T[];
   if (isNotObj(obj)) return arr;
 
-  for (let key in obj) {
+  for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
   // @ts-ignore
       arr.push(obj[key]);
     }
   }
   return arr;
-};
+}
 
 
 /**
@@ -99,15 +101,14 @@ export function arrFromObjByObj<T>(
   obj   : T,     // role || typeListSelect || TaskStatusConst
   field : string // `status`, `currentStatus`
 ): Array<{ [k: string]: T }> {
-
-  let arr = [] as Array<{ [k: string]: T }>;
+  const arr = [] as Array<{ [k: string]: T }>;
   if (isNotObj(obj)) return arr;
 
-  for (let key in obj) {
+  for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
   // @ts-ignore
       arr.push({ [field]: obj[key] });
     }
   }
   return arr;
-};
+}

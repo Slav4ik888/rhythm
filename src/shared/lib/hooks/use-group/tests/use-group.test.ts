@@ -281,7 +281,7 @@ describe('useGroup', () => {
     expect(result.current.open).toEqual(false);
     expect(result.current.isChanges).toEqual(false);
     expect(result.current.isConfirm).toEqual(false);
-    
+
     // setIsChanges with undefined
     act(() => result.current.setIsChanges());
 

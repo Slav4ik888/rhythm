@@ -39,7 +39,7 @@ export const MOCK_USER_EMPLOYEE: User = {
   emailVerified : false,
   status        : UserStatus.NEW,
   order         : 100,
-  
+
   createdAt     : creatorFixDate(MOCK_USER_ID),
   lastChange    : creatorFixDate(MOCK_USER_ID)
 };

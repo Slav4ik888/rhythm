@@ -18,7 +18,7 @@ export const ProfilesMenuRoot: FC<Props> = ({ sx }) => {
   const [anchorPro, setAnchorPro] = useState<HTMLElement | null>(null);
   const isProfilesOpen = Boolean(anchorPro);
   const menuId         = 'profile-menu';
-  
+
   const handleProfilesMenuOpen = (event: { currentTarget: HTMLElement }) => setAnchorPro(event.currentTarget);
   const handleProfilesMenuClose = () => setAnchorPro(null);
 
@@ -30,8 +30,8 @@ export const ProfilesMenuRoot: FC<Props> = ({ sx }) => {
         aria-label    = 'account of current user'
         aria-controls = {menuId}
         aria-haspopup = 'true'
-        edge          = 'end' 
-        sx            = {sx.button} 
+        edge          = 'end'
+        sx            = {sx.button}
         onClick       = {handleProfilesMenuOpen}
       >
         <AccountCircle

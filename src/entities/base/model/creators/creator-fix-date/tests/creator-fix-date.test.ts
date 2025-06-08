@@ -15,7 +15,7 @@ describe('creatorFixDate', () => {
 
   test('With userId, but without date', () => {
     const res = creatorFixDate(MOCK_USER_ID);
-    
+
     expect(res.userId).toBe(MOCK_USER_ID);
 
     expect(res.date).not.toBeUndefined();

@@ -1,5 +1,5 @@
-import { User } from 'entities/user';
-import { Mocks } from "./types";
+import { User } from '../../../types';
+import { Mocks } from './types';
 
 
 export const mocks: Mocks = [

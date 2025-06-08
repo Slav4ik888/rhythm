@@ -1,13 +1,11 @@
 import { FC, memo, useEffect, useRef } from 'react';
 import { TextField } from '@mui/material';
-import { GridWrap } from '../../grid-wrap';
+import { GridWrap, GridStyle } from '../../grid-wrap';
 import { BoxWrap } from '../../box-wrap';
-import { Tooltip } from 'shared/ui/tooltip';
+import { Tooltip } from '../../../tooltip';
 import { getStrNumber, toNumber } from '../../../../helpers/numbers';
-import { useValue } from 'shared/lib/hooks';
-import { Errors } from 'shared/lib/validators';
-import { GridStyle } from '../../grid-wrap';
-
+import { useValue } from '../../../../lib/hooks';
+import { Errors } from '../../../../lib/validators';
 
 
 
@@ -64,22 +62,26 @@ export const TextFieldCheckNumber: FC<Props> = memo((props) => {
     } = props,
     sx       = useStyles(styles),
     focusRef = useRef(null),
-    S        = useValue(getStrNumber(String(defaultValue) || `0`)),
+    S        = useValue(getStrNumber(String(defaultValue) || '0')),
     Wrap     = box ? BoxWrap : GridWrap;
 
-  // @ts-ignore
-  useEffect(() => { autoFocus && focusRef?.current && focusRef.current.focus(); }, []);
-  useEffect(() => { changesValue !== undefined && S.setValue(String(changesValue)); }, [changesValue]);
+  useEffect(() => {
+    // @ts-ignore
+    autoFocus && focusRef?.current && focusRef.current.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => { changesValue !== undefined && S.setValue(String(changesValue)); }, [S, changesValue]);
 
 
   const handleChange = (e: any) => {
-    if (disabled) return null;
+    if (disabled) return undefined;
     S.setValue(getStrNumber(e.target.value));
 
     onCallback && onCallback();
     if (e.keyCode === 13 || e.keyCode === 27) {
       onBlur && onBlur(toNumber(S.value as string | number));
     }
+    return undefined
   };
 
 
@@ -95,9 +97,9 @@ export const TextFieldCheckNumber: FC<Props> = memo((props) => {
         <>
           <TextField
             label           = {label}
-            type            = "text"
+            type            = 'text'
             fullWidth       = {fullWidth}
-            size            = {small ? "small" : "medium"}  
+            size            = {small ? 'small' : 'medium'}
             sx              = {{ ...sx.textField }}
             disabled        = {disabled}
             value           = {S.value}

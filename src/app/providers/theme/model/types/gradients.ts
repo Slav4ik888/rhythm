@@ -10,4 +10,5 @@ export interface GradientsItem {
 
 export type GradientColorName =
   | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'light' | 'dark'
-  | 'department_7' | 'department_6' | 'department_5' | 'department_4' | 'department_3' | 'department_2' | 'department_1';
+  | 'department_7' | 'department_6' | 'department_5' | 'department_4' | 'department_3'
+  | 'department_2' | 'department_1';

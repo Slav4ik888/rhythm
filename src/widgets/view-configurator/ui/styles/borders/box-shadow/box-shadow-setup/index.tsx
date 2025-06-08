@@ -13,8 +13,8 @@ interface Props {
 /** box-shadow setup container */
 export const BoxShadowSetupContainer: FC<Props> = memo(({ selectedItem, onChange }) => {
   const [oX = 1, oY = 1, bR = 3, sR = 0, clr = 'rgba(184, 184, 184, 1)'] = useMemo(() =>
-    splitShadow(selectedItem?.styles?.boxShadow)
-    , [selectedItem]);
+    splitShadow(selectedItem?.styles?.boxShadow),
+     [selectedItem]);
 
   const handleChange = useCallback((value: string | number, index: number) => {
     switch (index) {
@@ -23,7 +23,7 @@ export const BoxShadowSetupContainer: FC<Props> = memo(({ selectedItem, onChange
       case 2: return onChange('boxShadow', `${oX}px ${oY}px ${value}px ${sR}px ${clr}`);
       case 3: return onChange('boxShadow', `${oX}px ${oY}px ${bR}px ${value}px ${clr}`);
       case 4: return onChange('boxShadow', `${oX}px ${oY}px ${bR}px ${sR}px ${value}`);
-      default: break;
+      default: return undefined
     }
   }, [oX, oY, bR, sR, clr, onChange]);
 

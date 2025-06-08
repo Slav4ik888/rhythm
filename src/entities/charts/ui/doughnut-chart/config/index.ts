@@ -27,7 +27,7 @@ export function doughnutConfig(chartConfig: ChartConfig) {
       }))],
     },
     options: updateObject({
-      
+
     }, options)
   };
 }

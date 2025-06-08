@@ -17,9 +17,7 @@ interface Props {
 }
 
 /** Вставка для RowSelectByField */
-export const RowSelectKodChildren: FC<Props> = memo(({ selectedItem, disabled }) => {
-
-  return (
+export const RowSelectKodChildren: FC<Props> = memo(({ selectedItem, disabled }) => (
     <>
       {
         selectedItem?.type === 'box' && <>
@@ -27,19 +25,20 @@ export const RowSelectKodChildren: FC<Props> = memo(({ selectedItem, disabled })
           <FlagByScheme
             scheme       = 'settings.isGlobalKod'
             title        = 'isGlobalKod'
+            // eslint-disable-next-line max-len
             toolTitle    = 'Если true, то это kod, будет автоматически подтягиваться всем children у которых стоит галка (fromGlobalKod)'
-            selectedItem = {selectedItem} 
+            selectedItem = {selectedItem}
             sx           = {{ root: { my: 2 } }}
           />
         </>
       }
       {
-        ( selectedItem?.type === 'chip' ||
-          selectedItem?.type === 'digitIndicator' ||
-          selectedItem?.type === 'growthIcon') && (<Box sx={{ ...f('-c'), gap: 2, my: 2 }}>
+        (selectedItem?.type === 'chip'
+          || selectedItem?.type === 'digitIndicator'
+          || selectedItem?.type === 'growthIcon') && (<Box sx={{ ...f('-c'), gap: 2, my: 2 }}>
           <FlagFromGlobalKod
             scheme       = 'settings.fromGlobalKod'
-            selectedItem = {selectedItem} 
+            selectedItem = {selectedItem}
           />
           <CompanyChipBySelectedItem />
           <StatisticPeriodChipBySelectedItem />
@@ -51,5 +50,4 @@ export const RowSelectKodChildren: FC<Props> = memo(({ selectedItem, disabled })
         </Box>)
       }
     </>
-  )
-});
+  ));

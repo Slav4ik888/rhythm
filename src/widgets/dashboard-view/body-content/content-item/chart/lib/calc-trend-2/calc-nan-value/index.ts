@@ -17,7 +17,6 @@ export const calcNanValue = (
   let prevValue = NaN;
   let prevIdx = NaN;
   for (let i = idx - 1; i >= 0; i--) {
-    
     if (! isNaN(arr[i])) {
       prevValue = arr[i];
       prevIdx = i;
@@ -29,7 +28,6 @@ export const calcNanValue = (
   let nextValue = NaN;
   let nextIdx = NaN;
   for (let i = idx + 1; i <= arr.length - 1; i++) {
-
     if (! isNaN(arr[i])) {
       nextValue = arr[i];
       nextIdx = i;

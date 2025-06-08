@@ -8,8 +8,8 @@ export const SettingDatePeriod: FC = memo(() => (
   <MDBox display='flex'>
     <PeriodType />
 
-    <SetPeriodDate type="start" />
-    <SetPeriodDate type="end" />
+    <SetPeriodDate type='start' />
+    <SetPeriodDate type='end' />
 
     {/* <UpdateGraphicsBtn /> */}
   </MDBox>

@@ -19,30 +19,29 @@ export function getSortedChartsByToward<T>(
     if (currentIdx === 0) { // Если первый сверху => делаем последним
       return [...data.slice(1), data[currentIdx]]
     }
-    else if (currentIdx === 1) { // Если второй сверху => делаем первым
+    if (currentIdx === 1) { // Если второй сверху => делаем первым
       return [data[currentIdx], data[0], ...data.slice(2)]
     }
-    else { // Если третий или ниже сверху => ставим между двумя предыдущими
+     // Если третий или ниже сверху => ставим между двумя предыдущими
       return  [
         ...data.slice(0, currentIdx - 1),
         data[currentIdx],
         data[currentIdx - 1],
         ...data.slice(currentIdx + 1),
       ]
-    }
   }
-  else { // type === 'down'
+   // type === 'down'
     if (currentIdx === lastIdx) { // Если последний снизу => делаем первым
       return [data[currentIdx], ...data.slice(0, currentIdx)]
     }
-    else if (currentIdx === lastIdx - 1) { // Если второй снизу => делаем последним
+    if (currentIdx === lastIdx - 1) { // Если второй снизу => делаем последним
       return [
         ...data.slice(0, currentIdx),
         data[currentIdx + 1],
         data[currentIdx]
       ]
     }
-    else { // Если третий или выше снизу => ставим между двумя нижестоящими
+     // Если третий или выше снизу => ставим между двумя нижестоящими
       return [
         ...data.slice(0, currentIdx),
         data[currentIdx + 1],
@@ -50,6 +49,4 @@ export function getSortedChartsByToward<T>(
         data[currentIdx + 2],
         ...data.slice(currentIdx + 3)
       ]
-    }
-  }
 }

@@ -17,9 +17,9 @@ interface Props {
 }
 
 
-export const CheckboxContainer: FC<Props> = memo(({ group: G, box, sx, sxCheckbox, grid, scheme = '', label = '', toolTitle }) => {
-
-  return (
+export const CheckboxContainer: FC<Props> = memo(({
+  group: G, box, sx, sxCheckbox, grid, scheme = '', label = '', toolTitle
+}) => (
     <Checkbox
       grid       = {grid}
       box        = {box}
@@ -30,5 +30,4 @@ export const CheckboxContainer: FC<Props> = memo(({ group: G, box, sx, sxCheckbo
       group      = {G}
       toolTitle  = {toolTitle}
     />
-  )
-});
+  ));

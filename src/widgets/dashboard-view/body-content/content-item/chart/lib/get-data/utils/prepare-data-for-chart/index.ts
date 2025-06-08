@@ -21,7 +21,7 @@ export const prepareDataForChart = (
   if (! itemData) return []
 
   // Подготавливаем данные при наличии shiftValues
-  const data = itemData.data.map(value => datasets?.shiftValues ? value + datasets?.shiftValues : value);
+  const data = itemData.data.map(value => datasets?.shiftValues ? (value + datasets.shiftValues) : value);
 
   // Если отличается от greatestPeriodType
   if (itemData.periodType === greatestPeriodType) return data

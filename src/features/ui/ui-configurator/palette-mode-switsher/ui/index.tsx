@@ -14,7 +14,7 @@ export const PaletteModeSwitcher = memo(() => {
   useEffect(() => {
     setChecked(mode === 'light');
   }, [mode]);
-  
+
   const togglePaletteMode = useCallback(() => {
     setMode(dispatch, mode === 'dark' ? 'light' : 'dark');
     setSidebarColor(dispatch, mode === 'dark' ? 'sidebar_grey' : 'sidebar_black');

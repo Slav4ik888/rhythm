@@ -31,7 +31,9 @@ export const copyStylesViewItem = createAsyncThunk<
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in features/dashboardView/copyStylesViewItem' });
+      return rejectWithValue((e as CustomAxiosError).response.data || {
+        general: 'Error in features/dashboardView/copyStylesViewItem'
+      });
     }
   }
 );

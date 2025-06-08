@@ -1,4 +1,4 @@
-import { Errors, isObj } from 'shared/lib/validators';
+import { Errors, isObj } from '../../validators';
 
 /**
  * For slices

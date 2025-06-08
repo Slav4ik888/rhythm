@@ -3,7 +3,6 @@ import { DashboardConditionType } from '../types';
 
 
 
-
 // Могущество | Изобилие  | Нормальная деятельность | Чрезвычайное положение  | Опасность | Несуществование
 // Power      | Abundance | Normal Activity         | State of Emergency      | Danger    | Non-Existence
 export const CONDITION_TYPE: Record<DashboardConditionType, DashboardItemType> = {

@@ -10,7 +10,7 @@ import { createArr } from '../arrays';
  */
 export function getRandomNumber(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
-};
+}
 
 
 
@@ -24,7 +24,7 @@ export function getRandomNumbers(length: number): string {
   return createArr(length)
     .map(() => getRandomNumber(0, 9).toString())
     .join('')
-};
+}
 
 
 
@@ -33,7 +33,8 @@ export function getRandomNumbers(length: number): string {
  * @return {string}
  */
 export const getRandomEngLitera = (): string => {
-  const eng = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  const eng = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+    'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
   return eng[getRandomNumber(0, 25)];
 };
@@ -43,7 +44,8 @@ export const getRandomEngLitera = (): string => {
  */
 export const getRandomPasswordChar = (): string => {
   const eng = [
-    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
+    'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
     '@', '_', '#', '$', '%', '&', '*'
   ];
@@ -77,15 +79,13 @@ export function getRandomElement<A>(array: A[]): A {
   const randomIndex = getRandomNumber(0, array.length - 1);
 
   return array[randomIndex];
-};
+}
 
 /**
  * Генерация случайного значения true\false
  * @return {Boolean}
  */
-export const getRandomBoolean = (): boolean => {
-  return Boolean(getRandomNumber(0, 1));
-};
+export const getRandomBoolean = (): boolean => Boolean(getRandomNumber(0, 1));
 
 /**
  * Возвращает перемешанный массив в случайном порядке
@@ -103,4 +103,4 @@ export function getMixedArray<A>(arr: A[]): A[] {
   }
 
   return newArr;
-};
+}

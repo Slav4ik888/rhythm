@@ -21,7 +21,7 @@ export const InfoBlock: FC = memo(() => {
       {
         kod && <>
           <Kod />
-          <KodLabel title={startEntities[kod]?.title || ''} /> 
+          <KodLabel title={startEntities[kod]?.title || ''} />
         </>
       }
       <ItemOrder order={selectedItem?.order} />

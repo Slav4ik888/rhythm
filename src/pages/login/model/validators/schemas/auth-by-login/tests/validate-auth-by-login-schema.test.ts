@@ -1,5 +1,5 @@
 import { validate, SCHEMA_NAME } from 'shared/lib/validators';
-import { MOCK_AUTH_BY_LOGIN } from 'pages/login/model/mocks';
+import { MOCK_AUTH_BY_LOGIN } from '../../../../mocks';
 
 
 describe('SCHEMA_NAME.AUTH_BY_LOGIN', () => {

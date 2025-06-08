@@ -11,8 +11,7 @@ interface Props {
 }
 
 /** Вкладка Settings for DigitIndicator */
-export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => {
-  return (
+export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => (
     <>
       <SubHeader title='Базовые настройки'>
         <SelectKodRow   selectedItem={selectedItem} />
@@ -24,21 +23,21 @@ export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ sel
         <RowInputByScheme
           scheme       = 'settings.valueNumber'
           type         = 'number'
-          selectedItem = {selectedItem} 
+          selectedItem = {selectedItem}
           title        = 'valueNumber'
           toolTitle    = 'Номер значения статистики, в обратном порядке (1 - последнее, 2 - предпоследнее)'
         />
         <RowFlagByScheme
           scheme       = 'settings.plusMinus'
           title        = 'plusMinus'
-          toolTitle    = 'Показывать знаки [+/-] при росте/падении'        
-          selectedItem = {selectedItem} 
+          toolTitle    = 'Показывать знаки [+/-] при росте/падении'
+          selectedItem = {selectedItem}
         />
         <RowFlagByScheme
           scheme       = 'settings.growthColor'
           title        = 'growthColor'
-          toolTitle    = 'Красить зелёным при росте / красным при падении'        
-          selectedItem = {selectedItem} 
+          toolTitle    = 'Красить зелёным при росте / красным при падении'
+          selectedItem = {selectedItem}
         />
       </SubHeader>
 
@@ -46,27 +45,27 @@ export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ sel
         <RowFlagByScheme
           scheme       = 'settings.reduce'
           title        = 'reduce'
-          toolTitle    = 'Убрать разряды: 12 500 700 => 12.5 млн'        
-          selectedItem = {selectedItem} 
+          toolTitle    = 'Убрать разряды: 12 500 700 => 12.5 млн'
+          selectedItem = {selectedItem}
         />
         <RowFlagByScheme
           scheme       = 'settings.noSpace'
           title        = 'noSpace'
-          toolTitle    = 'Убрать пробелы между разрядами: 12 500 => 12500'        
-          selectedItem = {selectedItem} 
+          toolTitle    = 'Убрать пробелы между разрядами: 12 500 => 12500'
+          selectedItem = {selectedItem}
         />
         <RowInputByScheme
           scheme       = 'settings.fractionDigits'
           type         = 'number'
           title        = 'fractionDigits'
           toolTitle    = 'Количество знаков после запятой'
-          selectedItem = {selectedItem} 
+          selectedItem = {selectedItem}
         />
         <RowFlagByScheme
           scheme       = 'settings.addZero'
           title        = 'addZero'
-          toolTitle    = 'Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков'        
-          selectedItem = {selectedItem} 
+          toolTitle    = 'Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков'
+          selectedItem = {selectedItem}
         />
       </SubHeader>
 
@@ -76,16 +75,15 @@ export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ sel
           title        = 'endingType'
           toolTitle    = ''
           array        = {arrayEndingType}
-          selectedItem = {selectedItem} 
+          selectedItem = {selectedItem}
         />
         <RowSelectByField
           scheme       = 'settings.endingDiffType'
           title        = 'endingDiffType'
           toolTitle    = ''
           array        = {arrayEndingDiffType}
-          selectedItem = {selectedItem} 
+          selectedItem = {selectedItem}
         />
       </SubHeader>
     </>
-  )
-});
+  ));

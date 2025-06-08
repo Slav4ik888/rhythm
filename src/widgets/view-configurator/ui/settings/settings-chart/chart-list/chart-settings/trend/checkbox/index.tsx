@@ -12,21 +12,22 @@ interface Props {
 
 /** Отображение линии тренда */
 export const ChartTrendCheckbox: FC<Props> = memo(({ index, selectedItem }) => {
+  const isTrend = Boolean(selectedItem?.settings?.charts?.[index]?.isTrend);
   const { changeOneChartsItem } = useDashboardView();
-  const [checked, setChecked] = useState(() => Boolean(selectedItem?.settings?.charts?.[index]?.isTrend));
+  const [checked, setChecked] = useState(() => isTrend);
 
   useEffect(() => {
-    setChecked(Boolean(selectedItem?.settings?.charts?.[index]?.isTrend));
-  }, [selectedItem]);
-  
+    setChecked(isTrend);
+  }, [index, isTrend]);
+
 
   const handleToggle = useCallback(() => {
     changeOneChartsItem({
       field : 'isTrend',
-      value : ! Boolean(selectedItem?.settings?.charts?.[index]?.isTrend),
+      value : ! isTrend,
       index
     });
-  }, [selectedItem, changeOneChartsItem]);
+  }, [index, isTrend, changeOneChartsItem]);
 
 
   return (

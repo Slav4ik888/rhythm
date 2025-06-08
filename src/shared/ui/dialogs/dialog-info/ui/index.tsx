@@ -1,6 +1,5 @@
 import { useTheme as useMuiTheme } from '@mui/material/styles';
-import { useMediaQuery } from '@mui/material';
-import { Dialog, DialogContent } from '@mui/material';
+import { useMediaQuery, Dialog, DialogContent } from '@mui/material';
 import { DialogTitle } from '../../dialog-title';
 import { UseBase } from 'shared/lib/hooks';
 import { ReactNode } from 'react';
@@ -56,10 +55,10 @@ export const DialogInfo: React.FC<Props> = ({
     sx    = useStyles(useTheme() as unknown as CustomTheme, styles),
     theme = useMuiTheme(),
     greaterSmScreen = useMediaQuery(theme.breakpoints.up('sm'));
-  
+
   const handlerClose = () => {
     if (onClose) return onClose()
-    O.setClose();
+    return O.setClose();
   };
 
   if (! O.open || ! children) return null;

@@ -17,13 +17,13 @@ export const definitions = {
       format    : 'email'
     },
     password: {
-      type      : "string",
+      type      : 'string',
       minLength : 6,
       maxLength : 50
     },
     confirmPassword : {
       const: {
-        $data: "1/password"
+        $data: '1/password'
       }
     }
   }

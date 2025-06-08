@@ -10,7 +10,7 @@ describe('addZeroToRest', () => {
 
   test('123 zero 5', () => expect(addZeroToRest(123, 5)).toEqual('123.00000'));
   test('123.456 zero 5', () => expect(addZeroToRest(123.456, 5)).toEqual('123.45600'));
-  test('.456 zero 5', () => expect(addZeroToRest(.456, 5)).toEqual('0.45600'));
+  test('.456 zero 5', () => expect(addZeroToRest(0.456, 5)).toEqual('0.45600'));
 
   test('9.5 zero 1', () => expect(addZeroToRest(9.5, 1)).toEqual('9.5'));
   test('-10431951.3 zero 3', () => expect(addZeroToRest(-10431951.3, 3)).toEqual('-10431951.300'));

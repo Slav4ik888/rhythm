@@ -31,7 +31,7 @@ export const DelChart: FC<Props> = memo(({ index }) => {
     const value = getArrWithoutItemByIndex(selectedItem.settings?.charts, index);
 
     changeOneSettingsField({ field: 'charts', value });
-  }, [selectedItem, changeOneSettingsField]);
+  }, [index, selectedItem, changeOneSettingsField]);
 
 
   return (

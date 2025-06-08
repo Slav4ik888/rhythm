@@ -37,12 +37,12 @@ describe('validateString', () => {
 
   test('String less min', () => {
     expect(validateString({ someFieldName: getMockStrLength(28) }, 'someFieldName', { min: 29, max: 31 }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.STR_LESS_THAN });
+      .toEqual({ someFieldName: ErrorText.STR_LESS_THAN });
   });
 
   test('String more max', () => {
     expect(validateString({ someFieldName: getMockStrLength(32) }, 'someFieldName', { min: 29, max: 31 }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.STR_MORE_THAN });
+      .toEqual({ someFieldName: ErrorText.STR_MORE_THAN });
   });
 
   test('Data is empty', () => {
@@ -59,33 +59,33 @@ describe('validateString', () => {
 
   test('String is undefined', () => {
     expect(validateString({ someFieldName: undefined }, 'someFieldName').errors)
-      .toEqual({ ['someFieldName']: ErrorText.NOT_BE_UNDEFINED });
+      .toEqual({ someFieldName: ErrorText.NOT_BE_UNDEFINED });
   });
 
 
   test('String is {}', () => {
     expect(validateString({ someFieldName: {} }, 'someFieldName').errors)
-      .toEqual({ ['someFieldName']: ErrorText.INVALID_DATA });
+      .toEqual({ someFieldName: ErrorText.INVALID_DATA });
   });
 
   test('String is []', () => {
     expect(validateString({ someFieldName: [] }, 'someFieldName').errors)
-      .toEqual({ ['someFieldName']: ErrorText.INVALID_DATA });
+      .toEqual({ someFieldName: ErrorText.INVALID_DATA });
   });
 
   test('String is null', () => {
     expect(validateString({ someFieldName: null }, 'someFieldName').errors)
-      .toEqual({ ['someFieldName']: ErrorText.INVALID_DATA });
+      .toEqual({ someFieldName: ErrorText.INVALID_DATA });
   });
 
   test('String is boolean = false', () => {
     expect(validateString({ someFieldName: false }, 'someFieldName').errors)
-      .toEqual({ ['someFieldName']: ErrorText.INVALID_DATA });
+      .toEqual({ someFieldName: ErrorText.INVALID_DATA });
   });
 
   test('String is boolean = true', () => {
     expect(validateString({ someFieldName: true }, 'someFieldName').errors)
-      .toEqual({ ['someFieldName']: ErrorText.INVALID_DATA });
+      .toEqual({ someFieldName: ErrorText.INVALID_DATA });
   });
 
 
@@ -101,7 +101,7 @@ describe('validateString', () => {
 
   test('Empty string, with length, [required]', () => {
     expect(validateString({ someFieldName: '' }, 'someFieldName', { required: true, length: 30 }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.MUST_BE_LENGTH });
+      .toEqual({ someFieldName: ErrorText.MUST_BE_LENGTH });
   });
 
   test('Valid string, with min, [required]', () => {
@@ -122,47 +122,47 @@ describe('validateString', () => {
 
   test('String less min, [required]', () => {
     expect(validateString({ someFieldName: getMockStrLength(28) }, 'someFieldName', { required: true, min: 29, max: 31 }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.STR_LESS_THAN });
+      .toEqual({ someFieldName: ErrorText.STR_LESS_THAN });
   });
 
   test('String more max, [required]', () => {
     expect(validateString({ someFieldName: getMockStrLength(32) }, 'someFieldName', { required: true, min: 29, max: 31 }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.STR_MORE_THAN });
+      .toEqual({ someFieldName: ErrorText.STR_MORE_THAN });
   });
 
   test('Data is undefined', () => {
     expect(validateString(undefined as unknown as ContainsField, 'someFieldName', { required: true }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.REQUIRED });
+      .toEqual({ someFieldName: ErrorText.REQUIRED });
   });
 
   test('String is undefined, [required]', () => {
     expect(validateString({ someFieldName: undefined }, 'someFieldName', { required: true }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.NOT_BE_UNDEFINED });
+      .toEqual({ someFieldName: ErrorText.NOT_BE_UNDEFINED });
   });
 
   test('String is {}, [required]', () => {
     expect(validateString({ someFieldName: {} }, 'someFieldName', { required: true }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.INVALID_DATA });
+      .toEqual({ someFieldName: ErrorText.INVALID_DATA });
   });
 
   test('String is [], [required]', () => {
     expect(validateString({ someFieldName: [] }, 'someFieldName', { required: true }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.INVALID_DATA });
+      .toEqual({ someFieldName: ErrorText.INVALID_DATA });
   });
 
   test('String is null, [required]', () => {
     expect(validateString({ someFieldName: null }, 'someFieldName', { required: true }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.INVALID_DATA });
+      .toEqual({ someFieldName: ErrorText.INVALID_DATA });
   });
 
   test('String is boolean = false', () => {
     expect(validateString({ someFieldName: false }, 'someFieldName', { required: true }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.INVALID_DATA });
+      .toEqual({ someFieldName: ErrorText.INVALID_DATA });
   });
 
   test('String is boolean = true', () => {
     expect(validateString({ someFieldName: true }, 'someFieldName', { required: true }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.INVALID_DATA });
+      .toEqual({ someFieldName: ErrorText.INVALID_DATA });
   });
 });
 

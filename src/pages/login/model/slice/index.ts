@@ -37,6 +37,7 @@ export const slice = createSlice({
   },
   extraReducers: builder => {
     // Auth by login
+    // eslint-disable-line @typescript-eslint/no-unused-expressions
     builder
       .addCase(authByLogin.pending, (state) => {
         state.errors  = {};
@@ -49,7 +50,7 @@ export const slice = createSlice({
       .addCase(authByLogin.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
-      }),
+      })
 
     // Recovery password
     builder

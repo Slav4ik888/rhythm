@@ -7,7 +7,7 @@ import { Increased } from 'entities/dashboard-data';
 
 const useStyles = (item: ViewItem, color: string) => {
   const root: any = {};
-  
+
   // Не все стили, тк ширина и подобное нужно только для главного элемента
   if (item?.styles?.fontSize)   root.fontSize   = stylesToSx(item?.styles)?.fontSize;
   if (item?.styles?.lineHeight) root.lineHeight = stylesToSx(item?.styles)?.lineHeight;

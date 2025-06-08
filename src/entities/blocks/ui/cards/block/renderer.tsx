@@ -19,9 +19,8 @@ interface Props  {
  * Отрисовывает компонет который содержит или может содержать группу других компонентов
  */
 export const DashboardItemsRenderer: FC<Props> = memo(({ component: Component, items }) => {
-
   if (! items || ! items.length) return null
-  
+
   return (
     <Component>
       {

@@ -11,13 +11,11 @@ interface Props {
   onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
-export const TextPanelAlignment: FC<Props> = memo(({ selectedItem, onChange }) => {
-  return (
+export const TextPanelAlignment: FC<Props> = memo(({ selectedItem, onChange }) => (
     <RowWrapper sx={{ root: { ...f('--fe') } }}>
       <TextAlignment
         value    = {selectedItem?.styles?.textAlign}
         onChange = {onChange}
       />
     </RowWrapper>
-  )
-});
+  ));

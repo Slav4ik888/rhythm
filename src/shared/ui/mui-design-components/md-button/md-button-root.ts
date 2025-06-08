@@ -169,7 +169,10 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
       backgroundValue = linearGradient(sidebar.gradients.main, sidebar.gradients.state);
     }
     else if (gradients[color as GradientColorName]) {
-      backgroundValue = linearGradient(gradients[color as GradientColorName].main, gradients[color as GradientColorName].state);
+      backgroundValue = linearGradient(
+        gradients[color as GradientColorName].main,
+        gradients[color as GradientColorName].state
+      );
     }
 
     // boxShadow value

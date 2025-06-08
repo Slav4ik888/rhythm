@@ -2,10 +2,10 @@ import type { Item } from '../types';
 
 /**
  * Возвращает массив с обновлённым item
- * @param {array} items 
+ * @param {array} items
  * @param {string} fieldOne - `taskId`
  * @param {string} fieldTwo - `userId`
- * @param {object} updateItem 
+ * @param {object} updateItem
  */
 export function updateArrWithItemByTwoFields(
   items      : Item[],
@@ -13,7 +13,8 @@ export function updateArrWithItemByTwoFields(
   fieldTwo   : string,
   updateItem : Item
 ): Item[] {
-  const idx = items.findIndex((item) => item[fieldOne] === updateItem[fieldOne] && item[fieldTwo] === updateItem[fieldTwo]);
+  const idx = items.findIndex((item) => (item[fieldOne] === updateItem[fieldOne])
+    && (item[fieldTwo] === updateItem[fieldTwo]));
 
   let newItems = [...items];
 
@@ -23,4 +24,4 @@ export function updateArrWithItemByTwoFields(
     newItems.push(updateItem);
   }
   return newItems;
-};
+}

@@ -16,10 +16,8 @@ interface Props {
   onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
-export const FlexPanelAlignment: FC<Props> = memo(({ selectedItem, onChange }) => {
-
-  return (
-    <RowWrapper sx={{ root: { ...f('-fs-sb') }}}>
+export const FlexPanelAlignment: FC<Props> = memo(({ selectedItem, onChange }) => (
+    <RowWrapper sx={{ root: { ...f('-fs-sb') } }}>
       <FlexDirection
         value    = {selectedItem?.styles?.flexDirection as FlexDirectionType}
         onChange = {onChange}
@@ -36,5 +34,4 @@ export const FlexPanelAlignment: FC<Props> = memo(({ selectedItem, onChange }) =
         />
       </Stack>
     </RowWrapper>
-  )
-});
+  ));

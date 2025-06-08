@@ -1,7 +1,7 @@
 import { FC, memo, MutableRefObject } from 'react';
 import { SignupData, reducerSignupPage } from '../model';
 import { SignupContent as Content } from './content';
-import { GettingPermissionsContainer } from 'pages/signup/ui/getting-permissions-container';
+import { GettingPermissionsContainer } from './getting-permissions-container';
 import { ActionMain, ActionHelps } from 'widgets/auth/action-container';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 import { UseGroup } from 'shared/lib/hooks';

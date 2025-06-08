@@ -22,7 +22,7 @@ export enum PhoneNumberScheme {
   _312121 = '### (###) #-##-#-##-#',
   _311221 = '### (###) #-#-##-##-#',
   _31123  = '### (###) #-#-##-###',
-  
+
   _433    = '### (####) ###-###',
   _4321   = '### (####) ###-##-#',
   _4312   = '### (####) ###-#-##',
@@ -55,13 +55,13 @@ export enum PhoneType {
 
 
 /**
- * Номер телефона 
+ * Номер телефона
  * @see https://github.com/catamphetamine/libphonenumber-js#phonenumber
  */
 export interface PhoneNumber extends ItemBase {
   type               : PhoneType
   number             : string            // The phone number in E.164 format. Example: "+712345678".
-  
+
   extension?         : string            // Ext field in '(213) 373-42-53 ext. 1234' => '1234'
   countryCallingCode : string            // The country calling code. Example: "7" - RU.
   countryCode?       : CountryCode       // Default 'RU'

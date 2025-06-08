@@ -13,7 +13,7 @@ export const getKod = (
   chart?   : ViewItemChart // В некоторых ситуациях передаётся сам chart, чтобы вернуть его Код если не подпадёт под другие условия
 ) => {
   if (! item) return '';
-  
+
   const globalItem = getFirstItemInBranchWithGlobalKod(entities, item.id);
   const isGlobalKod = globalItem?.settings?.isGlobalKod;
   const globalKod = globalItem?.settings?.kod;
@@ -26,7 +26,7 @@ export const getKod = (
     // Возвращаем Kod текущего item
     return item?.settings?.kod || '';
   }
-  else {
+
     if (chart) { // Если передали
       if (chart?.fromGlobalKod) {
         // Если Kod должен браться fromGlobalKod, то проверяем есть ли он in parentGlobalItem
@@ -34,13 +34,11 @@ export const getKod = (
       }
       return chart.kod || '';
     }
-    else {
+
       if (item?.settings?.charts?.some(it => it.fromGlobalKod)) { // У одного из charts - fromGlobalKod
         // Если Kod должен браться fromGlobalKod, то проверяем есть ли он in parentGlobalItem
         if (isGlobalKod && globalKod) return globalKod
       }
       // Если не передали chart то возвращаем Kod из первого графика
       return item?.settings?.charts?.[0]?.kod || '';
-    }
-  }
 }

@@ -13,7 +13,7 @@ interface Props {
 }
 
 /** box-shadow */
-export const BoxShadowRow: FC<Props> = memo(({ selectedItem, onChange }) => {  
+export const BoxShadowRow: FC<Props> = memo(({ selectedItem, onChange }) => {
   const [checked, setChecked] = useState(Boolean(selectedItem?.styles?.boxShadow));
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const BoxShadowRow: FC<Props> = memo(({ selectedItem, onChange }) => {
 
 
   const handleToggle = useCallback(() => {
-    if (Boolean(selectedItem?.styles?.boxShadow)) {
+    if (selectedItem?.styles?.boxShadow) {
       onChange('boxShadow', '');
     }
     else {
@@ -37,7 +37,8 @@ export const BoxShadowRow: FC<Props> = memo(({ selectedItem, onChange }) => {
       <ConfiguratorTextTitle
         bold
         title     = 'box-shadow'
-        toolTitle = '1px 1px 3px 0px rgba(184, 184, 184, 1) => offset-x | offset-y | blur-radius | spread-radius | color'
+        toolTitle = {`1px 1px 3px 0px rgba(184, 184, 184, 1) =>
+        offset-x | offset-y | blur-radius | spread-radius | color`}
       />
       <Tooltip title='background gradient'>
         <Checkbox

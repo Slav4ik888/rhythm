@@ -4,15 +4,16 @@ import { updateCompany } from '../../services';
 
 
 
-interface Config {
-}
+// interface Config {
+// }
 
-export const useFeaturesCompany = (config: Config = {}) => {
-  const { } = config;
+// export const useFeaturesCompany = (config: Config = {}) => {
+// const { } = config;
+export const useFeaturesCompany = () => {
   const dispatch = useAppDispatch();
 
   const serviceUpdateCompany = (company: Partial<Company>) => dispatch(updateCompany(company));
-  
+
   return {
     serviceUpdateCompany,
   }

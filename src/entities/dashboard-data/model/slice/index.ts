@@ -16,7 +16,7 @@ import { SetActivePeriod, SetSelectedPeriod } from './types';
 const emptyPeriod: DashboardPeriod = {
   type  : DashboardPeriodType.NINE_MONTHS,
   start : undefined,
-  end   : undefined, //new Date().getTime()
+  end   : undefined, // new Date().getTime()
 };
 
 
@@ -28,7 +28,7 @@ const initialState: StateSchemaDashboardData = {
   startEntities  : {},
   startDates     : {},
   lastUpdated    : undefined,
-  
+
   selectedPeriod : { ...emptyPeriod },
   activePeriod   : { ...emptyPeriod },
   activeEntities : {},
@@ -44,7 +44,7 @@ export const slice = createSlice({
       state.startEntities  = payload.startEntities;
       state.startDates     = payload.startDates;
       state.lastUpdated    = payload.lastUpdated;
-      
+
       state.selectedPeriod = payload.selectedPeriod;
       state.activePeriod   = payload.activePeriod;
       state.activeEntities = payload.activeEntities;
@@ -66,14 +66,21 @@ export const slice = createSlice({
         ...payload.period
       };
 
-      const { activeDates, activeEntities } = getEntitiesByPeriod(state.startEntities, state.startDates, state.activePeriod);
+      const { activeDates, activeEntities } = getEntitiesByPeriod(
+        state.startEntities,
+        state.startDates,
+        state.activePeriod
+      );
       state.activeEntities = activeEntities;
       state.activeDates    = activeDates;
 
       LS.setDashboardState(payload.companyId, state); // Save state to local storage
     },
     setSelectedPeriod: (state, { payload }: PayloadAction<SetSelectedPeriod>) => {
-      const calcedStartDate = calculateStartDate(state.selectedPeriod.end, payload.period.type || state.selectedPeriod.type || DashboardPeriodType.NINE_MONTHS);
+      const calcedStartDate = calculateStartDate(
+        state.selectedPeriod.end,
+        payload.period.type || state.selectedPeriod.type || DashboardPeriodType.NINE_MONTHS
+      );
 
       state.activePeriod = {
         ...state.activePeriod,
@@ -87,10 +94,14 @@ export const slice = createSlice({
         start: calcedStartDate
       };
 
-      const { activeDates, activeEntities } = getEntitiesByPeriod(state.startEntities, state.startDates, state.activePeriod);
+      const { activeDates, activeEntities } = getEntitiesByPeriod(
+        state.startEntities,
+        state.startDates,
+        state.activePeriod
+      );
       state.activeEntities = activeEntities;
       state.activeDates    = activeDates;
-      
+
       // Тк при первом запуске setSelectedPeriod вызывается автоматически, поэтому нужно НЕ затереть имеющиеся данные
       // TODO: перепроверить, возможно это уже надо убрать
       const oldData = LS.getDashboardState(payload.companyId) || {} as StateSchemaDashboardData; // Save state to local storage
@@ -132,7 +143,6 @@ export const slice = createSlice({
         state.errors  = getError(payload);
         state.loading = false;
       })
-      
   }
 })
 

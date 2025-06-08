@@ -4,7 +4,7 @@ import { RouteName } from 'app/providers/routes';
 
 /**
  * Является ли эта страница 'dashboard'?
- * @param route 
+ * @param route
  */
 export const isDashboardPage = (location: Location<any>): boolean => {
   const route = location?.pathname?.split('/')?.slice(1);

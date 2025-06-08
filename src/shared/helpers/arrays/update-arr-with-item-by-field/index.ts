@@ -8,18 +8,18 @@ import type { Item } from '../types';
  * v.2024-03-26
  * Возвращает массив с обновлённым item
  * Если нет массива items, то создаёт его
- * 
- * @param {Item} items 
- * @param {string} field - 
- * @param {object} updateItem 
- * @param {string | array} flags - 
- * @return {array} items 
+ *
+ * @param {Item} items
+ * @param {string} field -
+ * @param {object} updateItem
+ * @param {string | array} flags -
+ * @return {array} items
  */
 export function updateArrWithItemByField(
   items      : Item[],
   field      : string,          // поле по которому ищется объект: 'id' || 'email' || any
   updateItem : Partial<Item>,
-  flags?     : string | string[] // - если стоит 'update', то в обновляемом объекте, обновляются только 
+  flags?     : string | string[] // - если стоит 'update', то в обновляемом объекте, обновляются только
                                  //   те поля что переданы в updateItem, остальные имеющиеся остаются без изменений
                                  // - если есть 'after', то следующий нужно добавить id элемента после которого нужно добавить updateItem,
                                  //   ['after', 'id-123']
@@ -30,7 +30,7 @@ export function updateArrWithItemByField(
   let newItems = [] as Item[];
 
   // Если нет массива items, то создаём его
-  if (! items) { 
+  if (! items) {
     newItems.push(updateItem as Item);
     return newItems;
   }
@@ -39,7 +39,7 @@ export function updateArrWithItemByField(
   newItems = [...items];
 
   // Если есть - обновляем
-  if (idx !== -1) { 
+  if (idx !== -1) {
     let newUpdateItem = cloneObj(updateItem);
 
     // Если указан флаг, обрабатываем
@@ -50,7 +50,7 @@ export function updateArrWithItemByField(
     return [...newItems.slice(0, idx), newUpdateItem as Item, ...newItems.slice(idx + 1)];
   }
   // Нету - добавляем
-  else {
+
     // If flags is array
     if (isArr(flags as string[])) {
       const idxAfter = (flags as string[])?.findIndex((str) => str === 'after');
@@ -60,23 +60,22 @@ export function updateArrWithItemByField(
 
       if (idxAfter !== -1 && afterId) {
         // Есть ли afterId in Arr
-        const idxAfterInArr = items.findIndex((item) => item[field] === afterId);;
+        const idxAfterInArr = items.findIndex((item) => item[field] === afterId);
 
         // Add after 'after'
         if (idxAfterInArr !== -1) {
-          return [...newItems.slice(0, idxAfterInArr + 1), cloneObj(updateItem) as Item, ...newItems.slice(idxAfterInArr + 1)];
+          return [
+            ...newItems.slice(0, idxAfterInArr + 1),
+            cloneObj(updateItem) as Item,
+            ...newItems.slice(idxAfterInArr + 1)
+          ];
         }
         // В конец
-        else {
-
-        }
       }
     }
-    else {
-
-    }
+    // else {
+    // }
 
     newItems.push(updateItem as Item);
     return newItems;
-  }
-};
+}

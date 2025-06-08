@@ -10,7 +10,7 @@ import { creatorFixDate } from 'entities/base';
 export const getCopyViewItem = (
   copiedItem  : ActivatedCopied, // Копируемый элемент
   newParentId : ViewItemId,      // Куда вставляется, будет parentId для первого элемента
-  viewItems   : ViewItem[], 
+  viewItems   : ViewItem[],
   userId      : string
 ): ViewItem[] => {
   const copyViewItem: ViewItem[] = [];
@@ -21,7 +21,7 @@ export const getCopyViewItem = (
   // Coping first item or all nested items
   const isAll = copiedItem?.type === 'copyItemAll';
   const copyNestedItems = cloneObj(isAll ? getNestedViewItems(viewItems, copiedItem?.id) : [copyingItem]);
-  
+
   // Create new ids & set its as parentId for all nested items
   const setNewIds = (
     currentItemId : ViewItemId,
@@ -42,7 +42,7 @@ export const getCopyViewItem = (
       copyViewItem.push(currentItem);
 
       getChildren(viewItems, currentItemId).forEach(item => setNewIds(item.id, currentItem.id));
-    } 
+    }
   };
 
   setNewIds(copiedItem?.id, newParentId, true);

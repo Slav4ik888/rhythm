@@ -13,18 +13,18 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { forwardRef, FC } from "react";
+import { forwardRef, FC } from 'react';
 
 // @mui material components
-import MenuItem from "@mui/material/MenuItem";
-import Link from "@mui/material/Link";
+import MenuItem from '@mui/material/MenuItem';
+import Link from '@mui/material/Link';
 
 // Material Dashboard 2 React components
-import MDBox from "shared/ui/mui-design-components/md-box";
-import MDTypography from "shared/ui/mui-design-components/md-typography";
+import MDBox from '../../mui-design-components/md-box';
+import MDTypography from '../../mui-design-components/md-typography';
 
 // custom styles for the NotificationItem
-import menuItem from "./styles";
+import menuItem from './styles';
 
 
 interface Props {
@@ -40,11 +40,11 @@ export const NotificationItem: FC<Props> = forwardRef(({ icon, title, ...rest },
     sx={(theme) => menuItem(theme)}
   >
     {/* @ts-ignore */}
-    <MDBox component={Link} py={0.5} display="flex" alignItems="center" lineHeight={1}>
-      <MDTypography variant="body1" color="secondary" lineHeight={0.75}>
+    <MDBox component={Link} py={0.5} display='flex' alignItems='center' lineHeight={1}>
+      <MDTypography variant='body1' color='secondary' lineHeight={0.75}>
         {icon}
       </MDTypography>
-      <MDTypography variant="button" fontWeight="regular" sx={{ ml: 1 }}>
+      <MDTypography variant='button' fontWeight='regular' sx={{ ml: 1 }}>
         {title}
       </MDTypography>
     </MDBox>

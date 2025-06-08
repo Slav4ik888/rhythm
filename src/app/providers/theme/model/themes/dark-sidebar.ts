@@ -3,7 +3,7 @@ import { SidebarColorName, SidebarTheme } from './light-sidebar';
 
 
 export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
-  'sidebar_black': {
+  sidebar_black: {
     sidebar: {
       main         : 'rgba(66, 66, 74, 1)',
       focus        : 'rgba(66, 66, 74, 1)',
@@ -16,7 +16,7 @@ export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
       },
     }
   },
-  'sidebar_blue': {
+  sidebar_blue: {
     sidebar: {
       main         : 'rgba(31, 63, 94, 1)',
       focus        : 'rgba(31, 63, 94, 1)',
@@ -29,7 +29,7 @@ export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
       },
     }
   },
-  'sidebar_grey': {
+  sidebar_grey: {
     sidebar: {
       main         : 'rgb(72 72 72)',
       focus        : 'rgb(72 72 72)',

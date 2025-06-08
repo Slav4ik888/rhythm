@@ -14,21 +14,22 @@ interface Props {
 
 /** Цвет линии тренда */
 export const ChartTrendColor: FC<Props> = memo(({ index, selectedItem }) => {
+  const trendDataSets = selectedItem?.settings?.charts?.[index]?.trendDataSets;
   const { changeOneChartsItem } = useDashboardView();
 
   const handleChange = useCallback((value: string | number) => {
-    const trendDataSets = cloneObj(selectedItem?.settings?.charts?.[index]?.trendDataSets) || {} as ChartConfigTrendDatasets;
-    trendDataSets.borderColor = value as string;
+    const trend = cloneObj(trendDataSets) || {} as ChartConfigTrendDatasets;
+    trend.borderColor = value as string;
 
-    changeOneChartsItem({ field: 'trendDataSets', value: { ...trendDataSets }, index });
-  }, [selectedItem, index, changeOneChartsItem]);
+    changeOneChartsItem({ field: 'trendDataSets', value: { ...trend }, index });
+  }, [trendDataSets, index, changeOneChartsItem]);
 
 
   return (
     <RowWrapper>
       <ConfiguratorTextTitle bold title='Trend color' toolTitle='Выберите цвет линии тренда' />
       <ColorPicker
-        defaultColor = {selectedItem?.settings?.charts?.[index]?.trendDataSets?.borderColor as string}
+        defaultColor = {trendDataSets?.borderColor as string}
         onChange     = {handleChange}
       />
     </RowWrapper>

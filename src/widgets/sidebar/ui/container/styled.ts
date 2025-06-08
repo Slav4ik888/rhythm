@@ -33,7 +33,7 @@ export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, owne
   const { sidebarMini, sidebarWidth, isSidebar } = ownerState;
   const { xxl } = getBoxShadows(theme);
 
-  let backgroundValue = linearGradient(sidebar.gradients.main, sidebar.gradients.state);
+  const backgroundValue = linearGradient(sidebar.gradients.main, sidebar.gradients.state);
 
   // styles for the sidebar when sidebarMini={false}
   const drawerFullwidthStyles = () => ({
@@ -53,7 +53,7 @@ export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, owne
     [breakpoints.down('sm')]: {
       transform: `translateX(${pxToRem(-320)})`,
     },
-    
+
     [breakpoints.up('xl')]: {
       overflowX: 'hidden',
       transition: transitions.create(['width', 'background-color'], {

@@ -32,8 +32,8 @@ export const BorderRadiusRow: FC<Props> = memo(({ selectedItem }) => {
 
   const handleChange = useCallback((field: ViewItemStylesField, value: number | string) => {
     if (! selectedItem) return;
-    
-    let newStyles: ViewItemStyles = {
+
+    const newStyles: ViewItemStyles = {
       ...selectedItem?.styles,
       [field]: value,
     };
@@ -44,7 +44,7 @@ export const BorderRadiusRow: FC<Props> = memo(({ selectedItem }) => {
       setFieldEmpty(newStyles, 'borderBottomLeftRadius');
       setFieldEmpty(newStyles, 'borderBottomRightRadius');
     }
-    
+
     setSelectedStyles(newStyles);
   }, [selectedItem, setSelectedStyles]);
 

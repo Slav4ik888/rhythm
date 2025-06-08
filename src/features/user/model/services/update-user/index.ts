@@ -18,12 +18,12 @@ export const serviceUpdateUser = createAsyncThunk <
   'features/user/update',
   async (userData, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
-    
+
     try {
       await extra.api.post(paths.user.update, { userData });
-      
+
       dispatch(actionsUI.setSuccessMessage('Сохранено'));
-    
+
       return userData;
     }
     catch (e) {
@@ -33,4 +33,3 @@ export const serviceUpdateUser = createAsyncThunk <
   }
 );
 
-    

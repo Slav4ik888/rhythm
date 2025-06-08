@@ -9,7 +9,6 @@ interface Props {
 
 
 export const PageError: FC<Props> = memo(({ sx }) => {
-
   const handlerReloadPage = () => {
     location.reload();
   };

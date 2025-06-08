@@ -20,7 +20,7 @@ Coded by www.creative-tim.com
  */
 
 import { CustomTheme } from '../../../app/providers/theme/model/types';
-import { pxToRem } from "./pxToRem";
+import { pxToRem } from './pxToRem';
 
 
 
@@ -43,20 +43,19 @@ const baseProperties = {
 
 
 export const getTypography = ({ palette: { dark } }: CustomTheme) => {
-
   const baseHeadingProperties = {
     fontFamily: baseProperties.fontFamily,
     color: dark.main,
     fontWeight: baseProperties.fontWeightBold,
   };
-  
+
   const baseDisplayProperties = {
     fontFamily: baseProperties.fontFamily,
     color: dark.main,
     fontWeight: baseProperties.fontWeightLight,
     lineHeight: 1.2,
   };
-  
+
   return {
     fontFamily: baseProperties.fontFamily,
     fontWeightLighter: baseProperties.fontWeightLighter,
@@ -134,7 +133,7 @@ export const getTypography = ({ palette: { dark } }: CustomTheme) => {
       fontSize: baseProperties.fontSizeSM,
       fontWeight: baseProperties.fontWeightLight,
       lineHeight: 1.5,
-      textTransform: "uppercase",
+      textTransform: 'uppercase',
     },
 
     caption: {
@@ -185,8 +184,8 @@ export const getTypography = ({ palette: { dark } }: CustomTheme) => {
       md: baseProperties.fontSizeMD,
       lg: baseProperties.fontSizeLG,
       xl: baseProperties.fontSizeXL,
-      "2xl": baseProperties.fontSize2XL,
-      "3xl": baseProperties.fontSize3XL,
+      '2xl': baseProperties.fontSize2XL,
+      '3xl': baseProperties.fontSize3XL,
     },
 
     lineHeight: {

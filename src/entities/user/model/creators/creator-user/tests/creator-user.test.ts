@@ -18,7 +18,7 @@ describe('creatorUser', () => {
     res.lastChange.date  = 0;
     user.createdAt.date  = 0;
     user.lastChange.date = 0;
-    
+
     expect(res).toEqual(user);
   });
 });

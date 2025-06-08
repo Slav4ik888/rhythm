@@ -12,9 +12,7 @@ interface Props {
 }
 
 /** Вкладка Settings for GrowthIcon */
-export const ViewItemGrowthIconSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => {
-
-  return (
+export const ViewItemGrowthIconSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => (
     <>
       {/* GLOBAL SETTINGS */}
       <SubHeader title='Базовые настройки'>
@@ -29,5 +27,4 @@ export const ViewItemGrowthIconSettingsConfigurator: FC<Props> = memo(({ selecte
         <ScaleValue     selectedItem={selectedItem} />
       </SubHeader>
     </>
-  )
-});
+  ));

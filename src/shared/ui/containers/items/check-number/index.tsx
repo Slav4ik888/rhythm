@@ -19,12 +19,13 @@ type Props = {
 };
 
 
-export const CheckNumber: React.FC<Props> = ({ group: G, grid, fullWidth, changesValue, scheme, toolTitle, label, errorField, errors }) => {
+export const CheckNumber: React.FC<Props> = ({ group: G, grid, fullWidth, changesValue, scheme, toolTitle,
+  label, errorField, errors }) => {
   const
     handlerBlur       = (value: number) => changeGroup(G, [{ value, scheme }]),
     handlerSetChanges = () => setChanges(G);
-  
-  
+
+
   return (
     <TextFieldCheckNumber
       grid         = {grid}

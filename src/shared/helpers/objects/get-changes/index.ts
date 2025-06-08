@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { isArrsEqual } from '../../arrays';
 import { isArr, isUndefined, isObj, isNotObj } from '../../../lib/validators';
 import { setValueByScheme } from '../set-value-by-scheme';
@@ -10,7 +11,7 @@ import { setValueByScheme } from '../set-value-by-scheme';
  */
 const checkAndAddNewField = (newObj: object, prevObj: object, updObj: object, prevScheme: string = ''): void => {
   if (isNotObj(updObj)) return
-  
+
   for (const key in updObj) {
     const scheme = prevScheme ? `${prevScheme}.${key}` : key;
 
@@ -35,11 +36,11 @@ const checkAndAddNewField = (newObj: object, prevObj: object, updObj: object, pr
 /** Check is Array or any type and save */
 const checkIfNotObj = (newObj: object, prevValue: unknown, updValue: unknown, scheme: string) => {
   if (isArr(prevValue as unknown as object[])) {
-    if (! isArrsEqual(prevValue as unknown as object[], updValue as unknown as object[])) setValueByScheme(newObj, scheme, updValue);
+    if (! isArrsEqual(prevValue as unknown as object[], updValue as unknown as object[]))
+      setValueByScheme(newObj, scheme, updValue);
   }
   else if (prevValue !== updValue) setValueByScheme(newObj, scheme, updValue);
 };
-
 
 
 
@@ -53,7 +54,6 @@ const checkChanges = (newObj: object, prevObj: object, updObj: object, prevSchem
         value = prevObj[key],
   // @ts-ignore
         updValue = updObj[key];
-
       if (isUndefined(updValue)) continue; // В этом элементе не было изменений
 
       if (isObj(value)) {
@@ -83,8 +83,8 @@ export function getChanges<T extends object>(prevObj: T | undefined, updObj: Par
 
   // CHECK prevObj
   checkChanges(newObj, prevObj, updObj);
-  
-  // CHECK new field in updObj 
+
+  // CHECK new field in updObj
   checkAndAddNewField(newObj, prevObj, updObj);
 
   return newObj

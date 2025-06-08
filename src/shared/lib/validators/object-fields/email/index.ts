@@ -8,7 +8,6 @@ import { ContainsField } from '../types';
 
 /** Проверяем correct email, example for восстановления пароля */
 export const validateEmail = (data: ContainsField, required?: boolean): Validation => {
-
   const res = validateString(data, 'email', { required, max: 50 });
   if (! res.valid) return res
 

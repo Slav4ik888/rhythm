@@ -90,13 +90,13 @@ function collapseIconBox(theme: CustomTheme, ownerState: OwnerStateIconBox) {
     display      : 'grid',
     minWidth     : pxToRem(32),
     minHeight    : pxToRem(32),
-    
+
     borderRadius : borderRadius.md,
     placeItems   : 'center',
     color: (! darkMode && ! active) || ! active
       ? white.main
       : dark.main,
-    
+
     transition: transitions.create('margin', {
       easing   : transitions.easing.easeInOut,
       duration : transitions.duration.standard,

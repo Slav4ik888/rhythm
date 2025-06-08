@@ -35,7 +35,8 @@ export function deepEqual<AnyObject>(obj1: AnyObject, obj2: AnyObject): boolean 
 
   if (keys1.length !== keys2.length) return false;
 
-  for (let key of keys1) {
+  // eslint-disable-next-line
+  for (const key of keys1) {
     if (!keys2.includes(key)) return false;
     // @ts-ignore
     if (!deepEqual(obj1[key], obj2[key])) return false;

@@ -9,6 +9,6 @@ export const schema = {
 
   properties: {
     userId : { $ref: `${SCHEMA_NAME.DEFS_USER}#/definitions/userId` },
-    date   : { $ref: `${SCHEMA_NAME.DEFS_BASE}#/definitions/date`}
+    date   : { $ref: `${SCHEMA_NAME.DEFS_BASE}#/definitions/date` }
   }
 };

@@ -12,13 +12,12 @@ export const sendTransactions = createAsyncThunk <
   ThunkConfig<Errors>
 >(
   'features/transactions/sendTransactions',
+  // eslint-disable-next-line consistent-return
   async (request, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
-    
+
     try {
       await extra.api.post(paths.transactions.sendTransactions, request);
-
-      return;
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);

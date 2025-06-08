@@ -22,11 +22,11 @@ const SignupPage: FC = memo(() => {
     firstNameRef = useRef(null),
     emailRef     = useRef(null),
     passwordRef  = useRef(null);
-    
-  
+
+
   useEffect(() => {
     if (auth) navigate(RoutePath.ROOT)
-  }, [auth]);
+  }, [auth, navigate]);
 
 
   const handleSubmit = useCallback(async () => {
@@ -45,7 +45,7 @@ const SignupPage: FC = memo(() => {
 
     const { valid, errors } = validateSignupData(signupData);
     valid ? serviceSignup(signupData) : setErrors(errors);
-  }, [S.group]);
+  }, [loading, S, isMobile, serviceSignup, setErrors]);
 
 
   return (

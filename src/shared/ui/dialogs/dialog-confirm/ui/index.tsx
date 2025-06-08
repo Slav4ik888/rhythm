@@ -1,6 +1,6 @@
 import { Dialog, DialogTitle, DialogActions } from '@mui/material';
 import { FC } from 'react';
-import { Button, ButtonType } from 'shared/ui/buttons';
+import { Button, ButtonType } from '../../../buttons';
 
 
 
@@ -10,7 +10,7 @@ export enum ConfirmType {
   WITHOUT_SAVE  = 'Не сохранять',
   NO_QUESTIONS  = 'Понятно',
   ADD_TO_COURSE = 'Добавить'
-};
+}
 
 
 type Props = {
@@ -23,12 +23,10 @@ type Props = {
 
 
 /** 2023-10-30 */
-export const DialogConfirm: FC<Props> = ({ open, typeOk, title, onOk, onCancel }) => {
-  
-  return (
+export const DialogConfirm: FC<Props> = ({ open, typeOk, title, onOk, onCancel }) => (
     <Dialog
       open={open}
-      maxWidth="xs"
+      maxWidth='xs'
       sx={{
         p: 2,
         '& .MuiPaper-root': {
@@ -44,9 +42,9 @@ export const DialogConfirm: FC<Props> = ({ open, typeOk, title, onOk, onCancel }
 
       <DialogActions sx={{ p: { xs: 2, sm: 4 } }}>
         {
-          typeOk !== ConfirmType.NO_QUESTIONS &&
-            <Button
-              text    = {'Отменить'}
+          typeOk !== ConfirmType.NO_QUESTIONS
+            && <Button
+              text    = 'Отменить'
               type    = {ButtonType.SECONDARY}
               sx      = {{ root: { mr: 2 } }}
               onClick = {onCancel}
@@ -54,10 +52,9 @@ export const DialogConfirm: FC<Props> = ({ open, typeOk, title, onOk, onCancel }
         }
         <Button
           text    = {typeOk}
-          variant = "outlined"
+          variant = 'outlined'
           onClick = {onOk}
         />
       </DialogActions>
     </Dialog>
-  )
-};
+  );

@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
-import Link from "@mui/material/Link";
-import SidebarCollapse from "../sidebar-collapse";
+import Link from '@mui/material/Link';
+import SidebarCollapse from '../sidebar-collapse';
 
 
 
@@ -15,9 +15,9 @@ interface Props {
 export const SidebarLink: FC<Props> = memo(({ href, activeName, noCollapse, icon, title }) => (
   <Link
     href   = {href}
-    target = "_blank"
-    rel    = "noreferrer"
-    sx     = {{ textDecoration: "none" }}
+    target = '_blank'
+    rel    = 'noreferrer'
+    sx     = {{ textDecoration: 'none' }}
   >
     <SidebarCollapse
       title      = {title}
@@ -28,4 +28,3 @@ export const SidebarLink: FC<Props> = memo(({ href, activeName, noCollapse, icon
   </Link>
 ));
 
-    

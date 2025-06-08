@@ -31,7 +31,8 @@ export const slice = createSlice({
     setErrors: (state, { payload }: PayloadAction<Errors>) => {
       state.errors = payload;
     },
-    setErrorStatus: (state, { payload: { status, pathname } }: PayloadAction<{ status: number, pathname?: string }>) => {
+    setErrorStatus: (state,
+      { payload: { status, pathname } }: PayloadAction<{ status: number, pathname?: string }>) => {
       state.errorStatus = status;
       if (pathname) state.replacePath = pathname;
     },
@@ -40,7 +41,7 @@ export const slice = createSlice({
     setMessage: (state, { payload }: { payload: Message }) => {
       state.message = payload;
     },
-    
+
     setInfoMessage: (state, { payload }: { payload: string }) => {
       state.message = {
         type    : MessageType.INFO,
@@ -75,8 +76,8 @@ export const slice = createSlice({
 
     // SCREENS
     setScreenFormats: (state, { payload }: PayloadAction<number>) => {
-      state.screenFormats = getScreenFormats(payload),
-      state.screenSize    = payload
+      state.screenFormats = getScreenFormats(payload);
+      state.screenSize    = payload;
     },
     setScreenSize: (state, { payload }: PayloadAction<number>) => {
       state.screenSize = payload;

@@ -9,13 +9,13 @@ export function addSpaceBetweenNumbers(_number: number | string): string {
 
   const number = parseFloat(_number as string);
   if (! number && number !== 0) return '';
-  
+
   // Перевести в строку
-  let newNumber = String(_number);
+  const newNumber = String(_number);
 
   // Разрезаем до и после знака
   let beforeDot = newNumber.split('.')[0];
-  let afterDot = newNumber.split('.')[1] ? ',' + newNumber.split('.')[1] : '';
+  const afterDot = newNumber.split('.')[1] ? `,${newNumber.split('.')[1]}` : '';
 
   // Добавляем пробелы
   let result = '';

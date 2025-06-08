@@ -33,7 +33,8 @@ export const ItemDigitIndicatorValue: FC<Props> = memo(({ item, value, color }) 
   const toolTitle = useMemo(() => {
     if (isUndefined(item?.settings?.kod)) return 'Не выбран код статистики';
     if (value === '-') return 'Отсутствует значение статистики';
-  }, [item, value]);
+    return '';
+  }, [item?.settings?.kod, value]);
 
 
   return (

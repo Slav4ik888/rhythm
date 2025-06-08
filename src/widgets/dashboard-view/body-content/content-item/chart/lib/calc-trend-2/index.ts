@@ -10,8 +10,8 @@ const sum = (arr: number[]): number => arr.reduce((prev, val) => prev + val, 0);
 /**
  * Расчитывает значения для линейного тренда
  *  - если значение отсутствует (пропуск) то это учитывается
- * @param dates 
- * @param items 
+ * @param dates
+ * @param items
  * @returns items for trend-line
  */
 export const calcTrend2 = (
@@ -21,11 +21,11 @@ export const calcTrend2 = (
   if (! dates || ! dates.length || ! items || ! items.length) return []
 
   // Удаляем вначале и конце не цифровые значения
-  // Приводим все значения к цифрам, if '' (empty) => NaN  
-  
+  // Приводим все значения к цифрам, if '' (empty) => NaN
+
   const yClear = removeBorderlineEmptyValues(items).map(v => isNum(v) ? v : NaN);
   const y = yClear.map((v, i) => calcNanValue(yClear, v, i)); // 10 0 3 6 9 12 15 35 25 15
-  
+
   // Количество точек данных
   // const n = dates.length; // 7
   const n = y.length; // 10
@@ -56,7 +56,7 @@ export const calcTrend2 = (
   const bChisl = sumY - m * sumX; // -6,666666667
   const bZnam  = n; // 10
   const b = bChisl / bZnam; // -0,67
-  
+
   // y — прогнозируемое значение
   // x — момент времени
   const result = x.map(valueX => m * valueX + b);

@@ -4,11 +4,14 @@ import { getScreenSize } from '../sizes';
 
 
 /** Listener on resize display */
-export const screenResizeListener = (setScreenFormats: (size: number) => void) =>{
-
-  window.addEventListener("resize", resizeThrottler, false);
+export const screenResizeListener = (setScreenFormats: (size: number) => void) => {
   // log(`START LISTENER RESIZE`);
 
+  // Получаем текущий размер экрана и сохраняем в store
+  function actualResizeHandler() {
+    const screenSize = getScreenSize();
+    setScreenFormats(screenSize);
+  }
 
   // @ts-ignore
   let resizeTimeout;
@@ -16,7 +19,7 @@ export const screenResizeListener = (setScreenFormats: (size: number) => void) =
     // ignore resize events as long as an actualResizeHandler execution is in the queue
     // @ts-ignore
     if (! resizeTimeout) {
-      resizeTimeout = setTimeout(function() {
+      resizeTimeout = setTimeout(() => {
         resizeTimeout = null;
         actualResizeHandler();
 
@@ -25,11 +28,8 @@ export const screenResizeListener = (setScreenFormats: (size: number) => void) =
     }
   }
 
-  // Получаем текущий размер экрана и сохраняем в store
-  function actualResizeHandler() {
-    const screenSize = getScreenSize();
-    setScreenFormats(screenSize);
-  }
+  window.addEventListener('resize', resizeThrottler, false);
+
 
   // Один раз запускаем в самом начале
   actualResizeHandler();

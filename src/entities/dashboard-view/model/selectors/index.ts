@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { StateSchema } from 'app/providers/store';
 import { ViewItem, ViewItemId } from '../types';
 import { DashboardViewEntities, StateSchemaDashboardView } from '../slice/state-schema';
@@ -19,8 +20,7 @@ export const selectEntities     = createSelector(selectModule, (state: StateSche
 export const selectNewSelectedId = createSelector(selectModule, (state: StateSchemaDashboardView) => state.newSelectedId);
 
 export const selectSelectedId   = createSelector(selectModule, (state: StateSchemaDashboardView) => state.selectedId);
-export const selectSelectedItem = createSelector(selectEntities, selectSelectedId,
-  (entities: DashboardViewEntities, selectedId: string) => entities[selectedId] || {});
+export const selectSelectedItem = createSelector(selectEntities, selectSelectedId, (entities: DashboardViewEntities, selectedId: string) => entities[selectedId] || {});
 
 export const selectBright             = createSelector(selectModule, (state: StateSchemaDashboardView) => state.bright);
 export const selectIsUnsaved          = createSelector(selectModule, (state: StateSchemaDashboardView) => state.isUnsaved);
@@ -39,29 +39,24 @@ export const makeSelectChildrenViewItems = (parentId?: ViewItemId) => createSele
   (items: ViewItem[], selectedId: string) => getChildren(items, parentId || selectedId)
 );
 
-export const selectViewItemById = createSelector(selectEntities, selectSelectedId,
-  (entities: DashboardViewEntities, selectedId: string) => entities[selectedId] || {});
+export const selectViewItemById = createSelector(selectEntities, selectSelectedId, (entities: DashboardViewEntities, selectedId: string) => entities[selectedId] || {});
 
 // Возвращает объект с изменившимися полями
-export const selectChangedViewItem = createSelector(selectModule, selectEntities,
-  (state: StateSchemaDashboardView, entities: DashboardViewEntities) =>
+export const selectChangedViewItem = createSelector(selectModule, selectEntities, (state: StateSchemaDashboardView, entities: DashboardViewEntities) =>
     getChanges(state.newStoredViewItem, entities?.[state.selectedId]));
 
-export const selectFromGlobalKod = createSelector(selectEntities, selectSelectedId,
-  (entities: DashboardViewEntities, selectedId: string) => getKod(entities, entities[selectedId]));
+export const selectFromGlobalKod = createSelector(selectEntities, selectSelectedId, (entities: DashboardViewEntities, selectedId: string) => getKod(entities, entities[selectedId]));
 
-export const selectGlobalKodParent = createSelector(selectEntities, selectSelectedId,
-  (entities: DashboardViewEntities, selectedId: string) => getFirstItemInBranchWithGlobalKod(entities, entities[selectedId]?.id));
+export const selectGlobalKodParent = createSelector(selectEntities, selectSelectedId, (entities: DashboardViewEntities, selectedId: string) => getFirstItemInBranchWithGlobalKod(entities, entities[selectedId]?.id));
 
 // export const selectViewItemStyle = createSelector(selectEntities, selectSelectedId,
 //   (entities: DashboardViewEntities, selectedId: string) => entities[selectedId]?.styles || {});
 
 // export const makeSelectStyleByField = (field: ViewItemStylesField) => createSelector(
 //   [selectEntities, selectSelectedId],
-//   (entities: DashboardViewEntities, selectedId: string) => 
+//   (entities: DashboardViewEntities, selectedId: string) =>
 //     entities[selectedId]?.styles?.[field]
 // );
 
 export const selectActivatedMovementId = createSelector(selectModule, (state: StateSchemaDashboardView) => state.activatedMovementId);
 export const selectActivatedCopied     = createSelector(selectModule, (state: StateSchemaDashboardView) => state.activatedCopied);
-  

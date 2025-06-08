@@ -14,18 +14,17 @@ Coded by www.creative-tim.com
 */
 
 import { setValue } from 'shared/lib/charts';
-import { isNotUndefined } from 'shared/lib/validators';
 import { ChartConfigDatasets, ChartConfigOptions } from '../../../../../../../entities/charts/model/types';
 
 
-
 export function configs(
+  // eslint-disable-next-line default-param-last
   labels   : any[] = [],
   datasets : ChartConfigDatasets[],
   options  : ChartConfigOptions = {}
 ) {
   const { scales } = options;
-  
+
   return {
     data: {
       labels,
@@ -34,11 +33,11 @@ export function configs(
           label                : datasets[0].label,
           tension              : 0,
           pointRadius          : setValue(datasets[0].pointRadius, 5), // Толщика точки (круглешков)
-          pointBorderColor     : "transparent",
-          pointBackgroundColor : setValue(datasets[0].pointBackgroundColor, "rgba(255, 255, 255, .8)"),
-          borderColor          : setValue(datasets[0].borderColor, "rgba(255, 255, 255, .8)"),
+          pointBorderColor     : 'transparent',
+          pointBackgroundColor : setValue(datasets[0].pointBackgroundColor, 'rgba(255, 255, 255, .8)'),
+          borderColor          : setValue(datasets[0].borderColor, 'rgba(255, 255, 255, .8)'),
           borderWidth          : setValue(datasets[0].borderWidth, 3), // Толщика линии
-          backgroundColor      : setValue(datasets[0].backgroundColor, "transparent"),
+          backgroundColor      : setValue(datasets[0].backgroundColor, 'transparent'),
           fill                 : setValue(datasets[0].fill, true),
           data                 : datasets[0].data,
           maxBarThickness      : 6,
@@ -55,7 +54,7 @@ export function configs(
       },
       interaction: {
         intersect : false,
-        mode      : "index",
+        mode      : 'index',
       },
       scales: {
         y: {
@@ -66,18 +65,18 @@ export function configs(
             drawOnChartArea : true,
             drawTicks       : false, // Насечки на оси
             borderDash      : [5, 5],
-            color           : setValue(scales?.y?.grid?.color, "#dadada"), // "rgba(255, 255, 255, .2)"),
+            color           : setValue(scales?.y?.grid?.color, '#dadada'), // "rgba(255, 255, 255, .2)"),
           },
           // Подпись оси
           ticks: {
             display : true,
-            color   : setValue(scales?.y?.ticks?.color, "rgba(0, 0, 0, .8)"), // "#f8f9fa"),
+            color   : setValue(scales?.y?.ticks?.color, 'rgba(0, 0, 0, .8)'), // "#f8f9fa"),
             padding : 10,
             font    : {
               size       : setValue(scales?.y?.ticks?.font?.size, 10),
               weight     : 300,
-              family     : "Arial", // "Roboto",
-              style      : "normal",
+              family     : 'Arial', // "Roboto",
+              style      : 'normal',
               lineHeight : 2,
             },
           },
@@ -93,18 +92,18 @@ export function configs(
             drawOnChartArea : false,
             drawTicks       : false, // Насечки на оси
             borderDash      : [5, 5],
-            color           : setValue(scales?.x?.grid?.color, "#dadada"), // "rgba(255, 255, 255, .2)"),
+            color           : setValue(scales?.x?.grid?.color, '#dadada'), // "rgba(255, 255, 255, .2)"),
           },
           // Подпись оси
           ticks: {
             display : true,
-            color   : setValue(scales?.x?.ticks?.color, "rgba(0, 0, 0, .8)"), // "#f8f9fa"),
+            color   : setValue(scales?.x?.ticks?.color, 'rgba(0, 0, 0, .8)'), // "#f8f9fa"),
             padding : 10,
             font    : {
               size       : setValue(scales?.x?.ticks?.font?.size, 10),
               weight     : 300,
-              family     : "Arial", // "Roboto",
-              style      : "normal",
+              family     : 'Arial', // "Roboto",
+              style      : 'normal',
               lineHeight : 2,
             },
           },

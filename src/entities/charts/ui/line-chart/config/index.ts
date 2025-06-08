@@ -29,7 +29,7 @@ export function lineConfig(chartConfig: ChartConfig) {
     options  = {} as ChartConfigOptions
   } = chartConfig
   const { scales } = options;
-  
+
   return {
     data: {
       labels,

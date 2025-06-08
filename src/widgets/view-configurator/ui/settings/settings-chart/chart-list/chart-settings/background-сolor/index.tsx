@@ -16,7 +16,7 @@ export const ChartBackgroundColor: FC<Props> = memo(({ index, selectedItem }) =>
 
   const handleChange = useCallback((value: string | number) => {
     changeOneDatasetsItem({ field: 'backgroundColor', value, index });
-  }, [selectedItem, changeOneDatasetsItem]);
+  }, [index, changeOneDatasetsItem]);
 
 
   return (

@@ -12,4 +12,4 @@ export const createSet = (
   OperationCommand.SET,
   path
 );
-  
+

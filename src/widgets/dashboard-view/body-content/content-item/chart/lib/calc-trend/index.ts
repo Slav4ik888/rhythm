@@ -7,8 +7,8 @@ const sum = (arr: number[]): number => arr.reduce((prev, val) => prev + val, 0);
 
 /**
  * @DEPRECATED Расчитывает значения для линейного тренда
- * @param dates 
- * @param items 
+ * @param dates
+ * @param items
  * @returns items for trend-line
  */
 export const calcTrend = (
@@ -19,7 +19,7 @@ export const calcTrend = (
 
   // Приводим все значения к цифрам
   const y = items.map(v => isNum(v) ? v : 0);
-  
+
   // Количество точек данных
   const n = dates.length; // 7
 
@@ -49,7 +49,7 @@ export const calcTrend = (
   const bChisl = sumY - m * sumX; // 35
   const bZnam  = n; // 7
   const b = bChisl / bZnam; // 5,00
-  
+
   // y — прогнозируемое значение
   // x — момент времени
   const result = x.map(valueX => m * valueX + b);

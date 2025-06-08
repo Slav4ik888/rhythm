@@ -9,7 +9,7 @@ export const calcIncreased = (
   pValue      : number,
   isInverted? : boolean // Если график перевёрнутый, то есть если задолженность уменьшается то это рост
 ): Increased => {
-  const lastValue = lValue || 0; 
+  const lastValue = lValue || 0;
   const prevValue = pValue || 0;
 
   return isInverted

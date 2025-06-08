@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { Chart } from "react-chartjs-2";
-import "chart.js/auto";
+import { FC } from 'react';
+import { Chart } from 'react-chartjs-2';
+import 'chart.js/auto';
 import { ChartConfig } from '../../model/types';
 import { barConfig } from './config';
 

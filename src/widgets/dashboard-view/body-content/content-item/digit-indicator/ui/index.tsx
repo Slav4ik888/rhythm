@@ -2,7 +2,9 @@ import { FC, memo, useMemo } from 'react';
 import { getKod, useDashboardView, ViewItem, ViewItemId } from 'entities/dashboard-view';
 import { ItemWrapper } from '../../wrapper-item';
 import { DashboardStatisticItem, Increased, useDashboardData } from 'entities/dashboard-data';
-import { getColorByIncreased, getComparisonValues, getIncreased, getReversedIndicators, ValueStringAndReduction } from '../model/utils';
+import {
+  getColorByIncreased, getComparisonValues, getIncreased, getReversedIndicators, ValueStringAndReduction
+} from '../model/utils';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { ItemDigitIndicatorValue } from './value';
 import { ItemDigitIndicatorEnding } from './ending';
@@ -15,7 +17,7 @@ import { isNotUndefined } from 'shared/lib/validators';
 
 const useStyles = (theme: CustomTheme, item: ViewItem, increased: Increased) => {
   let color = '';
-  
+
   // Если указано что цвет по росту/падению
   if (item?.settings?.growthColor) {
     color = getColorByIncreased(theme, increased, item?.settings?.unchangedBlack);
@@ -38,11 +40,11 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
   const { entities } = useDashboardView();
   const { activeEntities } = useDashboardData();
   const kod = useMemo(() => getKod(entities, item), [item, entities]);
-  
+
   const increased = useMemo(() => getIncreased(item, activeEntities, kod), [item, activeEntities, kod]);
   const color = useStyles(useTheme(), item, increased);
 
-  const statisticItem = useMemo(() => activeEntities[kod] as DashboardStatisticItem<number>, [activeEntities, item, kod]);
+  const statisticItem = useMemo(() => activeEntities[kod] as DashboardStatisticItem<number>, [activeEntities, kod]);
   const indicators = getReversedIndicators(statisticItem?.data, item?.settings?.valueNumber);
   const [lastValue, prevValue] = indicators;
 
@@ -59,7 +61,7 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
       fractionDigits,
       addZero,
     }
-  ), [activeEntities, item]);
+  ), [item, count, fractionDigits, statisticItem?.data, addZero]);
 
 
   // Значение для вывода на экран
@@ -78,12 +80,10 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
       value = getFixedFraction(v, { fractionDigits, addZero });
       reduction = p;
     }
-    else {
-      if (isNotUndefined(values[count - 1]?.value)) {
+    else if (isNotUndefined(values[count - 1]?.value)) {
         value = values[count - 1]?.value;
         reduction = values[count - 1]?.reduction;
       }
-    }
 
     return {
       reduction,
@@ -91,22 +91,22 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
         ? String(value).replace('-', '').replace('.', ',') // Удаляем знак минус, если выбрано plusMinus, чтобы не дублировался тк будет выведен в ItemDigitIndicatorPlusMinus
         : String(value).replace('.', ','),
     }
-  }, [activeEntities, lastValue, prevValue, indicators, values, count, item]);
+  }, [lastValue, prevValue, values, count, item, fractionDigits, addZero]);
 
 
   // const emptyEndingDiffType = item?.settings?.endingDiffType !== '% соотношение' && item?.settings?.endingDiffType !== 'Разница';
-  
+
 
   return (
     <ItemWrapper item={item} onSelect={onSelect}>
-      
+
       {/* +/- */}
       <ItemDigitIndicatorPlusMinus
         item      = {item}
         increased = {increased}
         color     = {color}
       />
-      
+
       {/* Число */}
       <ItemDigitIndicatorValue
         item  = {item}

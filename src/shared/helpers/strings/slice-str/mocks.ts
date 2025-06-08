@@ -27,7 +27,7 @@ export const mSliceStr = [
   }, {
     maxLength: 20,
     describe: 'НЕ строка - > 20 знаков 12345678901234567890123',
-    // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+    // eslint-disable-next-line
     str: 12345678901234567890123,
     result: '1.2345678901234568e+'
   }, {

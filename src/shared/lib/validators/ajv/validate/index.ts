@@ -24,17 +24,17 @@ export const validate = (
   const validate = ajv.getSchema(schemaName);
 
   if (! validate || ! validate(data)) return getValidResultByKeywords(validate, T)
-  else return getValidResultByKeywords()
+  return getValidResultByKeywords()
 };
 
-// 
+//
 // Базовую проверку делаем на:
 // ---------------------------
-// 
+//
 //  - Тип
 //  - Ограничения мин/макс (string / number / array (maxItems))
 //  - Отсутствие данных
 //  - Присутствие дополнительных данных
 //  - If undefined | null | NaN
 //  - If empty
-// 
+//

@@ -8,18 +8,16 @@ interface Props {
   children: ReactNode
 }
 
-export const LayoutWrapper: FC<Props> = memo(({ children }) => {
-
-  return (
+export const LayoutWrapper: FC<Props> = memo(({ children }) => (
     <MDBox
       sx={{
         ...f('c--sb'),
         height     : '100%',
         minHeight  : '100vh',
+        // eslint-disable-next-line max-len
         fontFamily : '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
       }}
     >
       {children}
     </MDBox>
-  )
-});
+  ));

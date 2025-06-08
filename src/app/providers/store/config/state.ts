@@ -28,7 +28,7 @@ export interface StateSchema {
   dashboardView? : StateSchemaDashboardView
   dashboardData? : StateSchemaDashboardData
   docs?          : StateSchemaDocs
-};
+}
 
 
 // export const selectProps = (_: StateSchema, props: any) => props;

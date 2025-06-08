@@ -20,7 +20,7 @@ describe('TextfieldItem', () => {
 
     const { debug } = render(
       <ThemeProvider theme={theme}>
-        <TextfieldItem  
+        <TextfieldItem
           group       = {result.current}
           scheme      = 'field'
           label       = 'Some label'

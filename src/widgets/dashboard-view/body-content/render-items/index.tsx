@@ -15,9 +15,8 @@ interface Props {
  * Рендерим все parentId`s children
  */
 export const ContentRender: FC<Props> = memo(({ parentsViewItems, parentId, onSelect }) => {
-
   const sorted = useMemo(() => sortingArr(parentsViewItems[parentId], 'order'), [parentsViewItems, parentId]);
-  
+
   if (! parentsViewItems[parentId]) return null;
 
   return (

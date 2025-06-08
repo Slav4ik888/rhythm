@@ -31,7 +31,7 @@ export const useUser = () => {
     // serviceDeleteUser            = (companyId: string, userId: string) => dispatch(deleteUser({ companyId, userId })),
     serviceLogout            = () => dispatch(logout());
     // serviceSendEmailConfirmation = (email: string) => dispatch(sendEmailConfirmation(email));
-  
+
   return {
     loading,
     errors,

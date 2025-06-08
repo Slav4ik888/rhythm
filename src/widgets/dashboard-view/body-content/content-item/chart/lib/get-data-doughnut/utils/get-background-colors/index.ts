@@ -13,12 +13,10 @@ export const TEMPLATE_COLORS = [
   'rgb(202, 90, 21)',
 ];
 
-export const getBackgroundColors = (viewItem: ViewItem): string[] => {
-  return viewItem?.settings?.charts?.map((item, idx) => {
+export const getBackgroundColors = (viewItem: ViewItem): string[] => viewItem?.settings?.charts?.map((item, idx) => {
     const color = item?.datasets?.backgroundColor;
 
     if (isStr(color)) return color as unknown as string
-    
+
     return getCircularValue(TEMPLATE_COLORS, idx) as string;
   }) || TEMPLATE_COLORS
-}

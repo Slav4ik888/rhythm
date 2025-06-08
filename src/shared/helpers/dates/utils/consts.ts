@@ -41,6 +41,8 @@ export enum SUB {
   RU_ABBR_DEC = 'ru_abbr_dec',
 }
 
+/* eslint-disable */
+
 export const WEEK_DAYS              = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 export const WEEK_DAYS_RU           = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
 export const WEEK_DAYS_FULL         = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];

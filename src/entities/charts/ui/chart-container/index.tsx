@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode } from 'react';
 import { Card } from '@mui/material';
 import { SxCard } from 'shared/styles';
 

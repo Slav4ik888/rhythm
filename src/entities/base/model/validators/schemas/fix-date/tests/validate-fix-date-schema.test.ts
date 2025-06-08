@@ -49,7 +49,7 @@ describe('SCHEMA_NAME.FIX_DATE', () => {
 
   it('Invalid data - userId > 28 chars', () => {
     const res = validate(SCHEMA_NAME.FIX_DATE, {
-      userId : MOCK_USER_ID + '_',
+      userId : `${MOCK_USER_ID}_`,
       date   : 1640995200000
     }, '');
 

@@ -1,5 +1,4 @@
-import { Mocks } from "./types";
-import { MockItem } from './types';
+import { Mocks, MockItem } from './types';
 import { ErrorObject } from 'ajv';
 
 

@@ -18,7 +18,7 @@ export const CopyViewItem: FC<Props> = memo(({ type }) => {
   const handleToggle = useCallback(() => {
     if (activatedCopied) clearActivatedCopied()
     else setActiveCopied({ type, id: selectedId })
-  }, [selectedId, activatedCopied, setActiveCopied, clearActivatedCopied]);
+  }, [type, selectedId, activatedCopied, setActiveCopied, clearActivatedCopied]);
 
 
   return (

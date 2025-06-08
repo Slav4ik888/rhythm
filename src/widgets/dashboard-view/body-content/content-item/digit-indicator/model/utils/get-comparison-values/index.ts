@@ -12,9 +12,6 @@ export const getComparisonValues = (
   values : number[],
   count  : number = 2,
   config : IndicatorsConfig = {}
-): ValueStringAndReduction[] => {
-
-  return values
+): ValueStringAndReduction[] => values
     .slice(0, count < 2 ? 2 : count) // Оставляем нужное кол-во значений, минимум 2
     .map(startValue => getValueAndReduction(startValue, config));
-};

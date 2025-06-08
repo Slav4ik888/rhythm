@@ -18,14 +18,14 @@ describe('ActionMain', () => {
     loginPage  : {},
     signupPage : {}
   };
-  
+
   it('AuthType.SIGNUP, empty', async () => {
     const onSubmit = jest.fn();
 
     const { user, getByRole, getByText } = setupRender(
       <StoreProvider initialState={mockedStoreEmpty}>
         <ThemeProvider theme={theme}>
-          <ActionMain  
+          <ActionMain
             type     = 'signup'
             disabled = {false}
             onSubmit = {onSubmit}
@@ -35,7 +35,7 @@ describe('ActionMain', () => {
     );
 
     // debug();
-    
+
     // Check ErrorBox in the document
     expect(document.querySelector('[data-testid="ErrorBox"]')).not.toBeInTheDocument();
 
@@ -52,14 +52,14 @@ describe('ActionMain', () => {
   });
 
   // --------------------------------------------------------------------------------------------------
-  
+
   it('AuthType.SIGNUP, with error & loading', async () => {
     const onSubmit = jest.fn();
     const mockedStore: DeepPartial<StateSchema> = {
       user: {},
       signupPage: {
         loading : true,
-        errors  : { 
+        errors  : {
           general: generalError
         }
       }
@@ -68,7 +68,7 @@ describe('ActionMain', () => {
     const { user, debug, getByRole, getByText } = setupRender(
       <StoreProvider initialState={mockedStore}>
         <ThemeProvider theme={theme}>
-          <ActionMain  
+          <ActionMain
             type     = 'signup'
             disabled = {false}
             onSubmit = {onSubmit}
@@ -78,7 +78,7 @@ describe('ActionMain', () => {
     );
 
     // debug();
-    
+
     // Check ErrorBox in the document
     expect(getByText(generalError)).toBeInTheDocument();
     expect(document.querySelector('[data-testid="ErrorBox"]')).toBeInTheDocument();
@@ -97,16 +97,16 @@ describe('ActionMain', () => {
   });
 
   // --------------------------------------------------------------------------------------------------
-  
+
     it('AuthType.SIGNUP, disabled', async () => {
     const onSubmit = jest.fn();
 
     const { user, debug, getByRole, getByText } = setupRender(
       <StoreProvider initialState={mockedStoreEmpty}>
         <ThemeProvider theme={theme}>
-          <ActionMain  
+          <ActionMain
             type     = 'signup'
-            disabled = {true}
+            disabled
             onSubmit = {onSubmit}
           />
         </ThemeProvider>
@@ -114,7 +114,7 @@ describe('ActionMain', () => {
     );
 
     debug();
-    
+
     // Check ErrorBox in the document
     expect(document.querySelector('[data-testid="ErrorBox"]')).not.toBeInTheDocument();
 

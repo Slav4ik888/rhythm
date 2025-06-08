@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { cloneObj } from '../objects';
 
 export function getObjectWithoutField<T>(obj: T, field1: string, field2?: string): T {

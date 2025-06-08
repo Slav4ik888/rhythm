@@ -29,7 +29,7 @@ describe('getFixedFraction', () => {
   test('12 f8 => 12', () => expect(
     getFixedFraction(12, { fractionDigits: 8 })
   ).toEqual('12'));
-  
+
   // addZero
   test('12,1234567 f3 withZero => 12,123', () => expect(
     getFixedFraction(12.1234567, { fractionDigits: 3, addZero: true })
@@ -46,7 +46,6 @@ describe('getFixedFraction', () => {
   test('-10431951.3 f3 withZero => 12,000', () => expect(
     getFixedFraction(-10431951.3, { fractionDigits: 3, addZero: true })
   ).toEqual('-10431951.300'));
-  
 });
 
 // npm run test:unit get-fixed-fraction.test.ts

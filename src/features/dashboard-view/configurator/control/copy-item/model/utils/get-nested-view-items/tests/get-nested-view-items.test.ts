@@ -25,7 +25,7 @@ describe('getNestedViewItems', () => {
     { id: '19', parentId: '18' },
     { id: '20', parentId: '18' },
   ];
-  
+
   test('Correct selectedId', () => {
     const result = getNestedViewItems(items as ViewItem[], '4');
     // console.log(result);

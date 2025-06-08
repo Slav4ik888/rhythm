@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, memo, MutableRefObject, useEffect, useMemo, useRef } from 'react';
+import { ChangeEvent, FC, memo, MutableRefObject, useCallback, useEffect, useMemo, useRef } from 'react';
 import { pxToRem } from 'shared/styles';
 import { calculateStartDate, getMsFromRef } from './utils';
 import { DashboardPeriodType, useDashboardData } from 'entities/dashboard-data';
@@ -21,10 +21,10 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
   const storeDate       = selectedPeriod?.[type];
   const dateStart       = type === 'start';
   const periodNotCustom = storePeriodType !== DashboardPeriodType.CUSTOM;
-  
-  const disabled = useMemo(() => dateStart && periodNotCustom, [storePeriodType]);
-  
-  
+
+  const disabled = useMemo(() => dateStart && periodNotCustom, [dateStart, periodNotCustom]);
+
+
   // Устанавливаем начальные значения
   useEffect(() => {
     if (storeDate && ref.current) { // && ! ref.current?.value) {
@@ -32,7 +32,7 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
     }
     if (dateStart && periodNotCustom) {
       const start = calculateStartDate(selectedPeriod.end, storePeriodType);
-      
+
       // При монтировании, может быть не указана дата (storeSelectPeriod.end) и нельзя обнулять данные в сторадже
       // которые подтянуться чуть позже, иначе они затираются
       if (start) setSelectedPeriod({
@@ -42,19 +42,19 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
         },
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storeDate, storePeriodType, selectedPeriod.end]);
 
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     // Validate correct date & > 01-01-1900
     if (new Date(e.target.value)?.getTime() > -2208997817000) {
-
       setSelectedPeriod({
         companyId,
         period: { [type]: getMsFromRef(ref as MutableRefObject<HTMLInputElement>) },
       });
     }
-  };
+  }, [companyId, type, setSelectedPeriod]);
 
 
   return (

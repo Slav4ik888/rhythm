@@ -42,7 +42,7 @@ describe('validateBoolean', () => {
   });
 
   // Required
-  
+
   test('SomeFieldName is true & required', () => {
     expect(validateBoolean({ someFieldName: true }, 'someFieldName', { required: true }).errors).toEqual({});
   });
@@ -79,8 +79,6 @@ describe('validateBoolean', () => {
   test('SomeFieldName is null & required', () => {
     expect(validateBoolean({ someFieldName: null as unknown as boolean }, 'someFieldName', { required: true }).errors).toEqual({ someFieldName: ErrorText.INVALID_DATA });
   });
-
-
 });
 
 // npm run test:unit validate-boolean.test.ts

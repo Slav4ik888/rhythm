@@ -8,7 +8,7 @@ export const useUIConfiguratorController = (): UIConfiguratorContextType => {
 
   if (! context) {
     throw new Error(
-      "useUIConfigController should be used inside the UIConfigContextProvider."
+      'useUIConfigController should be used inside the UIConfigContextProvider.'
     );
   }
 

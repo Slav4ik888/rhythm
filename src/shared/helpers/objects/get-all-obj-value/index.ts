@@ -1,10 +1,10 @@
 /**
- * All values in string separated by commas 
+ * All values in string separated by commas
  */
 export function getAllObjValue<O extends object>(obj: O): string {
-  let str = ``;
+  let str = '';
 
-  if (!obj || typeof obj !== `object`) {
+  if (!obj || typeof obj !== 'object') {
     // console.log(`obj - не является объектом. ${obj}`);
     return str;
   }
@@ -16,6 +16,11 @@ export function getAllObjValue<O extends object>(obj: O): string {
     return str;
   }
 
-  values.forEach(v => v && (str += v + `, `));
+  values.forEach(v => {
+    if (v) {
+      str += `${v}, `
+    }
+  });
+
   return str.slice(0, str.length - 2);
 }

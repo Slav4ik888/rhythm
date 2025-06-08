@@ -123,7 +123,7 @@ describe('getValueByScheme', () => {
       child2: 'simple value'
     }
   };
-  
+
   test('scheme with arrays', () => {
     expect(getValueByScheme(data, 'field1.child1.[0].child3')).toEqual('value1');
     expect(getValueByScheme(data, 'field1.child1.[1].child3')).toEqual('value2');

@@ -18,23 +18,22 @@ interface Props {
  * For type === 'periodType'
  */
 export const SetColorsItemInputField: FC<Props> = memo(({ onSubmit, value = '', type, label }) => {
-
   const handleSubmit = (e: MouseEvent, title: string | number) => {
     onSubmit({
       [type]: {
         [label]: {
           title
         }
-    }});
+    } });
   };
-  
+
 
   return (
     <Input
       defaultValue = {value}
       changesValue = {value}
       toolTitle    = 'Введите название поля'
-      sx           = {{ field: { height: pxToRem(40)}}}
+      sx           = {{ field: { height: pxToRem(40) } }}
       onBlur       = {handleSubmit}
       onChange     = {() => {}}
       onSubmit     = {handleSubmit}

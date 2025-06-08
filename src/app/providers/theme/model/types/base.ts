@@ -50,7 +50,8 @@ export type Radius = [number?, number?]; // blur, spread
 export type RadiusName = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'section';
 export type Shadows = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'inset';
 
-export type GreyColor = 'grey-100' | 'grey-200' | 'grey-300' | 'grey-400' | 'grey-500' | 'grey-600' | 'grey-700' | 'grey-800' | 'grey-900'
+export type GreyColor = 'grey-100' | 'grey-200' | 'grey-300' | 'grey-400' | 'grey-500' | 'grey-600'
+  | 'grey-700' | 'grey-800' | 'grey-900'
 
 export type BaseColorName =
   | 'inherit'
@@ -60,10 +61,12 @@ export type BaseColorName =
   | 'reportsChartTitle' | 'comparisonIndicators_1' | 'comparisonIndicators_2'
   | 'growth'  | 'fall' | 'unchanged'
   // | 'department_7'       | 'department_6'       | 'department_5'       | 'department_4'       | 'department_3'       | 'department_2'       | 'department_1'
-  | 'department_7_title' | 'department_6_title' | 'department_5_title' | 'department_4_title' | 'department_3_title' | 'department_2_title' | 'department_1_title'
+  | 'department_7_title' | 'department_6_title' | 'department_5_title' | 'department_4_title'
+  | 'department_3_title' | 'department_2_title' | 'department_1_title'
 
-export type MUIColors = 'amber' | 'blue' | 'blueGrey' | 'brown' | 'common' | 'cyan' | 'deepOrange' | 'deepPurple' | 'green' | 'grey' |
-  'indigo' | 'lightBlue' | 'lightGreen' | 'lime' | 'orange' | 'pink' | 'purple' | 'red' | 'teal' | 'yellow'
+export type MUIColors = 'amber' | 'blue' | 'blueGrey' | 'brown' | 'common' | 'cyan' | 'deepOrange'
+  | 'deepPurple' | 'green' | 'grey' | 'indigo' | 'lightBlue' | 'lightGreen' | 'lime' | 'orange'
+  | 'pink' | 'purple' | 'red' | 'teal' | 'yellow'
 
 /** Только те которые есть в Palette */
 export type ColorName = BaseColorName | 'sidebar' // | 'navbar' // | SidebarColorName | NavbarColorName

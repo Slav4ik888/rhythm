@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { Typography } from '@mui/material';
-import { Tooltip } from 'shared/ui/tooltip';
+import { Tooltip } from '../../tooltip';
 
 
 

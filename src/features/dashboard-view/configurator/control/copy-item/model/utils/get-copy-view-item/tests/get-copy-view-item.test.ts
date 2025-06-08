@@ -34,12 +34,12 @@ describe('getCopyViewItem', () => {
       // @ts-ignore
       oldId: item.oldId, oldParentId : item.oldParentId,
     }));
-    
+
     expect(result[0].order).toEqual(7000);
     expect(result[0].parentId).toEqual('no_parentId');
     expect(result[0].lastChange.userId).toEqual('userId_123');
     expect(result.length).toEqual(1);
-  
+
     expect(resultOldData).toEqual([{ oldId: '4',  oldParentId: '1' }]);
   });
 
@@ -52,14 +52,14 @@ describe('getCopyViewItem', () => {
       // @ts-ignore
       oldId: item.oldId, oldParentId : item.oldParentId,
     }));
-    
+
     expect(result[0].order).toEqual(7000);
     expect(result[0].parentId).toEqual('no_parentId');
     expect(result[1].parentId).toEqual(result[0].id);
     expect(result.length).toEqual(9);
     expect(result[0].lastChange.userId).toEqual('userId_123');
-  
-    
+
+
     expect(resultOldData).toEqual([
       { oldId: '4',  oldParentId: '1' },
       { oldId: '10', oldParentId: '4' },
@@ -80,14 +80,14 @@ describe('getCopyViewItem', () => {
       // @ts-ignore
       oldId: item.oldId, oldParentId : item.oldParentId,
     }));
-    
+
     expect(result[0].order).toEqual(1000);
     expect(result[0].parentId).toEqual('111');
     expect(result[1].parentId).toEqual(result[0].id);
     expect(result.length).toEqual(9);
     expect(result[0].lastChange.userId).toEqual('userId_123');
-  
-    
+
+
     expect(resultOldData).toEqual([
       { oldId: '4',  oldParentId: '1' },
       { oldId: '10', oldParentId: '4' },
@@ -104,13 +104,13 @@ describe('getCopyViewItem', () => {
 
   test('Invalid items', () => {
     const result = getCopyViewItem({ type: 'copyItemAll', id: '4' }, '111', undefined as unknown as ViewItem[], 'userId_123');
-    
+
     expect(result).toEqual([]);
   });
 
   test('Incorrect copiedId', () => {
     const result = getCopyViewItem({ type: 'copyItemAll', id: '100500' }, '111', items as unknown as ViewItem[], 'userId_123');
-    
+
     expect(result).toEqual([]);
   });
 });

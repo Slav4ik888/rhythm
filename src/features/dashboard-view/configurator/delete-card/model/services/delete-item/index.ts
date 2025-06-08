@@ -19,9 +19,8 @@ export const deleteViewItem = createAsyncThunk<
 >(
   'features/dashboardView/deleteViewItem',
   async (data, thunkApi) => {
-
     const { dispatch, rejectWithValue, extra } = thunkApi;
-    
+
     try {
       await extra.api.post(paths.dashboard.view.delete, data);
 
@@ -29,7 +28,9 @@ export const deleteViewItem = createAsyncThunk<
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue((e as CustomAxiosError).response.data || { general: 'Error in features/dashboardView/deleteViewItem' });
+      return rejectWithValue((e as CustomAxiosError).response.data || {
+        general: 'Error in features/dashboardView/deleteViewItem'
+      });
     }
   }
 );

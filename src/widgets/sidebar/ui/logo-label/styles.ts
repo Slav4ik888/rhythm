@@ -31,12 +31,12 @@ export const styles = (theme: CustomTheme, ownerState: OwnerState) => {
     fontWeight  : fontWeightMedium,
     wordSpacing : pxToRem(-1),
     ml          : 1,
-    transition  : transitions.create("opacity", {
+    transition  : transitions.create('opacity', {
       easing   : transitions.easing.easeInOut,
       duration : transitions.duration.standard,
     }),
 
-    [breakpoints.up("xl")]: {
+    [breakpoints.up('xl')]: {
       opacity: sidebarMini ? 0 : 1,
     },
   };

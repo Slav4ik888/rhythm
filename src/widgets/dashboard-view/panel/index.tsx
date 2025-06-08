@@ -15,7 +15,7 @@ const useStyles = () => ({
 export const DashboardBodyPanel = memo(() => {
   const sx = useStyles();
   const { editMode } = useDashboardView();
- 
+
   if (! editMode) return null
 
   return (

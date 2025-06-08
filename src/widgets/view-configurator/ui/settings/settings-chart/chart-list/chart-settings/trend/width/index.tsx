@@ -14,14 +14,15 @@ interface Props {
 
 /** Толщина линии тренда */
 export const ChartTrendWidth: FC<Props> = memo(({ index, selectedItem }) => {
+  const trendDataSets = selectedItem?.settings?.charts?.[index]?.trendDataSets;
   const { changeOneChartsItem } = useDashboardView();
 
   const handleChange = useCallback((value: string | number) => {
-    const trendDataSets = cloneObj(selectedItem?.settings?.charts?.[index]?.trendDataSets) || {} as ChartConfigTrendDatasets;
-    trendDataSets.borderWidth = value as number;
+    const trend = cloneObj(trendDataSets) || {} as ChartConfigTrendDatasets;
+    trend.borderWidth = value as number;
 
-    changeOneChartsItem({ field: 'trendDataSets', value: { ...trendDataSets }, index });
-  }, [selectedItem, index, changeOneChartsItem]);
+    changeOneChartsItem({ field: 'trendDataSets', value: { ...trend }, index });
+  }, [trendDataSets, index, changeOneChartsItem]);
 
 
   return (
@@ -32,7 +33,7 @@ export const ChartTrendWidth: FC<Props> = memo(({ index, selectedItem }) => {
         selectedItem = {selectedItem}
         scheme       = 'settings.charts'
         width        = '3rem'
-        transform    = {(v) => (v as unknown as ViewItemChart[] | undefined)?.[index]?.trendDataSets?.borderWidth as number}
+        transform    = {(v) => (v as unknown as ViewItemChart[])?.[index]?.trendDataSets?.borderWidth as number}
         onChange     = {(e: MouseEvent, v: string | number) => handleChange(v)}
         onBlur       = {(e: MouseEvent, v: string | number) => handleChange(v)}
         onSubmit     = {(e: MouseEvent, v: string | number) => handleChange(v)}

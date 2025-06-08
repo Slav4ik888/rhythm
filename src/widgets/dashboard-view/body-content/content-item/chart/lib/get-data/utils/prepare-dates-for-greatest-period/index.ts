@@ -28,7 +28,7 @@ export const prepareDatesForGreatestPeriod = (
   }, {} as Record<StatisticPeriodType, number[]>);
 
   const greatestPeriodType = getGreatestPeriodType(activeDates, periodTypes);
-  
+
   return {
     greatestPeriodType,
     dates: activeDates[greatestPeriodType]

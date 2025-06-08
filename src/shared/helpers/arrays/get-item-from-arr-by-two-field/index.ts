@@ -9,9 +9,9 @@ export function getItemFromArrByTwoField<FF, FS>(
   valueFirst  : FF,
   fieldSecond : string,
   valueSecond : FS
-): Item | undefined{
+): Item | undefined {
   if (! fieldFirst || ! fieldSecond) return undefined;
 
-  return arr?.find((item) => item?.[fieldFirst] === valueFirst &&
-                             item?.[fieldSecond] === valueSecond);
-};
+  return arr?.find((item) => item?.[fieldFirst] === valueFirst
+                             && item?.[fieldSecond] === valueSecond);
+}

@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { Divider, Box } from '@mui/material';
-import { UseGroup } from 'shared/lib/hooks';
-import { BoxGrow } from 'shared/ui/containers';
+import { UseGroup } from '../../../lib/hooks';
+import { BoxGrow } from '../../containers';
 import { CancelSubmitBtn } from '../cancel-submit-btn';
 import { useStyles } from './use-styles';
 import { DeleteButton } from '../delete-button';
-
 
 
 
@@ -27,8 +26,9 @@ type Props = {
  * v.2024-11-10
  * Actions: Delete? Cancel? Submit
  */
-export const Actions: React.FC<Props> = ({ loading, hideIfNotChanges, disabledDelete, hookOpen, submitText, onCancel, onDel, onSubmit }) => {
-  console.log('hookOpen: ', hookOpen);
+export const Actions: React.FC<Props> = ({ loading, hideIfNotChanges, disabledDelete, hookOpen, submitText,
+  onCancel, onDel, onSubmit
+}) => {
   const sx = useStyles();
 
   if (hideIfNotChanges && ! hookOpen?.isChanges) return null;
@@ -43,9 +43,9 @@ export const Actions: React.FC<Props> = ({ loading, hideIfNotChanges, disabledDe
           disabled = {disabledDelete}
           onDel    = {onDel}
         />
-           
+
         <BoxGrow />
-        
+
         <CancelSubmitBtn
           loading    = {loading}
           disabled   = {hookOpen && ! hookOpen?.isChanges} // only if hookOpen presented

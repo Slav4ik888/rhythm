@@ -6,6 +6,6 @@ import { DashboardStatisticItem } from 'entities/dashboard-data'
  */
 export const isDifferentTypes = (itemsData: DashboardStatisticItem<number>[]) => {
   if (! itemsData || ! itemsData.length) return false
-  
+
   return itemsData.some(item => item.periodType !== itemsData[0].periodType)
 }

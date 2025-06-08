@@ -4,18 +4,18 @@ import { f } from 'shared/styles';
 
 
 
-export const RootAuthComponent: FC = memo(() => {
+export const RootAuthComponent: FC = memo(() =>
   // const
   //   { isVerified } = useUser(),
   //   { company } = useCompany();
-  
+
   // if (! isVerified) return <GreetingOffer />;
   // if (isDisplayDemoSubscribeOffer(company?.courseAccess))return <DemoSubscribeOffer />
   // if (isDisplaySubscribeOffer(company, isVerified, isSuper)) return <SubscribeOffer />
 
-  return (
+   (
     <Box sx={f('c-c-c')}>
       Rhythm of Company
     </Box>
   )
-});
+);

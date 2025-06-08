@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Errors } from 'shared/lib/validators';
 import { Company, CustomSettings } from '../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
-import { StateSchemaCompany } from 'entities/company';
+import { StateSchemaCompany } from './state-schema';
 import { updateCompany } from 'features/company';
 import { updateObject } from 'shared/helpers/objects';
 import { LS } from 'shared/lib/local-storage';
@@ -28,7 +28,7 @@ const slice = createSlice({
     clearErrors: (state) => {
       state.errors = {};
     },
-    setCompany: (state, { payload }: PayloadAction<SetCompany> ) => {
+    setCompany: (state, { payload }: PayloadAction<SetCompany>) => {
       state.company       = payload.company;
       state.storedCompany = payload.company;
       LS.setCompanyState(payload.companyId, state);

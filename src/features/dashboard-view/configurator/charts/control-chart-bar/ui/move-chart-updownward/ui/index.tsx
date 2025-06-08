@@ -21,8 +21,7 @@ export const MoveChartUpdownward: FC<Props> = memo(({ index }) => {
       field: 'charts',
       value: getSortedChartsByToward(type, selectedItem.settings?.charts, index)
     });
-    
-  }, [index, selectedItem.settings?.charts, getSortedChartsByToward]);
+  }, [index, selectedItem.settings?.charts, changeOneSettingsField]);
 
   return (
     <>

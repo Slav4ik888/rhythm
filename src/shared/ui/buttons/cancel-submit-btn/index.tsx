@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
-import { MDButton } from 'shared/ui/mui-design-components';
-import { pxToRem } from 'shared/styles';
+import { MDButton } from '../../mui-design-components';
+import { pxToRem } from '../../../styles';
 
 
 
@@ -16,9 +16,7 @@ interface Props {
 /**
  * v.2024.11.12
  */
-export const CancelSubmitBtn: FC<Props> = memo(({ submitText, disabled, loading, onCancel, onSubmit }) => {
-
-  return (
+export const CancelSubmitBtn: FC<Props> = memo(({ submitText, disabled, loading, onCancel, onSubmit }) => (
     <>
       {
         onCancel && <MDButton
@@ -30,7 +28,7 @@ export const CancelSubmitBtn: FC<Props> = memo(({ submitText, disabled, loading,
           onClick  = {onCancel}
         />
       }
-      
+
       <MDButton
         disabled = {disabled || loading}
         color    = 'primary'
@@ -38,5 +36,4 @@ export const CancelSubmitBtn: FC<Props> = memo(({ submitText, disabled, loading,
         onClick  = {onSubmit}
       />
     </>
-  )
-});
+  ));

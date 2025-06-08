@@ -32,7 +32,7 @@ describe('setIfNotUndefined', () => {
 
   // 5. Не изменяет `obj`, если `field` не указан (и `value` не `undefined`)
   it('should do nothing with value if no field is provided', () => {
-    let obj: any = { a: 1 };
+    const obj: any = { a: 1 };
     setIfNotUndefined(obj, 'replaced');
     expect(obj.a).toBe(1); // Ничего не изменилось
   });
@@ -51,7 +51,7 @@ describe('setIfNotUndefined', () => {
     expect(obj.a).toBe('newValue'); // Поле инициализировано
   });
 
-  // 8. 
+  // 8.
   it('should set string', () => {
     const str = setIfNotUndefined('string', 'newValue');
     expect(str).toBe('newValue'); // Поле инициализировано

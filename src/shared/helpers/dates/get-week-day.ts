@@ -8,7 +8,6 @@ export function getWeekDay(
   timestamp : number, // таймстамп
   format    : string  // формат, в котором нужно вернуть timestamp
 ): string {           // день недели в нужном формате
-
   const newDate = new Date(timestamp);
 
   const formatType = {

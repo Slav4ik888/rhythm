@@ -12,21 +12,22 @@ interface Props {
 
 /** Разрыв линии при отсутствии данных */
 export const ChartSpanGaps: FC<Props> = memo(({ index, selectedItem }) => {
+  const isSpanGaps = Boolean(selectedItem?.settings?.charts?.[index]?.datasets?.spanGaps);
   const { changeOneDatasetsItem } = useDashboardView();
-  const [checked, setChecked] = useState(() => Boolean(selectedItem?.settings?.charts?.[index]?.datasets?.spanGaps));
+  const [checked, setChecked] = useState(() => isSpanGaps);
 
   useEffect(() => {
-    setChecked(Boolean(selectedItem?.settings?.charts?.[index]?.datasets?.spanGaps));
-  }, [selectedItem]);
-  
+    setChecked(isSpanGaps);
+  }, [isSpanGaps]);
+
 
   const handleToggle = useCallback(() => {
     changeOneDatasetsItem({
       field : 'spanGaps',
-      value : ! Boolean(selectedItem?.settings?.charts?.[index]?.datasets?.spanGaps),
+      value : ! isSpanGaps,
       index
     });
-  }, [selectedItem, changeOneDatasetsItem]);
+  }, [index, isSpanGaps, changeOneDatasetsItem]);
 
 
   return (

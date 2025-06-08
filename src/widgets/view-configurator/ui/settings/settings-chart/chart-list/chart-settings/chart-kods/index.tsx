@@ -11,11 +11,9 @@ interface Props {
 }
 
 /** Выбор кода */
-export const ChartKods: FC<Props> = memo(({ index, selectedItem }) => {
-  return (
+export const ChartKods: FC<Props> = memo(({ index, selectedItem }) => (
     <>
       <ChartSelectKod index={index} selectedItem={selectedItem} />
       <ChartKodLabel  index={index} selectedItem={selectedItem} />
     </>
-  )
-});
+  ));

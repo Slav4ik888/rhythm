@@ -3,9 +3,9 @@ import { createListAfter } from '../../base';
 
 
 export const createDocumentListAfter = (
+  id        : string,
   pointerId : string,
   path      : string[] = [],
-  id        : string,
   after     : string = '',
 ): Operation => createListAfter(
   {

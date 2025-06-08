@@ -37,7 +37,7 @@ export const sxNavbarIconsStyle = (
 
   return {
     color: () => {
-      let colorValue = navbar.color;
+      const colorValue = navbar.color;
 
       // if (navbarTransparent && ! light) {
       //   colorValue = darkMode ? rgbaFromHex(text.main, 0.6) : text.main;

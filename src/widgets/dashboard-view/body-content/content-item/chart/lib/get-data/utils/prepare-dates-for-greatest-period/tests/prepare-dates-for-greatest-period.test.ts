@@ -4,7 +4,7 @@ import { prepareDatesForGreatestPeriod } from '..';
 
 
 const allActiveDates = {
-  'WEEKLY': [
+  WEEKLY: [
     1747353600000, 1747958400000, // '16.05.2025', '23.05.2025',
     1748563200000, 1749168000000, // '30.05.2025', '06.06.2025',
     1749772800000, 1750377600000, // '13.06.2025', '20.06.2025',
@@ -16,7 +16,7 @@ const allActiveDates = {
     1757030400000, 1757635200000, // '05.09.2025', '12.09.2025',
     1758240000000, 1758844800000  // '19.09.2025', '26.09.2025'
   ],
-  'MONTHLY': [
+  MONTHLY: [
     1747342800000, // '16.05.2025',
     1749157200000, // '06.06.2025',
     1751576400000, // '04.07.2025',
@@ -44,7 +44,6 @@ describe('prepareDatesForGreatestPeriod', () => {
         dates: allActiveDates.WEEKLY
       });
   });
-
 });
 
 // npm run test:unit prepare-dates-for-greatest-period.test.ts

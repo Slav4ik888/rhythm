@@ -2,6 +2,7 @@ import { useUI } from 'entities/ui';
 import { Navigate, useLocation } from 'react-router-dom';
 import { RoutePath } from '..';
 import { FC } from 'react';
+import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 
@@ -16,23 +17,23 @@ export const RequireAuth: FC<Props> = ({ children }) => {
 
 
   if (errorStatus === 401) {
-    console.log(401 + ' redirect to LOGIN');
-    // console.log('pathname: ', pathname);
-    
+    __devLog(`${401} redirect to LOGIN`);
+    // __devLog('pathname: ', pathname);
+
     return <Navigate
       to    = {RoutePath.LOGIN}
       state = {{ from: pathname }}
       // replace
     />
   }
-  else if (errorStatus === 403) {
-    console.log(403 + ' redirect to ROOT');
-    
+  if (errorStatus === 403) {
+    __devLog(`${403} redirect to ROOT`);
+
     return <Navigate
       to    = {RoutePath.ROOT}
       state = {{ from: pathname }}
       // replace
     />
   }
-  else return children
+  return children
 }

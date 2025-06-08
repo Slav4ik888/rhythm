@@ -16,7 +16,7 @@ export const creatorCompany = (cfg: Partial<Company> = {} as Company): Company =
   googleData     : cfg.googleData    || { url: '' }, // TODO: add to tests
   dashboardData  : cfg.dashboardData || {} as CompanyDashboardData,
   customSettings : cfg.customSettings || {},
-  
+
   createdAt      : cfg.createdAt     || creatorFixDate(cfg.id),
   lastChange     : cfg.lastChange    || creatorFixDate(cfg.id)
 });

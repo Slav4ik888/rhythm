@@ -13,11 +13,12 @@ export const App: FC = () => {
   const { replacePath, setReplacePath } = useUI();
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     // TODO: sheetId подставлять нужный
     serviceGetStartResourseData({ pathname, sheetId: NO_SHEET_ID });
     // screenResizeListener(setScreenFormat);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Setting page scroll to 0 when changing the route
@@ -36,7 +37,7 @@ export const App: FC = () => {
       setReplacePath('');
       navigate(replacePath);
     }
-  }, [auth, replacePath]);
+  }, [auth, replacePath, setReplacePath, navigate]);
 
   return (
     <AppRouter />

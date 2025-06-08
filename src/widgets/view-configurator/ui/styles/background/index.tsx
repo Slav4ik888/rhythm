@@ -11,12 +11,9 @@ interface Props {
 }
 
 /** Фон */
-export const Background: FC<Props> = memo(({ selectedItem, onChange }) => {
-
-  return (
+export const Background: FC<Props> = memo(({ selectedItem, onChange }) => (
     <SubHeader title='Фон'>
       <SetBackground selectedItem={selectedItem} onChange={onChange} />
       {/* opacity */}
     </SubHeader>
-  )
-});
+  ));

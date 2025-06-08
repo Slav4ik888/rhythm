@@ -2,10 +2,10 @@ import { updateArrByArrByField } from '.';
 import mocks from './mocks';
 
 
-describe(`updateArrByArrByField`, () => {
+describe('updateArrByArrByField', () => {
   mocks.forEach(m => {
-    it(`Case`, () => {
-      expect(updateArrByArrByField(m.lastArr, `id`, m.newArr))
+    it('Case', () => {
+      expect(updateArrByArrByField(m.lastArr, 'id', m.newArr))
         .toEqual(m.result)
     })
   })

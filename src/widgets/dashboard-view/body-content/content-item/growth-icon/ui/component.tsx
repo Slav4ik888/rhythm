@@ -21,7 +21,7 @@ const useStyles = (
   const color = getColorByIncreased(theme, increased, unchangedBlack);
   const scale = `scale(${scaleValue || 1.5})`;
 
-  
+
   return {
     root: {
       ...f('-c-c'),
@@ -50,12 +50,12 @@ interface Props {
 /** Иконка вверх вниз на месте, показывает положительные или отрицательные изменения */
 export const GrowthIconComponent: FC<Props> = memo(({ increased, unchangedBlack, isLeft, scale, sx: style }) => {
   const sx = useStyles(useTheme(), increased, unchangedBlack, scale, style);
-  
+
   const icon = useMemo(() => {
     switch (increased) {
-      case 1 : return <GrowIcon fill={sx.fill} style={sx.svg} />
+      case 1: return <GrowIcon fill={sx.fill} style={sx.svg} />
       case -1: return <FallIcon fill={sx.fill} style={sx.svg} />
-      
+
       default:
         if (unchangedBlack) {
           return isLeft
@@ -64,8 +64,8 @@ export const GrowthIconComponent: FC<Props> = memo(({ increased, unchangedBlack,
         }
         return <FallIcon fill={sx.fill} style={sx.svg} />
     }
-  }, [increased, unchangedBlack, isLeft, scale]);
-  
+  }, [increased, unchangedBlack, isLeft, sx.fill, sx.svg]);
+
 
   return (
     <Box sx={sx.root}>

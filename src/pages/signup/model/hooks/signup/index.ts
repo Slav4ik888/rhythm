@@ -13,7 +13,7 @@ export const useSignup = () => {
 
     loading       = useSelector(s.selectLoading),
     errors        = useSelector(s.selectErrors),
-    
+
     setErrors     = (errors: Errors) => dispatch(actions.setErrors(errors)),
     serviceSignup = (data: SignupData) => dispatch(signupByEmail(data));
 
@@ -23,7 +23,7 @@ export const useSignup = () => {
     loading,
     errors,
     setErrors,
-    
+
     serviceSignup,
   }
 };

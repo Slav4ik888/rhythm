@@ -18,8 +18,6 @@ describe('isFieldValueUndefined', () => {
   test('Field value is not undefined', () => {
     expect(isFieldValueUndefined({ data: 123 }, 'data')).toEqual(false);
   });
-
-  
 });
 
 // npm run test:unit is-field-value-undefined.test.ts

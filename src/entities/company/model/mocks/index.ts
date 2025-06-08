@@ -19,10 +19,10 @@ export const MOCK_COMPANY_EMPTY: Company = {
   },
 
   status         : CompanyStatus.NEW,
-  dashboardData  : {} as CompanyDashboardData, 
+  dashboardData  : {} as CompanyDashboardData,
   customSettings : {},
-  
-  createdAt      : creatorFixDate(), 
+
+  createdAt      : creatorFixDate(),
   lastChange     : creatorFixDate()
 };
 
@@ -31,6 +31,6 @@ export const MOCK_COMPANY: Company = creatorCompany({
   id            : MOCK_COMPANY_ID,
   ownerId       : MOCK_OWNER_ID,
 
-  createdAt     : creatorFixDate(MOCK_OWNER_ID, MOCK_DATE_13_03_2023), 
+  createdAt     : creatorFixDate(MOCK_OWNER_ID, MOCK_DATE_13_03_2023),
   lastChange    : creatorFixDate(MOCK_OWNER_ID, MOCK_DATE_13_03_2023)
 });

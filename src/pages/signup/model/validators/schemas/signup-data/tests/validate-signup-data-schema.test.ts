@@ -17,7 +17,7 @@ describe('SCHEMA_NAME.SIGNUP_DATA', () => {
       confirmPassword : 'asd',
 
       permissions     : false,
-      isMobile        : undefined 
+      isMobile        : undefined
     });
 
     expect(res.valid).toEqual(false);

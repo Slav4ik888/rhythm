@@ -28,15 +28,14 @@ interface Props {
 
 /** Отрисовки списка графиков */
 export const ViewItemChartSettingsList: FC<Props> = memo(({ selectedItem }) => {
-
   const notPie = isNotPie(selectedItem);
 
   return (
     <>
       {
-        selectedItem?.settings?.charts &&
-        selectedItem?.settings.charts.length > 0 &&
-        selectedItem?.settings.charts.map((item, index) => (
+        selectedItem?.settings?.charts
+        && selectedItem?.settings.charts.length > 0
+        && selectedItem?.settings.charts.map((item, index) => (
           <ConfiguratorSubBoxWrapper title={`График ${index + 1}`} key={index}>
             <ConfiguratorTitle title='Общие настройки' type='subtitle1' />
             <SelectChartType index={index} selectedItem={selectedItem} />
@@ -44,11 +43,10 @@ export const ViewItemChartSettingsList: FC<Props> = memo(({ selectedItem }) => {
             <ChartLabel      index={index} selectedItem={selectedItem} />
             <ChartHidden     index={index} selectedItem={selectedItem} />
             {/* Выбрать период дат: общий или уникальный */}
-            
+
             {
               notPie
-                ?
-                  <>
+                ?                  <>
                     {
                       item?.chartType === 'line' && <>
                         <ConfiguratorTitle title='Точки' type='subtitle1' />
@@ -56,20 +54,20 @@ export const ViewItemChartSettingsList: FC<Props> = memo(({ selectedItem }) => {
                         <ChartPointBackgroundColor index={index} selectedItem={selectedItem} />
                       </>
                     }
-                    
+
 
                     <ConfiguratorTitle title='Линия графика' type='subtitle1' />
                     <ChartBorderWidth        index={index} selectedItem={selectedItem} />
                     <ChartBorderColor        index={index} selectedItem={selectedItem} />
                     <ChartBackgroundColor    index={index} selectedItem={selectedItem} />
-                    
+
                     {
                       item?.chartType === 'bar' && <>
                         <ChartBarPercentage      index={index} selectedItem={selectedItem} />
                         <ChartCategoryPercentage index={index} selectedItem={selectedItem} />
                       </>
                     }
-                    
+
                     <ChartSpanGaps           index={index} selectedItem={selectedItem} />
                     <ChartShiftValues        index={index} selectedItem={selectedItem} />
 
@@ -88,7 +86,7 @@ export const ViewItemChartSettingsList: FC<Props> = memo(({ selectedItem }) => {
         ))
       }
 
-      <AddNewChart /> 
+      <AddNewChart />
     </>
   )
 });

@@ -1,7 +1,7 @@
 import { getErrorText } from '../get-error-text';
 import { ERROR_NAME } from '../get-error-text/error-text';
 import { SCHEMA_NAME } from '../../schemas';
-import { getValidResult, isNotOneOfSeveral } from 'shared/lib/validators';
+import { getValidResult, isNotOneOfSeveral } from '../../../../validators';
 
 
 const schemasNames = Object.values(SCHEMA_NAME);

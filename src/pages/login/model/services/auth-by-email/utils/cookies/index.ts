@@ -5,15 +5,16 @@ export interface Options {
 }
 
 
-/** 
+/**
  * Возвращает куки с указанным name или undefined, если ничего не найдено
  */
 export function getCookie(name: string): any {
-  let matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  const matches = document.cookie.match(new RegExp(
+    // eslint-disable-next-line no-useless-escape
+    `(?:^|; )${name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1')}=([^;]*)`
   ));
   return matches ? decodeURIComponent(matches[1]) : undefined;
-};
+}
 
 
 // export function setCookie(name: string, value: string, options: Options = {}): void {

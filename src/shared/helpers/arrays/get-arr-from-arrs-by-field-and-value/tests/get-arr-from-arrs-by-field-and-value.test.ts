@@ -1,8 +1,8 @@
-import { getArrFromArrsByFieldAndValue } from "..";
-import { mocks } from "./mocks";
+import { getArrFromArrsByFieldAndValue } from '..';
+import { mocks } from './mocks';
 
 
-describe(`getArrFromArrsByFieldAndValue`, () => {
+describe('getArrFromArrsByFieldAndValue', () => {
   mocks.forEach(m => it(m[0].description, () => {
     expect(getArrFromArrsByFieldAndValue(m[0].arr, m[0].fieldArr, m[0].value))
       .toEqual(m[1])

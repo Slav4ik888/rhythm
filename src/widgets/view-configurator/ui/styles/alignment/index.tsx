@@ -12,23 +12,20 @@ interface Props {
 }
 
 /** Выравнивание внутреннего содержимого */
-export const Alignment: FC<Props> = memo(({ selectedItem, onChange }) => {
-  
-  return (
+export const Alignment: FC<Props> = memo(({ selectedItem, onChange }) => (
     <SubHeader title='Выравнивание'>
       {
         selectedItem?.type === 'text'
           ? <TextPanelAlignment selectedItem={selectedItem} onChange={onChange} />
           : <FlexPanelAlignment selectedItem={selectedItem} onChange={onChange} />
       }
-      
+
       {/* display - flex, block, inline ... */}
       {/* flex-direction */}
       {/* flex-wrap */}
       {/* align-items */}
       {/* justify-content */}
 
-      
+
     </SubHeader>
-  )
-});
+  ));

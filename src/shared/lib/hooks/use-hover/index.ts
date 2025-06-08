@@ -10,10 +10,10 @@ interface UseHoverBind {
 export interface UseHover {
   isHover   : boolean
   onSetHover: (status: boolean) => void
-  
+
   isEdit    : boolean
   onSetEdit : (status: boolean) => void
-  
+
   hoverBind : UseHoverBind
 }
 
@@ -26,27 +26,27 @@ export const useHover = (): UseHover => {
   const [isHover, setIsHover] = useState(false);
   const onSetHover = useCallback((status: boolean) => {
     setIsHover(status);
-  }, [isHover, setIsHover]);
+  }, [setIsHover]);
 
 
   const [isEdit, setIsEdit] = useState(false);
   const onSetEdit = useCallback((status: boolean) => {
     setIsEdit(status);
-  }, [isEdit, setIsEdit]);
+  }, [setIsEdit]);
 
-  
+
   const onMouseEnter = useCallback(() => {
     if (isEdit) return
 
     setIsHover(true);
-  }, [isEdit, isHover, setIsHover]);
+  }, [isEdit, setIsHover]);
 
 
   const onMouseLeave = useCallback(() => {
     if (isEdit) return
 
     setIsHover(false);
-  }, [isEdit, isHover, setIsHover]);
+  }, [isEdit, setIsHover]);
 
 
   return useMemo(() => ({
@@ -55,7 +55,7 @@ export const useHover = (): UseHover => {
 
     isEdit,
     onSetEdit,
-    
+
     hoverBind: {
       onMouseEnter,
       onMouseLeave

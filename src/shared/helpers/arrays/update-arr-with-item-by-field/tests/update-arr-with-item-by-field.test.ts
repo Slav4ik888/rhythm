@@ -1,7 +1,8 @@
+/* eslint-disable */
 import { updateArrWithItemByField } from '..';
 import {
   MOCK_ARR, MOCK_FIELD_UPDATED, MOCK_ARR_UPDATED, MOCK_FIELD_UPDATEDWithoutAnyFields, MOCK_FIELD_NEW_ITEM,
-MOCK_ARRUpdateWithoutAnyFields
+  MOCK_ARRUpdateWithoutAnyFields
 } from './mocks';
 
 

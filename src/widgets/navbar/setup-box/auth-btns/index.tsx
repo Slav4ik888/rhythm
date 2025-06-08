@@ -3,7 +3,7 @@ import { useUI } from 'entities/ui';
 import { MobileAuthBtns } from './mobile';
 import { AnyAuthBtns } from './any'
 import { isUndefined } from 'shared/lib/validators';
-import { SxNavbarIcon } from 'widgets/navbar';
+import { SxNavbarIcon } from '../..';
 
 
 

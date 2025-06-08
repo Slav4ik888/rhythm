@@ -25,12 +25,12 @@ const getCenterHeight = (
   const
     parentH = getParentDimentions(document.getElementById(id))?.height,
     windowH = document.documentElement.clientHeight
-  
+
   let h = 0;
 
   if (isUndefined(parentH)) h = windowH
   else h = (windowH > (parentH as number) ? parentH : windowH) as number;
-    
+
   // if (id != 'CircularId') {
   //   console.log('windowH: ', windowH);
   //   console.log('parentH: ', parentH);
@@ -41,13 +41,13 @@ const getCenterHeight = (
 };
 
 
-/** 
+/**
  * String for CSS style - top
  */
 export const getTopCenter = (id: string, size: number): string => {
   const
     h = getCenterHeight(id),
     scrollH = window.pageYOffset;
-  
+
   return `calc(${h / 2 + scrollH}px - ${size / 2}px)`
 };

@@ -32,8 +32,8 @@ export const Description: FC<Props> = memo((props) => {
     } = props,
     handlerBlur       = (e: any, value: string) => changeGroup(G, [{ value, scheme }]),
     handlerSetChanges = () => setChanges(G);
-  
-  
+
+
   return (
     <Textarea
       grid         = {grid}

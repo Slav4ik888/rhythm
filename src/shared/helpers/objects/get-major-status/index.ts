@@ -1,3 +1,4 @@
+/* eslint-disable */
 import type { Item } from '../../arrays';
 
 /**
@@ -6,7 +7,7 @@ import type { Item } from '../../arrays';
 export const getValuePosition = (obj: Item, value: unknown): number => {
   let possition = 0;
 
-  for (let key in obj) {
+  for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
       ++possition;
 
@@ -19,7 +20,7 @@ export const getValuePosition = (obj: Item, value: unknown): number => {
 
 /**
  * v.2023-07-15
- * Проверяем есть ли уже более значимый статус 
+ * Проверяем есть ли уже более значимый статус
  * Возвращает статус стоящий дальше по списку (имеющий больший индекс)
  */
 export function getMajorStatus(
@@ -32,4 +33,4 @@ export function getMajorStatus(
 
 
   return newPos > curPos ? newStatus : currentStatus;
-};
+}

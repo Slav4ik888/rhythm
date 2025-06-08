@@ -19,13 +19,12 @@ export const getData = (
   itemsData      : DashboardStatisticItem<number>[],
   viewItem       : ViewItem
 ): ChartConfig => {
-  
   // TODO: надо учесть приход 5 графиков и у них 3 тренда
   //  - order графиков должен быть на 1 меньше его тренда
 
   const { dates, greatestPeriodType } = prepareDatesForGreatestPeriod(allActiveDates, itemsData);
   const formattedDates = dates?.map(date => formatDate(date, 'DD mon YY', SUB.RU_ABBR_DEC));
-  
+
   const config = {
     labels   : formattedDates, // any[] // Dates (метки на оси X)
     datasets : [      // ChartConfigDatasets[]
@@ -35,7 +34,7 @@ export const getData = (
         const result: ChartConfigDatasets = {
           type                 : setValue(viewItem?.settings?.charts?.[idx].chartType, 'line'),
           label                : setValue(datasets.label, `График ${idx + 1}`),
-          data: checkInvertData(viewItem?.settings, 
+          data: checkInvertData(viewItem?.settings,
             prepareDataForChart(itemData, datasets, allActiveDates, greatestPeriodType)
           ).map(item => isStr(item) ? NaN : item), // Empty value changes for NaN
           tension              : 0,
@@ -82,6 +81,6 @@ export const getData = (
       });
     }
   });
-  
+
   return config
 }

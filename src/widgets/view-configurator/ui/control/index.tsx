@@ -7,9 +7,7 @@ import { SwitchRow } from './switch-row';
 
 
 /** Вкладка Control */
-export const ViewItemControlConfigurator: FC = memo(() => {
-
-  return (
+export const ViewItemControlConfigurator: FC = memo(() => (
     <>
       <SwitchRow />
       <MovementRow />
@@ -17,5 +15,4 @@ export const ViewItemControlConfigurator: FC = memo(() => {
       {/* DisplayShow - показать/скрыть элемент, "скрытый" - показывается только в режиме редактирования */}
       <DangerZone />
     </>
-  )
-});
+  ));

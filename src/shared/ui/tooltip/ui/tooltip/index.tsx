@@ -3,28 +3,6 @@ import { Box, Tooltip as MuiTooltip, TooltipProps } from '@mui/material';
 import { isEmpty } from 'shared/helpers/objects';
 
 
-const useStyles = (cfg?: AbsoluteType) => {
-  if (isEmpty(cfg)) return
-
-  const wrap: React.CSSProperties = {
-    position: 'absolute'
-  };
-
-  if (cfg?.top)    wrap.top    = cfg?.top    + 'px';
-  if (cfg?.right)  wrap.right  = cfg?.right  + 'px';
-  if (cfg?.bottom) wrap.bottom = cfg?.bottom + 'px';
-  if (cfg?.left)   wrap.left   = cfg?.left   + 'px';
-
-  return ({
-    wrap: {
-      ...wrap
-    },
-    content: {
-      position: 'relative'
-    }
-  })
-};
-
 
 interface AbsoluteType {
   top?    : number
@@ -33,16 +11,39 @@ interface AbsoluteType {
   left?   : number
 }
 
+const useStyles = (cfg?: AbsoluteType) => {
+  if (isEmpty(cfg)) return {}
+
+  const wrap: React.CSSProperties = {
+    position: 'absolute'
+  };
+
+  if (cfg?.top)    wrap.top    = `${cfg?.top}px`;
+  if (cfg?.right)  wrap.right  = `${cfg?.right}px`;
+  if (cfg?.bottom) wrap.bottom = `${cfg?.bottom}px`;
+  if (cfg?.left)   wrap.left   = `${cfg?.left}px`;
+
+  return {
+    wrap: {
+      ...wrap
+    },
+    content: {
+      position: 'relative'
+    }
+  }
+};
+
+
 type Props = {
   title?          : ReactNode
   arrow?          : boolean
-  enterDelay?     : number 
+  enterDelay?     : number
   enterNextDelay? : number
   absolute?       : AbsoluteType // If tooltip in component with absolute position
-  placement?      : TooltipProps["placement"]
+  placement?      : TooltipProps['placement']
   /** Style for span */
   sxSpan?         : CSSProperties
-  sxRoot?         : Object
+  sxRoot?         : object
   children        : JSX.Element | JSX.Element[]
 };
 
@@ -60,7 +61,7 @@ export const Tooltip: FC<Props> = memo(({
   absolute
 }) => {
   const sx = useStyles(absolute);
-  
+
   const component = (
     <MuiTooltip
       arrow          = {arrow}
@@ -77,8 +78,8 @@ export const Tooltip: FC<Props> = memo(({
   );
 
   const wrapped = (
-    <Box sx={{ ...sx?.wrap, ...sxRoot }}>
-      <Box sx={sx?.content}>
+    <Box sx={{ ...sx.wrap, ...sxRoot }}>
+      <Box sx={sx.content}>
         {component}
       </Box>
     </Box>

@@ -12,7 +12,7 @@ interface Props {
 
 export const DashboardDatebar: FC<Props> = memo(({ sx }) => (
   <MDBox display='flex' alignItems='center'>
-    <SettingDatePeriod /> 
+    <SettingDatePeriod />
     <DashboardRefresh sx={sx} />
   </MDBox>
 ));

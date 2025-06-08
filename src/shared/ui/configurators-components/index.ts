@@ -1,7 +1,7 @@
 export { ConfiguratorTextTitle } from './text-title'
 export { ConfiguratorTextfieldItem } from './textfield-item'
 export { ConfiguratorSubHeader } from './sub-header'
-export { ConfiguratorMainHeader } from './main-header' 
+export { ConfiguratorMainHeader } from './main-header'
 export { SelectValue } from './select'
 export { RowWrapper } from './row-wrapper'
 export { RowWrapperTitle } from './row-wrapper-title'

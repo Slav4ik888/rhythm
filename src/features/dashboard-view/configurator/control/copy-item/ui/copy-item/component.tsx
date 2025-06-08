@@ -44,7 +44,7 @@ interface Props {
   onToggle    : () => void
 }
 
-export const CopyViewItemComponent: FC<Props> = memo(({ selectedId, type, activatedId, onToggle}) => {
+export const CopyViewItemComponent: FC<Props> = memo(({ selectedId, type, activatedId, onToggle }) => {
   const sx = useStyles(useTheme());
   const isAll = type === 'copyItemAll';
 
@@ -53,11 +53,14 @@ export const CopyViewItemComponent: FC<Props> = memo(({ selectedId, type, activa
       {
         selectedId && selectedId === activatedId
           ? <Box sx={sx.helperText}>
-            Кликните на тот элемент, в который хотите его поместить скопированный. Для отмены - повторно нажмите на кнопку копирования.
+            Кликните на тот элемент, в который хотите его поместить скопированный.
+            Для отмены - повторно нажмите на кнопку копирования.
           </Box>
           : null
       }
-      <Tooltip title={`Копировать этот элемент в другой (${isAll ? 'со всеми вложенными элементами' : 'без вложений'})`}>
+      <Tooltip
+        title={`Копировать этот элемент в другой (${isAll ? 'со всеми вложенными элементами' : 'без вложений'})`}
+      >
         <MDButton
           variant   = 'outlined'
           color     = 'dark'

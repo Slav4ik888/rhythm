@@ -28,7 +28,7 @@ export const schema = {
     permissions: {
       const: true
     },
-    
+
     // С какого устройства вошёл
     isMobile: {
       type: 'boolean'

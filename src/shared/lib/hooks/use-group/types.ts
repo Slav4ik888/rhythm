@@ -10,14 +10,14 @@ export interface UseGroup<O> {
   setGroup(v: O, cfg?: UseGroupConfig) : void
   updateGroup(v: Partial<O>, cfg?: UseGroupConfig) : void
   getGroup()                  : Promise<O>
-  
+
   open                        : boolean
   setOpen()                   : void
   setClose(isClear?: boolean) : void
-  
+
   isChanges                   : boolean
   setIsChanges(v?: boolean)   : void
-  
+
   isConfirm                   : boolean
   setIsConfirm(v: boolean)    : void
 }

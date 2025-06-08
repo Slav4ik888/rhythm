@@ -48,7 +48,7 @@ export const TextfieldItem: FC<Props> = memo((props) => {
       onSubmit
     } = props,
 
-  
+
     handlerSubmit = (e: MouseEvent, value: string | number) => {
       changeGroup(G, [{ value, scheme }]);
       onSubmit && onSubmit(e, value);
@@ -60,8 +60,8 @@ export const TextfieldItem: FC<Props> = memo((props) => {
     },
 
     handlerSetChanges = () => setChanges(G);
-    
-  
+
+
   return (
     <TextField
       grid         = {grid}

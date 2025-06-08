@@ -1,6 +1,7 @@
+/* eslint-disable */
 // v.2025-02-22
 export type BorderStyleType    =  'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'ridge' | 'inset' | 'outset' | 'none';
-export const arrayBorderStyles = ['solid' , 'dashed' , 'dotted' , 'double' , 'groove' , 'ridge' , 'inset' , 'outset' , 'none'];
+export const arrayBorderStyles = ['solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset', 'none'];
 
 export type FlexDirectionType  = 'row' | 'column' | 'row-reverse' | 'column-reverse'
 export type FlexWrapType       = 'wrap' | 'nowrap'
@@ -9,9 +10,9 @@ export type JustifyContentType = 'flex-start' | 'flex-end' | 'center' | 'baselin
 
 export type RgbaString        = string // rgba(255, 255, 255, 1)
 export type FontStyleType                          =  'normal' | 'italic'
-export const arrayFontStyles: Array<FontStyleType> = ['normal' , 'italic'];
+export const arrayFontStyles: Array<FontStyleType> = ['normal', 'italic'];
 export type FontWeightType    =  'lighter' | 'normal' | 'bold' | 'bolder' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
-export const arrayFontWeights = ['lighter' , 'normal' , 'bold' , 'bolder' , '100' , '200' , '300' , '400' , '500' , '600' , '700' , '800' , '900'];
+export const arrayFontWeights = ['lighter', 'normal', 'bold', 'bolder', '100', '200', '300', '400', '500', '600', '700', '800', '900'];
 
 export type TextAlignType = 'left' | 'right' | 'center';
 
@@ -20,11 +21,11 @@ export interface ViewItemStyles {
   width?     : number | string // In px | '100%' | 'auto' | 'max-content' | 'min-content'
   minWidth?  : number | string
   maxWidth?  : number | string
-  
+
   height?    : number | string // In px | '100%' | 'auto' | 'max-content' | 'min-content'
   minHeight? : number | string
   maxHeight? : number | string
-  
+
   display?        : 'flex'
   flexDirection?  : FlexDirectionType
   flexWrap?       : FlexWrapType
@@ -67,7 +68,7 @@ export interface ViewItemStyles {
 
   borderColor?  : string
 
-  // shadow      offset-x | offset-y | blur-radius | spread-radius | color 
+  // shadow      offset-x | offset-y | blur-radius | spread-radius | color
   boxShadow?    : string // 1px 1px 3px 0px rgb(184 184 184);
 
   // background
@@ -89,7 +90,7 @@ export interface ViewItemStyles {
   dirFontSize?   : number // In rem
   dirFontWeight? : number
   //    - ending
-  
+
 
   textAlign?    : TextAlignType
   // textDecoration?: string

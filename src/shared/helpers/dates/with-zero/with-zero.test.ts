@@ -1,4 +1,4 @@
-import {withZero} from '.';
+import { withZero } from '.';
 
 
 const mocks = [

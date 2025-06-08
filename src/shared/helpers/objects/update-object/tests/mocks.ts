@@ -1,24 +1,24 @@
 import { cloneObj } from '../../objects';
-import { Mocks } from "./types";
+import { Mocks } from './types';
 
 const prevObj = {
   id          : 'id123',
   firstStr    : 'firstStr text',
   firstArrStr : ['first 123', 'first 234'],
   firstArrObj : [{ a: 'first 123', b: 'first 234' }, { c: 'first 567', d: 'first 890' }],
-  firstObj    : { field: 'field'},
-  
+  firstObj    : { field: 'field' },
+
   firstObjBig: {
     secondStr    : 'secondStr text',
     secondArrStr : ['second 123', 'second 234'],
     secondArrObj : [{ a: 'second 123', b: 'second 234' }, { c: 'second 567', d: 'second 890' }],
-    secondObj    : { field: 'field'},
-    
+    secondObj    : { field: 'field' },
+
     secondObjBig: {
       thirdStr    : 'thirdStr text',
       thirdArrStr : ['third 123', 'third 234'],
       thirdArrObj : [{ a: 'third 123', b: 'third 234' }, { c: 'third 567', d: 'third 890' }],
-      thirdObj    : { field: 'field'},
+      thirdObj    : { field: 'field' },
       thirdBool   : false,
 
       thirdObjBig: {
@@ -47,13 +47,13 @@ const updatedFields = {
   firstArrStr      : ['first 123', 'first 234 changed'], // Changed
   firstNewField    : 'firstNewField text',               // New field
   firstNewEmptyObj : {},                                 // New field
-  
+
   firstObjBig: {
     secondArrObj: [
       { a: 'second 123', b: 'second 234' },
       { c: 'second 567', d: 'second 890  changed' }      // Changed
     ],
-    
+
     secondObjBig: {
       thirdObj    : {},                                  // Set empty => not changes this filed, because delete fields are not supported
       thirdBool   : true,
@@ -71,7 +71,7 @@ const updatedFields = {
             { a: 'fifth 123', b: 'fifth 234' },
             { c: 'fifth 567', d: 'fifth 890  changed' }  // Changed
           ],
-          fifthObj      : { field: 'field changed'},     // Changed
+          fifthObj      : { field: 'field changed' },     // Changed
           fifthBool     : false                          // Changed
         }
       }
@@ -86,10 +86,10 @@ const updatedObj = {
   firstStr         : 'firstStr text changed',            // Changed
   firstArrStr      : ['first 123', 'first 234 changed'], // Changed
   firstArrObj      : [{ a: 'first 123', b: 'first 234' }, { c: 'first 567', d: 'first 890' }],
-  firstObj         : { field: 'field'},
+  firstObj         : { field: 'field' },
   firstNewField    : 'firstNewField text',               // New field
   firstNewEmptyObj : {},                                 // New field
-  
+
   firstObjBig: {
     secondStr    : 'secondStr text',
     secondArrStr : ['second 123', 'second 234'],
@@ -97,8 +97,8 @@ const updatedObj = {
       { a: 'second 123', b: 'second 234' },
       { c: 'second 567', d: 'second 890  changed' }      // Changed
     ],
-    secondObj    : { field: 'field'},
-    
+    secondObj    : { field: 'field' },
+
     secondObjBig: {
       thirdStr    : 'thirdStr text',
       thirdArrStr : ['third 123', 'third 234'],
@@ -122,7 +122,7 @@ const updatedObj = {
             { a: 'fifth 123', b: 'fifth 234' },
             { c: 'fifth 567', d: 'fifth 890  changed' }  // Changed
           ],
-          fifthObj      : { field: 'field changed'},     // Changed
+          fifthObj      : { field: 'field changed' },     // Changed
           fifthNewField : 'fifthNewField text',          // New field
           fifthBool     : false                          // Changed
         }
@@ -200,21 +200,21 @@ export const mocks: Mocks = [
     updatedFields: cloneObj(prevObj)
   },
     prevObj],
-  
+
   [{
     description : 'updatedFields = {}',
     prevObj,
     updatedFields: {}
   },
     prevObj],
-  
+
   [{
     description : 'With changes',
     prevObj,
     updatedFields
   },
     updatedObj],
-  
+
   [{
     description   : 'User changes',
     prevObj       : fakeUserStart,

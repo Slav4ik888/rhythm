@@ -39,7 +39,7 @@ export const MiniSidebarToggleBtn: FC<Props> = memo(({ sx: styles }) => {
   const handleMiniSidebar = useCallback(() => {
     setSidebarMini(dispatch, ! sidebarMini);
     if (! isSidebar) setIsSidebar(dispatch, true);
-  }, [sidebarMini, isSidebar, setSidebarMini, setIsSidebar]);
+  }, [sidebarMini, isSidebar, dispatch]);
 
 
   return (

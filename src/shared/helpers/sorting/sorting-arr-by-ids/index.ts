@@ -9,7 +9,7 @@ export function sortingArrByIds<A extends ArrWithId>(
   ids : string[]
 ): A {
   if (! ids || ! arr) return [] as unknown as A
-  
+
   return ids
     .map(id => arr.find(it => it.id === id))
     .filter(item => item) as A;

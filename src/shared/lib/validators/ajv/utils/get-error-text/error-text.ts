@@ -4,7 +4,7 @@ export enum ERROR_NAME {
   INVALID_DATA            = 'INVALID_DATA',            // Не корректные данные
   INVALID_FORMAT          = 'INVALID_FORMAT',          // Не верный формат данных
   INVALID_ONE_OF          = 'INVALID_ONE_OF',          // Не соответствует допустимым значениям
-  
+
   REQUIRED                = 'REQUIRED',                // Отсутствует обязательное поле
   CONSTANT                = 'CONSTANT',                // Значение в поле "__", не соответствует ожидаемому значение
   MUST_NOT_BE_EMPTY       = 'MUST_NOT_BE_EMPTY',
@@ -31,7 +31,7 @@ export enum ERROR_NAME {
 
   // PASSWORD_EMPTY           = 'Поле пароль" не должно быть пустым',
   // PASSWORD_MIN_L           = 'Пароль должен содержать более 5 символов',
-  
+
   // USER_USERID_NOT_STRING     = 'Поле userId должно быть строкой',
   // USER_ID_REQUIRED           = 'Отсутствует обязательное поле userId',
   // USER_ID_EMPTY              = 'Поле userId не должно быть пустым',
@@ -43,7 +43,7 @@ export enum ERROR_NAME {
   // COMMENT_INVALID_MESSAGE_L   = 'Сообщение должно быть меньше 500 символов',
 
   // MUST_BE_LENGTH        = 'Строка не корректной длины',
-  
-  
+
+
   // INVALID_DATA          = 'Некорректные данные',
   // NOT_BE_UNDEFINED      = 'Поле не может быть undefined',

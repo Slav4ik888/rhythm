@@ -6,15 +6,15 @@ import { getParentBranch } from '..';
 describe('getParentBranch', () => {
   // Мок данных (хэш-таблица entities)
   const entities = {
-    '1': { id: '1', parentId: '' }, // Корень
-    '2': { id: '2', parentId: '1' },
-    '3': { id: '3', parentId: '1' },
-    '4': { id: '4', parentId: '2' },
-    '5': { id: '5', parentId: '2' },
-    '6': { id: '6', parentId: '3' },
-    '7': { id: '7', parentId: '4' },
-    '8': { id: '8', parentId: 'x' }, // Несуществующий parentId'
-    '9': { id: '9', parentId: '8' },
+    1: { id: '1', parentId: '' }, // Корень
+    2: { id: '2', parentId: '1' },
+    3: { id: '3', parentId: '1' },
+    4: { id: '4', parentId: '2' },
+    5: { id: '5', parentId: '2' },
+    6: { id: '6', parentId: '3' },
+    7: { id: '7', parentId: '4' },
+    8: { id: '8', parentId: 'x' }, // Несуществующий parentId'
+    9: { id: '9', parentId: '8' },
   } as unknown as DashboardViewEntities;
 
   it('возвращает пустой массив для корневого элемента', () => {
@@ -39,8 +39,8 @@ describe('getParentBranch', () => {
 
   it('корректно обрабатывает циклическую зависимость (не зависает)', () => {
     const cyclicEntities = {
-      'A': { id: 'A', parentId: 'B' },
-      'B': { id: 'B', parentId: 'A' }, // A → B → A → ...
+      A: { id: 'A', parentId: 'B' },
+      B: { id: 'B', parentId: 'A' }, // A → B → A → ...
     } as unknown as DashboardViewEntities;
     expect(getParentBranch(cyclicEntities, 'A')).toEqual(['B',  'A']);
     // Или можно ожидать, что функция остановится после первого цикла

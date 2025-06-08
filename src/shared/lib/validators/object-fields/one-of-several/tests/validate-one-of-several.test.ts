@@ -19,9 +19,9 @@ describe('validateOneOfSeveral', () => {
 
   test('Value not one of several', () => {
     expect(validateOneOfSeveral({ someFieldName: 'error_nuh' }, 'someFieldName', LIST).errors)
-      .toEqual({ ['someFieldName']: ErrorText.NOT_ONE_OF_SEVERAL });
+      .toEqual({ someFieldName: ErrorText.NOT_ONE_OF_SEVERAL });
   });
-  
+
   test('Data is undefined', () => {
   // @ts-ignore
     expect(validateOneOfSeveral(undefined, 'someFieldName', LIST).errors)
@@ -30,7 +30,7 @@ describe('validateOneOfSeveral', () => {
 
   test('Status is undefined', () => {
     expect(validateOneOfSeveral({ someFieldName: undefined }, 'someFieldName', LIST).errors)
-      .toEqual({ ['someFieldName']: ErrorText.NOT_BE_UNDEFINED });
+      .toEqual({ someFieldName: ErrorText.NOT_BE_UNDEFINED });
   });
 
 
@@ -42,18 +42,18 @@ describe('validateOneOfSeveral', () => {
 
   test('Value not one of several, [required]', () => {
     expect(validateOneOfSeveral({ someFieldName: 'error_nuh' }, 'someFieldName', LIST, { required: true }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.NOT_ONE_OF_SEVERAL });
+      .toEqual({ someFieldName: ErrorText.NOT_ONE_OF_SEVERAL });
   });
 
   test('Data is undefined, [required]', () => {
   // @ts-ignore
     expect(validateOneOfSeveral(undefined, 'someFieldName', LIST, { required: true }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.REQUIRED });
+      .toEqual({ someFieldName: ErrorText.REQUIRED });
   });
 
   test('Status is undefined, [required]', () => {
     expect(validateOneOfSeveral({ someFieldName: undefined }, 'someFieldName', LIST, { required: true }).errors)
-      .toEqual({ ['someFieldName']: ErrorText.NOT_BE_UNDEFINED });
+      .toEqual({ someFieldName: ErrorText.NOT_BE_UNDEFINED });
   });
 });
 

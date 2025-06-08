@@ -16,7 +16,7 @@ export const useUI = () => {
 
     pageLoading       = useSelector(s.selectPageLoading),
     setPageLoading    = (status?: boolean) => dispatch(actions.setPageLoading(status)),
-    
+
     errors            = useSelector(s.selectErrors),
     setErrors         = (errors: Errors) => dispatch(actions.setErrors(errors)),
 
@@ -37,13 +37,13 @@ export const useUI = () => {
 
     acceptedCookie    = useSelector(s.selectAcceptedCookie),
     setAcceptedCookie = (value: boolean) => dispatch(actions.setAcceptedCookie(value)),
-    
+
     replacePath       = useSelector(s.selectReplacePath),
     setReplacePath    = (path: string) => dispatch(actions.setReplacePath(path)),
     clearReplacePath  = () => dispatch(actions.clearReplacePath());
 
 
-  
+
   return {
     loading,
 

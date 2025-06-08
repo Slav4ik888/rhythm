@@ -1,2 +1,2 @@
 export { DashboardBodyPanel } from './panel'
-export { DashboardBodyContent } from './body-content/'
+export { DashboardBodyContent } from './body-content'

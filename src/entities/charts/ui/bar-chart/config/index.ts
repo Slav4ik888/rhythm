@@ -7,7 +7,7 @@ import { updateObject } from 'shared/helpers/objects';
 
 
 interface BarConfig {
-  data    : ChartData<"bar", (number | [number, number] | null)[], any>
+  data    : ChartData<'bar', (number | [number, number] | null)[], any>
   options : ChartConfigOptions
 }
 
@@ -29,7 +29,7 @@ export function barConfig(chartConfig: ChartConfig): BarConfig {
           label : item.label,
           data  : item.data,
         };
-      
+
         if (item.backgroundColor) result.backgroundColor = item.backgroundColor;
         if (item.borderColor)     result.borderColor = item.borderColor;
         if (item.borderWidth)     result.borderWidth = item.borderWidth;
@@ -42,7 +42,7 @@ export function barConfig(chartConfig: ChartConfig): BarConfig {
         y: {
           // beginAtZero: true, // y axis starts at 0
         }
-      } 
+      }
     }, options),
   };
 }

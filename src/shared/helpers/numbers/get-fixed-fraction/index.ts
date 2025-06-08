@@ -14,7 +14,7 @@ export const getFixedFraction = (
   value  : number | undefined,
   config : Config = {}
 ): string => {
-  if (! value && value !== 0 || isNotNum(value)) return '';
+  if ((! value && value !== 0) || isNotNum(value)) return '';
 
 
   const result = +value.toFixed(config.fractionDigits || 0);

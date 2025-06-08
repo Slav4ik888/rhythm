@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import Divider from "@mui/material/Divider";
+import Divider from '@mui/material/Divider';
 
 
 
@@ -9,7 +9,7 @@ interface Props {
   my?: number
 }
 
-export const MDDivider: FC<Props> = memo(({ ...rest }) => 
+export const MDDivider: FC<Props> = memo(({ ...rest }) =>
   <Divider
     sx={{
       backgroundImage : 'linear-gradient(90deg, transparent, rgba(0, 0, 0, .4), transparent)',
@@ -17,6 +17,6 @@ export const MDDivider: FC<Props> = memo(({ ...rest }) =>
       height          : '1px',
       border          : 'none',
       ...rest,
-    }} 
+    }}
   />
 );

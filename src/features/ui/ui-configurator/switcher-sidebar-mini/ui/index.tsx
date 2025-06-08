@@ -12,7 +12,7 @@ export const SwitcherSidebarMini = memo(() => {
   useEffect(() => {
     setChecked(sidebarMini);
   }, [sidebarMini]);
-  
+
   const toggle = () => setSidebarMini(dispatch, ! sidebarMini);
 
 

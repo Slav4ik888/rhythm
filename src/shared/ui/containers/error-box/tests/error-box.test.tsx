@@ -18,7 +18,7 @@ describe('ErrorBox', () => {
 
     const { getByText, container } = render(
       <ThemeProvider theme={theme}>
-        <ErrorBox  
+        <ErrorBox
           field  = 'errorField'
           sx     = {{}}
           errors = {errors}
@@ -40,7 +40,7 @@ describe('ErrorBox', () => {
 
     const { debug, container } = render(
       <ThemeProvider theme={theme}>
-        <ErrorBox  
+        <ErrorBox
           field  = 'errorField'
           sx     = {{}}
           errors = {errors}

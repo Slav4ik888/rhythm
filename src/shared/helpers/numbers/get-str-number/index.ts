@@ -11,7 +11,7 @@ import { addSpaceBetweenNumbers } from '../add-space-between-numbers';
 export function getStrNumber(value: string): string {
   let str = '';
   if (! value) return '';
-  
+
   const valInStr = value.toString();
   const isNegative = valInStr[0] === '-'; // Save value '-' if present
 
@@ -29,5 +29,5 @@ export function getStrNumber(value: string): string {
 
   if (isLastComma) str += ',';
 
-  return isNegative ? '-' + str : str;
-};
+  return isNegative ? `-${str}` : str;
+}

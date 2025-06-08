@@ -8,13 +8,6 @@ export type LegendPosition = 'left' | 'top' | 'right' | 'bottom' | 'center';
 export const arrLegendPosition: LegendPosition[] = ['left', 'top', 'right', 'bottom', 'center'];
 
 
-export interface ChartConfig {
-  labels   : any[] // Dates (метки на оси X)
-  datasets : ChartConfigDatasets[]
-  options? : ChartConfigOptions
-}
-
-
 export interface ChartConfigDatasets {
   label?                : string
   data                  : number[] // Данные
@@ -60,7 +53,7 @@ export interface ChartConfigOptions {
 
   aspectRatio?         : number // или другое значение, которое вам подходит
   maintainAspectRatio? : boolean // важно отключить это свойство, если хотите изменить размер диаграммы
-  
+
   plugins?: {
     legend?: {
       display?  : boolean
@@ -70,9 +63,9 @@ export interface ChartConfigOptions {
   }
   interaction?: {
     intersect? : boolean  // true - событие срабатывает только если курсор пересекает элемент (например, находится прямо над точкой или столбцом)
-    mode?      : InteractionMode //'index'
+    mode?      : InteractionMode // 'index'
   }
-    
+
   scales?: {
     y?: {
       display?: boolean
@@ -130,4 +123,11 @@ export interface ChartConfigOptions {
       }
     }
   }
+}
+
+
+export interface ChartConfig {
+  labels   : any[] // Dates (метки на оси X)
+  datasets : ChartConfigDatasets[]
+  options? : ChartConfigOptions
 }

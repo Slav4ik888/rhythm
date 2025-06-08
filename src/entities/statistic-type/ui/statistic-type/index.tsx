@@ -43,7 +43,7 @@ export const StatisticPeriodTypeChip: FC<Props> = memo(({ type = '' as Statistic
   const sx = useStyle(useTheme(), type, styles);
   const { label, description } = STATISTIC_PERIOD_TYPE[type] || {};
 
-  
+
   return (
     // <Tooltip
     //   title     = {description}
@@ -52,7 +52,7 @@ export const StatisticPeriodTypeChip: FC<Props> = memo(({ type = '' as Statistic
     // >
     <Chip
       label = {label}
-      size  = "small"
+      size  = 'small'
       sx    = {sx.chip}
     />
     // </Tooltip>

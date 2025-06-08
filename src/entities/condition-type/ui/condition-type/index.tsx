@@ -11,9 +11,7 @@ import { f, pxToRem } from 'shared/styles';
 const useStyle = (
   { palette: { conditionTypeChip } }: CustomTheme,
   condition: DashboardConditionType = '' as DashboardConditionType
-) => {
-
-  return {
+) => ({
     tooltip: {
       ...f('-c'),
       height     : pxToRem(20),
@@ -26,8 +24,7 @@ const useStyle = (
       color      : conditionTypeChip[condition]?.color,
       background : conditionTypeChip[condition]?.background,
     },
-  }
-};
+  });
 
 
 interface Props {
@@ -40,7 +37,7 @@ export const ConditionTypeChip: FC<Props> = memo(({ condition }) => {
   const sx = useStyle(useTheme(), condition);
 
   if (! condition) return null
-  
+
   const { label, description } = CONDITION_TYPE[condition] || {};
 
 
@@ -52,7 +49,7 @@ export const ConditionTypeChip: FC<Props> = memo(({ condition }) => {
     >
       <Chip
         label = {label}
-        size  = "small"
+        size  = 'small'
         sx    = {sx?.chip}
       />
     </Tooltip>

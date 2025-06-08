@@ -9,7 +9,7 @@ export enum LogoBtnType {
   HEADER    = 'header',
   FOOTER    = 'footer',
   AUTH      = 'auth'
-};
+}
 
 
 const useStyles = (type: LogoBtnType) => {
@@ -36,7 +36,7 @@ const useStyles = (type: LogoBtnType) => {
     }
   }
 };
-  
+
 
 type Props = {
   type: LogoBtnType

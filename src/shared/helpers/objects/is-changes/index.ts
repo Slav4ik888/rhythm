@@ -1,37 +1,36 @@
-import { isObj } from 'shared/lib/validators';
 import { deepEqual } from '../deep-equal';
 
 
-function checkIsChanges<T>(first: T, second: T) {
-  // console.log('second: ', second);
-  // console.log('first: ', first);
-  let result = false; // Нет изменений
+// function checkIsChanges<T>(first: T, second: T) {
+//   // console.log('second: ', second);
+//   // console.log('first: ', first);
+//   let result = false; // Нет изменений
 
-  if (! first && second) return true;
+//   if (! first && second) return true;
 
-  for (let key in second) {
-    if (Object.prototype.hasOwnProperty.call(second, key)) {
-      // console.log('second[key]: ', second[key]);
+//   for (const key in second) {
+//     if (Object.prototype.hasOwnProperty.call(second, key)) {
+//       // console.log('second[key]: ', second[key]);
 
-      if (isObj(second[key])) { // Ищем string | number | boolean
-        const res = isChanges(first?.[key], second?.[key]);
-        if (res) {
-          result = true;
-          // console.log(`result IN1: ${key}: `, first?.[key], ` - `, second?.[key]);
-        }
-      }
-      else if (second?.[key] !== first?.[key]) {
-        // console.log('second[key]: ', second[key]);
-        // console.log('first[key]: ', first?.[key]);
-        // console.log(`result IN2: ${key}: `, second?.[key], ` - `, first?.[key]);
+//       if (isObj(second[key])) { // Ищем string | number | boolean
+//         const res = isChanges(first?.[key], second?.[key]);
+//         if (res) {
+//           result = true;
+//           // console.log(`result IN1: ${key}: `, first?.[key], ` - `, second?.[key]);
+//         }
+//       }
+//       else if (second?.[key] !== first?.[key]) {
+//         // console.log('second[key]: ', second[key]);
+//         // console.log('first[key]: ', first?.[key]);
+//         // console.log(`result IN2: ${key}: `, second?.[key], ` - `, first?.[key]);
 
-        result = true;
-      }
-    }
-  }
+//         result = true;
+//       }
+//     }
+//   }
 
-  return result;
-};
+//   return result;
+// }
 
 
 /**
@@ -42,7 +41,7 @@ function checkIsChanges<T>(first: T, second: T) {
  */
 export function isChanges<T>(prevObj: T, newObj: T): boolean {
   return ! deepEqual(prevObj, newObj);
-  
+
   // const result1 = checkIsChanges(prevObj, newObj);
   // const result2 = checkIsChanges(newObj, prevObj);
 
@@ -54,4 +53,4 @@ export function isChanges<T>(prevObj: T, newObj: T): boolean {
   // }
 
   // return result1 || result2;
-};
+}

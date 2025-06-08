@@ -1,5 +1,4 @@
 
-
 export type EndingType                     =  '-' | '%' | 'шт' | 'руб';
 export const arrayEndingType: EndingType[] = ['-',  '%',  'шт',  'руб'];
 
@@ -20,7 +19,7 @@ export interface IndicatorsConfig {
   fractionDigits? : number  // Количество знаков после запятой
   addZero?        : boolean // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
   noSpace?        : boolean // Не добавлять пробел между разрядами
-  
+
   // Ending
   endingType?     : EndingType
   endingDiffType? : EndingDiffType

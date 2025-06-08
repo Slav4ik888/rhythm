@@ -1,5 +1,5 @@
 import { FC, memo, ReactNode } from 'react';
-import { GridSize, Grid2 as Grid } from "@mui/material";
+import { GridSize, Grid2 as Grid } from '@mui/material';
 
 
 
@@ -9,7 +9,7 @@ export interface GridStyle {
   sm? : GridSize
   xl? : GridSize
   xs? : GridSize
-};
+}
 
 
 type Props = {

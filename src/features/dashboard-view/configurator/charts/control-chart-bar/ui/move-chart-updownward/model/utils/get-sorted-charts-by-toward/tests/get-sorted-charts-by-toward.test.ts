@@ -40,7 +40,7 @@ describe('getSortedChartsByToward', () => {
   });
   test('DOWN, current item is fourth', () => {
     const res = getSortedChartsByToward('down', items, 3);
-    
+
     expect(res[3].id).toEqual('5');
     expect(res[4].id).toEqual('4');
   });

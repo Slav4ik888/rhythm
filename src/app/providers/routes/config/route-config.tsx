@@ -18,7 +18,7 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     path    : RoutePath.ROOT,
     element : <></>
   },
-  
+
   // Auth
   [AppRoutes.SIGNUP]: {
     path    : RoutePath.SIGNUP,

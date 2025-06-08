@@ -9,9 +9,9 @@ const getIndents = (v: any) => v ? v / 8 : v;
 
 /**
  * Base format styles transform to sx
- * 
+ *
  * DB => sx
- * 
+ *
  * DB => display user
  */
 export const stylesToSx = (style?: ViewItemStyles): any => {
@@ -31,13 +31,13 @@ export const stylesToSx = (style?: ViewItemStyles): any => {
   if (is(gap))       sx.gap       = getDimensions(gap);
   if (is(rowGap))    sx.rowGap    = getDimensions(rowGap);
   if (is(columnGap)) sx.columnGap = getDimensions(columnGap);
-  
+
   // width
   if (is(width))    sx.width    = getDimensions(width);
   if (is(minWidth)) sx.minWidth = getDimensions(minWidth);
   if (is(maxWidth)) sx.maxWidth = getDimensions(maxWidth);
 
-  // height 
+  // height
   if (is(height))    sx.height    = getDimensions(height);
   if (is(minHeight)) sx.minHeight = getDimensions(minHeight);
   if (is(maxHeight)) sx.maxHeight = getDimensions(maxHeight);
@@ -61,12 +61,12 @@ export const stylesToSx = (style?: ViewItemStyles): any => {
   if (is(ml)) sx.ml = getIndents(ml);
 
   // borders
-  if (is(borderWidth))  sx.borderWidth  = borderWidth  + 'px';
-  if (is(borderRadius)) sx.borderRadius = borderRadius + 'px';
+  if (is(borderWidth))  sx.borderWidth  = `${borderWidth}px`;
+  if (is(borderRadius)) sx.borderRadius = `${borderRadius}px`;
 
   // font-size
-  if (is(fontSize))    sx.fontSize    = fontSize    + 'px';
-  if (is(dirFontSize)) sx.dirFontSize = dirFontSize + 'px';
-  
+  if (is(fontSize))    sx.fontSize    = `${fontSize}px`;
+  if (is(dirFontSize)) sx.dirFontSize = `${dirFontSize}px`;
+
   return sx
 }

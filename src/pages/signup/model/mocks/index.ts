@@ -9,7 +9,7 @@ export const MOCK_SIGNUP_DATA_SMALL: SignupData = {
   confirmPassword : MOCK_PASSWORD,
 
   permissions     : true,
-  isMobile        : false 
+  isMobile        : false
 };
 
 
@@ -27,5 +27,5 @@ export const MOCK_SIGNUP_DATA_FULL: SignupData = {
   confirmPassword : MOCK_PASSWORD,
 
   permissions     : true,
-  isMobile        : false 
+  isMobile        : false
 };

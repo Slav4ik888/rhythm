@@ -21,17 +21,18 @@ interface Props {
  * в том числе scheme with array
  */
 export const FlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, toolTitle, sx }) => {
+  const isChecked = Boolean(getValueByScheme(selectedItem, scheme));
+
   const { updateViewItem } = useDashboardView();
-  const [checked, setChecked] = useState(() => Boolean(getValueByScheme(selectedItem, scheme)));
+  const [checked, setChecked] = useState(() => isChecked);
 
   useEffect(() => {
-    setChecked(Boolean(getValueByScheme(selectedItem, scheme)));
-  },[selectedItem]);
-
+    setChecked(isChecked);
+  }, [isChecked]);
 
   const handleToggle = useCallback(() => {
-    updater(! Boolean(getValueByScheme(selectedItem, scheme)), selectedItem, scheme, updateViewItem);
-  }, [selectedItem, updateViewItem]);
+    updater(! isChecked, selectedItem, scheme, updateViewItem);
+  }, [scheme, selectedItem, isChecked, updateViewItem]);
 
 
   return (

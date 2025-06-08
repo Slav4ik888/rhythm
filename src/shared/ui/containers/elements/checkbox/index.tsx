@@ -1,11 +1,10 @@
 import { ChangeEvent, FC, memo, SyntheticEvent } from 'react';
 import { FormControlLabel, Checkbox as MuiCheckbox } from '@mui/material';
-import { GridWrap } from '../../grid-wrap';
+import { GridWrap, GridStyle } from '../../grid-wrap';
 import { BoxWrap } from '../../box-wrap';
 import { Tooltip } from '../../../tooltip';
 import { changeGroup, UseGroup } from 'shared/lib/hooks';
 import { getValueByScheme } from 'shared/helpers/objects';
-import { GridStyle } from '../../grid-wrap';
 
 
 
@@ -63,9 +62,9 @@ export const Checkbox: FC<Props> = memo((props) => {
           labelPlacement = 'end'
           onChange       = {handleChange}
           control        = {<MuiCheckbox
-                              disabled = {disabled}
-                              checked  = {getValueByScheme(G.group, scheme)}
-                              sx       = {sx.checkbox}
+            disabled = {disabled}
+            checked  = {getValueByScheme(G.group, scheme)}
+            sx       = {sx.checkbox}
                             />}
         />
       </Tooltip>

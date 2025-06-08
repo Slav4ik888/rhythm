@@ -1,5 +1,4 @@
 
-
 export type NavbarColorName = 'navbar_white' | 'navbar_green' | 'navbar_grey'
 export interface ThemeNavbarItem {
   bg: string
@@ -10,7 +9,7 @@ export interface ThemeNavbarItem {
 export type NavbarTheme = { navbar: ThemeNavbarItem }
 
 export const navbarThemes: Record<NavbarColorName, NavbarTheme> = {
-  'navbar_white': {
+  navbar_white: {
     navbar: {
       bg: '#ffffff',
       color: '#7f7f7f',
@@ -18,7 +17,7 @@ export const navbarThemes: Record<NavbarColorName, NavbarTheme> = {
       // iconColor: '#7f7f7f',
     }
   },
-  'navbar_green': {
+  navbar_green: {
     navbar: {
       bg: '#ffffff',
       color: '#7f7f7f',
@@ -26,7 +25,7 @@ export const navbarThemes: Record<NavbarColorName, NavbarTheme> = {
       // iconColor: '#7f7f7f',
     }
   },
-  'navbar_grey': {
+  navbar_grey: {
     navbar: {
       bg: '#ffffff',
       color: '#7f7f7f',

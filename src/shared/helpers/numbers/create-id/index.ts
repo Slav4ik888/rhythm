@@ -1,16 +1,16 @@
 /**
  * Возвращает максимально имещющееся значение
- * @param {Array} arr 
+ * @param {Array} arr
  * @param {string} field поле по которому проверка, значение должно быть number
  */
-function getMaxValue<T>(arr: T[], field: string = 'id' ): number {
+function getMaxValue<T>(arr: T[], field: string = 'id'): number {
   let maxValue = 0;
   arr.forEach(item => {
   // @ts-ignore
     if (item[field] > maxValue) maxValue = item[field];
   });
   return maxValue;
-};
+}
 
 
 /**

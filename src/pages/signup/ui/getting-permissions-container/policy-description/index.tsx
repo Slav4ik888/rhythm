@@ -33,18 +33,18 @@ export const PolicyDescription: FC = memo(() => {
   return (
     <>
       <Box sx={sx.root}>
-        {'Выражаю своё согласие на обработку персональных данных в соответствии с'}&nbsp;
+        Выражаю своё согласие на обработку персональных данных в соответствии с&nbsp;
         <Box
           sx={sx.confidence}
           onClick={() => hookOpen.setOpen()}
         >
-          {'«Политикой конфиденциальности»'}
+          «Политикой конфиденциальности»
         </Box>
       </Box>
 
       <DialogInfo
         hookOpen = {hookOpen}
-        title    = {'Политика конфиденциальности'}
+        title    = 'Политика конфиденциальности'
         children = {<ShowPolicyText />}
       />
     </>

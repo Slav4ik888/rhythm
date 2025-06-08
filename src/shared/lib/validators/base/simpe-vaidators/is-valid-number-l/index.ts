@@ -8,8 +8,8 @@ export const isValidNumberL = (
   if (strNum === undefined) return false;
   if (typeof strNum !== 'string') return false;
   if (
-    strNum.replace(/\D/, '').length !== strNum.length ||
-    strNum.replace(/\D/, '').length !== length
+    strNum.replace(/\D/, '').length !== strNum.length
+    || strNum.replace(/\D/, '').length !== length
   ) return false;
 
   return true;

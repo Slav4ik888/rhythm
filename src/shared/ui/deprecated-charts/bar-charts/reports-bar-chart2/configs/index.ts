@@ -17,7 +17,7 @@ import { ChartConfigDatasets } from 'entities/charts';
 
 
 
-export function configs(labels: any[], datasets: ChartConfigDatasets) { //: { data: any, options: ChartOptions} {
+export function configs(labels: any[], datasets: ChartConfigDatasets) { // : { data: any, options: ChartOptions} {
   return {
     data: {
       labels,
@@ -28,7 +28,7 @@ export function configs(labels: any[], datasets: ChartConfigDatasets) { //: { da
           borderWidth: 0,
           borderRadius: 4,
           borderSkipped: false,
-          backgroundColor: "rgba(255, 255, 255, 0.8)",
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
           data: datasets.data,
           maxBarThickness: 6,
         },
@@ -44,7 +44,7 @@ export function configs(labels: any[], datasets: ChartConfigDatasets) { //: { da
       },
       interaction: {
         intersect: false,
-        mode: "index", 
+        mode: 'index',
       },
       scales: {
         y: {
@@ -54,7 +54,7 @@ export function configs(labels: any[], datasets: ChartConfigDatasets) { //: { da
             drawOnChartArea: true,
             drawTicks: false,
             borderDash: [5, 5],
-            color: "rgba(255, 255, 255, .2)",
+            color: 'rgba(255, 255, 255, .2)',
           },
           ticks: {
             suggestedMin: 0,
@@ -64,11 +64,11 @@ export function configs(labels: any[], datasets: ChartConfigDatasets) { //: { da
             font: {
               size: 14,
               weight: 300,
-              family: "Roboto",
-              style: "normal", 
+              family: 'Roboto',
+              style: 'normal',
               lineHeight: 2,
             },
-            color: "#fff",
+            color: '#fff',
           },
         },
         x: {
@@ -78,17 +78,17 @@ export function configs(labels: any[], datasets: ChartConfigDatasets) { //: { da
             drawOnChartArea: true,
             drawTicks: false,
             borderDash: [5, 5],
-            color: "rgba(255, 255, 255, .2)",
+            color: 'rgba(255, 255, 255, .2)',
           },
           ticks: {
             display: true,
-            color: "#f8f9fa",
+            color: '#f8f9fa',
             padding: 10,
             font: {
               size: 14,
               weight: 300,
-              family: "Roboto",
-              style: "normal",
+              family: 'Roboto',
+              style: 'normal',
               lineHeight: 2,
             },
           },

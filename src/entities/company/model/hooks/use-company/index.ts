@@ -8,12 +8,14 @@ import { updateCompany } from 'features/company';
 
 
 
-interface Config {
-}
+// interface Config {
+// }
 
-export const useCompany = (config: Config = {}) => {
+// export const useCompany = (config: Config = {}) => {
+//   const
+//     { } = config,
+export const useCompany = () => {
   const
-    { } = config,
     dispatch             = useAppDispatch(),
 
     loading              = useSelector(s.selectLoading),
@@ -32,7 +34,7 @@ export const useCompany = (config: Config = {}) => {
     // serviceDeleteCompany = (companyId: string) => dispatch(deleteCompany(companyId)),
 
 
-  
+
   return {
     loading,
     errors,

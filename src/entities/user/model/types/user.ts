@@ -1,7 +1,7 @@
 import { ItemBase } from 'entities/base'
 import { Person } from './person'
 import { Role } from './roles'
-import { UserSettings } from './user-settings'
+// import { UserSettings } from './user-settings'
 
 
 
@@ -32,5 +32,5 @@ export interface User extends ItemBase {
   emailVerified : boolean
   status        : UserStatus
 
-  settings?     : UserSettings
+  // settings?     : UserSettings
 }

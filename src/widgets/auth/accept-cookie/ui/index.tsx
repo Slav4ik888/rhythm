@@ -14,7 +14,7 @@ const AcceptCookieLogics: FC = memo(() => {
     handlerChange     = (e: ChangeEvent<HTMLInputElement>) => setCheck(e.target.checked),
     handlerAccept     = () => setAcceptedCookie(true);
 
-  
+
   if (acceptedCookie) return null;
 
 
