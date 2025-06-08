@@ -12,12 +12,9 @@ export default (env: BuildEnv) => {
     src   : path.resolve(__dirname, 'src'),
   };
 
-  const
-    mode    = env.mode || 'development',
-    isDev   = mode === 'development',
-    port    = env.port,
-    apiUrl  = env.apiUrl,
-    project = BuildProject.FRONTEND;
+  const { port, apiUrl, mode = 'development' } = env;
+  const isDev = mode === 'development';
+  const project = BuildProject.FRONTEND;
 
 
   const config: Configuration = buildWebpackConfig({

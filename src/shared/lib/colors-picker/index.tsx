@@ -4,7 +4,6 @@ import { useDebouncyEffect } from 'use-debouncy';
 import { RgbaString } from 'entities/dashboard-view';
 import { rgba, rgbaStringToRgba } from './utils';
 import { SxCard } from 'shared/styles';
-import { ___devShow } from 'shared/helpers/strings/___dev-show';
 import { RgbaColor } from 'react-colorful';
 import { isNotUndefined } from '../validators';
 

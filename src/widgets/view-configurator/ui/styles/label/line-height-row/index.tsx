@@ -9,15 +9,13 @@ interface Props {
 }
 
 /** Set line-height */
-export const LineHeightRow: FC<Props> = memo(({ selectedItem }) => {
-  return (
-    <RowInputByScheme
-      scheme       = 'styles.lineHeight'
-      type         = 'number'
-      title        = 'line-height'
-      toolTitle    = 'line-height'
-      width        = '5rem'
-      selectedItem = {selectedItem}
-    />
-  )
-});
+export const LineHeightRow: FC<Props> = memo(({ selectedItem }) => (
+  <RowInputByScheme
+    scheme       = 'styles.lineHeight'
+    type         = 'number'
+    title        = 'line-height'
+    toolTitle    = 'line-height'
+    width        = '5rem'
+    selectedItem = {selectedItem}
+  />
+));

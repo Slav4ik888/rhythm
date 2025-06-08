@@ -9,21 +9,19 @@ interface Props {
   selectedItem: ViewItem | undefined
 }
 
-export const LabelRow: FC<Props> = memo(({ selectedItem }) => {
-  return (
-    <RowInputByScheme
-      scheme       = 'label'
-      title        = 'Заголовок'
-      toolTitle    = 'Заголовок'
-      width        = '100%'
-      selectedItem = { selectedItem }
-      sx={{
-        input: {
-          fontSize : `${pxToRem(18)} !important`,
-          height   : pxToRem(40),
-        }
-      }}
-      onChange={() => { }} // Чтобы при вводе текста не происходило обновления
-    />
-  )
-});
+export const LabelRow: FC<Props> = memo(({ selectedItem }) => (
+  <RowInputByScheme
+    scheme       = 'label'
+    title        = 'Заголовок'
+    toolTitle    = 'Заголовок'
+    width        = '100%'
+    selectedItem = { selectedItem }
+    sx={{
+      input: {
+        fontSize : `${pxToRem(18)} !important`,
+        height   : pxToRem(40),
+      }
+    }}
+    onChange={() => { }} // Чтобы при вводе текста не происходило обновления
+  />
+));

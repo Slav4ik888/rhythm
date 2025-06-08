@@ -17,7 +17,7 @@ export const SelectFontStyle: FC<Props> = memo(({ selectedItem, onChange }) => {
     <SelectValue
       selectedValue = {selectedItem?.styles?.fontStyle || 'default'}
       array         = {arrayFontStyles}
-      sx            = {{ root: { width: '100px' }}}
+      sx            = {{ root: { width: '100px' } }}
       // @ts-ignore
       onSelect      = {handleSelectedStyle}
     />

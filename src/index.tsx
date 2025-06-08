@@ -28,4 +28,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refacted Dark scheme UIConfigurator" && git push -u origin main
+// git add . && git commit -m "added eslint" && git push -u origin main

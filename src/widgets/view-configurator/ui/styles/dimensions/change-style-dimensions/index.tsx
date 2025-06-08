@@ -20,7 +20,9 @@ interface Props {
 }
 
 /** Размеры */
-export const ChangeStyleItemDimensions: FC<Props> = memo(({ selectedItem, field, bold, toolTitle, title, value = '', onChange }) => {
+export const ChangeStyleItemDimensions: FC<Props> = memo(({ selectedItem, field, bold, toolTitle, title,
+  value = '', onChange }) => {
+
   const [selectedValue, setSelectedValue] = useState<string>(''); // Если не строка или она пуста то это число
   const [isValueNumber, setIsValuerNumber] = useState(isPx(value));
 
@@ -42,7 +44,7 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ selectedItem, field,
 
   return (
     <RowWrapper>
-      <ConfiguratorTextTitle title={title} toolTitle={toolTitle} bold={bold}/>
+      <ConfiguratorTextTitle title={title} toolTitle={toolTitle} bold={bold} />
 
       <Box sx={{ ...f('-c') }}>
         {/* In px */}
@@ -52,7 +54,7 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ selectedItem, field,
           scheme       = {`styles.${field}`}
           width        = '4rem'
           disabled     = {! isValueNumber}
-          transform    = {(v) => (isValueNumber && v || '') as number} // чтобы выводились только числа
+          transform    = {(v) => ((isValueNumber && v) || '') as number} // чтобы выводились только числа
           onChange     = {(e: MouseEvent, v: string | number) => {}}
           onBlur       = {(e: MouseEvent, v: string | number) => onChange(field, v)}
           onSubmit     = {(e: MouseEvent, v: string | number) => onChange(field, v)}

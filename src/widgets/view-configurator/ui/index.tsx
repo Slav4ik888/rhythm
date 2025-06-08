@@ -3,8 +3,6 @@ import DrawerStyled from './styled';
 import { ConfiguratorMainHeader as MainHeader } from 'shared/ui/configurators-components';
 import { useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { Box, Tab } from '@mui/material';
-import { f } from 'shared/styles';
-import { CustomTheme } from 'app/providers/theme';
 import { getChanges, isEmpty, isNotEmpty } from 'shared/helpers/objects';
 import { useCompany } from 'entities/company';
 import { ViewItemStylesConfigurator } from './styles';
@@ -16,6 +14,7 @@ import { ViewItemConfiguratorSettings } from './settings';
 import { ViewItemControlConfigurator } from './control';
 import { InfoBlock } from './info-block';
 import { PaletteModeSwitcher } from 'features/ui';
+import { Unselected } from './unselected';
 
 
 
@@ -70,11 +69,7 @@ export const ViewItemConfigurator: FC = memo(() => {
     <DrawerStyled anchor='right' variant='permanent' ownerState={{ editMode }}>
       <MainHeader onClose={handleClose} />
       <UnsavedChanges />
-      {
-        ! selectedId && <Box sx={(theme) => ({ ...f('-c-c'), mt: 8, color: (theme as CustomTheme).palette.error.main })}>
-          Выберите элемент для редактирования
-        </Box>
-      }
+      {! selectedId && <Unselected />}
       <InfoBlock />
       
       <TabContext value={value}>

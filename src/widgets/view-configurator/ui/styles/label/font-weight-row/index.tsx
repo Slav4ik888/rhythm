@@ -10,14 +10,12 @@ interface Props {
 }
 
 /** Set fontWeight */
-export const FontWeightRow: FC<Props> = memo(({ selectedItem, scheme }) => {
-  return (
-    <RowSelectByField
-      scheme       = {scheme}
-      title        = 'font-weight'
-      toolTitle    = 'font-weight'
-      array        = {arrayFontWeights}
-      selectedItem = {selectedItem}
-    />
-  )
-});
+export const FontWeightRow: FC<Props> = memo(({ selectedItem, scheme }) => (
+  <RowSelectByField
+    scheme       = {scheme}
+    title        = 'font-weight'
+    toolTitle    = 'font-weight'
+    array        = {arrayFontWeights}
+    selectedItem = {selectedItem}
+  />
+));

@@ -8,6 +8,7 @@ import { f, pxToRem } from 'shared/styles';
 import { useCompany } from 'entities/company';
 import { CircularProgress } from 'shared/ui/circular-progress';
 import { isChangedViewItem } from '../model/utils';
+import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 
@@ -46,7 +47,11 @@ const useStyles = (theme: CustomTheme, loading: boolean) => ({
 
 export const UnsavedChanges: FC = memo(() => {
   const { companyId, changedCompany, serviceUpdateCompany, cancelCustomSettings } = useCompany();
-  const { loading, selectedId, changedViewItem, isUnsaved, setIsUnsaved, serviceUpdateViewItem, cancelUpdateViewItem } = useDashboardView();
+  const {
+    loading, selectedId, changedViewItem, isUnsaved,
+    setIsUnsaved, serviceUpdateViewItem, cancelUpdateViewItem
+  } = useDashboardView();
+
   const sx = useStyles(useTheme(), loading);
 
   // const isChanges = useMemo(() => isChangedViewItem(selectedId, changedCompany, changedViewItem, true)
@@ -55,13 +60,13 @@ export const UnsavedChanges: FC = memo(() => {
     isChangedViewItem(selectedId, changedCompany, changedViewItem, true)
       ? setIsUnsaved(true)
       : setIsUnsaved(false);
-  }, [selectedId, changedCompany, changedViewItem]);
-  
+  }, [selectedId, changedCompany, changedViewItem, setIsUnsaved]);
+
 
   const handleCancel = useCallback(() => {
     if (isNotEmpty(changedCompany)) cancelCustomSettings(); /** Отменить изменившиеся customSettings */
     if (isNotEmpty(changedViewItem)) cancelUpdateViewItem(); /** Отменить изменившиеся поля | стили */
-  }, [selectedId, changedCompany, changedViewItem]);
+  }, [changedCompany, changedViewItem, cancelCustomSettings, cancelUpdateViewItem]);
 
 
   const handleChange = useCallback(() => {
@@ -70,22 +75,22 @@ export const UnsavedChanges: FC = memo(() => {
     /** Сохраняем изменившиеся поля | стили */
     const viewItem = { id: selectedId, ...changedViewItem };
     serviceUpdateViewItem({ companyId, viewItem, newStoredViewItem: viewItem });
-  }, [selectedId, changedCompany, changedViewItem]);
+  }, [companyId, selectedId, changedCompany, changedViewItem, serviceUpdateViewItem, serviceUpdateCompany]);
 
   const handleConsole = useCallback(() => {
     if (isNotEmpty(changedCompany)) {
-      console.log('changedCompany:');
-      console.log(JSON.stringify(changedCompany, null, 2));
+      __devLog('changedCompany:', '--force');
+      __devLog(JSON.stringify(changedCompany, null, 2), '--force');
     }
     if (isNotEmpty(changedViewItem)) {
-      console.log('changedViewItem:');
-      console.log(JSON.stringify(changedViewItem, null, 2));
+      __devLog('changedViewItem:', '--force');
+      __devLog(JSON.stringify(changedViewItem, null, 2), '--force');
     }
-  }, [selectedId, changedCompany, changedViewItem]);
+  }, [changedCompany, changedViewItem]);
 
 
   if (! isUnsaved) return null;
-  
+
 
   return (
     <Box sx={sx.isChanges}>

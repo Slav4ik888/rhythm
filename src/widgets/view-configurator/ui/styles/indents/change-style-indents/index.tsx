@@ -30,7 +30,8 @@ interface Props {
 }
 
 /** Отступы */
-export const ChangeStyleItemIndents: FC<Props> = memo(({ selectedItem, baseField, bold, toolTitle, title, onChange }) => {
+export const ChangeStyleItemIndents: FC<Props> = memo(({ selectedItem, baseField, bold, toolTitle, title,
+  onChange }) => {
   const sx = useStyles();
 
   const handleEmpty = (e: MouseEvent, v: string | number) => {};
@@ -45,12 +46,12 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ selectedItem, baseField
         <InputByScheme
           type         = 'number'
           selectedItem = {selectedItem}
-          scheme       = {`styles.${baseField + 't'}`}
+          scheme       = {`styles.${baseField}t`}
           width        = '4rem'
           helperText   = 'Сверху'
           onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => onChange(baseField + 't' as ViewItemStylesField, v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => onChange(baseField + 't' as ViewItemStylesField, v)}
+          onBlur       = {(e: MouseEvent, v: string | number) => onChange(`${baseField}t` as ViewItemStylesField, v)}
+          onSubmit     = {(e: MouseEvent, v: string | number) => onChange(`${baseField}t` as ViewItemStylesField, v)}
         />
         <InputByScheme
           type         = 'number'
@@ -65,12 +66,12 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ selectedItem, baseField
         <InputByScheme
           type         = 'number'
           selectedItem = {selectedItem}
-          scheme       = {`styles.${baseField + 'y'}`}
+          scheme       = {`styles.${baseField}y`}
           width        = '4rem'
           helperText   = 'Верх/низ'
           onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => onChange(baseField + 'y' as ViewItemStylesField, v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => onChange(baseField + 'y' as ViewItemStylesField, v)}
+          onBlur       = {(e: MouseEvent, v: string | number) => onChange(`${baseField}y` as ViewItemStylesField, v)}
+          onSubmit     = {(e: MouseEvent, v: string | number) => onChange(`${baseField}y` as ViewItemStylesField, v)}
         />
       </Box>
 
@@ -78,42 +79,42 @@ export const ChangeStyleItemIndents: FC<Props> = memo(({ selectedItem, baseField
         <InputByScheme
           type         = 'number'
           selectedItem = {selectedItem}
-          scheme       = {`styles.${baseField + 'l'}`}
+          scheme       = {`styles.${baseField}l`}
           width        = '4rem'
           helperText   = 'Слева'
           onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => onChange(baseField + 'l' as ViewItemStylesField, v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => onChange(baseField + 'l' as ViewItemStylesField, v)}
+          onBlur       = {(e: MouseEvent, v: string | number) => onChange(`${baseField}l` as ViewItemStylesField, v)}
+          onSubmit     = {(e: MouseEvent, v: string | number) => onChange(`${baseField}l` as ViewItemStylesField, v)}
         />
         <InputByScheme
           type         = 'number'
           selectedItem = {selectedItem}
-          scheme       = {`styles.${baseField + 'b'}`}
+          scheme       = {`styles.${baseField}b`}
           width        = '4rem'
           helperText   = 'Снизу'
           onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => onChange(baseField + 'b' as ViewItemStylesField, v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => onChange(baseField + 'b' as ViewItemStylesField, v)}
+          onBlur       = {(e: MouseEvent, v: string | number) => onChange(`${baseField}b` as ViewItemStylesField, v)}
+          onSubmit     = {(e: MouseEvent, v: string | number) => onChange(`${baseField}b` as ViewItemStylesField, v)}
         />
         <InputByScheme
           type         = 'number'
           selectedItem = {selectedItem}
-          scheme       = {`styles.${baseField + 'r'}`}
+          scheme       = {`styles.${baseField}r`}
           width        = '4rem'
           helperText   = 'Справа'
           onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => onChange(baseField + 'r' as ViewItemStylesField, v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => onChange(baseField + 'r' as ViewItemStylesField, v)}
+          onBlur       = {(e: MouseEvent, v: string | number) => onChange(`${baseField}r` as ViewItemStylesField, v)}
+          onSubmit     = {(e: MouseEvent, v: string | number) => onChange(`${baseField}r` as ViewItemStylesField, v)}
         />
         <InputByScheme
           type         = 'number'
           selectedItem = {selectedItem}
-          scheme       = {`styles.${baseField + 'x'}`}
+          scheme       = {`styles.${baseField}x`}
           width        = '4rem'
           helperText   = 'Прав/лев'
           onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => onChange(baseField + 'x' as ViewItemStylesField, v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => onChange(baseField + 'x' as ViewItemStylesField, v)}
+          onBlur       = {(e: MouseEvent, v: string | number) => onChange(`${baseField}x` as ViewItemStylesField, v)}
+          onSubmit     = {(e: MouseEvent, v: string | number) => onChange(`${baseField}x` as ViewItemStylesField, v)}
         />
       </Box>
     </Box>

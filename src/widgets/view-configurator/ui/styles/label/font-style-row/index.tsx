@@ -11,12 +11,9 @@ interface Props {
 }
 
 /** Set fontStyle */
-export const FontStyleRow: FC<Props> = memo(({ selectedItem, onChange }) => {
-
-  return (
-    <RowWrapper>
-      <ConfiguratorTextTitle title='font-style' toolTitle='font-style' bold />
-      <SelectFontStyle selectedItem={selectedItem} onChange={onChange} />
-    </RowWrapper>
-  )
-});
+export const FontStyleRow: FC<Props> = memo(({ selectedItem, onChange }) => (
+  <RowWrapper>
+    <ConfiguratorTextTitle title='font-style' toolTitle='font-style' bold />
+    <SelectFontStyle selectedItem={selectedItem} onChange={onChange} />
+  </RowWrapper>
+));
