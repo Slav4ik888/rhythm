@@ -14,14 +14,14 @@ interface Props {
  * Перемещение (изменение order) внутри родителя
  */
 export const MoveItemUpdownward: FC<Props> = memo(({ viewItem }) => {
-  const { childrenViewItems, updateViewItem } = useDashboardView({ parentId: viewItem.parentId });
+  const { childrenViewItems, updateViewItems } = useDashboardView({ parentId: viewItem.parentId });
 
   const handleClick = useCallback((type: TowardType) => {
-    updateViewItem({
+    updateViewItems([{
       id    : viewItem.id,
       order : calcNewOrder(type, sortingArr(childrenViewItems, 'order'), viewItem)
-    });
-  }, [childrenViewItems, viewItem, updateViewItem]);
+    }]);
+  }, [childrenViewItems, viewItem, updateViewItems]);
 
   return (
     <>

@@ -23,7 +23,7 @@ interface Props {
 export const FlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, toolTitle, sx }) => {
   const isChecked = Boolean(getValueByScheme(selectedItem, scheme));
 
-  const { updateViewItem } = useDashboardView();
+  const { updateViewItems } = useDashboardView();
   const [checked, setChecked] = useState(() => isChecked);
 
   useEffect(() => {
@@ -31,8 +31,8 @@ export const FlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, tool
   }, [isChecked]);
 
   const handleToggle = useCallback(() => {
-    updater(! isChecked, selectedItem, scheme, updateViewItem);
-  }, [scheme, selectedItem, isChecked, updateViewItem]);
+    updater(! isChecked, selectedItem, scheme, updateViewItems);
+  }, [scheme, selectedItem, isChecked, updateViewItems]);
 
 
   return (

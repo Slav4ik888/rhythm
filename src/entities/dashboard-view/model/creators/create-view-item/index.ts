@@ -11,9 +11,9 @@ import { NO_PARENT_ID, NO_SHEET_ID, ORDER_STEP } from '../../consts';
 const BASE_SX: ViewItemStyles = {
   ...f('c'),
   width        : '100%',
-  minWidth     : 10,
+  minWidth     : 40,
   height       : 'max-content',
-  minHeight    : 10,
+  minHeight    : 40,
   borderStyle  : 'solid',
   borderWidth  : 1,
   borderColor  : 'rgba(146, 146, 146, 1)',

@@ -1,6 +1,6 @@
 export {
   PanelAddViewItemBtns, AddNewViewItem, addNewViewItem, AddViewItemElementBtns, AddViewItemIndicatorsBtns,
-  MoveToAnotherItem, UpdateViewItem, updateViewItem, MoveItemUpdownward,
+  MoveToAnotherItem, UpdateViewItems, updateViewItems, MoveItemUpdownward,
   CopyViewItem, getCopyViewItem, CreateGroupViewItems, createGroupViewItems,
   DeleteItemContainer, deleteViewItem, DeleteViewItem, SwitchToParentViewItem, AddNewChart,
   ControlChartBar, SwitchToIsGlobalKod, CopyStylesViewItemBtn, MoveToNewItem

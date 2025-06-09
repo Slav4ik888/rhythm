@@ -10,7 +10,7 @@ import {
 import { ViewItem, ViewItemId, ViewItemStyles, PartialViewItem } from '../../types';
 import {
   addNewViewItem, CreateGroupViewItems, createGroupViewItems, deleteViewItem,
-  DeleteViewItem, UpdateViewItem, updateViewItem as updateViewItemOnServer
+  DeleteViewItem, UpdateViewItems, updateViewItems as updateViewItemsOnServer
 } from 'features/dashboard-view';
 import { ActivatedCopied, StateSchemaDashboardView } from '../../slice/state-schema';
 import { CopyStylesItem, copyStylesViewItem } from 'features/dashboard-view/configurator';
@@ -39,7 +39,7 @@ export const useDashboardView = (config: Config = {}) => {
     entities                 = useSelector(s.selectEntities),
     viewItems                = useSelector(s.selectViewItems),
     parentsViewItems         = useSelector(s.selectParentsViewItems),
-    updateViewItem           = (data: PartialViewItem) => dispatch(a.updateViewItem(data)),
+    updateViewItems          = (data: PartialViewItem[]) => dispatch(a.updateViewItems(data)),
     cancelUpdateViewItem     = () => dispatch(a.cancelUpdateViewItem()),
 
     // Movement
@@ -93,9 +93,9 @@ export const useDashboardView = (config: Config = {}) => {
     ) => dispatch(addNewViewItem({ companyId, viewItem })),
     serviceCreateGroupViewItems = (data: CreateGroupViewItems) => dispatch(createGroupViewItems(data)),
 
-    serviceUpdateViewItem = (data: UpdateViewItem) => dispatch(updateViewItemOnServer(data)),
-    serviceCopyStyles     = (data: CopyStylesItem) => dispatch(copyStylesViewItem(data)),
-    serviceDeleteViewItem = (data: DeleteViewItem) => dispatch(deleteViewItem(data));
+    serviceUpdateViewItems = (data: UpdateViewItems) => dispatch(updateViewItemsOnServer(data)),
+    serviceCopyStyles      = (data: CopyStylesItem) => dispatch(copyStylesViewItem(data)),
+    serviceDeleteViewItem  = (data: DeleteViewItem) => dispatch(deleteViewItem(data));
 
 
   return {
@@ -113,7 +113,7 @@ export const useDashboardView = (config: Config = {}) => {
     viewItems,
     parentsViewItems,
     parentChildrenIds,
-    updateViewItem,
+    updateViewItems,
     cancelUpdateViewItem,
 
     // View
@@ -158,7 +158,7 @@ export const useDashboardView = (config: Config = {}) => {
     // Services
     serviceAddNewViewItem,
     serviceCreateGroupViewItems,
-    serviceUpdateViewItem,
+    serviceUpdateViewItems,
     serviceCopyStyles,
     serviceDeleteViewItem,
   }

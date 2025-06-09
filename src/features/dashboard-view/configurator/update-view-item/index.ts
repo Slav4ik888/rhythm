@@ -1,1 +1,1 @@
-export { UpdateViewItem, updateViewItem } from './model/services'
+export { UpdateViewItems, updateViewItems } from './model/services'

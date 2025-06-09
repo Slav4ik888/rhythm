@@ -36,6 +36,7 @@ module.exports = {
       extensions: ['.js', '.jsx', '.ts', '.tsx']
     }],
     'space-unary-ops': 0,
+    'consistent-return': 0,
     'no-unused-vars': 0,
     'no-unused-expressions': 0,
     'function-paren-newline': 0,
@@ -71,6 +72,7 @@ module.exports = {
     'lines-between-class-members': 0,
     'nonblock-statement-body-position': 0,
     'no-nested-ternary': 0,
+    'quote-props': 0,
     curly: 0,
     'implicit-arrow-linebreak': 0,
     '@typescript-eslint/no-unused-vars': 0,
@@ -85,10 +87,10 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 0,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-unused-expressions': [
-      "error",
+      'error',
       {
-        "allowShortCircuit": true,  // Разрешает a && b()
-        "allowTernary": true // Разрешает a ? b() : c()
+        'allowShortCircuit': true,  // Разрешает a && b()
+        'allowTernary': true // Разрешает a ? b() : c()
       }
     ],
     'react/jsx-indent': 0,

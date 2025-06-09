@@ -39,7 +39,7 @@ export const InputByScheme: FC<Props> = memo(({
   transform, onClear, onBlur, onChange, onSubmit
 }) => {
   const sx = useStyles(useTheme(), style, width);
-  const { updateViewItem } = useDashboardView();
+  const { updateViewItems } = useDashboardView();
 
   const value = useMemo(() => {
     if (! selectedItem) return '';
@@ -50,8 +50,8 @@ export const InputByScheme: FC<Props> = memo(({
 
 
   const handleUpdate = useCallback((v: string | number) => {
-    updater(v, selectedItem, scheme, updateViewItem);
-  }, [selectedItem, scheme, updateViewItem]);
+    updater(v, selectedItem, scheme, updateViewItems);
+  }, [selectedItem, scheme, updateViewItems]);
 
 
   // Change - приходит тот тип, что указали в type

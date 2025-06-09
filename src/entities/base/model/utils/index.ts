@@ -1,2 +1,2 @@
 
-export { addEntities } from './get-entities'
+export { updateEntities } from './update-entities'

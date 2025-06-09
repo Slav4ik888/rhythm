@@ -6,10 +6,10 @@ import { cloneObj, setValueByScheme } from 'shared/helpers/objects';
  * подходит для схем с массивами 'settings.charts.[index]....'
  */
 export const updater = (
-  newValue       : any,
-  selectedItem   : ViewItem | undefined,
-  scheme         : string,
-  updateViewItem : (item: PartialViewItem) => void
+  newValue        : any,
+  selectedItem    : ViewItem | undefined,
+  scheme          : string,
+  updateViewItems : (items: PartialViewItem[]) => void
 ): void => {
   if (! selectedItem) return;
 
@@ -21,5 +21,5 @@ export const updater = (
     result = cloneObj(selectedItem);
   }
   setValueByScheme(result, scheme, newValue);
-  updateViewItem(result);
+  updateViewItems([result]);
 };

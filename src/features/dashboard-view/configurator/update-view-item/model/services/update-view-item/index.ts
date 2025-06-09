@@ -6,10 +6,11 @@ import { PartialViewItem } from 'entities/dashboard-view';
 
 
 
-export interface UpdateViewItem {
+export interface UpdateViewItems {
   companyId          : string
-  viewItem           : PartialViewItem
+  viewItems          : PartialViewItem[]
   newStoredViewItem? : PartialViewItem // для сохранения из UnsavedChanges чтобы сохранился текущий элемент
+  // name               : string // for dev - the name of the component calling this function
 }
 
 /**
@@ -17,24 +18,24 @@ export interface UpdateViewItem {
  * без сохранения изменений в слайс, тк они уже там
  * в слайсе сохраняем в LS
  */
-export const updateViewItem = createAsyncThunk<
-  UpdateViewItem,
-  UpdateViewItem,
+export const updateViewItems = createAsyncThunk<
+  UpdateViewItems,
+  UpdateViewItems,
   ThunkConfig<Errors>
 >(
-  'features/dashboardView/updateViewItem',
+  'features/dashboardView/updateViewItems',
   async (data, thunkApi) => {
     const { dispatch, rejectWithValue, extra } = thunkApi;
 
     try {
-      await extra.api.post(paths.dashboard.view.update, { viewItem: data.viewItem });
+      await extra.api.post(paths.dashboard.view.update, { viewItems: data.viewItems });
 
       return data;
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
       return rejectWithValue((e as CustomAxiosError).response.data || {
-        general: 'Error in features/dashboardView/updateViewItem'
+        general: 'Error in features/dashboardView/updateViewItems'
       });
     }
   }

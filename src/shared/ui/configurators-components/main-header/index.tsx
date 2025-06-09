@@ -16,7 +16,7 @@ const useStyles = (theme: CustomTheme) => {
       ...f('-fs-sb'),
       pt : 4,
       pb : 0.5,
-      mb : 4,
+      mb : 3,
     },
     titleBox: {
       ...f('c-fs'),

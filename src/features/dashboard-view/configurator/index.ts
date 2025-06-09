@@ -5,7 +5,7 @@ export { MoveToAnotherItem } from './control/move-to-another-item'
 export { MoveToNewItem } from './control/move-to-new-item'
 export { SwitchToParentViewItem } from './control/switch-to-parent'
 export { SwitchToIsGlobalKod } from './control/switch-to-is-global-kod'
-export { UpdateViewItem, updateViewItem } from './update-view-item'
+export { UpdateViewItems, updateViewItems } from './update-view-item'
 export {
   PanelAddViewItemBtns, addNewViewItem, AddNewViewItem, AddViewItemElementBtns, AddViewItemIndicatorsBtns
 } from './add-new-item'

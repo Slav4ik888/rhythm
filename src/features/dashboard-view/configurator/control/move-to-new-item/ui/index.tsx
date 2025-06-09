@@ -1,6 +1,5 @@
 import { FC, memo, useCallback } from 'react';
 import { createViewItem, ORDER_STEP, useDashboardView } from 'entities/dashboard-view';
-import { Box } from '@mui/material';
 import { Tooltip } from 'shared/ui/tooltip';
 import { MDButton } from 'shared/ui/mui-design-components';
 import { CustomTheme, useTheme } from 'app/providers/theme';
@@ -38,7 +37,7 @@ const useStyles = (theme: CustomTheme) => ({
  */
 export const MoveToNewItem: FC = memo(() => {
   const sx = useStyles(useTheme());
-  const { selectedItem, serviceAddNewViewItem, serviceUpdateViewItem } = useDashboardView();
+  const { selectedItem, serviceAddNewViewItem, serviceUpdateViewItems } = useDashboardView();
   const { userId } = useUser();
   const { companyId } = useCompany();
 
@@ -64,8 +63,8 @@ export const MoveToNewItem: FC = memo(() => {
       parentId : newBoxItem.id,
       order    : ORDER_STEP
     };
-    serviceUpdateViewItem({ companyId, viewItem: updatedItem, newStoredViewItem: updatedItem });
-  }, [userId, companyId, selectedItem, serviceAddNewViewItem, serviceUpdateViewItem]);
+    serviceUpdateViewItems({ companyId, viewItems: [updatedItem], newStoredViewItem: updatedItem });
+  }, [userId, companyId, selectedItem, serviceAddNewViewItem, serviceUpdateViewItems]);
 
 
   return (

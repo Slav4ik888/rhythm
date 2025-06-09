@@ -4,13 +4,13 @@ import { Errors } from 'shared/lib/validators';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { ActivatedCopied, StateSchemaDashboardView } from './state-schema';
 import {
-  deleteViewItem, DeleteViewItem, AddNewViewItem, addNewViewItem, UpdateViewItem, updateViewItem
+  deleteViewItem, DeleteViewItem, AddNewViewItem, addNewViewItem, UpdateViewItems, updateViewItems
 } from 'features/dashboard-view';
 import {
   SetDashboardView, ChangeSelectedStyle, ChangeOneSettingsField, ChangeOneDatasetsItem,
   ChangeOneChartsItem, SetEditMode
 } from './types';
-import { addEntities } from 'entities/base';
+import { updateEntities } from 'entities/base';
 import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem } from '../types';
 import { cloneObj, updateObject } from 'shared/helpers/objects';
 import { updateChartsItem } from '../utils';
@@ -62,7 +62,7 @@ export const slice = createSlice({
     },
 
     setDashboardView: (state, { payload }: PayloadAction<SetDashboardView>) => {
-      state.entities            = addEntities(state.entities, payload.viewItems);
+      state.entities            = updateEntities(state.entities, payload.viewItems);
       state.activatedMovementId = '';
       state.activatedCopied     = undefined;
       state.bright              = false;
@@ -130,11 +130,12 @@ export const slice = createSlice({
     },
 
     // Update View-item
-    updateViewItem: (state, { payload }: PayloadAction<PartialViewItem>) => {
-      state.entities[payload.id] = updateObject(state.entities[payload.id], payload);
-      state.activatedMovementId  = '';
-      state.activatedCopied      = undefined;
-      state.bright               = false;
+    updateViewItems: (state, { payload }: PayloadAction<PartialViewItem[]>) => {
+      state.entities            = updateEntities(state.entities, payload);
+      // state.entities[payload.id] = updateObject(state.entities[payload.id], payload);
+      state.activatedMovementId = '';
+      state.activatedCopied     = undefined;
+      state.bright              = false;
     },
 
     cancelUpdateViewItem: (state) => {
@@ -219,7 +220,7 @@ export const slice = createSlice({
       .addCase(addNewViewItem.fulfilled, (state, { payload }: PayloadAction<AddNewViewItem>) => {
         const { viewItem, companyId } = payload;
 
-        state.entities = addEntities(state.entities, [viewItem]);
+        state.entities            = updateEntities(state.entities, [viewItem]);
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
         state.bright              = false;
@@ -233,17 +234,18 @@ export const slice = createSlice({
         state.loading = false;
       })
 
-    // UPDATE-VIEW-ITEM
+    // UPDATE-VIEW-ITEMS []
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     builder
-      .addCase(updateViewItem.pending, (state) => {
+      .addCase(updateViewItems.pending, (state) => {
         state.loading = true;
         state.errors  = {};
       })
-      .addCase(updateViewItem.fulfilled, (state, { payload }: PayloadAction<UpdateViewItem>) => {
-        const { viewItem, companyId, newStoredViewItem } = payload;
+      .addCase(updateViewItems.fulfilled, (state, { payload }: PayloadAction<UpdateViewItems>) => {
+        const { viewItems, companyId, newStoredViewItem } = payload;
 
-        state.entities[viewItem.id] = updateObject(state.entities[viewItem.id], viewItem);
+        state.entities            = updateEntities(state.entities, viewItems);
+        // state.entities[viewItem.id] = updateObject(state.entities[viewItem.id], viewItem);
         if (newStoredViewItem) {
           state.newStoredViewItem = updateObject(state.newStoredViewItem, newStoredViewItem);
         }
@@ -256,7 +258,7 @@ export const slice = createSlice({
 
         LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
       })
-      .addCase(updateViewItem.rejected, (state, { payload }) => {
+      .addCase(updateViewItems.rejected, (state, { payload }) => {
         state.newStoredViewItem = undefined; // Раз обновление завершилось с ошибкой, то нельзя переключаться на новый элемент
         state.errors  = getError(payload);
         state.loading = false;

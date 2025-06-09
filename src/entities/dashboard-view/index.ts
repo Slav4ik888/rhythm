@@ -11,7 +11,7 @@ export {
 } from './model/slice/state-schema'
 export {
   getInitialState, ParentsViewItems, stylesToSx, createNextOrder, getKod, isFirstGlobalKodInBranch,
-  getChildren
+  getChildren, isClickInsideViewItem
  } from './model/utils'
 export { useDashboardView } from './model/hooks'
 export { createViewItem } from './model/creators'

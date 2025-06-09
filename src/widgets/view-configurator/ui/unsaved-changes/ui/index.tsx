@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useEffect, useMemo } from 'react';
+import { FC, memo, useCallback, useEffect } from 'react';
 import { useDashboardView } from 'entities/dashboard-view';
 import { Box, Typography } from '@mui/material';
 import { CustomTheme, useTheme } from 'app/providers/theme';
@@ -49,13 +49,11 @@ export const UnsavedChanges: FC = memo(() => {
   const { companyId, changedCompany, serviceUpdateCompany, cancelCustomSettings } = useCompany();
   const {
     loading, selectedId, changedViewItem, isUnsaved,
-    setIsUnsaved, serviceUpdateViewItem, cancelUpdateViewItem
+    setIsUnsaved, serviceUpdateViewItems, cancelUpdateViewItem
   } = useDashboardView();
 
   const sx = useStyles(useTheme(), loading);
 
-  // const isChanges = useMemo(() => isChangedViewItem(selectedId, changedCompany, changedViewItem, true)
-  //   , [selectedId, changedCompany, changedViewItem]);
   useEffect(() => {
     isChangedViewItem(selectedId, changedCompany, changedViewItem, true)
       ? setIsUnsaved(true)
@@ -69,13 +67,13 @@ export const UnsavedChanges: FC = memo(() => {
   }, [changedCompany, changedViewItem, cancelCustomSettings, cancelUpdateViewItem]);
 
 
-  const handleChange = useCallback(() => {
+  const handleClick = useCallback(() => {
     if (isNotEmpty(changedCompany)) serviceUpdateCompany({ id: companyId, ...changedCompany }); /** Сохраняем изменившиеся customSettings */
     if (isEmpty(changedViewItem)) return
     /** Сохраняем изменившиеся поля | стили */
     const viewItem = { id: selectedId, ...changedViewItem };
-    serviceUpdateViewItem({ companyId, viewItem, newStoredViewItem: viewItem });
-  }, [companyId, selectedId, changedCompany, changedViewItem, serviceUpdateViewItem, serviceUpdateCompany]);
+    serviceUpdateViewItems({ companyId, viewItems: [viewItem], newStoredViewItem: viewItem });
+  }, [companyId, selectedId, changedCompany, changedViewItem, serviceUpdateViewItems, serviceUpdateCompany]);
 
   const handleConsole = useCallback(() => {
     if (isNotEmpty(changedCompany)) {
@@ -113,7 +111,7 @@ export const UnsavedChanges: FC = memo(() => {
           <Typography sx={sx.text}>Отменить</Typography>
         </Tooltip>
       </Box>
-      <Box id='saveBtn' sx={{ ...sx.btn, ...sx.save }} onClick={handleChange}>
+      <Box id='saveBtn' sx={{ ...sx.btn, ...sx.save }} onClick={handleClick}>
         <Tooltip
           title='Для сохранения изменений нажмите эту кнопку,
                 или выберите любой другой элемент или закройти конфигуратор.'

@@ -11,7 +11,7 @@ import { __devLog } from 'shared/lib/tests/__dev-log';
 
 /* eslint-disable-next-line no-console */
 console.log(`Version: ${cfg.ASSEMBLY_DATE}`);
-__devLog(cfg.IS_DEV ? 'OFFLINE STATUS' : 'Online status');
+__devLog('Status: ', cfg.IS_DEV ? 'OFFLINE' : 'ONLINE');
 
 
 
@@ -31,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "finished eslint" && git push -u origin main
+// git add . && git commit -m "added serviceUpdateViewItems" && git push -u origin main

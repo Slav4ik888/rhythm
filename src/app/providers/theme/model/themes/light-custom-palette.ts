@@ -42,7 +42,7 @@ export const customPalette = {
   },
 
   primary: {
-    light: '#000000',
+    light: '#767676',
     main: '#2b2b2b',
     dark: '#000000',
     focus: '#2b2b2b',
@@ -50,7 +50,7 @@ export const customPalette = {
   },
 
   secondary: {
-    light: '#000000',
+    light: '#767676',
     main: '#2e2e2e',
     dark: '#000000',
     focus: '#8f93a9',

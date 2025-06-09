@@ -23,7 +23,7 @@ interface Props {
 export const SelectByField: FC<Props> = memo(({
   selectedItem, scheme, array, disabled, component, searchBox, onSearch
 }) => {
-  const { updateViewItem } = useDashboardView();
+  const { updateViewItems } = useDashboardView();
   const [selectedValue, setSelectedValue] = useState(getValueByScheme(selectedItem, scheme) || '');
 
   useEffect(() => {
@@ -31,8 +31,8 @@ export const SelectByField: FC<Props> = memo(({
   }, [selectedItem, scheme, setSelectedValue]);
 
   const handleUpdate = useCallback((v: string | number) => {
-    updater(v, selectedItem, scheme, updateViewItem);
-  }, [selectedItem, scheme, updateViewItem]);
+    updater(v, selectedItem, scheme, updateViewItems);
+  }, [selectedItem, scheme, updateViewItems]);
 
 
   return (

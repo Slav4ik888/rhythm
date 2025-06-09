@@ -24,7 +24,7 @@ export const useStyles = (
     ? 'inherit'
     : isContained
       ? isPrimary
-        ? theme.palette.primary.main : theme.palette.secondary.main
+        ? theme.palette.primary.main : theme.palette.secondary.light
       : 'inherit'
 
 
