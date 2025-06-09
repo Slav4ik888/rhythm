@@ -114,6 +114,29 @@ module.exports = {
     // 'react/jsx-curly-spacing': 0,
     'react/prop-types': 0,
     'jsx-quotes': ['error', 'prefer-single'],
+    'no-restricted-imports': [
+      'error',
+      {
+        paths: [
+          {
+            name: '@mui/material',
+            message: 'Используйте прямой импорт из конкретного модуля, например: "import Box from \'@mui/material/Box\'"',
+          },
+          {
+            name: '@mui/icons-material',
+            message: 'Используйте прямой импорт из конкретного модуля, например: "import Menu from \'@mui/icons-material/Menu\'"',
+          },
+          // Добавьте другие библиотеки по аналогии
+        ],
+        // Дополнительно можно запретить импорт отдельных имен из корня:
+        patterns: [
+          {
+            group: ['@mui/material/*'],
+            message: 'Используйте прямой импорт из конкретного модуля, например: "import Box from \'@mui/material/Box\'"',
+          },
+        ],
+      },
+    ],
     'slavchik888-plugin/path-checker': 'error',
   },
   globals: {

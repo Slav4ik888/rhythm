@@ -17,7 +17,7 @@ Coded by www.creative-tim.com
 import Drawer from '@mui/material/Drawer';
 import { styled } from '@mui/material/styles';
 import { CustomTheme } from 'app/providers/theme';
-import { getBoxShadows, linearGradient, pxToRem } from 'shared/styles';
+import { f, getBoxShadows, linearGradient, pxToRem } from 'shared/styles';
 
 
 
@@ -54,16 +54,15 @@ export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, owne
 
   return {
     '& .MuiDrawer-paper': {
+      ...f('c--sb'),
       height        : 'calc(100vh - 2rem)',
       left          : 'initial',
       margin        : '1rem 1rem 1rem 0 !important',
       background    : linearGradient(configurator.gradients.main, configurator.gradients.state),
-      padding       : `0 ${pxToRem(24)}`,
-      paddingBottom : pxToRem(60),
+      padding       : pxToRem(24),
       borderRadius  : borderRadius.xl,
       boxShadow     : getBoxShadows(theme as CustomTheme).lg,
       transform     : editMode ? 'translateX(0)' : `translateX(${pxToRem(450)})`,
-
       ...(editMode ? drawerOpenStyles() : drawerCloseStyles()),
     }
   };

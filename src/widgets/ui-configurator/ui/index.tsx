@@ -27,8 +27,8 @@ export const UIConfigurator = memo(() => {
       // @ts-ignore
       ownerState = {{ isOpenConfigurator }}
     >
-      <MainHeader onClose={handleClose} />
-      <PaletteModeSwitcher />
+      <MainHeader ui onClose={handleClose} />
+      <PaletteModeSwitcher ui />
       <MDDivider />
 
       <SubHeader title='Боковая панель'>
@@ -36,9 +36,6 @@ export const UIConfigurator = memo(() => {
         <SwitcherSidebarHidden />
         <SwitcherSidebarColor />
       </SubHeader>
-
-      {/* <SubHeader title='Верхняя панель'/> */}
-      {/* navbarBackgroundTheme : NavbarColorName */}
     </DrawerStyled>
   )
 });

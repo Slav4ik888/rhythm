@@ -12,7 +12,7 @@ const cfg = {
   // DEV
   /** If checks should been disabled */
   IS_EXPERIMENTAL : false,
-  IS_DEV: false, // true, // Если загрузить данные надо не с сервера а из LS, например, когда нет интернета
+  IS_DEV: true, // false, // Если загрузить данные надо не с сервера а из LS, например, когда нет интернета
 }
 
 export default cfg

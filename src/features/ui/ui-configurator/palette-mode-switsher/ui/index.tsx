@@ -1,12 +1,14 @@
-import { memo, useCallback, useEffect, useState } from 'react';
-// import Brightness4Icon from '@mui/icons-material/Brightness4';
-// import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { setMode, setSidebarColor, useUIConfiguratorController } from 'app/providers/theme';
-import { SwitcherItem } from '../../components/switcher-item';
+import { PaletteModeSwitcherRowComponent } from './switcher-row';
+import { PaletteModeSwitcherIconComponent } from './switcher-icon';
 
 
 
-export const PaletteModeSwitcher = memo(() => {
+interface Props {
+  ui?  : boolean // Toggle row, for ui-configurator
+}
+export const PaletteModeSwitcher: FC<Props> = memo(({ ui }) => {
   const [checked, setChecked] = useState<boolean>(false);
   const [configuratorState, dispatch] = useUIConfiguratorController();
   const { mode } = configuratorState;
@@ -22,18 +24,18 @@ export const PaletteModeSwitcher = memo(() => {
 
 
   return (
-    <SwitcherItem
-      title     = 'Светлая тема'
-      checked   = {checked}
-      ariaLabel = 'PaletteModeSwitcher'
-      onToggle  = {togglePaletteMode}
-    />
-    // <IconButton
-    //   sx      = {{ ml: 1 }}
-    //   color   = 'inherit'
-    //   onClick = {togglePaletteMode}
-    // >
-    //   {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-    // </IconButton>
+    <>
+      {
+        ui
+          ? <PaletteModeSwitcherRowComponent
+              darkMode = {! checked}
+              onToggle = {togglePaletteMode}
+            />
+          : <PaletteModeSwitcherIconComponent
+              darkMode = {! checked}
+              onToggle = {togglePaletteMode}
+            />
+      }
+    </>
   )
 });

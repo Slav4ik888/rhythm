@@ -14,7 +14,6 @@ const useStyles = (theme: CustomTheme) => {
   return {
     root: {
       ...f('-fs-sb'),
-      pt : 4,
       pb : 0.5,
       mb : 3,
     },
@@ -44,29 +43,34 @@ const useStyles = (theme: CustomTheme) => {
 
 
 interface Props {
-  onClose: () => void
+  ui?     : boolean
+  view?   : boolean
+  onClose : () => void
 }
 
-export const ConfiguratorMainHeader: FC<Props> = memo(({ onClose }) => {
+export const ConfiguratorMainHeader: FC<Props> = memo(({ ui, view, onClose }) => {
   const sx = useStyles(useTheme());
 
+
+  if (! ui && ! view) return null;
 
   return (
     <>
       <Box sx={sx.root}>
         <Box sx={sx.titleBox}>
           <Typography sx={sx.title}>
-            Настройки интерфейса
+            {'Настройк' + (ui ? 'и интерфейса' : 'а элементов')}
           </Typography>
-          <Typography sx={sx.subtitle}>
-            Подберите для себя удобные опции.
-          </Typography>
+          {
+            ui && (
+              <Typography sx={sx.subtitle}>
+                Подберите для себя удобные опции.
+              </Typography>
+            )
+          }
         </Box>
 
-        <IconButton
-          color   = 'inherit'
-          onClick = {onClose}
-        >
+        <IconButton color='inherit' onClick={onClose}>
           <CloseIcon sx={sx.icon} fontSize='small' />
         </IconButton>
       </Box>

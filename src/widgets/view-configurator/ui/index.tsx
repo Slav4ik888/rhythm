@@ -15,6 +15,7 @@ import { InfoBlock } from './info-block';
 import { PaletteModeSwitcher } from 'features/ui';
 import { Unselected } from './unselected';
 import { useUI } from 'entities/ui';
+import { f } from 'shared/styles';
 
 
 
@@ -73,37 +74,42 @@ export const ViewItemConfigurator: FC = memo(() => {
   return (
     // @ts-ignore
     <DrawerStyled anchor='right' variant='permanent' ownerState={{ editMode }}>
-      <MainHeader onClose={handleClose} />
-      <UnsavedChanges />
-      {! selectedId && <Unselected />}
-      {selectedId && <InfoBlock />}
+      <Box>
+        <MainHeader view onClose={handleClose} />
+        <UnsavedChanges />
+        {! selectedId && <Unselected />}
+        {selectedId && <InfoBlock />}
 
-      {
-        selectedId && <TabContext value={value}>
-          <Box sx={{ mt: 2, borderBottom: 1, borderColor: 'divider' }}>
-            <TabList onChange={handleChange} aria-label='lab API tabs example'>
-              <Tab label='Control' value='1' />
-              <Tab label='Styles'  value='2' />
-              <Tab
-                label = {isSettings ? 'Settings' : null}
-                value = '3'
-              />
+        {
+          selectedId && <TabContext value={value}>
+            <Box sx={{ mt: 2, borderBottom: 1, borderColor: 'divider' }}>
+              <TabList onChange={handleChange} aria-label='lab API tabs example'>
+                <Tab label='Control' value='1' />
+                <Tab label='Styles'  value='2' />
+                <Tab
+                  label = {isSettings ? 'Settings' : null}
+                  value = '3'
+                />
 
-            </TabList>
-          </Box>
+              </TabList>
+            </Box>
 
-          <TabPanel value='1' keepMounted sx={sxTabPanel}>
-            <ViewItemControlConfigurator />
-          </TabPanel>
-          <TabPanel value='2' keepMounted sx={sxTabPanel}>
-            <ViewItemStylesConfigurator />
-          </TabPanel>
-          <TabPanel value='3' keepMounted sx={sxTabPanel}>
-            <ViewItemConfiguratorSettings selectedItem={selectedItem} />
-          </TabPanel>
-        </TabContext>
-      }
-      <PaletteModeSwitcher />
+            <TabPanel value='1' keepMounted sx={sxTabPanel}>
+              <ViewItemControlConfigurator />
+            </TabPanel>
+            <TabPanel value='2' keepMounted sx={sxTabPanel}>
+              <ViewItemStylesConfigurator />
+            </TabPanel>
+            <TabPanel value='3' keepMounted sx={sxTabPanel}>
+              <ViewItemConfiguratorSettings selectedItem={selectedItem} />
+            </TabPanel>
+          </TabContext>
+        }
+      </Box>
+
+      <Box sx={f('--fe')}>
+        <PaletteModeSwitcher />
+      </Box>
     </DrawerStyled>
   )
 });

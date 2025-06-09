@@ -16,7 +16,7 @@ const useStyles = (theme: CustomTheme, loading: boolean) => ({
   isChanges: {
     ...f('-c'),
     position     : 'absolute',
-    top          : pxToRem(60),
+    top          : pxToRem(80),
     right        : pxToRem(24),
     height       : pxToRem(20),
     zIndex       : 100,
@@ -94,15 +94,15 @@ export const UnsavedChanges: FC = memo(() => {
     <Box sx={sx.isChanges}>
       <Box sx={{ ...sx.btn, ...sx.cancel }} onClick={handleConsole}>
         <TooltipHTML title={<>
-          {isNotEmpty(changedCompany) && <>
-            <p>changedCompany:</p>
-            <pre><code>{JSON.stringify(changedCompany, null, 2)}</code></pre>
-          </>}
-          {isNotEmpty(changedViewItem) && <>
-            <p>changedViewItem:</p>
-            <pre><code>{JSON.stringify(changedViewItem, null, 2)}</code></pre>
-          </>}
-        </>}>
+            {isNotEmpty(changedCompany) && <>
+              <p>changedCompany:</p>
+              <pre><code>{JSON.stringify(changedCompany, null, 2)}</code></pre>
+            </>}
+            {isNotEmpty(changedViewItem) && <>
+              <p>changedViewItem:</p>
+              <pre><code>{JSON.stringify(changedViewItem, null, 2)}</code></pre>
+            </>}
+          </>}>
           <Typography sx={sx.text}>k</Typography>
         </TooltipHTML>
       </Box>
