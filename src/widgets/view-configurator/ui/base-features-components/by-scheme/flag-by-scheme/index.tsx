@@ -8,6 +8,23 @@ import { updater } from '../utils';
 
 
 
+export const useStyles = (sx?: SxCard) => ({
+  '&.Mui-checked': {
+    color: 'text.light',
+    '& .MuiSvgIcon-root': {
+      color: 'text.light',
+    },
+  },
+  '&:not(.Mui-checked)': {
+    color: 'text.light',
+    '& .MuiSvgIcon-root': {
+      color: 'text.light',
+    },
+  },
+  ...sx?.root
+});
+
+
 interface Props {
   selectedItem : ViewItem | undefined
   scheme       : string // начиная с 1го уровня
@@ -20,7 +37,8 @@ interface Props {
  * По схеме сохраняет изменени flags в selectedItem
  * в том числе scheme with array
  */
-export const FlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, toolTitle, sx }) => {
+export const FlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, toolTitle, sx: style }) => {
+  const sx = useStyles(style);
   const isChecked = Boolean(getValueByScheme(selectedItem, scheme));
 
   const { updateViewItems } = useDashboardView();
@@ -41,7 +59,7 @@ export const FlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, tool
         size       = 'small'
         checked    = {checked}
         inputProps = {{ 'aria-label': title }}
-        sx         = {sx?.root}
+        sx         = {sx}
         onChange   = {handleToggle}
       />
     </Tooltip>

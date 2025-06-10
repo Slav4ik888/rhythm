@@ -28,7 +28,7 @@ const useStyles = (theme: CustomTheme, sx: SxCard | undefined, backgroundColor: 
       width           : '50px',
       height          : '28px',
       borderRadius    : '8px',
-      border          : '3px solid #fff',
+      border          : `2px solid ${theme.palette.text.light}`,
       boxShadow       : '0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.1)',
       cursor          : 'pointer',
       backgroundColor : rgba(backgroundColor),

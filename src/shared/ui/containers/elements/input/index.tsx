@@ -39,7 +39,10 @@ const useStyles = (sx?: SxTextfield) => ({
     },
     '& .MuiInputLabel-root': {
       // top: '7px'
-    }
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'text.light',
+    },
   }
 });
 

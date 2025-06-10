@@ -1,49 +1,27 @@
-import { FC, memo, useCallback, useEffect, useState, SyntheticEvent, useMemo } from 'react';
+import { FC, memo, useCallback, useState } from 'react';
 import DrawerStyled from './styled';
 import { ConfiguratorMainHeader as MainHeader } from 'shared/ui/configurators-components';
 import { useDashboardView } from 'entities/dashboard-view';
-import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { useCompany } from 'entities/company';
-import { ViewItemStylesConfigurator } from './styles';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
+import { useCompany } from 'entities/company'
 import { UnsavedChanges } from './unsaved-changes';
-import { ViewItemConfiguratorSettings } from './settings';
-import { ViewItemControlConfigurator } from './control';
 import { InfoBlock } from './info-block';
 import { PaletteModeSwitcher } from 'features/ui';
 import { Unselected } from './unselected';
 import { useUI } from 'entities/ui';
 import { f } from 'shared/styles';
+import { ViewItemConfiguratorTabs } from './tabs';
 
-
-
-const sxTabPanel = {
-  overflowY : 'auto',
-  p         : 0,
-};
 
 
 export const ViewItemConfigurator: FC = memo(() => {
   const { companyId } = useCompany();
   const { setWarningMessage } = useUI();
   const { editMode, selectedId, selectedItem, isUnsaved, setSelectedId, setEditMode } = useDashboardView();
-
   const [value, setValue] = useState('1');
-  const isSettings = useMemo(() =>
-       selectedItem?.type === 'box'
-    || selectedItem?.type === 'chart'
-    || selectedItem?.type === 'chip'
-    || selectedItem?.type === 'growthIcon'
-    || selectedItem?.type === 'digitIndicator', [selectedItem]);
 
-  const handleChange = (event: SyntheticEvent, newValue: string) => setValue(newValue);
 
-  useEffect(() => {
-    if (value === '3' && ! isSettings) setValue('1');
-
+  // useEffect(() => {
   //  TODO:Убрал попробовать, возможно надо навсегда от этого избавиться
   //   /** Сохраняем изменившиеся customSettings */
   //   const changedCompany = getChanges(storedCompany, company);
@@ -60,7 +38,7 @@ export const ViewItemConfigurator: FC = memo(() => {
   //   serviceUpdateViewItems({ name: 'Configurator', companyId, viewItems: [viewItem] });
   // }, [value, companyId, company, selectedId, entities, isSettings, prevStoredViewItem, storedCompany,
   //   serviceUpdateCompany, serviceUpdateViewItems]);
-  }, [value, isSettings]);
+  // }, [value, isSettings]);
 
 
   /** Закрываем конфигуратор */
@@ -75,40 +53,20 @@ export const ViewItemConfigurator: FC = memo(() => {
   return (
     // @ts-ignore
     <DrawerStyled anchor='right' variant='permanent' ownerState={{ editMode }}>
-      <Box>
+      <Box sx={{ ...f('c'), height: '100%', color: 'text.main' }}>
         <MainHeader view onClose={handleClose} />
         <UnsavedChanges />
         {! selectedId && <Unselected />}
         {selectedId && <InfoBlock />}
 
-        {
-          selectedId && <TabContext value={value}>
-            <Box sx={{ mt: 2, borderBottom: 1, borderColor: 'divider' }}>
-              <TabList onChange={handleChange} aria-label='lab API tabs example'>
-                <Tab label='Control' value='1' />
-                <Tab label='Styles'  value='2' />
-                <Tab
-                  label = {isSettings ? 'Settings' : null}
-                  value = '3'
-                />
-
-              </TabList>
-            </Box>
-
-            <TabPanel value='1' keepMounted sx={sxTabPanel}>
-              <ViewItemControlConfigurator />
-            </TabPanel>
-            <TabPanel value='2' keepMounted sx={sxTabPanel}>
-              <ViewItemStylesConfigurator />
-            </TabPanel>
-            <TabPanel value='3' keepMounted sx={sxTabPanel}>
-              <ViewItemConfiguratorSettings selectedItem={selectedItem} />
-            </TabPanel>
-          </TabContext>
-        }
+        {selectedId && <ViewItemConfiguratorTabs
+          value        = {value}
+          selectedItem = {selectedItem}
+          onSetValue   = {setValue}
+        />}
       </Box>
 
-      <Box sx={f('--fe')}>
+      <Box sx={{ ...f('--fe'), mt: 2 }}>
         <PaletteModeSwitcher />
       </Box>
     </DrawerStyled>

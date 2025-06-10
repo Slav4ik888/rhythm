@@ -13,6 +13,7 @@ export const customPalette = {
   },
 
   text: {
+    light: '#a6a6a6',
     main: '#2e2e2e',
     focus: '#2e2e2e',
     primary: '#2e2e2e',
@@ -43,7 +44,7 @@ export const customPalette = {
 
   primary: {
     light: '#767676',
-    main: '#2b2b2b',
+    main: '#3fa111',
     dark: '#000000',
     focus: '#2b2b2b',
     contrastText: '#000000',
@@ -144,6 +145,10 @@ export const customPalette = {
       subtitle1: '#378f9e', // subtitle1
       subtitle2: '#7a7a7a', // subtitle2
       subtitle3: '#7a7a7a', // subtitle3
+      textTitle: '#323232'
+    },
+    tabs: {
+      notSelected: '#5e5e5e'
     }
   },
 

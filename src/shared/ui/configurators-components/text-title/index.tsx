@@ -1,13 +1,15 @@
 import { FC, memo } from 'react';
 import Typography from '@mui/material/Typography';
 import { Tooltip } from '../../tooltip';
+import { useTheme, CustomTheme } from 'app/providers/theme';
 
 
 
-const useStyles = (bold?: boolean) => ({
+const useStyles = (theme: CustomTheme, bold?: boolean) => ({
   title: {
     fontWeight : bold ? 'bold' : 'normal',
-    textShadow : bold ? '1px 1px 8px #9e9e9e' : 'none',
+    color      : theme.palette.configurator.title.textTitle,
+    // textShadow : bold ? '1px 1px 8px #9e9e9e' : 'none',
     width      : 'max-content',
     mr         : 1,
   },
@@ -22,7 +24,7 @@ interface Props {
 
 
 export const ConfiguratorTextTitle: FC<Props> = memo(({ bold, toolTitle, title }) => {
-  const sx = useStyles(bold);
+  const sx = useStyles(useTheme(), bold);
 
   return (
     <Tooltip

@@ -23,7 +23,7 @@ import { getBoxShadows, linearGradient, pxToRem } from 'shared/styles';
 
 // @ts-ignore
 export default styled(Drawer)(({ theme, ownerState }) => {
-  const { transitions, palette: { configurator } } = theme as CustomTheme;
+  const { transitions, borders: { borderRadius }, palette: { configurator } } = theme as CustomTheme;
   const { isOpenConfigurator } = ownerState;
 
   const configuratorWidth = 400;
@@ -52,10 +52,11 @@ export default styled(Drawer)(({ theme, ownerState }) => {
     '& .MuiDrawer-paper': {
       height       : '100%', // 'max-content', // '100vh',
       left         : 'initial',
-      background    : linearGradient(configurator.gradients.main, configurator.gradients.state),
-      margin       : 0,
-      padding      : `0 ${pxToRem(24)}`,
-      borderRadius : 0,
+      background   : linearGradient(configurator.gradients.main, configurator.gradients.state),
+      margin       : '1rem 1rem 1rem 0 !important',
+      padding      : pxToRem(24),
+      paddingLeft  : pxToRem(32),
+      borderRadius : borderRadius.xl,
       boxShadow    : getBoxShadows(theme as CustomTheme).lg,
       overflowY    : 'auto',
       ...(isOpenConfigurator ? drawerOpenStyles() : drawerCloseStyles()),

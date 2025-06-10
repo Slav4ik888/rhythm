@@ -1,10 +1,11 @@
 import { FC, ReactNode, useMemo, useReducer } from 'react';
-import { ThemeProvider as MuiThemeProvider, createTheme, useTheme as useMUITheme } from '@mui/material/styles';
+import {
+  ThemeProvider as MuiThemeProvider, createTheme, useTheme as useMUITheme, PaletteMode
+ } from '@mui/material/styles';
 import { UIConfiguratorProviderState } from '../model/types';
 import { reducer } from '../model/lib/reducer';
 import { getThemeByName } from '../model/utils';
 import { UIConfiguratorContext, UIConfiguratorContextType } from '../model/lib/ui-configurator-context';
-import PaletteMode from '@mui/material/PaletteMode';
 import { LS } from 'shared/lib/local-storage';
 
 

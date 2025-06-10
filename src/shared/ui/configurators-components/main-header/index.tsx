@@ -9,19 +9,23 @@ import { f, getTypography } from '../../../styles';
 
 
 
-const useStyles = (theme: CustomTheme) => {
+const useStyles = (theme: CustomTheme, view?: boolean) => {
   const {  configurator } = theme.palette;
   const { size } = getTypography(theme);
 
   return {
     root: {
+      ...f('c'),
+    },
+    row: {
       ...f('-fs-sb'),
       pb : 0.5,
       mb : 3,
     },
     titleBox: {
-      ...f('c-fs'),
-      width: '100%',
+      ...f('c'),
+      alignItems  : view ? 'center' : 'left',
+      width       : '100%',
     },
     title: {
       fontSize    : size['2xl'], // `${size.lg} !important`,
@@ -45,20 +49,20 @@ const useStyles = (theme: CustomTheme) => {
 
 
 interface Props {
-  ui?     : boolean
-  view?   : boolean
+  ui?     : boolean // UI-configurator
+  view?   : boolean // ViewItem-configurator
   onClose : () => void
 }
 
 export const ConfiguratorMainHeader: FC<Props> = memo(({ ui, view, onClose }) => {
-  const sx = useStyles(useTheme());
+  const sx = useStyles(useTheme(), view);
 
 
   if (! ui && ! view) return null;
 
   return (
-    <>
-      <Box sx={sx.root}>
+    <Box sx={sx.root}>
+      <Box sx={sx.row}>
         <Box sx={sx.titleBox}>
           <Typography sx={sx.title}>
             {`Настройк${ui ? 'и интерфейса' : 'а элементов'}`}
@@ -76,7 +80,8 @@ export const ConfiguratorMainHeader: FC<Props> = memo(({ ui, view, onClose }) =>
           <CloseIcon sx={sx.icon} fontSize='small' />
         </IconButton>
       </Box>
+
       <MDDivider />
-    </>
+    </Box>
   )
 });

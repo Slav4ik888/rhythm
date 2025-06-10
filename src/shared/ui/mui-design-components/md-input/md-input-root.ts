@@ -31,7 +31,7 @@ interface OwnerState {
 export default styled(TextField)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
   const { palette } = theme;
   const { error, success, disabled } = ownerState;
-  const { grey, transparent, error: colorError, success: colorSuccess, mode } = palette;
+  const { grey, text, transparent, error: colorError, success: colorSuccess, mode } = palette;
 
   const darkMode = mode === 'dark';
 
@@ -80,6 +80,9 @@ export default styled(TextField)(({ theme, ownerState }: { theme: CustomTheme, o
     // backgroundColor: disabled ? `${grey[200]} !important` : transparent.main,
     backgroundColor: transparent.main,
     pointerEvents: disabled ? 'none' : 'auto',
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: text.light,
+    },
     ...(error && errorStyles()),
     ...(success && successStyles()),
   };

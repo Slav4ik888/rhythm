@@ -20,8 +20,13 @@ const useStyles = (theme: CustomTheme) => ({
   },
   box: {
     ...f(),
-    fontSize : pxToRem(14),
-    gap      : 1,
+    fontSize       : pxToRem(14),
+    cursor         : 'pointer',
+    textDecoration : 'none',
+    gap            : 1,
+    '&:hover': {
+      textDecoration : 'underline',
+    }
   },
   button: {
     root: {
@@ -61,10 +66,10 @@ export const IdTitle: FC<Props> = memo(({ selectedId }) => {
   return (
     <RowWrapper sx={{ root: { ...sx.root } }}>
       <ConfiguratorTextTitle bold title='Id' toolTitle='Item id' />
-      <Box sx={sx.box}>
-        {selectedId}
-        <Tooltip title='Показать и подсветить этот элемент'>
-          <MDButton
+      <Tooltip title='Показать и подсветить этот элемент'>
+        <Box sx={sx.box} onClick={handleClick}>
+          {selectedId}
+          {/* <MDButton
             variant   = 'outlined'
             color     = 'dark'
             size      = 'small'
@@ -72,9 +77,9 @@ export const IdTitle: FC<Props> = memo(({ selectedId }) => {
             onClick   = {handleClick}
           >
             <FilterCenterFocusIcon sx={sx.icon} />
-          </MDButton>
-        </Tooltip>
-      </Box>
+          </MDButton> */}
+        </Box>
+      </Tooltip>
     </RowWrapper>
   )
 });
