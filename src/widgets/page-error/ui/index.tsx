@@ -1,6 +1,7 @@
-import { Box, Button } from '@mui/material';
-import { SxProps } from '@mui/system';
 import { FC, memo } from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import { SxProps } from '@mui/system';
 
 
 interface Props {

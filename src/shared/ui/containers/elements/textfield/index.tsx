@@ -1,5 +1,5 @@
-import { FC, FocusEventHandler, memo, MouseEvent, useEffect, useRef } from 'react';
-import { TextField as MuiTextField } from '@mui/material';
+import { FC, memo, MouseEvent, useEffect, useRef } from 'react';
+import MuiTextField from '@mui/material/TextField';
 import { GridWrap, GridStyle } from '../../grid-wrap';
 import { BoxWrap } from '../../box-wrap';
 import { Tooltip } from '../../../tooltip';

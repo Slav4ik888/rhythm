@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { Checkbox } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { ViewItemStylesField, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { BoxShadowSetupContainer } from './box-shadow-setup';

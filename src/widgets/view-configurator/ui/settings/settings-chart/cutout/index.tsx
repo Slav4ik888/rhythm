@@ -4,7 +4,7 @@ import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-compo
 import { InputByScheme } from '../../../base-features-components';
 import { isNotPie } from 'entities/charts';
 import { getDigit } from 'shared/helpers/numbers';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 
 

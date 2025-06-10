@@ -1,5 +1,6 @@
-import { ChangeEvent, FC, memo, SyntheticEvent } from 'react';
-import { FormControlLabel, Checkbox as MuiCheckbox } from '@mui/material';
+import { FC, memo, SyntheticEvent } from 'react';
+import MuiCheckbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import { GridWrap, GridStyle } from '../../grid-wrap';
 import { BoxWrap } from '../../box-wrap';
 import { Tooltip } from '../../../tooltip';

@@ -1,5 +1,5 @@
 import { FC, memo, ReactNode } from 'react';
-import { Button as MuiButton } from '@mui/material';
+import MuiButton from '@mui/material/Button';
 import { CircularProgress } from '../../circular-progress';
 import { useTheme } from 'app/providers/theme';
 import { Tooltip } from '../../tooltip';

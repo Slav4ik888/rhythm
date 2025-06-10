@@ -1,6 +1,6 @@
 import { FC, memo, useMemo } from 'react';
 import { ViewItem, stylesToSx } from 'entities/dashboard-view';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { isUndefined } from 'shared/lib/validators';
 import { Tooltip } from 'shared/ui/tooltip';
 

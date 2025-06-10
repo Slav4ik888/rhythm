@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import { StatisticPeriodChipBySelectedItem } from 'entities/statistic-type';
 import { GetFromGlobalKod } from '../../base-features-components';

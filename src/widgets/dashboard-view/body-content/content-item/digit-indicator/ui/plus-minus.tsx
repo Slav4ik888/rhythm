@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { ViewItem, stylesToSx } from 'entities/dashboard-view';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { Increased } from 'entities/dashboard-data';
 
 

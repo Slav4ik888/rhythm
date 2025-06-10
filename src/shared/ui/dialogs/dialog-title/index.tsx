@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { DialogTitle as MuiDialogTitle, IconButton, Typography, Tooltip } from '@mui/material';
+import MuiDialogTitle from '@mui/material/DialogTitle';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
 import CloseIcon from '@mui/icons-material/Close';
 import HelpOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import HelpIcon from '@mui/icons-material/Help';

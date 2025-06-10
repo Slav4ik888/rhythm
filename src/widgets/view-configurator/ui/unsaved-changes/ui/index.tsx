@@ -1,6 +1,7 @@
 import { FC, memo, useCallback, useEffect } from 'react';
 import { useDashboardView } from 'entities/dashboard-view';
-import { Box, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { Tooltip, TooltipHTML } from 'shared/ui/tooltip';
 import { isEmpty, isNotEmpty } from 'shared/helpers/objects';

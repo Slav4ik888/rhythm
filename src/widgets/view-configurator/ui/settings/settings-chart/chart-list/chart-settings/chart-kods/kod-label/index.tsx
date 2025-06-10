@@ -1,7 +1,7 @@
 import { FC, memo, useMemo } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { useDashboardData } from 'entities/dashboard-data';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { getKod, useDashboardView, ViewItem } from 'entities/dashboard-view';
 
 

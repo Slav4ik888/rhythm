@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import GrowIcon from './assets/triangle-growth.svg';
 import FallIcon from './assets/triangle-fall.svg';
 import UnchangedLeftIcon from './assets/triangle-unchanged-left.svg';

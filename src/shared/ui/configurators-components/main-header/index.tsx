@@ -2,7 +2,9 @@ import { FC, memo } from 'react';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import CloseIcon from '@mui/icons-material/Close';
 import { MDDivider } from '../../mui-design-components';
-import { Box, IconButton, Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
 import { f, getTypography } from '../../../styles';
 
 
@@ -59,7 +61,7 @@ export const ConfiguratorMainHeader: FC<Props> = memo(({ ui, view, onClose }) =>
       <Box sx={sx.root}>
         <Box sx={sx.titleBox}>
           <Typography sx={sx.title}>
-            {'Настройк' + (ui ? 'и интерфейса' : 'а элементов')}
+            {`Настройк${ui ? 'и интерфейса' : 'а элементов'}`}
           </Typography>
           {
             ui && (

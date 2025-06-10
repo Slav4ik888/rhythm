@@ -1,4 +1,4 @@
-import { PaletteMode } from '@mui/material';
+import { PaletteMode } from '@mui/material/styles';
 import { NavbarColorName } from '../themes/light-navbar';
 import { SidebarColorName } from '../themes/light-sidebar';
 

@@ -2,7 +2,7 @@ import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { ViewItemStylesField, RgbaString, ViewItem } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
-import { Checkbox } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
 import { Tooltip } from 'shared/ui/tooltip';
 import { splitGradinetRgba } from './utils';
 import { SetLinearGradient } from './set-linear-gradient';

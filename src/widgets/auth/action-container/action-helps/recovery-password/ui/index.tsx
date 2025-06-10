@@ -1,5 +1,5 @@
 import { FC, memo, useCallback } from 'react';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { RecoveryPasswordModal } from './recovery-password-modal';
 import { useValue } from 'shared/lib/hooks';
 import { useLogin } from 'pages/login';

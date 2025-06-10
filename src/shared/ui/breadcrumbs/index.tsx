@@ -19,7 +19,7 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 // @mui material components
-import { Breadcrumbs as MuiBreadcrumbs } from '@mui/material';
+import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 import Home from '@mui/icons-material/Home';
 
 // Material Dashboard 2 React components

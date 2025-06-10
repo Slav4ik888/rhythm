@@ -1,5 +1,5 @@
 import { FC, memo, useCallback } from 'react';
-import { IconButton } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { useTheme, useUIConfiguratorController, CustomTheme, setSidebarMini, setIsSidebar } from 'app/providers/theme';

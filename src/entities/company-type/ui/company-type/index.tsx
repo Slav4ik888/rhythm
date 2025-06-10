@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { Chip } from '@mui/material';
+import Chip from '@mui/material/Chip';
 import { CustomSettings } from 'entities/company';
 import { f, pxToRem, SxCard } from 'shared/styles';
 

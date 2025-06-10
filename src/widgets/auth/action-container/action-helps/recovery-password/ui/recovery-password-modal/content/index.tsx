@@ -1,6 +1,8 @@
 import { FC, memo, MutableRefObject } from 'react';
 import { useLogin } from 'pages/login';
-import { TextField, Typography, DialogContent } from '@mui/material';
+import DialogContent from '@mui/material/DialogContent';
+import Typography from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 
 

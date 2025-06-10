@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, MouseEvent } from 'react';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { useDashboardView, ViewItem, ViewItemStyles, ViewItemStylesField } from 'entities/dashboard-view';
 import { f } from 'shared/styles';
 import { ConfiguratorTextTitle } from 'shared/ui/configurators-components';

@@ -1,10 +1,10 @@
-import { FC, memo, ReactElement, useMemo, Fragment } from 'react';
+import { FC, memo, ReactElement, useMemo } from 'react';
 import { ViewItem, useDashboardView, getKod, ChipContainer as Chip } from 'entities/dashboard-view';
 import { TooltipHTML } from 'shared/ui/tooltip';
 import { useDashboardData } from 'entities/dashboard-data';
 import { useCompany } from 'entities/company';
 import { pxToRem } from 'shared/styles';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 
 

@@ -1,7 +1,7 @@
 import { FC, memo, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useUI } from 'entities/ui';
-import { CssBaseline } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
 import { PageLoader } from 'widgets/page-loader';
 import { isNoEmptyFields, getAllObjValue } from 'shared/helpers/objects';
 import { MessageBar } from 'widgets/message-bar';

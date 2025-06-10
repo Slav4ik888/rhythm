@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { Box, styled, Tooltip as MuiTooltip, TooltipProps, tooltipClasses } from '@mui/material';
+import MuiTooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
+import Box from '@mui/material/Box';
 import { isEmpty } from 'shared/helpers/objects';
+import { styled } from '@mui/material/styles';
 
 
 const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (

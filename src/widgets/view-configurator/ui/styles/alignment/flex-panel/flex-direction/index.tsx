@@ -1,5 +1,6 @@
 import { FC, memo, MouseEvent, useCallback } from 'react';
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
 import { FlexDirectionType, ViewItemStylesField } from 'entities/dashboard-view';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
 import TableRowsIcon from '@mui/icons-material/TableRows';

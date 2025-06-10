@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { PanelAddViewItemBtns } from 'features/dashboard-view';
 import { useDashboardView } from 'entities/dashboard-view';
 

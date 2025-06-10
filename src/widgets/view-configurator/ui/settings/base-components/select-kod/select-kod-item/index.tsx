@@ -1,5 +1,6 @@
 import { FC, memo } from 'react';
-import { Box, Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import { Tooltip } from 'shared/ui/tooltip';
 import { f, pxToRem } from 'shared/styles';
 import { StatisticPeriodTypeChip } from 'entities/statistic-type';

@@ -1,6 +1,6 @@
-import { Button } from '@mui/material';
-import { SxProps } from '@mui/system';
 import { useState, useEffect, memo, FC } from 'react';
+import Button from '@mui/material/Button';
+import { SxProps } from '@mui/system';
 
 
 

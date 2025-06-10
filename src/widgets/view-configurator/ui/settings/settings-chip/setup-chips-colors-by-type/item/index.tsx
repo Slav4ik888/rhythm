@@ -3,7 +3,7 @@ import { RowWrapper } from 'shared/ui/configurators-components';
 import { BaseChipType, ChipContainer } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { ColorSettingsType, CustomSettings } from 'entities/company';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import { SetColorsItemInputField } from './input-field';
 

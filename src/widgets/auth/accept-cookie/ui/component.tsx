@@ -1,5 +1,7 @@
 import { ChangeEvent, FC, memo } from 'react';
-import { Checkbox, Box, FormControlLabel } from '@mui/material';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Box from '@mui/material/Box';
 import { useTheme } from 'app/providers/theme';
 import { Button, ButtonType } from 'shared/ui/buttons';
 import { useStyles } from './styles';

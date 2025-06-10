@@ -1,7 +1,7 @@
 import { FC, memo, useCallback } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import FilterCenterFocusIcon from '@mui/icons-material/FilterCenterFocus';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { f, pxToRem } from 'shared/styles';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';

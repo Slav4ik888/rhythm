@@ -3,7 +3,7 @@ import { getKod, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { RowWrapperTitle } from 'shared/ui/configurators-components';
 import { useDashboardData } from 'entities/dashboard-data';
 import { StatisticPeriodTypeChip } from 'entities/statistic-type';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import { Tooltip } from 'shared/ui/tooltip';
 import { GetFromGlobalKod } from '../../../../../../base-features-components';

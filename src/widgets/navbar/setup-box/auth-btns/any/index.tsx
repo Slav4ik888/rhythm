@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
-import { IconButton } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Tooltip } from 'shared/ui/tooltip';
 import { CustomTheme, useTheme } from 'app/providers/theme';

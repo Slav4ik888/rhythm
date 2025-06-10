@@ -1,5 +1,5 @@
-import { PaletteMode, Color } from '@mui/material';
 import { amber, blue, deepPurple, green, grey, orange, pink, yellow } from '@mui/material/colors';
+import { Color, PaletteMode } from '@mui/material/styles';
 
 
 

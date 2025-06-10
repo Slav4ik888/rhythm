@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
 import { FC, memo } from 'react';
+import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 
 

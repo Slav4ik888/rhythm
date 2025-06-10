@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { f, pxToRem } from 'shared/styles';
 import { DelChart } from './del-chart';
 import { MoveChartUpdownward } from './move-chart-updownward';

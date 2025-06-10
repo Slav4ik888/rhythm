@@ -1,5 +1,6 @@
 import { FC, memo, useCallback, MouseEvent } from 'react';
-import { Box, Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import { ViewItemStylesField } from 'entities/dashboard-view';
 import { f, SxCard } from 'shared/styles';
 import { useValue } from 'shared/lib/hooks';

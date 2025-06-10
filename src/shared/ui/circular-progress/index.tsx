@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Box, CircularProgress as Circular } from '@mui/material';
+import Circular from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import { getTopCenter } from './utils';
 import { useEffect } from 'react';

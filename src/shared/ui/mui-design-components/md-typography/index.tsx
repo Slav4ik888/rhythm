@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { forwardRef, FC } from 'react';
 import MDTypographyRoot from './md-typography-root';
 import { ColorName, useUIConfiguratorController } from 'app/providers/theme';
-import { TypographyOwnProps } from '@mui/material';
+import { TypographyOwnProps } from '@mui/material/Typography';
 
 
 

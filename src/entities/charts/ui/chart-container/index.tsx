@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { Card } from '@mui/material';
+import Card from '@mui/material/Card';
 import { SxCard } from 'shared/styles';
 
 

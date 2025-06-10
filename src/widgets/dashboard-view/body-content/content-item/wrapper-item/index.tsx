@@ -2,7 +2,7 @@ import { FC, memo, ReactNode } from 'react';
 import {
   ViewItem, ViewItemId, stylesToSx, useDashboardView, DashboardViewEntities, isFirstGlobalKodInBranch
  } from 'entities/dashboard-view';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { ItemWrapperTooltip } from './tooltip';
 
 

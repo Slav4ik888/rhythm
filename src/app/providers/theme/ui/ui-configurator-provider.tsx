@@ -4,7 +4,7 @@ import { UIConfiguratorProviderState } from '../model/types';
 import { reducer } from '../model/lib/reducer';
 import { getThemeByName } from '../model/utils';
 import { UIConfiguratorContext, UIConfiguratorContextType } from '../model/lib/ui-configurator-context';
-import { PaletteMode } from '@mui/material';
+import PaletteMode from '@mui/material/PaletteMode';
 import { LS } from 'shared/lib/local-storage';
 
 

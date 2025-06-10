@@ -120,22 +120,34 @@ module.exports = {
         paths: [
           {
             name: '@mui/material',
-            message: 'Используйте прямой импорт из конкретного модуля, например: "import Box from \'@mui/material/Box\'"',
+            message: 'Запрещён импорт из корня. Используйте прямой импорт, например: "import Box from \'@mui/material/Box\'"',
           },
           {
             name: '@mui/icons-material',
             message: 'Используйте прямой импорт из конкретного модуля, например: "import Menu from \'@mui/icons-material/Menu\'"',
           },
-          // Добавьте другие библиотеки по аналогии
-        ],
-        // Дополнительно можно запретить импорт отдельных имен из корня:
-        patterns: [
-          {
-            group: ['@mui/material/*'],
-            message: 'Используйте прямой импорт из конкретного модуля, например: "import Box from \'@mui/material/Box\'"',
-          },
         ],
       },
+      // {
+      //   paths: [
+      //     {
+      //       name: '@mui/material',
+      //       message: 'Используйте прямой импорт из конкретного модуля, например: "import Box from \'@mui/material/Box\'"',
+      //     },
+      //     {
+      //       name: '@mui/icons-material',
+      //       message: 'Используйте прямой импорт из конкретного модуля, например: "import Menu from \'@mui/icons-material/Menu\'"',
+      //     },
+      //     // Добавьте другие библиотеки по аналогии
+      //   ],
+      //   // Дополнительно можно запретить импорт отдельных имен из корня:
+      //   patterns: [
+      //     {
+      //       group: ['@mui/material/*'],
+      //       message: 'Используйте прямой импорт из конкретного модуля, например: "import Box from \'@mui/material/Box\'"',
+      //     },
+      //   ],
+      // },
     ],
     'slavchik888-plugin/path-checker': 'error',
   },

@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { Chip } from '@mui/material';
+import Chip from '@mui/material/Chip';
 import { ChipType, useDashboardView } from 'entities/dashboard-view';
 import { getConditionKod } from 'entities/condition-type';
 

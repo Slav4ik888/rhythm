@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { ErrorBox } from 'shared/ui/containers';
 import { Errors } from 'shared/lib/validators';
 import { MDButton } from 'shared/ui/mui-design-components';

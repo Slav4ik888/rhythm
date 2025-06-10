@@ -1,5 +1,5 @@
 import { FC, memo, MouseEvent } from 'react';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { InputByScheme } from '../../../../base-features-components';

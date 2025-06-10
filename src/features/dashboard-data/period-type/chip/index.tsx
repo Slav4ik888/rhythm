@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { pxToRem } from 'shared/styles';
 import { DASHBOARD_PERIOD_TEXT, useDashboardData } from 'entities/dashboard-data';
-import { Chip } from '@mui/material';
+import Chip from '@mui/material/Chip';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 
 

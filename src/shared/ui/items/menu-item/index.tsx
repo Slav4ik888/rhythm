@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { MenuItem as MuiMenuItem } from '@mui/material';
+import MuiMenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { Link } from 'react-router-dom';

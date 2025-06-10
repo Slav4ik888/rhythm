@@ -1,5 +1,5 @@
-import { PaletteMode, Color } from '@mui/material';
 import { orange } from '@mui/material/colors';
+import { Color, PaletteMode } from '@mui/material/styles';
 import { CustomPalette } from '../types';
 
 

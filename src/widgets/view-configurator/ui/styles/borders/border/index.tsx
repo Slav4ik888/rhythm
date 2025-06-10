@@ -1,5 +1,5 @@
 import { FC, memo, useCallback } from 'react';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { ViewItem, ViewItemStylesField } from 'entities/dashboard-view';

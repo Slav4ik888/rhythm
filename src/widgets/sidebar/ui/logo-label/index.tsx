@@ -5,7 +5,7 @@ import { styles } from './styles';
 import brandDark from 'shared/assets/logo_small.png';
 import { MDDivider, MDBox } from 'shared/ui/mui-design-components';
 import { f } from 'shared/styles';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 
 

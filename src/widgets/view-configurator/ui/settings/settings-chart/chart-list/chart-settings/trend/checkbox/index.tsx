@@ -1,7 +1,7 @@
 import { FC, memo, useCallback, useState, useEffect } from 'react';
 import { useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { Checkbox } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
 
 
 

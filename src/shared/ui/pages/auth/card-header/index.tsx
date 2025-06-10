@@ -1,5 +1,6 @@
 import { FC, memo } from 'react';
-import { Typography, Avatar } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 

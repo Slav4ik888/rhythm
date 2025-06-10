@@ -1,5 +1,6 @@
 import { FC, memo, useEffect, useState, useCallback } from 'react';
-import { Box, IconButton } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import { useDashboardView } from 'entities/dashboard-view';
 import { Tooltip } from 'shared/ui/tooltip';

@@ -1,5 +1,6 @@
 import { FC, memo, useCallback, useState } from 'react';
-import { Box, FormControl, MenuItem } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
 import { Tooltip } from 'shared/ui/tooltip';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { MDButton } from 'shared/ui/mui-design-components';

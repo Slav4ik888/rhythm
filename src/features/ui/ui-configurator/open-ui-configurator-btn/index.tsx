@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { IconButton } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { setIsOpenConfigurator, useUIConfiguratorController } from 'app/providers/theme';
 import { SxNavbarIcon } from 'widgets/navbar';

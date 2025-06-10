@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { Switch } from '@mui/material';
+import Switch from '@mui/material/Switch';
 import { UIConfiguratorItemWrapper } from '../../ui-configurator-item-wrapper';
 
 

@@ -1,5 +1,5 @@
 import { FC, memo, ReactNode } from 'react';
-import { GridSize, Grid2 as Grid } from '@mui/material';
+import Grid, { GridSize } from '@mui/material/Grid2';
 
 
 

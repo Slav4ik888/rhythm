@@ -1,6 +1,6 @@
 import { memo, useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { ContentRender } from './render-items';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import {
   ViewItemId, PartialViewItem, useDashboardView, NO_PARENT_ID, createNextOrder, getChildren, isClickInsideViewItem

@@ -1,5 +1,7 @@
 import { useTheme as useMuiTheme } from '@mui/material/styles';
-import { useMediaQuery, Dialog, DialogContent } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { DialogTitle } from '../../dialog-title';
 import { UseBase } from 'shared/lib/hooks';
 import { ReactNode } from 'react';

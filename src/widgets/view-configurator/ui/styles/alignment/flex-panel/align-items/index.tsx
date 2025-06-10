@@ -1,5 +1,6 @@
 import { FC, memo, MouseEvent, useCallback } from 'react';
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
 import { AlignItemsType, ViewItemStylesField } from 'entities/dashboard-view';
 import { Tooltip } from 'shared/ui/tooltip';
 import AlignVerticalTopIcon from '@mui/icons-material/AlignVerticalTop';

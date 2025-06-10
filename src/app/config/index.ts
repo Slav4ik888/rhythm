@@ -1,5 +1,5 @@
 const cfg = {
-  ASSEMBLY_DATE           : '2025-06-09',
+  ASSEMBLY_DATE           : '2025-06-10',
 
   COOKIE_NAME             : 'Rhythm',
   DEFAULT_MESSAGE_TIMEOUT : 6000,

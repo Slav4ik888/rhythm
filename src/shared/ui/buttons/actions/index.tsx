@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Divider, Box } from '@mui/material';
+import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
 import { UseGroup } from '../../../lib/hooks';
 import { BoxGrow } from '../../containers';
 import { CancelSubmitBtn } from '../cancel-submit-btn';

@@ -1,7 +1,10 @@
 import { FC, memo, ReactNode } from 'react';
-import { Box, Breakpoint, Container, Paper } from '@mui/material';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { InnerPageHeader } from '../../pages';
+import { Breakpoint } from '@mui/material/styles';
 
 
 

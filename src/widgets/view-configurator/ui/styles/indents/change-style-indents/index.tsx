@@ -1,5 +1,5 @@
 import { FC, memo, MouseEvent } from 'react';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { ViewItem, ViewItemStylesField } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle } from 'shared/ui/configurators-components';
 import { InputByScheme } from '../../../base-features-components';

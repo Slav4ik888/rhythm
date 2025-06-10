@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from 'react';
 import { ViewItemId, useDashboardView } from 'entities/dashboard-view';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { useCompany } from 'entities/company';
 import { DeleteButton } from 'shared/ui/buttons/delete-button';
 import { f } from 'shared/styles';

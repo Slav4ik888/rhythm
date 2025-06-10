@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { AppRoutes, RoutePath } from 'app/providers/routes';
 import { useTheme } from 'app/providers/theme';
 

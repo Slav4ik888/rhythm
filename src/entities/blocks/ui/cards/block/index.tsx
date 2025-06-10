@@ -1,5 +1,6 @@
 import { FC, memo } from 'react';
-import { Box, Card } from '@mui/material';
+import Card from '@mui/material/Card';
+import Box from '@mui/material/Box';
 import { GradientColorName, CustomTheme, useTheme, ColorName } from 'app/providers/theme';
 import { isStr } from 'shared/lib/validators';
 import { MDTypography } from 'shared/ui/mui-design-components';

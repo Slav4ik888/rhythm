@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { Chip } from '@mui/material';
+import Chip from '@mui/material/Chip';
 import { Tooltip } from 'shared/ui/tooltip';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { CONDITION_TYPE } from '../../model/config';

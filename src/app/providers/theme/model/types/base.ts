@@ -1,4 +1,4 @@
-import { Theme } from '@mui/material';
+import { Theme } from '@mui/material/styles';
 import { borders } from '../themes/base/borders';
 import { breakpoints } from '../themes/base/breakpoints';
 import { customPalette } from '../themes/light-custom-palette';

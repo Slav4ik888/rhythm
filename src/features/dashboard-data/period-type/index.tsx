@@ -3,7 +3,8 @@ import { pxToRem } from 'shared/styles';
 import {
   arrayDashboardPeriodType, DashboardPeriodType, DASHBOARD_PERIOD_TEXT, useDashboardData
 } from 'entities/dashboard-data';
-import { FormControl, MenuItem } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { PeriodTypeChip } from './chip';
 import { useCompany } from 'entities/company';

@@ -1,6 +1,6 @@
 import { FC, memo, MutableRefObject } from 'react';
 import { useLogin } from 'pages/login';
-import { DialogActions } from '@mui/material';
+import DialogActions from '@mui/material/DialogActions';
 import { ErrorBox } from 'shared/ui/containers';
 import { UseValue } from 'shared/lib/hooks';
 import { RecoveryPasswordSendButton as SendButton } from './send-button';

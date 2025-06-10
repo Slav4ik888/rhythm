@@ -1,7 +1,8 @@
 import { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
-import { Menu, MenuItem } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 
 

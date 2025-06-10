@@ -1,5 +1,7 @@
 import { FC, memo, useState } from 'react';
-import { IconButton, Menu, Icon } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import Icon from '@mui/material/Icon';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { NotificationItem } from 'shared/ui/items';
 import { SxNavbarIcon } from 'widgets/navbar';

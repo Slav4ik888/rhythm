@@ -1,5 +1,8 @@
 import { memo, FC, useState, useCallback } from 'react';
-import { Chip, FormControl, MenuItem } from '@mui/material';
+import Chip from '@mui/material/Chip';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { f, SxCard, pxToRem } from 'shared/styles';
 import { isStr } from 'shared/lib/validators';

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { IconButton } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 import MDBox from 'shared/ui/mui-design-components/md-box';
 import ArrowBack from '@mui/icons-material/ArrowBackIos';
 import { setSidebarMini, useUIConfiguratorController } from 'app/providers/theme';

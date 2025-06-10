@@ -1,5 +1,6 @@
 import { ReactNode, memo, FC, CSSProperties } from 'react';
-import { Box, Tooltip as MuiTooltip, TooltipProps } from '@mui/material';
+import MuiTooltip, { TooltipProps } from '@mui/material/Tooltip';
+import Box from '@mui/material/Box';
 import { isEmpty } from 'shared/helpers/objects';
 
 

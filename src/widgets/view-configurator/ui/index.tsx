@@ -2,7 +2,8 @@ import { FC, memo, useCallback, useEffect, useState, SyntheticEvent, useMemo } f
 import DrawerStyled from './styled';
 import { ConfiguratorMainHeader as MainHeader } from 'shared/ui/configurators-components';
 import { useDashboardView } from 'entities/dashboard-view';
-import { Box, Tab } from '@mui/material';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 import { useCompany } from 'entities/company';
 import { ViewItemStylesConfigurator } from './styles';
 import TabContext from '@mui/lab/TabContext';

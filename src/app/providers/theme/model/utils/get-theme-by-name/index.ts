@@ -9,8 +9,7 @@ import { sidebarThemes as sidebarThemesLight } from '../../themes/light-sidebar'
 import { sidebarThemes as sidebarThemesDark } from '../../themes/dark-sidebar';
 import { borders } from '../../themes/base/borders';
 import { breakpoints } from '../../themes/base/breakpoints';
-import { Theme } from '@mui/material';
-
+import { Theme } from '@mui/material/styles';
 
 
 export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProviderState): CustomTheme => {

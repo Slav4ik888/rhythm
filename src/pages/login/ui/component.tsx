@@ -1,5 +1,5 @@
 import { FC, memo, MutableRefObject } from 'react';
-import { TextField } from '@mui/material';
+import TextField from '@mui/material/TextField';
 import { ActionMain, ActionHelps } from 'widgets/auth/action-container';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 import { reducer as reducerLoginPage } from '../model/slice';

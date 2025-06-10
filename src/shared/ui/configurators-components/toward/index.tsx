@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import UpwardIcon from '@mui/icons-material/ArrowUpward';
 import DownwardIcon from '@mui/icons-material/ArrowDownward';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { Tooltip } from '../../tooltip';
 import { MDButton } from '../../mui-design-components';
 import { CustomTheme, useTheme } from 'app/providers/theme';

@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { AppRoutes } from 'app/providers/routes';
 import { ActionToggleButton } from './button';
 import { AuthType } from 'shared/ui/pages';

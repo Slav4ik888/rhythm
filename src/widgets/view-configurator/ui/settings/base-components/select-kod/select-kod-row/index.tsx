@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { ViewItem } from 'entities/dashboard-view';
 import { RowSelectKodChildren } from '../children';
 import { RowWrapperTitle } from 'shared/ui/configurators-components';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import { SelectKod } from '../select-kod';
 

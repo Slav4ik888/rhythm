@@ -4,7 +4,7 @@ import { useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { getValueByScheme } from 'shared/helpers/objects';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useTheme } from 'app/providers/theme';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { SxInputByScheme, useStyles } from './styles';
 import { updater } from '../utils';
 

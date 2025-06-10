@@ -1,6 +1,8 @@
 import { FC, useCallback } from 'react';
-import { Menu } from '@mui/material';
-import { KeyboardReturn, AccountCircle, Home as HomeIcon } from '@mui/icons-material';
+import Menu from '@mui/material/Menu';
+import KeyboardReturn from '@mui/icons-material/KeyboardReturn';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import HomeIcon from '@mui/icons-material/Home';
 import { useUser } from 'entities/user';
 import { RoutePath } from 'app/providers/routes';
 import { useNavigate } from 'react-router-dom';

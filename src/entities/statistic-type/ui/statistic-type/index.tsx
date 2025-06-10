@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { Chip } from '@mui/material';
+import Chip from '@mui/material/Chip';
 import { STATISTIC_PERIOD_TYPE } from '../../model/config';
 import { StatisticPeriodType } from '../../model/types';
 // import { Tooltip } from 'shared/ui/tooltip';

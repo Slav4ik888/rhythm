@@ -2,7 +2,7 @@ import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { getValueByScheme } from 'shared/helpers/objects';
 import { Tooltip } from 'shared/ui/tooltip';
-import { Checkbox } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
 import { SxCard } from 'shared/styles';
 import { updater } from '../utils';
 

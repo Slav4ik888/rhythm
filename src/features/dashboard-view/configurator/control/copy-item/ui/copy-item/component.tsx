@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { Tooltip } from 'shared/ui/tooltip';
 import { MDButton } from 'shared/ui/mui-design-components';
 import { CustomTheme, useTheme } from 'app/providers/theme';
