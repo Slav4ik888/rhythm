@@ -14,6 +14,7 @@ export const customPalette: CustomPalette = {
 
   text: {
     light: '#4f4f4f',
+    dark: '#a2a2a2',
     main: '#a2a2a2',
     focus: '#7b809a',
     primary: '#7f7f7f',
@@ -93,7 +94,7 @@ export const customPalette: CustomPalette = {
   light: {
     light: '#000000',
     main: '#7f7f7f',
-    dark: '#000000',
+    dark: '#2f2f2f',
     focus: '#f0f2f5',
     contrastText: '#000000',
   },
@@ -418,7 +419,10 @@ export const customPalette: CustomPalette = {
     dark: '#404040',
   },
 
+  // Material Kit 2 React Base Styles
   tabs: {
-    indicator: { boxShadow: '#ddd' },
+    indicator: {
+      boxShadow: '#ddd'
+    },
   },
 };

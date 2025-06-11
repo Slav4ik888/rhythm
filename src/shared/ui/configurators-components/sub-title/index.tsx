@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import Typography from '@mui/material/Typography';
-import { CustomTheme, useTheme } from 'app/providers/theme';
+import { CustomTheme } from 'app/providers/theme';
 import { f } from 'shared/styles';
 
 
@@ -59,31 +59,22 @@ const getMY = (type: Type): number => {
 };
 
 
-const useStyles = (theme: CustomTheme, type: Type, justify?: Justify) => ({
-    root: {
-      ...f('-c'),
-      justifyContent : getJustify(justify),
-      fontSize       : getFontSize(type),
-      color          : getFontColor(theme, type),
-      // textShadow     : `0px 0px 1px #a7a7a7`,
-      // textShadow : `0px 0px 3px ${theme.palette.dark.main}`,
-      my             : getMY(type),
-    },
-  });
-
-
 interface Props {
   title    : string
   type     : Type
   justify? : Justify
 }
 
-export const ConfiguratorTitle: FC<Props> = memo(({ title, type }) => {
-  const sx = useStyles(useTheme(), type);
-
-  return (
-    <Typography sx={sx.root}>
-      {title}
-    </Typography>
-  )
-});
+export const ConfiguratorTitle: FC<Props> = memo(({ title, type, justify }) => (
+  <Typography
+    sx={(theme) => ({
+      ...f('-c'),
+      justifyContent : getJustify(justify),
+      fontSize       : getFontSize(type),
+      color          : getFontColor(theme as CustomTheme, type),
+      my             : getMY(type),
+    })}
+  >
+    {title}
+  </Typography>
+));

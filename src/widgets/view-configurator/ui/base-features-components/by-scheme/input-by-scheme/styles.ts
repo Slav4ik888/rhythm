@@ -19,6 +19,9 @@ export const useStyles = (theme: CustomTheme, sx?: SxInputByScheme, width?: stri
     root: {
       width: width || '80px',
       ...sx?.root,
+      '& .MuiFormHelperText-root': {
+        color: 'text.light'
+      }
     },
     field: {
       width: width || '80px',
@@ -29,7 +32,7 @@ export const useStyles = (theme: CustomTheme, sx?: SxInputByScheme, width?: stri
       padding   : '2px 4px',
       fontSize  : pxToRem(16),
       ...sx?.input,
-    }
+    },
   },
   clearBtn: {
     position : 'absolute',
@@ -37,6 +40,6 @@ export const useStyles = (theme: CustomTheme, sx?: SxInputByScheme, width?: stri
     right    : pxToRem(-16),
     cursor   : 'pointer',
     fontSize : '0.9rem',
-    color    : theme.palette.dark.light,
+    color    : theme.palette.text.light,
   },
 });

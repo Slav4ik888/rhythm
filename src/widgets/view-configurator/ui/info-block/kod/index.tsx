@@ -19,7 +19,10 @@ export const Kod: FC = memo(() => {
       <Box sx={{ ...f('-c-c'), gap: 2 }}>
         <CompanyChipBySelectedItem />
         <StatisticPeriodChipBySelectedItem />
-        <GetFromGlobalKod type={selectedItem?.settings?.chipType} />
+        <GetFromGlobalKod
+          disabled
+          type={selectedItem?.settings?.chipType}
+        />
       </Box>
     </RowWrapper>
   )

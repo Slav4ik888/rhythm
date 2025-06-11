@@ -29,6 +29,46 @@ export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProvid
       ...navbarThemesLight[navbarColor],
       gradients: gradientsLight,
     };
+    theme.components = {
+      ...theme.components,
+      MuiCheckbox: {
+        styleOverrides: {
+          root: {
+            '&.Mui-checked': {
+              color: '#8b8b8b',
+              '& .MuiSvgIcon-root': {
+                color: '#8b8b8b',
+              },
+            },
+            '&:not(.Mui-checked)': {
+              color: '#8b8b8b',
+              '& .MuiSvgIcon-root': {
+                color: '#8b8b8b',
+              },
+            }
+          }
+        }
+      },
+      MuiChip: {
+        styleOverrides: {
+          root: {
+            backgroundColor: '#d5d5d5',
+            '&:hover': {
+              backgroundColor: '#c4c4c4',
+            }
+          },
+          // outlined: {
+          //   borderColor: '#e0e0e0',
+          // },
+          // filled: {
+          //   backgroundColor: '#f5f5f5',
+          //   '&:hover': {
+          //     backgroundColor: '#e0e0e0',
+          //   },
+          // },
+        },
+      },
+    }
   }
   else {
     theme.palette = {
@@ -38,6 +78,37 @@ export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProvid
       ...navbarThemesDark[navbarColor],
       gradients: gradientsDark,
     };
+    theme.components = {
+      ...theme.components,
+      MuiCheckbox: {
+        styleOverrides: {
+          root: {
+            '&.Mui-checked': {
+              color: '#616161',
+              '& .MuiSvgIcon-root': {
+                color: '#616161',
+              },
+            },
+            '&:not(.Mui-checked)': {
+              color: '#616161',
+              '& .MuiSvgIcon-root': {
+                color: '#616161',
+              },
+            }
+          }
+        }
+      },
+      MuiChip: {
+        styleOverrides: {
+          root: {
+            backgroundColor: '#383838',
+            '&:hover': {
+              backgroundColor: '#1e1e1e',
+            }
+          },
+        },
+      },
+    }
   }
 
   return theme // as CustomTheme;

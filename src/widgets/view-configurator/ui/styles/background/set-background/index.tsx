@@ -14,20 +14,6 @@ const useStyles = () => ({
   popover: {
     bottom: pxToRem(-260)
   },
-  checkbox: {
-    '&.Mui-checked': {
-      color: 'text.light',
-      '& .MuiSvgIcon-root': {
-        color: 'text.light',
-      },
-    },
-    '&:not(.Mui-checked)': {
-      color: 'text.light',
-      '& .MuiSvgIcon-root': {
-        color: 'text.light',
-      },
-    },
-  },
 });
 
 
@@ -64,7 +50,6 @@ export const SetBackground: FC<Props> = memo(({ selectedItem, onChange }) => {
           size       = 'small'
           checked    = {checked}
           inputProps = {{ 'aria-label': 'background' }}
-          sx         = {sx.checkbox}
           onChange   = {handleToggle}
         />
       </Tooltip>

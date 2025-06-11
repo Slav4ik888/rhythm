@@ -28,7 +28,7 @@ const useStyles = (sx?: SxCard, disabled?: boolean) => ({
   select: {
     visibility : 'hidden',
     opacity    : 0,
-    top      : pxToRem(40),
+    top        : pxToRem(40),
     height     : pxToRem(38),
   }
 });

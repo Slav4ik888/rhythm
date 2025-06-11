@@ -35,6 +35,7 @@ export type CustomTheme =
   & Theme
   & {
     palette: CustomPalette
+    // & MUIOverrides
     & { gradients : Gradients }
     & NavbarTheme
     & SidebarTheme
