@@ -1,4 +1,4 @@
-import { FC, memo, ReactNode } from 'react';
+import { FC, memo, ReactNode, useMemo } from 'react';
 import {
   ViewItem, ViewItemId, stylesToSx, useDashboardView, DashboardViewEntities, isFirstGlobalKodInBranch
  } from 'entities/dashboard-view';
@@ -7,7 +7,7 @@ import { ItemWrapperTooltip } from './tooltip';
 
 
 
-const useStyles = (
+const getStyles = (
   item         : ViewItem, // Отрисовываемый элемент на Дашборде
   editMode     : boolean,
   entities     : DashboardViewEntities,
@@ -68,7 +68,8 @@ interface Props {
 /** Item wrapper */
 export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
   const { editMode, selectedItem, entities, bright } = useDashboardView();
-  const sx = useStyles(item, editMode, entities, selectedItem);
+  const sx = useMemo(() => getStyles(item, editMode, entities, selectedItem),
+    [item, editMode, entities, selectedItem]);
 
   const handleClick = (e: any) => {
     e.stopPropagation();

@@ -10,12 +10,12 @@ interface Props {
 
 /** ScaleValue */
 export const ScaleValue: FC<Props> = memo(({ selectedItem }) => (
-    <RowInputByScheme
-      scheme       = 'settings.scale'
-      type         = 'number'
-      title        = 'ScaleValue'
-      toolTitle    = 'Увеличить размер треугольника'
-      width        = '3rem'
-      selectedItem = {selectedItem}
-    />
-  ));
+  <RowInputByScheme
+    scheme       = 'settings.scale'
+    type         = 'number'
+    title        = 'ScaleValue'
+    toolTitle    = 'Увеличить размер треугольника'
+    width        = '3rem'
+    selectedItem = {selectedItem}
+  />
+));

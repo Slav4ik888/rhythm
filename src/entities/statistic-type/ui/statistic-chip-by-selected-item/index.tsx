@@ -5,6 +5,7 @@ import { StatisticPeriodTypeChip } from '../statistic-type';
 import { useDashboardData } from 'entities/dashboard-data';
 
 
+
 /** In ViewItem show chip by kod */
 export const StatisticPeriodChipBySelectedItem: FC = memo(() => {
   const { startEntities } = useDashboardData();

@@ -36,13 +36,13 @@ export const ChartSelectKod: FC<Props> = memo(({ index, selectedItem }) => {
         <StatisticPeriodTypeChip type={startEntities[kod]?.periodType} />
         {
           disabled
-            ?            <Tooltip title='Чтобы выбрать другой код, снимите галку с "fromGlobalKod".'>
-              <GetFromGlobalKod />
-            </Tooltip>
-            :            <SelectKod
+            ? <Tooltip title='Чтобы выбрать другой код, снимите галку с "fromGlobalKod".'>
+                <GetFromGlobalKod />
+              </Tooltip>
+            : <SelectKod
                 scheme       = {`settings.charts.[${index}].kod`}
                 selectedItem = {selectedItem}
-            />
+              />
         }
       </Box>
     </RowWrapperTitle>

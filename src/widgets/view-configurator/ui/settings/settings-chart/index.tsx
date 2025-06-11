@@ -15,17 +15,17 @@ interface Props {
 
 /** Вкладка Settings для графиков */
 export const ViewItemChartSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => (
-    <>
-      {/* GLOBAL SETTINGS */}
-      <InvertedData selectedItem={selectedItem} />
-      <ChartLegends selectedItem={selectedItem} />
-      <ChartCutout  selectedItem={selectedItem} />
+  <>
+    {/* GLOBAL SETTINGS */}
+    <InvertedData selectedItem={selectedItem} />
+    <ChartLegends selectedItem={selectedItem} />
+    <ChartCutout  selectedItem={selectedItem} />
 
-      {/* Individual charts settings */}
-      <ViewItemChartSettingsList selectedItem={selectedItem} />
-      {/* TODO: возможность добавлять графики */}
+    {/* Individual charts settings */}
+    <ViewItemChartSettingsList selectedItem={selectedItem} />
+    {/* TODO: возможность добавлять графики */}
 
-      <ViewItemChartScaleYSettings selectedItem={selectedItem} />
-      <ViewItemChartScaleXSettings selectedItem={selectedItem} />
-    </>
-  ));
+    <ViewItemChartScaleYSettings selectedItem={selectedItem} />
+    <ViewItemChartScaleXSettings selectedItem={selectedItem} />
+  </>
+));

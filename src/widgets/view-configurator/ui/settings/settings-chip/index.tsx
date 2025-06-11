@@ -13,27 +13,27 @@ interface Props {
 
 /** Вкладка Settings for Chip */
 export const ViewItemChipSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => (
-    <>
-      <SubHeader title='Базовые настройки'>
-        <InvertedData   selectedItem={selectedItem} />
-        <SelectKodRow   selectedItem={selectedItem} />
-        <SelectChipType selectedItem={selectedItem} />
-      </SubHeader>
+  <>
+    <SubHeader title='Базовые настройки'>
+      <InvertedData   selectedItem={selectedItem} />
+      <SelectKodRow   selectedItem={selectedItem} />
+      <SelectChipType selectedItem={selectedItem} />
+    </SubHeader>
 
-      {
-        selectedItem?.settings?.chipType === 'period'
-          ? <SetupChipsColorsByType  type='periodType' />
-          : null
-      }
-      {
-        selectedItem?.settings?.chipType === 'company'
-          ? <SetupChipsColorsByType  type='companyType' />
-          : null
-      }
-      {
-        selectedItem?.settings?.chipType === 'product'
-          ? <SetupChipsColorsByType  type='productType' />
-          : null
-      }
-    </>
-  ));
+    {
+      selectedItem?.settings?.chipType === 'period'
+        ? <SetupChipsColorsByType  type='periodType' />
+        : null
+    }
+    {
+      selectedItem?.settings?.chipType === 'company'
+        ? <SetupChipsColorsByType  type='companyType' />
+        : null
+    }
+    {
+      selectedItem?.settings?.chipType === 'product'
+        ? <SetupChipsColorsByType  type='productType' />
+        : null
+    }
+  </>
+));

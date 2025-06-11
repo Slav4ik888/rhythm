@@ -65,8 +65,11 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
       type     = 'date'
       size     = 'small'
       disabled = {disabled}
-      sx       = {{ width: pxToRem(140), mr: 1 }}
       onChange = {handleChange}
+      sx       = {{
+        width : pxToRem(140),
+        mr    : 1
+      }}
     />
   )
 });

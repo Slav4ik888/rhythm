@@ -27,66 +27,62 @@ interface Props {
 }
 
 /** Отрисовки списка графиков */
-export const ViewItemChartSettingsList: FC<Props> = memo(({ selectedItem }) => {
-  const notPie = isNotPie(selectedItem);
+export const ViewItemChartSettingsList: FC<Props> = memo(({ selectedItem }) => (
+  <>
+    {
+      selectedItem?.settings?.charts
+      && selectedItem?.settings.charts.length > 0
+      && selectedItem?.settings.charts.map((item, index) => (
+        <ConfiguratorSubBoxWrapper title={`График ${index + 1}`} key={index}>
+          <ConfiguratorTitle title='Общие настройки' type='subtitle1' />
+          <SelectChartType index={index} selectedItem={selectedItem} />
+          <ChartKods       index={index} selectedItem={selectedItem} />
+          <ChartLabel      index={index} selectedItem={selectedItem} />
+          <ChartHidden     index={index} selectedItem={selectedItem} />
+          {/* Выбрать период дат: общий или уникальный */}
 
-  return (
-    <>
-      {
-        selectedItem?.settings?.charts
-        && selectedItem?.settings.charts.length > 0
-        && selectedItem?.settings.charts.map((item, index) => (
-          <ConfiguratorSubBoxWrapper title={`График ${index + 1}`} key={index}>
-            <ConfiguratorTitle title='Общие настройки' type='subtitle1' />
-            <SelectChartType index={index} selectedItem={selectedItem} />
-            <ChartKods       index={index} selectedItem={selectedItem} />
-            <ChartLabel      index={index} selectedItem={selectedItem} />
-            <ChartHidden     index={index} selectedItem={selectedItem} />
-            {/* Выбрать период дат: общий или уникальный */}
-
-            {
-              notPie
-                ?                  <>
-                    {
-                      item?.chartType === 'line' && <>
-                        <ConfiguratorTitle title='Точки' type='subtitle1' />
-                        <ChartPointRadius          index={index} selectedItem={selectedItem} />
-                        <ChartPointBackgroundColor index={index} selectedItem={selectedItem} />
-                      </>
-                    }
+          {
+            isNotPie(selectedItem)
+              ?                  <>
+                  {
+                    item?.chartType === 'line' && <>
+                      <ConfiguratorTitle title='Точки' type='subtitle1' />
+                      <ChartPointRadius          index={index} selectedItem={selectedItem} />
+                      <ChartPointBackgroundColor index={index} selectedItem={selectedItem} />
+                    </>
+                  }
 
 
-                    <ConfiguratorTitle title='Линия графика' type='subtitle1' />
-                    <ChartBorderWidth        index={index} selectedItem={selectedItem} />
-                    <ChartBorderColor        index={index} selectedItem={selectedItem} />
-                    <ChartBackgroundColor    index={index} selectedItem={selectedItem} />
+                  <ConfiguratorTitle title='Линия графика' type='subtitle1' />
+                  <ChartBorderWidth        index={index} selectedItem={selectedItem} />
+                  <ChartBorderColor        index={index} selectedItem={selectedItem} />
+                  <ChartBackgroundColor    index={index} selectedItem={selectedItem} />
 
-                    {
-                      item?.chartType === 'bar' && <>
-                        <ChartBarPercentage      index={index} selectedItem={selectedItem} />
-                        <ChartCategoryPercentage index={index} selectedItem={selectedItem} />
-                      </>
-                    }
+                  {
+                    item?.chartType === 'bar' && <>
+                      <ChartBarPercentage      index={index} selectedItem={selectedItem} />
+                      <ChartCategoryPercentage index={index} selectedItem={selectedItem} />
+                    </>
+                  }
 
-                    <ChartSpanGaps           index={index} selectedItem={selectedItem} />
-                    <ChartShiftValues        index={index} selectedItem={selectedItem} />
+                  <ChartSpanGaps           index={index} selectedItem={selectedItem} />
+                  <ChartShiftValues        index={index} selectedItem={selectedItem} />
 
-                    <ConfiguratorTitle title='Линия тренда' type='subtitle1' />
-                    <ChartTrendCheckbox index={index} selectedItem={selectedItem} />
-                    <ChartTrendWidth    index={index} selectedItem={selectedItem} />
-                    <ChartTrendColor    index={index} selectedItem={selectedItem} />
-                  </>
-                : <>
-                    <ChartBackgroundColor index={index} selectedItem={selectedItem} />
-                  </>
-            }
+                  <ConfiguratorTitle title='Линия тренда' type='subtitle1' />
+                  <ChartTrendCheckbox index={index} selectedItem={selectedItem} />
+                  <ChartTrendWidth    index={index} selectedItem={selectedItem} />
+                  <ChartTrendColor    index={index} selectedItem={selectedItem} />
+                </>
+              : <>
+                  <ChartBackgroundColor index={index} selectedItem={selectedItem} />
+                </>
+          }
 
-            <ControlChartBar index={index} />
-          </ConfiguratorSubBoxWrapper>
-        ))
-      }
+          <ControlChartBar index={index} />
+        </ConfiguratorSubBoxWrapper>
+      ))
+    }
 
-      <AddNewChart />
-    </>
-  )
-});
+    <AddNewChart />
+  </>
+));

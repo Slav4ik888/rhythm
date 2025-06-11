@@ -13,21 +13,17 @@ interface Props {
 }
 
 /**  */
-export const SelectKodRow: FC<Props> = memo(({ selectedItem }) => {
-  const disabled = Boolean(selectedItem?.settings?.fromGlobalKod);
-
-  return (
-    <RowWrapperTitle title='Код' toolTitle='Укажите код статистики для элемента'>
-      <Box sx={f('-c')}>
-        <RowSelectKodChildren
-          selectedItem = {selectedItem}
-          disabled     = {disabled}
-        />
-        <SelectKod
-          scheme       = 'settings.kod'
-          selectedItem = {selectedItem}
-        />
-      </Box>
-    </RowWrapperTitle>
-  )
-});
+export const SelectKodRow: FC<Props> = memo(({ selectedItem }) => (
+  <RowWrapperTitle title='Код' toolTitle='Укажите код статистики для элемента'>
+    <Box sx={f('-c')}>
+      <RowSelectKodChildren
+        selectedItem = {selectedItem}
+        disabled     = {Boolean(selectedItem?.settings?.fromGlobalKod)}
+      />
+      <SelectKod
+        scheme       = 'settings.kod'
+        selectedItem = {selectedItem}
+      />
+    </Box>
+  </RowWrapperTitle>
+));

@@ -2,59 +2,54 @@ import { FC, memo } from 'react';
 import Chip from '@mui/material/Chip';
 import { STATISTIC_PERIOD_TYPE } from '../../model/config';
 import { StatisticPeriodType } from '../../model/types';
-// import { Tooltip } from 'shared/ui/tooltip';
-import { CustomTheme, useTheme } from 'app/providers/theme';
+import { CustomTheme } from 'app/providers/theme';
 import { f, pxToRem, SxCard } from 'shared/styles';
+import { CustomSettings } from 'entities/company';
+import { setValue } from 'shared/helpers/objects';
 
 
 
-const useStyle = ({
-  palette: { statisticPeriodTypeChip } }: CustomTheme,
-  type : StatisticPeriodType,
-  sx?  : SxCard
-) => ({
-  tooltip: {
-    ...f('-c'),
-    height     : pxToRem(20),
-    cursor     : 'default',
-  },
-  chip: {
-    width      : pxToRem(70),
-    height     : pxToRem(15),
-    fontSize   : pxToRem(12),
-    color      : statisticPeriodTypeChip[type]?.color,
-    background : statisticPeriodTypeChip[type]?.background,
-    ...sx?.root,
-  },
-});
+/** Вначале берёт label из customSettings */
+const gelLabel = (
+  type            : StatisticPeriodType,
+  customSettings? : CustomSettings
+) => setValue(customSettings?.periodType?.[type]?.title, STATISTIC_PERIOD_TYPE[type]?.label);
+
+/** Вначале берёт цвета из customSettings */
+const gelColor = (
+  name            : 'color' | 'background',
+  type            : StatisticPeriodType,
+  theme           : CustomTheme,
+  customSettings? : CustomSettings
+) => setValue(customSettings?.periodType?.[type]?.[name], theme.palette.statisticPeriodTypeChip[type]?.[name]);
+
 
 
 interface Props {
-  type? : StatisticPeriodType
-  sx?   : SxCard
+  type?           : StatisticPeriodType
+  customSettings? : CustomSettings
+  sx?             : SxCard
 }
 
 
 /**
- * Chip для типа статистики: День | Нед | Мес |
+ * Chip для типа статистики: День | Нед | Мес
  */
-export const StatisticPeriodTypeChip: FC<Props> = memo(({ type = '' as StatisticPeriodType, sx: styles }) => {
-  // TODO: вначале брать цвета из customSettings from useCompany()
-  const sx = useStyle(useTheme(), type, styles);
-  const { label, description } = STATISTIC_PERIOD_TYPE[type] || {};
-
-
-  return (
-    // <Tooltip
-    //   title     = {description}
-    //   placement = 'top-start'
-    //   sxSpan    = {sx.tooltip}
-    // >
-    <Chip
-      label = {label}
-      size  = 'small'
-      sx    = {sx.chip}
-    />
-    // </Tooltip>
-  )
-});
+export const StatisticPeriodTypeChip: FC<Props> = memo(({ type = '' as StatisticPeriodType, customSettings, sx }) => (
+  <Chip
+    label = {gelLabel(type, customSettings)}
+    size  = 'small'
+    sx    = {(theme) => ({
+      width      : pxToRem(70),
+      height     : pxToRem(18),
+      fontSize   : pxToRem(12),
+      cursor     : 'default',
+      color      : gelColor('color', type, theme as CustomTheme, customSettings),
+      background : gelColor('background', type, theme as CustomTheme, customSettings),
+      '&:hover': {
+        background: gelColor('background', type, theme as CustomTheme, customSettings),
+      },
+      ...sx?.root,
+    })}
+  />
+));

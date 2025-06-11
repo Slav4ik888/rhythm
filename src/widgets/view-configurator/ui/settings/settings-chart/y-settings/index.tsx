@@ -13,15 +13,15 @@ interface Props {
 
 /** НАСТРОЙКИ ОСИ Y */
 export const ViewItemChartScaleYSettings: FC<Props> = memo(({ selectedItem }) => (
-    <SubHeader title='Ось Y'>
-      <MinMax selectedItem={selectedItem} />
-      <Grid
-        scale        = 'y'
-        selectedItem = {selectedItem}
-      />
-      <Ticks
-        scale        = 'y'
-        selectedItem = {selectedItem}
-      />
-    </SubHeader>
-  ));
+  <SubHeader title='Ось Y'>
+    <MinMax selectedItem={selectedItem} />
+    <Grid
+      scale        = 'y'
+      selectedItem = {selectedItem}
+    />
+    <Ticks
+      scale        = 'y'
+      selectedItem = {selectedItem}
+    />
+  </SubHeader>
+));

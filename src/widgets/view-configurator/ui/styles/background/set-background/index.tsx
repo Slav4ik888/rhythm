@@ -10,11 +10,11 @@ import { pxToRem } from 'shared/styles';
 
 
 
-const useStyles = () => ({
+const sxPopover = {
   popover: {
     bottom: pxToRem(-260)
   },
-});
+};
 
 
 interface Props {
@@ -24,7 +24,6 @@ interface Props {
 
 /** background */
 export const SetBackground: FC<Props> = memo(({ selectedItem, onChange }) => {
-  const sx = useStyles();
   const gradients = useMemo(() => splitGradinetRgba(selectedItem?.styles?.background as string), [selectedItem]);
 
   const [checked, setChecked] = useState(gradients.length === 3);
@@ -59,12 +58,12 @@ export const SetBackground: FC<Props> = memo(({ selectedItem, onChange }) => {
               defaultValue = {selectedItem?.styles?.background as RgbaString}
               gradients    = {gradients}
               selectedItem = {selectedItem}
-              sx           = {sx}
+              sx           = {sxPopover}
               onChange     = {onChange}
             />
           : <ColorPicker
               defaultColor = {selectedItem?.styles?.background as RgbaString}
-              sx           = {sx}
+              sx           = {sxPopover}
               onChange     = {handleBackground}
             />
       }

@@ -43,7 +43,14 @@ export const ViewItemConfigurator: FC = memo(() => {
 
   /** Закрываем конфигуратор */
   const handleClose = useCallback(() => {
-    if (isUnsaved) return setWarningMessage('Cохраните изменения'); // TODO: autoclick to saveBtn
+    if (isUnsaved) {
+      return setWarningMessage('Cохраните изменения');
+      // TODO: autoclick to saveBtn
+      // const element = document.getElementById('saveBtn');
+      // if (element) {
+      //   element.click();
+      // }
+    }
     setValue('1');
     setEditMode({ editMode: false, companyId });
     setSelectedId(''); // Убираем, чтобы prevStoredViewItem обновился и произошло сохранение

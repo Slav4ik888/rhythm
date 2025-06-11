@@ -1,17 +1,8 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import { Input } from 'shared/ui/containers';
 
-
-
-const useStyles = () => ({
-  root: {
-    ...f(),
-    width : '100%',
-    p     :1,
-  },
-});
 
 
 interface Props {
@@ -20,11 +11,16 @@ interface Props {
 
 /** SearchBox для поиска внутри списка Kods */
 export const SelectKodItemSearchBox: FC<Props> = memo(({ onSearch }) => {
-  const sx = useStyles();
-  const onChange = (e: any) => onSearch(e.target.value);
+  const onChange = useCallback((e: any) => onSearch(e.target.value), [onSearch]);
 
   return (
-    <Box sx={sx.root}>
+    <Box
+      sx={{
+        ...f(),
+        width : '100%',
+        p     :1,
+      }}
+    >
       <Input
         fullWidth
         autoFocus

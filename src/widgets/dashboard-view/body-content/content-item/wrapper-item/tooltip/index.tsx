@@ -5,6 +5,7 @@ import { useDashboardData } from 'entities/dashboard-data';
 import { useCompany } from 'entities/company';
 import { pxToRem } from 'shared/styles';
 import Box from '@mui/material/Box';
+import { setValue } from 'shared/helpers/objects';
 
 
 
@@ -67,7 +68,7 @@ export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
       ? ''
       : <span>
           <Chip
-            label = {periodType}
+            label = {setValue(customSettings?.periodType?.[periodType]?.title, periodType) as string}
             sx    = {{
               color      : customSettings?.periodType?.[periodType]?.color      || 'black',
               background : customSettings?.periodType?.[periodType]?.background || 'rgb(111, 111, 111)',

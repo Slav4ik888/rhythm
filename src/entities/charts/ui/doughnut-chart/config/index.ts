@@ -1,5 +1,4 @@
-import { updateObject } from 'shared/helpers/objects';
-import { setValue } from 'shared/lib/charts';
+import { updateObject, setValue } from 'shared/helpers/objects';
 import { ChartConfig, ChartConfigOptions } from '../../../model/types';
 
 

@@ -1,39 +1,10 @@
 import { FC, memo, useCallback } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import FilterCenterFocusIcon from '@mui/icons-material/FilterCenterFocus';
 import Box from '@mui/material/Box';
 import { f, pxToRem } from 'shared/styles';
-import { CustomTheme, useTheme } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
-import { MDButton } from 'shared/ui/mui-design-components';
 import { useDashboardView } from 'entities/dashboard-view';
 
-
-
-const useStyles = (theme: CustomTheme) => ({
-  root: {
-    mt: 3,
-  },
-  icon: {
-    color    : theme.palette.dark.main,
-    fontSize : '12px',
-  },
-  box: {
-    ...f(),
-    fontSize       : pxToRem(14),
-    cursor         : 'pointer',
-    textDecoration : 'none',
-    gap            : 1,
-    '&:hover': {
-      textDecoration : 'underline',
-    }
-  },
-  button: {
-    root: {
-      minWidth: 'max-content'
-    }
-  }
-});
 
 
 interface Props {
@@ -41,7 +12,6 @@ interface Props {
 }
 
 export const IdTitle: FC<Props> = memo(({ selectedId }) => {
-  const sx = useStyles(useTheme());
   const { setBright } = useDashboardView();
 
   const handleClick = useCallback(() => {
@@ -64,20 +34,23 @@ export const IdTitle: FC<Props> = memo(({ selectedId }) => {
 
 
   return (
-    <RowWrapper sx={{ root: { ...sx.root } }}>
+    <RowWrapper sx={{ root: { mt: 3 } }}>
       <ConfiguratorTextTitle bold title='Id' toolTitle='Item id' />
       <Tooltip title='Показать и подсветить этот элемент'>
-        <Box sx={sx.box} onClick={handleClick}>
+        <Box
+          onClick = {handleClick}
+          sx      = {{
+            ...f(),
+            fontSize       : pxToRem(14),
+            cursor         : 'pointer',
+            textDecoration : 'none',
+            gap            : 1,
+            '&:hover': {
+              textDecoration : 'underline',
+            }
+          }}
+        >
           {selectedId}
-          {/* <MDButton
-            variant   = 'outlined'
-            color     = 'dark'
-            size      = 'small'
-            sx        = {sx.button}
-            onClick   = {handleClick}
-          >
-            <FilterCenterFocusIcon sx={sx.icon} />
-          </MDButton> */}
         </Box>
       </Tooltip>
     </RowWrapper>

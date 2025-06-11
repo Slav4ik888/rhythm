@@ -6,7 +6,7 @@ import { CopyStylesViewItemBtn } from 'features/dashboard-view';
 
 /**  */
 export const StyleControl: FC = memo(() => (
-  <SubHeader title='Управление стиля'>
+  <SubHeader title='Управление стилем'>
     <RowWrapper sx={{ root: { justifyContent: 'flex-end' } }}>
       <CopyStylesViewItemBtn />
     </RowWrapper>

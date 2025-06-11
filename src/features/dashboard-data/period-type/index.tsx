@@ -8,32 +8,11 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { PeriodTypeChip } from './chip';
 import { useCompany } from 'entities/company';
-import { CustomTheme, useTheme } from 'app/providers/theme';
-
-
-
-const useStyles = (theme: CustomTheme) => ({
-  root: {
-    position : 'relative',
-    display  : 'flex',
-    width    : 120,
-    mr       : 1
-  },
-  select: {
-    visibility : 'hidden',
-    opacity    : 0,
-    height     : pxToRem(38),
-  },
-  // Фон списка
-  selectOpened: {
-    backgroundColor: theme.palette.navbar.bg
-  }
-});
+import { CustomTheme } from 'app/providers/theme';
 
 
 
 export const PeriodType: FC = memo(() => {
-  const sx = useStyles(useTheme());
   const { companyId } = useCompany();
   const { setSelectedPeriod } = useDashboardData();
   const [openSelect, setOpenSelect] = useState(false);
@@ -49,21 +28,34 @@ export const PeriodType: FC = memo(() => {
 
 
   return (
-    <FormControl sx={sx.root}>
+    <FormControl
+      sx={{
+        position : 'relative',
+        display  : 'flex',
+        width    : 120,
+        mr       : 1
+      }}
+    >
       <PeriodTypeChip onClick={handleClickChip} />
 
       <Select
         variant      = 'standard'
         open         = {openSelect}
         defaultValue = ''
-        sx           = {sx.select}
-        MenuProps    = {{
-          PaperProps: {
-            sx: sx.selectOpened, // Фон списка
-          },
-        }}
         onClose      = {handleSelectClose}
         onChange     = {handleChangePeriod}
+        MenuProps    = {{
+          PaperProps: {
+            sx: (theme) => ({
+              backgroundColor: (theme as CustomTheme).palette.navbar.bg
+            }), // Фон списка
+          },
+        }}
+        sx           = {{
+          visibility : 'hidden',
+          opacity    : 0,
+          height     : pxToRem(38),
+        }}
       >
         {
           arrayDashboardPeriodType.map((item) => <MenuItem

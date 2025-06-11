@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { RowWrapper } from 'shared/ui/configurators-components';
 import { BaseChipType, ChipContainer } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
@@ -21,14 +21,14 @@ export const SetColorsItem: FC<Props> = memo(({ type, label, settings, onSubmit 
   const color = settings?.[type]?.[label]?.color || '';
   const background = settings?.[type]?.[label]?.background || '';
 
-  const handleChangeColor = (colorType: ColorSettingsType, value: string) => {
+  const handleChangeColor = useCallback((colorType: ColorSettingsType, value: string) => {
     onSubmit({
       [type]: {
         [label]: {
           [colorType]: value
         }
     } });
-  };
+  }, [type, label, onSubmit]);
 
 
   return (

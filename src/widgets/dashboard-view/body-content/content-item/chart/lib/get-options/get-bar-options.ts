@@ -1,8 +1,7 @@
 import { ChartConfigOptions } from 'entities/charts';
 // @ts-ignore
 import { InteractionMode } from 'node_modules/chart.js/dist/types/index.d.ts';
-import { updateObject } from 'shared/helpers/objects';
-import { setValue } from 'shared/lib/charts';
+import { updateObject, setValue } from 'shared/helpers/objects';
 
 
 

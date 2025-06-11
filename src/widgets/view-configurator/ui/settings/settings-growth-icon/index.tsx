@@ -13,18 +13,18 @@ interface Props {
 
 /** Вкладка Settings for GrowthIcon */
 export const ViewItemGrowthIconSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => (
-    <>
-      {/* GLOBAL SETTINGS */}
-      <SubHeader title='Базовые настройки'>
-        <SelectKodRow selectedItem={selectedItem} />
-        <InvertedData   selectedItem={selectedItem} />
-        <UnchangedBlack selectedItem={selectedItem} />
-      </SubHeader>
+  <>
+    {/* GLOBAL SETTINGS */}
+    <SubHeader title='Базовые настройки'>
+      <SelectKodRow selectedItem={selectedItem} />
+      <InvertedData   selectedItem={selectedItem} />
+      <UnchangedBlack selectedItem={selectedItem} />
+    </SubHeader>
 
-      {/* GROWTH ICON SETTINGS */}
-      <SubHeader title='Особые настройки'>
-        <IsLeft         selectedItem={selectedItem} />
-        <ScaleValue     selectedItem={selectedItem} />
-      </SubHeader>
-    </>
-  ));
+    {/* GROWTH ICON SETTINGS */}
+    <SubHeader title='Особые настройки'>
+      <IsLeft         selectedItem={selectedItem} />
+      <ScaleValue     selectedItem={selectedItem} />
+    </SubHeader>
+  </>
+));

@@ -8,17 +8,10 @@ import { setFieldEmpty } from 'shared/helpers/objects';
 
 
 
-const useStyles = () => ({
-  root: {
-    ...f('c'),
-    mb : 1,
-    py : 0.5,
-  },
-  row: {
-    ...f('-fs-sb'),
-    maxWidth: 'calc(100% - 1rem)'
-  }
-});
+const sxRow = {
+  ...f('-fs-sb'),
+  maxWidth: 'calc(100% - 1rem)'
+};
 
 
 interface Props {
@@ -27,7 +20,6 @@ interface Props {
 
 /** border-radius */
 export const BorderRadiusRow: FC<Props> = memo(({ selectedItem }) => {
-  const sx = useStyles();
   const { setSelectedStyles } = useDashboardView();
 
   const handleChange = useCallback((field: ViewItemStylesField, value: number | string) => {
@@ -52,8 +44,14 @@ export const BorderRadiusRow: FC<Props> = memo(({ selectedItem }) => {
 
 
   return (
-    <Box sx={sx.root}>
-      <Box sx={sx.row}>
+    <Box
+      sx={{
+        ...f('c'),
+        mb : 1,
+        py : 0.5,
+      }}
+    >
+      <Box sx={sxRow}>
         {/* border-radius |Сверху-слева | Весь-верх | Сверху-справа | Всё-справа */}
         <Box sx={{ ...f('c-c-fs') }}>
           <ConfiguratorTextTitle bold title='border-radius' toolTitle='Border-radius' />
@@ -100,7 +98,7 @@ export const BorderRadiusRow: FC<Props> = memo(({ selectedItem }) => {
         /> */}
       </Box>
 
-      <Box sx={sx.row}>
+      <Box sx={sxRow}>
       {/* Общее | Снизу-слева  | Весь-низ  | Снизу-справа  | Всё-слева */}
         <InputByScheme
           type         = 'number'

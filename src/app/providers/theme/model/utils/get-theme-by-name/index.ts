@@ -80,6 +80,26 @@ export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProvid
     };
     theme.components = {
       ...theme.components,
+      MuiToggleButton: {
+        styleOverrides: {
+          root: {
+            '&.Mui-selected': {
+              background: '#383838',
+              '& .MuiSvgIcon-root': {
+                color: '#a2a2a2',
+              },
+            },
+            '&:not(.Mui-selected)': {
+              '&:hover': {
+                background: '#303030',
+              },
+              '& .MuiSvgIcon-root': {
+                color: '#4f4f4f',
+              },
+            }
+          }
+        }
+      },
       MuiCheckbox: {
         styleOverrides: {
           root: {

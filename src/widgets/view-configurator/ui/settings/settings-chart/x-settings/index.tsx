@@ -12,14 +12,14 @@ interface Props {
 
 /** НАСТРОЙКИ ОСИ X */
 export const ViewItemChartScaleXSettings: FC<Props> = memo(({ selectedItem }) => (
-    <SubHeader title='Ось X'>
-      <Grid
-        scale        = 'x'
-        selectedItem = {selectedItem}
-      />
-      <Ticks
-        scale        = 'x'
-        selectedItem = {selectedItem}
-      />
-    </SubHeader>
-  ));
+  <SubHeader title='Ось X'>
+    <Grid
+      scale        = 'x'
+      selectedItem = {selectedItem}
+    />
+    <Ticks
+      scale        = 'x'
+      selectedItem = {selectedItem}
+    />
+  </SubHeader>
+));

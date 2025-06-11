@@ -1,4 +1,4 @@
-import { FC, memo, MouseEvent } from 'react';
+import { FC, memo, MouseEvent, useCallback } from 'react';
 import { pxToRem } from 'shared/styles';
 import { Input } from 'shared/ui/containers';
 import { CustomSettings } from 'entities/company';
@@ -18,14 +18,14 @@ interface Props {
  * For type === 'periodType'
  */
 export const SetColorsItemInputField: FC<Props> = memo(({ onSubmit, value = '', type, label }) => {
-  const handleSubmit = (e: MouseEvent, title: string | number) => {
+  const handleSubmit = useCallback((e: MouseEvent, title: string | number) => {
     onSubmit({
       [type]: {
         [label]: {
           title
         }
     } });
-  };
+  }, [type, label, onSubmit]);
 
 
   return (

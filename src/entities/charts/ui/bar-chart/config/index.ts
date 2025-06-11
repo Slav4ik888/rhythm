@@ -1,4 +1,3 @@
-import { setValue } from 'shared/lib/charts';
 import { ChartConfig, ChartConfigDatasets, ChartConfigOptions } from '../../../model/types';
 // @ts-ignore
 import { ChartData } from 'node_modules/chart.js/dist/types/index.d.ts';

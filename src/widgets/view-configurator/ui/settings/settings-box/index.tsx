@@ -11,9 +11,7 @@ interface Props {
 
 /** Вкладка Settings for Box */
 export const ViewItemBoxSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => (
-    <>
-      <SubHeader title='Общие настройки'>
-        <SelectKodRow selectedItem={selectedItem} />
-      </SubHeader>
-    </>
-  ));
+  <SubHeader title='Общие настройки'>
+    <SelectKodRow selectedItem={selectedItem} />
+  </SubHeader>
+));

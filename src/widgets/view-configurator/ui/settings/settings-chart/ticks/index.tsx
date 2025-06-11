@@ -13,19 +13,19 @@ interface Props {
 
 /** Настройки на осях - Ticks */
 export const ViewItemChartScaleTicks: FC<Props> = memo(({ scale, selectedItem }) => (
-    <>
-      <ConfiguratorTitle title='Ticks' type='title2' />
-      <RowFlagByScheme
-        scheme       = {`settings.chartOptions.scales.${scale}.ticks.display`}
-        title        = 'display'
-        toolTitle    = 'Показать/скрыть'
-        selectedItem = {selectedItem}
-      />
-      <ChartSetColorByScheme
-        scheme       = {`settings.chartOptions.scales.${scale}.ticks.color`}
-        title        = 'color'
-        toolTitle    = 'Настроить цвет'
-        selectedItem = {selectedItem}
-      />
-    </>
-  ));
+  <>
+    <ConfiguratorTitle title='Ticks' type='title2' />
+    <RowFlagByScheme
+      scheme       = {`settings.chartOptions.scales.${scale}.ticks.display`}
+      title        = 'display'
+      toolTitle    = 'Показать/скрыть'
+      selectedItem = {selectedItem}
+    />
+    <ChartSetColorByScheme
+      scheme       = {`settings.chartOptions.scales.${scale}.ticks.color`}
+      title        = 'color'
+      toolTitle    = 'Настроить цвет'
+      selectedItem = {selectedItem}
+    />
+  </>
+));

@@ -141,9 +141,9 @@ export const customPalette: CustomPalette = {
       headerIcon: '#737373',
       itemColor: '#bebebe',
       // ViewItemConfigurator
-      title1: '#5d5d5d', // title1
-      title2: '#576593', // title2
-      subtitle1: '#378f9e', // subtitle1
+      title1: '#a1a1a1', // title1
+      title2: '#54707d', // title2
+      subtitle1: '#475b6f', // subtitle1
       subtitle2: '#7a7a7a', // subtitle2
       subtitle3: '#7a7a7a', // subtitle3
       textTitle: '#b3b3b3'

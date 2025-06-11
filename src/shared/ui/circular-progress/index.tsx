@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import { getTopCenter } from './utils';
 import { useEffect } from 'react';
-import { CustomTheme, useTheme } from 'app/providers/theme';
 
 
 
@@ -23,60 +22,18 @@ type Props = {
 }
 
 
-const useStyles = (
-  theme: CustomTheme,
-  { id = 'CircularId', size = 30, top, bottom, right, left, sx, center, block, color }: Props
-) => {
-  const style = {
-    root: {
-      position   : 'absolute',
-      width      : '100%',
-      height     : '100%',
-      top        : top    || 0,
-      right      : right  || 0,
-      bottom     : bottom || 0,
-      left       : left   || 0,
-      zIndex     : 9999,
-      ...f('-c-c'),
-      ...sx?.root
-    },
-    circular: {
-      '&.MuiCircularProgress-root': {
-        color: color || '#7a7a7a'
-      },
-      ...sx?.content
-    }
-  }
 
-  // @ts-ignore
-  if (block) {
-    style.root.position      = 'fixed';
-    style.root.pointerEvents = 'none';
-    style.root.overflow      = 'hidden';
-    style.root.touchAction   = 'none'; /* Для мобилок */
-    style.root.background    = theme.palette.background.default;
-    style.root.opacity       = '60%';
-  }
-  else {
-    style.circular.position = 'absolute';
-    style.circular.top = center ? getTopCenter(id, size) : top ? top : '';
-  }
-
-  return style
-};
-
-
-/** 2025-06-07 */
+/** 2025-06-11 */
 export const CircularProgress: React.FC<Props> = (props) => {
   const
     {
-      loading, block,
+      loading, block, color, sx, center, top, bottom, right, left,
       id   = 'CircularId',
       size = 30
-    } = props,
+    } = props;
     // ref = React.useRef(null),
     // parentDimentions = React.useMemo(() => getParentDimentions(document.getElementById(id)), [ref.current]),
-    sx = useStyles(useTheme(), props);// , parentDimentions);
+    // sx = useStyles(useTheme(), props);// , parentDimentions);
 
 
   // При block - блокируем прокрутку и фокус
@@ -100,12 +57,48 @@ export const CircularProgress: React.FC<Props> = (props) => {
 
   return (
     <Box
-      id = {id}
-      sx = {sx.root}
+      id={id}
+      sx={(theme) => {
+        const root = {
+          position   : 'absolute',
+          width      : '100%',
+          height     : '100%',
+          top        : top    || 0,
+          right      : right  || 0,
+          bottom     : bottom || 0,
+          left       : left   || 0,
+          zIndex     : 9999,
+          ...f('-c-c'),
+          ...sx?.root
+        };
+
+        if (block) {
+          root.position      = 'fixed';
+          root.pointerEvents = 'none';
+          root.overflow      = 'hidden';
+          root.touchAction   = 'none'; /* Для мобилок */
+          root.background    = theme.palette.background.default;
+          root.opacity       = '60%';
+        }
+        return root
+      }}
     >
       <Circular
-        size = {size}
-        sx   = {sx.circular}
+        size={size}
+        sx={(theme) => {
+          const circular = {
+            '&.MuiCircularProgress-root': {
+              color: color || '#7a7a7a'
+            },
+            ...sx?.content
+          };
+
+          if (! block) {
+            circular.position = 'absolute';
+            circular.top = center ? getTopCenter(id, size) : top ? top : '';
+          }
+          return circular;
+        }}
       />
     </Box>
   );

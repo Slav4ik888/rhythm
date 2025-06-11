@@ -15,8 +15,12 @@ const useStyle = (companyType: string, customSettings : CustomSettings, sx?: SxC
     width      : pxToRem(70),
     height     : pxToRem(15),
     fontSize   : pxToRem(12),
+    cursor     : 'default',
     color      : customSettings?.companyType?.[companyType]?.color || '#999',
     background : customSettings?.companyType?.[companyType]?.background || '#eee',
+    '&:hover': {
+      background: customSettings?.companyType?.[companyType]?.background || '#eee',
+    },
     ...sx?.root,
   }
 });

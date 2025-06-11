@@ -23,8 +23,12 @@ export const CompanyChipBySelectedItem: FC = memo(() => {
         root: {
           color      : customSettings?.companyType?.[companyType]?.color || 'black',
           background : customSettings?.companyType?.[companyType]?.background || 'rgb(111, 111, 111)',
+          '&:hover': {
+            background: customSettings?.companyType?.[companyType]?.background || 'rgb(111, 111, 111)',
+          },
           width      : pxToRem(90),
-          height     : pxToRem(16),
+          height     : pxToRem(18),
+          cursor     : 'default',
         }
       }}
     />

@@ -12,12 +12,10 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-
-import { setValue } from 'shared/lib/charts';
 import { ChartConfig, ChartConfigOptions, FontStyle } from '../../../model/types';
 // @ts-ignore
 import { InteractionMode } from 'node_modules/chart.js/dist/types/index.d.ts';
-import { updateObject } from 'shared/helpers/objects';
+import { updateObject, setValue } from 'shared/helpers/objects';
 
 
 

@@ -1,13 +1,17 @@
 import { FC, memo, useCallback, MouseEvent, useMemo } from 'react';
-import { Input, InputType } from 'shared/ui/containers';
+import { Input, InputType, SxTextfield } from 'shared/ui/containers';
 import { useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { getValueByScheme } from 'shared/helpers/objects';
 import ClearIcon from '@mui/icons-material/Clear';
-import { useTheme } from 'app/providers/theme';
 import Box from '@mui/material/Box';
-import { SxInputByScheme, useStyles } from './styles';
 import { updater } from '../utils';
+import { f, pxToRem } from 'shared/styles';
 
+
+
+export type SxInputByScheme = SxTextfield & {
+  wrapper?: any
+}
 
 
 interface Props {
@@ -34,11 +38,11 @@ interface Props {
  * в том числе scheme with array
  */
 export const InputByScheme: FC<Props> = memo(({
-  selectedItem, scheme, width, sx: style, helperText, toolTitle, clear, disabled,
+  selectedItem, scheme, width, sx, helperText, toolTitle, clear, disabled,
   type = 'text',
   transform, onClear, onBlur, onChange, onSubmit
 }) => {
-  const sx = useStyles(useTheme(), style, width);
+  // const sx = getStyles(useTheme(), style, width);
   const { updateViewItems } = useDashboardView();
 
   const value = useMemo(() => {
@@ -80,7 +84,14 @@ export const InputByScheme: FC<Props> = memo(({
 
 
   return (
-    <Box sx={sx.wrapper}>
+    <Box
+      sx={{
+        position: 'relative',
+        ...f('-fs-fs'),
+        width: width || pxToRem(80),
+        ...sx?.wrapper,
+      }}
+    >
       <Input
         type         = {type}
         defaultValue = {value}
@@ -88,14 +99,42 @@ export const InputByScheme: FC<Props> = memo(({
         helperText   = {helperText}
         toolTitle    = {toolTitle}
         disabled     = {disabled}
-        sx           = {sx.textfield}
         onBlur       = {handleBlur}
         onChange     = {handleChange}
         onSubmit     = {handleSubmit}
+        sx           = {{
+          root: {
+            width: width || pxToRem(80),
+            ...sx?.root,
+            '& .MuiFormHelperText-root': {
+              color: 'text.light'
+            }
+          },
+          field: {
+            width: width || pxToRem(80),
+            ...sx?.field,
+          },
+          input: {
+            textAlign : 'center',
+            padding   : '2px 4px',
+            fontSize  : pxToRem(16),
+            ...sx?.input,
+          }
+        }}
       />
       {
         value || value === 0
-          ? <ClearIcon sx={sx.clearBtn} onClick={handleClear} />
+          ? <ClearIcon
+              onClick = {handleClear}
+              sx      = {{
+                position : 'absolute',
+                top      : pxToRem(-2),
+                right    : pxToRem(-16),
+                cursor   : 'pointer',
+                fontSize : '0.9rem',
+                color    : 'text.light',
+              }}
+            />
           : ''
       }
     </Box>

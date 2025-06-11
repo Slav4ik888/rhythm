@@ -1,4 +1,4 @@
-// v.2025-01-02
+// v.2025-06-11
 export * from './arr-from-obj-with-key';
 export * from './is-changes';
 export * from './filter-ents-by-field';
@@ -17,6 +17,7 @@ export * from './is-field';                // v.2024-11-09
 export * from './object-fields-to-string';
 export * from './set-field-empty';         // v.2025-05-21
 export { setIfNotUndefined } from './set-if-not-undefined' // v.2025-02-25
+export { setValue } from './set-value' // v.2025-06-11
 export * from './set-value-by-scheme';
 export * from './size-of';
 export * from './update-object';

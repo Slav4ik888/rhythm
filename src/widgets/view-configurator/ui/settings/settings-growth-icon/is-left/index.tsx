@@ -10,10 +10,10 @@ interface Props {
 
 /** При отсутствии изменений чёрный треугольник повернуть влево */
 export const IsLeft: FC<Props> = memo(({ selectedItem }) => (
-    <RowFlagByScheme
-      scheme       = 'settings.isLeft'
-      title        = 'IsLeft'
-      toolTitle    = 'При отсутствии изменений чёрный треугольник повернуть влево'
-      selectedItem = {selectedItem}
-    />
-  ));
+  <RowFlagByScheme
+    scheme       = 'settings.isLeft'
+    title        = 'IsLeft'
+    toolTitle    = 'При отсутствии изменений чёрный треугольник повернуть влево'
+    selectedItem = {selectedItem}
+  />
+));

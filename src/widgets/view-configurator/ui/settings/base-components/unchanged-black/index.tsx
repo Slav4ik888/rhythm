@@ -10,10 +10,10 @@ interface Props {
 
 /** При отсутствии изменений в результатах красить чёрным цветом */
 export const UnchangedBlack: FC<Props> = memo(({ selectedItem }) => (
-    <RowFlagByScheme
-      scheme       = 'settings.unchangedBlack'
-      title        = 'UnchangedBlack'
-      toolTitle    = 'При отсутствии изменений в результатах красить чёрным цветом'
-      selectedItem = {selectedItem}
-    />
-  ));
+  <RowFlagByScheme
+    scheme       = 'settings.unchangedBlack'
+    title        = 'UnchangedBlack'
+    toolTitle    = 'При отсутствии изменений в результатах красить чёрным цветом'
+    selectedItem = {selectedItem}
+  />
+));

@@ -2,7 +2,7 @@ import { ChartConfig, ChartConfigDatasets, fixPointRadius } from 'entities/chart
 import { checkInvertData, DashboardDataDates, DashboardStatisticItem } from 'entities/dashboard-data';
 import { ViewItem } from 'entities/dashboard-view';
 import { formatDate, SUB } from 'shared/helpers/dates';
-import { setValue } from 'shared/lib/charts';
+import { setValue } from 'shared/helpers/objects';
 import { isArr, isStr } from 'shared/lib/validators';
 import { calcTrend2 } from '../calc-trend-2';
 import { prepareDatesForGreatestPeriod, prepareDataForChart } from './utils';

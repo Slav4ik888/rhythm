@@ -25,27 +25,6 @@ export interface SxTextfield {
 }
 
 
-const useStyles = (sx?: SxTextfield) => ({
-  textField: {
-    // backgroundColor: '#ffffff',
-    ...sx?.root,
-
-    '& .MuiInputBase-root': {
-      // backgroundColor: '#ffffff',
-      ...sx?.field
-    },
-    '& .MuiInputBase-input': {
-      ...sx?.input
-    },
-    '& .MuiInputLabel-root': {
-      // top: '7px'
-    },
-    '& .MuiOutlinedInput-notchedOutline': {
-      borderColor: 'text.light',
-    },
-  }
-});
-
 
 interface Props {
   grid?         : GridStyle
@@ -88,11 +67,10 @@ export const Input: FC<Props> = memo((props) => {
     defaultValue = '',
     changesValue = '',
     errorField   = '',
-    sx: sxTextfield,
+    sx,
     onPrepeare, onClick, onBlur, onCallback, onSubmit, onChange, onTransform
   } = props;
 
-  const sx = useStyles(sxTextfield);
   const focusRef = useRef(null);
   const Wrap = grid ? GridWrap : BoxWrap;
   const typeNum = type === 'number';
@@ -154,7 +132,6 @@ export const Input: FC<Props> = memo((props) => {
           name            = {name}
           fullWidth       = {fullWidth}
           size            = {small ? 'small' : 'medium'}
-          sx              = {sx.textField}
           disabled        = {disabled}
           placeholder     = {placeholder}
           value           = {value}
@@ -176,6 +153,24 @@ export const Input: FC<Props> = memo((props) => {
           slotProps       = {{ inputLabel: { shrink } }}
           error           = {errors?.[errorField] ? true : false}
           helperText      = {errors?.[errorField] || helperText}
+          sx              = {{
+            // backgroundColor: '#ffffff',
+            ...sx?.root,
+
+            '& .MuiInputBase-root': {
+              // backgroundColor: '#ffffff',
+              ...sx?.field
+            },
+            '& .MuiInputBase-input': {
+              ...sx?.input
+            },
+            '& .MuiInputLabel-root': {
+              // top: '7px'
+            },
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'text.light',
+            },
+          }}
         />
       </Tooltip>
     </Wrap>

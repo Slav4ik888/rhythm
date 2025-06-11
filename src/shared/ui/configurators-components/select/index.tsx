@@ -2,36 +2,10 @@ import { memo, FC, useState, useCallback } from 'react';
 import Chip from '@mui/material/Chip';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
-import Box from '@mui/material/Box';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { f, SxCard, pxToRem } from 'shared/styles';
 import { isStr } from 'shared/lib/validators';
 
-
-
-const useStyles = (sx?: SxCard, disabled?: boolean) => ({
-  root: {
-    ...f(),
-    position : 'relative',
-    minWidth : pxToRem(80),
-    height   : pxToRem(24),
-    ...sx?.root
-  },
-  chip: {
-    position : 'absolute',
-    top      : 0,
-    right    : 0,
-    height   : pxToRem(24),
-    minWidth : 'max-content',
-    color    : disabled ? 'rgba(0,0,0,0.38)' : 'inherit',
-  },
-  select: {
-    visibility : 'hidden',
-    opacity    : 0,
-    top        : pxToRem(40),
-    height     : pxToRem(38),
-  }
-});
 
 
 interface Props<T> {
@@ -47,10 +21,9 @@ interface Props<T> {
 
 
 export const SelectValue = memo(<T extends string>({
-  sx: style, selectedValue, disabled, array, component: ComponentItem,
-  searchBox: SearchBox, onSelect, onSearch }: Props<T>
-) => {
-  const sx = useStyles(style, disabled);
+  sx, selectedValue, disabled, array, component: ComponentItem,
+  searchBox: SearchBox, onSelect, onSearch
+}: Props<T>) => {
   const [openSelect, setOpenSelect] = useState(false);
 
   const handleChange = useCallback((e: SelectChangeEvent) => {
@@ -63,11 +36,26 @@ export const SelectValue = memo(<T extends string>({
 
 
   return (
-    <FormControl sx={sx.root}>
+    <FormControl
+      sx={{
+        ...f(),
+        position : 'relative',
+        minWidth : pxToRem(80),
+        height   : pxToRem(24),
+        ...sx?.root
+      }}
+    >
       <Chip
         label   = {selectedValue || 'Выберите'}
-        sx      = {sx.chip}
         onClick = {handleClickChip}
+        sx      = {{
+          position : 'absolute',
+          top      : 0,
+          right    : 0,
+          height   : pxToRem(24),
+          minWidth : 'max-content',
+          color    : disabled ? 'rgba(0,0,0,0.38)' : 'inherit',
+        }}
       />
 
       {
@@ -76,9 +64,14 @@ export const SelectValue = memo(<T extends string>({
             variant      = 'standard'
             open         = {openSelect}
             defaultValue = ''
-            sx           = {sx.select}
             onClose      = {handleSelectClose}
             onChange     = {handleChange}
+            sx           = {{
+              visibility : 'hidden',
+              opacity    : 0,
+              top        : pxToRem(40),
+              height     : pxToRem(38),
+            }}
           >
             {
               SearchBox

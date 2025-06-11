@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { setValue } from 'shared/lib/charts';
+import { setValue } from 'shared/helpers/objects';
 import { ChartConfigDatasets, ChartConfigOptions } from '../../../../../../../entities/charts/model/types';
 
 
