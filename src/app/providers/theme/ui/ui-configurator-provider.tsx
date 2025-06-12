@@ -39,7 +39,7 @@ export const UIConfiguratorProvider: FC<Props> = ({ initial, children }) => {
 
     const handler = (e: any) => {
       setMode(dispatch, e.matches ? 'dark' : 'light');
-      setSidebarColor(dispatch, e.matches ? 'sidebar_grey' : 'sidebar_black');
+      setSidebarColor(dispatch, e.matches ? 'sidebar_black' : 'sidebar_grey');
     };
     mediaQuery.addEventListener('change', handler);
     return () => mediaQuery.removeEventListener('change', handler);

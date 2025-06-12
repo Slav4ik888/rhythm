@@ -4,7 +4,7 @@ import { FC, memo, useCallback } from 'react';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { setMode, UIDispatch } from 'app/providers/theme';
+import { setMode, UIDispatch, setSidebarColor, isSystemDarkMode } from 'app/providers/theme';
 import { PaletteMode } from '@mui/material/styles';
 import { f } from 'shared/styles';
 
@@ -18,8 +18,13 @@ interface Props {
 export const PaletteModeSwitcherRowComponent: FC<Props> = memo(({ mode, dispatch }) => {
   const handleChange = useCallback((e: any) => {
     setMode(dispatch, e.target.value as PaletteMode);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (e.target.value === 'system') {
+      setSidebarColor(dispatch, isSystemDarkMode()  ? 'sidebar_black' : 'sidebar_grey');
+    }
+    else {
+      setSidebarColor(dispatch, e.target.value === 'light'  ? 'sidebar_grey' : 'sidebar_black');
+    }
+  }, [dispatch]);
 
   return (
     <UIConfiguratorItemWrapper>

@@ -8,3 +8,4 @@ export {
   Offset, Radius, RadiusName, Shadows, ColorsConfig, Borders, MUIColors
 } from './model/types'
 export { useTheme } from './model/lib/use-theme'
+export { isSystemDarkMode } from './model/utils'

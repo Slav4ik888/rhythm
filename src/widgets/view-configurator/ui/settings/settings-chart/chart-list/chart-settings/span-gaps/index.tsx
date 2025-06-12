@@ -17,13 +17,4 @@ export const ChartSpanGaps: FC<Props> = memo(({ index, selectedItem }) => (
     title        = 'SpanGaps'
     toolTitle    = 'Разрыв линии при отсутствии данных'
   />
-  // <RowWrapper>
-  //   <ConfiguratorTextTitle bold title='SpanGaps' toolTitle='Разрыв линии при отсутствии данных' />
-  //   <Checkbox
-  //     size       = 'small'
-  //     checked    = {checked}
-  //     inputProps = {{ 'aria-label': 'spanGaps' }}
-  //     onChange   = {handleToggle}
-  //   />
-  // </RowWrapper>
 ));

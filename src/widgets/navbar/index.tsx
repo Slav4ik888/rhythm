@@ -17,7 +17,7 @@ import { useState, useEffect, FC, memo } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { sxNavbar, sxNavbarContainer } from './styles';
-import { CustomTheme, useTheme, useUIConfiguratorController } from 'app/providers/theme';
+import { CustomTheme, isSystemDarkMode, useTheme, useUIConfiguratorController } from 'app/providers/theme';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { NavbarControlBox } from './control-box';
 import { NavbarSetupBox } from './setup-box';
@@ -55,8 +55,8 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
   const [navbarType, setNavbarType] = useState<'sticky' | 'static'>();
   const [configuratorState, dispatch] = useUIConfiguratorController();
   const { navbarTransparent, navbarFixed, mode } = configuratorState;
+  const darkMode = mode === 'dark' || (mode === 'system' && isSystemDarkMode());
   const sx = useStyles(useTheme(), navbarTransparent, light);
-  const darkMode = mode === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches;
   const location = useLocation();
   const isDashboard = isDashboardPage(location);
 
