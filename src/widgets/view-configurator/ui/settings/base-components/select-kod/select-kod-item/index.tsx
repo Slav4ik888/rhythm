@@ -13,6 +13,7 @@ import { useCompany } from 'entities/company';
 const sxChip = {
   width: pxToRem(70),
   maxWidth: pxToRem(70),
+  height: pxToRem(15),
 };
 
 interface Props {

@@ -68,12 +68,16 @@ export const UnsavedChangesComponent: FC<Props> = memo(({ loading, changedCompan
     <Box sx={sxBtn} onClick={onCancel}>
       <Tooltip title='Отменить внесённые изменения'>
         <Typography
-          sx={{
+          sx={(theme) => ({
             ...sxText,
+            transition: theme.transitions.create('all', {
+              easing   : theme.transitions.easing.sharp,
+              duration : theme.transitions.duration.short,
+            }),
             '&:hover': {
               textShadow: '0px 0px 5px grey'
             }
-          }}
+          })}
         >
           Отменить
         </Typography>
@@ -94,16 +98,21 @@ export const UnsavedChangesComponent: FC<Props> = memo(({ loading, changedCompan
               или выберите любой другой элемент или закройти конфигуратор.'
       >
         <Typography
-          sx={{
+          sx={(theme) => ({
             ...sxText,
+            transition: theme.transitions.create('all', {
+              easing   : theme.transitions.easing.sharp,
+              duration : theme.transitions.duration.short,
+            }),
             '&:hover': {
               textShadow: '0px 0px 5px red'
             }
-          }}
+          })}
         >
           Cохранить
         </Typography>
       </Tooltip>
+
       <CircularProgress
         loading = {loading}
         color   = 'error.main'

@@ -8,7 +8,7 @@ import { PartialViewItem } from 'entities/dashboard-view';
 
 export interface CopyStylesItem {
   companyId : string
-  viewItem  : PartialViewItem
+  viewItems : PartialViewItem[]
 }
 
 
@@ -25,7 +25,7 @@ export const copyStylesViewItem = createAsyncThunk<
     const { dispatch, rejectWithValue, extra } = thunkApi;
 
     try {
-      await extra.api.post(paths.dashboard.view.update, { viewItem: data.viewItem });
+      await extra.api.post(paths.dashboard.view.update, { viewItems: data.viewItems });
 
       return data;
     }

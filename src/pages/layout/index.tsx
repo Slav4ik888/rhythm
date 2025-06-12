@@ -31,10 +31,10 @@ export const Layout: FC = memo(() => {
   return (
     <LayoutWrapper>
       <CssBaseline />
+      <MessageBar />
       <PageLoader loading={loading} />
       <ScrollToTop />
       <Navbar />
-      <MessageBar />
       <UIConfigurator />
 
       <Outlet />

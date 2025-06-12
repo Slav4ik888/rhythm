@@ -272,15 +272,16 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(copyStylesViewItem.fulfilled, (state, { payload }: PayloadAction<CopyStylesItem>) => {
-        const { viewItem, companyId } = payload;
+        const { viewItems, companyId } = payload;
 
+        // Настроено на копирование 1 элемента но передаётся [] тк для отправки на сервер используется update
         if (state.activatedCopied?.id) {
-          state.entities[viewItem.id] = {
-            ...state.entities[viewItem.id],
+          state.entities[viewItems[0].id] = {
+            ...state.entities[viewItems[0].id],
             styles: { ...state.entities[state.activatedCopied.id].styles }
           }
         }
-        state.newSelectedId       = viewItem.id;
+        state.newSelectedId       = viewItems[0].id;
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
         state.bright              = false;

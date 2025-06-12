@@ -108,10 +108,10 @@ export const customPalette = {
   },
 
   orange: {
-    light: '#000000',
+    light: orange[200],
     main: orange[500],
-    dark: '#000000',
-    focus: '#000000',
+    dark: orange[800],
+    focus: orange[800],
     contrastText: '#000000',
   },
 

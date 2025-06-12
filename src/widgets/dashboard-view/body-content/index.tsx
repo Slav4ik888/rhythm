@@ -87,7 +87,7 @@ export const DashboardBodyContent = memo(() => {
 
     else if (activatedCopied?.type === 'copyStyles') {
       if (selectedId === id) return // Нажали на этот же элемент
-      serviceCopyStyles({ companyId, viewItem: { id, styles: { ...selectedItem.styles } } });
+      serviceCopyStyles({ companyId, viewItems: [{ id, styles: { ...selectedItem.styles } }] });
     }
 
     // Если активирован выбранный элемент для КОПИРОВАНИЯ то его вставляем в выбранный элемент

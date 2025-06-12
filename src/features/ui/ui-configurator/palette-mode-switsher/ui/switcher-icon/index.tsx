@@ -4,6 +4,7 @@ import Night from '@mui/icons-material/Brightness4';
 import Day from '@mui/icons-material/Brightness7';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
+import { f } from 'shared/styles';
 
 
 
@@ -32,7 +33,10 @@ export const PaletteModeSwitcherIconComponent: FC<Props> = memo(({ darkMode, onT
       color   = 'inherit'
       onClick = {onToggle}
     >
-      <Tooltip title={`Переключить на ${darkMode ? 'светлую' : 'тёмную'} тему`}>
+      <Tooltip
+        title  = {`Переключить на ${darkMode ? 'светлую' : 'тёмную'} тему`}
+        sxSpan = {f('-c-c')}
+      >
         {
           darkMode ? <Day sx={sx.icon} /> : <Night sx={sx.icon} />
         }
