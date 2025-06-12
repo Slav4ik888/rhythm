@@ -14,6 +14,7 @@ import { Theme } from '@mui/material/styles';
 
 export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProviderState): CustomTheme => {
   const { mode, navbarColor, sidebarColor } = controller;
+  const isSystemModeDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   const theme = {
     ...muiTheme,
@@ -21,7 +22,7 @@ export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProvid
     breakpoints: { ...breakpoints },
   } as unknown as CustomTheme;
 
-  if (mode === 'light') {
+  if (mode === 'light' || ! isSystemModeDark) {
     theme.palette = {
       ...muiTheme.palette,
       ...customPaletteLight,
@@ -95,6 +96,24 @@ export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProvid
               },
               '& .MuiSvgIcon-root': {
                 color: '#4f4f4f',
+              },
+            }
+          }
+        }
+      },
+      MuiRadio: {
+        styleOverrides: {
+          root: {
+            '&.Mui-checked': {
+              color: '#616161',
+              '& .MuiSvgIcon-root': {
+                color: '#616161',
+              },
+            },
+            '&:not(.Mui-checked)': {
+              color: '#616161',
+              '& .MuiSvgIcon-root': {
+                color: '#616161',
               },
             }
           }

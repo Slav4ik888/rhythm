@@ -33,13 +33,17 @@ function reducer(state: UIConfiguratorProviderState, action: Action): UIConfigur
   }
 }
 
-type D = (data: Action) => void;
+export type UIDispatch = (data: Action) => void;
 
-const setMode = (dispatch: D, value: PaletteMode) => dispatch({ type: 'SET_MODE', value });
-const setIsOpenConfigurator = (dispatch: D, value: boolean) => dispatch({ type: 'IS_OPEN_CONFIGURATOR', value });
-const setIsSidebar = (dispatch: D, value: boolean) => dispatch({ type: 'TOGGLE_SIDEBAR', value });
-const setSidebarMini = (dispatch: D, value: boolean) => dispatch({ type: 'TOGGLE_SIDEBAR_MINI', value });
-const setSidebarColor = (dispatch: D, value: SidebarColorName) => dispatch({ type: 'TOGGLE_SIDEBAR_COLOR', value });
+const setMode = (dispatch: UIDispatch, value: PaletteMode) => dispatch({ type: 'SET_MODE', value });
+const setIsOpenConfigurator = (
+  dispatch: UIDispatch,
+  value: boolean) => dispatch({ type: 'IS_OPEN_CONFIGURATOR', value });
+const setIsSidebar = (dispatch: UIDispatch, value: boolean) => dispatch({ type: 'TOGGLE_SIDEBAR', value });
+const setSidebarMini = (dispatch: UIDispatch, value: boolean) => dispatch({ type: 'TOGGLE_SIDEBAR_MINI', value });
+const setSidebarColor = (
+  dispatch: UIDispatch,
+  value: SidebarColorName) => dispatch({ type: 'TOGGLE_SIDEBAR_COLOR', value });
 
 
 export {

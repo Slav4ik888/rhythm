@@ -1,9 +1,9 @@
-import { FC, ReactNode, useMemo, useReducer } from 'react';
+import { FC, ReactNode, useEffect, useMemo, useReducer } from 'react';
 import {
   ThemeProvider as MuiThemeProvider, createTheme, useTheme as useMUITheme, PaletteMode
  } from '@mui/material/styles';
 import { UIConfiguratorProviderState } from '../model/types';
-import { reducer } from '../model/lib/reducer';
+import { reducer, setMode, setSidebarColor } from '../model/lib/reducer';
 import { getThemeByName } from '../model/utils';
 import { UIConfiguratorContext, UIConfiguratorContextType } from '../model/lib/ui-configurator-context';
 import { LS } from 'shared/lib/local-storage';
@@ -14,7 +14,7 @@ const fromLS = LS.getUIConfiguratorState();
 
 
 const initialState: UIConfiguratorProviderState = {
-  mode               : fromLS?.mode               || 'light',
+  mode               : fromLS?.mode               || 'system',
   isOpenConfigurator : fromLS?.isOpenConfigurator || false,
   navbarFixed        : fromLS?.navbarFixed        || true,
   navbarTransparent  : fromLS?.navbarTransparent  || false,
@@ -33,9 +33,22 @@ interface Props {
 
 export const UIConfiguratorProvider: FC<Props> = ({ initial, children }) => {
   const [controller, dispatch] = useReducer(reducer, initialState) as UIConfiguratorContextType;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const handler = (e: any) => {
+      setMode(dispatch, e.matches ? 'dark' : 'light');
+      setSidebarColor(dispatch, e.matches ? 'sidebar_grey' : 'sidebar_black');
+    };
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
   const muiTheme = useMUITheme();
 
   const value = useMemo(() => [controller, dispatch] as UIConfiguratorContextType, [controller, dispatch]);
+  // @ts-ignore
   const theme = useMemo(() => createTheme(getThemeByName(muiTheme, controller)), [muiTheme, controller]);
 
 

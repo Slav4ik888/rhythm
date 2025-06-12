@@ -56,7 +56,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
   const [configuratorState, dispatch] = useUIConfiguratorController();
   const { navbarTransparent, navbarFixed, mode } = configuratorState;
   const sx = useStyles(useTheme(), navbarTransparent, light);
-  const darkMode = mode === 'dark';
+  const darkMode = mode === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches;
   const location = useLocation();
   const isDashboard = isDashboardPage(location);
 

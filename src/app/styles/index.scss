@@ -10,18 +10,26 @@
   font-style: normal;
 }
 
-// a,
-// /* Обычная ссылка */
-// a:visited,
-// /* Посещенная ссылка */
-// a:hover,
-// /* При наведении */
-// a:active {
-//   /* В момент нажатия */
-//   color: black !important;
-//   text-decoration: none !important;
-//   /* Убираем подчеркивание (опционально) */
-// }
+// Чтобы, при первоначальной загрузке, тем кто ночью запустит сайт, не ударило по глазам...
+// а затем заиграет установленная тема
+/* Светлая тема (по умолчанию) */
+:root {
+  --bg-color: white;
+  --text-color: black;
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #222;
+    --text-color: white;
+  }
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
 
 p {
   margin: 0;

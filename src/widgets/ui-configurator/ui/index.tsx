@@ -28,8 +28,10 @@ export const UIConfigurator = memo(() => {
       ownerState = {{ isOpenConfigurator }}
     >
       <MainHeader ui onClose={handleClose} />
-      <PaletteModeSwitcher ui />
-      <MDDivider />
+      <SubHeader title='Тема'>
+        <PaletteModeSwitcher ui />
+      </SubHeader>
+      {/* <MDDivider /> */}
 
       <SubHeader title='Боковая панель'>
         <SwitcherSidebarMini />
