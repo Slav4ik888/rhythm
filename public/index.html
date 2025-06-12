@@ -4,6 +4,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <style>
+    :root {
+      --initial-bg: white;
+      --initial-text: black;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --initial-bg: #121212;
+        --initial-text: white;
+      }
+    }
+
+    body {
+      background-color: var(--initial-bg);
+      color: var(--initial-text);
+      transition: background-color 0.3s ease;
+    }
+  </style>
   <title>Document</title>
 </head>
 <body>

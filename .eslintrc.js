@@ -120,11 +120,13 @@ module.exports = {
         paths: [
           {
             name: '@mui/material',
-            message: 'Запрещён импорт из корня. Используйте прямой импорт, например: "import Box from \'@mui/material/Box\'"',
+            message: 'Запрещён импорт из корня. Используйте прямой импорт, например:' +
+              ' "import Box from \'@mui/material/Box\'"',
           },
           {
             name: '@mui/icons-material',
-            message: 'Используйте прямой импорт из конкретного модуля, например: "import Menu from \'@mui/icons-material/Menu\'"',
+            message: 'Используйте прямой импорт из конкретного модуля, например:' +
+              ' "import Menu from \'@mui/icons-material/Menu\'"',
           },
         ],
       },
