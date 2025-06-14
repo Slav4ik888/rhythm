@@ -11,14 +11,13 @@ interface Props {
 }
 
 export const RequireAuth: FC<Props> = ({ children }) => {
-  const
-    { errorStatus } = useUI(),
-    { pathname } = useLocation();
+  const { errorStatus } = useUI();
+  const { pathname } = useLocation();
 
 
   if (errorStatus === 401) {
     __devLog(`${401} redirect to LOGIN`);
-    // __devLog('pathname: ', pathname);
+    __devLog('pathname: ', pathname);
 
     return <Navigate
       to    = {RoutePath.LOGIN}
@@ -28,6 +27,7 @@ export const RequireAuth: FC<Props> = ({ children }) => {
   }
   if (errorStatus === 403) {
     __devLog(`${403} redirect to ROOT`);
+    __devLog('pathname: ', pathname);
 
     return <Navigate
       to    = {RoutePath.ROOT}

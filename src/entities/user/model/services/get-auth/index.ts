@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig, errorHandlers, CustomAxiosError } from 'app/providers/store';
-import { ViewItem, NO_SHEET_ID, actionsDashboardView } from 'entities/dashboard-view';
 import { actionsCompany, Company } from 'entities/company';
 import { paths } from 'shared/api';
 import { Errors } from 'shared/lib/validators';
@@ -12,34 +11,30 @@ import { cloneObj } from 'shared/helpers/objects';
 
 
 
-export interface ReqGetStartResourseData {
-  pathname? : string
-  sheetId?  : string
+export interface ReqGetAuth {
+  pathname: string
 }
 
 
-/** 2024-12-13 */
-interface ResGetStartResourseData {
-  userData      : User
-  companyData   : Company
-  dashboardView : ViewItem[]
+/** 2025-06-13 */
+interface ResGetAuth {
+  userData    : User
+  companyData : Company
 }
 
-
-export const getStartResourseData = createAsyncThunk<
-  SetUser,
-  ReqGetStartResourseData | undefined,
+/** Проверяет, авторизован ли пользователь, и если да, то возвращает данные пользователя. */
+export const getAuth = createAsyncThunk<
+  SetUser,    // ResData
+  ReqGetAuth, // ReqData
   ThunkConfig<Errors>
 >(
-  'entities/user/getStartResourseData',
-  async (data, thunkApi) => {
+  'entities/user/getAuth',
+  async ({ pathname }, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
-    const { pathname, sheetId = NO_SHEET_ID } = data || {};
 
     try {
       let user = {} as User,
         company = {} as Company,
-        viewItems = [] as ViewItem[],
         companyId = '';
 
       // На время разработки, использовать данные сохраннённые в LS,
@@ -48,21 +43,16 @@ export const getStartResourseData = createAsyncThunk<
         companyId = LS.getLastCompanyId() || '';
         user      = LS.getUserState(companyId)?.user || {} as User;
         company   = LS.getCompanyState(companyId)?.company as Company;
-        viewItems = LS.getDashboardView(companyId) as ViewItem[];
       }
       else {
-        const { data: { userData, companyData, dashboardView } } = await extra.api
-          .get<ResGetStartResourseData>(`${paths.user.getStartResourseData}/${sheetId}`);
+        const { data: { userData, companyData } } = await extra.api.get<ResGetAuth>(paths.user.getAuth);
         user      = cloneObj(userData);
         company   = cloneObj(companyData);
-        viewItems = dashboardView;
         companyId = companyData.id;
-        LS.setDashboardView(companyId, viewItems);
       }
 
-      if (companyId) { // Чтобы при отсутствии companyId, не затёрлись данные в LS
-        dispatch(actionsCompany.setCompany({ companyId, company }));
-        dispatch(actionsDashboardView.setDashboardView({ companyId, viewItems }));
+      if (company) { // Чтобы при отсутствии данных, не затёрлись имеющиеся в LS
+        dispatch(actionsCompany.setCompany({ company }));
       }
 
       return { companyId, user };
@@ -70,7 +60,7 @@ export const getStartResourseData = createAsyncThunk<
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch, pathname);
       return rejectWithValue((e as CustomAxiosError).response.data || {
-        general: 'Error in entitiesUser/getStartResourseData'
+        general: 'Error in entities/user/getAuth'
       });
     }
   }

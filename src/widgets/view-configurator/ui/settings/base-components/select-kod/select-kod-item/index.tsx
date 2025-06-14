@@ -25,7 +25,7 @@ interface Props {
 
 /** Item вместо стандартного li для списка */
 export const SelectKodItem: FC<Props> = memo(({ item }) => {
-  const { customSettings } = useCompany();
+  const { paramsCustomSettings } = useCompany();
   const { itemByKod } = useDashboardData({ kod: item?.value });
 
   return (
@@ -42,7 +42,7 @@ export const SelectKodItem: FC<Props> = memo(({ item }) => {
 
         <CompanyTypeChip
           label          = {itemByKod?.companyType}
-          customSettings = {customSettings}
+          customSettings = {paramsCustomSettings}
           sx             = {{ root: sxChip }}
         />
         <StatisticPeriodTypeChip

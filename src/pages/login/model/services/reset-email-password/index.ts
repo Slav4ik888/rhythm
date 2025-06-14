@@ -15,7 +15,7 @@ export const resetEmailPassword = createAsyncThunk<
   string,
   ThunkConfig<Errors>
 >(
-  'pagesLogin/resetEmailPassword',
+  'pages/login/resetEmailPassword',
   // eslint-disable-next-line consistent-return
   async (email, thunkApi) => {
     const { extra, rejectWithValue, dispatch } = thunkApi;
@@ -30,7 +30,7 @@ export const resetEmailPassword = createAsyncThunk<
       errorHandlers(e as CustomAxiosError, dispatch);
       // eslint-disable-next-line consistent-return
       return rejectWithValue((e as CustomAxiosError).response.data || {
-        general: 'Error pagesLogin/resetEmailPassword'
+        general: 'Error pages/login/resetEmailPassword'
       });
     }
   }

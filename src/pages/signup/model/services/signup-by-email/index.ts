@@ -22,7 +22,7 @@ export const signupByEmail = createAsyncThunk<
   SignupData,
   ThunkConfig<Errors>
 >(
-  'pagesSignup/signupByEmail',
+  'pages/signup/signupByEmail',
   // eslint-disable-next-line consistent-return
   async (signupData, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
@@ -37,14 +37,14 @@ export const signupByEmail = createAsyncThunk<
       if (! companyId) return undefined
 
       dispatch(actionsUser.setUser({ companyId, user: newUserData }));
-      dispatch(actionsCompany.setCompany({ companyId, company: newCompanyData }));
+      dispatch(actionsCompany.setCompany({ company: newCompanyData }));
       dispatch(actionsUI.setSuccessMessage(message));
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
       // eslint-disable-next-line consistent-return
       return rejectWithValue((e as CustomAxiosError)?.response?.data || {
-        general: 'Error in pagesSignup/signupByEmail'
+        general: 'Error in pages/signup/signupByEmail'
       });
     }
   }

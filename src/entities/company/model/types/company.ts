@@ -49,3 +49,11 @@ export interface Company {
   createdAt      : FixDate
   lastChange     : FixDate
 }
+
+export type PartialCompany = Partial<Company> & { id: string }
+
+export interface ParamsCompany {
+  id             : string
+  customSettings : CustomSettings
+  googleData     : GoogleData
+}

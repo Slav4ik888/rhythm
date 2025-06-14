@@ -9,7 +9,7 @@ import { useCompany } from 'entities/company';
 
 /** Show Company chip by kod, in Configurator by SelectedItem */
 export const CompanyChipBySelectedItem: FC = memo(() => {
-  const { customSettings } = useCompany();
+  const { paramsCustomSettings } = useCompany();
   const { startEntities } = useDashboardData();
   const { fromGlobalKod: kod } = useDashboardView();
   const companyType = startEntities[kod]?.companyType;
@@ -18,13 +18,13 @@ export const CompanyChipBySelectedItem: FC = memo(() => {
   return (
     <CompanyTypeChip
       label          = {companyType}
-      customSettings = {customSettings}
+      customSettings = {paramsCustomSettings}
       sx             = {{
         root: {
-          color      : customSettings?.companyType?.[companyType]?.color || 'black',
-          background : customSettings?.companyType?.[companyType]?.background || 'rgb(111, 111, 111)',
+          color      : paramsCustomSettings?.companyType?.[companyType]?.color || 'black',
+          background : paramsCustomSettings?.companyType?.[companyType]?.background || 'rgb(111, 111, 111)',
           '&:hover': {
-            background: customSettings?.companyType?.[companyType]?.background || 'rgb(111, 111, 111)',
+            background: paramsCustomSettings?.companyType?.[companyType]?.background || 'rgb(111, 111, 111)',
           },
           width      : pxToRem(90),
           height     : pxToRem(18),

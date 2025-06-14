@@ -29,6 +29,11 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     element : <LoginPage />
   },
 
+  [AppRoutes.SLUG]: {
+    path    : RoutePath.SLUG,
+    element : <></>
+  },
+
   // Profiles
   [AppRoutes.USER_PROFILE]: {
     path    : RoutePath.USER_PROFILE,

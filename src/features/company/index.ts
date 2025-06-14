@@ -1,1 +1,2 @@
-export { updateCompany } from './model/services'
+export { updateCompany } from './update-company'
+export { getParamsCompany, SetParamsCompany } from './get-company'

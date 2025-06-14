@@ -9,19 +9,25 @@ export const paths = {
     },
   },
   user: {
-    getStartResourseData  : '/user/getStartResourseData',
+    getAuth               : '/user/getAuth',
+    // getStartResourseData  : '/user/getStartResourseData',
     update                : '/user/update',
     sendEmailConfirmation : '/user/sendEmailConfirmation',
     logout                : '/user/logout',
   },
   company: {
+    // get    : '/company/get',
     update : '/company/update',
     // deleteCompany : '/deleteCompany/:companyId',
   },
+  paramsCompany: {
+    get    : '/paramsCompany/get',
+  },
   dashboard: {
     view: {
-      add              : '/dashboard/view/add',
+      // add              : '/dashboard/view/add',
       createGroupItems : '/dashboard/view/createGroupItems',
+      get              : '/dashboard/view/get', // Get all ViewItemsByCompanyId
       update           : '/dashboard/view/update',
       delete           : '/dashboard/view/delete',
     }

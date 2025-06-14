@@ -15,7 +15,7 @@ import { PageLoader } from 'widgets/page-loader';
 
 export const DashboardBodyContent = memo(() => {
   const { userId } = useUser();
-  const { companyId, changedCompany, serviceUpdateCompany } = useCompany();
+  const { paramsCompanyId, paramsChangedCompany, serviceUpdateCompany } = useCompany();
   const {
     loading, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId, selectedItem, activatedMovementId,
     parentsViewItems, viewItems, entities, activatedCopied, setNewSelectedId, serviceCopyStyles,
@@ -82,12 +82,12 @@ export const DashboardBodyContent = memo(() => {
       };
 
       // updateViewItems(updatedViewItems); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
-      serviceUpdateViewItems({ companyId, viewItems: updatedViewItems, newStoredViewItem });
+      serviceUpdateViewItems({ companyId: paramsCompanyId, viewItems: updatedViewItems, newStoredViewItem });
     }
 
     else if (activatedCopied?.type === 'copyStyles') {
       if (selectedId === id) return // Нажали на этот же элемент
-      serviceCopyStyles({ companyId, viewItems: [{ id, styles: { ...selectedItem.styles } }] });
+      serviceCopyStyles({ companyId: paramsCompanyId, viewItems: [{ id, styles: { ...selectedItem.styles } }] });
     }
 
     // Если активирован выбранный элемент для КОПИРОВАНИЯ то его вставляем в выбранный элемент
@@ -104,27 +104,27 @@ export const DashboardBodyContent = memo(() => {
         userId
       );
 
-      setDashboardView({ companyId, viewItems: copiedViewItems }); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
-      serviceCreateGroupViewItems({ companyId, viewItems: copiedViewItems });
+      setDashboardView({ companyId: paramsCompanyId, viewItems: copiedViewItems }); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
+      serviceCreateGroupViewItems({ companyId: paramsCompanyId, viewItems: copiedViewItems });
     }
     else if (isUnsaved) {
       if (selectedId === id) return // Click на самого себя не сохранять, тк это может быть ошибочный клик
 
       /** Сохраняем изменившиеся customSettings */
-      if (isNotEmpty(changedCompany)) serviceUpdateCompany({ id: companyId, ...changedCompany });
+      if (isNotEmpty(paramsChangedCompany)) serviceUpdateCompany({ id: paramsCompanyId, ...paramsChangedCompany });
 
       /** Сохраняем изменившиеся поля | стили */
       if (isEmpty(changedViewItem)) return
 
       const viewItem = { id: selectedId, ...changedViewItem };
-      serviceUpdateViewItems({ companyId, viewItems: [viewItem], newStoredViewItem: viewItem });
+      serviceUpdateViewItems({ companyId: paramsCompanyId, viewItems: [viewItem], newStoredViewItem: viewItem });
       setNewSelectedId(id); // Здесь сохраняется в newSelectedId а активация выбранного id происходит в useEffect
     }
     else {
       setNewSelectedId(id); // Здесь сохраняется в newSelectedId а активация выбранного id происходит в useEffect
     }
   }, [editMode, selectedId, activatedMovementId, activatedCopied, viewItems, entities, userId, isUnsaved,
-    changedCompany, changedViewItem, companyId, selectedItem.parentId, selectedItem.styles,
+    paramsChangedCompany, changedViewItem, paramsCompanyId, selectedItem.parentId, selectedItem.styles,
     serviceCopyStyles, serviceCreateGroupViewItems, serviceUpdateCompany, serviceUpdateViewItems,
     setNewSelectedId, setDashboardView]);
 

@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
-  const { customSettings } = useCompany();
+  const { paramsCustomSettings } = useCompany();
   const { startEntities } = useDashboardData();
   const { entities: entitiesView } = useDashboardView();
   const { kods } = useDashboardData();
@@ -42,8 +42,8 @@ export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
       <Chip
         label = {companyType}
         sx    = {{
-          color      : customSettings?.companyType?.[companyType]?.color      || 'black',
-          background : customSettings?.companyType?.[companyType]?.background || 'rgb(111, 111, 111)',
+          color      : paramsCustomSettings?.companyType?.[companyType]?.color      || 'black',
+          background : paramsCustomSettings?.companyType?.[companyType]?.background || 'rgb(111, 111, 111)',
           width  : pxToRem(90),
           height : pxToRem(16),
         }}
@@ -56,8 +56,8 @@ export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
       : <Chip
           label = {productType}
           sx    = {{
-            color      : customSettings?.productType?.[productType]?.color      || 'black',
-            background : customSettings?.productType?.[productType]?.background || 'rgb(111, 111, 111)',
+            color      : paramsCustomSettings?.productType?.[productType]?.color      || 'black',
+            background : paramsCustomSettings?.productType?.[productType]?.background || 'rgb(111, 111, 111)',
             width      : pxToRem(90),
             height     : pxToRem(16),
             mr         : 1
@@ -68,10 +68,10 @@ export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
       ? ''
       : <span>
           <Chip
-            label = {setValue(customSettings?.periodType?.[periodType]?.title, periodType) as string}
+            label = {setValue(paramsCustomSettings?.periodType?.[periodType]?.title, periodType) as string}
             sx    = {{
-              color      : customSettings?.periodType?.[periodType]?.color      || 'black',
-              background : customSettings?.periodType?.[periodType]?.background || 'rgb(111, 111, 111)',
+              color      : paramsCustomSettings?.periodType?.[periodType]?.color      || 'black',
+              background : paramsCustomSettings?.periodType?.[periodType]?.background || 'rgb(111, 111, 111)',
               width  : pxToRem(70),
               height : pxToRem(16),
             }}
@@ -82,7 +82,8 @@ export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
     return <>
       {companyText}{productText}{periodText}
     </>
-  }, [customSettings?.companyType, customSettings?.periodType, customSettings?.productType, kod, startEntities]);
+  }, [paramsCustomSettings?.companyType, paramsCustomSettings?.periodType, paramsCustomSettings?.productType,
+    kod, startEntities]);
 
 
   return (

@@ -3,7 +3,7 @@ import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/stor
 import { actionsUI } from 'entities/ui';
 import { Errors } from 'shared/lib/validators';
 import { paths } from 'shared/api';
-import { Company } from 'entities/company';
+import { PartialCompany } from 'entities/company';
 
 
 
@@ -11,8 +11,8 @@ import { Company } from 'entities/company';
  * Owner update Company data
  */
 export const updateCompany = createAsyncThunk <
-  Partial<Company>,
-  Partial<Company>,
+  PartialCompany,
+  PartialCompany,
   ThunkConfig<Errors>
 >(
   'features/company/update',
@@ -32,4 +32,3 @@ export const updateCompany = createAsyncThunk <
     }
   }
 );
-

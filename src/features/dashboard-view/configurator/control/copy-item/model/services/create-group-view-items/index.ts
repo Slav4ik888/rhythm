@@ -19,10 +19,10 @@ export const createGroupViewItems = createAsyncThunk<
   'features/dashboardView/createGroupViewItems',
   async (data, thunkApi) => {
     const { dispatch, rejectWithValue, extra } = thunkApi;
-    const { viewItems } = data;
+    const { viewItems, companyId } = data;
 
     try {
-      await extra.api.post(paths.dashboard.view.createGroupItems, { viewItems });
+      await extra.api.post(paths.dashboard.view.createGroupItems, { viewItems, companyId });
 
       return data;
     }

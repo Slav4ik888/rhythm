@@ -11,7 +11,7 @@ import { ViewItemType } from 'entities/dashboard-view/model/types';
 
 /** Строки для добавления разных элементов */
 export const AddRows: FC = memo(() => {
-  const { selectedId, selectedItem: { type }, childrenViewItems, serviceAddNewViewItem } = useDashboardView();
+  const { selectedId, selectedItem: { type }, childrenViewItems, serviceCreateGroupViewItems } = useDashboardView();
   const { userId } = useUser();
   const { companyId } = useCompany();
 
@@ -19,7 +19,7 @@ export const AddRows: FC = memo(() => {
   const handleAdd = useCallback((type: ViewItemType) => {
     if (! selectedId) return;
 
-    const viewItem = createViewItem(
+    const viewItems = [createViewItem(
       userId,
       {
         sheetId  : NO_SHEET_ID,
@@ -27,10 +27,10 @@ export const AddRows: FC = memo(() => {
         order    : createNextOrder(childrenViewItems),
         type,
       }
-    );
+    )];
 
-    serviceAddNewViewItem(companyId, viewItem);
-  }, [selectedId, companyId, userId, childrenViewItems, serviceAddNewViewItem]);
+    serviceCreateGroupViewItems({ companyId, viewItems });
+  }, [selectedId, companyId, userId, childrenViewItems, serviceCreateGroupViewItems]);
 
 
   if (type !== 'box') return null

@@ -1,5 +1,5 @@
 export {
-  PanelAddViewItemBtns, AddNewViewItem, addNewViewItem, AddViewItemElementBtns, AddViewItemIndicatorsBtns,
+  PanelAddViewItemBtns, AddViewItemElementBtns, AddViewItemIndicatorsBtns,
   MoveToAnotherItem, UpdateViewItems, updateViewItems, MoveItemUpdownward,
   CopyViewItem, getCopyViewItem, CreateGroupViewItems, createGroupViewItems,
   DeleteItemContainer, deleteViewItem, DeleteViewItem, SwitchToParentViewItem, AddNewChart,

@@ -17,7 +17,7 @@ interface Props {
 /** Item chip */
 export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
   const theme = useTheme();
-  const { customSettings } = useCompany();
+  const { paramsCustomSettings } = useCompany();
   const { activeEntities } = useDashboardData();
   const { entities } = useDashboardView();
 
@@ -39,28 +39,28 @@ export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
     }
     else if (type === 'period') {
       const period = kod ? activeEntities[kod]?.periodType : '' as StatisticPeriodType;
-      label      = customSettings?.periodType?.[period]?.title      || period;
-      color      = customSettings?.periodType?.[period]?.color      || '#000'; // theme.palette.statisticPeriodTypeChip[period]?.color;
-      background = customSettings?.periodType?.[period]?.background || '#eee'; // theme.palette.statisticPeriodTypeChip[period]?.background;
+      label      = paramsCustomSettings?.periodType?.[period]?.title      || period;
+      color      = paramsCustomSettings?.periodType?.[period]?.color      || '#000'; // theme.palette.statisticPeriodTypeChip[period]?.color;
+      background = paramsCustomSettings?.periodType?.[period]?.background || '#eee'; // theme.palette.statisticPeriodTypeChip[period]?.background;
     }
     else if (type === 'company') {
       const company = kod ? activeEntities[kod]?.companyType : '' as string;
       label      = company;
-      color      = customSettings?.companyType?.[company]?.color      || '#000';
-      background = customSettings?.companyType?.[company]?.background || '#eee';
+      color      = paramsCustomSettings?.companyType?.[company]?.color      || '#000';
+      background = paramsCustomSettings?.companyType?.[company]?.background || '#eee';
     }
     else if (type === 'product') {
       const product = kod ? activeEntities[kod]?.productType : '' as string;
       label      = product;
-      color      = customSettings?.productType?.[product]?.color      || '#000';
-      background = customSettings?.productType?.[product]?.background || '#eee';
+      color      = paramsCustomSettings?.productType?.[product]?.color      || '#000';
+      background = paramsCustomSettings?.productType?.[product]?.background || '#eee';
     }
     else if (type === 'custom') {
       // TODO:
     }
 
     return { label, color, background };
-  }, [item, theme.palette.conditionTypeChip, activeEntities, entities, customSettings]);
+  }, [item, theme.palette.conditionTypeChip, activeEntities, entities, paramsCustomSettings]);
 
 
   return (

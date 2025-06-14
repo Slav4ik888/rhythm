@@ -9,43 +9,46 @@ import { UnsavedChangesComponent } from './component';
 
 
 export const UnsavedChanges: FC = memo(() => {
-  const { companyId, changedCompany, serviceUpdateCompany, cancelCustomSettings } = useCompany();
+  const { paramsCompanyId, paramsChangedCompany, serviceUpdateCompany, cancelParamsCustomSettings } = useCompany();
   const {
     loading, selectedId, changedViewItem, isUnsaved,
     setIsUnsaved, serviceUpdateViewItems, cancelUpdateViewItem
   } = useDashboardView();
 
+
   useEffect(() => {
-    isChangedViewItem(selectedId, changedCompany, changedViewItem, true)
+    isChangedViewItem(selectedId, paramsChangedCompany, changedViewItem, true)
       ? setIsUnsaved(true)
       : setIsUnsaved(false);
-  }, [selectedId, changedCompany, changedViewItem, setIsUnsaved]);
+  }, [selectedId, paramsChangedCompany, changedViewItem, setIsUnsaved]);
 
 
   const handleCancel = useCallback(() => {
-    if (isNotEmpty(changedCompany)) cancelCustomSettings(); /** Отменить изменившиеся customSettings */
+    if (isNotEmpty(paramsChangedCompany)) cancelParamsCustomSettings(); /** Отменить изменившиеся customSettings */
     if (isNotEmpty(changedViewItem)) cancelUpdateViewItem(); /** Отменить изменившиеся поля | стили */
-  }, [changedCompany, changedViewItem, cancelCustomSettings, cancelUpdateViewItem]);
+  }, [paramsChangedCompany, changedViewItem, cancelParamsCustomSettings, cancelUpdateViewItem]);
 
 
   const handleClick = useCallback(() => {
-    if (isNotEmpty(changedCompany)) serviceUpdateCompany({ id: companyId, ...changedCompany }); /** Сохраняем изменившиеся customSettings */
+    if (isNotEmpty(paramsChangedCompany)) serviceUpdateCompany({ id: paramsCompanyId, ...paramsChangedCompany }); /** Сохраняем изменившиеся customSettings */
     if (isEmpty(changedViewItem)) return
     /** Сохраняем изменившиеся поля | стили */
     const viewItem = { id: selectedId, ...changedViewItem };
-    serviceUpdateViewItems({ companyId, viewItems: [viewItem], newStoredViewItem: viewItem });
-  }, [companyId, selectedId, changedCompany, changedViewItem, serviceUpdateViewItems, serviceUpdateCompany]);
+    serviceUpdateViewItems({ companyId: paramsCompanyId, viewItems: [viewItem], newStoredViewItem: viewItem });
+  }, [paramsCompanyId, selectedId, paramsChangedCompany, changedViewItem,
+    serviceUpdateViewItems, serviceUpdateCompany]);
+
 
   const handleConsole = useCallback(() => {
-    if (isNotEmpty(changedCompany)) {
-      __devLog('changedCompany:', '--force');
-      __devLog(JSON.stringify(changedCompany, null, 2), '--force');
+    if (isNotEmpty(paramsChangedCompany)) {
+      __devLog('paramsChangedCompany:', '--force');
+      __devLog(JSON.stringify(paramsChangedCompany, null, 2), '--force');
     }
     if (isNotEmpty(changedViewItem)) {
       __devLog('changedViewItem:', '--force');
       __devLog(JSON.stringify(changedViewItem, null, 2), '--force');
     }
-  }, [changedCompany, changedViewItem]);
+  }, [paramsChangedCompany, changedViewItem]);
 
 
   if (! isUnsaved) return null;
@@ -54,7 +57,7 @@ export const UnsavedChanges: FC = memo(() => {
   return (
     <UnsavedChangesComponent
       loading         = {loading}
-      changedCompany  = {changedCompany}
+      changedCompany  = {paramsChangedCompany}
       changedViewItem = {changedViewItem}
       onClick         = {handleClick}
       onConsole       = {handleConsole}

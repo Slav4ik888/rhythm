@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/store';
-import { StateSchemaUser, User } from '../types';
+import { StateSchemaUser } from '../slice/state-schema';
+import { User } from '../types';
 
 
 export const selectModule = createSelector([(state: StateSchema) => state.user || {} as StateSchemaUser],
@@ -8,6 +9,7 @@ export const selectModule = createSelector([(state: StateSchema) => state.user |
 
 export const selectLoading          = createSelector(selectModule, (state: StateSchemaUser) => state.loading);
 export const selectErrors           = createSelector(selectModule, (state: StateSchemaUser) => state.errors);
+// export const selectIsLoaded         = createSelector(selectModule, (state: StateSchemaUser) => state._isLoaded);
 
 export const selectAuth             = createSelector(selectModule, (state: StateSchemaUser) => state.auth);
 export const selectUser = createSelector(selectModule, (state: StateSchemaUser) =>

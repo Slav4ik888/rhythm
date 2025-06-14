@@ -14,7 +14,7 @@ interface Props {
 /** Настройка базовых 'periodType' | 'companyType' | 'productType' */
 export const SetupChipsColorsByType: FC<Props> = memo(({ type }) => {
   const { startEntities } = useDashboardData();
-  const { customSettings, updateCustomSettings } = useCompany();
+  const { paramsCustomSettings, updateParamsCustomSettings } = useCompany();
   const chipValues = useMemo(() => {
     const result = new Set<string>();
 
@@ -33,8 +33,8 @@ export const SetupChipsColorsByType: FC<Props> = memo(({ type }) => {
           key      = {label}
           type     = {type}
           label    = {label}
-          settings = {customSettings}
-          onSubmit = {updateCustomSettings}
+          settings = {paramsCustomSettings}
+          onSubmit = {updateParamsCustomSettings}
         />)
       }
     </SubHeader>

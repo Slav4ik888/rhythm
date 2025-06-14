@@ -3,6 +3,7 @@ import { useUI } from 'entities/ui';
 import MuiSnackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import cfg from 'app/config';
+import { getAllObjValue, isNoEmptyFields } from 'shared/helpers/objects';
 
 
 
@@ -15,8 +16,15 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>((
 
 export const MessageBar: FC = memo(() => {
   const
-    { message, clearMessage } = useUI(),
+    { message, errors, clearMessage, setWarningMessage } = useUI(),
     [isSnack, setIsSnack] = useState(false);
+
+
+  // Global show errors
+  useEffect(() => {
+    isNoEmptyFields(errors) && setWarningMessage((getAllObjValue(errors)));
+  }, [errors, setWarningMessage]);
+
 
   useEffect(() => {
     message?.message && setIsSnack(true);

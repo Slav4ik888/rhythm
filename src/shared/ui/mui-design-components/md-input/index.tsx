@@ -17,6 +17,7 @@ import { forwardRef, FC } from 'react';
 import MDInputRoot from './md-input-root';
 
 
+
 interface Props {
   error?    : boolean
   success?  : boolean
@@ -30,6 +31,7 @@ const MDInput: FC<Props> = forwardRef(({ error, success, disabled, ...rest }, re
     {...rest}
     // @ts-ignore
     inputRef={ref}
+    InputLabelProps={{ shrink: true }}
     ownerState={{ error, success, disabled }}
   />
 ));

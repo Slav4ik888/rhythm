@@ -42,8 +42,11 @@ export const errorHandlers = (
 
   if (errors.message) dispatch(actionsUI.setWarningMessage(errors.message));
 
+  if (status === 204) { // No Content
+    dispatch(actionsUI.setWarningMessage('По вашему запросу отсутствуют данные.'));
+  }
   // Нужно авторизоваться, будет редирект to loginPage
-  if (status === 401) {
+  else if (status === 401) {
     dispatch(actionsUser.setAuth(false));
     dispatch(actionsUI.setErrorStatus({ status: 401, pathname }));
   }
@@ -52,10 +55,10 @@ export const errorHandlers = (
     dispatch(actionsUI.setWarningMessage(
       `Сервер вернул ошибку - отсутствует обработчик на данный запрос [${e.response?.config?.url}].
        Повторите действие позже.`
-    ))
+    ));
   }
   else if (status === 500 || status === 501 || status === 502 || status === 504) {
     // dispatch(actionsUI.setErrorStatus(504));
-    dispatch(actionsUI.setWarningMessage('Извините, сервер временно не доступен...'))
+    dispatch(actionsUI.setWarningMessage('Извините, сервер временно не доступен...'));
   }
 }

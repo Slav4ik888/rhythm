@@ -1,12 +1,11 @@
 import { FC, memo, useCallback, useEffect, useRef } from 'react';
 import { useUser } from 'entities/user';
 import { useNavigate } from 'react-router-dom';
-import { RoutePath } from 'app/providers/routes';
 import { CompanyProfilePageComponent } from './component';
 import { useUI } from 'entities/ui';
 import { useGroup } from 'shared/lib/hooks';
-import { Company, creatorCompany, useCompany } from 'entities/company';
-import { useFeaturesCompany } from 'features/company/model/hooks/use-features-company';
+import { Company, creatorCompany, PartialCompany, useCompany } from 'entities/company';
+import { useFeaturesCompany } from 'features/company/update-company/model/hooks/use-features-company';
 import { getChanges, isEmpty } from 'shared/helpers/objects';
 import { creatorFixDate } from 'entities/base';
 import { __devLog } from 'shared/lib/tests/__dev-log';
@@ -34,10 +33,11 @@ const CompanyProfilePage: FC = memo(() => {
 
     const data = await C.getGroup();
 
-    const updatedData: Partial<Company> = getChanges(companyState, data);
-
-    updatedData.id = companyState.id;
-    updatedData.lastChange = creatorFixDate(userId);
+    const updatedData: PartialCompany = {
+      ...getChanges(companyState, data),
+      id         : companyState.id,
+      lastChange : creatorFixDate(userId)
+    };
 
     __devLog('updatedData: ', updatedData);
     if (isEmpty(updatedData)) return;

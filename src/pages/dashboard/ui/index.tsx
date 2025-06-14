@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC, memo, useEffect } from 'react';
 import { reducerDashboardData } from 'entities/dashboard-data';
 import { Sidebar } from 'widgets/sidebar';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
@@ -6,8 +6,10 @@ import { DashboardBody } from './body';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { useInitialEffect } from 'shared/lib/hooks';
 import { setIsSidebar, useUIConfiguratorController } from 'app/providers/theme';
-import { reducerDashboardView } from 'entities/dashboard-view';
-import { RequireAuth } from 'app/providers/routes';
+import { NO_SHEET_ID, reducerDashboardView, useDashboardView } from 'entities/dashboard-view';
+import { useLocation } from 'react-router-dom';
+import { __devLog } from 'shared/lib/tests/__dev-log';
+import { useCompany } from 'entities/company';
 
 
 
@@ -18,21 +20,32 @@ const initialReducers: ReducersList = {
 
 
 const DashboardPage: FC = memo(() => {
+  __devLog('DashboardPage');
   const [_, dispatch] = useUIConfiguratorController();
+  const { paramsCompany } = useCompany();
+  const { pathname } = useLocation();
+  const { serviceGetViewItems } = useDashboardView();
 
-  useInitialEffect(() => setIsSidebar(dispatch, true));
+  useInitialEffect(() => {
+    setIsSidebar(dispatch, true);
+  });
 
+  useEffect(() => {
+    if (paramsCompany.id) {
+      // TODO: sheetId подставлять нужный
+      serviceGetViewItems({ companyId: paramsCompany.id, sheetId: NO_SHEET_ID, pathname });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <RequireAuth>
-      <DynamicModuleLoader reducers={initialReducers}>
-        <Sidebar />
+    <DynamicModuleLoader reducers={initialReducers}>
+      <Sidebar />
 
-        <SidebarRegulatorWrapper body>
-          <DashboardBody />
-        </SidebarRegulatorWrapper>
-      </DynamicModuleLoader>
-    </RequireAuth>
+      <SidebarRegulatorWrapper body>
+        <DashboardBody />
+      </SidebarRegulatorWrapper>
+    </DynamicModuleLoader>
   );
 });
 

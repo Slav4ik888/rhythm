@@ -2,14 +2,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import cfg from 'app/config';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { getCookie } from './utils';
-import { actionsUser, getStartResourseData } from 'entities/user';
+import { actionsUser, User } from 'entities/user';
 import { Errors } from 'shared/lib/validators';
 import { paths } from 'shared/api';
+import { actionsCompany, Company } from 'entities/company';
 
 
 
 export interface ResAuthByLogin {
-  status: string
+  user    : User
+  company : Company
+  message : string
 }
 
 
@@ -19,13 +22,12 @@ export interface AuthByLogin {
   password : string
 }
 
-
 export const authByLogin = createAsyncThunk<
   undefined,
   AuthByLogin,
   ThunkConfig<Errors>
 >(
-  'pagesLogin/authByLogin',
+  'pages/login/authByLogin',
   // eslint-disable-next-line consistent-return
   async (authByLogin, thunkApi) => {
     const
@@ -33,15 +35,16 @@ export const authByLogin = createAsyncThunk<
       csrfToken = getCookie(cfg.COOKIE_NAME);
 
     try {
-      await extra.api.post(paths.auth.login.byEmail, { authByLogin, csrfToken });
+      const { data: { user, company } } = await extra.api
+        .post<ResAuthByLogin>(paths.auth.login.byEmail, { authByLogin, csrfToken });
 
-      dispatch(actionsUser.setAuth(true));
-      dispatch(getStartResourseData());
+      dispatch(actionsUser.setUser({ user, companyId: user.companyId }));
+      dispatch(actionsCompany.setCompany({ company }));
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
       return rejectWithValue((e as CustomAxiosError).response.data || {
-        general: 'Error in pagesLogin/authByLogin'
+        general: 'Error in pages/login/authByLogin'
       });
     }
   }

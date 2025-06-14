@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Errors } from 'shared/lib/validators';
-import { Company, CustomSettings } from '../types';
+import { Company, CustomSettings, ParamsCompany } from '../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { StateSchemaCompany } from './state-schema';
-import { updateCompany } from 'features/company';
+import { updateCompany, SetParamsCompany, getParamsCompany } from 'features/company';
 import { updateObject } from 'shared/helpers/objects';
 import { LS } from 'shared/lib/local-storage';
 import { SetCompany } from './types';
@@ -11,10 +11,12 @@ import { SetCompany } from './types';
 
 
 const initialState: StateSchemaCompany = {
-  loading       : false,
-  errors        : {},
-  company       : {} as Company,
-  storedCompany : undefined,
+  loading                  : false,
+  errors                   : {},
+  company                  : {} as Company,
+  paramsCompany            : {} as ParamsCompany,
+  storedCompany            : {} as ParamsCompany,
+  _isParamsCompanyIdLoaded : false, // Загрузка по paramsCompanyId
 };
 
 
@@ -31,22 +33,44 @@ const slice = createSlice({
     setCompany: (state, { payload }: PayloadAction<SetCompany>) => {
       state.company       = payload.company;
       state.storedCompany = payload.company;
-      LS.setCompanyState(payload.companyId, state);
-      LS.setLastCompanyId(payload.companyId);
+      state.paramsCompany = payload.company; // Если по итогу paramsCompanyId окажется другой, то перезапишется
+      LS.setCompanyState(payload.company.id, state);
+      LS.setLastCompanyId(payload.company.id);
     },
-    updateCustomSettings: (state, { payload }: PayloadAction<Partial<CustomSettings>>) => {
-      if (! state.company.customSettings) state.company.customSettings = {};
-      state.company.customSettings = updateObject(state.company.customSettings, payload);
+    updateParamsCustomSettings: (state, { payload }: PayloadAction<Partial<CustomSettings>>) => {
+      if (! state.paramsCompany.customSettings) state.paramsCompany.customSettings = {};
+      state.paramsCompany.customSettings = updateObject(state.paramsCompany.customSettings, payload);
     },
-    cancelCustomSettings: (state) => {
+    cancelParamsCustomSettings: (state) => {
       if (state.storedCompany) {
-        state.company = { ...state.storedCompany };
-        state.storedCompany = undefined;
+        state.paramsCompany = { ...state.storedCompany };
+        state.storedCompany = {} as ParamsCompany;
       }
     }
   },
 
   extraReducers: builder => {
+    // GET-PARAMS-COMPANY
+    builder
+      .addCase(getParamsCompany.pending, (state) => {
+        state.loading = true;
+        state.errors = {};
+      })
+      .addCase(getParamsCompany.fulfilled, (state, { payload }: PayloadAction<SetParamsCompany>) => {
+        state.storedCompany            = payload.paramsCompany;
+        state.paramsCompany            = payload.paramsCompany;
+        state._isParamsCompanyIdLoaded = true;
+        state.loading                  = false;
+        state.errors                   = {};
+
+        if (payload.paramsCompany?.id) {
+          LS.setParamsCompanyState(payload.paramsCompany);
+        }
+      })
+      .addCase(getParamsCompany.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
+        state.loading = false;
+      })
     // COMPANY-UPDATE
     builder
       .addCase(updateCompany.pending, (state) => {

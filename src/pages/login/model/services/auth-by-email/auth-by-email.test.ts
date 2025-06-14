@@ -1,4 +1,6 @@
 // import { userActions } from 'entities/user';
+import { Company } from 'entities/company';
+import { User } from 'entities/user';
 import { TestAsyncThunk } from 'shared/lib/tests';
 import { authByLogin, ResAuthByLogin } from '.';
 
@@ -7,7 +9,9 @@ import { authByLogin, ResAuthByLogin } from '.';
 describe('authByLogin', () => {
   test('Succes login', async () => {
     const data: ResAuthByLogin = {
-      status: 'success'
+      user    : {  id: '1', name: 'test' } as unknown as User,
+      company : {  id: '1', name: 'test' } as unknown as Company,
+      message : 'success'
     };
 
     const thunk = new TestAsyncThunk(authByLogin);

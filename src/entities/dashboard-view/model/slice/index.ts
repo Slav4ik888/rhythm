@@ -4,7 +4,7 @@ import { Errors } from 'shared/lib/validators';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { ActivatedCopied, StateSchemaDashboardView } from './state-schema';
 import {
-  deleteViewItem, DeleteViewItem, AddNewViewItem, addNewViewItem, UpdateViewItems, updateViewItems
+  deleteViewItem, DeleteViewItem, UpdateViewItems, updateViewItems
 } from 'features/dashboard-view';
 import {
   SetDashboardView, ChangeSelectedStyle, ChangeOneSettingsField, ChangeOneDatasetsItem,
@@ -15,8 +15,11 @@ import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem } from '.
 import { cloneObj, updateObject } from 'shared/helpers/objects';
 import { updateChartsItem } from '../utils';
 import { ChartConfigDatasets } from 'entities/charts';
-import { CopyStylesItem, copyStylesViewItem } from 'features/dashboard-view/configurator';
+import {
+  CopyStylesItem, copyStylesViewItem, CreateGroupViewItems, createGroupViewItems
+} from 'features/dashboard-view/configurator';
 import { __devLog } from 'shared/lib/tests/__dev-log';
+import { getViewItems } from '../services';
 
 
 
@@ -210,17 +213,40 @@ export const slice = createSlice({
 
 
   extraReducers: builder => {
-    // ADD-NEW-ITEM
+    // GET-VIEW-ITEMS []
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     builder
-      .addCase(addNewViewItem.pending, (state) => {
+      .addCase(getViewItems.pending, (state) => {
         state.loading = true;
         state.errors  = {};
       })
-      .addCase(addNewViewItem.fulfilled, (state, { payload }: PayloadAction<AddNewViewItem>) => {
-        const { viewItem, companyId } = payload;
+      .addCase(getViewItems.fulfilled, (state, { payload }: PayloadAction<SetDashboardView>) => {
+        // Нужно чтобы возможные данные из LS перезатёрлись новыми
+        state.entities            = updateEntities({}, payload.viewItems);
+        state.activatedMovementId = '';
+        state.activatedCopied     = undefined;
+        state.bright              = false;
+        state.isUnsaved           = false;
+        state.loading             = false;
+        state.errors              = {};
 
-        state.entities            = updateEntities(state.entities, [viewItem]);
+        LS.setDashboardView(payload.companyId, Object.values(state.entities)); // Save entities to local storage
+      })
+      .addCase(getViewItems.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
+        state.loading = false;
+      })
+    // ADD-GROUP-NEW-ITEMS
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    builder
+      .addCase(createGroupViewItems.pending, (state) => {
+        state.loading = true;
+        state.errors  = {};
+      })
+      .addCase(createGroupViewItems.fulfilled, (state, { payload }: PayloadAction<CreateGroupViewItems>) => {
+        const { viewItems, companyId } = payload;
+
+        state.entities            = updateEntities(state.entities, viewItems);
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
         state.bright              = false;
@@ -229,7 +255,7 @@ export const slice = createSlice({
 
         LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
       })
-      .addCase(addNewViewItem.rejected, (state, { payload }) => {
+      .addCase(createGroupViewItems.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       })

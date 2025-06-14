@@ -1,1 +1,1 @@
-export { getStartResourseData, ReqGetStartResourseData } from './get-start-resourse-data'
+export { getAuth, ReqGetAuth } from './get-auth'

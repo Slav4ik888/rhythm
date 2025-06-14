@@ -9,8 +9,8 @@ export enum AppRoutes {
   USER_PROFILE    = 'USER_PROFILE',
   COMPANY_PROFILE = 'COMPANY_PROFILE',
 
+  SLUG            = 'SLUG',
   DASHBOARD       = 'DASHBOARD',
-  // DASHBOARD_ID    = 'DASHBOARD_ID',
 
   NOT_FOUND       = 'NOT_FOUND',
 }
@@ -35,9 +35,11 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.LOGIN]           : '/login',
   // Profiles
   [AppRoutes.USER_PROFILE]    : '/user-profile',
-  [AppRoutes.COMPANY_PROFILE] : '/company-profile',
+
+  [AppRoutes.SLUG]            : ':companyId',
+  // Profiles
+  [AppRoutes.COMPANY_PROFILE] : 'company-profile',
   // Dashboard
-  [AppRoutes.DASHBOARD]       : '/dashboard',
-  // [AppRoutes.DASHBOARD_ID]    : '/dashboard/:companyId',
+  [AppRoutes.DASHBOARD]       : 'dashboard',
   [AppRoutes.NOT_FOUND]       : '*',
 };

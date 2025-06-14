@@ -1,1 +1,1 @@
-export { addNewViewItem, AddNewViewItem } from './add-new-view-item'
+// export { addNewViewItem, AddNewViewItem } from './DEPRECATED-add-new-view-item'

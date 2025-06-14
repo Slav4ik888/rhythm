@@ -20,7 +20,7 @@ export const sendEmailConfirmation = createAsyncThunk <
   string,
   ThunkConfig<Errors>
 >(
-  'entities/user/sendEmailConfirmation',
+  'features/user/sendEmailConfirmation',
   /* eslint-disable-next-line consistent-return */
   async (email, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
@@ -33,7 +33,7 @@ export const sendEmailConfirmation = createAsyncThunk <
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
-      return rejectWithValue({ general: 'Error in entitiesUser/sendEmailConfirmation' });
+      return rejectWithValue({ general: 'Error in features/user/sendEmailConfirmation' });
     }
   }
 );

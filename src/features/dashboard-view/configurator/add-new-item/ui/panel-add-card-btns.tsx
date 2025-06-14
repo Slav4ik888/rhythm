@@ -2,7 +2,7 @@ import { FC, memo, useCallback, useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import { Tooltip } from 'shared/ui/tooltip';
-import { CustomTheme, useTheme } from 'app/providers/theme';
+import { CustomTheme } from 'app/providers/theme';
 import { MDButton } from 'shared/ui/mui-design-components';
 import { useCompany } from 'entities/company';
 import { useUser } from 'entities/user';
@@ -15,40 +15,15 @@ import { ViewItemType } from 'entities/dashboard-view/model/types';
 
 
 
-const useStyles = (theme: CustomTheme) => ({
-  root: {
-    ...f('r'),
-    position : 'relative',
-    width    : '110px',
-  },
-  chip: {
-    position : 'absolute',
-    top      : pxToRem(6),
-    right    : 0,
-    height   : '24px',
-  },
-  select: {
-    visibility : 'hidden',
-    opacity    : 0,
-    height     : pxToRem(38),
-  },
-  icon: {
-    color    : theme.palette.orange.main,
-    fontSize : '20px',
-  },
-});
-
-
 interface Props {
   parentId: ViewItemId
 }
 
 /** For Panel */
 export const PanelAddViewItemBtns: FC<Props> = memo(({ parentId }) => {
-  const { selectedId, childrenViewItems, serviceAddNewViewItem } = useDashboardView({ parentId });
+  const { selectedId, childrenViewItems, serviceCreateGroupViewItems } = useDashboardView({ parentId });
   const { userId } = useUser();
-  const { companyId } = useCompany();
-  const sx = useStyles(useTheme());
+  const { paramsCompanyId } = useCompany();
 
   const [openSelect, setOpenSelect] = useState(false);
 
@@ -57,7 +32,7 @@ export const PanelAddViewItemBtns: FC<Props> = memo(({ parentId }) => {
 
 
   const handleAdd = useCallback((type: ViewItemType) => {
-    const viewItem = createViewItem(
+    const viewItems = [createViewItem(
       userId,
       {
         sheetId  : NO_SHEET_ID,
@@ -65,10 +40,10 @@ export const PanelAddViewItemBtns: FC<Props> = memo(({ parentId }) => {
         order    : createNextOrder(childrenViewItems),
         type,
       }
-    );
+    )];
 
-    serviceAddNewViewItem(companyId, viewItem);
-  }, [userId, companyId, selectedId, parentId, childrenViewItems, serviceAddNewViewItem]);
+    serviceCreateGroupViewItems({ companyId: paramsCompanyId, viewItems });
+  }, [userId, paramsCompanyId, selectedId, parentId, childrenViewItems, serviceCreateGroupViewItems]);
 
 
   const handleChange = useCallback((e: SelectChangeEvent) => {
@@ -78,12 +53,21 @@ export const PanelAddViewItemBtns: FC<Props> = memo(({ parentId }) => {
 
 
   return (
-    <FormControl sx={sx.root}>
+    <FormControl
+      sx={{
+        ...f('r'),
+        position : 'relative',
+        width    : '110px',
+      }}
+    >
       <Tooltip title='Добавить новый элемент'>
         <MDButton
           variant   = 'outlined'
           color     = 'dark'
-          startIcon = {<AddViewItemIcon sx={sx.icon} />}
+          startIcon = {<AddViewItemIcon sx={(theme) => ({
+            color    : (theme as CustomTheme).palette.orange.main,
+            fontSize : pxToRem(20)
+          })} />}
           onClick   = {handleSelectOpen}
         >
           Добавить
@@ -94,9 +78,13 @@ export const PanelAddViewItemBtns: FC<Props> = memo(({ parentId }) => {
         variant      = 'standard'
         open         = {openSelect}
         defaultValue = ''
-        sx           = {sx.select}
         onClose      = {handleSelectClose}
         onChange     = {handleChange}
+        sx           = {{
+          visibility : 'hidden',
+          opacity    : 0,
+          height     : pxToRem(38),
+        }}
       >
         {
           ['box', 'text'].map((item) => <MenuItem

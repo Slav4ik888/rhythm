@@ -32,6 +32,7 @@ export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProvid
     };
     theme.components = {
       ...theme.components,
+
       MuiCheckbox: {
         styleOverrides: {
           root: {

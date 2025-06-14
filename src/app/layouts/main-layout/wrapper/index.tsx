@@ -8,7 +8,7 @@ interface Props {
   children: ReactNode
 }
 
-export const LayoutWrapper: FC<Props> = memo(({ children }) => (
+export const MainLayoutWrapper: FC<Props> = memo(({ children }) => (
   <Box
     sx={{
       ...f('c--sb'),

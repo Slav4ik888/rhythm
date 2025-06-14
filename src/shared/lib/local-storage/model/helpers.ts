@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { UIConfiguratorProviderState } from 'app/providers/theme';
-import { StateSchemaCompany } from 'entities/company';
+import { PartialCompany, StateSchemaCompany } from 'entities/company';
 import { StateSchemaDashboardData } from 'entities/dashboard-data';
 import { ViewItem } from 'entities/dashboard-view';
 import { StateSchemaUser } from 'entities/user';
@@ -19,6 +19,9 @@ export const getLastCompanyId = () => getStorageData<{ companyId: string }>('Las
 
 export const setCompanyState = (companyId: string, state: StateSchemaCompany) => setStorageData(`CompanyState-${companyId}`, state);
 export const getCompanyState = (companyId: string) => getStorageData<StateSchemaCompany>(`CompanyState-${companyId}`);
+
+export const setParamsCompanyState = (company: PartialCompany) => setStorageData('ParamsCompany', company);
+export const getParamsCompanyState = () => getStorageData<PartialCompany>('ParamsCompany');
 
 // Configurator
 export const setUIConfiguratorState = (state: UIConfiguratorProviderState) => setStorageData('UIConfiguratorState', state);

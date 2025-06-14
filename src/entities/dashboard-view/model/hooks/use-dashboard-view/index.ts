@@ -7,13 +7,14 @@ import {
   ChangeOneSettingsField, ChangeSelectedStyle, ChangeOneDatasetsItem, ChangeOneChartsItem,
   SetDashboardView, SetEditMode
 } from '../../slice/types';
-import { ViewItem, ViewItemId, ViewItemStyles, PartialViewItem } from '../../types';
+import { ViewItemId, ViewItemStyles, PartialViewItem } from '../../types';
 import {
-  addNewViewItem, CreateGroupViewItems, createGroupViewItems, deleteViewItem,
+  CreateGroupViewItems, createGroupViewItems, deleteViewItem,
   DeleteViewItem, UpdateViewItems, updateViewItems as updateViewItemsOnServer
 } from 'features/dashboard-view';
 import { ActivatedCopied, StateSchemaDashboardView } from '../../slice/state-schema';
 import { CopyStylesItem, copyStylesViewItem } from 'features/dashboard-view/configurator';
+import { getViewItems, ReqGetViewItems } from '../../services';
 
 
 
@@ -33,6 +34,7 @@ export const useDashboardView = (config: Config = {}) => {
     isMounted                = useSelector(s.selectIsMounted),
 
     setInitial               = (state: StateSchemaDashboardView) => dispatch(a.setInitial(state)),
+    serviceGetViewItems      = (data: ReqGetViewItems) => dispatch(getViewItems(data)),
     setDashboardView         = (data: SetDashboardView) => dispatch(a.setDashboardView(data)),
     editMode                 = useSelector(s.selectEditMode),
     setEditMode              = (data: SetEditMode) => dispatch(a.setEditMode(data)),
@@ -87,10 +89,7 @@ export const useDashboardView = (config: Config = {}) => {
     changeOneDatasetsItem    = (data: ChangeOneDatasetsItem)  => dispatch(a.changeOneDatasetsItem(data)),
 
     // Services
-    serviceAddNewViewItem = (
-      companyId   : string,
-      viewItem    : ViewItem,
-    ) => dispatch(addNewViewItem({ companyId, viewItem })),
+    // serviceAddNewViewItem       = (data: AddNewViewItem) => dispatch(addNewViewItem(data)),
     serviceCreateGroupViewItems = (data: CreateGroupViewItems) => dispatch(createGroupViewItems(data)),
 
     serviceUpdateViewItems = (data: UpdateViewItems) => dispatch(updateViewItemsOnServer(data)),
@@ -106,6 +105,7 @@ export const useDashboardView = (config: Config = {}) => {
     isMounted,
 
     setInitial,
+    serviceGetViewItems,
     setDashboardView,
     editMode,
     setEditMode,
@@ -156,7 +156,7 @@ export const useDashboardView = (config: Config = {}) => {
     changeOneDatasetsItem,
 
     // Services
-    serviceAddNewViewItem,
+    // serviceAddNewViewItem,
     serviceCreateGroupViewItems,
     serviceUpdateViewItems,
     serviceCopyStyles,

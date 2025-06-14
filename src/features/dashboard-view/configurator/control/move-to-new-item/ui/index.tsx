@@ -37,9 +37,9 @@ const useStyles = (theme: CustomTheme) => ({
  */
 export const MoveToNewItem: FC = memo(() => {
   const sx = useStyles(useTheme());
-  const { selectedItem, serviceAddNewViewItem, serviceUpdateViewItems } = useDashboardView();
+  const { selectedItem, serviceCreateGroupViewItems, serviceUpdateViewItems } = useDashboardView();
   const { userId } = useUser();
-  const { companyId } = useCompany();
+  const { paramsCompanyId } = useCompany();
 
 
   const handleClick = useCallback(() => {
@@ -55,7 +55,7 @@ export const MoveToNewItem: FC = memo(() => {
       }
     );
 
-    serviceAddNewViewItem(companyId, newBoxItem);
+    serviceCreateGroupViewItems({ companyId: paramsCompanyId, viewItems: [newBoxItem] });
 
     // SelectedItem is moving to new Box
     const updatedItem = {
@@ -63,8 +63,12 @@ export const MoveToNewItem: FC = memo(() => {
       parentId : newBoxItem.id,
       order    : ORDER_STEP
     };
-    serviceUpdateViewItems({ companyId, viewItems: [updatedItem], newStoredViewItem: updatedItem });
-  }, [userId, companyId, selectedItem, serviceAddNewViewItem, serviceUpdateViewItems]);
+    serviceUpdateViewItems({
+      companyId         : paramsCompanyId,
+      viewItems         : [updatedItem],
+      newStoredViewItem : updatedItem
+    });
+  }, [userId, paramsCompanyId, selectedItem, serviceCreateGroupViewItems, serviceUpdateViewItems]);
 
 
   return (

@@ -8,20 +8,6 @@ import { pxToRem } from 'shared/styles';
 
 
 
-const useStyles = (color: string) => ({
-  button: {
-    root: {
-      color,
-      fontSize: '0.7rem',
-    }
-  },
-  icon: {
-    color,
-    fontSize : pxToRem(20),
-  },
-});
-
-
 interface Props {
   type    : ViewItemType
   color   : string
@@ -30,19 +16,16 @@ interface Props {
 
 /** Btn component */
 export const AddBtn: FC<Props> = memo(({ type, color, onClick }) => {
-  const sx = useStyles(color);
   const title = capitalizeFirst(type);
-
-  const handleClick = () => onClick(type);
 
   return (
     <Tooltip title={`Добавить новый элемент "${title}"`}>
       <MDButton
         variant   = 'outlined'
         color     = 'dark'
-        sx        = {sx.button}
-        startIcon = {<AddCardIcon sx={sx.icon} />}
-        onClick   = {handleClick}
+        sx        = {{ root: { color, fontSize: '0.7rem' } }}
+        startIcon = {<AddCardIcon sx={{ color, fontSize: pxToRem(20) }} />}
+        onClick   = {() => onClick(type)}
       >
         {title}
       </MDButton>

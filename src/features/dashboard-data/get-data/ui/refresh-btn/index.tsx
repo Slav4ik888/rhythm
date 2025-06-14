@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import IconButton from '@mui/material/IconButton';
 import RefreshIcon from '@mui/icons-material/Autorenew';
 import { useCompany } from 'entities/company';
@@ -13,8 +13,8 @@ interface Props {
 
 export const DashboardRefreshButton: FC<Props> = memo(({ sx }) => {
   const { serviceGetData } = useDashboardData();
-  const { company } = useCompany();
-  const handleRefresh = () => serviceGetData(company);
+  const { paramsCompany } = useCompany();
+  const handleRefresh = useCallback(() => serviceGetData(paramsCompany), [paramsCompany, serviceGetData]);
 
 
   return (

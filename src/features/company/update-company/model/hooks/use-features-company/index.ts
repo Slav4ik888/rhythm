@@ -1,4 +1,4 @@
-import { Company } from 'entities/company';
+import { PartialCompany } from 'entities/company';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { updateCompany } from '../../services';
 
@@ -12,7 +12,7 @@ import { updateCompany } from '../../services';
 export const useFeaturesCompany = () => {
   const dispatch = useAppDispatch();
 
-  const serviceUpdateCompany = (company: Partial<Company>) => dispatch(updateCompany(company));
+  const serviceUpdateCompany = (company: PartialCompany) => dispatch(updateCompany(company));
 
   return {
     serviceUpdateCompany,

@@ -6,7 +6,7 @@ import { Errors } from 'shared/lib/validators';
 import { StateSchemaDashboardData } from '../../slice/state-schema';
 import { SetActivePeriod, SetSelectedPeriod } from '../../slice/types';
 import { getData } from 'features/dashboard-data';
-import { Company } from 'entities/company';
+import { ParamsCompany } from 'entities/company'
 
 
 
@@ -51,7 +51,7 @@ export const useDashboardData = (config: Config = {}) => {
     selectedDateEnd     = selectedPeriod?.end,
     setSelectedPeriod   = (data: SetSelectedPeriod) => dispatch(a.setSelectedPeriod(data)),
 
-    serviceGetData      = (company: Company) => dispatch(getData(company));
+    serviceGetData      = (data: ParamsCompany) => dispatch(getData(data));
 
 
   return {

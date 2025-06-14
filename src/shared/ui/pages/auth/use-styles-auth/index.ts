@@ -9,7 +9,16 @@ export const useStylesAuth = (theme: CustomTheme) => ({
     width: '100%'
   },
   textField: {
-    backgroundColor: theme.palette.background.card,
+    '& .MuiInputLabel-root': {
+      color: 'text.main'
+    },
+    '& .MuiOutlinedInput-input:-webkit-autofill': {
+      WebkitBoxShadow: `0 0 0 100px ${theme.palette.mode === 'dark' ? '#292929' : '#fff'} inset`,
+      WebkitTextFillColor: 'text.main',
+      caretColor: 'text.main',
+      borderRadius: 'inherit',
+    },
+    // backgroundColor: theme.palette.background.card,
     my: 1,
     mx: 'auto'
   }

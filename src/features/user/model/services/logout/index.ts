@@ -21,7 +21,7 @@ export const serviceLogout = createAsyncThunk <
     try {
       await extra.api.get(paths.user.logout);
 
-      dispatch(actionsCompany.setCompany({ companyId: '', company: {} as Company }));
+      dispatch(actionsCompany.setCompany({ company: {} as Company }));
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
