@@ -52,7 +52,8 @@ export interface Company {
 
 export type PartialCompany = Partial<Company> & { id: string }
 
-export interface ParamsCompany {
+/** Обязательные поля для чужого пользователя прошедшего по ссылке */
+export type ParamsCompany = Partial<Company> & {
   id             : string
   customSettings : CustomSettings
   googleData     : GoogleData

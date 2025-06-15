@@ -1,44 +1,26 @@
 import { FC, memo } from 'react';
 import Box from '@mui/material/Box';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Button, ButtonType } from '../../buttons';
+import { Button } from '../../buttons';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
+import { f } from 'shared/styles';
 
-
-
-const useStyles = () => ({
-  root: {
-    // position   : 'absolute',
-    // top        : 0,
-    // left       : 0,
-    display    : 'flex',
-    alignItems : 'center',
-    width      : '100%',
-    mt         : 2,
-    p          : 1
-  },
-  btn: {
-    textTransform: 'none'
-  }
-});
 
 
 export const InnerPageHeader: FC = memo(() => {
-  const sx = useStyles();
   const navigate = useNavigate();
 
   const handlerClick = () => navigate(RoutePath.ROOT);
 
-
   return (
-    <Box sx={sx.root}>
+    <Box sx={{ ...f('-c'), width: '100%', mt: 2, p: 1 }}>
       <Button
         text      = 'На главную'
         variant   = 'text'
-        type      = {ButtonType.SECONDARY}
-        startIcon = {<ArrowBackIcon />}
-        sx        = {{ root: sx.btn }}
+        // type      = {ButtonType.SECONDARY}
+        startIcon = {<ArrowBackIcon sx={{ color: 'text.dark' }} />}
+        sx        = {{ root: { color: 'text.dark', textTransform: 'none' } }}
         onClick   = {handlerClick}
       />
     </Box>

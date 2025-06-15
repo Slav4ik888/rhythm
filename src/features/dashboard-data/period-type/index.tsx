@@ -1,4 +1,4 @@
-import { FC, memo, useState } from 'react';
+import { FC, memo, useCallback, useState } from 'react';
 import { pxToRem } from 'shared/styles';
 import {
   arrayDashboardPeriodType, DashboardPeriodType, DASHBOARD_PERIOD_TEXT, useDashboardData
@@ -13,15 +13,15 @@ import { CustomTheme } from 'app/providers/theme';
 
 
 export const PeriodType: FC = memo(() => {
-  const { companyId } = useCompany();
+  const { paramsCompanyId } = useCompany();
   const { setSelectedPeriod } = useDashboardData();
   const [openSelect, setOpenSelect] = useState(false);
 
 
-  const handleChangePeriod = (e: SelectChangeEvent) => {
-    setSelectedPeriod({ companyId, period: { type: e.target.value as DashboardPeriodType } });
+  const handleChangePeriod = useCallback((e: SelectChangeEvent) => {
+    setSelectedPeriod({ companyId: paramsCompanyId, period: { type: e.target.value as DashboardPeriodType } });
     setOpenSelect(false);
-  };
+  }, [paramsCompanyId, setSelectedPeriod]);
 
   const handleClickChip = () => setOpenSelect(true);
   const handleSelectClose = () => setOpenSelect(false);

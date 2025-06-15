@@ -13,7 +13,7 @@ import { ViewItemType } from 'entities/dashboard-view/model/types';
 export const AddRows: FC = memo(() => {
   const { selectedId, selectedItem: { type }, childrenViewItems, serviceCreateGroupViewItems } = useDashboardView();
   const { userId } = useUser();
-  const { companyId } = useCompany();
+  const { paramsCompanyId } = useCompany();
 
 
   const handleAdd = useCallback((type: ViewItemType) => {
@@ -29,8 +29,8 @@ export const AddRows: FC = memo(() => {
       }
     )];
 
-    serviceCreateGroupViewItems({ companyId, viewItems });
-  }, [selectedId, companyId, userId, childrenViewItems, serviceCreateGroupViewItems]);
+    serviceCreateGroupViewItems({ companyId: paramsCompanyId, viewItems });
+  }, [selectedId, paramsCompanyId, userId, childrenViewItems, serviceCreateGroupViewItems]);
 
 
   if (type !== 'box') return null

@@ -1,70 +1,86 @@
-import { FC, memo, useCallback, useEffect, useRef } from 'react';
+import { FC, memo, useCallback, useEffect, useState, ChangeEvent } from 'react';
 import { useUser } from 'entities/user';
-import { useNavigate } from 'react-router-dom';
 import { CompanyProfilePageComponent } from './component';
 import { useUI } from 'entities/ui';
-import { useGroup } from 'shared/lib/hooks';
-import { Company, creatorCompany, PartialCompany, useCompany } from 'entities/company';
+import { PartialCompany, useCompany, Company } from 'entities/company';
 import { useFeaturesCompany } from 'features/company/update-company/model/hooks/use-features-company';
-import { getChanges, isEmpty } from 'shared/helpers/objects';
+import { cloneObj, getChanges, isEmpty, setValueByScheme } from 'shared/helpers/objects';
 import { creatorFixDate } from 'entities/base';
 import { __devLog } from 'shared/lib/tests/__dev-log';
+import { AppRoutes, RoutePath } from 'app/providers/routes';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const CompanyProfilePage: FC = memo(() => {
   const { auth, userId } = useUser();
-  const { loading, errors, company: companyState } = useCompany();
+  const { loading, errors, paramsCompany: storedCompany } = useCompany();
+  const [formData, setFormData] = useState<Partial<Company>>(storedCompany);
   const { serviceUpdateCompany } = useFeaturesCompany();
-  const { setErrorStatus } = useUI();
-  const C = useGroup<Company>(creatorCompany());
+  const { setErrorStatus, setReplacePath } = useUI();
   const navigate = useNavigate();
 
-
   useEffect(() => {
+    if (! auth) {
+      navigate(RoutePath[AppRoutes.LOGIN]);
+      setReplacePath(RoutePath[AppRoutes.COMPANY_PROFILE]);
+    }
     // Обнулить если была записана ошибка, например 401, 403...
     setErrorStatus(0);
-    C.setGroup(companyState, { isChanges: false });
-  }, [auth, C, companyState, setErrorStatus]);
+    setFormData(storedCompany);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auth, storedCompany]);
+
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>, scheme: string) => {
+    const { value } = e.target;
+
+    setFormData(prev => {
+      const obj = cloneObj(prev);
+      setValueByScheme(obj, scheme, value);
+      return obj;
+    });
+    // Простая валидация на лету (можно расширить)
+    // validateField(field, value);
+  };
 
 
   const handleSubmit = useCallback(async () => {
     if (loading) return;
 
-    const data = await C.getGroup();
-
     const updatedData: PartialCompany = {
-      ...getChanges(companyState, data),
-      id         : companyState.id,
+      ...getChanges(storedCompany, formData),
+      id         : storedCompany.id,
       lastChange : creatorFixDate(userId)
     };
 
     __devLog('updatedData: ', updatedData);
     if (isEmpty(updatedData)) return;
 
+
     // TODO: validate
     // const { valid, errors } = validateCompanyData(updatedData);
     // valid ? serviceUpdateCompany(updatedData) : setErrors(errors);
     serviceUpdateCompany(updatedData);
-    C.setIsChanges(false);
-  }, [loading, userId, C, companyState, serviceUpdateCompany]);
+  }, [loading, userId, formData, storedCompany, serviceUpdateCompany]);
 
 
   const handleCancel = useCallback(async () => {
-    C.setGroup(companyState, { isChanges: false });
-  }, [C, companyState]);
+    setFormData(storedCompany);
+  }, [storedCompany]);
 
 
-  // if (! auth) return;
+  if (! auth) return null;
 
   return (
     <CompanyProfilePageComponent
-      group    = {C}
-      auth     = {auth}
-      loading  = {loading}
-      errors   = {errors}
-      onCancel = {handleCancel}
-      onSubmit = {handleSubmit}
+      isChanges = {Boolean(Object.keys(getChanges(storedCompany, formData)).length)}
+      formData  = {formData}
+      loading   = {loading}
+      errors    = {errors}
+      onCancel  = {handleCancel}
+      onChange  = {handleChange}
+      onSubmit  = {handleSubmit}
     />
   );
 });

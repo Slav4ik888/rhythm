@@ -1,11 +1,10 @@
-import { FC, memo, useCallback, useEffect } from 'react';
+import { FC, memo, useCallback, useEffect, useState, ChangeEvent } from 'react';
 import { User, useUser, creatorUser } from 'entities/user';
 import { useNavigate } from 'react-router-dom';
-import { RoutePath } from 'app/providers/routes';
+import { AppRoutes, RoutePath } from 'app/providers/routes';
 import { UserProfilePageComponent } from './component';
 import { useUI } from 'entities/ui';
-import { useGroup } from 'shared/lib/hooks';
-import { getChanges, isEmpty } from 'shared/helpers/objects';
+import { cloneObj, getChanges, isEmpty, setValueByScheme } from 'shared/helpers/objects';
 import { useFeaturesUser } from 'features/user';
 import { creatorFixDate } from 'entities/base';
 import { __devLog } from 'shared/lib/tests/__dev-log';
@@ -13,30 +12,45 @@ import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 const UserProfilePage: FC = memo(() => {
-  const { loading, auth, errors, user: userState } = useUser();
+  const { loading, auth, errors, user: storedUser } = useUser();
   const { serviceUpdateUser } = useFeaturesUser();
-  const { setErrorStatus } = useUI();
-  const U = useGroup<User>(creatorUser());
-  // const navigate = useNavigate();
+  const [formData, setFormData] = useState(creatorUser(storedUser));
+  const { setErrorStatus, setReplacePath } = useUI();
+  const navigate = useNavigate();
 
 
   useEffect(() => {
+    if (! auth) {
+      navigate(RoutePath[AppRoutes.LOGIN]);
+      setReplacePath(RoutePath[AppRoutes.USER_PROFILE]);
+    }
+
     // Обнулить если была записана ошибка, например 401, 403...
     setErrorStatus(0);
-    U.setGroup(userState, { isChanges: false });
-  }, [U, userState, setErrorStatus]);
+    setFormData(storedUser);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auth, storedUser]);
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>, scheme: string) => {
+    const { value } = e.target;
+
+    setFormData(prev => {
+      const obj = cloneObj(prev);
+      setValueByScheme(obj, scheme, value);
+      return obj;
+    });
+    // Простая валидация на лету (можно расширить)
+    // validateField(field, value);
+  };
 
   const handleSubmit = useCallback(async () => {
     if (loading) return;
 
-    const data = await U.getGroup();
+    const updatedData: Partial<User> = getChanges(storedUser, formData);
 
-    const updatedData: Partial<User> = getChanges(userState, data);
-
-    updatedData.id = userState.id;
-    updatedData.companyId = userState.companyId;
-    updatedData.lastChange = creatorFixDate(userState.id);
+    updatedData.id = storedUser.id;
+    updatedData.companyId = storedUser.companyId;
+    updatedData.lastChange = creatorFixDate(storedUser.id);
 
     __devLog('updatedData: ', updatedData);
     if (isEmpty(updatedData)) return;
@@ -45,24 +59,25 @@ const UserProfilePage: FC = memo(() => {
     // const { valid, errors } = validateUserData(updatedData);
     // valid ? serviceUpdateUser(updatedData) : setErrors(errors);
     serviceUpdateUser(updatedData);
-    U.setIsChanges(false);
-  }, [U, userState, loading, serviceUpdateUser]);
+  }, [storedUser, formData, loading, serviceUpdateUser]);
 
 
   const handleCancel = useCallback(async () => {
-    U.setGroup(userState, { isChanges: false });
-  }, [U, userState]);
+    setFormData(storedUser);
+  }, [storedUser]);
 
-  // if (! auth) return;
+
+  if (! auth) return null;
 
   return (
     <UserProfilePageComponent
-      group    = {U}
-      auth     = {auth}
-      loading  = {loading}
-      errors   = {errors}
-      onCancel = {handleCancel}
-      onSubmit = {handleSubmit}
+      isChanges = {Boolean(Object.keys(getChanges(storedUser, formData)).length)}
+      formData  = {formData}
+      loading   = {loading}
+      errors    = {errors}
+      onCancel  = {handleCancel}
+      onChange  = {handleChange}
+      onSubmit  = {handleSubmit}
     />
   );
 });

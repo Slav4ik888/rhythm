@@ -17,7 +17,7 @@ export const ShowPolicyText: FC = memo(() => {
 
   return (
     <Box sx={{ minHeight: 100 }}>
-      <PageLoader loading={loading} />
+      <PageLoader loading={loading} text='Загрузка политики конфеденциальности...' />
       {/* @ts-ignore */}
       <ReactMarkdown plugins={[gfm]} linkTarget='_blank' children={policyLoaded} />
     </Box>

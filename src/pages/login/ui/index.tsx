@@ -5,15 +5,18 @@ import { AuthByLogin } from '../model/services';
 import { validateAuthByLogin } from '../model/validators';
 import { LoginPageComponent } from './component';
 import { useUI } from 'entities/ui';
+import { RoutePath } from 'app/providers/routes';
+import { Navigate } from 'react-router-dom';
+import { useUser } from 'entities/user';
 
 
 
 const LoginPage: FC = memo(() => {
-  const
-    { setErrorStatus } = useUI(),
-    { loading, errors, setErrors, serviceAuthByLogin } = useLogin(),
-    emailRef    = useRef(null),
-    passwordRef = useRef(null);
+  const { setErrorStatus } = useUI();
+  const { auth } = useUser();
+  const { loading, errors, setErrors, serviceAuthByLogin } = useLogin();
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
 
   useEffect(() => {
@@ -35,6 +38,8 @@ const LoginPage: FC = memo(() => {
     else serviceAuthByLogin(userData);
   }, [loading, serviceAuthByLogin, setErrors]);
 
+
+  if (auth) return <Navigate to={RoutePath.ROOT} replace />;
 
   return (
     <LoginPageComponent

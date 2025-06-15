@@ -1,16 +1,20 @@
 import { Errors } from 'shared/lib/validators';
-import { Message } from './messages';
-import { ScreenFormats } from './screen-formats';
+import { Message } from '../types/messages';
+import { ScreenFormats } from '../types/screen-formats';
 
 
 export interface StateSchemaUI {
   // UI
   loading        : boolean
-  pageLoading    : boolean // For PageLoader & block full display
 
   errors         : Errors
   errorStatus    : number
 
+  // Page Loader
+  pageLoading    : boolean
+  pageText       : string
+
+  // Messages
   message        : Message
 
   // Screens

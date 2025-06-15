@@ -8,18 +8,19 @@ export const customPalette: CustomPalette = {
 
   background: {
     default: '#171717',
-    card: '#000000',
+    card: '#252525',
     paper: '#0a0a0a',
   },
 
   text: {
     light: '#4f4f4f',
-    dark: '#a2a2a2',
     main: '#a2a2a2',
+    dark: '#bcbcbc',
     focus: '#7b809a',
     primary: '#7f7f7f',
     secondary: '#000000',
     disabled: '#000000',
+    contrastText: '#fff',
   },
 
   inherit: {

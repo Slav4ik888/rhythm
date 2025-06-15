@@ -15,30 +15,11 @@ import { ViewItemConfiguratorTabs } from './tabs';
 
 
 export const ViewItemConfigurator: FC = memo(() => {
-  const { companyId } = useCompany();
+  const { paramsCompanyId } = useCompany();
   const { setWarningMessage } = useUI();
   const { editMode, selectedId, selectedItem, isUnsaved, setSelectedId, setEditMode } = useDashboardView();
   const [value, setValue] = useState('1');
 
-
-  // useEffect(() => {
-  //  TODO:Убрал попробовать, возможно надо навсегда от этого избавиться
-  //   /** Сохраняем изменившиеся customSettings */
-  //   const changedCompany = getChanges(storedCompany, company);
-  //   if (isNotEmpty(changedCompany)) serviceUpdateCompany({ id: companyId, ...changedCompany });
-
-  //   /** Вроде как при закрытии Конфигуратора - сохраняем изменившиеся поля | стили */
-  //   const prevId = (prevStoredViewItem as ViewItem)?.id; // Так как selectedId это уже нововыбранный
-  //   if (! prevId) return // Например, выбрали первый раз или удалили карточку
-
-  //   const changedFields = getChanges(prevStoredViewItem, entities?.[prevId]);
-  //   if (isEmpty(changedFields)) return
-
-  //   const viewItem = { id: prevId, ...changedFields };
-  //   serviceUpdateViewItems({ name: 'Configurator', companyId, viewItems: [viewItem] });
-  // }, [value, companyId, company, selectedId, entities, isSettings, prevStoredViewItem, storedCompany,
-  //   serviceUpdateCompany, serviceUpdateViewItems]);
-  // }, [value, isSettings]);
 
 
   /** Закрываем конфигуратор */
@@ -52,9 +33,9 @@ export const ViewItemConfigurator: FC = memo(() => {
       // }
     }
     setValue('1');
-    setEditMode({ editMode: false, companyId });
+    setEditMode({ editMode: false, companyId: paramsCompanyId });
     setSelectedId(''); // Убираем, чтобы prevStoredViewItem обновился и произошло сохранение
-  }, [companyId, isUnsaved, setValue, setEditMode, setSelectedId, setWarningMessage]);
+  }, [paramsCompanyId, isUnsaved, setValue, setEditMode, setSelectedId, setWarningMessage]);
 
 
   return (

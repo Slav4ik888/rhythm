@@ -1,85 +1,79 @@
-import { FC, memo } from 'react';
-import { useStylesAuth } from 'shared/ui/pages';
-import { useTheme } from 'app/providers/theme';
+import { FC, memo, ChangeEvent } from 'react';
 import { Errors } from 'shared/lib/validators';
-import { MDDivider, MDTypography } from 'shared/ui/mui-design-components';
+import { MDDivider } from 'shared/ui/mui-design-components';
 import { InnerPageWrapper } from 'shared/ui/wrappers';
-import { TextfieldItem } from 'shared/ui/containers';
-import { UseGroup } from 'shared/lib/hooks';
 import { Actions } from 'shared/ui/buttons';
 import { User } from 'entities/user';
-import { PageLoader } from 'widgets/page-loader';
-
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+// import Button from '@mui/material/Button'
+import { TextFieldItem } from 'shared/ui/mui-components';
+import { f, pxToRem } from 'shared/styles';
 
 
 interface Props {
-  loading  : boolean
-  auth     : boolean
-  group    : UseGroup<User>
-  errors   : Errors
-  onCancel : () => void
-  onSubmit : () => void
+  loading   : boolean
+  isChanges : boolean
+  formData  : User
+  errors    : Errors
+  onCancel  : () => void
+  onChange  : (e: ChangeEvent<HTMLInputElement>, scheme: string) => void
+  onSubmit  : () => void
 }
 
 
-export const UserProfilePageComponent: FC<Props> = memo(({ loading, auth, errors, group: U, onCancel, onSubmit }) => {
-  const sx = useStylesAuth(useTheme());
+export const UserProfilePageComponent: FC<Props> = memo(({ loading, errors, formData, isChanges,
+  onCancel, onChange, onSubmit }) => (
+  <InnerPageWrapper containerType='md'>
+    <Typography variant='h6' color='text.dark' textAlign='center' textTransform='none' mb={2}>
+      Профиль пользователя
+    </Typography>
+    <MDDivider />
 
+    <Box sx={{ ...f('c'), gap: 4, width: {  xs: '100%', md: '50%' }, maxWidth: pxToRem(300) }}>
+      <TextFieldItem
+        label        = 'Фамилия'
+        name         = 'secondName'
+        defaultValue = {formData.person?.fio?.secondName}
+        scheme       = 'person.fio.secondName'
+        errors       = {errors}
+        onChange     = {onChange}
+      />
 
-  return (
-    <InnerPageWrapper containerType='md'>
-      <MDTypography variant='h6' textAlign='center' textTransform='none' mb={2}>
-        Профиль пользователя
-      </MDTypography>
-      <MDDivider />
+      <TextFieldItem
+        label        = 'Имя'
+        name         = 'firstName'
+        defaultValue = {formData.person?.fio?.firstName}
+        scheme       = 'person.fio.firstName'
+        errors       = {errors}
+        onChange     = {onChange}
+      />
 
-      {
-        ! auth
-          ? <PageLoader loading={! auth} />
-          : <>
-              <TextfieldItem
-                label      = 'Фамилия'
-                name       = 'secondName'
-                scheme     = 'person.fio.secondName'
-                // grid       = {{ md: 4, sm: 6 }}
-                sx         = {{ root: sx.gridItem, bg: sx.textField }}
-                group      = {U}
-                errorField = 'secondName'
-                errors     = {errors}
-              />
+      <TextFieldItem
+        label        = 'Отчество'
+        name         = 'middleName'
+        defaultValue = {formData.person?.fio?.middleName}
+        scheme       = 'person.fio.middleName'
+        errors       = {errors}
+        onChange     = {onChange}
+      />
+    </Box>
 
-              <TextfieldItem
-                label      = 'Имя'
-                name       = 'firstName'
-                scheme     = 'person.fio.firstName'
-                // grid       = {{ md: 4, sm: 6 }}
-                sx         = {{ root: sx.gridItem, bg: sx.textField }}
-                group      = {U}
-                errorField = 'firstName'
-                errors     = {errors}
-              />
-
-              <TextfieldItem
-                disabled
-                label      = 'Отчество'
-                name       = 'middleName'
-                scheme     = 'person.fio.middleName'
-                // grid       = {{ md: 4, sm: 6 }}
-                sx         = {{ root: sx.gridItem, bg: sx.textField }}
-                group      = {U}
-                errorField = 'middleName'
-                errors     = {errors}
-              />
-
-              <Actions
-                hideIfNotChanges
-                loading  = {loading}
-                hookOpen = {U}
-                onCancel = {onCancel}
-                onSubmit = {onSubmit}
-              />
-            </>
-      }
-    </InnerPageWrapper>
-  );
-});
+    <Actions
+      hideIfNotChanges
+      loading   = {loading}
+      isChanges = {isChanges}
+      onCancel  = {onCancel}
+      onSubmit  = {onSubmit}
+    />
+    {/* <Box sx={{ mt: 3 }}>
+      <Button
+        variant='contained'
+        disabled={Object.keys(getChanges(storedUser, formData)).length > 0}
+        onClick={onSubmit}
+      >
+        Сохранить изменения
+      </Button>
+    </Box> */}
+  </InnerPageWrapper>
+));

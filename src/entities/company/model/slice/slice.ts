@@ -37,6 +37,9 @@ const slice = createSlice({
       LS.setCompanyState(payload.company.id, state);
       LS.setLastCompanyId(payload.company.id);
     },
+    setIsParamsCompanyIdLoaded: (state, { payload }: PayloadAction<boolean>) => {
+      state._isParamsCompanyIdLoaded = payload;
+    },
     updateParamsCustomSettings: (state, { payload }: PayloadAction<Partial<CustomSettings>>) => {
       if (! state.paramsCompany.customSettings) state.paramsCompany.customSettings = {};
       state.paramsCompany.customSettings = updateObject(state.paramsCompany.customSettings, payload);
@@ -78,8 +81,8 @@ const slice = createSlice({
         state.errors = {};
       })
       .addCase(updateCompany.fulfilled, (state, { payload }: PayloadAction<Partial<Company>>) => {
-        state.company       = updateObject(state.company, payload);
-        state.storedCompany = state.company;
+        state.paramsCompany = updateObject(state.paramsCompany, payload);
+        state.storedCompany = state.paramsCompany;
         state.loading       = false;
         state.errors        = {};
       })

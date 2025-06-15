@@ -1,5 +1,5 @@
-import { FC, memo, useCallback, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FC, memo, useCallback, useRef } from 'react';
+import { Navigate } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
 import { useUI } from 'entities/ui';
 import { SignupData, useSignup } from '../model';
@@ -13,20 +13,13 @@ import { SignupPageComponent } from './component';
 
 
 const SignupPage: FC = memo(() => {
-  const
-    { auth } = useUser(),
-    { loading, serviceSignup, setErrors } = useSignup(),
-    { isMobile } = useUI(),
-    navigate = useNavigate(),
-    S = useGroup<SignupData>(createUserData(isMobile)),
-    firstNameRef = useRef(null),
-    emailRef     = useRef(null),
-    passwordRef  = useRef(null);
-
-
-  useEffect(() => {
-    if (auth) navigate(RoutePath.ROOT)
-  }, [auth, navigate]);
+  const { auth } = useUser();
+  const { loading, serviceSignup, setErrors } = useSignup();
+  const { isMobile } = useUI();
+  const S = useGroup<SignupData>(createUserData(isMobile));
+  const firstNameRef = useRef(null);
+  const emailRef     = useRef(null);
+  const passwordRef  = useRef(null);
 
 
   const handleSubmit = useCallback(async () => {
@@ -47,6 +40,7 @@ const SignupPage: FC = memo(() => {
     valid ? serviceSignup(signupData) : setErrors(errors);
   }, [loading, S, isMobile, serviceSignup, setErrors]);
 
+  if (auth) return <Navigate to={RoutePath.ROOT} replace />;
 
   return (
     <SignupPageComponent

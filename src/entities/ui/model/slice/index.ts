@@ -2,14 +2,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import cfg from 'app/config';
 import { LS } from 'shared/lib/local-storage';
 import { isNotUndefined, Errors } from 'shared/lib/validators';
-import { Message, MessageType, StateSchemaUI } from '../types';
+import { Message, MessageType } from '../types';
 import { getScreenFormats, getScreenSize, isAcceptCookie } from '../utils';
+import { StateSchemaUI } from './state-schema';
 
 
 
 const initialState: StateSchemaUI = {
   loading        : false,
   pageLoading    : false,
+  pageText       : '',
   errors         : {},
   errorStatus    : 0,
   message        : {} as Message,   // Current message for display
@@ -25,9 +27,6 @@ export const slice = createSlice({
   initialState,
   reducers: {
     // UI
-    setPageLoading: (state, { payload }: PayloadAction<boolean | undefined>) => {
-      state.pageLoading = isNotUndefined(payload) ? payload as boolean : true;
-    },
     setErrors: (state, { payload }: PayloadAction<Errors>) => {
       state.errors = payload;
     },
@@ -35,6 +34,17 @@ export const slice = createSlice({
       { payload: { status, pathname } }: PayloadAction<{ status: number, pathname?: string }>) => {
       state.errorStatus = status;
       if (pathname) state.replacePath = pathname;
+    },
+
+    // PAGE LOADER
+    setPageLoading: (state, { payload }: PayloadAction<boolean | undefined>) => {
+      const loading = isNotUndefined(payload) ? payload as boolean : true;
+      state.pageLoading = loading;
+    },
+    setPageText: (state, { payload }: PayloadAction<string | undefined>) => {
+      const text = isNotUndefined(payload) ? payload as string : '';
+      state.pageText = text;
+      state.pageLoading = Boolean(text);
     },
 
     // MESSAGES

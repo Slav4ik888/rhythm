@@ -9,6 +9,7 @@ import { useCompany } from 'entities/company';
 import { getCopyViewItem } from 'features/dashboard-view';
 import { useUser } from 'entities/user';
 import { isEmpty, isNotEmpty } from 'shared/helpers/objects';
+import { useUI } from 'entities/ui';
 import { PageLoader } from 'widgets/page-loader';
 
 
@@ -21,18 +22,21 @@ export const DashboardBodyContent = memo(() => {
     parentsViewItems, viewItems, entities, activatedCopied, setNewSelectedId, serviceCopyStyles,
     setDashboardView, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
   } = useDashboardView();
-
+  const { setPageText } = useUI();
   const [isRendering, setIsRendering] = useState(true);
+
 
   useLayoutEffect(() => {
     // Проверяем завершение рендера в RAF (после paint)
     const checkRenderComplete = () => {
       requestAnimationFrame(() => {
         setIsRendering(false);
+        setPageText();
       });
     };
 
     checkRenderComplete();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
@@ -136,7 +140,7 @@ export const DashboardBodyContent = memo(() => {
     >
       {
         isRendering
-          ? <PageLoader loading={isRendering} />
+          ? <PageLoader loading={isRendering} text='Отрисовка графиков...' />
           : <ContentRender
               parentsViewItems = {parentsViewItems}
               parentId         = 'no_parentId'

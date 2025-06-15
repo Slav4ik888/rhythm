@@ -12,20 +12,16 @@ import { UIConfigurator } from 'widgets/ui-configurator';
 
 
 
-export const MainLayout: FC = memo(() => {
-  const { pageLoading } = useUI();
+export const MainLayout: FC = memo(() => (
+  <MainLayoutWrapper>
+    <CssBaseline />
+    <MessageBar />
+    <PageLoader />
+    <ScrollToTop />
+    <Navbar />
+    <UIConfigurator />
 
-  return (
-    <MainLayoutWrapper>
-      <CssBaseline />
-      <MessageBar />
-      <PageLoader loading={pageLoading} />
-      <ScrollToTop />
-      <Navbar />
-      <UIConfigurator />
-
-      <Outlet />
-      <Footer />
-    </MainLayoutWrapper>
-  )
-});
+    <Outlet />
+    <Footer />
+  </MainLayoutWrapper>
+));

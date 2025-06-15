@@ -10,15 +10,15 @@ import { getAllChildrenIds } from '../model/utils/get-all-children-ids';
 
 export const DeleteItemContainer: FC = memo(() => {
   const { selectedId, viewItems, serviceDeleteViewItem } = useDashboardView();
-  const { companyId } = useCompany();
+  const { paramsCompanyId } = useCompany();
 
 
   const handleDel = useCallback(() => {
     const allIds: ViewItemId[] = []; // Ids всех вложенных элементов
     getAllChildrenIds(viewItems, selectedId, allIds);
 
-    serviceDeleteViewItem({ companyId, allIds });
-  }, [selectedId, viewItems, companyId, serviceDeleteViewItem]);
+    serviceDeleteViewItem({ companyId: paramsCompanyId, allIds });
+  }, [selectedId, viewItems, paramsCompanyId, serviceDeleteViewItem]);
 
 
   return (

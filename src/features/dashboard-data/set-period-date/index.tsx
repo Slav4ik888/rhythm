@@ -14,7 +14,7 @@ interface Props {
 
 
 export const SetPeriodDate: FC<Props> = memo(({ type }) => {
-  const { companyId } = useCompany();
+  const { paramsCompanyId } = useCompany();
   const { selectedPeriod, setSelectedPeriod } = useDashboardData();
   const ref = useRef<HTMLInputElement>(null);
   const storePeriodType = selectedPeriod?.type;
@@ -36,25 +36,25 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
       // При монтировании, может быть не указана дата (storeSelectPeriod.end) и нельзя обнулять данные в сторадже
       // которые подтянуться чуть позже, иначе они затираются
       if (start) setSelectedPeriod({
-        companyId,
-        period: {
+        companyId : paramsCompanyId,
+        period    : {
           start
         },
       });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [storeDate, storePeriodType, selectedPeriod.end]);
+  }, [paramsCompanyId, storeDate, storePeriodType, selectedPeriod.end]);
 
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     // Validate correct date & > 01-01-1900
     if (new Date(e.target.value)?.getTime() > -2208997817000) {
       setSelectedPeriod({
-        companyId,
-        period: { [type]: getMsFromRef(ref as MutableRefObject<HTMLInputElement>) },
+        companyId : paramsCompanyId,
+        period    : { [type]: getMsFromRef(ref as MutableRefObject<HTMLInputElement>) },
       });
     }
-  }, [companyId, type, setSelectedPeriod]);
+  }, [paramsCompanyId, type, setSelectedPeriod]);
 
 
   return (

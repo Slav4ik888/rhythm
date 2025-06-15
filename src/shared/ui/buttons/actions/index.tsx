@@ -24,7 +24,7 @@ type Props = {
 
 
 /**
- * v.2024-11-10
+ * DEPRECATED v.2024-11-10
  * Actions: Delete? Cancel? Submit
  */
 export const Actions: React.FC<Props> = ({ loading, hideIfNotChanges, disabledDelete, hookOpen, submitText,

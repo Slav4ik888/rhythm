@@ -14,12 +14,13 @@ export const customPalette = {
 
   text: {
     light: '#a6a6a6',
-    dark: '#8b8b8b',
-    main: '#2e2e2e',
+    main: '#505050',
+    dark: '#2e2e2e',
     focus: '#2e2e2e',
     primary: '#2e2e2e',
     secondary: '#000000',
     disabled: '#000000',
+    contrastText: '#000000',
   },
 
   inherit: {

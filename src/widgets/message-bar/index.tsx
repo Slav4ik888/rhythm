@@ -86,7 +86,7 @@ export const MessageBar: FC = memo(() => {
           pl: { xs: 3, sm: 4 },
           // backgroundColor: theme.palette.secondary.light,
           width: { xs: '100%', sm: '600px' },
-          zIndex: 2000,
+          zIndex: 10000, // Чтобы выше PageLoader
         }}
       >
         {message.message}

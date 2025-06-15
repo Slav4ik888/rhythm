@@ -24,6 +24,7 @@ export const useCompany = () => {
     clearErrors              = () => dispatch(a.setErrors({})),
 
     _isParamsCompanyIdLoaded = useSelector(s.selectIsParamsCompanyIdLoaded),
+    setIsParamsCompanyIdLoaded = (status: boolean) => dispatch(a.setIsParamsCompanyIdLoaded(status)),
     paramsCompany            = useSelector(s.selectParamsCompany),
     paramsCompanyId          = paramsCompany?.id,
     paramsCustomSettings     = useSelector(s.selectParamsCustomSettings),
@@ -51,6 +52,7 @@ export const useCompany = () => {
     clearErrors,
 
     _isParamsCompanyIdLoaded,
+    setIsParamsCompanyIdLoaded,
     paramsCompany,
     paramsCompanyId,
     paramsCustomSettings,

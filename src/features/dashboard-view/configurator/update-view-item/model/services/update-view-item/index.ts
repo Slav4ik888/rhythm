@@ -26,9 +26,10 @@ export const updateViewItems = createAsyncThunk<
   'features/dashboardView/updateViewItems',
   async (data, thunkApi) => {
     const { dispatch, rejectWithValue, extra } = thunkApi;
+    const { viewItems, companyId } = data;
 
     try {
-      await extra.api.post(paths.dashboard.view.update, { viewItems: data.viewItems });
+      await extra.api.post(paths.dashboard.view.update, { viewItems, companyId });
 
       return data;
     }

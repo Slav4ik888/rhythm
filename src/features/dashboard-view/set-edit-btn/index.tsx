@@ -15,15 +15,15 @@ interface Props {
 
 export const DashboardSetEditBtn: FC<Props> = memo(({ sx }) => {
   const { editMode, setEditMode } = useDashboardView();
-  const { companyId } = useCompany();
+  const { paramsCompanyId } = useCompany();
   const [text, setText] = useState<string>('');
 
   useEffect(() => {
     setText(editMode ? 'Выключить режим редактирования' : 'Включить режим редактирования');
   }, [editMode]);
 
-  const handleToggle = useCallback(() => setEditMode({ editMode: ! editMode, companyId }),
-    [editMode, companyId, setEditMode]);
+  const handleToggle = useCallback(() => setEditMode({ editMode: ! editMode, companyId: paramsCompanyId }),
+    [editMode, paramsCompanyId, setEditMode]);
 
 
   return (
