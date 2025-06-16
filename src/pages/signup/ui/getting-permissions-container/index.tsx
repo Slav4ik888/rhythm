@@ -1,10 +1,9 @@
 import { FC, memo } from 'react';
-import { SignupData, useSignup } from '../../model';
+import { useSignup } from '../../model';
+import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
-import { CheckboxContainer as Checkbox } from 'shared/ui/containers/items';
 import { PolicyDescription } from './policy-description';
 import { ErrorBox } from 'shared/ui/containers';
-import { UseGroup } from 'shared/lib/hooks';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { f } from 'shared/styles';
 
@@ -37,25 +36,24 @@ const useStyles = (theme: CustomTheme) => ({
 
 
 type Props = {
-  group: UseGroup<SignupData>
+  permissins         : boolean
+  onTogglePermission : () => void
 }
 
 
-export const GettingPermissionsContainer: FC<Props> = memo(({ group: S }) => {
-  const
-    sx = useStyles(useTheme()),
-    { errors } = useSignup();
+export const GettingPermissionsContainer: FC<Props> = memo(({ permissins, onTogglePermission }) => {
+  const sx = useStyles(useTheme());
+  const { errors } = useSignup();
 
 
   return (
     <Box sx={sx.root}>
       <Box sx={sx.boxCheck}>
         <Checkbox
-          scheme     = 'permissions'
-          group      = {S}
-          box
-          sx         = {{ bg: sx.sxBox }}
-          sxCheckbox = {sx.checkbox}
+          size       = 'small'
+          checked    = {permissins}
+          sx         = {sx?.root}
+          onChange   = {onTogglePermission}
         />
         <PolicyDescription />
       </Box>

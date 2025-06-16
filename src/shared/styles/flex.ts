@@ -1,10 +1,11 @@
-// v.2024-12-02
+// v.2025-06-16
 
 interface Flex {
   display         : 'flex'
   flexDirection?  : 'row' | 'column' | 'row-reverse' | 'column-reverse'
   alignItems?     : 'flex-start' | 'flex-end' | 'center' | 'baseline'
   justifyContent? : 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'baseline'
+  wrap?           : 'wrap' | 'nowrap' | 'wrap-reverse'
 }
 
 
@@ -40,6 +41,13 @@ export const f = (str?: string): Flex => {
     case 'sb': style.justifyContent = 'space-between'; break;
     case 'sa': style.justifyContent = 'space-around'; break;
     case 'b':  style.justifyContent = 'baseline'; break;
+    default: break;
+  }
+
+  switch (kod[3]) {
+    case 'w':  style.wrap = 'wrap'; break;
+    case 'nw': style.wrap = 'nowrap'; break;
+    case 'wr': style.wrap = 'wrap-reverse'; break;
     default: break;
   }
 

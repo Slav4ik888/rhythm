@@ -5,7 +5,7 @@ import { AuthByLogin } from '../model/services';
 import { validateAuthByLogin } from '../model/validators';
 import { LoginPageComponent } from './component';
 import { useUI } from 'entities/ui';
-import { RoutePath } from 'app/providers/routes';
+import { AppRoutes, RoutePath } from 'app/providers/routes';
 import { Navigate } from 'react-router-dom';
 import { useUser } from 'entities/user';
 
@@ -13,7 +13,7 @@ import { useUser } from 'entities/user';
 
 const LoginPage: FC = memo(() => {
   const { setErrorStatus } = useUI();
-  const { auth } = useUser();
+  const { loading: userLoading, auth } = useUser();
   const { loading, errors, setErrors, serviceAuthByLogin } = useLogin();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -39,10 +39,12 @@ const LoginPage: FC = memo(() => {
   }, [loading, serviceAuthByLogin, setErrors]);
 
 
-  if (auth) return <Navigate to={RoutePath.ROOT} replace />;
+  if (auth) return <Navigate to={RoutePath[AppRoutes.ROOT]} replace />;
+  if (userLoading) return null;
 
   return (
     <LoginPageComponent
+      loading     = {loading}
       emailRef    = {emailRef}
       passwordRef = {passwordRef}
       errors      = {errors}

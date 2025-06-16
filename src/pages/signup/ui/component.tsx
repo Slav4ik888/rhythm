@@ -1,12 +1,12 @@
 import { FC, memo, MutableRefObject } from 'react';
-import { SignupData, reducerSignupPage } from '../model';
+import { reducerSignupPage } from '../model';
 import { SignupContent as Content } from './content';
 import { GettingPermissionsContainer } from './getting-permissions-container';
-import { ActionMain, ActionHelps } from 'widgets/auth/action-container';
+import { ActionMain, ActionHelps } from 'shared/ui/pages/action-container';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
-import { UseGroup } from 'shared/lib/hooks';
-import { AuthContentWrapper, AuthCardHeader } from 'shared/ui/pages';
-import { InnerPageWrapper } from 'shared/ui/wrappers';
+import { LayoutInnerPage } from 'shared/ui/pages';
+import { ProfileContentWrapper } from 'shared/ui/wrappers';
+import { Errors } from 'shared/lib/validators';
 
 
 
@@ -16,35 +16,47 @@ const initialReducers: ReducersList = {
 
 
 interface Props {
-  group        : UseGroup<SignupData>
-  firstNameRef : MutableRefObject<null>
-  emailRef     : MutableRefObject<null>
-  passwordRef  : MutableRefObject<null>
-  onSubmit     : () => void
+  loading            : boolean
+  errors             : Errors
+  permissins         : boolean
+  companyNameRef     : MutableRefObject<null>
+  firstNameRef       : MutableRefObject<null>
+  emailRef           : MutableRefObject<null>
+  passwordRef        : MutableRefObject<null>
+  confirmRef         : MutableRefObject<null>
+  onTogglePermission : () => void
+  onSubmit           : () => void
 }
 
 
-export const SignupPageComponent: FC<Props> = memo(({ group: S, firstNameRef, emailRef, passwordRef, onSubmit }) => (
+export const SignupPageComponent: FC<Props> = memo(({
+  loading, errors, companyNameRef, confirmRef, permissins, firstNameRef, emailRef, passwordRef,
+  onSubmit, onTogglePermission
+}) => (
   <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
-    <InnerPageWrapper>
-      <AuthCardHeader type='signup' />
-
-      <AuthContentWrapper>
+    <LayoutInnerPage type='signup'>
+      <ProfileContentWrapper>
         <Content
-          group        = {S}
-          firstNameRef = {firstNameRef}
-          emailRef     = {emailRef}
-          passwordRef  = {passwordRef}
+          companyNameRef = {companyNameRef}
+          firstNameRef   = {firstNameRef}
+          emailRef       = {emailRef}
+          passwordRef    = {passwordRef}
+          confirmRef     = {confirmRef}
         />
 
-        <GettingPermissionsContainer group={S} />
+        <GettingPermissionsContainer
+          permissins         = {permissins}
+          onTogglePermission = {onTogglePermission}
+        />
         <ActionMain
           type     = 'signup'
+          loading  = {loading}
+          errors   = {errors}
           onSubmit = {onSubmit}
         />
         <ActionHelps type='signup' />
-      </AuthContentWrapper>
+      </ProfileContentWrapper>
 
-    </InnerPageWrapper>
+    </LayoutInnerPage>
   </DynamicModuleLoader>
 ));

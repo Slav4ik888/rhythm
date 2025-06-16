@@ -1,13 +1,12 @@
 import { FC, memo, MutableRefObject } from 'react';
-import TextField from '@mui/material/TextField';
-import { ActionMain, ActionHelps } from 'widgets/auth/action-container';
+import { ActionMain, ActionHelps } from 'shared/ui/pages/action-container';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 import { reducer as reducerLoginPage } from '../model/slice';
-import { AuthContentWrapper, AuthCardHeader, useStylesAuth } from 'shared/ui/pages';
-import { GridWrap } from 'shared/ui/containers';
-import { useTheme } from 'app/providers/theme';
 import { Errors } from 'shared/lib/validators';
-import { InnerPageWrapper } from 'shared/ui/wrappers';
+import { LayoutInnerPage } from 'shared/ui/pages';
+import { ProfileContentWrapper } from 'shared/ui/wrappers';
+import { TextFieldItem } from 'shared/ui/mui-components';
+import { RecoveryPassword } from './recovery-password';
 
 
 
@@ -17,6 +16,7 @@ const reducers: ReducersList = {
 
 
 interface Props {
+  loading     : boolean
   emailRef    : MutableRefObject<null>
   passwordRef : MutableRefObject<null>
   errors      : Errors
@@ -24,49 +24,35 @@ interface Props {
 }
 
 
-export const LoginPageComponent: FC<Props> = memo(({ emailRef, passwordRef, errors, onSubmit }) => {
-  const sx = useStylesAuth(useTheme());
+export const LoginPageComponent: FC<Props> = memo(({ emailRef, passwordRef, errors, loading, onSubmit }) => (
+  <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+    <LayoutInnerPage type='login'>
+      <ProfileContentWrapper>
+        <TextFieldItem
+          label    = 'Введите email'
+          name     = 'email'
+          ref      = {emailRef}
+          scheme   = 'email'
+          errors   = {errors}
+        />
+        <TextFieldItem
+          label    = 'Введите пароль'
+          name     = 'password'
+          ref      = {passwordRef}
+          scheme   = 'password'
+          errors   = {errors}
+        />
 
-
-  return (
-    <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-      <InnerPageWrapper>
-        <AuthCardHeader type='login' />
-
-        <AuthContentWrapper>
-          <GridWrap grid={{ sm: 12 }} sx={{ root: sx.gridItem }}>
-            <TextField
-              fullWidth
-              name       = 'email'
-              type       = 'email'
-              label      = 'Введите email'
-              inputRef   = {emailRef}
-              helperText = {errors?.email}
-              error      = {errors?.email ? true : false}
-              sx         = {sx.textField}
-            />
-          </GridWrap>
-
-          <GridWrap grid={{ sm: 12 }} sx={{ root: sx.gridItem }}>
-            <TextField
-              fullWidth
-              name       = 'password'
-              type       = 'password'
-              label      = 'Введите пароль'
-              inputRef   = {passwordRef}
-              helperText = {errors?.password}
-              error      = {errors?.password ? true : false}
-              sx         = {sx.textField}
-            />
-          </GridWrap>
-
-          <ActionMain
-            type     = 'login'
-            onSubmit = {onSubmit}
-          />
-          <ActionHelps type='login' />
-        </AuthContentWrapper>
-      </InnerPageWrapper>
-    </DynamicModuleLoader>
-  );
-});
+        <ActionMain
+          type     = 'login'
+          loading  = {loading}
+          errors   = {errors}
+          onSubmit = {onSubmit}
+        />
+        <ActionHelps type='login'>
+          <RecoveryPassword />
+        </ActionHelps>
+      </ProfileContentWrapper>
+    </LayoutInnerPage>
+  </DynamicModuleLoader>
+));

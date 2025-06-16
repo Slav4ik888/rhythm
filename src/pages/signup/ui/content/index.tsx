@@ -1,91 +1,60 @@
-import * as React from 'react';
-import { SignupData, useSignup } from '../../model';
-import { TextfieldItem } from 'shared/ui/containers/items';
-import { UseGroup } from 'shared/lib/hooks';
-import { useTheme } from 'app/providers/theme';
-import TextField from '@mui/material/TextField';
-import { MutableRefObject } from 'react';
-import { GridWrap } from 'shared/ui/containers';
-import { useStylesAuth } from 'shared/ui/pages';
+import { memo, FC, MutableRefObject } from 'react';
+import { TextFieldItem } from 'shared/ui/mui-components';
+import { useSignup } from '../../model/hooks';
 
 
 
 type Props = {
-  group        : UseGroup<SignupData>
-  firstNameRef : MutableRefObject<null>
-  emailRef     : MutableRefObject<null>
-  passwordRef  : MutableRefObject<null>
+  companyNameRef : MutableRefObject<null>
+  firstNameRef   : MutableRefObject<null>
+  emailRef       : MutableRefObject<null>
+  passwordRef    : MutableRefObject<null>
+  confirmRef     : MutableRefObject<null>
 }
 
 
-export const SignupContent: React.FC<Props> = ({ firstNameRef, emailRef, passwordRef, group: S }) => {
-  const
-    sx = useStylesAuth(useTheme()),
-    { errors } = useSignup();
-
+export const SignupContent: FC<Props> = memo(({
+  companyNameRef, firstNameRef, emailRef, passwordRef, confirmRef
+}) => {
+  const { errors } = useSignup();
 
   return (
     <>
-      <TextfieldItem
-        label      = 'Название компании'
-        name       = 'companyName'
-        scheme     = 'companyName'
-        grid       = {{ sm: 12 }}
-        sx         = {{ root: sx.gridItem, bg: sx.textField }}
-        group      = {S}
-        errorField = 'companyName'
-        errors     = {errors}
+      <TextFieldItem
+        label    = 'Название компании'
+        name     = 'companyName'
+        ref      = {companyNameRef}
+        scheme   = 'companyName'
+        errors   = {errors}
       />
-
-      <GridWrap grid={{ sm: 12 }} sx={{ root: sx.gridItem }}>
-        <TextField
-          fullWidth
-          name       = 'name'
-          label      = 'Ваше имя'
-          inputRef   = {firstNameRef}
-          helperText = {errors?.firstName}
-          error      = {errors?.firstName ? true : false}
-          sx         = {sx.textField}
-        />
-      </GridWrap>
-
-      <GridWrap grid={{ sm: 12 }} sx={{ root: sx.gridItem }}>
-        <TextField
-          fullWidth
-          name       = 'email'
-          type       = 'email'
-          label      = 'Введите email'
-          inputRef   = {emailRef}
-          helperText = {errors?.email}
-          error      = {errors?.email ? true : false}
-          sx         = {sx.textField}
-        />
-      </GridWrap>
-
-      <GridWrap grid={{ sm: 12 }} sx={{ root: sx.gridItem }}>
-        <TextField
-          fullWidth
-          name       = 'password'
-          type       = 'password'
-          label      = 'Введите пароль'
-          inputRef   = {passwordRef}
-          helperText = {errors?.password}
-          error      = {errors?.password ? true : false}
-          sx         = {sx.textField}
-        />
-      </GridWrap>
-
-      <TextfieldItem
-        label      = 'Повторите пароль'
-        type       = 'password'
-        name       = 'confirmPassword'
-        scheme     = 'confirmPassword'
-        grid       = {{ sm: 12 }}
-        sx         = {{ root: sx.gridItem, bg: sx.textField }}
-        group      = {S}
-        errorField = 'confirmPassword'
-        errors     = {errors}
+      <TextFieldItem
+        label    = 'Ваше имя'
+        name     = 'firstName'
+        ref      = {firstNameRef}
+        scheme   = 'firstName'
+        errors   = {errors}
+      />
+      <TextFieldItem
+        label    = 'Введите email'
+        name     = 'email'
+        ref      = {emailRef}
+        scheme   = 'email'
+        errors   = {errors}
+      />
+      <TextFieldItem
+        label    = 'Введите пароль'
+        name     = 'password'
+        ref      = {passwordRef}
+        scheme   = 'password'
+        errors   = {errors}
+      />
+      <TextFieldItem
+        label    = 'Повторите пароль'
+        name     = 'confirm'
+        ref      = {confirmRef}
+        scheme   = 'confirm'
+        errors   = {errors}
       />
     </>
-  );
-};
+  )
+});

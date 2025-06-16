@@ -1,13 +1,11 @@
 import { FC, memo, ChangeEvent } from 'react';
 import { Errors } from 'shared/lib/validators';
-import { MDDivider } from 'shared/ui/mui-design-components';
-import { InnerPageWrapper } from 'shared/ui/wrappers';
 import { Company } from 'entities/company';
 import { Actions } from 'shared/ui/buttons';
-import Typography from '@mui/material/Typography';
 import { f, pxToRem } from 'shared/styles';
 import Box from '@mui/material/Box';
 import { TextFieldItem } from 'shared/ui/mui-components';
+import { LayoutInnerPage } from 'shared/ui/pages';
 
 
 
@@ -25,12 +23,7 @@ interface Props {
 export const CompanyProfilePageComponent: FC<Props> = memo(({ isChanges, formData,
   loading, errors, onCancel, onSubmit, onChange
 }) => (
-  <InnerPageWrapper containerType='md'>
-    <Typography variant='h6' color='text.dark' textAlign='center' textTransform='none' mb={2}>
-      Профиль компании
-    </Typography>
-    <MDDivider />
-
+  <LayoutInnerPage type='company-profile'>
     <Box sx={{ ...f('c'), gap: 4, width: { xs: '100%', md: '50%' }, maxWidth: pxToRem(300) }}>
       <TextFieldItem
         label        = 'Название компании'
@@ -75,5 +68,5 @@ export const CompanyProfilePageComponent: FC<Props> = memo(({ isChanges, formDat
       onCancel  = {onCancel}
       onSubmit  = {onSubmit}
     />
-  </InnerPageWrapper>
+  </LayoutInnerPage>
 ));

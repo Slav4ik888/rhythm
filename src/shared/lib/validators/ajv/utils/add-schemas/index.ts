@@ -8,7 +8,7 @@ import {
 import { schemaAuthByLogin } from 'pages/login/model/validators/schemas';
 import { schemaSignupData } from 'pages/signup/model/validators/schemas';
 // eslint-disable-next-line max-len
-import { schemaRecoveryData } from 'widgets/auth/action-container/action-helps/recovery-password/model/validators/schemas';
+import { schemaRecoveryData } from 'pages/login/ui/recovery-password/model/validators/schemas';
 
 
 

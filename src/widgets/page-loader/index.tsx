@@ -6,24 +6,22 @@ import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 type Props = {
-  loading?: boolean
-  text?: string
+  loading? : boolean
+  text?    : string
 }
 
 /**
- * v.2025-06-15
+ * v.2025-06-16
  * Center block loader with text message
  */
 export const PageLoader: FC<Props> = memo(({ loading, text }) => {
-  const { pageLoading } = useUI();
+  const { pageText } = useUI();
 
-  if (text) __devLog('PageLoader text: ', text, 'pageLoading:', pageLoading, 'loading:', loading);
-
-  if (! pageLoading && ! loading) return null;
+  if (! pageText && ! loading) return null;
 
   return (
     <PageLoaderContainer
-      loading = {pageLoading}
+      loading = {Boolean(pageText)}
       text    = {text}
     />
   )

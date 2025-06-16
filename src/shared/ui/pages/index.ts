@@ -1,6 +1,2 @@
-export { ArrowToWorkSpaceBtn } from './arrow-to-work-space-btn'
 export { ScrollToTop } from './scroll-to-top'
-export * from './auth/card-header'
-export * from './auth/content-wrapper'
-export * from './auth/use-styles-auth'
-export * from './inner-page-header'
+export { LayoutInnerPage, LayoutInnerPageType } from './layouts/layout-inner-page'

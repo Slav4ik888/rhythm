@@ -11,6 +11,7 @@ import { useUser } from 'entities/user';
 import { isEmpty, isNotEmpty } from 'shared/helpers/objects';
 import { useUI } from 'entities/ui';
 import { PageLoader } from 'widgets/page-loader';
+import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 
@@ -25,6 +26,7 @@ export const DashboardBodyContent = memo(() => {
   const { setPageText } = useUI();
   const [isRendering, setIsRendering] = useState(true);
 
+  __devLog('viewItems:', viewItems.length);
 
   useLayoutEffect(() => {
     // Проверяем завершение рендера в RAF (после paint)

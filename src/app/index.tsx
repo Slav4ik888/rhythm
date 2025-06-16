@@ -22,14 +22,6 @@ export const App: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   });
 
-  // Setting page scroll to 0 when changing the route
-  useEffect(() => {
-    document.documentElement.scrollTop = 0;
-    // @ts-ignore
-    document.scrollingElement.scrollTop = 0;
-  }, [pathname]);
-
-
   // Replace to saved path
   useEffect(() => {
     if (auth && replacePath) {

@@ -54,7 +54,6 @@ export const useUI = () => {
 
   return {
     loading,
-
     // Page Loader
     pageLoading,
     setPageLoading,
