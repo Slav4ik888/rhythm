@@ -31,6 +31,7 @@ export const LoginPageComponent: FC<Props> = memo(({ emailRef, passwordRef, erro
         <TextFieldItem
           label    = 'Введите email'
           name     = 'email'
+          type     = 'email'
           ref      = {emailRef}
           scheme   = 'email'
           errors   = {errors}
@@ -38,6 +39,7 @@ export const LoginPageComponent: FC<Props> = memo(({ emailRef, passwordRef, erro
         <TextFieldItem
           label    = 'Введите пароль'
           name     = 'password'
+          type     = 'password'
           ref      = {passwordRef}
           scheme   = 'password'
           errors   = {errors}

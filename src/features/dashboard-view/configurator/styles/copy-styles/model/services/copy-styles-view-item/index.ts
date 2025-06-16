@@ -7,10 +7,10 @@ import { PartialViewItem } from 'entities/dashboard-view';
 
 
 export interface CopyStylesItem {
-  companyId : string
-  viewItems : PartialViewItem[]
+  viewUpdatedMs : number
+  companyId     : string
+  viewItems     : PartialViewItem[]
 }
-
 
 /**
  * Копируем стили для выбранного элемента,
@@ -25,7 +25,7 @@ export const copyStylesViewItem = createAsyncThunk<
     const { dispatch, rejectWithValue, extra } = thunkApi;
 
     try {
-      await extra.api.post(paths.dashboard.view.update, { viewItems: data.viewItems });
+      await extra.api.post(paths.dashboard.view.update, data);
 
       return data;
     }

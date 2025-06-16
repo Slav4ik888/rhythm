@@ -11,7 +11,7 @@ import {
   ChangeOneChartsItem, SetEditMode
 } from './types';
 import { updateEntities } from 'entities/base';
-import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem } from '../types';
+import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem, ViewItem } from '../types';
 import { cloneObj, updateObject } from 'shared/helpers/objects';
 import { updateChartsItem } from '../utils';
 import { ChartConfigDatasets } from 'entities/charts';
@@ -66,6 +66,15 @@ export const slice = createSlice({
 
     setDashboardView: (state, { payload }: PayloadAction<SetDashboardView>) => {
       state.entities            = updateEntities(state.entities, payload.viewItems);
+      state.activatedMovementId = '';
+      state.activatedCopied     = undefined;
+      state.bright              = false;
+    },
+
+    // Берём закэшированную версию
+    setDashboardViewFromCache: (state, { payload }: PayloadAction<string>) => {
+      const viewItems = LS.getDashboardView(payload) as ViewItem[] || [];
+      state.entities            = updateEntities({}, viewItems);
       state.activatedMovementId = '';
       state.activatedCopied     = undefined;
       state.bright              = false;
@@ -244,7 +253,7 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(createGroupViewItems.fulfilled, (state, { payload }: PayloadAction<CreateGroupViewItems>) => {
-        const { viewItems, companyId } = payload;
+        const { viewItems, companyId, viewUpdatedMs } = payload;
 
         state.entities            = updateEntities(state.entities, viewItems);
         state.activatedMovementId = '';
@@ -254,6 +263,7 @@ export const slice = createSlice({
         state.errors              = {};
 
         LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
+        LS.setDashboardViewUpdated(companyId, viewUpdatedMs);
       })
       .addCase(createGroupViewItems.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
@@ -268,7 +278,7 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(updateViewItems.fulfilled, (state, { payload }: PayloadAction<UpdateViewItems>) => {
-        const { viewItems, companyId, newStoredViewItem } = payload;
+        const { viewItems, companyId, newStoredViewItem, viewUpdatedMs } = payload;
 
         state.entities            = updateEntities(state.entities, viewItems);
         // state.entities[viewItem.id] = updateObject(state.entities[viewItem.id], viewItem);
@@ -283,6 +293,7 @@ export const slice = createSlice({
         state.errors              = {};
 
         LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
+        LS.setDashboardViewUpdated(companyId, viewUpdatedMs);
       })
       .addCase(updateViewItems.rejected, (state, { payload }) => {
         state.newStoredViewItem = undefined; // Раз обновление завершилось с ошибкой, то нельзя переключаться на новый элемент
@@ -298,7 +309,7 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(copyStylesViewItem.fulfilled, (state, { payload }: PayloadAction<CopyStylesItem>) => {
-        const { viewItems, companyId } = payload;
+        const { viewItems, companyId, viewUpdatedMs } = payload;
 
         // Настроено на копирование 1 элемента но передаётся [] тк для отправки на сервер используется update
         if (state.activatedCopied?.id) {
@@ -316,6 +327,7 @@ export const slice = createSlice({
         state.errors              = {};
 
         LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
+        LS.setDashboardViewUpdated(companyId, viewUpdatedMs);
       })
       .addCase(copyStylesViewItem.rejected, (state, { payload }) => {
         state.newStoredViewItem = undefined; // Раз обновление завершилось с ошибкой, то нельзя переключаться на новый элемент
@@ -331,7 +343,7 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(deleteViewItem.fulfilled, (state, { payload }: PayloadAction<DeleteViewItem>) => {
-        const { companyId, allIds } = payload;
+        const { companyId, allIds, viewUpdatedMs } = payload;
 
         allIds.forEach(id => delete state.entities[id]);
 
@@ -346,6 +358,7 @@ export const slice = createSlice({
         state.errors              = {};
 
         LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
+        LS.setDashboardViewUpdated(companyId, viewUpdatedMs);
       })
       .addCase(deleteViewItem.rejected, (state, { payload }) => {
         state.errors  = getError(payload);

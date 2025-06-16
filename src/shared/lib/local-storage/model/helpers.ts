@@ -36,6 +36,10 @@ export const getDashboardView = (companyId: string) => getStorageData<ViewItem[]
 export const setDashboardViewEditMode = (companyId: string, editMode: boolean) => setStorageData(`DashboardViewEditMode-${companyId}`, { editMode });
 export const getDashboardViewEditMode = (companyId: string): boolean => Boolean(getStorageData<{ editMode?: boolean }>(`DashboardViewEditMode-${companyId}`)?.editMode);
 
+/** Tampstamp of last update */
+export const setDashboardViewUpdated = (companyId: string, viewUpdatedMs: number) => setStorageData(`DashboardViewUpdated-${companyId}`, viewUpdatedMs);
+export const getDashboardViewUpdated = (companyId: string) => getStorageData<number>(`DashboardViewUpdated-${companyId}`);
+
 
 export const devSetGSData = (companyId: string, data: ResGetData) => setStorageData(`Dashboard-GSData-${companyId}`, data);
 export const devGetGSData = (companyId: string) => getStorageData<ResGetData>(`Dashboard-GSData-${companyId}`);

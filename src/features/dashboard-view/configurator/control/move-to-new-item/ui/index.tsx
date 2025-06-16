@@ -32,7 +32,11 @@ export const MoveToNewItem: FC = memo(() => {
       }
     );
 
-    serviceCreateGroupViewItems({ companyId: paramsCompanyId, viewItems: [newBoxItem] });
+    serviceCreateGroupViewItems({
+      companyId     : paramsCompanyId,
+      viewUpdatedMs : Date.now(),
+      viewItems     : [newBoxItem]
+    });
 
     // SelectedItem is moving to new Box
     const updatedItem = {
@@ -43,6 +47,7 @@ export const MoveToNewItem: FC = memo(() => {
     serviceUpdateViewItems({
       companyId         : paramsCompanyId,
       viewItems         : [updatedItem],
+      viewUpdatedMs     : Date.now(),
       newStoredViewItem : updatedItem
     });
   }, [userId, paramsCompanyId, selectedItem, serviceCreateGroupViewItems, serviceUpdateViewItems]);

@@ -1,9 +1,10 @@
+import { useMemo } from 'react';
 import * as s from '../../selectors';
 import { actions as a } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
-import { Company, CustomSettings, PartialCompany } from '../../types';
+import { CustomSettings, PartialCompany } from '../../types';
 import { getParamsCompany, updateCompany } from 'features/company';
 
 
@@ -15,59 +16,49 @@ import { getParamsCompany, updateCompany } from 'features/company';
 //   const
 //     { } = config,
 export const useCompany = () => {
-  const
-    dispatch                 = useAppDispatch(),
+  const dispatch = useAppDispatch();
 
-    loading                  = useSelector(s.selectLoading),
-    errors                   = useSelector(s.selectErrors),
-    setErrors                = (errors: Errors) => dispatch(a.setErrors(errors)),
-    clearErrors              = () => dispatch(a.setErrors({})),
+  const loading                  = useSelector(s.selectLoading);
+  const errors                   = useSelector(s.selectErrors);
+  const _isParamsCompanyIdLoaded = useSelector(s.selectIsParamsCompanyIdLoaded);
+  const paramsCompany            = useSelector(s.selectParamsCompany);
+  const paramsCompanyId          = paramsCompany?.id;
+  const paramsViewUpdated        = paramsCompany?.viewUpdated;
+  const paramsCustomSettings     = useSelector(s.selectParamsCustomSettings);
+  const paramsChangedCompany     = useSelector(s.selectParamsChangedCompany); // Объект с изменившимися полями
+  const company                  = useSelector(s.selectCompany);
+  const companyId                = company?.id;
+  const storedCompany            = useSelector(s.selectStoredCompany);
+  // customSettings           = useSelector(s.selectCustomSettings);
+  // changedCompany           = useSelector(s.selectChangedCompany); // Объект с изменившимися полями
+  // updateCustomSettings     = (data: Partial<CustomSettings>) => dispatch(a.updateCustomSettings(data));
+  // cancelCustomSettings     = () => dispatch(a.cancelCustomSettings());
+  // serviceDeleteCompany = (companyId: string) => dispatch(deleteCompany(companyId));
 
-    _isParamsCompanyIdLoaded = useSelector(s.selectIsParamsCompanyIdLoaded),
-    setIsParamsCompanyIdLoaded = (status: boolean) => dispatch(a.setIsParamsCompanyIdLoaded(status)),
-    paramsCompany            = useSelector(s.selectParamsCompany),
-    paramsCompanyId          = paramsCompany?.id,
-    paramsCustomSettings     = useSelector(s.selectParamsCustomSettings),
-    paramsChangedCompany     = useSelector(s.selectParamsChangedCompany), // Объект с изменившимися полями
-    updateParamsCustomSettings = (data: Partial<CustomSettings>) => dispatch(a.updateParamsCustomSettings(data)),
-    cancelParamsCustomSettings = () => dispatch(a.cancelParamsCustomSettings()),
-    serviceGetParamsCompany  = (companyId: string) => dispatch(getParamsCompany({ companyId })),
-
-    company                  = useSelector(s.selectCompany),
-    companyId                = company?.id,
-    storedCompany            = useSelector(s.selectStoredCompany),
-    // customSettings           = useSelector(s.selectCustomSettings),
-    // changedCompany           = useSelector(s.selectChangedCompany), // Объект с изменившимися полями
-    // updateCustomSettings     = (data: Partial<CustomSettings>) => dispatch(a.updateCustomSettings(data)),
-    // cancelCustomSettings     = () => dispatch(a.cancelCustomSettings()),
-    serviceUpdateCompany     = (company: PartialCompany) => dispatch(updateCompany(company));
-    // serviceDeleteCompany = (companyId: string) => dispatch(deleteCompany(companyId)),
-
+  const api = useMemo(() => ({
+    setErrors                  : (errors: Errors) => dispatch(a.setErrors(errors)),
+    clearErrors                : () => dispatch(a.setErrors({})),
+    setIsParamsCompanyIdLoaded : (status: boolean) => dispatch(a.setIsParamsCompanyIdLoaded(status)),
+    updateParamsCustomSettings : (data: Partial<CustomSettings>) => dispatch(a.updateParamsCustomSettings(data)),
+    cancelParamsCustomSettings : () => dispatch(a.cancelParamsCustomSettings()),
+    serviceGetParamsCompany    : (companyId: string) => dispatch(getParamsCompany({ companyId })),
+    serviceUpdateCompany       : (company: PartialCompany) => dispatch(updateCompany(company)),
+  }), [dispatch]);
 
 
   return {
     loading,
     errors,
-    setErrors,
-    clearErrors,
-
     _isParamsCompanyIdLoaded,
-    setIsParamsCompanyIdLoaded,
     paramsCompany,
     paramsCompanyId,
+    paramsViewUpdated,
     paramsCustomSettings,
     paramsChangedCompany,
-    serviceGetParamsCompany,
-    updateParamsCustomSettings,
-    cancelParamsCustomSettings,
 
     company,
     companyId,
     storedCompany,
-    // customSettings,
-    // changedCompany,
-    // updateCustomSettings,
-    // cancelCustomSettings,
-    serviceUpdateCompany,
+    ...api
   }
 };

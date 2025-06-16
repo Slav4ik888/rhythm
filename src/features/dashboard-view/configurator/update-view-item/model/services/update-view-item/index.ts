@@ -7,6 +7,7 @@ import { PartialViewItem } from 'entities/dashboard-view';
 
 
 export interface UpdateViewItems {
+  viewUpdatedMs      : number
   companyId          : string
   viewItems          : PartialViewItem[]
   newStoredViewItem? : PartialViewItem // для сохранения из UnsavedChanges чтобы сохранился текущий элемент
@@ -26,10 +27,9 @@ export const updateViewItems = createAsyncThunk<
   'features/dashboardView/updateViewItems',
   async (data, thunkApi) => {
     const { dispatch, rejectWithValue, extra } = thunkApi;
-    const { viewItems, companyId } = data;
 
     try {
-      await extra.api.post(paths.dashboard.view.update, { viewItems, companyId });
+      await extra.api.post(paths.dashboard.view.update, data);
 
       return data;
     }

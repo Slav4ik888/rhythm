@@ -29,7 +29,11 @@ export const AddRows: FC = memo(() => {
       }
     )];
 
-    serviceCreateGroupViewItems({ companyId: paramsCompanyId, viewItems });
+    serviceCreateGroupViewItems({
+      companyId     : paramsCompanyId,
+      viewUpdatedMs : Date.now(),
+      viewItems,
+    });
   }, [selectedId, paramsCompanyId, userId, childrenViewItems, serviceCreateGroupViewItems]);
 
 

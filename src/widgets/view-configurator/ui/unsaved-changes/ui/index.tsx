@@ -34,7 +34,12 @@ export const UnsavedChanges: FC = memo(() => {
     if (isEmpty(changedViewItem)) return
     /** Сохраняем изменившиеся поля | стили */
     const viewItem = { id: selectedId, ...changedViewItem };
-    serviceUpdateViewItems({ companyId: paramsCompanyId, viewItems: [viewItem], newStoredViewItem: viewItem });
+    serviceUpdateViewItems({
+      companyId         : paramsCompanyId,
+      viewItems         : [viewItem],
+      newStoredViewItem : viewItem,
+      viewUpdatedMs     : Date.now(),
+    });
   }, [paramsCompanyId, selectedId, paramsChangedCompany, changedViewItem,
     serviceUpdateViewItems, serviceUpdateCompany]);
 

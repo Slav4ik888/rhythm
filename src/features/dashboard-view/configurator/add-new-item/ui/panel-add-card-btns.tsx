@@ -42,7 +42,7 @@ export const PanelAddViewItemBtns: FC<Props> = memo(({ parentId }) => {
       }
     )];
 
-    serviceCreateGroupViewItems({ companyId: paramsCompanyId, viewItems });
+    serviceCreateGroupViewItems({ companyId: paramsCompanyId, viewItems, viewUpdatedMs: Date.now() });
   }, [userId, paramsCompanyId, selectedId, parentId, childrenViewItems, serviceCreateGroupViewItems]);
 
 

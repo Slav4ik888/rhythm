@@ -31,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refact LayoutInnerPage" && git push -u origin main
+// git add . && git commit -m "added viewUpdated & refacted" && git push -u origin main

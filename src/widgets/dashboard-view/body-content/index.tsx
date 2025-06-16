@@ -26,7 +26,6 @@ export const DashboardBodyContent = memo(() => {
   const { setPageText } = useUI();
   const [isRendering, setIsRendering] = useState(true);
 
-  __devLog('viewItems:', viewItems.length);
 
   useLayoutEffect(() => {
     // Проверяем завершение рендера в RAF (после paint)
@@ -88,12 +87,21 @@ export const DashboardBodyContent = memo(() => {
       };
 
       // updateViewItems(updatedViewItems); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
-      serviceUpdateViewItems({ companyId: paramsCompanyId, viewItems: updatedViewItems, newStoredViewItem });
+      serviceUpdateViewItems({
+        companyId     : paramsCompanyId,
+        viewItems     : updatedViewItems,
+        viewUpdatedMs : Date.now(),
+        newStoredViewItem
+      });
     }
 
     else if (activatedCopied?.type === 'copyStyles') {
       if (selectedId === id) return // Нажали на этот же элемент
-      serviceCopyStyles({ companyId: paramsCompanyId, viewItems: [{ id, styles: { ...selectedItem.styles } }] });
+      serviceCopyStyles({
+        companyId     : paramsCompanyId,
+        viewItems     : [{ id, styles: { ...selectedItem.styles } }],
+        viewUpdatedMs : Date.now(),
+      });
     }
 
     // Если активирован выбранный элемент для КОПИРОВАНИЯ то его вставляем в выбранный элемент
@@ -111,7 +119,11 @@ export const DashboardBodyContent = memo(() => {
       );
 
       setDashboardView({ companyId: paramsCompanyId, viewItems: copiedViewItems }); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
-      serviceCreateGroupViewItems({ companyId: paramsCompanyId, viewItems: copiedViewItems });
+      serviceCreateGroupViewItems({
+        companyId     : paramsCompanyId,
+        viewItems     : copiedViewItems,
+        viewUpdatedMs : Date.now(),
+      });
     }
     else if (isUnsaved) {
       if (selectedId === id) return // Click на самого себя не сохранять, тк это может быть ошибочный клик
@@ -123,7 +135,12 @@ export const DashboardBodyContent = memo(() => {
       if (isEmpty(changedViewItem)) return
 
       const viewItem = { id: selectedId, ...changedViewItem };
-      serviceUpdateViewItems({ companyId: paramsCompanyId, viewItems: [viewItem], newStoredViewItem: viewItem });
+      serviceUpdateViewItems({
+        companyId         : paramsCompanyId,
+        viewItems         : [viewItem],
+        newStoredViewItem : viewItem,
+        viewUpdatedMs     : Date.now(),
+      });
       setNewSelectedId(id); // Здесь сохраняется в newSelectedId а активация выбранного id происходит в useEffect
     }
     else {

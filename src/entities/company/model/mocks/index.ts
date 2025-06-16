@@ -1,7 +1,7 @@
 import { creatorFixDate } from 'entities/base';
 import { MOCK_DATE_13_03_2023 } from 'entities/base/mocks';
 import { creatorCompany } from '../creators';
-import { CompanyDashboardData, Company, CompanyStatus } from '../types';
+import { Company, CompanyStatus } from '../types';
 
 
 export const MOCK_OWNER_ID   = '7mNs77rglRfvjuuIEf57ZvMFVr82';
@@ -19,8 +19,9 @@ export const MOCK_COMPANY_EMPTY: Company = {
   },
 
   status         : CompanyStatus.NEW,
-  dashboardData  : {} as CompanyDashboardData,
+  // dashboardData  : {} as CompanyDashboardData,
   customSettings : {},
+  viewUpdated    : creatorFixDate(),
 
   createdAt      : creatorFixDate(),
   lastChange     : creatorFixDate()

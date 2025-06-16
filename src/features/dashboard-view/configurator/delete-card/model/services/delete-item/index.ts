@@ -7,8 +7,9 @@ import { ViewItemId } from 'entities/dashboard-view';
 
 
 export interface DeleteViewItem {
-  companyId : string
-  allIds    : ViewItemId[] // Ids всех вложенных элементов
+  viewUpdatedMs : number
+  companyId     : string
+  allIds        : ViewItemId[] // Ids всех вложенных элементов
 }
 
 /** Удаляем выбранный элемент */

@@ -1,6 +1,6 @@
 import { creatorFixDate } from 'entities/base/model/creators';
 import { cloneObj } from 'shared/helpers/objects';
-import { CompanyDashboardData, Company, CompanyStatus } from '../../types';
+import { Company, CompanyStatus } from '../../types';
 
 
 
@@ -14,9 +14,9 @@ export const creatorCompany = (cfg: Partial<Company> = {} as Company): Company =
   status         : cfg.status        || CompanyStatus.NEW,
 
   googleData     : cfg.googleData    || { url: '' }, // TODO: add to tests
-  dashboardData  : cfg.dashboardData || {} as CompanyDashboardData,
+  // dashboardData  : cfg.dashboardData || {} as CompanyDashboardData,
   customSettings : cfg.customSettings || {},
-
+  viewUpdated    : cfg.viewUpdated   || creatorFixDate(cfg.id),
   createdAt      : cfg.createdAt     || creatorFixDate(cfg.id),
   lastChange     : cfg.lastChange    || creatorFixDate(cfg.id)
 });

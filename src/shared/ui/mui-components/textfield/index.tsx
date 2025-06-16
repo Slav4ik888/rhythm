@@ -9,6 +9,7 @@ interface Props {
   defaultValue? : string // If not ref present
   scheme        : string
   ref?          : MutableRefObject<null>
+  type?         : 'text' | 'number' | 'password' | 'email'
   fullWidth?    : boolean
   disabled?     : boolean
   label?        : string

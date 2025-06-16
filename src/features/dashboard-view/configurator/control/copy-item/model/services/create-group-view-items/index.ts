@@ -7,8 +7,9 @@ import { ViewItem } from 'entities/dashboard-view';
 
 
 export interface CreateGroupViewItems {
-  companyId : string
-  viewItems : ViewItem[]
+  viewUpdatedMs : number
+  companyId     : string
+  viewItems     : ViewItem[]
 }
 
 export const createGroupViewItems = createAsyncThunk<
@@ -19,10 +20,9 @@ export const createGroupViewItems = createAsyncThunk<
   'features/dashboardView/createGroupViewItems',
   async (data, thunkApi) => {
     const { dispatch, rejectWithValue, extra } = thunkApi;
-    const { viewItems, companyId } = data;
 
     try {
-      await extra.api.post(paths.dashboard.view.createGroupItems, { viewItems, companyId });
+      await extra.api.post(paths.dashboard.view.createGroupItems, data);
 
       return data;
     }

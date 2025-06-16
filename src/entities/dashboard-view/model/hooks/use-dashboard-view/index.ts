@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import * as s from '../../selectors';
 import { actions as a } from '../../slice';
 import { useSelector } from 'react-redux';
@@ -23,107 +24,99 @@ interface Config {
 }
 
 export const useDashboardView = (config: Config = {}) => {
-  const
-    { parentId } = config,
-    dispatch = useAppDispatch(),
+  const { parentId } = config;
+  const dispatch = useAppDispatch();
 
-    loading                  = useSelector(s.selectLoading),
-    errors                   = useSelector(s.selectErrors),
-    setErrors                = (errors: Errors) => dispatch(a.setErrors(errors)),
-    clearErrors              = () => dispatch(a.setErrors({})),
-    isMounted                = useSelector(s.selectIsMounted),
+  const loading                  = useSelector(s.selectLoading);
+  const errors                   = useSelector(s.selectErrors);
+  const isMounted                = useSelector(s.selectIsMounted);
+  const editMode = useSelector(s.selectEditMode);
+  const entities                 = useSelector(s.selectEntities);
+  const viewItems                = useSelector(s.selectViewItems);
+  const parentsViewItems = useSelector(s.selectParentsViewItems);
+  const activatedMovementId      = useSelector(s.selectActivatedMovementId);
+  const activatedCopied          = useSelector(s.selectActivatedCopied);
+  const newSelectedId            = useSelector(s.selectNewSelectedId);
+  const selectedId               = useSelector(s.selectSelectedId);
+  const bright                   = useSelector(s.selectBright);
+  const selectedItem             = useSelector(s.selectSelectedItem);
+  const fromGlobalKod            = useSelector(s.selectFromGlobalKod);
+  const globalKodParent          = useSelector(s.selectGlobalKodParent);
 
-    setInitial               = (state: StateSchemaDashboardView) => dispatch(a.setInitial(state)),
-    serviceGetViewItems      = (data: ReqGetViewItems) => dispatch(getViewItems(data)),
-    setDashboardView         = (data: SetDashboardView) => dispatch(a.setDashboardView(data)),
-    editMode                 = useSelector(s.selectEditMode),
-    setEditMode              = (data: SetEditMode) => dispatch(a.setEditMode(data)),
-    entities                 = useSelector(s.selectEntities),
-    viewItems                = useSelector(s.selectViewItems),
-    parentsViewItems         = useSelector(s.selectParentsViewItems),
-    updateViewItems          = (data: PartialViewItem[]) => dispatch(a.updateViewItems(data)),
-    cancelUpdateViewItem     = () => dispatch(a.cancelUpdateViewItem()),
+  const newStoredViewItem        = useSelector(s.selectNewStoredViewItem);
+  const prevStoredViewItem       = useSelector(s.selectPrevStoredViewItem);
+
+  const selectChildrenViewItems  = s.makeSelectChildrenViewItems(parentId as ViewItemId);
+  const childrenViewItems        = useSelector(selectChildrenViewItems);
+  const parentChildrenIds        = childrenViewItems.map(item => item.id);
+
+  // Changes
+  const isUnsaved                = useSelector(s.selectIsUnsaved);
+  const changedViewItem          = useSelector(s.selectChangedViewItem); // Объект с изменившимися полями
+
+  const api = useMemo(() => ({
+    setErrors                : (errors: Errors) => dispatch(a.setErrors(errors)),
+    clearErrors              : () => dispatch(a.setErrors({})),
+
+    setInitial               : (state: StateSchemaDashboardView) => dispatch(a.setInitial(state)),
+    serviceGetViewItems      : (data: ReqGetViewItems) => dispatch(getViewItems(data)),
+    setDashboardView         : (data: SetDashboardView) => dispatch(a.setDashboardView(data)),
+    setEditMode              : (data: SetEditMode) => dispatch(a.setEditMode(data)),
+    updateViewItems          : (data: PartialViewItem[]) => dispatch(a.updateViewItems(data)),
+    cancelUpdateViewItem     : () => dispatch(a.cancelUpdateViewItem()),
 
     // Movement
-    activatedMovementId      = useSelector(s.selectActivatedMovementId),
-    setActiveMovementId      = () => dispatch(a.setActiveMovementId()),
-    clearActivatedMovementId = () => dispatch(a.clearActivatedMovementId()),
+    setActiveMovementId      : () => dispatch(a.setActiveMovementId()),
+    clearActivatedMovementId : () => dispatch(a.clearActivatedMovementId()),
 
     // Copying
-    activatedCopied          = useSelector(s.selectActivatedCopied),
-    setActiveCopied          = (data: ActivatedCopied) => dispatch(a.setActiveCopied(data)),
-    clearActivatedCopied     = () => dispatch(a.clearActivatedCopied()),
+    setActiveCopied          : (data: ActivatedCopied) => dispatch(a.setActiveCopied(data)),
+    clearActivatedCopied     : () => dispatch(a.clearActivatedCopied()),
 
     // View
-    newSelectedId            = useSelector(s.selectNewSelectedId),
-    selectedId               = useSelector(s.selectSelectedId),
-    setNewSelectedId         = (id: ViewItemId) => dispatch(a.setNewSelectedId(id)),
-    setSelectedId            = (id: ViewItemId) => dispatch(a.setSelectedId(id)),
-    bright                   = useSelector(s.selectBright),
-    setBright                = (status: boolean) => dispatch(a.setBright(status)),
+    setNewSelectedId         : (id: ViewItemId) => dispatch(a.setNewSelectedId(id)),
+    setSelectedId            : (id: ViewItemId) => dispatch(a.setSelectedId(id)),
+    setBright                : (status: boolean) => dispatch(a.setBright(status)),
 
-    selectedItem             = useSelector(s.selectSelectedItem),
-    fromGlobalKod            = useSelector(s.selectFromGlobalKod),
-    globalKodParent          = useSelector(s.selectGlobalKodParent),
 
-    newStoredViewItem        = useSelector(s.selectNewStoredViewItem),
-    prevStoredViewItem       = useSelector(s.selectPrevStoredViewItem),
-
-    selectChildrenViewItems  = s.makeSelectChildrenViewItems(parentId as ViewItemId),
-    childrenViewItems        = useSelector(selectChildrenViewItems),
-    parentChildrenIds        = childrenViewItems.map(item => item.id),
-
-    // Changes
-    isUnsaved                = useSelector(s.selectIsUnsaved),
-    setIsUnsaved             = (status: boolean) => dispatch(a.setIsUnsaved(status)),
-    changedViewItem          = useSelector(s.selectChangedViewItem), // Объект с изменившимися полями
+    setIsUnsaved             : (status: boolean) => dispatch(a.setIsUnsaved(status)),
 
     // Styles
-    changeOneStyleField      = (data: ChangeSelectedStyle) => dispatch(a.changeOneStyleField(data)),
-    setSelectedStyles        = (data: ViewItemStyles) => dispatch(a.setSelectedStyles(data)),
+    changeOneStyleField      : (data: ChangeSelectedStyle) => dispatch(a.changeOneStyleField(data)),
+    setSelectedStyles        : (data: ViewItemStyles) => dispatch(a.setSelectedStyles(data)),
 
     // Settings
-    changeOneSettingsField   = (data: ChangeOneSettingsField) => dispatch(a.changeOneSettingsField(data)),
-    changeOneChartsItem      = (data: ChangeOneChartsItem)    => dispatch(a.changeOneChartsItem(data)),
+    changeOneSettingsField   : (data: ChangeOneSettingsField) => dispatch(a.changeOneSettingsField(data)),
+    changeOneChartsItem      : (data: ChangeOneChartsItem)    => dispatch(a.changeOneChartsItem(data)),
     // Изменение 1 field в settings.charts[index].datasets
-    changeOneDatasetsItem    = (data: ChangeOneDatasetsItem)  => dispatch(a.changeOneDatasetsItem(data)),
+    changeOneDatasetsItem    : (data: ChangeOneDatasetsItem)  => dispatch(a.changeOneDatasetsItem(data)),
 
     // Services
-    // serviceAddNewViewItem       = (data: AddNewViewItem) => dispatch(addNewViewItem(data)),
-    serviceCreateGroupViewItems = (data: CreateGroupViewItems) => dispatch(createGroupViewItems(data)),
+    serviceCreateGroupViewItems : (data: CreateGroupViewItems) => dispatch(createGroupViewItems(data)),
+    setDashboardViewFromCache : (companyId: string) => dispatch(a.setDashboardViewFromCache(companyId)),
 
-    serviceUpdateViewItems = (data: UpdateViewItems) => dispatch(updateViewItemsOnServer(data)),
-    serviceCopyStyles      = (data: CopyStylesItem) => dispatch(copyStylesViewItem(data)),
-    serviceDeleteViewItem  = (data: DeleteViewItem) => dispatch(deleteViewItem(data));
+    serviceUpdateViewItems : (data: UpdateViewItems) => dispatch(updateViewItemsOnServer(data)),
+    serviceCopyStyles      : (data: CopyStylesItem) => dispatch(copyStylesViewItem(data)),
+    serviceDeleteViewItem  : (data: DeleteViewItem) => dispatch(deleteViewItem(data)),
+  }), [dispatch]);
 
 
   return {
     loading,
     errors,
-    setErrors,
-    clearErrors,
     isMounted,
 
-    setInitial,
-    serviceGetViewItems,
-    setDashboardView,
     editMode,
-    setEditMode,
     entities,
     viewItems,
     parentsViewItems,
     parentChildrenIds,
-    updateViewItems,
-    cancelUpdateViewItem,
 
     // View
     newSelectedId,
-    setNewSelectedId,
     selectedId,
-    setSelectedId,
     selectedItem,
     bright,
-    setBright,
     fromGlobalKod,
     globalKodParent,
 
@@ -133,33 +126,13 @@ export const useDashboardView = (config: Config = {}) => {
 
     // Changes
     isUnsaved,
-    setIsUnsaved,
     changedViewItem,
 
     // Movement
     activatedMovementId,
-    setActiveMovementId,
-    clearActivatedMovementId,
 
     // Copying
     activatedCopied,
-    setActiveCopied,
-    clearActivatedCopied,
-
-    // Styles
-    changeOneStyleField,
-    setSelectedStyles,
-
-    // Settings
-    changeOneSettingsField,
-    changeOneChartsItem,
-    changeOneDatasetsItem,
-
-    // Services
-    // serviceAddNewViewItem,
-    serviceCreateGroupViewItems,
-    serviceUpdateViewItems,
-    serviceCopyStyles,
-    serviceDeleteViewItem,
+    ...api
   }
 };

@@ -17,7 +17,11 @@ export const DeleteItemContainer: FC = memo(() => {
     const allIds: ViewItemId[] = []; // Ids всех вложенных элементов
     getAllChildrenIds(viewItems, selectedId, allIds);
 
-    serviceDeleteViewItem({ companyId: paramsCompanyId, allIds });
+    serviceDeleteViewItem({
+      companyId     : paramsCompanyId,
+      viewUpdatedMs : Date.now(),
+      allIds
+    });
   }, [selectedId, viewItems, paramsCompanyId, serviceDeleteViewItem]);
 
 

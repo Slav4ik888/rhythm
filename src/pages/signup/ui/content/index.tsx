@@ -37,6 +37,7 @@ export const SignupContent: FC<Props> = memo(({
       <TextFieldItem
         label    = 'Введите email'
         name     = 'email'
+        type     = 'email'
         ref      = {emailRef}
         scheme   = 'email'
         errors   = {errors}
@@ -44,6 +45,7 @@ export const SignupContent: FC<Props> = memo(({
       <TextFieldItem
         label    = 'Введите пароль'
         name     = 'password'
+        type     = 'password'
         ref      = {passwordRef}
         scheme   = 'password'
         errors   = {errors}
@@ -51,6 +53,7 @@ export const SignupContent: FC<Props> = memo(({
       <TextFieldItem
         label    = 'Повторите пароль'
         name     = 'confirm'
+        type     = 'password'
         ref      = {confirmRef}
         scheme   = 'confirm'
         errors   = {errors}

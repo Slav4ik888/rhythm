@@ -14,7 +14,7 @@ export interface GoogleData {
   url: string
 }
 
-export type CompanyDashboardData = ReactElement<any, any>
+// export type CompanyDashboardData = ReactElement<any, any>
 
 /** Для сохранения уникальных настроек переменных (цветов и констант) */
 export type ColorSettingsType = 'color' | 'background'
@@ -32,7 +32,10 @@ export interface CustomSettings {
   productType? : Record<string, ColorSettings>
 }
 
-
+/**
+ * v.2025-06-16
+ * Профиль компании
+ */
 export interface Company {
   id             : string
   companyName    : string
@@ -43,9 +46,9 @@ export interface Company {
   status         : CompanyStatus
 
   googleData     : GoogleData
-  dashboardData  : CompanyDashboardData
+  // dashboardData  : CompanyDashboardData
   customSettings : CustomSettings
-
+  viewUpdated    : FixDate // Timestamp last ViewItems updated. При любом изменении ViewItems - обновляем
   createdAt      : FixDate
   lastChange     : FixDate
 }
@@ -57,4 +60,5 @@ export type ParamsCompany = Partial<Company> & {
   id             : string
   customSettings : CustomSettings
   googleData     : GoogleData
+  viewUpdated    : FixDate // Timestamp last ViewItems updated
 }
