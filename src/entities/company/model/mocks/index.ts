@@ -19,8 +19,8 @@ export const MOCK_COMPANY_EMPTY: Company = {
   },
 
   status         : CompanyStatus.NEW,
-  // dashboardData  : {} as CompanyDashboardData,
   customSettings : {},
+  members        : {},
   viewUpdated    : creatorFixDate(),
 
   createdAt      : creatorFixDate(),

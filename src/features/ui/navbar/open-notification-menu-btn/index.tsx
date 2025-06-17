@@ -1,18 +1,13 @@
 import { FC, memo, useState } from 'react';
-import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import Icon from '@mui/material/Icon';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { NotificationItem } from 'shared/ui/items';
-import { SxNavbarIcon } from 'widgets/navbar';
+import { NavbarIcon } from 'shared/ui/navbar';
 
 
 
-interface Props {
-  sx: SxNavbarIcon
-}
-
-export const OpenNotificationMenuBtn: FC<Props> = memo(({ sx }) => {
+export const OpenNotificationMenuBtn: FC = memo(() => {
   const [openMenu, setOpenMenu] = useState<Element | null>(null);
 
   const handleOpenMenu = (event: any) => { }; // setOpenMenu(event.currentTarget);
@@ -21,27 +16,22 @@ export const OpenNotificationMenuBtn: FC<Props> = memo(({ sx }) => {
 
   return (
     <>
-      <IconButton
-        // disableRipple
-        color         = 'inherit'
-        aria-controls = 'notification-menu'
-        aria-haspopup = 'true'
-        sx            = {sx.button}
-        onClick       = {handleOpenMenu}
-      >
-        <NotificationsIcon sx={sx.icon} fontSize='small' />
-      </IconButton>
+      <NavbarIcon
+        toolTitle = 'Центр уведомлений'
+        icon      = {NotificationsIcon}
+        onClick   = {handleOpenMenu}
+      />
 
       <Menu
-        anchorEl={openMenu}
+        anchorEl = {openMenu}
         // anchorReference={null}
-        anchorOrigin={{
+        anchorOrigin = {{
           vertical: 'bottom',
           horizontal: 'left',
         }}
-        open={Boolean(openMenu)}
-        onClose={handleCloseMenu}
-        sx={{ mt: 2 }}
+        open    = {Boolean(openMenu)}
+        onClose = {handleCloseMenu}
+        sx      = {{ mt: 2 }}
       >
         <NotificationItem icon={<Icon>email</Icon>} title='Check new messages' />
         <NotificationItem icon={<Icon>podcasts</Icon>} title='Manage Podcast sessions' />

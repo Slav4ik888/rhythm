@@ -17,31 +17,15 @@ import { useState, useEffect, FC, memo } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { sxNavbar, sxNavbarContainer } from './styles';
-import { CustomTheme, isSystemDarkMode, useTheme, useUIConfiguratorController } from 'app/providers/theme';
+import { CustomTheme, isSystemDarkMode, useUIConfiguratorController } from 'app/providers/theme';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { NavbarControlBox } from './control-box';
 import { NavbarSetupBox } from './setup-box';
 import { useLocation } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
-import { sxNavbarIconButton, sxNavbarIconsStyle } from 'shared/lib/styles/navbar';
 import { isDashboardPage } from 'pages/dashboard';
 import { NavbarLinksBox } from './links-box';
 
-
-
-export interface SxNavbarIcon {
-  button: any
-  icon: any
-}
-
-const useStyles = (
-  theme             : CustomTheme,
-  navbarTransparent : boolean,
-  light             : boolean | undefined
-) => ({
-  button : sxNavbarIconButton(theme),
-  icon   : sxNavbarIconsStyle(theme, navbarTransparent, light)
-});
 
 
 interface Props {
@@ -56,7 +40,6 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
   const [configuratorState, dispatch] = useUIConfiguratorController();
   const { navbarTransparent, navbarFixed, mode } = configuratorState;
   const darkMode = mode === 'dark' || (mode === 'system' && isSystemDarkMode());
-  const sx = useStyles(useTheme(), navbarTransparent, light);
   const location = useLocation();
   const isDashboard = isDashboardPage(location);
 
@@ -100,10 +83,10 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
         <Toolbar sx={(theme) => sxNavbarContainer(theme as CustomTheme)}>
           {
             isDashboard
-              ? <NavbarControlBox isMini={isMini} sx={sx} />
+              ? <NavbarControlBox isMini={isMini} />
               : <NavbarLinksBox isMini={isMini} />
           }
-          <NavbarSetupBox   sx={sx} isMini={isMini} />
+          <NavbarSetupBox isMini={isMini} />
         </Toolbar>
       </AppBar>
     </SidebarRegulatorWrapper>

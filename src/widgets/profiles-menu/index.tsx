@@ -1,20 +1,15 @@
 import { FC, useState } from 'react';
-import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { ProfilesMenu } from './profiles-menu';
-import { SxNavbarIcon } from 'widgets/navbar';
+import { NavbarIcon } from 'shared/ui/navbar';
 
 
-
-interface Props {
-  sx: SxNavbarIcon
-}
 
 /**
  * Widjet ProfilesMenu
  * Кнопка входа в личные кабинеты активация открытия / закрытия
  */
-export const ProfilesMenuRoot: FC<Props> = ({ sx }) => {
+export const ProfilesMenuRoot: FC = () => {
   const [anchorPro, setAnchorPro] = useState<HTMLElement | null>(null);
   const isProfilesOpen = Boolean(anchorPro);
   const menuId         = 'profile-menu';
@@ -25,20 +20,11 @@ export const ProfilesMenuRoot: FC<Props> = ({ sx }) => {
 
   return (
     <>
-      <IconButton
-        // disableRipple
-        aria-label    = 'account of current user'
-        aria-controls = {menuId}
-        aria-haspopup = 'true'
-        edge          = 'end'
-        sx            = {sx.button}
-        onClick       = {handleProfilesMenuOpen}
-      >
-        <AccountCircle
-          fontSize='small'
-          sx={sx.icon}
-        />
-      </IconButton>
+      <NavbarIcon
+        toolTitle = ''
+        icon      = {AccountCircle}
+        onClick   = {handleProfilesMenuOpen}
+      />
 
       <ProfilesMenu
         open     = {isProfilesOpen}

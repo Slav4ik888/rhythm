@@ -7,18 +7,16 @@ import { ProfilesMenuRoot } from 'widgets/profiles-menu';
 import { DashboardSetEditBtn } from 'features/dashboard-view';
 import { isDashboardPage } from 'pages/dashboard';
 import { useLocation } from 'react-router-dom';
-import { SxNavbarIcon } from '../..';
 
 
 
 interface Props {
   light?  : boolean
   isMini? : boolean
-  sx      : SxNavbarIcon
 }
 
 /** Кнопки Navbar меню после авторизации */
-export const MenuBtns: FC<Props> = ({ light, isMini = false, sx }) => {
+export const MenuBtns: FC<Props> = ({ light, isMini = false }) => {
   const location = useLocation();
   const isDashboard = isDashboardPage(location);
 
@@ -26,11 +24,11 @@ export const MenuBtns: FC<Props> = ({ light, isMini = false, sx }) => {
     <MDBox sx={(theme: CustomTheme) => sxNavbarRow(theme, isMini)}>
       <MDBox display='flex' alignItems='center' color={light ? 'white' : 'inherit'}>
         {
-          isDashboard && <DashboardSetEditBtn sx={sx} />
+          isDashboard && <DashboardSetEditBtn />
         }
-        <OpenNotificationMenuBtn sx={sx} />
-        <OpenUIConfiguratorBtn   sx={sx} />
-        <ProfilesMenuRoot        sx={sx} />
+        <OpenNotificationMenuBtn />
+        <OpenUIConfiguratorBtn />
+        <ProfilesMenuRoot />
       </MDBox>
     </MDBox>
   );

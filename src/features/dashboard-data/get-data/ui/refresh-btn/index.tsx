@@ -1,29 +1,22 @@
 import { FC, memo, useCallback } from 'react';
-import IconButton from '@mui/material/IconButton';
 import RefreshIcon from '@mui/icons-material/Autorenew';
 import { useCompany } from 'entities/company';
 import { useDashboardData } from 'entities/dashboard-data';
-import { SxNavbarIcon } from 'widgets/navbar';
+import { NavbarIcon } from 'shared/ui/navbar';
 
 
 
-interface Props {
-  sx: SxNavbarIcon
-}
-
-export const DashboardRefreshButton: FC<Props> = memo(({ sx }) => {
+export const DashboardRefreshButton: FC = memo(() => {
   const { serviceGetData } = useDashboardData();
   const { paramsCompany } = useCompany();
   const handleRefresh = useCallback(() => serviceGetData(paramsCompany), [paramsCompany, serviceGetData]);
 
 
   return (
-    <IconButton
-      color   = 'inherit'
-      sx      = {sx.button}
-      onClick = {handleRefresh}
-    >
-      <RefreshIcon sx={sx.icon} />
-    </IconButton>
+    <NavbarIcon
+      toolTitle = 'Обновить данные из гугл таблицы'
+      icon      = {RefreshIcon}
+      onClick   = {handleRefresh}
+    />
   )
 });

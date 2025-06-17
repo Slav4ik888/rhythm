@@ -1,50 +1,27 @@
 import { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
-import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Tooltip } from 'shared/ui/tooltip';
-import { CustomTheme, useTheme } from 'app/providers/theme';
 import { MDBox, MDButton } from 'shared/ui/mui-design-components';
-import { SxNavbarIcon } from '../../..';
+import { NavbarIcon } from 'shared/ui/navbar';
 
 
-
-const useStyles = (theme: CustomTheme) => ({
-  root: {
-    display        : 'flex',
-    justifyContent : 'flex-end',
-  },
-  signup: {
-    textTransform: 'none',
-    px: 3,
-  }
-});
-
-
-interface Props {
-  sx: SxNavbarIcon
-}
 
 /** Кнопка Navbar для входа в авторизацию */
-export const AnyAuthBtns: FC<Props> = memo(({ sx }) => {
-  const { signup } = useStyles(useTheme());
+export const AnyAuthBtns: FC = memo(() => (
+  <MDBox>
+    <Link to={RoutePath.SIGNUP}>
+      <MDButton
+        variant = 'text'
+        color   = 'text'
+        sx      = {{ root: { textTransform: 'none', px: 3 } }}
+      >
+        Регистрация
+      </MDButton>
+    </Link>
 
-  return (
-    <MDBox>
-      <Link to={RoutePath.SIGNUP}>
-        <MDButton sx={{ root: signup }} variant='text' color='text'>
-          Регистрация
-        </MDButton>
-      </Link>
-
-      <Tooltip title='Войти'>
-        <Link to={RoutePath.LOGIN}>
-          <IconButton sx={sx.button}>
-            <AccountCircle sx={sx.icon} />
-          </IconButton>
-        </Link>
-      </Tooltip>
-    </MDBox>
-  );
-});
+    <Link to={RoutePath.LOGIN}>
+      <NavbarIcon toolTitle='Войти' icon={AccountCircle} />
+    </Link>
+  </MDBox>
+));

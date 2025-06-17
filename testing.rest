@@ -1,0 +1,23 @@
+POST http://localhost:7575/api/devUpdateCompany HTTP/1.1
+Content-Type: application/json
+
+{
+  "company": {
+    "id": "jOiXJDIY0nJeiIuBMtI4",
+    "members": {
+      "1": {
+        "access" : {
+          "dashboard": {
+            "allFields": "edit"
+          }
+        }
+      }
+    }
+  },
+  "userId": "r2hKo1Vd3We7HXzNCgKn1sTM7Lg1"
+}
+
+###
+
+GET http://localhost:7575/api/hello HTTP/1.1
+Content-Type: application/json

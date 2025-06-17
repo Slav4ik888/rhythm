@@ -41,7 +41,7 @@ const DashboardPage: FC = memo(() => {
       serviceGetViewItems({ companyId: paramsCompany.id, sheetId: NO_SHEET_ID, pathname });
     }
     else {
-      __devLog('ItemViews from cash');
+      __devLog('ItemViews from cache');
       setDashboardViewFromCache(paramsCompany.id);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

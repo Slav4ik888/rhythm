@@ -1,5 +1,5 @@
 import { FixDate } from 'entities/base';
-import { ReactElement } from 'react';
+import { CompanyMembers } from './permissions';
 
 
 
@@ -49,6 +49,8 @@ export interface Company {
   // dashboardData  : CompanyDashboardData
   customSettings : CustomSettings
   viewUpdated    : FixDate // Timestamp last ViewItems updated. При любом изменении ViewItems - обновляем
+
+  members        : CompanyMembers
   createdAt      : FixDate
   lastChange     : FixDate
 }
@@ -61,4 +63,5 @@ export type ParamsCompany = Partial<Company> & {
   customSettings : CustomSettings
   googleData     : GoogleData
   viewUpdated    : FixDate // Timestamp last ViewItems updated
+  members        : CompanyMembers
 }

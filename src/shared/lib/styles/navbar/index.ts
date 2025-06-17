@@ -1,5 +1,5 @@
 import { CustomTheme } from 'app/providers/theme';
-import { getTypography, rgbaFromHex } from 'shared/styles';
+import { getTypography } from 'shared/styles';
 
 
 
@@ -29,8 +29,8 @@ export const sxNavbarIconButton = (theme: CustomTheme) => {
 /** Styles for the navbar icons */
 export const sxNavbarIconsStyle = (
   theme             : CustomTheme,
-  navbarTransparent : boolean,
-  light             : boolean | undefined
+  // navbarTransparent : boolean,
+  // light             : boolean | undefined
 ) => {
   const { palette: { navbar, white, text, mode } } = theme;
   const darkMode = mode === 'dark';

@@ -1,19 +1,12 @@
 import { FC, memo, useEffect, useState, useCallback } from 'react';
-import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import { useDashboardView } from 'entities/dashboard-view';
-import { Tooltip } from 'shared/ui/tooltip';
 import { useCompany } from 'entities/company';
-import { SxNavbarIcon } from 'widgets/navbar';
+import { NavbarIcon } from 'shared/ui/navbar';
 
 
 
-interface Props {
-  sx: SxNavbarIcon
-}
-
-export const DashboardSetEditBtn: FC<Props> = memo(({ sx }) => {
+export const DashboardSetEditBtn: FC = memo(() => {
   const { editMode, setEditMode } = useDashboardView();
   const { paramsCompanyId } = useCompany();
   const [text, setText] = useState<string>('');
@@ -27,16 +20,10 @@ export const DashboardSetEditBtn: FC<Props> = memo(({ sx }) => {
 
 
   return (
-    <Box onClick={handleToggle}>
-      <Tooltip title={text}>
-        <IconButton
-          // disableRipple
-          color = {editMode ? 'primary' : 'inherit'}
-          sx    = {sx.button}
-        >
-          <AutoFixHighIcon sx={sx.icon} />
-        </IconButton>
-      </Tooltip>
-    </Box>
+    <NavbarIcon
+      toolTitle = {text}
+      icon      = {AutoFixHighIcon}
+      onClick   = {handleToggle}
+    />
   )
 });

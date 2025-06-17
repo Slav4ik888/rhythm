@@ -1,36 +1,25 @@
 import { FC, memo, MouseEvent, useState } from 'react';
 import { MobileAuthBtn } from './menu';
-import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { SxNavbarIcon } from '../../..';
+import { NavbarIcon } from 'shared/ui/navbar';
 
 
 
-interface Props {
-  sx: SxNavbarIcon
-}
+export const MobileAuthBtns: FC = memo(() => {
+  const [anchorEl, setAnchorEl] = useState<Element | null>(null);
+  const open = Boolean(anchorEl);
 
-export const MobileAuthBtns: FC<Props> = memo(({ sx }) => {
-  const
-    [anchorEl, setAnchorEl] = useState<Element | null>(null),
-    open = Boolean(anchorEl),
-
-    handleClick = (event: MouseEvent<HTMLButtonElement>) => setAnchorEl(event?.currentTarget),
-    handleClose = () => setAnchorEl(null)
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => setAnchorEl(event?.currentTarget);
+  const handleClose = () => setAnchorEl(null)
 
 
   return (
     <>
-      <IconButton
-        id            = 'basic-button'
-        aria-controls = 'basic-menu'
-        aria-haspopup = 'true'
-        aria-expanded = {open ? 'true' : undefined}
-        sx            = {sx.button}
-        onClick       = {(e) => handleClick(e)}
-      >
-        <AccountCircle sx={sx.icon} />
-      </IconButton>
+      <NavbarIcon
+        toolTitle = ''
+        icon      = {AccountCircle}
+        onClick   = {handleClick}
+      />
 
       <MobileAuthBtn
         open     = {open}
