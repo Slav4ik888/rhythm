@@ -1,5 +1,4 @@
 import { FC, useCallback } from 'react';
-import Menu from '@mui/material/Menu';
 import KeyboardReturn from '@mui/icons-material/KeyboardReturn';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
@@ -8,20 +7,19 @@ import { RoutePath } from 'app/providers/routes';
 import { useNavigate } from 'react-router-dom';
 import { MDDivider } from 'shared/ui/mui-design-components';
 import { MenuItem } from 'shared/ui/items/menu-item';
-import { CustomTheme } from 'app/providers/theme';
+import { NavbarMenu } from 'shared/ui/navbar';
 
 
 
 type Props = {
   open     : boolean
   anchorEl : HTMLElement | null
-  menuId   : string
   onClose  : () => void
 };
 
 
 // Меню с профилями для Navbar
-export const ProfilesMenu: FC<Props> = ({ open, anchorEl, menuId, onClose }) => {
+export const ProfilesMenu: FC<Props> = ({ open, anchorEl, onClose }) => {
   const { serviceLogout } = useUser();
   const navigate = useNavigate();
 
@@ -33,25 +31,8 @@ export const ProfilesMenu: FC<Props> = ({ open, anchorEl, menuId, onClose }) => 
   }, [onClose, serviceLogout, navigate]);
 
 
-  // const type = role === Role.SUPER ? WhoInProfile.SUPER : WhoInProfile.USER;
-
   return (
-    <Menu
-      keepMounted
-      id              = {menuId}
-      open            = {open}
-      anchorEl        = {anchorEl}
-      anchorOrigin    = {{ vertical: 'top', horizontal: 'right' }}
-      transformOrigin = {{ vertical: 'top', horizontal: 'right' }}
-      slotProps       = {{
-        paper: {
-          sx: {
-            backgroundColor: (theme) => (theme as CustomTheme).palette.navbar.bg
-          }
-        }
-      }}
-      onClose         = {onClose}
-    >
+    <NavbarMenu open={open} anchorEl={anchorEl} onClose={onClose}>
       <MenuItem
         label   = 'Ваш профиль'
         route   = {RoutePath.USER_PROFILE}
@@ -72,6 +53,6 @@ export const ProfilesMenu: FC<Props> = ({ open, anchorEl, menuId, onClose }) => 
         icon    = {<KeyboardReturn fontSize='small' />}
         onClick = {handleUserLogout}
       />
-    </Menu>
+    </NavbarMenu>
   )
 };

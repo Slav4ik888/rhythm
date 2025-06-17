@@ -7,8 +7,6 @@ import { sxNavbarIconButton, sxNavbarIconsStyle } from 'shared/lib/styles/navbar
 import { CustomTheme } from 'app/providers/theme';
 
 
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
-
 
 export interface SxNavbarIcon {
   button? : any
@@ -17,7 +15,7 @@ export interface SxNavbarIcon {
 
 
 interface Props {
-  toolTitle      : string
+  toolTitle?     : string
   disableRipple? : boolean
   sx?            : SxNavbarIcon
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type
@@ -25,17 +23,14 @@ interface Props {
   onClick?       : (event: any) => void
 }
 
-export const NavbarIcon: FC<Props> = memo(({ sx, icon: Icon, toolTitle, disableRipple, onClick }) => (
+export const NavbarIcon: FC<Props> = memo(({ sx, icon: Icon, toolTitle = '', disableRipple, onClick }) => (
   <Tooltip title={toolTitle}>
     <IconButton
-      disableRipple={disableRipple}
-      // color = {editMode ? 'primary' : 'inherit'}
-      sx={(theme) => ({ ...sxNavbarIconButton(theme as CustomTheme), ...sx?.button })}
-      onClick={onClick}
+      disableRipple = {disableRipple}
+      sx            = {(theme) => ({ ...sxNavbarIconButton(theme as CustomTheme), ...sx?.button })}
+      onClick       = {onClick}
     >
-      <Icon
-        sx={(theme) => ({ ...sxNavbarIconsStyle(theme as CustomTheme), ...sx?.icon })}
-      />
+      <Icon sx={(theme) => ({ ...sxNavbarIconsStyle(theme as CustomTheme), ...sx?.icon })} />
     </IconButton>
   </Tooltip>
 ));

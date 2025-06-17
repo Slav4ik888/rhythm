@@ -2,8 +2,8 @@ import { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
 import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
 import { CustomTheme, useTheme } from 'app/providers/theme';
+import { NavbarMenu } from 'shared/ui/navbar';
 
 
 
@@ -21,7 +21,7 @@ const useStyles = (theme: CustomTheme) => ({
 
 type Props = {
   open     : boolean
-  anchorEl : Element | null
+  anchorEl : HTMLElement | null
   onClose  : () => void
 }
 
@@ -32,13 +32,7 @@ export const MobileAuthBtn: FC<Props> = memo(({ open, anchorEl, onClose }) => {
   if (! open) return null;
 
   return (
-    <Menu
-      id            = 'basic-menu'
-      anchorEl      = {anchorEl}
-      open          = {open}
-      MenuListProps = {{ 'aria-labelledby': 'basic-button' }}
-      onClose       = {onClose}
-    >
+    <NavbarMenu open={open} anchorEl={anchorEl} onClose={onClose}>
       <MenuItem sx={sx.item} onClick={onClose}>
         <Link to={RoutePath.SIGNUP}>
           Регистрация
@@ -50,6 +44,6 @@ export const MobileAuthBtn: FC<Props> = memo(({ open, anchorEl, onClose }) => {
           Войти
         </Link>
       </MenuItem>
-    </Menu>
+    </NavbarMenu>
   );
 });

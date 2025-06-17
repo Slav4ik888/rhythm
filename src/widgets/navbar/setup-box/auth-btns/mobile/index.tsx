@@ -6,7 +6,7 @@ import { NavbarIcon } from 'shared/ui/navbar';
 
 
 export const MobileAuthBtns: FC = memo(() => {
-  const [anchorEl, setAnchorEl] = useState<Element | null>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => setAnchorEl(event?.currentTarget);
@@ -16,7 +16,6 @@ export const MobileAuthBtns: FC = memo(() => {
   return (
     <>
       <NavbarIcon
-        toolTitle = ''
         icon      = {AccountCircle}
         onClick   = {handleClick}
       />

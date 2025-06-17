@@ -1,9 +1,8 @@
 import { FC } from 'react';
 import { MDBox } from 'shared/ui/mui-design-components';
-import { OpenNotificationMenuBtn, OpenUIConfiguratorBtn } from 'features/ui';
+import { AddUserRoot, ProfilesMenuRoot, OpenUIConfiguratorBtn } from 'features/ui';
 import { CustomTheme } from 'app/providers/theme';
 import { sxNavbarRow } from '../../styles';
-import { ProfilesMenuRoot } from 'widgets/profiles-menu';
 import { DashboardSetEditBtn } from 'features/dashboard-view';
 import { isDashboardPage } from 'pages/dashboard';
 import { useLocation } from 'react-router-dom';
@@ -26,7 +25,8 @@ export const MenuBtns: FC<Props> = ({ light, isMini = false }) => {
         {
           isDashboard && <DashboardSetEditBtn />
         }
-        <OpenNotificationMenuBtn />
+        <AddUserRoot />
+        {/* <OpenNotificationMenuBtn /> */}
         <OpenUIConfiguratorBtn />
         <ProfilesMenuRoot />
       </MDBox>
