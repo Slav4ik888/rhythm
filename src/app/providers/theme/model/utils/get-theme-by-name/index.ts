@@ -106,9 +106,9 @@ export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProvid
         styleOverrides: {
           root: {
             '&.Mui-checked': {
-              color: '#616161',
+              color: '#bcbcbc',
               '& .MuiSvgIcon-root': {
-                color: '#616161',
+                color: '#bcbcbc',
               },
             },
             '&:not(.Mui-checked)': {

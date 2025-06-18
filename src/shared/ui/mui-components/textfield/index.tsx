@@ -8,9 +8,11 @@ import { getErrorFieldByScheme } from '../../containers';
 interface Props {
   defaultValue? : string // If not ref present
   scheme        : string
-  ref?          : MutableRefObject<null>
+  ref?          : MutableRefObject<HTMLInputElement | null>
   type?         : 'text' | 'number' | 'password' | 'email'
   fullWidth?    : boolean
+  autoFocus?    : boolean
+  autoComplete? : 'on' | 'off'
   disabled?     : boolean
   label?        : string
   name?         : string
