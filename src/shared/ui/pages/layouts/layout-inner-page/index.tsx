@@ -38,8 +38,7 @@ export const LayoutInnerPage: FC<Props> = memo(({ type, containerType = 'md', ch
           position        : 'relative',
           backgroundColor : 'background.paper', // theme.palette.background.paper,
           width           : '100%',
-          pt              : { md: 8, xs: 0 },
-          pb              : { md: 4, xs: 0 },
+          py              : { md: 8, xs: 0 },
         }}
       >
         {

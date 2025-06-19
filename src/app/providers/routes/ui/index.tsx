@@ -12,6 +12,7 @@ import { RequireAuth } from '../require-auth';
 import { SignupPage } from 'pages/signup';
 import { LoginPage } from 'pages/login';
 import { UserProfilePage } from 'pages/user-profile';
+import { NotAccessPage } from 'pages/not-access';
 
 
 
@@ -50,7 +51,7 @@ export const AppRouter = memo(() => {
         <Route path={RoutePath[AppRoutes.LOGIN]} element={withFallback(<LoginPage />)} />
         <Route path={RoutePath[AppRoutes.USER_PROFILE]} element={withFallback(<UserProfilePage />)} />
         <Route path={RoutePath[AppRoutes.COMPANY_PROFILE]} element={withFallback(<CompanyProfilePage />)} />
-        <Route path={RoutePath[AppRoutes.NOT_FOUND]} element={withFallback(<NotFoundPage />)} />
+        <Route path={RoutePath[AppRoutes.NOT_ACCESS]} element={<NotAccessPage />} />
 
         <Route path={RoutePath[AppRoutes.SLUG]} element={withFallback(<RequireAuth><CompanyPage /></RequireAuth>)}>
           {/* <Route index element={<CompanyPage />} /> */}
@@ -59,6 +60,7 @@ export const AppRouter = memo(() => {
         </Route>
         {/* Перехват неправильных путей */}
         <Route path='dashboard/*' element={<Navigate to={RoutePath[AppRoutes.ROOT]} replace />} />
+        <Route path={RoutePath[AppRoutes.NOT_FOUND]} element={<NotFoundPage />} />
 
         {/* {
           Object

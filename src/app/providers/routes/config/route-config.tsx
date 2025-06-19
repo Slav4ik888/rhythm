@@ -1,6 +1,7 @@
 import { CompanyProfilePage } from 'pages/company-profile';
 import { DashboardPage } from 'pages/dashboard';
 import { LoginPage } from 'pages/login';
+import { NotAccessPage } from 'pages/not-access';
 import { NotFoundPage } from 'pages/not-found';
 import { SignupPage } from 'pages/signup';
 import { UserProfilePage } from 'pages/user-profile';
@@ -55,6 +56,10 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
   // },
 
   // Others
+  [AppRoutes.NOT_ACCESS]: {
+    path    : RoutePath.NOT_ACCESS,
+    element : <NotAccessPage />
+  },
   [AppRoutes.NOT_FOUND]: {
     path    : RoutePath.NOT_FOUND,
     element : <NotFoundPage />

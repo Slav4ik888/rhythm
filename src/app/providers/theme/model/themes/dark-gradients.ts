@@ -2,8 +2,8 @@ import { Gradients } from '../types';
 
 export const gradients: Gradients = {
   primary: {
-    main: '#EC407A',
-    state: '#D81B60',
+    main: '#67b244',
+    state: '#3fa111',
   },
 
   secondary: {

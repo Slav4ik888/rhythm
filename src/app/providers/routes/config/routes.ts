@@ -11,6 +11,7 @@ export enum AppRoutes {
   COMPANY_PROFILE = 'COMPANY_PROFILE',
   DASHBOARD       = 'DASHBOARD',
 
+  NOT_ACCESS      = 'NOT_ACCESS',
   NOT_FOUND       = 'NOT_FOUND',
 }
 
@@ -26,6 +27,7 @@ export const RouteName: Record<string, string> = {
   [AppRoutes.COMPANY_PROFILE] : 'company-profile',
   [AppRoutes.DASHBOARD]       : 'dashboard',
 
+  [AppRoutes.NOT_ACCESS]      : 'not-access',
   [AppRoutes.NOT_FOUND]       : '*',
 }
 
@@ -42,5 +44,6 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.COMPANY_PROFILE] : 'company-profile',
   [AppRoutes.DASHBOARD]       : 'dashboard',
 
+  [AppRoutes.NOT_ACCESS]      : '/not-access',
   [AppRoutes.NOT_FOUND]       : '*',
 };

@@ -50,6 +50,16 @@ export const UserProfilePageComponent: FC<Props> = memo(({ loading, errors, form
         errors       = {errors}
         onChange     = {onChange}
       />
+
+      <TextFieldItem
+        disabled
+        label        = 'Email'
+        name         = 'email'
+        defaultValue = {formData.email}
+        scheme       = 'email'
+        errors       = {errors}
+        onChange     = {onChange}
+      />
     </Box>
 
     <Actions

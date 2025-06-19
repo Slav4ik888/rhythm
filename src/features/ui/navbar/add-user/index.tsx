@@ -1,9 +1,8 @@
-import { FC, useCallback, useMemo, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import { AddUserMenu } from './menu';
 import { NavbarIcon } from 'shared/ui/navbar';
-import { useCompany, checkAccess } from 'entities/company';
-import { useUser } from 'entities/user';
+import { useCompany } from 'entities/company';
 
 
 
@@ -12,16 +11,11 @@ import { useUser } from 'entities/user';
  */
 export const AddUserRoot: FC = () => {
   const { paramsCompany } = useCompany();
-  const { email } = useUser();
   const [anchorPro, setAnchorPro] = useState<HTMLElement | null>(null);
-  const notAccess = useMemo(() => ! checkAccess(paramsCompany, 'a.d.f', email, 'e'),
-    [email, paramsCompany]);
-
 
   const handleAddUserOpen = useCallback((event: { currentTarget: HTMLElement }) => {
-    if (notAccess) return;
     setAnchorPro(event.currentTarget);
-  }, [notAccess]);
+  }, []);
 
   const handleAddUserClose = () => setAnchorPro(null);
 
@@ -31,7 +25,6 @@ export const AddUserRoot: FC = () => {
       <NavbarIcon
         toolTitle = 'Добавить пользователя'
         icon      = {PersonAddAlt1Icon}
-        disabled  = {notAccess}
         onClick   = {handleAddUserOpen}
       />
 
