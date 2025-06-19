@@ -1,10 +1,9 @@
 import { FC, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useUI } from 'entities/ui';
 import { f, pxToRem } from 'shared/styles';
-import { AccessLevel, CompanyMember, useCompany } from 'entities/company';
+import { AccessLevel, CompanyMember, ParamsCompany } from 'entities/company';
 import Box from '@mui/material/Box';
 import { Errors, isNotEmail } from 'shared/lib/validators';
-import { copyToClipboard } from 'shared/lib/clipboard';
 import { UsersWithAccessContainer } from './users-with-acces';
 import { SelectedEmailContainer } from './selected-email';
 import Popover from '@mui/material/Popover';
@@ -15,19 +14,19 @@ import { setValueByScheme } from 'shared/helpers/objects';
 
 
 interface Props {
-  open     : boolean
-  anchorEl : HTMLElement | null
-  onClose  : () => void
+  open          : boolean
+  anchorEl      : HTMLElement | null
+  paramsCompany : ParamsCompany
+  onClose       : () => void
 }
 
 
-export const AddUserMenu: FC<Props> = memo(({ open, anchorEl, onClose }) => {
-  const { paramsCompany } = useCompany();
+export const AddUserMenu: FC<Props> = memo(({ open, anchorEl, paramsCompany, onClose }) => {
   const usersAccessDashboard = useMemo(() => {
     if (! paramsCompany || ! paramsCompany.members) return [];
     const allAccess = Object
       .values(paramsCompany?.members)
-      .filter(member => member.a?.d?.aF === 'v' || member.a?.d?.aF === 'e');
+      .filter(member => member.a?.d?.f === 'v' || member.a?.d?.f === 'e');
 
     return allAccess
   }, [paramsCompany]);
@@ -106,7 +105,6 @@ export const AddUserMenu: FC<Props> = memo(({ open, anchorEl, onClose }) => {
           selectedEmail = {selectedEmail}
           loading       = {loading}
           errors        = {errors}
-          onClose       = {onClose}
           onSubmit      = {handleSubmit}
         />
       </Box>

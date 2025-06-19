@@ -1,5 +1,5 @@
 import { FixDate } from 'entities/base';
-import { CompanyMembers } from './permissions';
+import { CompanyMembers } from './access';
 
 
 

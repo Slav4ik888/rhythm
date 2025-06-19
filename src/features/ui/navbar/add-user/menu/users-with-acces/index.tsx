@@ -64,11 +64,11 @@ export const UsersWithAccessContainer: FC<Props> = memo(({ usersAccessDashboard,
                 /> */}
                 <Divider orientation='vertical' sx={{ height: 8, m: 0.5 }} />
 
-                <Tooltip title={ACCESS_TYPE[member.a.d?.aF as AccessLevel]?.label}>
+                <Tooltip title={ACCESS_TYPE[member.a.d?.f as AccessLevel]?.label}>
                   <Typography
                     variant  = 'caption'
                     color    = 'text.main'
-                    children = {ACCESS_TYPE[member.a.d?.aF as AccessLevel]?.label}
+                    children = {ACCESS_TYPE[member.a.d?.f as AccessLevel]?.label}
                     sx       = {{ cursor: 'default', width: pxToRem(80), ...overStyle }}
                   />
                 </Tooltip>

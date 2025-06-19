@@ -13,12 +13,9 @@ interface Props {
   selectedEmail : string
   errors        : Errors | undefined
   onSubmit      : () => void
-  onClose       : () => void
 }
 
-export const Actions: FC<Props> = memo(({
-  loading, errors, selectedEmail, onSubmit, onClose
-}) => (
+export const Actions: FC<Props> = memo(({ loading, errors, selectedEmail, onSubmit }) => (
   <Box sx={{ ...f('c'), width: '100%', my: 2 }}>
     <ErrorBox
       field  = 'general'

@@ -26,7 +26,7 @@ export const SelectValue: FC<Props> = ({
 
   useEffect(() => {
     if (existingEmail) {
-      setValue(existingEmail.a.d?.aF as AccessLevel);
+      setValue(existingEmail.a.d?.f as AccessLevel);
       setLabels(ACCESS_LABELS); // Убрать 'none'
     }
     else {

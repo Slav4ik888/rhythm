@@ -1,2 +1,2 @@
 export * from './company'
-export * from './permissions'
+export * from './access'

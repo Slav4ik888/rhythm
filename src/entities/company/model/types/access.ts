@@ -1,25 +1,27 @@
-// Уровни доступа
+/** Уровни доступа */
 export type AccessLevel = 'n' | 'v' | 'e' // 'none' | 'view' | 'edit'
 
-// Права к профилю компании
+/** Права к профилю компании */
 export interface CompanyProfileAccess {
-  aF: AccessLevel // allFields Только владелец
+  f? : AccessLevel // full Изначально только владелец
+  // aU? : boolean     // addUsers
   // anyFields: AccessLevel
 }
 
-// Права к дашборду компании
+/** Права к дашборду компании  */
 export interface CompanyDashboardAccess {
-  aF: AccessLevel
+  f: AccessLevel // full
+  // aU: boolean     // addUsers
   // anyFields: AccessLevel
 }
 
-// Права к профилю и дашборду компании
+/** Права к профилю и дашборду компании */
 export interface CompanyAccess {
+  d  : CompanyDashboardAccess
   p? : CompanyProfileAccess
-  d? : CompanyDashboardAccess
 }
 
-// Участник компании
+/** Участник компании */
 export interface CompanyMember {
   e : string // email
   a : CompanyAccess

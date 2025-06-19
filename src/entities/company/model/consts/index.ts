@@ -1,5 +1,14 @@
 import { AccessLevel } from '../types';
 
+
+/** Приоритет уровней */
+export const ACCESS_PRIORITY: Record<AccessLevel, number> = {
+  'n': 0, // Закрыт
+  'v': 1, // Просмотр
+  'e': 2, // Редактирование
+};
+
+
 interface AccessType {
   label: string
 }
