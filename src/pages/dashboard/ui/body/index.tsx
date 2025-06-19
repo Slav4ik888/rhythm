@@ -6,6 +6,7 @@ import { DashboardBodyPanel, DashboardBodyContent } from 'widgets/dashboard-view
 import { getInitialState as getInitialStateView, useDashboardView } from 'entities/dashboard-view';
 import { ViewItemConfigurator } from 'widgets/view-configurator';
 import { __devLog } from 'shared/lib/tests/__dev-log';
+import cfg from 'app/config';
 
 
 
@@ -27,6 +28,9 @@ export const DashboardBody = memo(() => {
   // Вначале должен смонтироваться dashboardReducer
   if (! isMounted)  return  null
 
+
+  // dev
+  if (cfg.IS_DEV && cfg.DASHBOARD_DISABLE) return null
 
   return (
     <DashboardBodyWrapper>

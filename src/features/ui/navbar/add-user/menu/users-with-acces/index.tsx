@@ -6,9 +6,10 @@ import { CustomTheme } from 'app/providers/theme';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
-import { ACCESS_TYPE, CompanyMember } from 'entities/company';
+import { AccessLevel, ACCESS_TYPE, CompanyMember } from 'entities/company';
 import { Tooltip } from 'shared/ui/tooltip';
 import Chip from '@mui/material/Chip';
+import Divider from '@mui/material/Divider';
 
 
 
@@ -32,8 +33,8 @@ export const UsersWithAccessContainer: FC<Props> = memo(({ usersAccessDashboard,
 
 
   return (
-    <Box sx={{ ...f('c'), gap: 2, width: '100%' }}>
-      <Title label='Пользователи, имеющие доступ' />
+    <Box sx={{ ...f('c'), gap: 2, width: '100%', minHeight: pxToRem(70) }}>
+      <Title label='Пользователи, имеющие доступ' variant='body1' />
       <Box
         sx={(theme) => ({
           ...f('c'),
@@ -46,31 +47,33 @@ export const UsersWithAccessContainer: FC<Props> = memo(({ usersAccessDashboard,
         {
           usersAccessDashboard.map(member => (
             <Box
-              key = {member.email}
+              key = {member.e}
               sx  = {{ ...f('-c-sb'), width: '100%', gap: 1, p: 1.5 }}
             >
               <Chip
-                label   = {member.email}
+                label   = {member.e}
                 sx      = {{ cursor: 'pointer', maxWidth: pxToRem(180), ...overStyle }}
-                onClick = {() => onEmailClick(member.email)}
+                onClick = {() => onEmailClick(member.e)}
               />
               <Box sx={{ ...f('-c'), gap: 1 }}>
-                <Typography
+                {/* <Typography
                   variant   = 'body2'
                   color     = 'text.light'
                   component = 'span'
                   children  = '|'
-                />
-                <Tooltip title={ACCESS_TYPE[member.access.dashboard?.allFields]?.label}>
+                /> */}
+                <Divider orientation='vertical' sx={{ height: 8, m: 0.5 }} />
+
+                <Tooltip title={ACCESS_TYPE[member.a.d?.aF as AccessLevel]?.label}>
                   <Typography
                     variant  = 'caption'
                     color    = 'text.main'
-                    children = {ACCESS_TYPE[member.access.dashboard?.allFields]?.label}
+                    children = {ACCESS_TYPE[member.a.d?.aF as AccessLevel]?.label}
                     sx       = {{ cursor: 'default', width: pxToRem(80), ...overStyle }}
-                />
+                  />
                 </Tooltip>
                 <Tooltip title='Закрыть доступ этому пользователю'>
-                  <IconButton color='inherit' onClick={() => handleDelete(member.email)}>
+                  <IconButton color='inherit' onClick={() => handleDelete(member.e)}>
                     <CloseIcon
                       sx={(theme) => ({
                         fontSize    : `${getTypography(theme as CustomTheme).size.xs} !important`,

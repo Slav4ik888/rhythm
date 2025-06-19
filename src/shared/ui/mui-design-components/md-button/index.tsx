@@ -25,25 +25,25 @@ import { SxCard } from '../../../styles';
 
 
 interface Props {
-  color?     : ColorName
-  variant?   : 'text' | 'contained' | 'outlined' | 'gradient'
-  size?      : 'small' | 'medium' | 'large'
-  type?      : 'button' | 'reset' | 'submit' | 'link' | 'default'
-  circular?  : boolean
-  iconOnly?  : boolean
-  fullWidth? : boolean
-  target?    : string
-  rel?       : string
-  href?      : string
-  loading?   : boolean
-  disabled?  : boolean
-  startIcon? : ReactNode
-  endIcon?   : ReactNode
-  name?      : string
-  component? : ElementType
-  children?  : ReactNode
-  sx?        : SxCard
-  onClick?   : (e?: any) => void
+  color?         : ColorName
+  variant?       : 'text' | 'contained' | 'outlined' | 'gradient'
+  size?          : 'small' | 'medium' | 'large'
+  type?          : 'button' | 'reset' | 'submit' | 'link' | 'default'
+  circular?      : boolean
+  iconOnly?      : boolean
+  fullWidth?     : boolean
+  target?        : string
+  rel?           : string
+  href?          : string
+  loading?       : boolean
+  disabled?      : boolean
+  startIcon?     : ReactNode
+  endIcon?       : ReactNode
+  name?          : string
+  component?     : ElementType
+  children?      : ReactNode
+  sx?            : SxCard
+  onClick?       : (e?: any) => void
 }
 
 

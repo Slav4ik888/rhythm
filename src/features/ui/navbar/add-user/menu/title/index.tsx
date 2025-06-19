@@ -1,16 +1,17 @@
 import { FC } from 'react';
-import Typography from '@mui/material/Typography';
+import Typography, { TypographyOwnProps } from '@mui/material/Typography';
 import { MDDivider } from 'shared/ui/mui-design-components';
 
 
 
 type Props = {
-  label: string
+  label   : string
+  variant : TypographyOwnProps['variant']
 };
 
-export const Title: FC<Props> = ({ label }) => (
+export const Title: FC<Props> = ({ label, variant }) => (
   <>
-    <Typography variant='body1' align='center' color='text.dark' mt={2}>
+    <Typography variant={variant} align='center' color='text.dark' mt={2}>
       {label}
     </Typography>
 

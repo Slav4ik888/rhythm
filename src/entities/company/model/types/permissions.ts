@@ -1,28 +1,28 @@
 // Уровни доступа
-export type AccessLevel = 'none' | 'view' | 'edit'
+export type AccessLevel = 'n' | 'v' | 'e' // 'none' | 'view' | 'edit'
 
 // Права к профилю компании
 export interface CompanyProfileAccess {
-  allFields: AccessLevel // Только владелец
+  aF: AccessLevel // allFields Только владелец
   // anyFields: AccessLevel
 }
 
 // Права к дашборду компании
 export interface CompanyDashboardAccess {
-  allFields: AccessLevel
+  aF: AccessLevel
   // anyFields: AccessLevel
 }
 
 // Права к профилю и дашборду компании
 export interface CompanyAccess {
-  profile   : CompanyProfileAccess
-  dashboard : CompanyDashboardAccess
+  p? : CompanyProfileAccess
+  d? : CompanyDashboardAccess
 }
 
 // Участник компании
 export interface CompanyMember {
-  email  : string
-  access : CompanyAccess
+  e : string // email
+  a : CompanyAccess
 }
 
 type UserIdType = string

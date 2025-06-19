@@ -19,7 +19,7 @@ interface Props<T> {
   onSearch?     : (value: string) => void
 }
 
-
+// TODO: Возможно надо перенести в отдельную папку выше
 export const SelectValue = memo(<T extends string>({
   sx, selectedValue, disabled, array, component: ComponentItem,
   searchBox: SearchBox, onSelect, onSearch

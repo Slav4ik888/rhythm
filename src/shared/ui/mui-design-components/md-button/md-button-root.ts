@@ -153,8 +153,8 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
       },
 
       '&:disabled': {
-        color: colorValue,
-        borderColor: colorValue,
+        color: text.light, // colorValue,
+        borderColor: text.light, // colorValue,
       },
     };
   };

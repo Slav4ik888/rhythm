@@ -5,4 +5,4 @@ export { StateSchemaCompany, reducer as reducerCompany, actions as actionsCompan
 export { SetCompany } from './model/slice/types'
 export { useCompany } from './model/hooks'
 export { creatorCompany } from './model/creators'
-export { ACCESS_TYPE } from './model/consts'
+export { ACCESS_TYPE, ACCESS_LABELS, ACCESS_LABEL_TYPE } from './model/consts'
