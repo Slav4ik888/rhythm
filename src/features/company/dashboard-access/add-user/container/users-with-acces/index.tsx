@@ -1,15 +1,14 @@
-import { FC, memo, useCallback } from 'react';
-import { f, getTypography, pxToRem } from 'shared/styles';
+import { FC, memo } from 'react';
+import { f, pxToRem } from 'shared/styles';
 import Box from '@mui/material/Box';
 import { Title } from '../title';
 import { CustomTheme } from 'app/providers/theme';
 import Typography from '@mui/material/Typography';
-import CloseIcon from '@mui/icons-material/Close';
-import IconButton from '@mui/material/IconButton';
-import { AccessLevel, ACCESS_TYPE, CompanyMember } from 'entities/company';
+import { AccessLevel, ACCESS_TYPE, useCompany } from 'entities/company';
 import { Tooltip } from 'shared/ui/tooltip';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
+import { DeleteMemberIconContainer } from '../../../delete-member-icon-container';
 
 
 
@@ -21,16 +20,12 @@ const overStyle = {
 
 
 interface Props {
-  usersAccessDashboard : CompanyMember[]
-  onEmailClick         : (email: string) => void
+  onEmailClick: (email: string) => void
 }
 
 /** Список пользователей с доступом к дашборду */
-export const UsersWithAccessContainer: FC<Props> = memo(({ usersAccessDashboard, onEmailClick }) => {
-  const handleDelete = useCallback((email: string) => {
-    console.log('Delete email: ', email);
-  }, []);
-
+export const UsersWithAccessContainer: FC<Props> = memo(({ onEmailClick }) => {
+  const { usersAccessDashboard } = useCompany();
 
   return (
     <Box sx={{ ...f('c'), gap: 2, width: '100%', minHeight: pxToRem(70) }}>
@@ -56,36 +51,22 @@ export const UsersWithAccessContainer: FC<Props> = memo(({ usersAccessDashboard,
                 onClick = {() => onEmailClick(member.e)}
               />
               <Box sx={{ ...f('-c'), gap: 1 }}>
-                {/* <Typography
-                  variant   = 'body2'
-                  color     = 'text.light'
-                  component = 'span'
-                  children  = '|'
-                /> */}
-                <Divider orientation='vertical' sx={{ height: 8, m: 0.5 }} />
+                <Divider
+                  orientation = 'vertical'
+                  color       = 'text.light'
+                  sx          = {{ height: pxToRem(16), m: 0.5 }}
+                />
 
-                <Tooltip title={ACCESS_TYPE[member.a.d?.f as AccessLevel]?.label}>
+                <Tooltip title={ACCESS_TYPE[member.a?.f as AccessLevel]?.label}>
                   <Typography
                     variant  = 'caption'
                     color    = 'text.main'
-                    children = {ACCESS_TYPE[member.a.d?.f as AccessLevel]?.label}
+                    children = {ACCESS_TYPE[member.a?.f as AccessLevel]?.label}
                     sx       = {{ cursor: 'default', width: pxToRem(80), ...overStyle }}
                   />
                 </Tooltip>
-                <Tooltip title='Закрыть доступ этому пользователю'>
-                  <IconButton color='inherit' onClick={() => handleDelete(member.e)}>
-                    <CloseIcon
-                      sx={(theme) => ({
-                        fontSize    : `${getTypography(theme as CustomTheme).size.xs} !important`,
-                        color       : 'text.light',
-                        stroke      : 'currentColor',
-                        strokeWidth : '1px',
-                        cursor      : 'pointer',
-                        transform   : 'translateY(1px)', // Сдвинуть вниз
-                      })}
-                    />
-                  </IconButton>
-                </Tooltip>
+
+                <DeleteMemberIconContainer member={member} />
               </Box>
             </Box>
           ))

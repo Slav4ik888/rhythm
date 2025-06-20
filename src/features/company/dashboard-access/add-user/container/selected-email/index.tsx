@@ -1,10 +1,10 @@
 import { forwardRef, MutableRefObject } from 'react';
 import { TextFieldItem } from 'shared/ui/mui-components';
-import { Errors } from 'shared/lib/validators';
 import { f, pxToRem } from 'shared/styles';
 import Box from '@mui/material/Box';
-import { AccessLevel, CompanyMember } from 'entities/company';
+import { AccessLevel, CompanyDashboardMember } from 'entities/company';
 import { SelectValue } from './select';
+import { Errors } from 'shared/lib/validators';
 
 
 
@@ -13,7 +13,7 @@ interface Props {
   selectedEmail       : string
   selectedAccessLevel : AccessLevel
   ref                 : MutableRefObject<HTMLInputElement | null>
-  existingEmail       : CompanyMember | undefined // Выбранный емэйл уже есть в списке
+  existingEmail       : CompanyDashboardMember | undefined // Выбранный емэйл уже есть в списке
   onSetAccessLevel    : (accessLevel: AccessLevel) => void
   onChange            : (e: any) => void
 }

@@ -8,6 +8,13 @@ export interface CompanyProfileAccess {
   // anyFields: AccessLevel
 }
 
+/** Участник с правами к профилю компании */
+export interface CompanyProfileMember {
+  e : string // email
+  a : CompanyProfileAccess
+}
+
+
 /** Права к дашборду компании  */
 export interface CompanyDashboardAccess {
   f: AccessLevel // full
@@ -15,20 +22,19 @@ export interface CompanyDashboardAccess {
   // anyFields: AccessLevel
 }
 
-/** Права к профилю и дашборду компании */
-export interface CompanyAccess {
-  d  : CompanyDashboardAccess
-  p? : CompanyProfileAccess
-}
-
-/** Участник компании */
-export interface CompanyMember {
+/** Участник с правами к дашборду компании */
+export interface CompanyDashboardMember {
   e : string // email
-  a : CompanyAccess
+  a : CompanyDashboardAccess
 }
 
-type UserIdType = string
-export type CompanyMembers = Record<UserIdType, CompanyMember>;
+
+// export type CompanyDashboardAccessScheme = 'a.f'
+
+export enum CompanyDashboardAccessScheme {
+  AF = 'a.f'
+}
+
 
 // Пользователь написал email кому хочет дать доступ
 // Валидируем email

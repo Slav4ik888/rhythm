@@ -1,21 +1,18 @@
 import { FC, memo } from 'react';
 import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
+import { useCompany } from 'entities/company';
 
 
 
-export const RootAuthComponent: FC = memo(() =>
-  // const
-  //   { isVerified } = useUser(),
-  //   { company } = useCompany();
+export const RootAuthComponent: FC = memo(() => {
+  const { company } = useCompany();
 
-  // if (! isVerified) return <GreetingOffer />;
-  // if (isDisplayDemoSubscribeOffer(company?.courseAccess))return <DemoSubscribeOffer />
-  // if (isDisplaySubscribeOffer(company, isVerified, isSuper)) return <SubscribeOffer />
+  const companyName = company?.companyName ? ` "${company.companyName}"!` : '!';
 
-   (
+  return (
     <Box sx={f('c-c-c')}>
-      Rhythm of Company
+      {`Ритм компании${companyName}`}
     </Box>
   )
-);
+});

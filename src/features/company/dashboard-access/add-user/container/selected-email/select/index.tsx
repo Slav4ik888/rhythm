@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { AccessLevel, ACCESS_LABELS, ACCESS_LABEL_TYPE, ACCESS_TYPE, CompanyMember } from 'entities/company';
+import { AccessLevel, ACCESS_LABELS, ACCESS_LABEL_TYPE, ACCESS_TYPE, CompanyDashboardMember } from 'entities/company';
 import { isNotEmail } from 'shared/lib/validators';
 import { pxToRem } from 'shared/styles';
 
@@ -11,7 +11,7 @@ import { pxToRem } from 'shared/styles';
 interface Props {
   selectedEmail       : string
   selectedAccessLevel : AccessLevel
-  existingEmail       : CompanyMember | undefined // Выбранный емэйл уже есть в списке
+  existingEmail       : CompanyDashboardMember | undefined // Выбранный емэйл уже есть в списке
   onSetAccessLevel    : (accessLevel: AccessLevel) => void
 }
 
@@ -26,7 +26,7 @@ export const SelectValue: FC<Props> = ({
 
   useEffect(() => {
     if (existingEmail) {
-      setValue(existingEmail.a.d?.f as AccessLevel);
+      setValue(existingEmail.a?.f as AccessLevel);
       setLabels(ACCESS_LABELS); // Убрать 'none'
     }
     else {

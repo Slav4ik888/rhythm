@@ -11,7 +11,7 @@ import cfg from 'app/config';
 
 
 export const DashboardBody = memo(() => {
-  __devLog('DashboardBody ');
+  // __devLog('DashboardBody ');
   const { paramsCompanyId } = useCompany();
   const { isMounted, setInitial: setInitialData } = useDashboardData();
   const { setInitial: setInitialView } = useDashboardView();

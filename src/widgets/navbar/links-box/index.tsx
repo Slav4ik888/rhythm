@@ -15,15 +15,16 @@ interface Props {
 
 export const NavbarLinksBox: FC<Props> = memo(({ isMini = false }) => {
   const { auth } = useUser();
-  const { paramsCompanyId } = useCompany();
+  const { companyId } = useCompany();
 
   const links: LinkType[] = useMemo(() => [
     {
       name: 'Перейти в Dashboard',
-      href: `${paramsCompanyId}/${RoutePath.DASHBOARD}`,
+      href: `${companyId}/${RoutePath.DASHBOARD}`,
       requireAuth: true,
     },
-  ], [paramsCompanyId]);
+  ], [companyId]);
+
 
   const renderLinks = useCallback(() =>
     links.map((link) => {

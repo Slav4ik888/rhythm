@@ -93,7 +93,7 @@ const checkAndAddChanges = (
  */
 export function updateObject<T extends object | undefined, O extends Partial<T & any>>(
   prevObj   : T,
-  updFields : O
+  updFields : O | undefined
 ): T & O | T {
   if (! prevObj && ! updFields) return {} as T;
   if (prevObj && ! updFields) return prevObj;

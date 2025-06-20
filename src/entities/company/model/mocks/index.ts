@@ -8,23 +8,24 @@ export const MOCK_OWNER_ID   = '7mNs77rglRfvjuuIEf57ZvMFVr82';
 export const MOCK_COMPANY_ID = 's61FdrbjG0U0iVlBRoFC';
 
 export const MOCK_COMPANY_EMPTY: Company = {
-  id             : '',
-  ownerId        : '',
-  companyName    : '',
-  owner          : '',
+  id               : '',
+  ownerId          : '',
+  companyName      : '',
+  owner            : '',
 
-  logoUrl        : '',
-  googleData: {
+  logoUrl          : '',
+  googleData       : {
     url: '',
   },
 
-  status         : CompanyStatus.NEW,
-  customSettings : {},
-  members        : {},
-  viewUpdated    : creatorFixDate(),
+  status           : CompanyStatus.NEW,
+  customSettings   : {},
+  dashboardMembers : [],
+  companyMembers   : [],
+  viewUpdated      : creatorFixDate(),
 
-  createdAt      : creatorFixDate(),
-  lastChange     : creatorFixDate()
+  createdAt        : creatorFixDate(),
+  lastChange       : creatorFixDate()
 };
 
 

@@ -1,8 +1,7 @@
 import { FC, useCallback, useState } from 'react';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
-import { AddUserMenu } from './menu';
+import { AddUserContainer } from './container';
 import { NavbarIcon } from 'shared/ui/navbar';
-import { useCompany } from 'entities/company';
 
 
 
@@ -10,7 +9,6 @@ import { useCompany } from 'entities/company';
  * Добавление пользователя в дашборд
  */
 export const AddUserRoot: FC = () => {
-  const { paramsCompany } = useCompany();
   const [anchorPro, setAnchorPro] = useState<HTMLElement | null>(null);
 
   const handleAddUserOpen = useCallback((event: { currentTarget: HTMLElement }) => {
@@ -28,10 +26,9 @@ export const AddUserRoot: FC = () => {
         onClick   = {handleAddUserOpen}
       />
 
-      <AddUserMenu
+      <AddUserContainer
         open          = {Boolean(anchorPro)}
         anchorEl      = {anchorPro}
-        paramsCompany = {paramsCompany}
         onClose       = {handleAddUserClose}
       />
     </>

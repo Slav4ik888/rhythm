@@ -1,6 +1,5 @@
 import { isArr } from 'shared/lib/validators';
 import { cloneObj, updateObject } from '../../objects';
-import type { Item } from '../types';
 
 
 
@@ -9,33 +8,35 @@ import type { Item } from '../types';
  * Возвращает массив с обновлённым item
  * Если нет массива items, то создаёт его
  *
- * @param {Item} items
+ * @param {T} items
  * @param {string} field -
  * @param {object} updateItem
  * @param {string | array} flags -
  * @return {array} items
  */
-export function updateArrWithItemByField(
-  items      : Item[],
+export function updateArrWithItemByField<T>(
+  items      : T[],
   field      : string,          // поле по которому ищется объект: 'id' || 'email' || any
-  updateItem : Partial<Item>,
+  updateItem : Partial<T>,
   flags?     : string | string[] // - если стоит 'update', то в обновляемом объекте, обновляются только
                                  //   те поля что переданы в updateItem, остальные имеющиеся остаются без изменений
                                  // - если есть 'after', то следующий нужно добавить id элемента после которого нужно добавить updateItem,
                                  //   ['after', 'id-123']
                                  //   если updateItem уже есть то просто обновляем, если его нет, то добавляем после after
-): Item[] {
+): T[] {
   if (! updateItem) return items
 
-  let newItems = [] as Item[];
+  let newItems = [] as T[];
 
   // Если нет массива items, то создаём его
   if (! items) {
-    newItems.push(updateItem as Item);
+    newItems.push(updateItem as T);
     return newItems;
   }
 
-  const idx = items.findIndex((item) => item[field] === updateItem[field]);
+
+  // @ts-ignore
+  const idx = items.findIndex((item) => item?.[field] === updateItem[field]);
   newItems = [...items];
 
   // Если есть - обновляем
@@ -44,10 +45,11 @@ export function updateArrWithItemByField(
 
     // Если указан флаг, обрабатываем
     if (flags?.includes('update')) {
+      // @ts-ignore
       newUpdateItem = updateObject(items[idx], updateItem);
     }
 
-    return [...newItems.slice(0, idx), newUpdateItem as Item, ...newItems.slice(idx + 1)];
+    return [...newItems.slice(0, idx), newUpdateItem as T, ...newItems.slice(idx + 1)];
   }
   // Нету - добавляем
 
@@ -60,13 +62,14 @@ export function updateArrWithItemByField(
 
       if (idxAfter !== -1 && afterId) {
         // Есть ли afterId in Arr
+        // @ts-ignore
         const idxAfterInArr = items.findIndex((item) => item[field] === afterId);
 
         // Add after 'after'
         if (idxAfterInArr !== -1) {
           return [
             ...newItems.slice(0, idxAfterInArr + 1),
-            cloneObj(updateItem) as Item,
+            cloneObj(updateItem) as T,
             ...newItems.slice(idxAfterInArr + 1)
           ];
         }
@@ -76,6 +79,6 @@ export function updateArrWithItemByField(
     // else {
     // }
 
-    newItems.push(updateItem as Item);
+    newItems.push(updateItem as T);
     return newItems;
 }

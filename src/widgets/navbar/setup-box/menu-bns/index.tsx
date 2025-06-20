@@ -6,7 +6,7 @@ import { sxNavbarRow } from '../../styles';
 import { DashboardSetEditBtn } from 'features/dashboard-view';
 import { isDashboardPage } from 'pages/dashboard';
 import { useLocation } from 'react-router-dom';
-import { useCompany, checkAccess } from 'entities/company';
+import { useCompany, checkDashboardAccess, CompanyDashboardAccessScheme } from 'entities/company';
 import { useUser } from 'entities/user';
 
 
@@ -19,11 +19,13 @@ interface Props {
 /** Кнопки Navbar меню после авторизации */
 export const MenuBtns: FC<Props> = ({ light, isMini = false }) => {
   const { paramsCompany } = useCompany();
-  const { email } = useUser();
-  const location = useLocation();
-  const isDashboard = isDashboardPage(location);
-  const dashboardAccess = useMemo(() => checkAccess(paramsCompany, email, 'a.d.f', 'e'),
-    [email, paramsCompany]);
+  const { email }         = useUser();
+  const location          = useLocation();
+  const isDashboard       = isDashboardPage(location);
+
+  const dashboardAccess   = useMemo(() => checkDashboardAccess(
+    paramsCompany, email, CompanyDashboardAccessScheme.AF, 'e'
+  ), [email, paramsCompany]);
 
 
   return (

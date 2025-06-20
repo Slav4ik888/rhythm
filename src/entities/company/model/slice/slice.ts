@@ -37,6 +37,9 @@ const slice = createSlice({
       LS.setCompanyState(payload.company.id, state);
       LS.setLastCompanyId(payload.company.id);
     },
+    updateParamsCompany: (state, { payload }: PayloadAction<Partial<ParamsCompany>>) => {
+      state.paramsCompany = updateObject(state.paramsCompany, payload);
+    },
     setIsParamsCompanyIdLoaded: (state, { payload }: PayloadAction<boolean>) => {
       state._isParamsCompanyIdLoaded = payload;
     },

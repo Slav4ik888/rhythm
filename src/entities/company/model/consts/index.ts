@@ -9,11 +9,11 @@ export const ACCESS_PRIORITY: Record<AccessLevel, number> = {
 };
 
 
-interface AccessType {
+interface ConstAccessType {
   label: string
 }
 
-export const ACCESS_TYPE: Record<AccessLevel, AccessType> = {
+export const ACCESS_TYPE: Record<AccessLevel, ConstAccessType> = {
   'n': {
     label: 'Закрыт'
   },
@@ -31,4 +31,4 @@ export const ACCESS_LABEL_TYPE: Record<string, AccessLevel> = {
   [ACCESS_TYPE.n.label]: 'n',
   [ACCESS_TYPE.v.label]: 'v',
   [ACCESS_TYPE.e.label]: 'e',
-}
+};

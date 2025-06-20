@@ -21,7 +21,7 @@ const initialReducers: ReducersList = {
 
 
 export const DashboardPageContainer: FC = memo(() => {
-  __devLog('DashboardPageContainer');
+  // __devLog('DashboardPageContainer');
   const [_, dispatch] = useUIConfiguratorController();
   const { paramsCompanyId, paramsCompany, paramsViewUpdated } = useCompany();
   const { pathname } = useLocation();

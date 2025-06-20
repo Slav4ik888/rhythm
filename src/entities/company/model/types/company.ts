@@ -1,5 +1,5 @@
 import { FixDate } from 'entities/base';
-import { CompanyMembers } from './access';
+import { CompanyProfileMember, CompanyDashboardMember } from './access';
 
 
 
@@ -33,35 +33,36 @@ export interface CustomSettings {
 }
 
 /**
- * v.2025-06-16
+ * v.2025-06-20
  * Профиль компании
  */
 export interface Company {
-  id             : string
-  companyName    : string
-  ownerId        : string
-  owner          : string // email
+  id                : string
+  companyName       : string
+  ownerId           : string
+  owner             : string // email
 
-  logoUrl        : string // https://firebasestorage.googleapis.com/v0/b/osnova-course.appspot.com/o/no-img-company.svg?alt=media
-  status         : CompanyStatus
+  logoUrl          : string // https://firebasestorage.googleapis.com/v0/b/osnova-course.appspot.com/o/no-img-company.svg?alt=media
+  status           : CompanyStatus
 
-  googleData     : GoogleData
+  googleData       : GoogleData
   // dashboardData  : CompanyDashboardData
-  customSettings : CustomSettings
-  viewUpdated    : FixDate // Timestamp last ViewItems updated. При любом изменении ViewItems - обновляем
+  customSettings   : CustomSettings
+  viewUpdated      : FixDate // Timestamp last ViewItems updated. При любом изменении ViewItems - обновляем
 
-  members        : CompanyMembers
-  createdAt      : FixDate
-  lastChange     : FixDate
+  dashboardMembers : CompanyDashboardMember[]
+  companyMembers   : CompanyProfileMember[]
+  createdAt        : FixDate
+  lastChange       : FixDate
 }
 
 export type PartialCompany = Partial<Company> & { id: string }
 
 /** Обязательные поля для чужого пользователя прошедшего по ссылке */
-export type ParamsCompany = Partial<Company> & {
-  id             : string
-  customSettings : CustomSettings
-  googleData     : GoogleData
-  viewUpdated    : FixDate // Timestamp last ViewItems updated
-  members        : CompanyMembers
+export type ParamsCompany = PartialCompany & {
+  customSettings   : CustomSettings
+  googleData       : GoogleData
+  viewUpdated      : FixDate // Timestamp last ViewItems updated
+  dashboardMembers : CompanyDashboardMember[]
+  companyMembers   : CompanyProfileMember[]
 }

@@ -40,7 +40,7 @@ export const LayoutEmptyPage: FC<Props> = memo(({ children }) => {
         variant = 'gradient'
         color   = 'primary'
         type    = 'button'
-        sx      = {{ root: { width : '50%' } }}
+        sx      = {{ root: { width : '300px' } }}
         onClick = {handleClick}
       >
         Перейти на главную

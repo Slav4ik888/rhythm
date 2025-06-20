@@ -4,7 +4,7 @@ import { actions as a } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
-import { CustomSettings, PartialCompany } from '../../types';
+import { CustomSettings, ParamsCompany, PartialCompany } from '../../types';
 import { getParamsCompany, updateCompany } from 'features/company';
 
 
@@ -26,6 +26,8 @@ export const useCompany = () => {
   const paramsViewUpdated        = paramsCompany?.viewUpdated;
   const paramsCustomSettings     = useSelector(s.selectParamsCustomSettings);
   const paramsChangedCompany     = useSelector(s.selectParamsChangedCompany); // Объект с изменившимися полями
+  const usersAccessDashboard     = paramsCompany?.dashboardMembers || [];
+  // const usersAccessDashboard     = useSelector(s.selectUsersAccessDashboard); // Списо пользователей имеющих доступ ('v' | 'e') к /dashboard
   const company                  = useSelector(s.selectCompany);
   const companyId                = company?.id;
   const storedCompany            = useSelector(s.selectStoredCompany);
@@ -41,6 +43,8 @@ export const useCompany = () => {
     setIsParamsCompanyIdLoaded : (status: boolean) => dispatch(a.setIsParamsCompanyIdLoaded(status)),
     updateParamsCustomSettings : (data: Partial<CustomSettings>) => dispatch(a.updateParamsCustomSettings(data)),
     cancelParamsCustomSettings : () => dispatch(a.cancelParamsCustomSettings()),
+    updateParamsCompany        : (data: Partial<ParamsCompany>) => dispatch(a.updateParamsCompany(data)),
+
     serviceGetParamsCompany    : (companyId: string) => dispatch(getParamsCompany({ companyId })),
     serviceUpdateCompany       : (company: PartialCompany) => dispatch(updateCompany(company)),
   }), [dispatch]);
@@ -55,6 +59,7 @@ export const useCompany = () => {
     paramsViewUpdated,
     paramsCustomSettings,
     paramsChangedCompany,
+    usersAccessDashboard,
 
     company,
     companyId,

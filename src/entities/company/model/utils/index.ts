@@ -1,1 +1,1 @@
-export { isOwner, checkAccess } from './access'
+export { isOwner, checkDashboardAccess } from './access'

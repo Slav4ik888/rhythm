@@ -11,6 +11,15 @@ describe('ARRAY.JS - updateArrWithItemByField', () => {
     expect(updateArrWithItemByField([...MOCK_ARR], 'id', MOCK_FIELD_UPDATED)).toEqual(MOCK_ARR_UPDATED);
   });
 
+  it('Обновляем по несуществующему полю => новый item в конец', () => {
+    // @ts-ignore
+    expect(updateArrWithItemByField([...MOCK_ARR], 'unknown', { unknown: { id: '1' } }))
+      .toEqual([
+      ...MOCK_ARR,
+      { unknown: { id: '1' } }
+    ]);
+  });
+
   it('Обновляемый объект undefined', () => {
   // @ts-ignore
     expect(updateArrWithItemByField([...MOCK_ARR], 'id', undefined)).toEqual(MOCK_ARR);

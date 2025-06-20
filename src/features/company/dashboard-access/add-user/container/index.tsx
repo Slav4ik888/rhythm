@@ -1,7 +1,6 @@
 import { FC, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useUI } from 'entities/ui';
 import { f, pxToRem } from 'shared/styles';
-import { AccessLevel, CompanyMember, ParamsCompany } from 'entities/company';
+import { AccessLevel, useCompany } from 'entities/company';
 import Box from '@mui/material/Box';
 import { Errors, isNotEmail } from 'shared/lib/validators';
 import { UsersWithAccessContainer } from './users-with-acces';
@@ -9,31 +8,20 @@ import { SelectedEmailContainer } from './selected-email';
 import Popover from '@mui/material/Popover';
 import { Actions } from './actions';
 import { Title } from './title';
-import { setValueByScheme } from 'shared/helpers/objects';
+import { isOwner } from 'entities/company/model/utils';
 
 
 
 interface Props {
-  open          : boolean
-  anchorEl      : HTMLElement | null
-  paramsCompany : ParamsCompany
-  onClose       : () => void
+  open     : boolean
+  anchorEl : HTMLElement | null
+  onClose  : () => void
 }
 
 
-export const AddUserMenu: FC<Props> = memo(({ open, anchorEl, paramsCompany, onClose }) => {
-  const usersAccessDashboard = useMemo(() => {
-    if (! paramsCompany || ! paramsCompany.members) return [];
-    const allAccess = Object
-      .values(paramsCompany?.members)
-      .filter(member => member.a?.d?.f === 'v' || member.a?.d?.f === 'e');
-
-    return allAccess
-  }, [paramsCompany]);
-  console.log('usersAccessDashboard: ', usersAccessDashboard);
-
+export const AddUserContainer: FC<Props> = memo(({ open, anchorEl, onClose }) => {
+  const { paramsCompany, usersAccessDashboard, clearErrors } = useCompany();
   const selectedEmailRef = useRef<HTMLInputElement | null>(null);
-  const { loading } = useUI();
   const [errors, setErrors] = useState<Errors | undefined>(undefined);
   const [selectedEmail, setSelectedEmail] = useState('');
   const [selectedAccessLevel, setAccessLevel] = useState<AccessLevel>('v');
@@ -41,40 +29,36 @@ export const AddUserMenu: FC<Props> = memo(({ open, anchorEl, paramsCompany, onC
   const existingEmail = useMemo(() => usersAccessDashboard.find(access => access.e === selectedEmail),
     [usersAccessDashboard, selectedEmail]);
 
+
   useEffect(() => {
     setSelectedEmail('');
+    clearErrors(); // In Company
     setErrors(undefined);
     setAccessLevel('v');
     if (selectedEmailRef && selectedEmailRef.current && open) selectedEmailRef.current.value = '';
-  }, [open]);
+  }, [open, clearErrors]);
 
 
   const handleChange = useCallback((e: any) => {
-    if (isNotEmail(e.target.value)) setErrors({ email: 'Некорректный email' });
-    else setErrors(undefined);
-    setSelectedEmail(e.target.value);
-  }, [setErrors, setSelectedEmail]);
+    const value = String(e.target.value).toLowerCase();
+
+    if (isNotEmail(value)) {
+      setErrors({ email: 'Некорректный email' });
+    }
+    else if (isOwner(paramsCompany, value)) {
+      setErrors({ email: 'Нельзя изменить права владельца аккаунта компании' });
+    }
+    else {
+      setErrors(undefined);
+    }
+    setSelectedEmail(value);
+  }, [paramsCompany, setSelectedEmail]);
 
 
   const handleEmailClick = useCallback((email: string) => {
     setSelectedEmail(email);
     if (selectedEmailRef?.current) selectedEmailRef.current.value = email;
   }, [setSelectedEmail]);
-
-
-  const handleSubmit = useCallback(() => {
-    console.log('handleSubmit:');
-    console.log('existingEmail:', existingEmail);
-
-    const access = {
-      ...(existingEmail ? existingEmail.a : {}),
-      e: selectedEmail,
-    } as CompanyMember;
-
-    setValueByScheme(access, 'a.d.aF', selectedAccessLevel);
-
-    console.log('access:', access);
-  }, [selectedEmail, selectedAccessLevel, existingEmail]);
 
 
   return (
@@ -97,15 +81,12 @@ export const AddUserMenu: FC<Props> = memo(({ open, anchorEl, paramsCompany, onC
           onSetAccessLevel    = {setAccessLevel}
           onChange            = {handleChange}
         />
-        <UsersWithAccessContainer
-          usersAccessDashboard = {usersAccessDashboard}
-          onEmailClick         = {handleEmailClick}
-        />
+        <UsersWithAccessContainer onEmailClick={handleEmailClick} />
         <Actions
-          selectedEmail = {selectedEmail}
-          loading       = {loading}
-          errors        = {errors}
-          onSubmit      = {handleSubmit}
+          selectedEmail       = {selectedEmail}
+          existingEmail       = {existingEmail}
+          selectedAccessLevel = {selectedAccessLevel}
+          onClose             = {onClose}
         />
       </Box>
     </Popover>

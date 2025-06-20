@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/store';
 import { getChanges } from 'shared/helpers/objects';
 import { StateSchemaCompany as SSC } from '../slice/state-schema';
-import { Company, ParamsCompany } from '../types';
+import { ParamsCompany } from '../types';
 
 
 export const selectModule = createSelector([(state: StateSchema) => state.company || {} as SSC], (state: SSC) => state);
@@ -16,6 +16,15 @@ export const selectStoredCompany = createSelector(selectModule, (state: SSC) => 
 export const selectParamsCompany = createSelector(selectModule, (state: SSC) => state.paramsCompany);
 export const selectParamsCustomSettings = createSelector(selectParamsCompany, (paramsCompany: ParamsCompany) =>
   paramsCompany?.customSettings || {});
+
+/** Списо пользователей имеющих доступ ('v' | 'e') к /dashboard  */
+// export const selectUsersAccessDashboard = createSelector(selectParamsCompany, (paramsCompany: ParamsCompany) => {
+//   if (! paramsCompany || ! paramsCompany.dashboardMembers) return [];
+
+//   return paramsCompany.dashboardMembers.filter(member => member.a?.f === 'v' || member.a?.f === 'e');
+// });
+
+
 // export const selectCustomSettings = createSelector(selectCompany, (company: Company) => company?.customSettings || {});
 
 // Возвращает объект с изменившимися полями
