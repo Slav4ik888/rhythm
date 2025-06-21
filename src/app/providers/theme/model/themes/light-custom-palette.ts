@@ -421,6 +421,15 @@ export const customPalette = {
     dark: '#404040',
   },
 
+  dialog: {
+    title: {
+      background: '#bcbcbc',
+    },
+    content: {
+      background: '#dddddd',
+    },
+  },
+
   // Material Kit 2 React Base Styles
   tabs: {
     indicator: {

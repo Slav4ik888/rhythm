@@ -7,9 +7,9 @@ export const customPalette: CustomPalette = {
   mode: 'dark' as PaletteMode,
 
   background: {
-    default    : '#171717',
+    default    : '#141414',
     card       : '#252525',
-    paper      : '#0a0a0a',
+    paper      : '#212121',
     paperLight : '#313131',
   },
 
@@ -419,6 +419,15 @@ export const customPalette: CustomPalette = {
     error: '#f44336',
     light: '#adb5bd',
     dark: '#404040',
+  },
+
+  dialog: {
+    title: {
+      background: '#1a1a1a',
+    },
+    content: {
+      background: '#212121',
+    },
   },
 
   // Material Kit 2 React Base Styles

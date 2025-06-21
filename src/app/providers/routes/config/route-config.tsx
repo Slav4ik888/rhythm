@@ -3,6 +3,7 @@ import { DashboardPage } from 'pages/dashboard';
 import { LoginPage } from 'pages/login';
 import { NotAccessPage } from 'pages/not-access';
 import { NotFoundPage } from 'pages/not-found';
+import { PolicyPage } from 'pages/policy';
 import { SignupPage } from 'pages/signup';
 import { UserProfilePage } from 'pages/user-profile';
 import { RouteProps } from 'react-router-dom';
@@ -54,6 +55,11 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
   //   path    : RoutePath.DASHBOARD_ID,
   //   element : <DashboardPage />
   // },
+
+  [AppRoutes.POLICY]: {
+    path    : RoutePath.POLICY,
+    element : <PolicyPage />
+  },
 
   // Others
   [AppRoutes.NOT_ACCESS]: {

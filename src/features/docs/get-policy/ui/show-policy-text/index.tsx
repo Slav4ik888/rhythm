@@ -1,25 +1,32 @@
-import { FC, useMemo, memo } from 'react';
-import ReactMarkdown from 'react-markdown';
-import gfm from 'remark-gfm';
+import { FC, memo } from 'react';
 import Box from '@mui/material/Box';
 import { PageLoader } from 'widgets/page-loader';
-import { useDocs } from 'entities/docs';
+import { useDocs, reducerDocs } from 'entities/docs';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
+import { useInitialEffect } from 'shared/lib/hooks';
+import { MarkdownWithExternalLinks } from 'shared/lib/markdown';
 
 
+
+const initialReducers: ReducersList = {
+  docs: reducerDocs
+};
 
 export const ShowPolicyText: FC = memo(() => {
   const { loading, policy, serviceGetPolicy } = useDocs();
 
-  const policyLoaded = useMemo(() => {
-    if (! policy) serviceGetPolicy();
-    return policy;
-  }, [policy, serviceGetPolicy]);
+
+  useInitialEffect(() => {
+    serviceGetPolicy();
+  });
+
 
   return (
-    <Box sx={{ minHeight: 100 }}>
-      <PageLoader loading={loading} text='Загрузка политики конфеденциальности...' />
-      {/* @ts-ignore */}
-      <ReactMarkdown plugins={[gfm]} linkTarget='_blank' children={policyLoaded} />
-    </Box>
+    <DynamicModuleLoader reducers={initialReducers}>
+      <Box sx={{ minHeight: 100 }}>
+        <PageLoader loading={loading} text='Загрузка политики конфеденциальности...' />
+        <MarkdownWithExternalLinks content={policy} />
+      </Box>
+    </DynamicModuleLoader>
   );
 });

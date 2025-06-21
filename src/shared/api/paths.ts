@@ -32,6 +32,9 @@ export const paths = {
       delete           : '/dashboard/view/delete',
     }
   },
+  docs: {
+    getPolicy: '/getPolicy',
+  },
   transactions: {
     sendTransactions: '/sendTransactions',
   }

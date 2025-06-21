@@ -6,36 +6,9 @@ import Tooltip from '@mui/material/Tooltip';
 import CloseIcon from '@mui/icons-material/Close';
 import HelpOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import HelpIcon from '@mui/icons-material/Help';
-import { CustomTheme, useTheme } from 'app/providers/theme';
+import { f } from 'shared/styles';
+import { CustomTheme } from 'app/providers/theme';
 
-
-
-const useStyles = (theme: CustomTheme) => ({
-  root: {
-    display    : 'flex',
-    alignItems : 'center',
-    color      : theme.palette.primary.contrastText,
-    background : theme.palette.primary.main,
-    minHeight  : '62px',
-    boxShadow  : '0px 0px 2px 2px #bdbdbd',
-    m          : 0,
-    mb         : '3px',
-    p          : 0
-  },
-  title: {
-    textAlign  : 'center',
-    width      : '100%',
-    ml         : 2,
-    pl         : 4
-  },
-  icon: {
-    color      : theme.palette.primary.contrastText
-  },
-  iconClose: {
-    color      : theme.palette.primary.contrastText,
-    mr         : 1
-  }
-});
 
 
 enum QuestionIconType {
@@ -55,8 +28,6 @@ type Props = {
 export const DialogTitle: React.FC<Props> = (props: Props) => {
   const { children, question, questionIconType, onClose, ...other } = props;
 
-  const sx = useStyles(useTheme() as unknown as CustomTheme);
-
   let helpIcon: JSX.Element;
   switch (questionIconType) {
     case QuestionIconType.Help: helpIcon = <HelpIcon />; break;
@@ -67,10 +38,25 @@ export const DialogTitle: React.FC<Props> = (props: Props) => {
 
   return (
     <MuiDialogTitle
-      sx={sx.root}
+      sx={(theme) => ({
+        ...f('-c'),
+        background : (theme as CustomTheme).palette.dialog.title.background,
+        minHeight  : '62px',
+        m          : 0,
+        p          : 0
+      })}
       {...other}
     >
-      <Typography variant='h6' component='div' sx={sx.title}>
+      <Typography
+        variant   = 'h6'
+        component = 'div'
+        sx        = {{
+          textAlign : 'center',
+          width     : '100%',
+          ml        : 2,
+          pl        : 4
+        }}
+      >
         {
           children
         }
@@ -78,7 +64,7 @@ export const DialogTitle: React.FC<Props> = (props: Props) => {
       {
         question ? (
           <Tooltip title={question} placement='bottom' arrow>
-            <IconButton aria-label='question' sx={sx.icon}>
+            <IconButton aria-label='question'>
               {
                 helpIcon
               }
@@ -88,7 +74,7 @@ export const DialogTitle: React.FC<Props> = (props: Props) => {
       }
       {
         onClose ? (
-          <IconButton onClick={onClose} aria-label='close' sx={sx.iconClose}>
+          <IconButton onClick={onClose} aria-label='close' sx={{ mr: 1 }}>
             <CloseIcon />
           </IconButton>
         ) : null

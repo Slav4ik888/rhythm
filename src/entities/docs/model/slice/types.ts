@@ -1,8 +1,7 @@
 import { Errors } from 'shared/lib/validators';
 
-export enum DocKey {
-  POLICY = 'policy' // Политика конфиденциальности
-}
+export type DocKey = 'policy' // Политика конфиденциальности
+
 
 export type DocKeys = Record<DocKey, string>
 

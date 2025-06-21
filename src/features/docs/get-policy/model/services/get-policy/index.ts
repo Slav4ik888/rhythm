@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
+import { paths } from 'shared/api';
 import { Errors } from 'shared/lib/validators';
 
 
@@ -19,7 +20,7 @@ export const getPolicy = createAsyncThunk<
     const { extra, rejectWithValue, dispatch } = thunkApi;
 
     try {
-      const { data: { policy } } = await extra.api.get<ResGetPolicy>('/getPolicy');
+      const { data: { policy } } = await extra.api.get<ResGetPolicy>(paths.docs.getPolicy);
 
       return policy;
     }

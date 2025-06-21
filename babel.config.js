@@ -8,18 +8,18 @@ export default {
         }
       }
     ],
-    "@babel/preset-typescript",
+    '@babel/preset-typescript',
     [
-      "@babel/preset-react",
+      '@babel/preset-react',
       {
-        "runtime": "automatic"
+        'runtime': 'automatic'
       }
     ]
   ],
   plugins: [
-    "@babel/plugin-proposal-class-properties",
-    "@babel/transform-runtime",
-    "@babel/plugin-transform-modules-commonjs"
-    // "babel-plugin-transform-import-meta"
+    '@babel/plugin-proposal-class-properties',
+    '@babel/transform-runtime',
+    '@babel/plugin-transform-modules-commonjs'
+    // 'babel-plugin-transform-import-meta'
   ]
 }

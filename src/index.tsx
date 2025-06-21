@@ -31,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refacted edit" && git push -u origin main
+// git add . && git commit -m "refacted Markdown & added get-policy" && git push -u origin main

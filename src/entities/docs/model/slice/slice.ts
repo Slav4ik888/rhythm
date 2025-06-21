@@ -35,7 +35,7 @@ export const slice = createSlice({
         state.loading = true;
       })
       .addCase(getPolicy.fulfilled, (state, { payload }) => {
-        state.docKeys[DocKey.POLICY] = payload;
+        state.docKeys.policy = payload;
         state.errors  = {};
         state.loading = false;
       })

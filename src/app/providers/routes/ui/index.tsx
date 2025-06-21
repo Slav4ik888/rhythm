@@ -13,6 +13,7 @@ import { SignupPage } from 'pages/signup';
 import { LoginPage } from 'pages/login';
 import { UserProfilePage } from 'pages/user-profile';
 import { NotAccessPage } from 'pages/not-access';
+import { PolicyPage } from 'pages/policy';
 
 
 
@@ -48,7 +49,10 @@ export const AppRouter = memo(() => {
       <Route path={RoutePath[AppRoutes.ROOT]} element={<MainLayout />}>
         <Route index element={<RootPage />} />
         <Route path={RoutePath[AppRoutes.SIGNUP]} element={withFallback(<SignupPage />)} />
+        <Route path={RoutePath[AppRoutes.POLICY]} element={withFallback(<PolicyPage />)} />
+
         <Route path={RoutePath[AppRoutes.LOGIN]} element={withFallback(<LoginPage />)} />
+
         <Route path={RoutePath[AppRoutes.USER_PROFILE]} element={withFallback(<UserProfilePage />)} />
         <Route path={RoutePath[AppRoutes.COMPANY_PROFILE]} element={withFallback(<CompanyProfilePage />)} />
         <Route path={RoutePath[AppRoutes.NOT_ACCESS]} element={<NotAccessPage />} />

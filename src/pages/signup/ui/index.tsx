@@ -35,7 +35,7 @@ const SignupPage: FC = memo(() => {
     const signupData: SignupData = {
       companyName     : getRefValue(companyNameRef),
       firstName       : getRefValue(firstNameRef),
-      email           : getRefValue(emailRef),
+      email           : getRefValue(emailRef).toLocaleLowerCase(),
       password        : getRefValue(passwordRef),
       confirmPassword : getRefValue(confirmRef),
       permissions,
@@ -43,14 +43,8 @@ const SignupPage: FC = memo(() => {
     };
 
     const { valid, errors } = validateSignupData(signupData);
-    if (valid) {
-      __devLog('signupData: ', signupData);
-      return
-      serviceSignup(signupData);
-    }
-    else {
-      setErrors(errors);
-    }
+    if (valid) serviceSignup(signupData);
+    else setErrors(errors);
   }, [loading, permissions, isMobile, serviceSignup, setErrors]);
 
 

@@ -11,6 +11,7 @@ const title: Record<LayoutInnerPageType, string> = {
   'signup'          : 'Регистрация',
   'user-profile'    : 'Профиль пользователя',
   'company-profile' : 'Профиль компании',
+  'policy'          : 'Политика конфиденциальности',
 };
 
 
