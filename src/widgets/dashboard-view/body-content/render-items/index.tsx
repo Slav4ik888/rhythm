@@ -1,34 +1,29 @@
-import { FC, memo, useMemo } from 'react';
+import { FC, memo } from 'react';
 import { DashboardBodyContentItem } from '../content-item';
-import { ParentsViewItems, ViewItemId } from 'entities/dashboard-view';
-import { sortingArr } from 'shared/helpers/sorting';
+import { ViewItem, ViewItemId } from 'entities/dashboard-view';
+import { getParents } from 'entities/dashboard-view/model/utils';
 
 
 
 interface Props {
-  parentsViewItems : ParentsViewItems
-  parentId         : ViewItemId // Current Rendered ParentId
+  rootViewItems : ViewItem[]
   onSelect         : (id: ViewItemId) => void
 }
 
 /**
- * Рендерим все parentId`s children
+ * Рендерим все корневые ViewItems
  */
-export const ContentRender: FC<Props> = memo(({ parentsViewItems, parentId, onSelect }) => {
-  const sorted = useMemo(() => sortingArr(parentsViewItems[parentId], 'order'), [parentsViewItems, parentId]);
-
-  if (! parentsViewItems[parentId]) return null;
-
-  return (
-    <>
-      {
-        sorted.map(item => <DashboardBodyContentItem
+export const ContentRenderRootViewItems: FC<Props> = memo(({ rootViewItems, onSelect }) => (
+  <>
+    {
+      rootViewItems.map(item => (
+        <DashboardBodyContentItem
           key              = {item.id}
-          parentsViewItems = {parentsViewItems}
+          parentsViewItems = {getParents(Object.values(item.children || {}))}
           item             = {item}
           onSelect         = {onSelect}
-        />)
-      }
-    </>
-  )
-});
+        />
+      ))
+    }
+  </>
+));

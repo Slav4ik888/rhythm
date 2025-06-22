@@ -13,7 +13,7 @@ const cfg = {
   /** If checks should been disabled */
   IS_EXPERIMENTAL   : false,
   IS_DEV            : false, // true, // Если загрузить данные надо не с сервера а из LS, например, когда нет интернета
-  DASHBOARD_DISABLE : true, // Don`t render dashboard
+  DASHBOARD_DISABLE : false, // Don`t render dashboard
 }
 
 export default cfg

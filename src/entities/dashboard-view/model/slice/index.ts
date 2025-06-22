@@ -20,6 +20,7 @@ import {
 } from 'features/dashboard-view/configurator';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { getViewItems } from '../services';
+import { organizeViewItemsIntoEntities } from '../utils/dev-organize-vi-into-entities';
 
 
 
@@ -74,7 +75,8 @@ export const slice = createSlice({
     // Берём закэшированную версию
     setDashboardViewFromCache: (state, { payload }: PayloadAction<string>) => {
       const viewItems = LS.getDashboardView(payload) as ViewItem[] || [];
-      state.entities            = updateEntities({}, viewItems);
+      // state.entities            = updateEntities({}, viewItems);
+      state.entities            = organizeViewItemsIntoEntities(viewItems);
       state.activatedMovementId = '';
       state.activatedCopied     = undefined;
       state.bright              = false;

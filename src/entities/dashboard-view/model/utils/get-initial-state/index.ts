@@ -1,6 +1,7 @@
 import { updateEntities } from 'entities/base';
 import { LS } from 'shared/lib/local-storage';
 import { StateSchemaDashboardView } from '../../slice/state-schema';
+import { organizeViewItemsIntoEntities } from '../dev-organize-vi-into-entities';
 
 
 
@@ -11,13 +12,14 @@ export const getInitialState = (companyId: string): StateSchemaDashboardView => 
     errors                : {},
     _isMounted            : true,
 
-    editMode              : LS.getDashboardViewEditMode(companyId),
+    editMode              : LS.getDashboardViewEditMode(companyId) || false,
     newSelectedId         : '',
     selectedId            : '',
     bright                : false,
     isUnsaved             : false, // Наличие не сохраненных изменений (в тч customSettings in Company)
 
-    entities              : updateEntities({}, LS.getDashboardView(companyId) || []),
+    // entities              : updateEntities({}, LS.getDashboardView(companyId) || []),
+    entities              : organizeViewItemsIntoEntities(LS.getDashboardView(companyId) || []),
     newStoredViewItem     : undefined, // Начальные значения выбранного элемента
     prevStoredViewItem    : undefined, // Начальные значения предыдущего выбранного элемента
 

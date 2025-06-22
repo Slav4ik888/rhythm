@@ -31,7 +31,7 @@ export const getUIConfiguratorState = () => getStorageData<UIConfiguratorProvide
 export const setDashboardState = (companyId: string, state: StateSchemaDashboardData) => setStorageData(`DashboardState-${companyId}`, state);
 export const getDashboardState = (companyId: string) => getStorageData<StateSchemaDashboardData>(`DashboardState-${companyId}`);
 
-export const setDashboardView = (companyId: string, views: ViewItem[]) => setStorageData(`DashboardView-${companyId}`, views);
+export const setDashboardView = (companyId: string, views: ViewItem[]) => setStorageData(`DashboardView2-${companyId}`, views);
 export const getDashboardView = (companyId: string) => getStorageData<ViewItem[]>(`DashboardView-${companyId}`);
 export const setDashboardViewEditMode = (companyId: string, editMode: boolean) => setStorageData(`DashboardViewEditMode-${companyId}`, { editMode });
 export const getDashboardViewEditMode = (companyId: string): boolean => Boolean(getStorageData<{ editMode?: boolean }>(`DashboardViewEditMode-${companyId}`)?.editMode);

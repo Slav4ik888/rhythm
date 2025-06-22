@@ -69,13 +69,15 @@ export type ViewItemSettingsField = keyof ViewItemSettings;
 
 export interface ViewItem extends ItemBase {
   id           : ViewItemId
-  parentId     : ViewItemId // Where item is child. If no parentId, then parentId === ''
+  parentId     : ViewItemId | 'no_parentId' // 'no_parentId' для корневых элементов
   sheetId      : ViewItemId // Main sheet id === ''
 
   type         : ViewItemType
   styles       : ViewItemStyles
 
   settings?    : ViewItemSettings
+  /** Для корневых элементов */
+  children?    : Record<ViewItemId, ViewItem>
 }
 
 export type PartialViewItem = Partial<ViewItem> & { id: ViewItemId }

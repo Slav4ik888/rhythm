@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useLayoutEffect, useState } from 'react';
-import { ContentRender } from './render-items';
+import { ContentRenderRootViewItems } from './render-items';
 import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import {
@@ -20,7 +20,7 @@ export const DashboardBodyContent = memo(() => {
   const { paramsCompanyId, paramsChangedCompany, serviceUpdateCompany } = useCompany();
   const {
     loading, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId, selectedItem, activatedMovementId,
-    parentsViewItems, viewItems, entities, activatedCopied, setNewSelectedId, serviceCopyStyles,
+    viewItems, entities, activatedCopied, setNewSelectedId, serviceCopyStyles,
     setDashboardView, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
   } = useDashboardView();
   const { setPageText } = useUI();
@@ -160,10 +160,9 @@ export const DashboardBodyContent = memo(() => {
       {
         isRendering
           ? <PageLoader loading={isRendering} text='Отрисовка графиков...' />
-          : <ContentRender
-              parentsViewItems = {parentsViewItems}
-              parentId         = 'no_parentId'
-              onSelect         = {handleSelectViewItem}
+          : <ContentRenderRootViewItems
+              rootViewItems = {viewItems}
+              onSelect      = {handleSelectViewItem}
             />
       }
     </Box>

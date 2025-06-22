@@ -33,7 +33,8 @@ export const useDashboardView = (config: Config = {}) => {
   const editMode = useSelector(s.selectEditMode);
   const entities                 = useSelector(s.selectEntities);
   const viewItems                = useSelector(s.selectViewItems);
-  const parentsViewItems = useSelector(s.selectParentsViewItems);
+  // Убрал тк теперь это надо делать для каждого корневого в отдельности
+  // const parentsViewItems         = useSelector(s.selectParentsViewItems);
   const activatedMovementId      = useSelector(s.selectActivatedMovementId);
   const activatedCopied          = useSelector(s.selectActivatedCopied);
   const newSelectedId            = useSelector(s.selectNewSelectedId);
@@ -109,7 +110,7 @@ export const useDashboardView = (config: Config = {}) => {
     editMode,
     entities,
     viewItems,
-    parentsViewItems,
+    // parentsViewItems,
     parentChildrenIds,
 
     // View

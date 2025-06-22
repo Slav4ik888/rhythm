@@ -1,32 +1,23 @@
-import { FC, memo } from 'react';
+import { FC, useMemo, memo } from 'react';
 import Box from '@mui/material/Box';
 import { PageLoader } from 'widgets/page-loader';
-import { useDocs, reducerDocs } from 'entities/docs';
-import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
-import { useInitialEffect } from 'shared/lib/hooks';
+import { useDocs } from 'entities/docs';
 import { MarkdownWithExternalLinks } from 'shared/lib/markdown';
 
 
 
-const initialReducers: ReducersList = {
-  docs: reducerDocs
-};
-
 export const ShowPolicyText: FC = memo(() => {
   const { loading, policy, serviceGetPolicy } = useDocs();
 
-
-  useInitialEffect(() => {
-    serviceGetPolicy();
-  });
-
+  const policyLoaded = useMemo(() => {
+    if (! policy) serviceGetPolicy();
+    return policy;
+  }, [policy, serviceGetPolicy]);
 
   return (
-    <DynamicModuleLoader reducers={initialReducers}>
-      <Box sx={{ minHeight: 100 }}>
-        <PageLoader loading={loading} text='Загрузка политики конфеденциальности...' />
-        <MarkdownWithExternalLinks content={policy} />
-      </Box>
-    </DynamicModuleLoader>
+    <Box sx={{ minHeight: 100 }}>
+      <PageLoader loading={loading} text='Загрузка политики конфеденциальности...' />
+      <MarkdownWithExternalLinks content={policyLoaded} />
+    </Box>
   );
 });
