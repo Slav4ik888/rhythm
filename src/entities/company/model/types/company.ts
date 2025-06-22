@@ -4,9 +4,10 @@ import { CompanyProfileMember, CompanyDashboardMember } from './access';
 
 
 export enum CompanyStatus {
-  NEW     = 'NEW',    // 'Зарегистрирован'
-  ACTIVE  = 'ACTIVE', // 'Активный'
-  REMOVED = 'REMOVED' // 'Удалён'
+  NEW      = 'NEW',      // 'Зарегистрирован'
+  VERIFIED = 'VERIFIED', // Подтвердил регистрацию
+  ACTIVE   = 'ACTIVE',   // 'Активный'
+  REMOVED  = 'REMOVED'   // 'Удалён'
 }
 
 

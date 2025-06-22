@@ -11,15 +11,15 @@ import { AppRoutes, RoutePath } from 'app/providers/routes';
 const DashboardPage: FC = memo(() => {
   // __devLog('DashboardPage');
   const { paramsCompany } = useCompany();
-  const { email }         = useUser();
+  const { email } = useUser();
 
-  const dashboardAccess   = useMemo(() => checkDashboardAccess(
+  const dashboardAccess = useMemo(() => checkDashboardAccess(
     paramsCompany, email, CompanyDashboardAccessScheme.AF, 'v'
   ), [email, paramsCompany]);
 
 
-  if (! dashboardAccess) return <Navigate to={RoutePath[AppRoutes.NOT_ACCESS]} />;
-  else return <DashboardPageContainer />
+  if (dashboardAccess) return <DashboardPageContainer />
+  else return <Navigate to={RoutePath[AppRoutes.NOT_ACCESS]} />;
 });
 
 export default DashboardPage;

@@ -8,7 +8,8 @@ import { Role } from './roles'
 /** Типы состояние пользователя */
 export enum UserStatus {
   NEW      = 'NEW',      // Зарегистрировался
-  ACTIVE   = 'ACTIVE',   // Активный - Подтвердил регистрацию
+  VERIFIED = 'VERIFIED', // Подтвердил регистрацию
+  ACTIVE   = 'ACTIVE',   // Активный
   DISABLED = 'DISABLED', // Отключенный
   DELETED  = 'DELETED',  // Удалённый
 }

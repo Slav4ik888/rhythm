@@ -39,8 +39,16 @@ export default styled(TextField)(({ theme, ownerState }: { theme: CustomTheme, o
   return {
     // MuiInputBase
     '& .MuiInputBase-root': {
-      // margin     : `${pxToRem(8)} auto`,
       background : rgbaFromHex(card, 0.8)
+    },
+    '& .MuiInputBase-root.Mui-disabled': {
+      // '& .MuiOutlinedInput-notchedOutline': {
+      //   borderColor: 'rgba(0, 0, 0, 0.38)', // цвет границы
+      // },
+      '& .MuiInputBase-input.Mui-disabled': {
+        color: text.light,
+        WebkitTextFillColor: text.light,
+      },
     },
     '& .MuiInputBase-input': {
       padding  : `${pxToRem(8)} ${pxToRem(16)}`,
