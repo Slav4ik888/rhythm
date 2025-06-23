@@ -21,7 +21,7 @@ export const DashboardBodyContent = memo(() => {
   const {
     loading, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId, selectedItem, activatedMovementId,
     viewItems, entities, activatedCopied, setNewSelectedId, serviceCopyStyles,
-    setDashboardView, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
+    setDashboardViewItems, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
   } = useDashboardView();
   const { setPageText } = useUI();
   const [isRendering, setIsRendering] = useState(true);
@@ -118,7 +118,7 @@ export const DashboardBodyContent = memo(() => {
         userId
       );
 
-      setDashboardView({ companyId: paramsCompanyId, viewItems: copiedViewItems }); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
+      setDashboardViewItems({ companyId: paramsCompanyId, viewItems: copiedViewItems }); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
       serviceCreateGroupViewItems({
         companyId     : paramsCompanyId,
         viewItems     : copiedViewItems,
@@ -149,7 +149,7 @@ export const DashboardBodyContent = memo(() => {
   }, [editMode, selectedId, activatedMovementId, activatedCopied, viewItems, entities, userId, isUnsaved,
     paramsChangedCompany, changedViewItem, paramsCompanyId, selectedItem.parentId, selectedItem.styles,
     serviceCopyStyles, serviceCreateGroupViewItems, serviceUpdateCompany, serviceUpdateViewItems,
-    setNewSelectedId, setDashboardView]);
+    setNewSelectedId, setDashboardViewItems]);
 
 
   return (

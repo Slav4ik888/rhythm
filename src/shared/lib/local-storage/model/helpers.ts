@@ -1,8 +1,8 @@
 /* eslint-disable */
 import { UIConfiguratorProviderState } from 'app/providers/theme';
-import { PartialCompany, StateSchemaCompany } from 'entities/company';
+import { BunchesUpdated, PartialCompany, StateSchemaCompany } from 'entities/company';
 import { StateSchemaDashboardData } from 'entities/dashboard-data';
-import { ViewItem } from 'entities/dashboard-view';
+import { Bunch, ViewItem } from 'entities/dashboard-view';
 import { StateSchemaUser } from 'entities/user';
 import { ResGetData } from 'features/dashboard-data/get-data/model/types';
 import { setStorageData, getStorageData, removeStorageData } from './main';
@@ -31,14 +31,14 @@ export const getUIConfiguratorState = () => getStorageData<UIConfiguratorProvide
 export const setDashboardState = (companyId: string, state: StateSchemaDashboardData) => setStorageData(`DashboardState-${companyId}`, state);
 export const getDashboardState = (companyId: string) => getStorageData<StateSchemaDashboardData>(`DashboardState-${companyId}`);
 
-export const setDashboardView = (companyId: string, views: ViewItem[]) => setStorageData(`DashboardView2-${companyId}`, views);
-export const getDashboardView = (companyId: string) => getStorageData<ViewItem[]>(`DashboardView-${companyId}`);
+export const setDashboardViewItems = (companyId: string, items: ViewItem[]) => setStorageData(`DashboardViewItems-${companyId}`, items);
+export const getDashboardViewItems = (companyId: string) => getStorageData<ViewItem[]>(`DashboardViewItems-${companyId}`) || [];
 export const setDashboardViewEditMode = (companyId: string, editMode: boolean) => setStorageData(`DashboardViewEditMode-${companyId}`, { editMode });
 export const getDashboardViewEditMode = (companyId: string): boolean => Boolean(getStorageData<{ editMode?: boolean }>(`DashboardViewEditMode-${companyId}`)?.editMode);
 
-/** Tampstamp of last update */
-export const setDashboardViewUpdated = (companyId: string, viewUpdatedMs: number) => setStorageData(`DashboardViewUpdated-${companyId}`, viewUpdatedMs);
-export const getDashboardViewUpdated = (companyId: string) => getStorageData<number>(`DashboardViewUpdated-${companyId}`);
+/** Timestamp of last update */
+export const setDashboardBunchesUpdated = (companyId: string, data: BunchesUpdated) => setStorageData(`DashboardBunchesUpdated-${companyId}`, data);
+export const getDashboardBunchesUpdated = (companyId: string) => getStorageData<BunchesUpdated>(`DashboardBunchesUpdated-${companyId}`);
 
 
 export const devSetGSData = (companyId: string, data: ResGetData) => setStorageData(`Dashboard-GSData-${companyId}`, data);

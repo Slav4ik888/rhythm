@@ -22,34 +22,35 @@ export const MoveToNewItem: FC = memo(() => {
   const handleClick = useCallback(() => {
     if (! selectedItem?.id) return;
 
+    // TODO: fix
     // New Box is creating
-    const newBoxItem = createViewItem(
-      userId, {
-        sheetId  : selectedItem.sheetId,
-        parentId : selectedItem.parentId,
-        order    : selectedItem.order,
-        type     : 'box',
-      }
-    );
+    // const newBoxItem = createViewItem(
+    //   userId, {
+    //     sheetId  : selectedItem.sheetId,
+    //     parentId : selectedItem.parentId,
+    //     order    : selectedItem.order,
+    //     type     : 'box',
+    //   }
+    // );
 
-    serviceCreateGroupViewItems({
-      companyId     : paramsCompanyId,
-      viewUpdatedMs : Date.now(),
-      viewItems     : [newBoxItem]
-    });
+    // serviceCreateGroupViewItems({
+    //   companyId     : paramsCompanyId,
+    //   viewUpdatedMs : Date.now(),
+    //   viewItems     : [newBoxItem]
+    // });
 
-    // SelectedItem is moving to new Box
-    const updatedItem = {
-      id       : selectedItem.id,
-      parentId : newBoxItem.id,
-      order    : ORDER_STEP
-    };
-    serviceUpdateViewItems({
-      companyId         : paramsCompanyId,
-      viewItems         : [updatedItem],
-      viewUpdatedMs     : Date.now(),
-      newStoredViewItem : updatedItem
-    });
+    // // SelectedItem is moving to new Box
+    // const updatedItem = {
+    //   id       : selectedItem.id,
+    //   parentId : newBoxItem.id,
+    //   order    : ORDER_STEP
+    // };
+    // serviceUpdateViewItems({
+    //   companyId         : paramsCompanyId,
+    //   viewItems         : [updatedItem],
+    //   viewUpdatedMs     : Date.now(),
+    //   newStoredViewItem : updatedItem
+    // });
   }, [userId, paramsCompanyId, selectedItem, serviceCreateGroupViewItems, serviceUpdateViewItems]);
 
 

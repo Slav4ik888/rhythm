@@ -1,1 +1,1 @@
-export { getViewItems, ReqGetViewItems } from './get-view-items'
+export { ReqGetBunches, getBunches } from './get-bunches'

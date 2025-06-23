@@ -24,13 +24,16 @@ export const paths = {
     get    : '/paramsCompany/get',
   },
   dashboard: {
-    view: {
-      // add              : '/dashboard/view/add',
-      createGroupItems : '/dashboard/view/createGroupItems',
-      get              : '/dashboard/view/get', // Get all ViewItemsByCompanyId
-      update           : '/dashboard/view/update',
-      delete           : '/dashboard/view/delete',
-    }
+    bunch:  {
+      get    : '/dashboard/bunch/get',
+    },
+    // view: {
+    //   // add              : '/dashboard/view/add',
+    //   createGroupItems : '/dashboard/view/createGroupItems',
+    //   get              : '/dashboard/view/get', // Get all ViewItemsByCompanyId
+    //   update           : '/dashboard/view/update',
+    //   delete           : '/dashboard/view/delete',
+    // }
   },
   docs: {
     getPolicy: '/getPolicy',

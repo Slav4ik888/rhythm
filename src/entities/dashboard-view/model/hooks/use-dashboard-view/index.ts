@@ -6,7 +6,7 @@ import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
 import {
   ChangeOneSettingsField, ChangeSelectedStyle, ChangeOneDatasetsItem, ChangeOneChartsItem,
-  SetDashboardView, SetEditMode
+  SetDashboardViewItems, SetEditMode
 } from '../../slice/types';
 import { ViewItemId, ViewItemStyles, PartialViewItem } from '../../types';
 import {
@@ -15,7 +15,7 @@ import {
 } from 'features/dashboard-view';
 import { ActivatedCopied, StateSchemaDashboardView } from '../../slice/state-schema';
 import { CopyStylesItem, copyStylesViewItem } from 'features/dashboard-view/configurator';
-import { getViewItems, ReqGetViewItems } from '../../services';
+import { getBunches, ReqGetBunches } from '../../services';
 
 
 
@@ -60,8 +60,8 @@ export const useDashboardView = (config: Config = {}) => {
     clearErrors              : () => dispatch(a.setErrors({})),
 
     setInitial               : (state: StateSchemaDashboardView) => dispatch(a.setInitial(state)),
-    serviceGetViewItems      : (data: ReqGetViewItems) => dispatch(getViewItems(data)),
-    setDashboardView         : (data: SetDashboardView) => dispatch(a.setDashboardView(data)),
+    serviceGetBunches        : (data: ReqGetBunches) => dispatch(getBunches(data)),
+    setDashboardViewItems    : (data: SetDashboardViewItems) => dispatch(a.setDashboardViewItems(data)),
     setEditMode              : (data: SetEditMode) => dispatch(a.setEditMode(data)),
     updateViewItems          : (data: PartialViewItem[]) => dispatch(a.updateViewItems(data)),
     cancelUpdateViewItem     : () => dispatch(a.cancelUpdateViewItem()),
@@ -93,12 +93,15 @@ export const useDashboardView = (config: Config = {}) => {
     changeOneDatasetsItem    : (data: ChangeOneDatasetsItem)  => dispatch(a.changeOneDatasetsItem(data)),
 
     // Services
-    serviceCreateGroupViewItems : (data: CreateGroupViewItems) => dispatch(createGroupViewItems(data)),
-    setDashboardViewFromCache : (companyId: string) => dispatch(a.setDashboardViewFromCache(companyId)),
+    serviceCreateGroupViewItems  : (data: CreateGroupViewItems) => dispatch(createGroupViewItems(data)),
+    setDashboardBunchesFromCache : (companyId: string) => dispatch(a.setDashboardBunchesFromCache(companyId)),
 
     serviceUpdateViewItems : (data: UpdateViewItems) => dispatch(updateViewItemsOnServer(data)),
     serviceCopyStyles      : (data: CopyStylesItem) => dispatch(copyStylesViewItem(data)),
     serviceDeleteViewItem  : (data: DeleteViewItem) => dispatch(deleteViewItem(data)),
+
+    // dev
+    // devSeriviceCreateBunches: (companyId: string) => dispatch(createBunches({ companyId })),
   }), [dispatch]);
 
 

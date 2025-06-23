@@ -1,4 +1,4 @@
-// v.2025-05-09
+// v.2025-06-23
 export * from './add-order-to-arr-by-idx';                // v.2024-03-08
 export * from './change-sequence';                        // v.2024-03-02
 export { createArr } from './create-arr'                  // v.2023-07-31
@@ -17,6 +17,7 @@ export * from './get-last-item';                          // v.2024-09-18
 export * from './is-arrs-equal';
 export * from './is-item-in-arr';
 export * from './is-item-in-arr-by-field';
+export { mergeById } from './merge-by-id';
 export * from './update-arr-by-id';                       // v.2024-03-26
 export * from './update-arr-by-arr-by-field';
 export * from './update-arr-by-some-changes';

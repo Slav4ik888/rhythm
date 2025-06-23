@@ -32,17 +32,18 @@ export const PanelAddViewItemBtns: FC<Props> = memo(({ parentId }) => {
 
 
   const handleAdd = useCallback((type: ViewItemType) => {
-    const viewItems = [createViewItem(
-      userId,
-      {
-        sheetId  : NO_SHEET_ID,
-        parentId : parentId || selectedId, // Если нажали из панели то создастся на 1м уровне
-        order    : createNextOrder(childrenViewItems),
-        type,
-      }
-    )];
+    // TODO: fix
+    // const viewItems = [createViewItem(
+    //   userId,
+    //   {
+    //     sheetId  : NO_SHEET_ID,
+    //     parentId : parentId || selectedId, // Если нажали из панели то создастся на 1м уровне
+    //     order    : createNextOrder(childrenViewItems),
+    //     type,
+    //   }
+    // )];
 
-    serviceCreateGroupViewItems({ companyId: paramsCompanyId, viewItems, viewUpdatedMs: Date.now() });
+    // serviceCreateGroupViewItems({ companyId: paramsCompanyId, viewItems, viewUpdatedMs: Date.now() });
   }, [userId, paramsCompanyId, selectedId, parentId, childrenViewItems, serviceCreateGroupViewItems]);
 
 

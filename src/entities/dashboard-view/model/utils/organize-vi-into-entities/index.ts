@@ -1,7 +1,7 @@
 import { ViewItem, ViewItemId } from '../../types';
 
 
-/** Временная функция, преобразовать к новому виду структуру Дашборда ЦСС */
+/** Преобразовывает к новому виду структуру rootItem with children */
 export function organizeViewItemsIntoEntities(items: ViewItem[]): Record<ViewItemId, ViewItem> {
   const allItems = new Map<ViewItemId, ViewItem>();
   const rootItems: ViewItem[] = [];
@@ -36,6 +36,14 @@ export function organizeViewItemsIntoEntities(items: ViewItem[]): Record<ViewIte
   rootItems.forEach(item => {
     result[item.id] = item;
   });
+
+  // console.log('result: ', result);
+  // Object.values(result).forEach(item => {
+  //   console.log('rootItem.children.length: ', item.children?.length);
+  //   // Calc max depth
+  //   const maxTreeLength = devCalcMaxTreeLength(item, items);
+  //   console.log('maxTreeLength: ', maxTreeLength);
+  // });
 
   return result;
 }

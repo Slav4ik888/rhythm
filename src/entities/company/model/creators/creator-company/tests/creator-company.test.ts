@@ -15,7 +15,7 @@ const COMPANY_WITHOUT_ANY_FIELDS = {
 describe('creatorCompany', () => {
   test('Company without any fields & has additional', () => {
     const res = creatorCompany(COMPANY_WITHOUT_ANY_FIELDS as unknown as Company);
-    res.viewUpdated.date = MOCK_COMPANY_EMPTY.viewUpdated.date;
+    res.bunchesUpdated   = MOCK_COMPANY_EMPTY.bunchesUpdated;
     res.createdAt        = MOCK_COMPANY_EMPTY.createdAt;
     res.lastChange       = MOCK_COMPANY_EMPTY.lastChange;
 
@@ -35,11 +35,9 @@ describe('creatorCompany', () => {
     company.ownerId           = '';
     company.createdAt.userId  = '';
     company.createdAt.date    = 0;
-    company.viewUpdated.date  = 0;
     company.lastChange.userId = '';
     company.lastChange.date   = 0;
 
-    res.viewUpdated.date = 0;
     res.createdAt.date   = 0;
     res.lastChange.date  = 0;
 

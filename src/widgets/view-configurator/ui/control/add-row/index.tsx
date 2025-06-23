@@ -19,21 +19,22 @@ export const AddRows: FC = memo(() => {
   const handleAdd = useCallback((type: ViewItemType) => {
     if (! selectedId) return;
 
-    const viewItems = [createViewItem(
-      userId,
-      {
-        sheetId  : NO_SHEET_ID,
-        parentId : selectedId,
-        order    : createNextOrder(childrenViewItems),
-        type,
-      }
-    )];
+    // TODO: fix
+    // const viewItems = [createViewItem(
+    //   userId,
+    //   {
+    //     sheetId  : NO_SHEET_ID,
+    //     parentId : selectedId,
+    //     order    : createNextOrder(childrenViewItems),
+    //     type,
+    //   }
+    // )];
 
-    serviceCreateGroupViewItems({
-      companyId     : paramsCompanyId,
-      viewUpdatedMs : Date.now(),
-      viewItems,
-    });
+    // serviceCreateGroupViewItems({
+    //   companyId     : paramsCompanyId,
+    //   viewUpdatedMs : Date.now(),
+    //   viewItems,
+    // });
   }, [selectedId, paramsCompanyId, userId, childrenViewItems, serviceCreateGroupViewItems]);
 
 

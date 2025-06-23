@@ -3,7 +3,7 @@ import { cloneObj } from 'shared/helpers/objects';
 import { Company, CompanyStatus } from '../../types';
 
 
-/** v2025-06-21 */
+/** v2025-06-23 */
 export const creatorCompany = (cfg: Partial<Company> = {} as Company): Company => cloneObj({
   id               : cfg.id               || '',
   companyName      : cfg.companyName      || '',
@@ -18,7 +18,7 @@ export const creatorCompany = (cfg: Partial<Company> = {} as Company): Company =
   dashboardMembers : cfg.dashboardMembers || [],
   companyMembers   : cfg.companyMembers   || [],
 
-  viewUpdated      : cfg.viewUpdated      || creatorFixDate(cfg.id),
+  bunchesUpdated   : cfg.bunchesUpdated   || {},
   createdAt        : cfg.createdAt        || creatorFixDate(cfg.id),
   lastChange       : cfg.lastChange       || creatorFixDate(cfg.id)
 });

@@ -22,7 +22,7 @@ export const MOCK_COMPANY_EMPTY: Company = {
   customSettings   : {},
   dashboardMembers : [],
   companyMembers   : [],
-  viewUpdated      : creatorFixDate(),
+  bunchesUpdated   : {},
 
   createdAt        : creatorFixDate(),
   lastChange       : creatorFixDate()

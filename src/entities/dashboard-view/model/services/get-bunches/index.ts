@@ -1,36 +1,37 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig, errorHandlers, CustomAxiosError } from 'app/providers/store';
 import { ViewItem } from '../../types';
-import { NO_SHEET_ID } from '../../consts';
 import { paths } from 'shared/api';
 import { Errors } from 'shared/lib/validators';
 import { LS } from 'shared/lib/local-storage';
 import cfg from 'app/config';
-import { SetDashboardView } from '../../slice/types';
+import { SetDashboardViewItems } from '../../slice/types';
 
 
 
-export interface ReqGetViewItems {
+export interface ReqGetBunches {
   companyId : string
-  pathname  : string
-  sheetId?  : string
+  bunchIds  : string[]
+  pathname  : string // For errorHandlers
+  // sheetId?  : string
 }
 
 
-/** 2024-12-13 */
-interface ResGetViewItems {
-  dashboardView : ViewItem[]
+/** 2025-06-23 */
+interface ResGetBunches {
+  viewItems: ViewItem[]
 }
 
-export const getViewItems = createAsyncThunk<
-  SetDashboardView,
-  ReqGetViewItems,
+
+export const getBunches = createAsyncThunk<
+  SetDashboardViewItems,
+  ReqGetBunches,
   ThunkConfig<Errors>
 >(
-  'entities/dashboardView/getViewItems',
+  'entities/dashboardView/getBunches',
   async (data, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
-    const { pathname, sheetId = NO_SHEET_ID } = data || {};
+    const { pathname, bunchIds } = data || {};
 
     try {
       let viewItems = [] as ViewItem[],
@@ -40,13 +41,13 @@ export const getViewItems = createAsyncThunk<
       // а также случай отсутствия интернета (для разработки)
       if (cfg.IS_DEV) {
         companyId = LS.getLastCompanyId() || '';
-        viewItems = LS.getDashboardView(companyId) as ViewItem[];
+        viewItems = LS.getDashboardViewItems(companyId);
       }
       else {
-        const { data: { dashboardView } } = await extra.api
-          .post<ResGetViewItems>(paths.dashboard.view.get, { sheetId, companyId: data.companyId });
+        const { data: { viewItems: vi } } = await extra.api
+          .post<ResGetBunches>(paths.dashboard.bunch.get, { companyId: data.companyId, bunchIds });
 
-        viewItems = dashboardView;
+        viewItems = vi;
         companyId = data.companyId;
       }
 
@@ -55,7 +56,7 @@ export const getViewItems = createAsyncThunk<
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch, pathname);
       return rejectWithValue((e as CustomAxiosError).response.data || {
-        general: 'Error in entities/dashboardView/getViewItems'
+        general: 'Error in entities/dashboardView/getBunches'
       });
     }
   }

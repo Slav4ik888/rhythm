@@ -31,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "start big refact organizeViewItemsIntoEntities" && git push -u origin main
+// git add . && git commit -m "continue big refact" && git push -u origin main

@@ -22,7 +22,7 @@ export const createGroupViewItems = createAsyncThunk<
     const { dispatch, rejectWithValue, extra } = thunkApi;
 
     try {
-      await extra.api.post(paths.dashboard.view.createGroupItems, data);
+      // await extra.api.post(paths.dashboard.view.createGroupItems, data);
 
       return data;
     }

@@ -23,7 +23,7 @@ export const deleteViewItem = createAsyncThunk<
     const { dispatch, rejectWithValue, extra } = thunkApi;
 
     try {
-      await extra.api.post(paths.dashboard.view.delete, data);
+      // await extra.api.post(paths.dashboard.view.delete, data);
 
       return data;
     }

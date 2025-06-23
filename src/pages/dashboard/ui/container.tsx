@@ -6,7 +6,7 @@ import { DashboardBody } from './body';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { useInitialEffect } from 'shared/lib/hooks';
 import { setIsSidebar, useUIConfiguratorController } from 'app/providers/theme';
-import { NO_SHEET_ID, reducerDashboardView, useDashboardView } from 'entities/dashboard-view';
+import { NO_SHEET_ID, reducerDashboardView, useDashboardView, getBunchesToUpdate } from 'entities/dashboard-view';
 import { useLocation } from 'react-router-dom';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { useCompany } from 'entities/company';
@@ -23,26 +23,32 @@ const initialReducers: ReducersList = {
 export const DashboardPageContainer: FC = memo(() => {
   // __devLog('DashboardPageContainer');
   const [_, dispatch] = useUIConfiguratorController();
-  const { paramsCompanyId, paramsCompany, paramsViewUpdated } = useCompany();
+  const { paramsCompanyId, paramsCompany, paramsBunchesUpdated } = useCompany();
   const { pathname } = useLocation();
-  const { serviceGetViewItems, setDashboardViewFromCache } = useDashboardView();
+  const { serviceGetBunches, setDashboardBunchesFromCache } = useDashboardView();
 
   useInitialEffect(() => {
     setIsSidebar(dispatch, true);
   });
 
   useEffect(() => {
-    const LSViewUpdated = LS.getDashboardViewUpdated(paramsCompanyId);
-    const LSViewItems = LS.getDashboardView(paramsCompanyId) || [];
+    const bunchesForUpdate = getBunchesToUpdate(
+      paramsBunchesUpdated,
+      LS.getDashboardBunchesUpdated(paramsCompanyId)
+    );
 
-    if (paramsCompany.id && (paramsViewUpdated?.date !== LSViewUpdated || ! LSViewItems.length)) {
-      // TODO: sheetId подставлять нужный
-      __devLog('ItemViews loading from DB');
-      serviceGetViewItems({ companyId: paramsCompany.id, sheetId: NO_SHEET_ID, pathname });
+    // TODO: sheetId подставлять нужный
+
+    // Загружаем всё, что в кеше
+    setDashboardBunchesFromCache(paramsCompany.id);
+
+    if (bunchesForUpdate.length) {
+      __devLog('Bunches for update:');
+      __devLog(bunchesForUpdate);
+      serviceGetBunches({ companyId: paramsCompany.id, bunchIds: bunchesForUpdate, pathname });
     }
     else {
-      __devLog('ItemViews from cache');
-      setDashboardViewFromCache(paramsCompany.id);
+      __devLog('All bunches from cache');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

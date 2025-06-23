@@ -7,7 +7,6 @@ import { ViewItemStyles } from './item-styles'
 
 export type ViewItemType = 'box' | 'text' | 'divider' | 'chart' | 'chip' | 'growthIcon' | 'digitIndicator'
 
-export type ViewItemId = string
 
 
 /** v.2025-05-05 */
@@ -65,10 +64,15 @@ export type ViewItemSettingsField = keyof ViewItemSettings;
 
 // ------------------------------------- //
 // ------------  VIEW-ITEM  ------------ //
+// ----------- v.2025-06-23  ----------- //
 // ------------------------------------- //
+
+export type ViewItemId = string
+export type BunchId = string
 
 export interface ViewItem extends ItemBase {
   id           : ViewItemId
+  bunchId      : BunchId
   parentId     : ViewItemId | 'no_parentId' // 'no_parentId' для корневых элементов
   sheetId      : ViewItemId // Main sheet id === ''
 
@@ -81,3 +85,5 @@ export interface ViewItem extends ItemBase {
 }
 
 export type PartialViewItem = Partial<ViewItem> & { id: ViewItemId }
+
+export type Bunch = Record<ViewItemId, ViewItem>;

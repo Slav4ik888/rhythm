@@ -23,7 +23,7 @@ export const useCompany = () => {
   const _isParamsCompanyIdLoaded = useSelector(s.selectIsParamsCompanyIdLoaded);
   const paramsCompany            = useSelector(s.selectParamsCompany);
   const paramsCompanyId          = paramsCompany?.id;
-  const paramsViewUpdated        = paramsCompany?.viewUpdated;
+  const paramsBunchesUpdated     = paramsCompany?.bunchesUpdated;
   const paramsCustomSettings     = useSelector(s.selectParamsCustomSettings);
   const paramsChangedCompany     = useSelector(s.selectParamsChangedCompany); // Объект с изменившимися полями
   const usersAccessDashboard     = paramsCompany?.dashboardMembers || [];
@@ -56,7 +56,7 @@ export const useCompany = () => {
     _isParamsCompanyIdLoaded,
     paramsCompany,
     paramsCompanyId,
-    paramsViewUpdated,
+    paramsBunchesUpdated,
     paramsCustomSettings,
     paramsChangedCompany,
     usersAccessDashboard,

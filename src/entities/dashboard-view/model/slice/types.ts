@@ -1,5 +1,5 @@
 import { ChartConfigDatasetsField } from 'entities/charts';
-import { ViewItem, ViewItemId, ViewItemStylesField, ViewItemSettingsField, ViewItemChartField } from '../types';
+import { ViewItemId, ViewItemStylesField, ViewItemSettingsField, ViewItemChartField, ViewItem } from '../types';
 
 
 
@@ -8,7 +8,7 @@ export interface SetEditMode {
   companyId : string
 }
 
-export interface SetDashboardView {
+export interface SetDashboardViewItems {
   companyId : string
   viewItems : ViewItem[]
 }

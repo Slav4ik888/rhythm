@@ -1,5 +1,6 @@
 import { FixDate } from 'entities/base';
 import { CompanyProfileMember, CompanyDashboardMember } from './access';
+import { BunchesUpdated } from './bunches-updated';
 
 
 
@@ -34,7 +35,7 @@ export interface CustomSettings {
 }
 
 /**
- * v.2025-06-20
+ * v.2025-06-23
  * Профиль компании
  */
 export interface Company {
@@ -49,7 +50,8 @@ export interface Company {
   googleData       : GoogleData
   // dashboardData  : CompanyDashboardData
   customSettings   : CustomSettings
-  viewUpdated      : FixDate // Timestamp last ViewItems updated. При любом изменении ViewItems - обновляем
+
+  bunchesUpdated   : BunchesUpdated
 
   dashboardMembers : CompanyDashboardMember[]
   companyMembers   : CompanyProfileMember[]
@@ -63,7 +65,7 @@ export type PartialCompany = Partial<Company> & { id: string }
 export type ParamsCompany = PartialCompany & {
   customSettings   : CustomSettings
   googleData       : GoogleData
-  viewUpdated      : FixDate // Timestamp last ViewItems updated
+  bunchesUpdated   : BunchesUpdated
   dashboardMembers : CompanyDashboardMember[]
   companyMembers   : CompanyProfileMember[]
 }

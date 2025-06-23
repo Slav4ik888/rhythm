@@ -1,6 +1,6 @@
 import { creatorFixDate } from 'entities/base/model/creators';
 import { cloneObj } from 'shared/helpers/objects';
-import { ViewItem, ViewItemStyles } from '../../types';
+import { BunchId, ViewItem, ViewItemStyles } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
 import { f } from 'shared/styles';
 import { NO_PARENT_ID, NO_SHEET_ID, ORDER_STEP } from '../../consts';
@@ -26,11 +26,13 @@ const BASE_SX: ViewItemStyles = {
 
 
 export const createViewItem = (
-  userId : string,
-  cfg    : Partial<ViewItem> = {} as ViewItem
+  userId  : string,
+  bunchId : BunchId,
+  cfg     : Partial<ViewItem> = {} as ViewItem
 ): ViewItem => {
   const viewItem: ViewItem = cloneObj({
     id          : cfg.id          || uuidv4(),
+    bunchId,
     parentId    : cfg.parentId    || NO_PARENT_ID,
     sheetId     : cfg.sheetId     || NO_SHEET_ID,
 

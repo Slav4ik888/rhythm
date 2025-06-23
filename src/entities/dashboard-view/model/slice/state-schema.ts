@@ -20,7 +20,8 @@ export interface StateSchemaDashboardView {
   _isMounted          : boolean // Признак того, что Reducer mounted
 
   editMode            : boolean // Режим редактирования
-  entities            : DashboardViewEntities
+  entities            : DashboardViewEntities // Вначале rootItems а внутри children
+  viewItems           : ViewItem[] // Дублирование
   // Id выбранного элемента (на время пока loading === true),
   // чтобы если при сохранении будет ошибка, то можно было это уладить до переключения на следующий элемент
   // После loading === false, должно произойти selectedId = newSelectedId
