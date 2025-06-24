@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { ViewItem, ViewItemId, ParentsViewItems } from 'entities/dashboard-view';
-import { ContentRenderChildren } from '../../render-items/render-children';
 import { ItemWrapper } from '../wrapper-item';
+import { ContentRender } from '../../render-items';
 
 
 
@@ -17,7 +17,7 @@ export const ItemBox: FC<Props> = memo(({ parentsViewItems, item, onSelect }) =>
     {
       item.label
         ? <>{item.label}</>
-        : <ContentRenderChildren
+        : <ContentRender
             parentsViewItems = {parentsViewItems}
             parentId         = {item.id}
             onSelect         = {onSelect}

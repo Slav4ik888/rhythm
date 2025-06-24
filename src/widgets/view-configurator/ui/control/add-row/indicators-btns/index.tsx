@@ -1,0 +1,31 @@
+import { FC, memo } from 'react';
+import { ViewItemType } from 'entities/dashboard-view/model/types';
+import { AddBtn } from 'shared/ui/configurators-components';
+
+
+
+interface Props {
+  onClick: (type: ViewItemType) => void
+}
+
+/** Row with view elements btns */
+export const AddViewItemIndicatorsBtns: FC<Props> = memo(({ onClick }) => (
+  <>
+    <AddBtn
+      type    = 'chart'
+      onClick = {onClick}
+    />
+    <AddBtn
+      type    = 'chip'
+      onClick = {onClick}
+    />
+    <AddBtn
+      type    = 'growthIcon'
+      onClick = {onClick}
+    />
+    <AddBtn
+      type    = 'digitIndicator'
+      onClick = {onClick}
+    />
+  </>
+));

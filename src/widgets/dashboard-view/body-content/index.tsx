@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useLayoutEffect, useState } from 'react';
-import { ContentRenderRootViewItems } from './render-items';
+import { ContentRender } from './render-items';
 import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import {
@@ -12,13 +12,14 @@ import { isEmpty, isNotEmpty } from 'shared/helpers/objects';
 import { useUI } from 'entities/ui';
 import { PageLoader } from 'widgets/page-loader';
 import { __devLog } from 'shared/lib/tests/__dev-log';
+import { DashboardBodyContentItem } from './content-item';
 
 
 
 export const DashboardBodyContent = memo(() => {
   const { userId } = useUser();
   const { paramsCompanyId, paramsChangedCompany, serviceUpdateCompany } = useCompany();
-  const {
+  const { parentsViewItems,
     loading, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId, selectedItem, activatedMovementId,
     viewItems, entities, activatedCopied, setNewSelectedId, serviceCopyStyles,
     setDashboardViewItems, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
@@ -118,12 +119,19 @@ export const DashboardBodyContent = memo(() => {
         userId
       );
 
-      setDashboardViewItems({ companyId: paramsCompanyId, viewItems: copiedViewItems }); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
-      serviceCreateGroupViewItems({
-        companyId     : paramsCompanyId,
-        viewItems     : copiedViewItems,
-        viewUpdatedMs : Date.now(),
+      // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
+      setDashboardViewItems({
+        companyId      : paramsCompanyId,
+        viewItems      : copiedViewItems,
+        bunchesUpdated : {}, // Обновление произойдёт в serviceCreateGroupViewItems
       });
+
+      // TODO:
+      // serviceCreateGroupViewItems({
+      //   companyId     : paramsCompanyId,
+      //   viewItems     : copiedViewItems,
+      //   viewUpdatedMs : Date.now(),
+      // });
     }
     else if (isUnsaved) {
       if (selectedId === id) return // Click на самого себя не сохранять, тк это может быть ошибочный клик
@@ -160,10 +168,21 @@ export const DashboardBodyContent = memo(() => {
       {
         isRendering
           ? <PageLoader loading={isRendering} text='Отрисовка графиков...' />
-          : <ContentRenderRootViewItems
-              rootViewItems = {viewItems}
-              onSelect      = {handleSelectViewItem}
+          : <ContentRender
+              parentsViewItems = {parentsViewItems}
+              parentId         = 'no_parentId'
+              onSelect         = {handleSelectViewItem}
             />
+          // : <DashboardBodyContentItem
+          //     key              = {item.id}
+          //     parentsViewItems = {getParents(Object.values(item.children || {}))}
+          //     item             = {item}
+          //     onSelect         = {onSelect}
+          //   />
+          // : <ContentRenderRootViewItems
+          //     rootViewItems = {viewItems}
+          //     onSelect      = {handleSelectViewItem}
+          //   />
       }
     </Box>
   )

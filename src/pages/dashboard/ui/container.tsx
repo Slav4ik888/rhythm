@@ -32,20 +32,22 @@ export const DashboardPageContainer: FC = memo(() => {
   });
 
   useEffect(() => {
-    const bunchesForUpdate = getBunchesToUpdate(
-      paramsBunchesUpdated,
-      LS.getDashboardBunchesUpdated(paramsCompanyId)
-    );
+    const bunchesForLoad = getBunchesToUpdate(paramsBunchesUpdated, LS.getDashboardBunchesUpdated(paramsCompanyId));
 
     // TODO: sheetId подставлять нужный
 
     // Загружаем всё, что в кеше
     setDashboardBunchesFromCache(paramsCompany.id);
 
-    if (bunchesForUpdate.length) {
-      __devLog('Bunches for update:');
-      __devLog(bunchesForUpdate);
-      serviceGetBunches({ companyId: paramsCompany.id, bunchIds: bunchesForUpdate, pathname });
+    if (bunchesForLoad.length) {
+      __devLog('Bunches for load:', bunchesForLoad.length);
+      __devLog(bunchesForLoad);
+      serviceGetBunches({
+        companyId      : paramsCompany.id,
+        bunchIds       : bunchesForLoad,
+        bunchesUpdated : paramsBunchesUpdated,
+        pathname
+      });
     }
     else {
       __devLog('All bunches from cache');

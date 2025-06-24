@@ -11,7 +11,7 @@ import {
   ChangeOneChartsItem, SetEditMode
 } from './types';
 import { updateEntities } from 'entities/base';
-import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem, ViewItem } from '../types';
+import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem } from '../types';
 import { cloneObj, updateObject } from 'shared/helpers/objects';
 import { updateChartsItem } from '../utils';
 import { ChartConfigDatasets } from 'entities/charts';
@@ -20,7 +20,6 @@ import {
 } from 'features/dashboard-view/configurator';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { getBunches } from '../services';
-import { organizeViewItemsIntoEntities } from '../utils/organize-vi-into-entities';
 import { mergeById } from 'shared/helpers/arrays';
 
 
@@ -72,7 +71,8 @@ export const slice = createSlice({
     setDashboardViewItems: (state, { payload }: PayloadAction<SetDashboardViewItems>) => {
       const mergedViewItems = mergeById(state.viewItems, payload.viewItems);
 
-      state.entities            = organizeViewItemsIntoEntities(mergedViewItems);
+      state.entities            = updateEntities(state.entities, payload.viewItems);
+      // state.entities            = organizeViewItemsIntoEntities(mergedViewItems);
       state.viewItems           = mergedViewItems;
       state.activatedMovementId = '';
       state.activatedCopied     = undefined;
@@ -82,9 +82,9 @@ export const slice = createSlice({
     // Берём закэшированную версию
     setDashboardBunchesFromCache: (state, { payload }: PayloadAction<string>) => {
       const viewItems = LS.getDashboardViewItems(payload);
-      console.log('viewItems: ', viewItems);
 
-      state.entities            = organizeViewItemsIntoEntities(viewItems);
+      state.entities            = updateEntities({}, viewItems);
+      // state.entities            = organizeViewItemsIntoEntities(viewItems);
       state.viewItems           = viewItems;
       state.activatedMovementId = '';
       state.activatedCopied     = undefined;
@@ -255,15 +255,12 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(getBunches.fulfilled, (state, { payload }: PayloadAction<SetDashboardViewItems>) => {
-        const { companyId, viewItems } = payload;
-        const LSViewItems = LS.getDashboardViewItems(companyId);
-        console.log('LSViewItems: ', LSViewItems.length);
-
+        const { companyId, viewItems, bunchesUpdated } = payload;
         const mergedViewItems = mergeById(state.viewItems, viewItems);
-        console.log('mergedViewItems: ', mergedViewItems.length);
 
         // Нужно чтобы возможные данные из LS НЕ перезатёрлись новыми
-        state.entities            = organizeViewItemsIntoEntities(mergedViewItems);
+        state.entities            = updateEntities(state.entities, viewItems);
+        // state.entities            = organizeViewItemsIntoEntities(mergedViewItems);
         state.viewItems           = mergedViewItems;
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
@@ -273,6 +270,7 @@ export const slice = createSlice({
         state.errors              = {};
 
         LS.setDashboardViewItems(companyId, mergedViewItems);
+        LS.setDashboardBunchesUpdated(companyId, { ...LS.getDashboardBunchesUpdated(companyId), ...bunchesUpdated });
       })
       .addCase(getBunches.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
@@ -286,17 +284,23 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(createGroupViewItems.fulfilled, (state, { payload }: PayloadAction<CreateGroupViewItems>) => {
-        const { viewItems, companyId, viewUpdatedMs } = payload;
+        const { viewItems, companyId, bunchUpdatedMs, bunchAction } = payload;
+        const mergedViewItems = mergeById(state.viewItems, viewItems);
 
         state.entities            = updateEntities(state.entities, viewItems);
+        // state.entities            = organizeViewItemsIntoEntities(mergedViewItems);
+        state.viewItems           = mergedViewItems;
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
         state.bright              = false;
         state.loading             = false;
         state.errors              = {};
 
-        // LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
-        // LS.setDashboardViewUpdated(companyId, viewUpdatedMs);
+        LS.setDashboardViewItems(companyId, mergedViewItems);
+        LS.setDashboardBunchesUpdated(companyId, {
+          ...LS.getDashboardBunchesUpdated(companyId),
+          [viewItems[0].bunchId]: bunchUpdatedMs
+        });
       })
       .addCase(createGroupViewItems.rejected, (state, { payload }) => {
         state.errors  = getError(payload);

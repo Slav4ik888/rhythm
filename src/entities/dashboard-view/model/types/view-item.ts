@@ -64,7 +64,7 @@ export type ViewItemSettingsField = keyof ViewItemSettings;
 
 // ------------------------------------- //
 // ------------  VIEW-ITEM  ------------ //
-// ----------- v.2025-06-23  ----------- //
+// ----------- v.2025-06-24  ----------- //
 // ------------------------------------- //
 
 export type ViewItemId = string
@@ -81,9 +81,10 @@ export interface ViewItem extends ItemBase {
 
   settings?    : ViewItemSettings
   /** Для корневых элементов */
-  children?    : Record<ViewItemId, ViewItem>
+  // children?    : Record<ViewItemId, ViewItem>
 }
 
 export type PartialViewItem = Partial<ViewItem> & { id: ViewItemId }
 
-export type Bunch = Record<ViewItemId, ViewItem>;
+export type BunchAction = 'create' | 'update'
+export type Bunch = Record<ViewItemId, ViewItem>

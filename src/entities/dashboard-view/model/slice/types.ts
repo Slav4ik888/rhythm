@@ -1,4 +1,5 @@
 import { ChartConfigDatasetsField } from 'entities/charts';
+import { BunchesUpdated } from 'entities/company';
 import { ViewItemId, ViewItemStylesField, ViewItemSettingsField, ViewItemChartField, ViewItem } from '../types';
 
 
@@ -9,8 +10,9 @@ export interface SetEditMode {
 }
 
 export interface SetDashboardViewItems {
-  companyId : string
-  viewItems : ViewItem[]
+  companyId      : string
+  viewItems      : ViewItem[]
+  bunchesUpdated : BunchesUpdated
 }
 
 export interface ChangeSelectedStyle {

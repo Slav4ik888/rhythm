@@ -129,6 +129,10 @@ export const customPalette: CustomPalette = {
     900: '#212529',
   } as Color,
 
+  editTopPanel: {
+    background: '#252525'
+  },
+
   // Configurator
   configurator: {
     main: 'rgba(53, 53, 53, 1)',

@@ -39,7 +39,7 @@ export const PaletteModeSwitcherIconComponent: FC<Props> = memo(({ mode, dispatc
       onClick = {togglePaletteMode}
     >
       <Tooltip
-        title  = {`Переключить на ${checked ? 'светлую' : 'тёмную'} тему`}
+        title  = {`Переключить на ${checked ? 'тёмную' :  'светлую'} тему`}
         sxSpan = {f('-c-c')}
       >
         {

@@ -10,6 +10,7 @@ export function getBunchesToUpdate(
   companyBunchesUpdated : BunchesUpdated,
   localBunchesUpdated   : BunchesUpdated = {}
 ): string[] {
+  if (! companyBunchesUpdated) return [];
   return Object.entries(companyBunchesUpdated)
     .filter(([bunchId, serverTimestamp]) => {
       const localTimestamp = localBunchesUpdated[bunchId];

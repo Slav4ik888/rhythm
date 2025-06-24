@@ -6,13 +6,15 @@ import { Errors } from 'shared/lib/validators';
 import { LS } from 'shared/lib/local-storage';
 import cfg from 'app/config';
 import { SetDashboardViewItems } from '../../slice/types';
+import { BunchesUpdated } from 'entities/company';
 
 
 
 export interface ReqGetBunches {
-  companyId : string
-  bunchIds  : string[]
-  pathname  : string // For errorHandlers
+  companyId      : string
+  bunchIds       : string[]
+  pathname       : string // For errorHandlers
+  bunchesUpdated : BunchesUpdated
   // sheetId?  : string
 }
 
@@ -31,7 +33,7 @@ export const getBunches = createAsyncThunk<
   'entities/dashboardView/getBunches',
   async (data, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
-    const { pathname, bunchIds } = data || {};
+    const { pathname, bunchIds, bunchesUpdated } = data || {};
 
     try {
       let viewItems = [] as ViewItem[],
@@ -51,7 +53,7 @@ export const getBunches = createAsyncThunk<
         companyId = data.companyId;
       }
 
-      return { companyId, viewItems };
+      return { companyId, viewItems, bunchesUpdated };
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch, pathname);

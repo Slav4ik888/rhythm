@@ -1,5 +1,5 @@
 import { devCreateBunches } from '..';
-import { Bunch, ViewItem } from '../../../../types';
+import { ViewItem } from '../../../../types';
 
 
 describe('devCreateBunches', () => {

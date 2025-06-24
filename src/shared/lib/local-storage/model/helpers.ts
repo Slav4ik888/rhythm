@@ -38,7 +38,7 @@ export const getDashboardViewEditMode = (companyId: string): boolean => Boolean(
 
 /** Timestamp of last update */
 export const setDashboardBunchesUpdated = (companyId: string, data: BunchesUpdated) => setStorageData(`DashboardBunchesUpdated-${companyId}`, data);
-export const getDashboardBunchesUpdated = (companyId: string) => getStorageData<BunchesUpdated>(`DashboardBunchesUpdated-${companyId}`);
+export const getDashboardBunchesUpdated = (companyId: string) => getStorageData<BunchesUpdated>(`DashboardBunchesUpdated-${companyId}`) || {};
 
 
 export const devSetGSData = (companyId: string, data: ResGetData) => setStorageData(`Dashboard-GSData-${companyId}`, data);

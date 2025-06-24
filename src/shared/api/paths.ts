@@ -27,13 +27,13 @@ export const paths = {
     bunch:  {
       get    : '/dashboard/bunch/get',
     },
-    // view: {
-    //   // add              : '/dashboard/view/add',
-    //   createGroupItems : '/dashboard/view/createGroupItems',
-    //   get              : '/dashboard/view/get', // Get all ViewItemsByCompanyId
-    //   update           : '/dashboard/view/update',
-    //   delete           : '/dashboard/view/delete',
-    // }
+    view: {
+      // add              : '/dashboard/view/add',
+      createGroupItems : '/dashboard/view/createGroupItems',
+      // get              : '/dashboard/view/get', // Get all ViewItemsByCompanyId
+      // update           : '/dashboard/view/update',
+      // delete           : '/dashboard/view/delete',
+    }
   },
   docs: {
     getPolicy: '/getPolicy',

@@ -155,6 +155,10 @@ export const customPalette = {
     }
   },
 
+  editTopPanel: {
+    background: '#e5e5e5',
+  },
+
   // Заголовок в ReportsLineChart
   reportsChartTitle: {
     main: '#7a7a7a',

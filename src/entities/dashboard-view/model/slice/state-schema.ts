@@ -21,7 +21,8 @@ export interface StateSchemaDashboardView {
 
   editMode            : boolean // Режим редактирования
   entities            : DashboardViewEntities // Вначале rootItems а внутри children
-  viewItems           : ViewItem[] // Дублирование
+  viewItems           : ViewItem[] // Дублирование, легче обновлять entities
+
   // Id выбранного элемента (на время пока loading === true),
   // чтобы если при сохранении будет ошибка, то можно было это уладить до переключения на следующий элемент
   // После loading === false, должно произойти selectedId = newSelectedId

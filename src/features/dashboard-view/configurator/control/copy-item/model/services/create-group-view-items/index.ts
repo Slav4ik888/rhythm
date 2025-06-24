@@ -2,14 +2,15 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { Errors } from 'shared/lib/validators';
 import { paths } from 'shared/api';
-import { ViewItem } from 'entities/dashboard-view';
+import { ViewItem, BunchAction } from 'entities/dashboard-view';
 
 
 
 export interface CreateGroupViewItems {
-  viewUpdatedMs : number
-  companyId     : string
-  viewItems     : ViewItem[]
+  bunchUpdatedMs : number
+  companyId      : string
+  viewItems      : ViewItem[]
+  bunchAction    : BunchAction
 }
 
 export const createGroupViewItems = createAsyncThunk<
@@ -22,7 +23,7 @@ export const createGroupViewItems = createAsyncThunk<
     const { dispatch, rejectWithValue, extra } = thunkApi;
 
     try {
-      // await extra.api.post(paths.dashboard.view.createGroupItems, data);
+      await extra.api.post(paths.dashboard.view.createGroupItems, data);
 
       return data;
     }

@@ -6,8 +6,6 @@ export { MoveToNewItem } from './control/move-to-new-item'
 export { SwitchToParentViewItem } from './control/switch-to-parent'
 export { SwitchToIsGlobalKod } from './control/switch-to-is-global-kod'
 export { UpdateViewItems, updateViewItems } from './update-view-item'
-export {
-  PanelAddViewItemBtns, AddViewItemElementBtns, AddViewItemIndicatorsBtns
-} from './add-new-item'
+export { AddNewViewItem } from './add-new-item'
 export { AddNewChart, ControlChartBar } from './charts'
 export { CopyStylesViewItemBtn, CopyStylesItem, copyStylesViewItem } from './styles/copy-styles'
