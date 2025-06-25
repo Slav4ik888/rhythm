@@ -6,7 +6,7 @@ import { PartialViewItem } from 'entities/dashboard-view';
 
 
 
-interface PartialViewItemUpdate extends PartialViewItem {
+export interface PartialViewItemUpdate extends PartialViewItem {
   bunchId: string
 }
 
@@ -14,7 +14,7 @@ export interface UpdateViewItems {
   bunchUpdatedMs     : number
   companyId          : string
   viewItems          : PartialViewItemUpdate[]
-  newStoredViewItem? : PartialViewItem // для сохранения из UnsavedChanges чтобы сохранился текущий элемент
+  newStoredViewItem? : PartialViewItem | undefined // для сохранения из UnsavedChanges чтобы сохранился текущий элемент
   // name               : string // for dev - the name of the component calling this function
 }
 

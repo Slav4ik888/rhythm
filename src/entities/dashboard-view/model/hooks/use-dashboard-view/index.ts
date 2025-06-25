@@ -14,7 +14,6 @@ import {
   DeleteViewItem, UpdateViewItems, updateViewItems as updateViewItemsOnServer
 } from 'features/dashboard-view';
 import { ActivatedCopied, StateSchemaDashboardView } from '../../slice/state-schema';
-import { CopyStylesItem, copyStylesViewItem } from 'features/dashboard-view/configurator';
 import { getBunches, ReqGetBunches } from '../../services';
 
 
@@ -98,12 +97,13 @@ export const useDashboardView = (config: Config = {}) => {
     setDashboardBunchesFromCache : (companyId: string) => dispatch(a.setDashboardBunchesFromCache(companyId)),
 
     serviceUpdateViewItems : (data: UpdateViewItems) => dispatch(updateViewItemsOnServer(data)),
-    serviceCopyStyles      : (data: CopyStylesItem) => dispatch(copyStylesViewItem(data)),
     serviceDeleteViewItem  : (data: DeleteViewItem) => dispatch(deleteViewItem(data)),
 
     // dev
     // devSeriviceCreateBunches: (companyId: string) => dispatch(createBunches({ companyId })),
-  }), [dispatch]);
+  }),
+    [dispatch]
+  );
 
 
   return {

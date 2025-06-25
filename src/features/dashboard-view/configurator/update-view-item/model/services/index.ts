@@ -1,1 +1,1 @@
-export { UpdateViewItems, updateViewItems } from './update-view-item'
+export { UpdateViewItems, updateViewItems, PartialViewItemUpdate } from './update-view-item'

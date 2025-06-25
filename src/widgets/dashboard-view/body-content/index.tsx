@@ -12,7 +12,7 @@ import { isEmpty, isNotEmpty } from 'shared/helpers/objects';
 import { useUI } from 'entities/ui';
 import { PageLoader } from 'widgets/page-loader';
 import { __devLog } from 'shared/lib/tests/__dev-log';
-import { DashboardBodyContentItem } from './content-item';
+import { PartialViewItemUpdate } from 'features/dashboard-view/configurator';
 
 
 
@@ -21,7 +21,7 @@ export const DashboardBodyContent = memo(() => {
   const { paramsCompanyId, paramsChangedCompany, serviceUpdateCompany } = useCompany();
   const { parentsViewItems,
     loading, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId, selectedItem, activatedMovementId,
-    viewItems, entities, activatedCopied, setNewSelectedId, serviceCopyStyles, setIsMounted,
+    viewItems, entities, activatedCopied, setNewSelectedId, setIsMounted,
     setDashboardViewItems, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
   } = useDashboardView();
   const { setPageText } = useUI();
@@ -51,7 +51,6 @@ export const DashboardBodyContent = memo(() => {
 
 
   const handleSelectViewItem = useCallback((id: ViewItemId) => {
-    // (v1) if (! editMode || id === selectedId) return
     if (! editMode) return
     if (! activatedCopied && id === NO_PARENT_ID) return // Активировать NO_PARENT_ID можно только для копирования
 
@@ -99,10 +98,32 @@ export const DashboardBodyContent = memo(() => {
 
     else if (activatedCopied?.type === 'copyStyles') {
       if (selectedId === id) return // Нажали на этот же элемент
-      serviceCopyStyles({
-        companyId     : paramsCompanyId,
-        viewItems     : [{ id, styles: { ...selectedItem.styles } }],
-        viewUpdatedMs : Date.now(),
+
+      const viewItems: PartialViewItemUpdate[] = [];
+      const bunchUpdatedMs = Date.now();
+      let newStoredViewItem = {} as PartialViewItemUpdate;
+
+      if (isUnsaved) { /** Сохраняем текущий элемент, если он не сохранен */
+        newStoredViewItem = {
+          id      : selectedId,
+          bunchId : selectedItem.bunchId,
+          ...changedViewItem
+        };
+        viewItems.push(newStoredViewItem);
+      }
+
+      // Обновляемый элемент со стилями для вставки
+      viewItems.push({
+        id,
+        bunchId : entities[id].bunchId,
+        styles  : { ...selectedItem.styles }
+      });
+
+      serviceUpdateViewItems({
+        companyId: paramsCompanyId,
+        newStoredViewItem: isUnsaved ? newStoredViewItem : undefined,
+        viewItems,
+        bunchUpdatedMs,
       });
     }
 
@@ -137,9 +158,6 @@ export const DashboardBodyContent = memo(() => {
     else if (isUnsaved) {
       if (selectedId === id) return // Click на самого себя не сохранять, тк это может быть ошибочный клик
 
-      /** Сохраняем изменившиеся customSettings */
-      if (isNotEmpty(paramsChangedCompany)) serviceUpdateCompany({ id: paramsCompanyId, ...paramsChangedCompany });
-
       /** Сохраняем изменившиеся поля | стили */
       if (isEmpty(changedViewItem)) return
 
@@ -148,22 +166,29 @@ export const DashboardBodyContent = memo(() => {
         bunchId : selectedItem.bunchId,
         ...changedViewItem
       };
+
       serviceUpdateViewItems({
         companyId         : paramsCompanyId,
         viewItems         : [viewItem],
         newStoredViewItem : viewItem,
-        bunchUpdatedMs     : Date.now(),
+        bunchUpdatedMs    : Date.now(),
       });
       setNewSelectedId(id); // Здесь сохраняется в newSelectedId а активация выбранного id происходит в useEffect
     }
     else {
       setNewSelectedId(id); // Здесь сохраняется в newSelectedId а активация выбранного id происходит в useEffect
     }
+
+
+    /** Сохраняем изменившиеся customSettings */
+    if (isUnsaved && selectedId !== id && isNotEmpty(paramsChangedCompany)) {
+      serviceUpdateCompany({ id: paramsCompanyId, ...paramsChangedCompany });
+    }
   },
     [
       editMode, selectedId, activatedMovementId, activatedCopied, viewItems, entities, userId, isUnsaved,
       paramsChangedCompany, changedViewItem, paramsCompanyId, selectedItem,
-      serviceCopyStyles, serviceUpdateCompany, serviceUpdateViewItems,
+      serviceUpdateCompany, serviceUpdateViewItems,
       setNewSelectedId, setDashboardViewItems,
       // serviceCreateGroupViewItems
     ]

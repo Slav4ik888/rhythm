@@ -3,9 +3,7 @@ import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { ActivatedCopied, StateSchemaDashboardView } from './state-schema';
-import {
-  deleteViewItem, DeleteViewItem, UpdateViewItems, updateViewItems
-} from 'features/dashboard-view';
+import { deleteViewItem, DeleteViewItem, UpdateViewItems, updateViewItems } from 'features/dashboard-view';
 import {
   SetDashboardViewItems, ChangeSelectedStyle, ChangeOneSettingsField, ChangeOneDatasetsItem,
   ChangeOneChartsItem, SetEditMode
@@ -15,9 +13,7 @@ import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem } from '.
 import { cloneObj, updateObject } from 'shared/helpers/objects';
 import { updateChartsItem } from '../utils';
 import { ChartConfigDatasets } from 'entities/charts';
-import {
-  CopyStylesItem, copyStylesViewItem, CreateGroupViewItems, createGroupViewItems
-} from 'features/dashboard-view/configurator';
+import { CreateGroupViewItems, createGroupViewItems } from 'features/dashboard-view/configurator';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { getBunches } from '../services';
 import { mergeById } from 'shared/helpers/arrays';
@@ -31,7 +27,6 @@ const initialState: StateSchemaDashboardView = {
 
   editMode              : false,
   entities              : {},
-  // viewItems             : [],
 
   newSelectedId         : '',
   selectedId            : '',
@@ -73,11 +68,7 @@ export const slice = createSlice({
 
     // При activatedCopied вначале сохраняем сюда, а затем в БД
     setDashboardViewItems: (state, { payload }: PayloadAction<SetDashboardViewItems>) => {
-      // const mergedViewItems = mergeById(state.viewItems, payload.viewItems);
-
       state.entities            = updateEntities(state.entities, payload.viewItems);
-      // state.entities            = organizeViewItemsIntoEntities(mergedViewItems);
-      // state.viewItems           = mergedViewItems;
       state.activatedMovementId = '';
       state.activatedCopied     = undefined;
       state.bright              = false;
@@ -86,8 +77,6 @@ export const slice = createSlice({
     // Берём закэшированную версию
     setDashboardBunchesFromCache: (state, { payload }: PayloadAction<string>) => {
       state.entities            = updateEntities({}, LS.getDashboardViewItems(payload));
-      // state.entities            = organizeViewItemsIntoEntities(viewItems);
-      // state.viewItems           = viewItems;
       state.activatedMovementId = '';
       state.activatedCopied     = undefined;
       state.bright              = false;
@@ -157,7 +146,6 @@ export const slice = createSlice({
     // Update View-item
     updateViewItems: (state, { payload }: PayloadAction<PartialViewItem[]>) => {
       state.entities            = updateEntities(state.entities, payload);
-      // state.entities[payload.id] = updateObject(state.entities[payload.id], payload);
       state.activatedMovementId = '';
       state.activatedCopied     = undefined;
       state.bright              = false;
@@ -235,20 +223,6 @@ export const slice = createSlice({
 
 
   extraReducers: builder => {
-    // dev
-    // builder
-    //   .addCase(createBunches.pending, (state) => {
-    //     state.loading = true;
-    //     state.errors  = {};
-    //   })
-    //   .addCase(createBunches.fulfilled, (state) => {
-    //     state.loading             = false;
-    //     state.errors              = {};
-    //   })
-    //   .addCase(createBunches.rejected, (state, { payload }) => {
-    //     state.errors  = getError(payload);
-    //     state.loading = false;
-    //   })
     // GET-BUNCHES []
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     builder
@@ -261,8 +235,6 @@ export const slice = createSlice({
 
         // Нужно чтобы возможные данные из LS НЕ перезатёрлись новыми
         state.entities            = updateEntities(state.entities, viewItems);
-        // state.entities            = organizeViewItemsIntoEntities(mergedViewItems);
-        // state.viewItems           = mergedViewItems;
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
         state.bright              = false;
@@ -289,8 +261,6 @@ export const slice = createSlice({
         const { viewItems, companyId, bunchUpdatedMs, bunchAction } = payload;
 
         state.entities            = updateEntities(state.entities, viewItems);
-        // state.entities            = organizeViewItemsIntoEntities(mergedViewItems);
-        // state.viewItems           = mergedViewItems;
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
         state.bright              = false;
@@ -318,10 +288,11 @@ export const slice = createSlice({
       .addCase(updateViewItems.fulfilled, (state, { payload }: PayloadAction<UpdateViewItems>) => {
         const { viewItems, companyId, newStoredViewItem, bunchUpdatedMs } = payload;
 
-        state.entities            = updateEntities(state.entities, viewItems);
         if (newStoredViewItem) {
           state.newStoredViewItem = updateObject(state.newStoredViewItem, newStoredViewItem);
         }
+
+        state.entities            = updateEntities(state.entities, viewItems);
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
         state.bright              = false;
@@ -329,7 +300,7 @@ export const slice = createSlice({
         state.loading             = false;
         state.errors              = {};
 
-
+        // Save to LS
         LS.setDashboardViewItems(companyId, Object.values(state.entities));
 
         const bunchesUpdated: Record<string, number> = {};
@@ -342,40 +313,6 @@ export const slice = createSlice({
         });
       })
       .addCase(updateViewItems.rejected, (state, { payload }) => {
-        state.newStoredViewItem = undefined; // Раз обновление завершилось с ошибкой, то нельзя переключаться на новый элемент
-        state.errors  = getError(payload);
-        state.loading = false;
-      })
-
-    // COPY-STYLES - стили activatedCopied?.id копируются поверх стилей выбранного элемента
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    builder
-      .addCase(copyStylesViewItem.pending, (state) => {
-        state.loading = true;
-        state.errors  = {};
-      })
-      .addCase(copyStylesViewItem.fulfilled, (state, { payload }: PayloadAction<CopyStylesItem>) => {
-        const { viewItems, companyId, viewUpdatedMs } = payload;
-
-        // Настроено на копирование 1 элемента но передаётся [] тк для отправки на сервер используется update
-        if (state.activatedCopied?.id) {
-          state.entities[viewItems[0].id] = {
-            ...state.entities[viewItems[0].id],
-            styles: { ...state.entities[state.activatedCopied.id].styles }
-          }
-        }
-        state.newSelectedId       = viewItems[0].id;
-        state.activatedMovementId = '';
-        state.activatedCopied     = undefined;
-        state.bright              = false;
-        state.isUnsaved           = false;
-        state.loading             = false;
-        state.errors              = {};
-
-        // LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
-        // LS.setDashboardViewUpdated(companyId, viewUpdatedMs);
-      })
-      .addCase(copyStylesViewItem.rejected, (state, { payload }) => {
         state.newStoredViewItem = undefined; // Раз обновление завершилось с ошибкой, то нельзя переключаться на новый элемент
         state.errors  = getError(payload);
         state.loading = false;

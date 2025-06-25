@@ -9,9 +9,6 @@ import CopyIcon from '@mui/icons-material/ContentCopy';
 
 
 const useStyles = (theme: CustomTheme) => ({
-  root: {
-    position: 'relative',
-  },
   helperText: {
     position  : 'absolute',
     top       : '100%',
@@ -46,7 +43,7 @@ export const CopyStylesViewItemComponent: FC<Props> = memo(({ selectedId, activa
   const sx = useStyles(useTheme());
 
   return (
-    <Box sx={sx.root}>
+    <Box sx={{ position: 'relative' }}>
       {
         selectedId && selectedId === activatedId
           ? <Box sx={sx.helperText}>
