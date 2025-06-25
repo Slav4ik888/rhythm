@@ -8,6 +8,7 @@ import { f, pxToRem } from 'shared/styles';
 import { Company } from 'entities/company';
 import { CircularProgress } from 'shared/ui/circular-progress';
 import { __devLog } from 'shared/lib/tests/__dev-log';
+import { CodeStringify } from 'shared/ui/code-stringify';
 
 
 
@@ -54,11 +55,11 @@ export const UnsavedChangesComponent: FC<Props> = memo(({ loading, changedCompan
       <TooltipHTML title={<>
           {isNotEmpty(changedCompany) && <>
             <p>changedCompany:</p>
-            <pre><code>{JSON.stringify(changedCompany, null, 2)}</code></pre>
+            <CodeStringify obj={changedCompany} />
           </>}
           {isNotEmpty(changedViewItem) && <>
             <p>changedViewItem:</p>
-            <pre><code>{JSON.stringify(changedViewItem, null, 2)}</code></pre>
+            <CodeStringify obj={changedViewItem} />
           </>}
         </>}>
         <Typography sx={sxText}>k</Typography>

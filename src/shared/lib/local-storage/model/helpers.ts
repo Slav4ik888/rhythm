@@ -37,7 +37,11 @@ export const setDashboardViewEditMode = (companyId: string, editMode: boolean) =
 export const getDashboardViewEditMode = (companyId: string): boolean => Boolean(getStorageData<{ editMode?: boolean }>(`DashboardViewEditMode-${companyId}`)?.editMode);
 
 /** Timestamp of last update */
-export const setDashboardBunchesUpdated = (companyId: string, data: BunchesUpdated) => setStorageData(`DashboardBunchesUpdated-${companyId}`, data);
+export const setDashboardBunchesUpdated = (companyId: string, data: BunchesUpdated) => {
+  setStorageData(`DashboardBunchesUpdated-${companyId}`, data);
+  // Триггерим событие для других вкладок
+  window.dispatchEvent(new Event('storage'));
+};
 export const getDashboardBunchesUpdated = (companyId: string) => getStorageData<BunchesUpdated>(`DashboardBunchesUpdated-${companyId}`) || {};
 
 

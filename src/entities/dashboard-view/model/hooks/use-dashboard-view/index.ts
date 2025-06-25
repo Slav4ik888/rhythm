@@ -60,6 +60,7 @@ export const useDashboardView = (config: Config = {}) => {
     clearErrors              : () => dispatch(a.setErrors({})),
 
     setInitial               : (state: StateSchemaDashboardView) => dispatch(a.setInitial(state)),
+    setIsMounted             : () => dispatch(a.setIsMounted()),
     serviceGetBunches        : (data: ReqGetBunches) => dispatch(getBunches(data)),
     setDashboardViewItems    : (data: SetDashboardViewItems) => dispatch(a.setDashboardViewItems(data)),
     setEditMode              : (data: SetEditMode) => dispatch(a.setEditMode(data)),

@@ -33,6 +33,8 @@ export const errorHandlers = (
 
   __devLog('pathname: ', pathname);
 
+  dispatch(actionsUI.setPageText('')); // Снять крутилку, если авторизация провалилась...
+
   if (e.code === 'ECONNABORTED') {
     dispatch(actionsUI.setWarningMessage('Отсутствует интернет-соединение. Попробуйте позже.'))
   }

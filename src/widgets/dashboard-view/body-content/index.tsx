@@ -21,7 +21,7 @@ export const DashboardBodyContent = memo(() => {
   const { paramsCompanyId, paramsChangedCompany, serviceUpdateCompany } = useCompany();
   const { parentsViewItems,
     loading, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId, selectedItem, activatedMovementId,
-    viewItems, entities, activatedCopied, setNewSelectedId, serviceCopyStyles,
+    viewItems, entities, activatedCopied, setNewSelectedId, serviceCopyStyles, setIsMounted,
     setDashboardViewItems, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
   } = useDashboardView();
   const { setPageText } = useUI();
@@ -34,6 +34,7 @@ export const DashboardBodyContent = memo(() => {
       requestAnimationFrame(() => {
         setIsRendering(false);
         setPageText();
+        setIsMounted();
       });
     };
 
@@ -88,12 +89,12 @@ export const DashboardBodyContent = memo(() => {
       };
 
       // updateViewItems(updatedViewItems); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
-      serviceUpdateViewItems({
-        companyId     : paramsCompanyId,
-        viewItems     : updatedViewItems,
-        viewUpdatedMs : Date.now(),
-        newStoredViewItem
-      });
+      // serviceUpdateViewItems({
+      //   companyId     : paramsCompanyId,
+      //   viewItems     : updatedViewItems,
+      //   viewUpdatedMs : Date.now(),
+      //   newStoredViewItem
+      // });
     }
 
     else if (activatedCopied?.type === 'copyStyles') {
@@ -142,22 +143,31 @@ export const DashboardBodyContent = memo(() => {
       /** Сохраняем изменившиеся поля | стили */
       if (isEmpty(changedViewItem)) return
 
-      const viewItem = { id: selectedId, ...changedViewItem };
+      const viewItem = {
+        id      : selectedId,
+        bunchId : selectedItem.bunchId,
+        ...changedViewItem
+      };
       serviceUpdateViewItems({
         companyId         : paramsCompanyId,
         viewItems         : [viewItem],
         newStoredViewItem : viewItem,
-        viewUpdatedMs     : Date.now(),
+        bunchUpdatedMs     : Date.now(),
       });
       setNewSelectedId(id); // Здесь сохраняется в newSelectedId а активация выбранного id происходит в useEffect
     }
     else {
       setNewSelectedId(id); // Здесь сохраняется в newSelectedId а активация выбранного id происходит в useEffect
     }
-  }, [editMode, selectedId, activatedMovementId, activatedCopied, viewItems, entities, userId, isUnsaved,
-    paramsChangedCompany, changedViewItem, paramsCompanyId, selectedItem.parentId, selectedItem.styles,
-    serviceCopyStyles, serviceCreateGroupViewItems, serviceUpdateCompany, serviceUpdateViewItems,
-    setNewSelectedId, setDashboardViewItems]);
+  },
+    [
+      editMode, selectedId, activatedMovementId, activatedCopied, viewItems, entities, userId, isUnsaved,
+      paramsChangedCompany, changedViewItem, paramsCompanyId, selectedItem,
+      serviceCopyStyles, serviceUpdateCompany, serviceUpdateViewItems,
+      setNewSelectedId, setDashboardViewItems,
+      // serviceCreateGroupViewItems
+    ]
+  );
 
 
   return (
@@ -173,16 +183,6 @@ export const DashboardBodyContent = memo(() => {
               parentId         = 'no_parentId'
               onSelect         = {handleSelectViewItem}
             />
-          // : <DashboardBodyContentItem
-          //     key              = {item.id}
-          //     parentsViewItems = {getParents(Object.values(item.children || {}))}
-          //     item             = {item}
-          //     onSelect         = {onSelect}
-          //   />
-          // : <ContentRenderRootViewItems
-          //     rootViewItems = {viewItems}
-          //     onSelect      = {handleSelectViewItem}
-          //   />
       }
     </Box>
   )

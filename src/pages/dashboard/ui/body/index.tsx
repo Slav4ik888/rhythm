@@ -11,22 +11,21 @@ import cfg from 'app/config';
 
 
 export const DashboardBody = memo(() => {
-  __devLog('DashboardBody ');
   const { paramsCompanyId } = useCompany();
-  const { isMounted, setInitial: setInitialData } = useDashboardData();
+  const { isMounted: isMountedData, setInitial: setInitialData } = useDashboardData();
   const { setInitial: setInitialView } = useDashboardView();
 
 
   useEffect(() => {
-    if (paramsCompanyId && isMounted) {
+    if (paramsCompanyId && isMountedData) {
       setInitialData(getInitialStateData(paramsCompanyId));
       setInitialView(getInitialStateView(paramsCompanyId));
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paramsCompanyId, isMounted]);
+  }, [paramsCompanyId, isMountedData]);
 
   // Вначале должен смонтироваться dashboardReducer
-  if (! isMounted)  return  null
+  if (! isMountedData)  return  null
 
 
   // dev

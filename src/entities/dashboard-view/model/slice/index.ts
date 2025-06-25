@@ -27,11 +27,11 @@ import { mergeById } from 'shared/helpers/arrays';
 const initialState: StateSchemaDashboardView = {
   loading               : false,
   errors                : {},
-  _isMounted            : true,
+  _isMounted            : false,
 
   editMode              : false,
   entities              : {},
-  viewItems             : [],
+  // viewItems             : [],
 
   newSelectedId         : '',
   selectedId            : '',
@@ -60,6 +60,10 @@ export const slice = createSlice({
       state.loading            = payload.loading;
       state.errors             = payload.errors;
     },
+    // Только для того, чтобы дождаться отрисовки графиков
+    setIsMounted: (state) => {
+      state._isMounted = true;
+    },
     setErrors: (state, { payload }: PayloadAction<Errors>) => {
       state.errors = getError(payload);
     },
@@ -69,11 +73,11 @@ export const slice = createSlice({
 
     // При activatedCopied вначале сохраняем сюда, а затем в БД
     setDashboardViewItems: (state, { payload }: PayloadAction<SetDashboardViewItems>) => {
-      const mergedViewItems = mergeById(state.viewItems, payload.viewItems);
+      // const mergedViewItems = mergeById(state.viewItems, payload.viewItems);
 
       state.entities            = updateEntities(state.entities, payload.viewItems);
       // state.entities            = organizeViewItemsIntoEntities(mergedViewItems);
-      state.viewItems           = mergedViewItems;
+      // state.viewItems           = mergedViewItems;
       state.activatedMovementId = '';
       state.activatedCopied     = undefined;
       state.bright              = false;
@@ -81,11 +85,9 @@ export const slice = createSlice({
 
     // Берём закэшированную версию
     setDashboardBunchesFromCache: (state, { payload }: PayloadAction<string>) => {
-      const viewItems = LS.getDashboardViewItems(payload);
-
-      state.entities            = updateEntities({}, viewItems);
+      state.entities            = updateEntities({}, LS.getDashboardViewItems(payload));
       // state.entities            = organizeViewItemsIntoEntities(viewItems);
-      state.viewItems           = viewItems;
+      // state.viewItems           = viewItems;
       state.activatedMovementId = '';
       state.activatedCopied     = undefined;
       state.bright              = false;
@@ -256,12 +258,11 @@ export const slice = createSlice({
       })
       .addCase(getBunches.fulfilled, (state, { payload }: PayloadAction<SetDashboardViewItems>) => {
         const { companyId, viewItems, bunchesUpdated } = payload;
-        const mergedViewItems = mergeById(state.viewItems, viewItems);
 
         // Нужно чтобы возможные данные из LS НЕ перезатёрлись новыми
         state.entities            = updateEntities(state.entities, viewItems);
         // state.entities            = organizeViewItemsIntoEntities(mergedViewItems);
-        state.viewItems           = mergedViewItems;
+        // state.viewItems           = mergedViewItems;
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
         state.bright              = false;
@@ -269,6 +270,7 @@ export const slice = createSlice({
         state.loading             = false;
         state.errors              = {};
 
+        const mergedViewItems = mergeById(Object.values(state.entities), viewItems);
         LS.setDashboardViewItems(companyId, mergedViewItems);
         LS.setDashboardBunchesUpdated(companyId, { ...LS.getDashboardBunchesUpdated(companyId), ...bunchesUpdated });
       })
@@ -285,18 +287,17 @@ export const slice = createSlice({
       })
       .addCase(createGroupViewItems.fulfilled, (state, { payload }: PayloadAction<CreateGroupViewItems>) => {
         const { viewItems, companyId, bunchUpdatedMs, bunchAction } = payload;
-        const mergedViewItems = mergeById(state.viewItems, viewItems);
 
         state.entities            = updateEntities(state.entities, viewItems);
         // state.entities            = organizeViewItemsIntoEntities(mergedViewItems);
-        state.viewItems           = mergedViewItems;
+        // state.viewItems           = mergedViewItems;
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
         state.bright              = false;
         state.loading             = false;
         state.errors              = {};
 
-        LS.setDashboardViewItems(companyId, mergedViewItems);
+        LS.setDashboardViewItems(companyId, mergeById(Object.values(state.entities), viewItems));
         LS.setDashboardBunchesUpdated(companyId, {
           ...LS.getDashboardBunchesUpdated(companyId),
           [viewItems[0].bunchId]: bunchUpdatedMs
@@ -315,10 +316,9 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(updateViewItems.fulfilled, (state, { payload }: PayloadAction<UpdateViewItems>) => {
-        const { viewItems, companyId, newStoredViewItem, viewUpdatedMs } = payload;
+        const { viewItems, companyId, newStoredViewItem, bunchUpdatedMs } = payload;
 
         state.entities            = updateEntities(state.entities, viewItems);
-        // state.entities[viewItem.id] = updateObject(state.entities[viewItem.id], viewItem);
         if (newStoredViewItem) {
           state.newStoredViewItem = updateObject(state.newStoredViewItem, newStoredViewItem);
         }
@@ -329,8 +329,17 @@ export const slice = createSlice({
         state.loading             = false;
         state.errors              = {};
 
-        // LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
-        // LS.setDashboardViewUpdated(companyId, viewUpdatedMs);
+
+        LS.setDashboardViewItems(companyId, Object.values(state.entities));
+
+        const bunchesUpdated: Record<string, number> = {};
+        viewItems.forEach(({ bunchId }) => {
+          bunchesUpdated[bunchId] = bunchUpdatedMs;
+        });
+        LS.setDashboardBunchesUpdated(companyId, {
+          ...LS.getDashboardBunchesUpdated(companyId),
+          ...bunchesUpdated
+        });
       })
       .addCase(updateViewItems.rejected, (state, { payload }) => {
         state.newStoredViewItem = undefined; // Раз обновление завершилось с ошибкой, то нельзя переключаться на новый элемент

@@ -68,14 +68,12 @@ export const Footer: FC<Props> = ({
           alignItems='center'
           flexWrap='wrap'
           color='text'
-          fontSize={size.sm}
+          fontSize={size.xs}
           px={1.5}
         >
-          &copy;
-{new Date().getFullYear()}
-&nbsp;
-<Link href={href} target='_blank' sx={{ textDecoration: 'none' }}>
-            <MDTypography variant='button'  color='text'>
+          &copy;&nbsp;{new Date().getFullYear()}&nbsp;
+          <Link href={href} target='_blank' sx={{ textDecoration: 'none' }}>
+            <MDTypography variant='button'  color='text' fontSize={size.xs}>
               {name}
             </MDTypography>
           </Link>

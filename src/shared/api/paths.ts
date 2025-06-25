@@ -31,7 +31,7 @@ export const paths = {
       // add              : '/dashboard/view/add',
       createGroupItems : '/dashboard/view/createGroupItems',
       // get              : '/dashboard/view/get', // Get all ViewItemsByCompanyId
-      // update           : '/dashboard/view/update',
+      update           : '/dashboard/view/update',
       // delete           : '/dashboard/view/delete',
     }
   },

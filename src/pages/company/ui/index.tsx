@@ -8,7 +8,6 @@ import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 const CompanyPage: FC = memo((): JSX.Element | null => {
-  // __devLog('CompanyPage');
   const { companyId: paramsCompanyId } = useParams();
   const { auth } = useUser();
   const { pageText, setPageText } = useUI();

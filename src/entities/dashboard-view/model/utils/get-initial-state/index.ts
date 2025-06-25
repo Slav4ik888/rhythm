@@ -19,7 +19,7 @@ export const getInitialState = (companyId: string): StateSchemaDashboardView => 
 
     entities              : updateEntities({}, LS.getDashboardViewItems(companyId) || []),
     // entities              : organizeViewItemsIntoEntities(LS.getDashboardViewItems(companyId) || []),
-    viewItems             : LS.getDashboardViewItems(companyId) || [],
+    // viewItems             : LS.getDashboardViewItems(companyId) || [],
 
     newStoredViewItem     : undefined, // Начальные значения выбранного элемента
     prevStoredViewItem    : undefined, // Начальные значения предыдущего выбранного элемента

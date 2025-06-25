@@ -11,6 +11,7 @@ import { Unselected } from './unselected';
 import { useUI } from 'entities/ui';
 import { f } from 'shared/styles';
 import { ViewItemConfiguratorTabs } from './tabs';
+import { ClearLsBunchesUpdated } from 'features/dashboard-view/configurator';
 
 
 
@@ -19,7 +20,6 @@ export const ViewItemConfigurator: FC = memo(() => {
   const { setWarningMessage } = useUI();
   const { editMode, selectedId, selectedItem, isUnsaved, setSelectedId, setEditMode } = useDashboardView();
   const [value, setValue] = useState('1');
-
 
 
   /** Закрываем конфигуратор */
@@ -54,7 +54,8 @@ export const ViewItemConfigurator: FC = memo(() => {
         />}
       </Box>
 
-      <Box sx={{ ...f('-c-fe'), mt: 2 }}>
+      <Box sx={{ ...f('-c-fe'), gap: 2, mt: 2 }}>
+        <ClearLsBunchesUpdated />
         <PaletteModeSwitcher />
       </Box>
     </DrawerStyled>

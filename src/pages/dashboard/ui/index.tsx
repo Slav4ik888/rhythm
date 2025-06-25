@@ -9,7 +9,6 @@ import { AppRoutes, RoutePath } from 'app/providers/routes';
 
 
 const DashboardPage: FC = memo(() => {
-  // __devLog('DashboardPage');
   const { paramsCompany } = useCompany();
   const { email } = useUser();
 

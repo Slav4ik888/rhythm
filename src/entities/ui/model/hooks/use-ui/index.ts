@@ -5,89 +5,80 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { isGreaterMd as isGreaterMdFn } from '../../utils';
 import { Errors } from 'shared/lib/validators';
+import { useMemo } from 'react';
 
 
 
 export const useUI = () => {
-  const
-    dispatch          = useAppDispatch(),
+  const dispatch = useAppDispatch();
 
-    loading           = useSelector(s.selectLoading),
+  const loading = useSelector(s.selectLoading);
 
-    // Page Loader
-    pageLoading       = useSelector(s.selectPageLoading),
-    setPageLoading    = (status?: boolean) => dispatch(actions.setPageLoading(status)),
-    pageText          = useSelector(s.selectPageText),
-    setPageText       = (text?: string) => dispatch(actions.setPageText(text)),
+  // Page Loader
+  const pageLoading = useSelector(s.selectPageLoading);
+  const pageText = useSelector(s.selectPageText);
 
-    // Errors
-    errors            = useSelector(s.selectErrors),
-    setErrors         = (errors: Errors) => dispatch(actions.setErrors(errors)),
+  // Errors
+  const errors = useSelector(s.selectErrors);
 
-    errorStatus       = useSelector(s.selectErrorStatus),
-    setErrorStatus    = (status: number) => dispatch(actions.setErrorStatus({ status })),
+  const errorStatus = useSelector(s.selectErrorStatus);
 
-    // Messages
-    message           = useSelector(s.selectMessage),
-    setMessage        = (message: Message) => dispatch(actions.setMessage(message)),
-    setSuccessMessage = (message: string)  => dispatch(actions.setSuccessMessage(message)),
-    setWarningMessage = (message: string)  => dispatch(actions.setWarningMessage(message)),
-    clearMessage      = () => dispatch(actions.clearMessage()),
+  // Messages
+  const message = useSelector(s.selectMessage);
 
-    // Screen Formats
-    screenFormats     = useSelector(s.selectScreenFormats),
-    screenSize        = useSelector(s.selectScreenSize),
-    isGreaterMd       = isGreaterMdFn(screenFormats),
-    isMobile          = screenFormats?.isMobile,
-    setScreenFormat   = (size: number) => dispatch(actions.setScreenFormats(size)),
+  // Screen Formats
+  const screenFormats = useSelector(s.selectScreenFormats);
+  const screenSize = useSelector(s.selectScreenSize);
+  const isGreaterMd = isGreaterMdFn(screenFormats);
+  const isMobile = screenFormats?.isMobile;
 
-    // Cookie
-    acceptedCookie    = useSelector(s.selectAcceptedCookie),
-    setAcceptedCookie = (value: boolean) => dispatch(actions.setAcceptedCookie(value)),
+  // Cookie
+  const acceptedCookie = useSelector(s.selectAcceptedCookie);
 
-    // Replace Path
-    replacePath       = useSelector(s.selectReplacePath),
-    setReplacePath    = (path: string) => dispatch(actions.setReplacePath(path)),
-    clearReplacePath  = () => dispatch(actions.clearReplacePath());
+  // Replace Path
+  const replacePath = useSelector(s.selectReplacePath);
 
+  const api = useMemo(() => ({
+    setPageLoading    : (status?: boolean) => dispatch(actions.setPageLoading(status)),
+    setPageText       : (text?: string) => dispatch(actions.setPageText(text)),
+    setErrors         : (errors: Errors) => dispatch(actions.setErrors(errors)),
+    setErrorStatus    : (status: number) => dispatch(actions.setErrorStatus({ status })),
+    setMessage        : (message: Message) => dispatch(actions.setMessage(message)),
+    setSuccessMessage : (message: string)  => dispatch(actions.setSuccessMessage(message)),
+    setWarningMessage : (message: string)  => dispatch(actions.setWarningMessage(message)),
+    clearMessage      : () => dispatch(actions.clearMessage()),
+    setScreenFormat   : (size: number) => dispatch(actions.setScreenFormats(size)),
+    setAcceptedCookie : (value: boolean) => dispatch(actions.setAcceptedCookie(value)),
+    setReplacePath    : (path: string) => dispatch(actions.setReplacePath(path)),
+    clearReplacePath  : () => dispatch(actions.clearReplacePath()),
+  }), [dispatch]);
 
 
   return {
     loading,
     // Page Loader
     pageLoading,
-    setPageLoading,
     pageText,
-    setPageText,
 
     // Errors
     errors,
-    setErrors,
 
     errorStatus,
-    setErrorStatus,
 
     // Messages
     message,
-    setMessage,
-    setSuccessMessage,
-    setWarningMessage,
-    clearMessage,
 
     // Screen Formats
     screenFormats,
     screenSize,
     isGreaterMd,
     isMobile,
-    setScreenFormat,
 
     // Cookie
     acceptedCookie,
-    setAcceptedCookie,
 
     // Replace Path
     replacePath,
-    setReplacePath,
-    clearReplacePath
+    ...api
   }
 };

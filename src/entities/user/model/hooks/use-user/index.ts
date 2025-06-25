@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import * as s from '../../selectors';
 import { actions } from '../../slice';
 import { useSelector } from 'react-redux';
@@ -10,35 +11,38 @@ import { serviceLogout as logout } from 'features/user';
 
 
 export const useUser = () => {
-  const
-    dispatch = useAppDispatch(),
+  const dispatch = useAppDispatch();
 
-    loading        = useSelector(s.selectLoading),
-    errors         = useSelector(s.selectErrors),
-    setErrors      = (err: Errors) => dispatch(actions.setErrors(err)),
-    clearErrors    = () => dispatch(actions.clearErrors()),
+  const loading    = useSelector(s.selectLoading);
+  const errors     = useSelector(s.selectErrors);
 
-    // _isLoaded      = useSelector(s.selectIsLoaded),
-    auth           = useSelector(s.selectAuth),
-    user           = useSelector(s.selectUser),
-    userId         = useSelector(s.selectUserId),
-    isVerified     = useSelector(s.selectIsEmailVerified),
-    email          = useSelector(s.selectUserEmail),
-    role           = useSelector(s.selectUserRole),
-    companyId      = useSelector(s.selectCompanyId),
+  const auth       = useSelector(s.selectAuth);
+  const user       = useSelector(s.selectUser);
+  const userId     = useSelector(s.selectUserId);
+  const isVerified = useSelector(s.selectIsEmailVerified);
+  const email      = useSelector(s.selectUserEmail);
+  const role       = useSelector(s.selectUserRole);
+  const companyId  = useSelector(s.selectCompanyId);
 
-    serviceGetAuth = (data: ReqGetAuth) => dispatch(getAuth(data)),
+
     // serviceGetStartResourseData = (data: ReqGetStartResourseData = {}) => dispatch(getStartResourseData(data)),
     // serviceUpdateUser            = (user: Partial<User>) => dispatch(updateUser(user)),
     // serviceDeleteUser            = (companyId: string, userId: string) => dispatch(deleteUser({ companyId, userId })),
-    serviceLogout            = () => dispatch(logout());
     // serviceSendEmailConfirmation = (email: string) => dispatch(sendEmailConfirmation(email));
+
+  const api = useMemo(() => ({
+    setErrors      : (err: Errors) => dispatch(actions.setErrors(err)),
+    clearErrors    : () => dispatch(actions.clearErrors()),
+    serviceGetAuth : (data: ReqGetAuth) => dispatch(getAuth(data)),
+    serviceLogout  : () => dispatch(logout()),
+  }),
+    [dispatch]
+  );
+
 
   return {
     loading,
     errors,
-    setErrors,
-    clearErrors,
     // _isLoaded,
 
     auth,
@@ -49,10 +53,6 @@ export const useUser = () => {
     role,
     companyId,
 
-    serviceGetAuth,
-    // serviceUpdateUser,
-    // serviceDeleteUser,
-    serviceLogout
-    // serviceSendEmailConfirmation
+    ...api
   }
 };

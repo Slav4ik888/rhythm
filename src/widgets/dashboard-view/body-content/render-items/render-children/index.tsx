@@ -12,6 +12,7 @@ interface Props {
 }
 
 /**
+ * DEPRECATED
  * Рендерим все parentId`s children
  */
 export const ContentRenderChildren: FC<Props> = memo(({ parentsViewItems, parentId, onSelect }) => {

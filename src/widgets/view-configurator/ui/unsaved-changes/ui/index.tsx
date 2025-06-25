@@ -11,7 +11,7 @@ import { UnsavedChangesComponent } from './component';
 export const UnsavedChanges: FC = memo(() => {
   const { paramsCompanyId, paramsChangedCompany, serviceUpdateCompany, cancelParamsCustomSettings } = useCompany();
   const {
-    loading, selectedId, changedViewItem, isUnsaved,
+    loading, selectedId, changedViewItem, isUnsaved, selectedItem,
     setIsUnsaved, serviceUpdateViewItems, cancelUpdateViewItem
   } = useDashboardView();
 
@@ -20,28 +20,44 @@ export const UnsavedChanges: FC = memo(() => {
     isChangedViewItem(selectedId, paramsChangedCompany, changedViewItem, true)
       ? setIsUnsaved(true)
       : setIsUnsaved(false);
-  }, [selectedId, paramsChangedCompany, changedViewItem, setIsUnsaved]);
+  },
+    [
+      selectedId, paramsChangedCompany, changedViewItem, setIsUnsaved
+    ]
+  );
 
 
   const handleCancel = useCallback(() => {
     if (isNotEmpty(paramsChangedCompany)) cancelParamsCustomSettings(); /** Отменить изменившиеся customSettings */
     if (isNotEmpty(changedViewItem)) cancelUpdateViewItem(); /** Отменить изменившиеся поля | стили */
-  }, [paramsChangedCompany, changedViewItem, cancelParamsCustomSettings, cancelUpdateViewItem]);
+  },
+    [
+      paramsChangedCompany, changedViewItem, cancelParamsCustomSettings, cancelUpdateViewItem
+    ]
+  );
 
 
   const handleClick = useCallback(() => {
     if (isNotEmpty(paramsChangedCompany)) serviceUpdateCompany({ id: paramsCompanyId, ...paramsChangedCompany }); /** Сохраняем изменившиеся customSettings */
     if (isEmpty(changedViewItem)) return
     /** Сохраняем изменившиеся поля | стили */
-    const viewItem = { id: selectedId, ...changedViewItem };
+    const viewItem = {
+      id: selectedId,
+      bunchId: selectedItem.bunchId,
+      ...changedViewItem
+    };
     serviceUpdateViewItems({
       companyId         : paramsCompanyId,
       viewItems         : [viewItem],
       newStoredViewItem : viewItem,
-      viewUpdatedMs     : Date.now(),
+      bunchUpdatedMs    : Date.now(),
     });
-  }, [paramsCompanyId, selectedId, paramsChangedCompany, changedViewItem,
-    serviceUpdateViewItems, serviceUpdateCompany]);
+  },
+    [
+      paramsCompanyId, selectedId, paramsChangedCompany, changedViewItem, selectedItem,
+      serviceUpdateViewItems, serviceUpdateCompany
+    ]
+  );
 
 
   const handleConsole = useCallback(() => {
@@ -53,7 +69,9 @@ export const UnsavedChanges: FC = memo(() => {
       __devLog('changedViewItem:', '--force');
       __devLog(JSON.stringify(changedViewItem, null, 2), '--force');
     }
-  }, [paramsChangedCompany, changedViewItem]);
+  },
+    [paramsChangedCompany, changedViewItem]
+  );
 
 
   if (! isUnsaved) return null;

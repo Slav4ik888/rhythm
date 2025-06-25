@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
   parentId  : ViewItemId
-  component : FC<{ onClick: (type: ViewItemType) => void }>
+  component : FC<{ onClick: (type: ViewItemType) => void }> // Btn
 }
 
 /** Feature for add new ViewItem */
@@ -24,10 +24,6 @@ export const AddNewViewItem: FC<Props> = memo(({ component: Component, parentId 
 
 
   const handleAdd = useCallback((type: ViewItemType) => {
-    console.log('handleAdd: ', type);
-
-    // if (! selectedId) return;
-
     const availableBunchId = findAvailableBunchId(viewItems);
     const bunchAction = availableBunchId ? 'update' : 'create';
 
@@ -50,8 +46,6 @@ export const AddNewViewItem: FC<Props> = memo(({ component: Component, parentId 
     });
   }, [selectedId, parentId, viewItems, paramsCompanyId, userId, childrenViewItems, serviceCreateGroupViewItems]);
 
-
-  // if (type !== 'box') return null
 
   return (
     <Component onClick={handleAdd} />
