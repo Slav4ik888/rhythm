@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { Errors } from 'shared/lib/validators';
 import { paths } from 'shared/api';
-import { PartialViewItem } from 'entities/dashboard-view';
+import { PartialViewItem, ViewItem } from 'entities/dashboard-view';
 
 
 
@@ -14,14 +14,12 @@ export interface UpdateViewItems {
   bunchUpdatedMs     : number
   companyId          : string
   viewItems          : PartialViewItemUpdate[]
-  newStoredViewItem? : PartialViewItem | undefined // для сохранения из UnsavedChanges чтобы сохранился текущий элемент
+  newStoredViewItem? : ViewItem | undefined // для сохранения из UnsavedChanges чтобы сохранился текущий элемент
   // name               : string // for dev - the name of the component calling this function
 }
 
 /**
- * Обновляем изменившиеся стили у 1 элемента,
- * без сохранения изменений в слайс, тк они уже там
- * в слайсе сохраняем в LS
+ * Обновляем изменившиеся поля у группы элементов,
  */
 export const updateViewItems = createAsyncThunk<
   UpdateViewItems,

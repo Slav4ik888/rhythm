@@ -1,5 +1,5 @@
 export { CopyViewItem, getCopyViewItem, CreateGroupViewItems, createGroupViewItems } from './control/copy-item'
-export { deleteViewItem, DeleteViewItem, DeleteItemContainer } from './delete-card'
+export { deleteViewItem, DeleteViews, DeleteItemContainer } from './delete-card'
 export { MoveItemUpdownward } from './control/move-item-updownward'
 export { MoveToAnotherItem } from './control/move-to-another-item'
 export { MoveToNewItem } from './control/move-to-new-item'

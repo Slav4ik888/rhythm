@@ -1,1 +1,1 @@
-export { deleteViewItem, DeleteViewItem } from './delete-item'
+export { deleteViewItem, DeleteViews } from './delete-item'

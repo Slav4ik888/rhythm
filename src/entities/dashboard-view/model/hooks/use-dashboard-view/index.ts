@@ -11,7 +11,7 @@ import {
 import { ViewItemId, ViewItemStyles, PartialViewItem } from '../../types';
 import {
   CreateGroupViewItems, createGroupViewItems, deleteViewItem,
-  DeleteViewItem, UpdateViewItems, updateViewItems as updateViewItemsOnServer
+  DeleteViews, UpdateViewItems, updateViewItems as updateViewItemsOnServer
 } from 'features/dashboard-view';
 import { ActivatedCopied, StateSchemaDashboardView } from '../../slice/state-schema';
 import { getBunches, ReqGetBunches } from '../../services';
@@ -55,49 +55,49 @@ export const useDashboardView = (config: Config = {}) => {
   const changedViewItem          = useSelector(s.selectChangedViewItem); // Объект с изменившимися полями
 
   const api = useMemo(() => ({
-    setErrors                : (errors: Errors) => dispatch(a.setErrors(errors)),
-    clearErrors              : () => dispatch(a.setErrors({})),
+    setErrors                    : (errors: Errors) => dispatch(a.setErrors(errors)),
+    clearErrors                  : () => dispatch(a.setErrors({})),
 
-    setInitial               : (state: StateSchemaDashboardView) => dispatch(a.setInitial(state)),
-    setIsMounted             : () => dispatch(a.setIsMounted()),
-    serviceGetBunches        : (data: ReqGetBunches) => dispatch(getBunches(data)),
-    setDashboardViewItems    : (data: SetDashboardViewItems) => dispatch(a.setDashboardViewItems(data)),
-    setEditMode              : (data: SetEditMode) => dispatch(a.setEditMode(data)),
-    updateViewItems          : (data: PartialViewItem[]) => dispatch(a.updateViewItems(data)),
-    cancelUpdateViewItem     : () => dispatch(a.cancelUpdateViewItem()),
+    setInitial                   : (state: StateSchemaDashboardView) => dispatch(a.setInitial(state)),
+    setIsMounted                 : () => dispatch(a.setIsMounted()),
+    serviceGetBunches            : (data: ReqGetBunches) => dispatch(getBunches(data)),
+    setDashboardViewItems        : (data: SetDashboardViewItems) => dispatch(a.setDashboardViewItems(data)),
+    setEditMode                  : (data: SetEditMode) => dispatch(a.setEditMode(data)),
+    updateViewItems              : (data: PartialViewItem[]) => dispatch(a.updateViewItems(data)),
+    cancelUpdateViewItem         : () => dispatch(a.cancelUpdateViewItem()),
 
     // Movement
-    setActiveMovementId      : () => dispatch(a.setActiveMovementId()),
-    clearActivatedMovementId : () => dispatch(a.clearActivatedMovementId()),
+    setActiveMovementId          : () => dispatch(a.setActiveMovementId()),
+    clearActivatedMovementId     : () => dispatch(a.clearActivatedMovementId()),
 
     // Copying
-    setActiveCopied          : (data: ActivatedCopied) => dispatch(a.setActiveCopied(data)),
-    clearActivatedCopied     : () => dispatch(a.clearActivatedCopied()),
+    setActiveCopied              : (data: ActivatedCopied) => dispatch(a.setActiveCopied(data)),
+    clearActivatedCopied         : () => dispatch(a.clearActivatedCopied()),
 
     // View
-    setNewSelectedId         : (id: ViewItemId) => dispatch(a.setNewSelectedId(id)),
-    setSelectedId            : (id: ViewItemId) => dispatch(a.setSelectedId(id)),
-    setBright                : (status: boolean) => dispatch(a.setBright(status)),
+    setNewSelectedId             : (id: ViewItemId) => dispatch(a.setNewSelectedId(id)),
+    setSelectedId                : (id: ViewItemId) => dispatch(a.setSelectedId(id)),
+    setBright                    : (status: boolean) => dispatch(a.setBright(status)),
 
 
-    setIsUnsaved             : (status: boolean) => dispatch(a.setIsUnsaved(status)),
+    setIsUnsaved                 : (status: boolean) => dispatch(a.setIsUnsaved(status)),
 
     // Styles
-    changeOneStyleField      : (data: ChangeSelectedStyle) => dispatch(a.changeOneStyleField(data)),
-    setSelectedStyles        : (data: ViewItemStyles) => dispatch(a.setSelectedStyles(data)),
+    changeOneStyleField          : (data: ChangeSelectedStyle) => dispatch(a.changeOneStyleField(data)),
+    setSelectedStyles            : (data: ViewItemStyles) => dispatch(a.setSelectedStyles(data)),
 
     // Settings
-    changeOneSettingsField   : (data: ChangeOneSettingsField) => dispatch(a.changeOneSettingsField(data)),
-    changeOneChartsItem      : (data: ChangeOneChartsItem)    => dispatch(a.changeOneChartsItem(data)),
+    changeOneSettingsField       : (data: ChangeOneSettingsField) => dispatch(a.changeOneSettingsField(data)),
+    changeOneChartsItem          : (data: ChangeOneChartsItem)    => dispatch(a.changeOneChartsItem(data)),
     // Изменение 1 field в settings.charts[index].datasets
-    changeOneDatasetsItem    : (data: ChangeOneDatasetsItem)  => dispatch(a.changeOneDatasetsItem(data)),
+    changeOneDatasetsItem        : (data: ChangeOneDatasetsItem)  => dispatch(a.changeOneDatasetsItem(data)),
 
     // Services
     serviceCreateGroupViewItems  : (data: CreateGroupViewItems) => dispatch(createGroupViewItems(data)),
     setDashboardBunchesFromCache : (companyId: string) => dispatch(a.setDashboardBunchesFromCache(companyId)),
 
-    serviceUpdateViewItems : (data: UpdateViewItems) => dispatch(updateViewItemsOnServer(data)),
-    serviceDeleteViewItem  : (data: DeleteViewItem) => dispatch(deleteViewItem(data)),
+    serviceUpdateViewItems       : (data: UpdateViewItems) => dispatch(updateViewItemsOnServer(data)),
+    serviceDeleteViews           : (data: DeleteViews) => dispatch(deleteViewItem(data)),
 
     // dev
     // devSeriviceCreateBunches: (companyId: string) => dispatch(createBunches({ companyId })),

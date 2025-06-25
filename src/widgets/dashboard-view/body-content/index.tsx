@@ -3,25 +3,27 @@ import { ContentRender } from './render-items';
 import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import {
-  ViewItemId, PartialViewItem, useDashboardView, NO_PARENT_ID, createNextOrder, getChildren, isClickInsideViewItem
+  ViewItemId, useDashboardView, NO_PARENT_ID, createNextOrder, getChildren, isClickInsideViewItem,
+  findAvailableBunchId, ViewItem
  } from 'entities/dashboard-view';
 import { useCompany } from 'entities/company';
 import { getCopyViewItem } from 'features/dashboard-view';
 import { useUser } from 'entities/user';
-import { isEmpty, isNotEmpty } from 'shared/helpers/objects';
+import { isEmpty, isNotEmpty, updateObject } from 'shared/helpers/objects';
 import { useUI } from 'entities/ui';
 import { PageLoader } from 'widgets/page-loader';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { PartialViewItemUpdate } from 'features/dashboard-view/configurator';
+import { v4 as uuidv4 } from 'uuid';
 
 
 
 export const DashboardBodyContent = memo(() => {
   const { userId } = useUser();
   const { paramsCompanyId, paramsChangedCompany, serviceUpdateCompany } = useCompany();
-  const { parentsViewItems,
-    loading, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId, selectedItem, activatedMovementId,
-    viewItems, entities, activatedCopied, setNewSelectedId, setIsMounted,
+  const {
+    parentsViewItems, loading, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId, selectedItem,
+    activatedMovementId, viewItems, entities, activatedCopied, setNewSelectedId, setIsMounted,
     setDashboardViewItems, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
   } = useDashboardView();
   const { setPageText } = useUI();
@@ -39,15 +41,19 @@ export const DashboardBodyContent = memo(() => {
     };
 
     checkRenderComplete();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
 
   useEffect(() => {
-    if (newSelectedId && !loading && newSelectedId !== selectedId && ! isUnsaved) {
+    if (newSelectedId && ! loading && newSelectedId !== selectedId && ! isUnsaved) {
       setSelectedId(newSelectedId);
     }
-  }, [newSelectedId, loading, selectedId, isUnsaved, setSelectedId]);
+  },
+    [newSelectedId, loading, selectedId, isUnsaved, setSelectedId]
+  );
 
 
   const handleSelectViewItem = useCallback((id: ViewItemId) => {
@@ -63,22 +69,26 @@ export const DashboardBodyContent = memo(() => {
 
       // У activatedMovementId изменяем parentId на выбранный id
       const updatedViewItems = [];
-      const movementItem = {
+      const movementItem: PartialViewItemUpdate = {
         id       : activatedMovementId,
+        bunchId  : entities[activatedMovementId].bunchId,
         parentId : id,                                         // New parent`s id
         order    : createNextOrder(getChildren(viewItems, id)) // Next order in new parent
-      } as PartialViewItem;
+      };
 
       updatedViewItems.push(movementItem);
 
-      // Проверка, нажали внутрь элемента (на его потомка) или нет.
+      // Проверка, если нажали внутрь элемента (на его потомка)
       if (isClickInsideViewItem(entities, activatedMovementId, id)) {
         // Если нажали внутрь элемента, то меняем ему parentId
-        updatedViewItems.push({
+        const childItem: PartialViewItemUpdate = {
           id,
+          bunchId  : entities[id].bunchId,
           parentId : entities[activatedMovementId].parentId,
           order    : entities[activatedMovementId].order // Меняем на тот что был у activatedMovementId
-        } as PartialViewItem);
+        };
+
+        updatedViewItems.push(childItem);
       }
 
       // Чтобы обновился в уже обновлённом состоянии и не было isUnsaved
@@ -88,12 +98,12 @@ export const DashboardBodyContent = memo(() => {
       };
 
       // updateViewItems(updatedViewItems); // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
-      // serviceUpdateViewItems({
-      //   companyId     : paramsCompanyId,
-      //   viewItems     : updatedViewItems,
-      //   viewUpdatedMs : Date.now(),
-      //   newStoredViewItem
-      // });
+      serviceUpdateViewItems({
+        companyId      : paramsCompanyId,
+        viewItems      : updatedViewItems,
+        bunchUpdatedMs : Date.now(),
+        newStoredViewItem
+      });
     }
 
     else if (activatedCopied?.type === 'copyStyles') {
@@ -101,14 +111,14 @@ export const DashboardBodyContent = memo(() => {
 
       const viewItems: PartialViewItemUpdate[] = [];
       const bunchUpdatedMs = Date.now();
-      let newStoredViewItem = {} as PartialViewItemUpdate;
+      let newStoredViewItem = {} as ViewItem;
 
       if (isUnsaved) { /** Сохраняем текущий элемент, если он не сохранен */
-        newStoredViewItem = {
+        newStoredViewItem = updateObject(selectedItem, {
           id      : selectedId,
           bunchId : selectedItem.bunchId,
           ...changedViewItem
-        };
+        });
         viewItems.push(newStoredViewItem);
       }
 
@@ -120,8 +130,8 @@ export const DashboardBodyContent = memo(() => {
       });
 
       serviceUpdateViewItems({
-        companyId: paramsCompanyId,
-        newStoredViewItem: isUnsaved ? newStoredViewItem : undefined,
+        companyId         : paramsCompanyId,
+        newStoredViewItem : isUnsaved ? newStoredViewItem : undefined,
         viewItems,
         bunchUpdatedMs,
       });
@@ -129,11 +139,12 @@ export const DashboardBodyContent = memo(() => {
 
     // Если активирован выбранный элемент для КОПИРОВАНИЯ то его вставляем в выбранный элемент
     // НЕ активируя selectedId
-    else if (activatedCopied?.type === 'copyItemAll' || activatedCopied?.type === 'copyItemFirstOnly') {
+    else if (activatedCopied?.type === 'copyItemsAll' || activatedCopied?.type === 'copyItemFirstOnly') {
     // (v1) if (selectedId === id) return // Нажали на этот же элемент
-      if (selectedId === id && activatedCopied?.type === 'copyItemAll') return // Копировать всё в этот же элемент нельзя
+      if (selectedId === id && activatedCopied?.type === 'copyItemsAll') return // Копировать всё в этот же элемент нельзя
       if (entities[id]?.type !== 'box' && id !== NO_PARENT_ID) return // Перемещать можно только в Box или корневой элемент
 
+      // Copying
       const copiedViewItems = getCopyViewItem(
         { type: activatedCopied.type, id: activatedCopied.id },
         id,
@@ -141,19 +152,24 @@ export const DashboardBodyContent = memo(() => {
         userId
       );
 
+      // Adding bunchId to copied items
+      const availableBunchId  = findAvailableBunchId(viewItems, copiedViewItems.length);
+      const bunchId           = availableBunchId ? availableBunchId : uuidv4();
+      const copiedWithBunchId = copiedViewItems.map(item => ({ ...item, bunchId }));
+
       // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
       setDashboardViewItems({
         companyId      : paramsCompanyId,
-        viewItems      : copiedViewItems,
+        viewItems      : copiedWithBunchId,
         bunchesUpdated : {}, // Обновление произойдёт в serviceCreateGroupViewItems
       });
 
-      // TODO:
-      // serviceCreateGroupViewItems({
-      //   companyId     : paramsCompanyId,
-      //   viewItems     : copiedViewItems,
-      //   viewUpdatedMs : Date.now(),
-      // });
+      serviceCreateGroupViewItems({
+        companyId      : paramsCompanyId,
+        viewItems      : copiedWithBunchId,
+        bunchUpdatedMs : Date.now(),
+        bunchAction    : availableBunchId ? 'update' : 'create',
+      });
     }
     else if (isUnsaved) {
       if (selectedId === id) return // Click на самого себя не сохранять, тк это может быть ошибочный клик
@@ -170,7 +186,7 @@ export const DashboardBodyContent = memo(() => {
       serviceUpdateViewItems({
         companyId         : paramsCompanyId,
         viewItems         : [viewItem],
-        newStoredViewItem : viewItem,
+        newStoredViewItem : updateObject(selectedItem, viewItem),
         bunchUpdatedMs    : Date.now(),
       });
       setNewSelectedId(id); // Здесь сохраняется в newSelectedId а активация выбранного id происходит в useEffect
@@ -187,10 +203,8 @@ export const DashboardBodyContent = memo(() => {
   },
     [
       editMode, selectedId, activatedMovementId, activatedCopied, viewItems, entities, userId, isUnsaved,
-      paramsChangedCompany, changedViewItem, paramsCompanyId, selectedItem,
-      serviceUpdateCompany, serviceUpdateViewItems,
-      setNewSelectedId, setDashboardViewItems,
-      // serviceCreateGroupViewItems
+      paramsChangedCompany, changedViewItem, paramsCompanyId, selectedItem, serviceUpdateCompany,
+      serviceUpdateViewItems, setNewSelectedId, setDashboardViewItems, serviceCreateGroupViewItems
     ]
   );
 

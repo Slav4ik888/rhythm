@@ -32,7 +32,7 @@ export const paths = {
       createGroupItems : '/dashboard/view/createGroupItems',
       // get              : '/dashboard/view/get', // Get all ViewItemsByCompanyId
       update           : '/dashboard/view/update',
-      // delete           : '/dashboard/view/delete',
+      delete           : '/dashboard/view/delete',
     }
   },
   docs: {

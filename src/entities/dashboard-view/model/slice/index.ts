@@ -3,7 +3,7 @@ import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { ActivatedCopied, StateSchemaDashboardView } from './state-schema';
-import { deleteViewItem, DeleteViewItem, UpdateViewItems, updateViewItems } from 'features/dashboard-view';
+import { deleteViewItem, DeleteViews, UpdateViewItems, updateViewItems } from 'features/dashboard-view';
 import {
   SetDashboardViewItems, ChangeSelectedStyle, ChangeOneSettingsField, ChangeOneDatasetsItem,
   ChangeOneChartsItem, SetEditMode
@@ -11,7 +11,7 @@ import {
 import { updateEntities } from 'entities/base';
 import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem } from '../types';
 import { cloneObj, updateObject } from 'shared/helpers/objects';
-import { updateChartsItem } from '../utils';
+import { getBunchesTimestamps, updateChartsItem } from '../utils';
 import { ChartConfigDatasets } from 'entities/charts';
 import { CreateGroupViewItems, createGroupViewItems } from 'features/dashboard-view/configurator';
 import { __devLog } from 'shared/lib/tests/__dev-log';
@@ -242,9 +242,11 @@ export const slice = createSlice({
         state.loading             = false;
         state.errors              = {};
 
-        const mergedViewItems = mergeById(Object.values(state.entities), viewItems);
-        LS.setDashboardViewItems(companyId, mergedViewItems);
-        LS.setDashboardBunchesUpdated(companyId, { ...LS.getDashboardBunchesUpdated(companyId), ...bunchesUpdated });
+        LS.setDashboardViewItems(companyId, mergeById(Object.values(state.entities), viewItems));
+        LS.setDashboardBunchesUpdated(companyId, {
+          ...LS.getDashboardBunchesUpdated(companyId),
+          ...bunchesUpdated
+        });
       })
       .addCase(getBunches.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
@@ -258,7 +260,7 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(createGroupViewItems.fulfilled, (state, { payload }: PayloadAction<CreateGroupViewItems>) => {
-        const { viewItems, companyId, bunchUpdatedMs, bunchAction } = payload;
+        const { viewItems, companyId, bunchUpdatedMs } = payload;
 
         state.entities            = updateEntities(state.entities, viewItems);
         state.activatedMovementId = '';
@@ -270,7 +272,7 @@ export const slice = createSlice({
         LS.setDashboardViewItems(companyId, mergeById(Object.values(state.entities), viewItems));
         LS.setDashboardBunchesUpdated(companyId, {
           ...LS.getDashboardBunchesUpdated(companyId),
-          [viewItems[0].bunchId]: bunchUpdatedMs
+          ...getBunchesTimestamps(viewItems, bunchUpdatedMs)
         });
       })
       .addCase(createGroupViewItems.rejected, (state, { payload }) => {
@@ -302,14 +304,9 @@ export const slice = createSlice({
 
         // Save to LS
         LS.setDashboardViewItems(companyId, Object.values(state.entities));
-
-        const bunchesUpdated: Record<string, number> = {};
-        viewItems.forEach(({ bunchId }) => {
-          bunchesUpdated[bunchId] = bunchUpdatedMs;
-        });
         LS.setDashboardBunchesUpdated(companyId, {
           ...LS.getDashboardBunchesUpdated(companyId),
-          ...bunchesUpdated
+          ...getBunchesTimestamps(viewItems, bunchUpdatedMs)
         });
       })
       .addCase(updateViewItems.rejected, (state, { payload }) => {
@@ -325,10 +322,10 @@ export const slice = createSlice({
         state.loading = true;
         state.errors  = {};
       })
-      .addCase(deleteViewItem.fulfilled, (state, { payload }: PayloadAction<DeleteViewItem>) => {
-        const { companyId, allIds, viewUpdatedMs } = payload;
+      .addCase(deleteViewItem.fulfilled, (state, { payload }: PayloadAction<DeleteViews>) => {
+        const { companyId, viewItems, bunchUpdatedMs } = payload;
 
-        allIds.forEach(id => delete state.entities[id]);
+        viewItems.forEach(item => delete state.entities[item.id]);
 
         state.selectedId          = '';
         state.newStoredViewItem   = undefined;
@@ -340,8 +337,12 @@ export const slice = createSlice({
         state.loading             = false;
         state.errors              = {};
 
-        // LS.setDashboardView(companyId, Object.values(state.entities)); // Save entities to local storage
-        // LS.setDashboardViewUpdated(companyId, viewUpdatedMs);
+        // Save to LS
+        LS.setDashboardViewItems(companyId, Object.values(state.entities));
+        LS.setDashboardBunchesUpdated(companyId, {
+          ...LS.getDashboardBunchesUpdated(companyId),
+          ...getBunchesTimestamps(viewItems, bunchUpdatedMs)
+        });
       })
       .addCase(deleteViewItem.rejected, (state, { payload }) => {
         state.errors  = getError(payload);

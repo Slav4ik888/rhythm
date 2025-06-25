@@ -51,7 +51,9 @@ export const useUI = () => {
     setAcceptedCookie : (value: boolean) => dispatch(actions.setAcceptedCookie(value)),
     setReplacePath    : (path: string) => dispatch(actions.setReplacePath(path)),
     clearReplacePath  : () => dispatch(actions.clearReplacePath()),
-  }), [dispatch]);
+  }),
+    [dispatch]
+  );
 
 
   return {

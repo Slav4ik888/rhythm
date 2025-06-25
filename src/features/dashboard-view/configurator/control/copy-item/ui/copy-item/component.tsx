@@ -46,7 +46,7 @@ interface Props {
 
 export const CopyViewItemComponent: FC<Props> = memo(({ selectedId, type, activatedId, onToggle }) => {
   const sx = useStyles(useTheme());
-  const isAll = type === 'copyItemAll';
+  const isAll = type === 'copyItemsAll';
 
   return (
     <Box sx={sx.root}>

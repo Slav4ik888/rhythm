@@ -1,6 +1,6 @@
 import { FC, memo, useCallback, useEffect } from 'react';
 import { useDashboardView } from 'entities/dashboard-view';
-import { isEmpty, isNotEmpty } from 'shared/helpers/objects';
+import { isEmpty, isNotEmpty, updateObject } from 'shared/helpers/objects';
 import { useCompany } from 'entities/company';
 import { isChangedViewItem } from '../model/utils';
 import { __devLog } from 'shared/lib/tests/__dev-log';
@@ -49,7 +49,7 @@ export const UnsavedChanges: FC = memo(() => {
     serviceUpdateViewItems({
       companyId         : paramsCompanyId,
       viewItems         : [viewItem],
-      newStoredViewItem : viewItem,
+      newStoredViewItem : updateObject(selectedItem, viewItem),
       bunchUpdatedMs    : Date.now(),
     });
   },

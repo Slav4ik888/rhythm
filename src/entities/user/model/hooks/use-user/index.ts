@@ -4,7 +4,6 @@ import { actions } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { getAuth, ReqGetAuth } from '../../services';
-// import { User } from '../../types';
 import { Errors } from 'shared/lib/validators';
 import { serviceLogout as logout } from 'features/user';
 
@@ -24,12 +23,6 @@ export const useUser = () => {
   const role       = useSelector(s.selectUserRole);
   const companyId  = useSelector(s.selectCompanyId);
 
-
-    // serviceGetStartResourseData = (data: ReqGetStartResourseData = {}) => dispatch(getStartResourseData(data)),
-    // serviceUpdateUser            = (user: Partial<User>) => dispatch(updateUser(user)),
-    // serviceDeleteUser            = (companyId: string, userId: string) => dispatch(deleteUser({ companyId, userId })),
-    // serviceSendEmailConfirmation = (email: string) => dispatch(sendEmailConfirmation(email));
-
   const api = useMemo(() => ({
     setErrors      : (err: Errors) => dispatch(actions.setErrors(err)),
     clearErrors    : () => dispatch(actions.clearErrors()),
@@ -43,7 +36,6 @@ export const useUser = () => {
   return {
     loading,
     errors,
-    // _isLoaded,
 
     auth,
     user,

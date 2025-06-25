@@ -4,25 +4,28 @@ import Box from '@mui/material/Box';
 import { useCompany } from 'entities/company';
 import { DeleteButton } from 'shared/ui/buttons/delete-button';
 import { f } from 'shared/styles';
-import { getAllChildrenIds } from '../model/utils/get-all-children-ids';
+import { getAllChildrenIdWithBunch } from '../model/utils/get-all-children-ids-with-bunch';
+import { PartialViewItemUpdate } from '../../update-view-item';
 
 
 
 export const DeleteItemContainer: FC = memo(() => {
-  const { selectedId, viewItems, serviceDeleteViewItem } = useDashboardView();
+  const { selectedId, viewItems, serviceDeleteViews } = useDashboardView();
   const { paramsCompanyId } = useCompany();
 
 
   const handleDel = useCallback(() => {
-    const allIds: ViewItemId[] = []; // Ids всех вложенных элементов
-    getAllChildrenIds(viewItems, selectedId, allIds);
+    const deleteItems: PartialViewItemUpdate[] = []; // Ids всех вложенных элементов
+    getAllChildrenIdWithBunch(viewItems, selectedId, deleteItems);
 
-    serviceDeleteViewItem({
-      companyId     : paramsCompanyId,
-      viewUpdatedMs : Date.now(),
-      allIds
+    serviceDeleteViews({
+      companyId      : paramsCompanyId,
+      bunchUpdatedMs : Date.now(),
+      viewItems      : deleteItems
     });
-  }, [selectedId, viewItems, paramsCompanyId, serviceDeleteViewItem]);
+  },
+    [selectedId, viewItems, paramsCompanyId, serviceDeleteViews]
+  );
 
 
   return (

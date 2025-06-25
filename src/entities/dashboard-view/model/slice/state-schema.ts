@@ -2,7 +2,7 @@ import { Errors } from 'shared/lib/validators';
 import { ViewItem, ViewItemId } from '../types';
 
 
-export type ActivatedCopiedType = 'copyItemFirstOnly' | 'copyItemAll' | 'copyStyles';
+export type ActivatedCopiedType = 'copyItemFirstOnly' | 'copyItemsAll' | 'copyStyles';
 export interface ActivatedCopied {
   type : ActivatedCopiedType
   id   : ViewItemId

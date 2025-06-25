@@ -9,12 +9,6 @@ import { getParamsCompany, updateCompany } from 'features/company';
 
 
 
-// interface Config {
-// }
-
-// export const useCompany = (config: Config = {}) => {
-//   const
-//     { } = config,
 export const useCompany = () => {
   const dispatch = useAppDispatch();
 
@@ -31,11 +25,6 @@ export const useCompany = () => {
   const company                  = useSelector(s.selectCompany);
   const companyId                = company?.id;
   const storedCompany            = useSelector(s.selectStoredCompany);
-  // customSettings           = useSelector(s.selectCustomSettings);
-  // changedCompany           = useSelector(s.selectChangedCompany); // Объект с изменившимися полями
-  // updateCustomSettings     = (data: Partial<CustomSettings>) => dispatch(a.updateCustomSettings(data));
-  // cancelCustomSettings     = () => dispatch(a.cancelCustomSettings());
-  // serviceDeleteCompany = (companyId: string) => dispatch(deleteCompany(companyId));
 
   const api = useMemo(() => ({
     setErrors                  : (errors: Errors) => dispatch(a.setErrors(errors)),

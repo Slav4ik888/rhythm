@@ -13,7 +13,6 @@ import { isEmpty } from 'shared/helpers/objects';
 
 
 export const ClearLsBunchesUpdated: FC = memo(() => {
-  console.log('ClearLsBunchesUpdated');
   const { paramsCompanyId } = useCompany();
   const { setSuccessMessage } = useUI();
   const [bunchesUpdated, setBunchesUpdated] = useState(LS.getDashboardBunchesUpdated(paramsCompanyId));

@@ -2,20 +2,20 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { Errors } from 'shared/lib/validators';
 import { paths } from 'shared/api';
-import { ViewItemId } from 'entities/dashboard-view';
+import { PartialViewItemUpdate } from '../../../../update-view-item';
 
 
 
-export interface DeleteViewItem {
-  viewUpdatedMs : number
-  companyId     : string
-  allIds        : ViewItemId[] // Ids всех вложенных элементов
+export interface DeleteViews {
+  bunchUpdatedMs : number
+  companyId      : string
+  viewItems      : PartialViewItemUpdate[] // Ids удаляемого и всех вложенных элементов
 }
 
 /** Удаляем выбранный элемент */
 export const deleteViewItem = createAsyncThunk<
-  DeleteViewItem,
-  DeleteViewItem,
+  DeleteViews,
+  DeleteViews,
   ThunkConfig<Errors>
 >(
   'features/dashboardView/deleteViewItem',
@@ -23,7 +23,7 @@ export const deleteViewItem = createAsyncThunk<
     const { dispatch, rejectWithValue, extra } = thunkApi;
 
     try {
-      // await extra.api.post(paths.dashboard.view.delete, data);
+      await extra.api.post(paths.dashboard.view.delete, data);
 
       return data;
     }

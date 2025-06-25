@@ -58,6 +58,24 @@ describe('findAvailableBunchId', () => {
 
     expect(findAvailableBunchId(items as ViewItem[])).toBe('bunch2');
   });
+
+  // freeCount
+  test('should return bunchId when count < 100, but freeCount is present', () => {
+    const items = Array(95).fill(0).map((_, i) => ({
+      id: `item-${i}`,
+      bunchId: 'bunch1'
+    }));
+
+    expect(findAvailableBunchId(items as ViewItem[], 5)).toBe('bunch1');
+  });
+  test('should return undefined when all bunches not full, but freeCount is present', () => {
+    const items = Array(96).fill(0).map((_, i) => ({
+      id: `item-${i}`,
+      bunchId: 'bunch1'
+    }));
+
+    expect(findAvailableBunchId(items as ViewItem[], 5)).toBeUndefined();
+  });
 });
 
 
