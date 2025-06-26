@@ -1,11 +1,11 @@
 import { ChartConfig, ChartConfigDatasets, fixPointRadius } from 'entities/charts';
 import { checkInvertData, DashboardDataDates, DashboardStatisticItem } from 'entities/dashboard-data';
-import { ViewItem } from 'entities/dashboard-view';
+import { DashboardViewEntities, ViewItem } from 'entities/dashboard-view';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { setValue } from 'shared/helpers/objects';
 import { isArr, isStr } from 'shared/lib/validators';
 import { calcTrend2 } from '../calc-trend-2';
-import { prepareDatesForGreatestPeriod, prepareDataForChart } from './utils';
+import { prepareDatesForGreatestPeriod, prepareDataForChart, getChartInverted } from './utils';
 
 
 
@@ -15,9 +15,9 @@ import { prepareDatesForGreatestPeriod, prepareDataForChart } from './utils';
  */
 export const getData = (
   allActiveDates : DashboardDataDates,
-  // dates     : string[],
   itemsData      : DashboardStatisticItem<number>[],
-  viewItem       : ViewItem
+  viewItem       : ViewItem,
+  entities       : DashboardViewEntities
 ): ChartConfig => {
   // TODO: надо учесть приход 5 графиков и у них 3 тренда
   //  - order графиков должен быть на 1 меньше его тренда
@@ -29,14 +29,15 @@ export const getData = (
     labels   : formattedDates, // any[] // Dates (метки на оси X)
     datasets : [      // ChartConfigDatasets[]
       ...itemsData.map((itemData, idx) => {
-        const datasets = viewItem?.settings?.charts?.[idx].datasets || {} as ChartConfigDatasets;
+        const datasets            = viewItem?.settings?.charts?.[idx].datasets || {} as ChartConfigDatasets;
+        const preparedData        = prepareDataForChart(itemData, datasets, allActiveDates, greatestPeriodType);
+        const inverted            = getChartInverted(viewItem, idx, entities);
+        const checkedInvertedData = checkInvertData(inverted, preparedData);
 
         const result: ChartConfigDatasets = {
           type                 : setValue(viewItem?.settings?.charts?.[idx].chartType, 'line'),
           label                : setValue(datasets.label, `График ${idx + 1}`),
-          data: checkInvertData(viewItem?.settings,
-            prepareDataForChart(itemData, datasets, allActiveDates, greatestPeriodType)
-          ).map(item => isStr(item) ? NaN : item), // Empty value changes for NaN
+          data                 : checkedInvertedData.map(item => isStr(item) ? NaN : item), // Empty value changes for NaN
           tension              : 0,
           pointRadius          : setValue(datasets.pointRadius, fixPointRadius(dates)), // Толщика точки (круглешков)
           pointBorderColor     : 'transparent',

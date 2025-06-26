@@ -20,34 +20,27 @@ export const ItemChart: FC<Props> = memo(({ item, onSelect }) => {
   const { activeDates, activeEntities } = useDashboardData();
   const { entities } = useDashboardView();
 
-
   // TODO: упростить, всё засунуть в 1 useMemo, после того как заработает 'doughnut'
-  const notPie = isNotPie(item);
 
   const itemsData = useMemo(() => item.settings?.charts?.map(chart =>
     activeEntities[getKod(entities, item, chart)] as DashboardStatisticItem<number>) || [],
-     [activeEntities, entities, item]);
+    [activeEntities, entities, item]
+  );
 
-  // const dates = useMemo(() => {
-  //   if (notPie) {
-  //     return itemsData
-  //       ? activeDates[itemsData?.[0]?.periodType]?.map((item) => formatDate(item, 'DD mon YY', SUB.RU_ABBR_DEC))
-  //       : []
-  //   }
-  //   else return [] // dates не нужен для 'doughnut'
-  // }, [activeDates, itemsData]);
+  const data = useMemo(() => isNotPie(item)
+    ? getData(activeDates, itemsData, item, entities)
+    : getDataDoughnut(itemsData, item),
+    [activeDates, itemsData, item, entities]
+  );
 
-  const type    = item.settings?.charts?.[0]?.chartType || 'line';
-  const data    = notPie ? getData(activeDates, itemsData, item) : getDataDoughnut(itemsData, item);
-  const options = getOptions(type, item.settings?.chartOptions || {});
-
+  const type = item.settings?.charts?.[0]?.chartType || 'line';
 
   return (
     <ItemWrapper item={item} onSelect={onSelect}>
       <Chart
         type    = {type}
         data    = {data}
-        options = {options}
+        options = {getOptions(type, item.settings?.chartOptions || {})}
       />
     </ItemWrapper>
   )

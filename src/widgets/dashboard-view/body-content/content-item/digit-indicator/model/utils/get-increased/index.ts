@@ -1,11 +1,14 @@
 import { DashboardDataEntities, Increased } from 'entities/dashboard-data';
-import { ViewItem } from 'entities/dashboard-view';
 import { calcIncreased } from '../calc-increased';
 import { getReversedIndicators } from '../get-reversed-indicators';
 
 
+/**
+ * v.2025-06-26
+ * Calculates increased value for given item
+ */
 export const getIncreased = (
-  item           : ViewItem,
+  inverted       : boolean,
   activeEntities : DashboardDataEntities,
   kod            : string
 ): Increased => {
@@ -13,5 +16,5 @@ export const getIncreased = (
 
   const [lastValue, prevValue] = getReversedIndicators(data);
 
-  return calcIncreased(lastValue, prevValue, item.settings?.inverted);
+  return calcIncreased(lastValue, prevValue, inverted);
 }

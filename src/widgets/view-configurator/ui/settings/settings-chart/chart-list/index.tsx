@@ -19,6 +19,7 @@ import { ChartShiftValues } from './chart-settings/shift-values';
 import { ChartHidden } from './chart-settings/hidden';
 import { ChartBarPercentage } from './chart-settings/bar-percentage';
 import { ChartCategoryPercentage } from './chart-settings/category-percentage';
+import { InvertedData } from '../../base-components';
 
 
 
@@ -37,6 +38,7 @@ export const ViewItemChartSettingsList: FC<Props> = memo(({ selectedItem }) => (
           <ConfiguratorTitle title='Общие настройки' type='subtitle1' />
           <SelectChartType index={index} selectedItem={selectedItem} />
           <ChartKods       index={index} selectedItem={selectedItem} />
+          <InvertedData    index={index} selectedItem={selectedItem} />
           <ChartLabel      index={index} selectedItem={selectedItem} />
           <ChartHidden     index={index} selectedItem={selectedItem} />
           {/* Выбрать период дат: общий или уникальный */}

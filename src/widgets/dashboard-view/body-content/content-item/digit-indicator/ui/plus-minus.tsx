@@ -34,8 +34,6 @@ interface Props {
 export const ItemDigitIndicatorPlusMinus: FC<Props> = memo(({ item, increased, color }) => {
   const sx = useStyles(item, color);
 
-  if (! item?.settings?.plusMinus) return null
-
   // если значения отрицательные то падение статистики будет без '-' и надо его добавить
   const char = increased === 1
     ? '+'

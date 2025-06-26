@@ -3,7 +3,7 @@ import { useDashboardView, ViewItem, ViewItemId, getKod } from 'entities/dashboa
 import { ItemWrapper } from '../../wrapper-item';
 import { useDashboardData } from 'entities/dashboard-data';
 import { GrowthIconComponent } from './component';
-import { getIncreased } from '../../digit-indicator';
+import { getIncreased, getInverted } from '../../digit-indicator';
 
 
 
@@ -25,8 +25,9 @@ export const ItemGrowthIcon: FC<Props> = memo(({ item, onSelect }) => {
 
   // const increased: Increased = calcIncreased(lastValue, prevValue, item.settings?.inverted);
 
-  const increased = useMemo(() => getIncreased(item, activeEntities, getKod(entities, item)),
-    [activeEntities, entities, item]);
+  const increased = useMemo(() => getIncreased(getInverted(item, entities), activeEntities, getKod(entities, item)),
+    [activeEntities, entities, item]
+  );
 
   return (
     <ItemWrapper item={item} onSelect={onSelect}>

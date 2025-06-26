@@ -13,6 +13,7 @@ export type ViewItemType = 'box' | 'text' | 'divider' | 'chart' | 'chip' | 'grow
 export interface ViewItemChart {
   kod?           : string
   fromGlobalKod? : boolean // Если true, то Глобальны kod, будет автоматически подтягиваться в этот элемент
+  inverted?      : boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
   chartType?     : ChartType
   datasets?      : ChartConfigDatasets
   isTrend?       : boolean // Показывать ли линию тренда
@@ -34,29 +35,33 @@ export const chipOptions: Record<ChipType, { label: string; value: ChipType }> =
 export const arrayChipLabel = Object.values(chipOptions).map(item => item.label);
 
 
-/** v.2025-05-23 */
+/** v.2025-06-26 */
 export type ViewItemSettings = IndicatorsConfig & {
   // Global settings
-  display?        : boolean // Показывать ли элемент
+  display?          : boolean // Показывать ли элемент
 
   // Kod settings
-  kod?            : string  // Код для одиночного элемента Box | Chip | GrowthItem | Indicator
-  isGlobalKod?    : boolean // Если true, то это kod, будет автоматически подтягиваться всем children где стоит галка (fromGlobalKod)
-  fromGlobalKod?  : boolean // Если true, то это Глобальны kod, будет автоматически подтягиваться в этот элемент
+  kod?              : string  // Код для одиночного элемента Box | Chip | GrowthItem | Indicator
+  /** Если true, то это kod, будет автоматически подтягиваться всем children где стоит галка (fromGlobalKod) */
+  isGlobalKod?      : boolean
+  /** Если true, то это Глобальны kod, будет автоматически подтягиваться в этот элемент */
+  fromGlobalKod?    : boolean
+  /** Если true, то всем children, у которых где стоит галка (fromGlobalInverted), примениться inverted = true */
+  globalInverted?   : boolean
 
-  inverted?       : boolean // График перевёрнутый, пример - если задолженность уменьшается то это рост
-  unchangedBlack? : boolean // При отсутствии изменений в результатах красить чёрным цветом
+  inverted?         : boolean // Значения переворачиваются в противоположное, пример - если задолженность уменьшается то это рост
+  unchangedBlack?   : boolean // При отсутствии изменений в результатах красить чёрным цветом
 
   // Chart settings
-  charts?         : ViewItemChart[]
-  chartOptions?   : ChartConfigOptions
+  charts?           : ViewItemChart[]
+  chartOptions?     : ChartConfigOptions
 
   // Chips settings
-  chipType?       : ChipType
+  chipType?         : ChipType
 
   // GrowthItem settings
-  scale?          : number  // Изменение размера треуголька
-  isLeft?         : boolean // При отсутствии изменений чёрный треугольник повернуть влево
+  scale?            : number  // Изменение размера треуголька
+  isLeft?           : boolean // При отсутствии изменений чёрный треугольник повернуть влево
 }
 
 export type ViewItemSettingsField = keyof ViewItemSettings;

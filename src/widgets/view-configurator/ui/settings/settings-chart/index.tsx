@@ -1,6 +1,5 @@
 import { FC, memo } from 'react';
 import { ChartLegends } from './chart-legends';
-import { InvertedData } from '../base-components';
 import { ViewItemChartSettingsList } from './chart-list';
 import { ViewItemChartScaleYSettings } from './y-settings';
 import { ViewItemChartScaleXSettings } from './x-settings';
@@ -17,7 +16,7 @@ interface Props {
 export const ViewItemChartSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => (
   <>
     {/* GLOBAL SETTINGS */}
-    <InvertedData selectedItem={selectedItem} />
+    {/* <InvertedData selectedItem={selectedItem} /> */}
     <ChartLegends selectedItem={selectedItem} />
     <ChartCutout  selectedItem={selectedItem} />
 

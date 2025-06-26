@@ -14,7 +14,7 @@ interface Props {
 
 /**  */
 export const SelectKodRow: FC<Props> = memo(({ selectedItem }) => (
-    <RowWrapperTitle title='Код' toolTitle='Укажите код статистики для элемента'>
+  <RowWrapperTitle title='Код' toolTitle='Укажите код статистики для элемента'>
     <Box sx={f('-c')}>
       <RowSelectKodChildren
         selectedItem = {selectedItem}

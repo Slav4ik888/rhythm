@@ -3,7 +3,7 @@ import { getKod, useDashboardView, ViewItem, ViewItemId } from 'entities/dashboa
 import { ItemWrapper } from '../../wrapper-item';
 import { DashboardStatisticItem, Increased, useDashboardData } from 'entities/dashboard-data';
 import {
-  getColorByIncreased, getComparisonValues, getIncreased, getReversedIndicators, ValueStringAndReduction
+  getColorByIncreased, getComparisonValues, getIncreased, getInverted, getReversedIndicators, ValueStringAndReduction
 } from '../model/utils';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { ItemDigitIndicatorValue } from './value';
@@ -12,6 +12,8 @@ import { ItemDigitIndicatorPlusMinus } from './plus-minus';
 import { getFixedFraction, getReducedWithReduction } from 'shared/helpers/numbers';
 import { calcGrowthChange } from '../../growth-icon/model/utils';
 import { isNotUndefined } from 'shared/lib/validators';
+import { ItemDigitIndicatorReduction } from './reduction';
+import { getFirstItemInBranchWithGlobalKod } from 'entities/dashboard-view/model/utils';
 
 
 
@@ -41,7 +43,9 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
   const { activeEntities } = useDashboardData();
   const kod = useMemo(() => getKod(entities, item), [item, entities]);
 
-  const increased = useMemo(() => getIncreased(item, activeEntities, kod), [item, activeEntities, kod]);
+  const increased = useMemo(() => getIncreased(getInverted(item, entities), activeEntities, kod),
+    [item, entities, activeEntities, kod]
+  );
   const color = useStyles(useTheme(), item, increased);
 
   const statisticItem = useMemo(() => activeEntities[kod] as DashboardStatisticItem<number>, [activeEntities, kod]);
@@ -96,30 +100,23 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
 
   // const emptyEndingDiffType = item?.settings?.endingDiffType !== '% соотношение' && item?.settings?.endingDiffType !== 'Разница';
 
-
   return (
     <ItemWrapper item={item} onSelect={onSelect}>
-
       {/* +/- */}
-      <ItemDigitIndicatorPlusMinus
-        item      = {item}
-        increased = {increased}
-        color     = {color}
-      />
-
+      {item?.settings?.plusMinus && (
+        <ItemDigitIndicatorPlusMinus item={item} increased={increased} color={color} />
+      )}
       {/* Число */}
-      <ItemDigitIndicatorValue
-        item  = {item}
-        value = {calcedValue.value}
-        color = {color}
-      />
+      <ItemDigitIndicatorValue item={item} value={calcedValue.value} color={color} />
 
-      {/* Сокращение - (тыс млн) | Ед изменения */}
-      <ItemDigitIndicatorEnding
-        item      = {item}
-        reduction = {calcedValue.reduction} // || values[0]?.reduction}
-        color     = {color}
-      />
+      {/* Сокращение - (тыс млн) */}
+      {calcedValue.reduction && (
+        <ItemDigitIndicatorReduction item={item} reduction={calcedValue.reduction} color={color} />
+      )}
+      {/* Ед изменения */}
+      {item?.settings?.endingType && item?.settings?.endingType !== '-' && (
+        <ItemDigitIndicatorEnding item={item} color={color} />
+      )}
     </ItemWrapper>
   )
 });

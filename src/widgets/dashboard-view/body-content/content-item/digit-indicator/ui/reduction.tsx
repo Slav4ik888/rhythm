@@ -36,16 +36,17 @@ const useStyles = (item: ViewItem, color: string) => {
 
 interface Props {
   item      : ViewItem
+  reduction : string
   color     : string
 }
 
-/** Префикс */
-export const ItemDigitIndicatorEnding: FC<Props> = memo(({ item, color }) => {
+/** Reduction */
+export const ItemDigitIndicatorReduction: FC<Props> = memo(({ item, reduction, color }) => {
   const sx = useStyles(item, color);
 
   return (
     <Typography component='span' sx={sx}>
-      {item?.settings?.endingType}
+      {reduction}
     </Typography>
   )
 });
