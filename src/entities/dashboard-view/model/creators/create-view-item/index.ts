@@ -1,6 +1,6 @@
 import { creatorFixDate } from 'entities/base/model/creators';
 import { cloneObj } from 'shared/helpers/objects';
-import { BunchId, ViewItem, ViewItemStyles } from '../../types';
+import { ViewItem, ViewItemStyles } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
 import { f } from 'shared/styles';
 import { NO_PARENT_ID, NO_SHEET_ID, ORDER_STEP } from '../../consts';
@@ -24,15 +24,14 @@ const BASE_SX: ViewItemStyles = {
 };
 
 
-
+/** v.2025-06-26 */
 export const createViewItem = (
   userId  : string,
-  bunchId : BunchId,
   cfg     : Partial<ViewItem> = {} as ViewItem
 ): ViewItem => {
   const viewItem: ViewItem = cloneObj({
     id          : cfg.id          || uuidv4(),
-    bunchId,
+    bunchId     : cfg.bunchId     || uuidv4(),
     parentId    : cfg.parentId    || NO_PARENT_ID,
     sheetId     : cfg.sheetId     || NO_SHEET_ID,
 
@@ -74,9 +73,10 @@ export const createViewItem = (
   if (cfg.type === 'digitIndicator') {
     viewItem.styles = {
       ...viewItem.styles,
-      ...f('-c-c'),
-      width : 100,
-      p     : 4,
+      ...f('r-c-c'),
+      width         : 'max-content',
+      minHeight     : 10,
+      p             : 0,
     };
   }
 

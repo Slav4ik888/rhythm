@@ -4,7 +4,6 @@ import {
  } from 'entities/dashboard-view';
 import { useUser } from 'entities/user';
 import { useCompany } from 'entities/company';
-import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -29,9 +28,9 @@ export const AddNewViewItem: FC<Props> = memo(({ component: Component, parentId 
 
     const createViewItems = [createViewItem(
       userId,
-      availableBunchId || uuidv4(),
       {
         sheetId  : NO_SHEET_ID,
+        bunchId  : availableBunchId,
         parentId : parentId || selectedId, // Если нажали из панели то создастся на 1м уровне
         order    : createNextOrder(childrenViewItems),
         type,

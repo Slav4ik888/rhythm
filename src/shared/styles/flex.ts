@@ -5,7 +5,7 @@ interface Flex {
   flexDirection?  : 'row' | 'column' | 'row-reverse' | 'column-reverse'
   alignItems?     : 'flex-start' | 'flex-end' | 'center' | 'baseline'
   justifyContent? : 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'baseline'
-  wrap?           : 'wrap' | 'nowrap' | 'wrap-reverse'
+  flexWrap?       : 'wrap' | 'nowrap' | 'wrap-reverse'
 }
 
 
@@ -45,9 +45,9 @@ export const f = (str?: string): Flex => {
   }
 
   switch (kod[3]) {
-    case 'w':  style.wrap = 'wrap'; break;
-    case 'nw': style.wrap = 'nowrap'; break;
-    case 'wr': style.wrap = 'wrap-reverse'; break;
+    case 'w':  style.flexWrap = 'wrap'; break;
+    case 'nw': style.flexWrap = 'nowrap'; break;
+    case 'wr': style.flexWrap = 'wrap-reverse'; break;
     default: break;
   }
 
