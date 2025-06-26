@@ -35,7 +35,7 @@ export const DashboardBodyContent = memo(() => {
     const checkRenderComplete = () => {
       requestAnimationFrame(() => {
         setIsRendering(false);
-        setPageText();
+        setPageText({ name: 'DashboardBodyContent', text: '' });
         setIsMounted();
       });
     };
@@ -211,7 +211,11 @@ export const DashboardBodyContent = memo(() => {
 
   return (
     <Box
-      sx      = {{ ...f('c'), width: editMode  ? 'calc(100% + 500px)' : '100%' }}
+      sx={{
+        ...f('-fs-fs-w'),
+        width : editMode ? 'calc(100% + 500px)' : '100%',
+        pt    : 3
+      }}
       onClick = {() => handleSelectViewItem(NO_PARENT_ID)}
     >
       {

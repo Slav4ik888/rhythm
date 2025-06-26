@@ -4,27 +4,21 @@ import { f, SxCard } from 'shared/styles';
 
 
 
-const useStyles = (sx?: SxCard) => ({
-  root: {
-    ...f('-c-sb'),
-    position : 'relative',
-    py       : 0.5,
-    ...sx?.root
-  }
-});
-
-
 interface Props {
   sx?      : SxCard
   children : ReactNode
 }
 
-export const RowWrapper: FC<Props> = memo(({ children, sx: style }) => {
-  const sx = useStyles(style);
-
-  return (
-    <Box sx={sx.root}>
-      {children}
-    </Box>
-  )
-});
+export const RowWrapper: FC<Props> = memo(({ children, sx }) => (
+  <Box
+    sx={{
+      ...f('-c-sb'),
+      position : 'relative',
+      width    : '100%',
+      py       : 0.5,
+      ...sx?.root
+    }}
+  >
+    {children}
+  </Box>
+));

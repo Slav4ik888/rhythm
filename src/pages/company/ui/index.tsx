@@ -15,16 +15,16 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
 
 
   useEffect(() => {
-    if (! auth && ! pageText) setPageText('Авторизация...');
+    if (! auth && ! pageText) setPageText({ name: 'CompanyPage', text: 'Авторизация...' });
     // Если по ссылке вошли в чужую компанию
     if (auth && ! _isParamsCompanyIdLoaded && paramsCompanyId && paramsCompanyId !== companyId) {
-      setPageText('Загрузка данных по компании...');
+      setPageText({ name: 'CompanyPage', text: 'Загрузка данных по компании...' });
       serviceGetParamsCompany(paramsCompanyId);
     }
     // Если по ссылке вошли в свою компанию
     else if (auth && ! _isParamsCompanyIdLoaded && paramsCompanyId === companyId) setIsParamsCompanyIdLoaded(true);
 
-    if (auth && _isParamsCompanyIdLoaded) setPageText();
+    // if (auth && _isParamsCompanyIdLoaded) setPageText({ name: 'CompanyPage', text: '' });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth, pageText, _isParamsCompanyIdLoaded, paramsCompanyId, companyId]);
 

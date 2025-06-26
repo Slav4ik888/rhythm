@@ -4,14 +4,15 @@ export type BorderStyleType    =  'solid' | 'dashed' | 'dotted' | 'double' | 'gr
 export const arrayBorderStyles = ['solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset', 'none'];
 
 export type FlexDirectionType  = 'row' | 'column' | 'row-reverse' | 'column-reverse'
-export type FlexWrapType       = 'wrap' | 'nowrap'
+export type FlexWrapType       = 'wrap' | 'nowrap' | 'wrap-reverse'
 export type AlignItemsType     = 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch'
 export type JustifyContentType = 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'space-between' | 'space-around' | 'space-evenly' | 'stretch'
 
 export type RgbaString        = string // rgba(255, 255, 255, 1)
 export type FontStyleType                          =  'normal' | 'italic'
-export const arrayFontStyles: Array<FontStyleType> = ['normal', 'italic'];
 export type FontWeightType    =  'lighter' | 'normal' | 'bold' | 'bolder' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
+
+export const arrayFontStyles: Array<FontStyleType> = ['normal', 'italic'];
 export const arrayFontWeights = ['lighter', 'normal', 'bold', 'bolder', '100', '200', '300', '400', '500', '600', '700', '800', '900'];
 
 export type TextAlignType = 'left' | 'right' | 'center';

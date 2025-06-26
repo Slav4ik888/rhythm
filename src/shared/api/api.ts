@@ -9,10 +9,10 @@ export const api = axios.create({
 
 
 // Для загрузки с гугл таблиц
-export const apiWithoutCookie = axios.create({
-  baseURL : '/api',
-  timeout : 1000 * 30,
-});
+// export const apiWithoutCookie = axios.create({
+//   baseURL : '/api',
+//   timeout : 1000 * 30,
+// });
 
 
 // const onSuccess = (response) => response;

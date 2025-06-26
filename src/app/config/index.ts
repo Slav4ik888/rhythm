@@ -1,8 +1,10 @@
+import { hour } from 'shared/helpers/dates'
+
 const cfg = {
-  ASSEMBLY_DATE           : '2025-06-25',
+  ASSEMBLY_DATE           : '2025-06-27',
 
   COOKIE_NAME             : 'Rhythm',
-  DEFAULT_MESSAGE_TIMEOUT : 6000,
+  DEFAULT_MESSAGE_TIMEOUT : hour(2),
 
   UPLOAD: {
     MAX_FILE_SIZE       : 3  * 1024 * 1024, // 3Mb

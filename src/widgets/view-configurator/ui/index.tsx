@@ -45,13 +45,15 @@ export const ViewItemConfigurator: FC = memo(() => {
         <MainHeader view onClose={handleClose} />
         <UnsavedChanges />
         {! selectedId && <Unselected />}
-        {selectedId && <InfoBlock />}
+        {selectedId && <>
+          <InfoBlock />
 
-        {selectedId && <ViewItemConfiguratorTabs
-          value        = {value}
-          selectedItem = {selectedItem}
-          onSetValue   = {setValue}
-        />}
+          <ViewItemConfiguratorTabs
+            value        = {value}
+            selectedItem = {selectedItem}
+            onSetValue   = {setValue}
+          />
+        </>}
       </Box>
 
       <Box sx={{ ...f('-c-fe'), gap: 2, mt: 2 }}>

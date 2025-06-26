@@ -6,6 +6,7 @@ import { useAppDispatch } from 'shared/lib/hooks';
 import { isGreaterMd as isGreaterMdFn } from '../../utils';
 import { Errors } from 'shared/lib/validators';
 import { useMemo } from 'react';
+import { SetPageText } from '../../slice/types';
 
 
 
@@ -40,7 +41,7 @@ export const useUI = () => {
 
   const api = useMemo(() => ({
     setPageLoading    : (status?: boolean) => dispatch(actions.setPageLoading(status)),
-    setPageText       : (text?: string) => dispatch(actions.setPageText(text)),
+    setPageText       : (data: SetPageText) => dispatch(actions.setPageText(data)),
     setErrors         : (errors: Errors) => dispatch(actions.setErrors(errors)),
     setErrorStatus    : (status: number) => dispatch(actions.setErrorStatus({ status })),
     setMessage        : (message: Message) => dispatch(actions.setMessage(message)),

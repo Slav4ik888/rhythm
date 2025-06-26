@@ -8,8 +8,9 @@ import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 export interface CustomAxiosError {
-  code: string
-  response: {
+  code     : string
+  stack    : string
+  response : {
     status : number
     data   : Errors
     config : {
@@ -26,6 +27,7 @@ export const errorHandlers = (
   __devLog('e: ', e);
   __devLog('response: ', e.response);
   __devLog('status: ', e.response?.status);
+  __devLog('stack: ', e.stack);
 
   const
     errors = e.response?.data || {},
@@ -33,34 +35,37 @@ export const errorHandlers = (
 
   __devLog('pathname: ', pathname);
 
-  dispatch(actionsUI.setPageText('')); // Снять крутилку, если авторизация провалилась...
+  dispatch(actionsUI.setPageText({ name: 'errorHandlers', text: '' })); // Снять крутилку, если авторизация провалилась...
 
   if (e.code === 'ECONNABORTED') {
-    dispatch(actionsUI.setWarningMessage('Отсутствует интернет-соединение. Попробуйте позже.'))
+    return dispatch(actionsUI.setWarningMessage('Отсутствует интернет-соединение. Попробуйте позже.'))
   }
   if (errors.general) {
-    if (errors.general !== 'auth/user-not-found') dispatch(actionsUI.setWarningMessage(errors.general));
+    if (errors.general !== 'auth/user-not-found') return dispatch(actionsUI.setWarningMessage(errors.general));
   }
 
-  if (errors.message) dispatch(actionsUI.setWarningMessage(errors.message));
+  if (errors.message) return dispatch(actionsUI.setWarningMessage(errors.message));
 
   if (status === 204) { // No Content
-    dispatch(actionsUI.setWarningMessage('По вашему запросу отсутствуют данные.'));
+    return dispatch(actionsUI.setWarningMessage('По вашему запросу отсутствуют данные.'));
   }
   // Нужно авторизоваться, будет редирект to loginPage
   else if (status === 401) {
     dispatch(actionsUser.setAuth(false));
-    dispatch(actionsUI.setErrorStatus({ status: 401, pathname }));
+    return dispatch(actionsUI.setErrorStatus({ status: 401, pathname }));
   }
-  else if (status === 403) dispatch(actionsUI.setErrorStatus({ status: 403, pathname }));
+  else if (status === 403) return dispatch(actionsUI.setErrorStatus({ status: 403, pathname }));
   else if (status === 404) {
-    dispatch(actionsUI.setWarningMessage(
+    return dispatch(actionsUI.setWarningMessage(
       `Сервер вернул ошибку - отсутствует обработчик на данный запрос [${e.response?.config?.url}].
        Повторите действие позже.`
     ));
   }
   else if (status === 500 || status === 501 || status === 502 || status === 504) {
     // dispatch(actionsUI.setErrorStatus(504));
-    dispatch(actionsUI.setWarningMessage('Извините, сервер временно не доступен...'));
+    return dispatch(actionsUI.setWarningMessage('Извините, сервер временно не доступен...'));
+  }
+  else if (e.stack) {
+    return dispatch(actionsUI.setErrorMessage(e.stack));
   }
 }

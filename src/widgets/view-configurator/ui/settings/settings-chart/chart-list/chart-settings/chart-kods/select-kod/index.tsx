@@ -27,7 +27,7 @@ export const ChartSelectKod: FC<Props> = memo(({ index, selectedItem }) => {
   const disabled = selectedItem?.settings?.charts?.[index]?.fromGlobalKod;
 
   return (
-    <RowWrapperTitle title='Код' toolTitle='Укажите код статистики для графика'>
+    <RowWrapperTitle boldTitle title='Код' toolTitle='Укажите код статистики для графика'>
       <Box sx={{ ...f('-c-c'), gap: 1 }}>
         <FlagFromGlobalKod
           scheme       = {`settings.charts.[${index}].fromGlobalKod`}

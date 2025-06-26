@@ -38,6 +38,9 @@ export const paths = {
   docs: {
     getPolicy: '/getPolicy',
   },
+  google: {
+    getData: '/getData',
+  },
   transactions: {
     sendTransactions: '/sendTransactions',
   }

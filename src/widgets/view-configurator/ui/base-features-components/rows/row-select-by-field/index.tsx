@@ -11,6 +11,7 @@ interface Props {
   selectedItem : ViewItem | undefined
   scheme       : string
   title        : string
+  boldTitle?   : boolean
   toolTitle    : string
   disabled?    : boolean
   array        : string[] | any[] // any if component present
@@ -20,9 +21,13 @@ interface Props {
 }
 
 export const RowSelectByField: FC<Props> = memo(({
-  selectedItem, scheme, title, toolTitle, array, component, disabled, searchBox, onSearch
+  selectedItem, scheme, title, toolTitle, array, component, boldTitle, disabled, searchBox, onSearch
 }) => (
-  <RowWrapperTitle title={title} toolTitle={toolTitle}>
+  <RowWrapperTitle
+    title     = {title}
+    boldTitle = {boldTitle}
+    toolTitle = {toolTitle}
+  >
     <Box sx={f('-c')}>
       {
         ! disabled && <SelectByField

@@ -92,6 +92,7 @@ export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProvid
               },
             },
             '&:not(.Mui-selected)': {
+              color: '#666666',
               '&:hover': {
                 background: '#303030',
               },

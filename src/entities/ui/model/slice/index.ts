@@ -5,6 +5,7 @@ import { isNotUndefined, Errors } from 'shared/lib/validators';
 import { Message, MessageType } from '../types';
 import { getScreenFormats, getScreenSize, isAcceptCookie } from '../utils';
 import { StateSchemaUI } from './state-schema';
+import { SetPageText } from './types';
 
 
 
@@ -28,12 +29,17 @@ export const slice = createSlice({
   reducers: {
     // UI
     setErrors: (state, { payload }: PayloadAction<Errors>) => {
-      state.errors = payload;
+      state.errors      = payload;
+      state.pageText    = '';
+      state.pageLoading = false;
     },
     setErrorStatus: (state,
       { payload: { status, pathname } }: PayloadAction<{ status: number, pathname?: string }>) => {
       state.errorStatus = status;
       if (pathname) state.replacePath = pathname;
+
+      state.pageText    = '';
+      state.pageLoading = false;
     },
 
     // PAGE LOADER
@@ -41,47 +47,61 @@ export const slice = createSlice({
       const loading = isNotUndefined(payload) ? payload as boolean : true;
       state.pageLoading = loading;
     },
-    setPageText: (state, { payload }: PayloadAction<string | undefined>) => {
-      const text = isNotUndefined(payload) ? payload as string : '';
+    setPageText: (state, { payload }: PayloadAction<SetPageText>) => {
+      const text = isNotUndefined(payload.text) ? payload.text as string : '';
+      // console.log('___ [', payload.name, ']', payload.text);
+
       state.pageText = text;
       state.pageLoading = Boolean(text);
     },
 
     // MESSAGES
     setMessage: (state, { payload }: { payload: Message }) => {
-      state.message = payload;
+      state.message     = payload;
+      state.pageText    = '';
+      state.pageLoading = false;
     },
 
     setInfoMessage: (state, { payload }: { payload: string }) => {
-      state.message = {
+      state.pageText    = '';
+      state.pageLoading = false;
+      state.message     = {
         type    : MessageType.INFO,
         message : payload,
         timeout : cfg.DEFAULT_MESSAGE_TIMEOUT
       };
     },
     setSuccessMessage: (state, { payload }: { payload: string }) => {
-      state.message = {
+      state.pageText    = '';
+      state.pageLoading = false;
+      state.message     = {
         type    : MessageType.SUCCESS,
         message : payload,
         timeout : cfg.DEFAULT_MESSAGE_TIMEOUT
       };
     },
     setWarningMessage: (state, { payload }: { payload: string }) => {
-      state.message = {
+      state.pageText    = '';
+      state.pageLoading = false;
+      state.message     = {
         type    : MessageType.WARNING,
         message : payload,
         timeout : cfg.DEFAULT_MESSAGE_TIMEOUT
       };
     },
     setErrorMessage: (state, { payload }: { payload: string }) => {
-      state.message = {
+      state.pageText    = '';
+      state.pageLoading = false;
+      state.message     = {
         type    : MessageType.ERROR,
         message : payload,
         timeout : cfg.DEFAULT_MESSAGE_TIMEOUT
       };
     },
     clearMessage: (state) => {
-      state.message = {} as Message;
+      state.message     = {} as Message;
+      state.pageText    = '';
+      state.pageLoading = false;
     },
 
     // SCREENS
@@ -96,9 +116,13 @@ export const slice = createSlice({
     // SETTINGS
     setReplacePath: (state, { payload }: PayloadAction<string>) => {
       state.replacePath = payload;
+      state.pageText    = '';
+      state.pageLoading = false;
     },
     clearReplacePath: (state) => {
       state.replacePath = '';
+      state.pageText    = '';
+      state.pageLoading = false;
     },
 
     setAcceptedCookie: (state, { payload }: PayloadAction<boolean>) => {
