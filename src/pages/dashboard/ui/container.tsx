@@ -4,9 +4,7 @@ import { Sidebar } from 'widgets/sidebar';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 import { DashboardBody } from './body';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
-import { useInitialEffect } from 'shared/lib/hooks';
-import { setIsSidebar, useUIConfiguratorController } from 'app/providers/theme';
-import { NO_SHEET_ID, reducerDashboardView, useDashboardView, getBunchesToUpdate } from 'entities/dashboard-view';
+import { reducerDashboardView, useDashboardView, getBunchesToUpdate } from 'entities/dashboard-view';
 import { useLocation } from 'react-router-dom';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { useCompany } from 'entities/company';
@@ -21,14 +19,10 @@ const initialReducers: ReducersList = {
 
 
 export const DashboardPageContainer: FC = memo(() => {
-  const [_, dispatch] = useUIConfiguratorController();
   const { paramsCompanyId, paramsCompany, paramsBunchesUpdated } = useCompany();
   const { pathname } = useLocation();
   const { serviceGetBunches, setDashboardBunchesFromCache } = useDashboardView();
 
-  useInitialEffect(() => {
-    setIsSidebar(dispatch, true);
-  });
 
   useEffect(() => {
     const bunchesForLoad = getBunchesToUpdate(paramsBunchesUpdated, LS.getDashboardBunchesUpdated(paramsCompanyId));

@@ -1,17 +1,20 @@
 import { FC, memo, ReactNode, useMemo } from 'react';
 import {
-  ViewItem, ViewItemId, stylesToSx, useDashboardView, DashboardViewEntities, isFirstGlobalKodInBranch
+  ViewItem, ViewItemId, stylesToSx, useDashboardView, DashboardViewEntities, isFirstGlobalKodInBranch, ActivatedCopied
  } from 'entities/dashboard-view';
 import Box from '@mui/material/Box';
 import { ItemWrapperTooltip } from './tooltip';
+import { blue, orange } from '@mui/material/colors';
 
 
 
 const getStyles = (
-  item         : ViewItem, // Отрисовываемый элемент на Дашборде
-  editMode     : boolean,
-  entities     : DashboardViewEntities,
-  selectedItem : ViewItem,
+  item                : ViewItem, // Отрисовываемый элемент на Дашборде
+  editMode            : boolean,
+  entities            : DashboardViewEntities,
+  selectedItem        : ViewItem,
+  activatedCopied     : ActivatedCopied | undefined,
+  activatedMovementId : string,
 ) => {
   const root: any = {
     position : 'relative',
@@ -42,8 +45,14 @@ const getStyles = (
   };
 
   if (editMode) {
+    const colorHover = activatedCopied
+      ? blue[700]
+      : activatedMovementId
+        ? orange[700]
+        : 'rgb(62 255 10)';
+
     hover['&:hover'] = {
-      border: '3px solid rgb(62 255 10)'
+      border: `3px solid ${colorHover}`
     };
     // Рамку вокруг Box с isGlobalKod если у текущего выбрано fromGlobalKod
     if (isFirstGlobalKodInBranch(entities, selectedItem?.id, item.id)
@@ -67,9 +76,10 @@ interface Props {
 
 /** Item wrapper */
 export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
-  const { editMode, selectedItem, entities, bright } = useDashboardView();
-  const sx = useMemo(() => getStyles(item, editMode, entities, selectedItem),
-    [item, editMode, entities, selectedItem]);
+  const { editMode, selectedItem, entities, bright, activatedCopied, activatedMovementId } = useDashboardView();
+  const sx = useMemo(() => getStyles(item, editMode, entities, selectedItem, activatedCopied, activatedMovementId),
+    [item, editMode, entities, selectedItem, activatedCopied, activatedMovementId]
+  );
 
   const handleClick = (e: any) => {
     e.stopPropagation();

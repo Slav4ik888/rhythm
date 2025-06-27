@@ -17,7 +17,7 @@ import { FC, useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import List from '@mui/material/List';
 import SidebarRoot from './styled';
-import { useUIConfiguratorController, ColorName, setSidebarMini, setIsSidebar, useTheme } from 'app/providers/theme';
+import { useUIConfiguratorController, ColorName, setSidebarMini, useTheme } from 'app/providers/theme';
 // import { SidebarDivider } from 'shared/ui/sidebar-divider';
 import { SidebarLogoLabel } from '../logo-label';
 import { SidebarUpgradeButton } from '../upgrade-button';
@@ -55,7 +55,7 @@ export const SidebarContainer: FC<Props> = ({ ...rest }) => {
     // A function that sets the mini state of the sidebar.
     function handleSidebarChanges() {
       setSidebarMini(dispatch, window.innerWidth < xl || sidebarMini); // Если изначально мини, то нужно его оставить если экран > 1200
-      setIsSidebar(dispatch, window.innerWidth > sm || isSidebar);
+      // setIsSidebar(dispatch, window.innerWidth > sm || isSidebar);
     }
 
     // The event listener that's calling the handleSidebarMini function when resizing the window.

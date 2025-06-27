@@ -31,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "added globalIverted" && git push -u origin main
+// git add . && git commit -m "refacted UIConfiguratorState" && git push -u origin main

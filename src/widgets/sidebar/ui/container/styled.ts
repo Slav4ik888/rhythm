@@ -85,7 +85,8 @@ export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, owne
         transform    : isSidebar ? 'translateX(0)' : `translateX(${pxToRem(-320)})`,
       },
 
-      ...(sidebarMini ? drawerMiniStyles() : drawerFullwidthStyles()),
+      ...(sidebarMini && isSidebar && drawerMiniStyles()),
+      ...(! sidebarMini && isSidebar && drawerFullwidthStyles()),
     },
   };
 });

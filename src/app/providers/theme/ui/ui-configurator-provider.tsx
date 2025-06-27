@@ -7,6 +7,7 @@ import { reducer, setMode, setSidebarColor } from '../model/lib/reducer';
 import { getThemeByName } from '../model/utils';
 import { UIConfiguratorContext, UIConfiguratorContextType } from '../model/lib/ui-configurator-context';
 import { LS } from 'shared/lib/local-storage';
+import { isNotUndefined } from 'shared/lib/validators';
 
 
 
@@ -19,7 +20,7 @@ const initialState: UIConfiguratorProviderState = {
   navbarFixed        : fromLS?.navbarFixed        || true,
   navbarTransparent  : fromLS?.navbarTransparent  || false,
   navbarColor        : fromLS?.navbarColor        || 'navbar_white',
-  isSidebar          : false,
+  isSidebar          : isNotUndefined(fromLS?.isSidebar) ? Boolean(fromLS?.isSidebar) : true,
   sidebarWidth       : fromLS?.sidebarWidth       || 250,
   sidebarMini        : fromLS?.sidebarMini        || false,
   sidebarColor       : fromLS?.sidebarColor       || 'sidebar_black',
