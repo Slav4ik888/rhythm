@@ -1,6 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { ViewItem, ViewItemId, ChipContainer, stylesToSx, useDashboardView, getKod } from 'entities/dashboard-view';
-import { ItemWrapper } from '../wrapper-item';
+import { ViewItem, ChipContainer, stylesToSx, useDashboardView, getKod } from 'entities/dashboard-view';
 import { CONDITION_TYPE, DashboardConditionType, getConditionKod, getConditionType } from 'entities/condition-type';
 import { useDashboardData } from 'entities/dashboard-data';
 import { useTheme } from 'app/providers/theme';
@@ -10,12 +9,11 @@ import { useCompany } from 'entities/company';
 
 
 interface Props {
-  item     : ViewItem
-  onSelect : (id: ViewItemId) => void
+  item: ViewItem
 }
 
 /** Item chip */
-export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
+export const ItemChip: FC<Props> = memo(({ item }) => {
   const theme = useTheme();
   const { paramsCustomSettings } = useCompany();
   const { activeEntities } = useDashboardData();
@@ -32,7 +30,9 @@ export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
     if (type === 'condition') {
       const conditionKode = getConditionKod(type, kod);
       const condition = conditionKode
-        ? getConditionType(activeEntities[conditionKode]?.data) : DashboardConditionType.NULL;
+        ? getConditionType(activeEntities[conditionKode]?.data)
+        : DashboardConditionType.NULL;
+
       label      = CONDITION_TYPE[condition].label;
       color      = theme.palette.conditionTypeChip[condition]?.color;
       background = theme.palette.conditionTypeChip[condition]?.background;
@@ -64,16 +64,14 @@ export const ItemChip: FC<Props> = memo(({ item, onSelect }) => {
 
 
   return (
-    <ItemWrapper item={item} onSelect={onSelect}>
-      <ChipContainer
-        label     = {label}
-        sx        = {{
-          color,
-          background,
-          width  : stylesToSx(item?.styles)?.width,
-          height : stylesToSx(item?.styles)?.height,
-        }}
-      />
-    </ItemWrapper>
+    <ChipContainer
+      label     = {label}
+      sx        = {{
+        color,
+        background,
+        width  : stylesToSx(item?.styles)?.width,
+        height : stylesToSx(item?.styles)?.height,
+      }}
+    />
   )
 });

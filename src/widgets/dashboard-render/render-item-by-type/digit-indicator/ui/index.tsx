@@ -1,6 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { getKod, useDashboardView, ViewItem, ViewItemId } from 'entities/dashboard-view';
-import { ItemWrapper } from '../../wrapper-item';
+import { getKod, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import { DashboardStatisticItem, Increased, useDashboardData } from 'entities/dashboard-data';
 import {
   getColorByIncreased, getComparisonValues, getIncreased, getInverted, getReversedIndicators, ValueStringAndReduction
@@ -13,7 +12,6 @@ import { getFixedFraction, getReducedWithReduction } from 'shared/helpers/number
 import { calcGrowthChange } from '../../growth-icon/model/utils';
 import { isNotUndefined } from 'shared/lib/validators';
 import { ItemDigitIndicatorReduction } from './reduction';
-import { getFirstItemInBranchWithGlobalKod } from 'entities/dashboard-view/model/utils';
 
 
 
@@ -33,12 +31,11 @@ const useStyles = (theme: CustomTheme, item: ViewItem, increased: Increased) => 
 
 
 interface Props {
-  item     : ViewItem
-  onSelect : (id: ViewItemId) => void
+  item: ViewItem
 }
 
 /** Item digitIndicator */
-export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
+export const ItemDigitIndicator: FC<Props> = memo(({ item }) => {
   const { entities } = useDashboardView();
   const { activeEntities } = useDashboardData();
   const kod = useMemo(() => getKod(entities, item), [item, entities]);
@@ -101,7 +98,7 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
   // const emptyEndingDiffType = item?.settings?.endingDiffType !== '% соотношение' && item?.settings?.endingDiffType !== 'Разница';
 
   return (
-    <ItemWrapper item={item} onSelect={onSelect}>
+    <>
       {/* +/- */}
       {item?.settings?.plusMinus && (
         <ItemDigitIndicatorPlusMinus item={item} increased={increased} color={color} />
@@ -117,6 +114,6 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, onSelect }) => {
       {item?.settings?.endingType && item?.settings?.endingType !== '-' && (
         <ItemDigitIndicatorEnding item={item} color={color} />
       )}
-    </ItemWrapper>
+    </>
   )
 });

@@ -23,6 +23,8 @@ export const useDashboardTemplates = () => {
 
   const opened                   = useSelector(s.selectOpened);
   const selectedId               = useSelector(s.selectSelectedId);
+  const selectedTemplate         = useSelector(s.selectSelectedTemplate);
+
 
   const api = useMemo(() => ({
     setErrors           : (errors: Errors) => dispatch(a.setErrors(errors)),
@@ -50,6 +52,8 @@ export const useDashboardTemplates = () => {
 
     opened,
     selectedId,
+    selectedTemplate,
+
     ...api
   }
 };

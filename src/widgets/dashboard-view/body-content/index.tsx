@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useLayoutEffect, useState } from 'react';
-import { ContentRender } from './render-items';
+import { DashboardRender } from '../../dashboard-render';
 import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import {
@@ -221,10 +221,10 @@ export const DashboardBodyContent = memo(() => {
       {
         isRendering
           ? <PageLoader loading={isRendering} text='Отрисовка графиков...' />
-          : <ContentRender
-              parentsViewItems = {parentsViewItems}
-              parentId         = 'no_parentId'
-              onSelect         = {handleSelectViewItem}
+          : <DashboardRender
+              parents  = {parentsViewItems}
+              parentId = 'no_parentId'
+              onSelect = {handleSelectViewItem}
             />
       }
     </Box>

@@ -1,6 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { getKod, useDashboardView, ViewItem, ViewItemId } from 'entities/dashboard-view';
-import { ItemWrapper } from '../../wrapper-item';
+import { getKod, useDashboardView, ViewItem } from 'entities/dashboard-view';
 import 'chart.js/auto';
 import { Chart } from 'react-chartjs-2';
 import { DashboardStatisticItem, useDashboardData } from 'entities/dashboard-data';
@@ -12,11 +11,10 @@ import { isNotPie } from 'entities/charts';
 
 interface Props {
   item: ViewItem
-  onSelect: (id: ViewItemId) => void
 }
 
 /** Item chart */
-export const ItemChart: FC<Props> = memo(({ item, onSelect }) => {
+export const ItemChart: FC<Props> = memo(({ item }) => {
   const { activeDates, activeEntities } = useDashboardData();
   const { entities } = useDashboardView();
 
@@ -36,12 +34,10 @@ export const ItemChart: FC<Props> = memo(({ item, onSelect }) => {
   const type = item.settings?.charts?.[0]?.chartType || 'line';
 
   return (
-    <ItemWrapper item={item} onSelect={onSelect}>
-      <Chart
-        type    = {type}
-        data    = {data}
-        options = {getOptions(type, item.settings?.chartOptions || {})}
-      />
-    </ItemWrapper>
+    <Chart
+      type    = {type}
+      data    = {data}
+      options = {getOptions(type, item.settings?.chartOptions || {})}
+    />
   )
 });

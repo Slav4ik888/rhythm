@@ -1,6 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { useDashboardView, ViewItem, ViewItemId, getKod } from 'entities/dashboard-view';
-import { ItemWrapper } from '../../wrapper-item';
+import { useDashboardView, ViewItem, getKod } from 'entities/dashboard-view';
 import { useDashboardData } from 'entities/dashboard-data';
 import { GrowthIconComponent } from './component';
 import { getIncreased, getInverted } from '../../digit-indicator';
@@ -8,12 +7,11 @@ import { getIncreased, getInverted } from '../../digit-indicator';
 
 
 interface Props {
-  item     : ViewItem
-  onSelect : (id: ViewItemId) => void
+  item: ViewItem
 }
 
 /** Item GrowthIcon */
-export const ItemGrowthIcon: FC<Props> = memo(({ item, onSelect }) => {
+export const ItemGrowthIcon: FC<Props> = memo(({ item }) => {
   const { entities } = useDashboardView();
   const { activeEntities } = useDashboardData();
   // const { display, fractionDigits, addZero, kod = '' } = item.settings || {};
@@ -30,14 +28,12 @@ export const ItemGrowthIcon: FC<Props> = memo(({ item, onSelect }) => {
   );
 
   return (
-    <ItemWrapper item={item} onSelect={onSelect}>
-      <GrowthIconComponent
-        increased      = {increased}
-        unchangedBlack = {item.settings?.unchangedBlack}
-        isLeft         = {item.settings?.isLeft}
-        scale          = {item.settings?.scale}
-        sx             = {{}}
-      />
-    </ItemWrapper>
+    <GrowthIconComponent
+      increased      = {increased}
+      unchangedBlack = {item.settings?.unchangedBlack}
+      isLeft         = {item.settings?.isLeft}
+      scale          = {item.settings?.scale}
+      sx             = {{}}
+    />
   )
 });

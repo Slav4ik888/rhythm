@@ -1,1 +1,1 @@
-export { DashboardTemplates } from './templates-container'
+export { DashboardTemplates } from './templates'
