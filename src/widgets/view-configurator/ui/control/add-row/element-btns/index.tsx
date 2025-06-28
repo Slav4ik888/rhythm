@@ -5,7 +5,7 @@ import { AddBtn } from 'shared/ui/configurators-components';
 
 
 interface Props {
-  onClick: (type: ViewItemType) => void
+  onClick: (type: ViewItemType | undefined) => void
 }
 
 /** Row with chart elements btns */

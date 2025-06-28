@@ -33,7 +33,12 @@ export const paths = {
       // get              : '/dashboard/view/get', // Get all ViewItemsByCompanyId
       update           : '/dashboard/view/update',
       delete           : '/dashboard/view/delete',
-    }
+    },
+  },
+  templates: {
+    bunch:  {
+      get    : '/templates/bunch/get',
+    },
   },
   docs: {
     getPolicy: '/getPolicy',

@@ -2,6 +2,7 @@
 import { UIConfiguratorProviderState } from 'app/providers/theme';
 import { BunchesUpdated, PartialCompany, StateSchemaCompany } from 'entities/company';
 import { StateSchemaDashboardData } from 'entities/dashboard-data';
+import { DashboardTemplatesEntities } from 'entities/dashboard-templates';
 import { Bunch, ViewItem } from 'entities/dashboard-view';
 import { StateSchemaUser } from 'entities/user';
 import { ResGetData } from 'features/dashboard-data/get-data/model/types';
@@ -27,7 +28,11 @@ export const getParamsCompanyState = () => getStorageData<PartialCompany>('Param
 export const setUIConfiguratorState = (state: UIConfiguratorProviderState) => setStorageData('UIConfiguratorState', state);
 export const getUIConfiguratorState = () => getStorageData<UIConfiguratorProviderState>('UIConfiguratorState');
 
+// Templates
+export const setDashboardTemplatesEntities = (entities: DashboardTemplatesEntities) => setStorageData('DashboardTemplatesEntities', entities);
+export const getDashboardTemplatesEntities = () => getStorageData<DashboardTemplatesEntities>('DashboardTemplatesEntities') || {};
 
+// Dashboard
 export const setDashboardState = (companyId: string, state: StateSchemaDashboardData) => setStorageData(`DashboardState-${companyId}`, state);
 export const getDashboardState = (companyId: string) => getStorageData<StateSchemaDashboardData>(`DashboardState-${companyId}`);
 

@@ -1,14 +1,10 @@
 import { FC, memo, useCallback } from 'react';
 import { createViewItem, findAvailableBunchId, ORDER_STEP, useDashboardView } from 'entities/dashboard-view';
-import { Tooltip } from 'shared/ui/tooltip';
-import { MDButton } from 'shared/ui/mui-design-components';
 import MoveIcon from '@mui/icons-material/MoveUp';
-import { pxToRem } from 'shared/styles';
-import { blue } from '@mui/material/colors';
 import { useUser } from 'entities/user';
 import { useCompany } from 'entities/company';
 import { updateObject } from 'shared/helpers/objects';
-import { getColorByType } from 'shared/ui/configurators-components/add-btn/get-color-by-type';
+import { AddBtn } from 'shared/ui/configurators-components';
 
 
 
@@ -62,21 +58,11 @@ export const MoveToNewItem: FC = memo(() => {
 
 
   return (
-    <Tooltip title='Создать новый Box и переместить в него этот элемент'>
-      <MDButton
-        variant   = 'outlined'
-        color     = 'dark'
-        startIcon = {<MoveIcon sx={{ color: getColorByType('box'), fontSize: pxToRem(20) }} />}
-        onClick   = {handleClick}
-        sx        = {{
-          root: {
-            color: getColorByType('box'),
-            fontSize: '0.7rem',
-          }
-        }}
-      >
-        Box
-      </MDButton>
-    </Tooltip>
+    <AddBtn
+      type      = 'box'
+      toolTitle = 'Создать новый Box и переместить в него этот элемент'
+      startIcon = {MoveIcon}
+      onClick   = {handleClick}
+    />
   )
 });

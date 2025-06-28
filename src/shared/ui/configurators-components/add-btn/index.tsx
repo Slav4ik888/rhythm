@@ -6,30 +6,39 @@ import { ViewItemType } from 'entities/dashboard-view';
 import { capitalizeFirst } from 'shared/helpers/strings';
 import { pxToRem } from 'shared/styles';
 import { getColorByType } from './get-color-by-type';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { SvgIconTypeMap } from '@mui/material/SvgIcon';
+import { useTheme } from 'app/providers/theme';
 
 
 
 interface Props {
-  type    : ViewItemType
-  // color   : string
-  onClick : (type: ViewItemType) => void
+  type?      : ViewItemType
+  title?     : string
+  toolTitle? : string
+  color?     : string // Если нужно НЕ из getColorByType
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  startIcon? : OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string }
+  onClick    : (type: ViewItemType | undefined) => void
 }
 
 /** Btn component */
-export const AddBtn: FC<Props> = memo(({ type, onClick }) => {
-  const title = capitalizeFirst(type);
-  const color = getColorByType(type);
+export const AddBtn: FC<Props> = memo(({ type, title, color: defaultColor, toolTitle, startIcon, onClick }) => {
+  const text = capitalizeFirst(type || title || '');
+  const theme = useTheme();
+  const color = defaultColor || getColorByType(theme, type);
+  const StartIcon = startIcon ? startIcon : AddCardIcon;
 
   return (
-    <Tooltip title={`Добавить новый элемент "${title}"`}>
+    <Tooltip title={toolTitle ? toolTitle : `Добавить новый элемент "${text}"`}>
       <MDButton
         variant   = 'outlined'
         color     = 'dark'
         sx        = {{ root: { color, fontSize: '0.7rem' } }}
-        startIcon = {<AddCardIcon sx={{ color, fontSize: pxToRem(20) }} />}
+        startIcon = {<StartIcon sx={{ color, fontSize: pxToRem(20) }} />}
         onClick   = {() => onClick(type)}
       >
-        {title}
+        {text}
       </MDButton>
     </Tooltip>
   )

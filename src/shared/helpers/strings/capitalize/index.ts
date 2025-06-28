@@ -12,7 +12,7 @@ export const capitalize = (
   str: string,
   cfg: CapitalConfig = {}
 ): string => {
-  if (isNotStr(str)) return str
+  if (isNotStr(str) || ! str) return str
 
   const { first } = cfg;
 

@@ -1,11 +1,12 @@
 import { FC, memo } from 'react';
 import { ViewItemType } from 'entities/dashboard-view/model/types';
 import { AddBtn } from 'shared/ui/configurators-components';
+import { OpenTemplatesBtn } from 'features/dashboard-templates';
 
 
 
 interface Props {
-  onClick: (type: ViewItemType) => void;
+  onClick: (type: ViewItemType | undefined) => void;
 }
 
 /** For Panel */
@@ -19,5 +20,6 @@ export const PanelAddViewItemBtns: FC<Props> = memo(({ onClick }) => (
       type    = 'text'
       onClick = {onClick}
     />
+    <OpenTemplatesBtn />
   </>
 ));

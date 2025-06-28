@@ -10,14 +10,15 @@ import { CustomTheme } from 'app/providers/theme';
 
 
 interface Props {
-  hookOpen   : UseBase
-  maxWidth?  : 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-  fullWidth? : boolean
-  title?     : string
-  question?  : string
-  sx?        : any
-  children   : ReactNode
-  onClose?   : () => void
+  hookOpen    : UseBase
+  maxWidth?   : 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false
+  fullScreen? : boolean
+  fullWidth?  : boolean
+  title?      : string
+  question?   : string
+  sx?         : any
+  children    : ReactNode
+  onClose?    : () => void
 }
 
 
@@ -31,8 +32,9 @@ export const DialogInfo: React.FC<Props> = ({
   question,
   hookOpen  : O,
   sx,
-  maxWidth  = 'md',
+  maxWidth,
   fullWidth = true,
+  fullScreen,
   onClose
 }) => {
   const
@@ -49,11 +51,12 @@ export const DialogInfo: React.FC<Props> = ({
 
   return (
     <Dialog
-      open      = {O.open}
-      maxWidth  = {maxWidth}
-      fullWidth = {greaterSmScreen && fullWidth}
-      onClose   = {handlerClose}
-      sx        = {{
+      open       = {O.open}
+      maxWidth   = {maxWidth}
+      fullScreen = {fullScreen}
+      fullWidth  = {greaterSmScreen && fullWidth}
+      onClose    = {handlerClose}
+      sx         = {{
         '& .MuiDialog-paper': {
           width : { xs: '100%' },
           m     : { xs: 0 }

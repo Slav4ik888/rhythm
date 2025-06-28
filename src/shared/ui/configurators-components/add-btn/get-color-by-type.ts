@@ -1,18 +1,19 @@
 import { ViewItemType } from 'entities/dashboard-view';
-import { blue, deepOrange, teal, pink, grey, red, blueGrey, green, lightBlue } from '@mui/material/colors';
+import { grey, deepOrange, teal, pink, lime, brown, blueGrey, green, purple } from '@mui/material/colors';
+import { CustomTheme } from 'app/providers/theme';
 
 
-export const getColorByType = (type: ViewItemType) => {
+export const getColorByType = (theme: CustomTheme, type?: ViewItemType) => {
   switch (type) {
     case 'box':            return deepOrange[800];
-    case 'text':           return blue[700];
-    case 'divider':        return blueGrey[500];
+    case 'text':           return blueGrey[500];
+    case 'divider':        return grey[800];
     case 'chart':          return teal[800];
-    case 'chip':           return pink[800];
+    case 'chip':           return lime[900];
     case 'growthIcon':     return green[700];
-    case 'digitIndicator': return lightBlue[600];
+    case 'digitIndicator': return purple[800];
 
     default:
-      return 'primary';
+      return theme.palette.dark.main;
   }
 };

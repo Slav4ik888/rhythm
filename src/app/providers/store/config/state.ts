@@ -10,6 +10,7 @@ import { StateSchemaLoginPage } from 'pages/login';
 import { StateSchemaDocs } from 'entities/docs';
 // import { StateSchemaTransactions } from 'entities/transactions';
 import { StateSchemaDashboardView } from 'entities/dashboard-view';
+import { StateSchemaDashboardTemplates } from 'entities/dashboard-templates';
 
 
 
@@ -23,11 +24,12 @@ export interface StateSchema {
   // Features
 
   // Async reducer
-  signupPage?    : StateSchemaSignupPage
-  loginPage?     : StateSchemaLoginPage
-  dashboardView? : StateSchemaDashboardView
-  dashboardData? : StateSchemaDashboardData
-  docs?          : StateSchemaDocs
+  signupPage?         : StateSchemaSignupPage
+  loginPage?          : StateSchemaLoginPage
+  dashboardView?      : StateSchemaDashboardView
+  dashboardTemplates? : StateSchemaDashboardTemplates
+  dashboardData?      : StateSchemaDashboardData
+  docs?               : StateSchemaDocs
 }
 
 

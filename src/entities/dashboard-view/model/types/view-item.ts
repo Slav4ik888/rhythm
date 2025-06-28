@@ -85,8 +85,6 @@ export interface ViewItem extends ItemBase {
   styles       : ViewItemStyles
 
   settings?    : ViewItemSettings
-  /** Для корневых элементов */
-  // children?    : Record<ViewItemId, ViewItem>
 }
 
 export type PartialViewItem = Partial<ViewItem> & { id: ViewItemId }

@@ -9,12 +9,14 @@ import { useLocation } from 'react-router-dom';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { useCompany } from 'entities/company';
 import { LS } from 'shared/lib/local-storage';
+import { reducerDashboardTemplates, useDashboardTemplates } from 'entities/dashboard-templates';
 
 
 
 const initialReducers: ReducersList = {
-  dashboardData: reducerDashboardData,
-  dashboardView: reducerDashboardView
+  dashboardData      : reducerDashboardData,
+  dashboardView      : reducerDashboardView,
+  dashboardTemplates : reducerDashboardTemplates
 };
 
 
@@ -22,6 +24,7 @@ export const DashboardPageContainer: FC = memo(() => {
   const { paramsCompanyId, paramsCompany, paramsBunchesUpdated } = useCompany();
   const { pathname } = useLocation();
   const { serviceGetBunches, setDashboardBunchesFromCache } = useDashboardView();
+  const { serviceGetTemplates } = useDashboardTemplates();
 
 
   useEffect(() => {
@@ -31,6 +34,15 @@ export const DashboardPageContainer: FC = memo(() => {
 
     // Загружаем всё, что в кеше
     setDashboardBunchesFromCache(paramsCompany.id);
+    // TODO: setDashboardTemplatesFromCache();
+
+    if (
+      // TODO: проверка timestamp на сервере и кэше и загрузка
+      // eslint-disable-next-line no-constant-condition
+      true
+    ) {
+      serviceGetTemplates();
+    }
 
     if (bunchesForLoad.length) {
       __devLog('Bunches for load:', bunchesForLoad.length);
@@ -45,8 +57,11 @@ export const DashboardPageContainer: FC = memo(() => {
     else {
       __devLog('All bunches from cache');
     }
+  },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    []
+  );
+
 
   return (
     <DynamicModuleLoader reducers={initialReducers}>

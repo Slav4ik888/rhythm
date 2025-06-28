@@ -7,25 +7,29 @@ import { getInitialState as getInitialStateView, useDashboardView } from 'entiti
 import { ViewItemConfigurator } from 'widgets/view-configurator';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import cfg from 'app/config';
+import { useDashboardTemplates, getInitialState as getInitialStateTemplates } from 'entities/dashboard-templates';
+import { DashboardTemplates } from 'widgets/templates';
 
 
 
 export const DashboardBody = memo(() => {
   const { paramsCompanyId } = useCompany();
   const { isMounted: isMountedData, setInitial: setInitialData } = useDashboardData();
-  const { setInitial: setInitialView } = useDashboardView();
+  const { setInitial: setInitialView, editMode } = useDashboardView();
+  const { setInitial: setInitialTemplates } = useDashboardTemplates();
 
 
   useEffect(() => {
     if (paramsCompanyId && isMountedData) {
       setInitialData(getInitialStateData(paramsCompanyId));
       setInitialView(getInitialStateView(paramsCompanyId));
+      setInitialTemplates(getInitialStateTemplates());
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [paramsCompanyId, isMountedData]);
 
   // Вначале должен смонтироваться dashboardReducer
-  if (! isMountedData)  return  null
+  if (! isMountedData) return  null
 
 
   // dev
@@ -33,9 +37,10 @@ export const DashboardBody = memo(() => {
 
   return (
     <DashboardBodyWrapper>
-      <DashboardBodyPanel />
+      {editMode && <DashboardBodyPanel />}
       <ViewItemConfigurator />
       <DashboardBodyContent />
+      <DashboardTemplates />
     </DashboardBodyWrapper>
   )
 });

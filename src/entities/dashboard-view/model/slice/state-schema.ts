@@ -5,7 +5,7 @@ import { ViewItem, ViewItemId } from '../types';
 export type ActivatedCopiedType = 'copyItemFirstOnly' | 'copyItemsAll' | 'copyStyles';
 export interface ActivatedCopied {
   type : ActivatedCopiedType
-  id   : ViewItemId
+  id   : ViewItemId // id копируемого элемента
 }
 
 export interface DashboardViewEntities {
@@ -20,7 +20,7 @@ export interface StateSchemaDashboardView {
   _isMounted          : boolean // Признак того, что Reducer mounted
 
   editMode            : boolean // Режим редактирования
-  entities            : DashboardViewEntities // Вначале rootItems а внутри children
+  entities            : DashboardViewEntities
 
   // Id выбранного элемента (на время пока loading === true),
   // чтобы если при сохранении будет ошибка, то можно было это уладить до переключения на следующий элемент

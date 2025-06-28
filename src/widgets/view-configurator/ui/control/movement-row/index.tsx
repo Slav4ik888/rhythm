@@ -3,6 +3,7 @@ import { RowWrapper, ConfiguratorSubHeader as SubHeader } from 'shared/ui/config
 import { useDashboardView } from 'entities/dashboard-view';
 import { MoveToAnotherItem, MoveItemUpdownward, CopyViewItem, MoveToNewItem } from 'features/dashboard-view';
 import { f, pxToRem } from 'shared/styles';
+import { CopyToTemplatesBtn } from 'features/dashboard-templates/ui/copy-to-template-btn';
 
 
 
@@ -16,10 +17,16 @@ export const MovementRow: FC = memo(() => {
         <MoveToAnotherItem />
         <MoveToNewItem />
       </RowWrapper>
+
       <RowWrapper sx={{ root: { ...f('-c-fe'), gap: pxToRem(8) } }}>
         <MoveItemUpdownward viewItem={selectedItem} />
         <CopyViewItem type='copyItemFirstOnly' />
         <CopyViewItem type='copyItemsAll' />
+      </RowWrapper>
+
+      <RowWrapper sx={{ root: { ...f('-c-fe'), gap: pxToRem(8) } }}>
+        <CopyToTemplatesBtn type='copyItemFirstOnly' />
+        <CopyToTemplatesBtn type='copyItemsAll' />
       </RowWrapper>
     </SubHeader>
   )

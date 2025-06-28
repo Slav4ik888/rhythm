@@ -24,6 +24,9 @@ describe('capitalize', () => {
   test('First char', () => {
     expect(capitalize('capitalize', { first: true })).toEqual('Capitalize');
   });
+  test('Empty char', () => {
+    expect(capitalize('', { first: true })).toEqual('');
+  });
 });
 
 // npm run test:unit capitalize.test.ts

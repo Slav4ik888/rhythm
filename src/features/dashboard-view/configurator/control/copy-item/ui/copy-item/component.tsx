@@ -1,40 +1,11 @@
 import { FC, memo } from 'react';
 import Box from '@mui/material/Box';
-import { Tooltip } from 'shared/ui/tooltip';
-import { MDButton } from 'shared/ui/mui-design-components';
-import { CustomTheme, useTheme } from 'app/providers/theme';
 import { pxToRem } from 'shared/styles';
 import CopyIcon from '@mui/icons-material/ContentCopy';
 import { ActivatedCopiedType } from 'entities/dashboard-view';
+import { AddBtn } from 'shared/ui/configurators-components';
+import { blueGrey } from '@mui/material/colors';
 
-
-
-const useStyles = (theme: CustomTheme) => ({
-  root: {
-    position: 'relative',
-  },
-  helperText: {
-    position  : 'absolute',
-    top       : '100%',
-    right     : 0,
-    width     : pxToRem(400),
-    maxWidth  : pxToRem(400),
-    fontSize  : '0.8rem',
-    color     : theme.palette.error.dark,
-  },
-  icon: {
-    color    : theme.palette.dark.main,
-    fontSize : '20px',
-  },
-  prefix: {
-    position  : 'absolute',
-    top       : 0,
-    right     : pxToRem(9),
-    fontSize  : '0.7rem',
-    fontWeight: 900,
-    color     : '#757575',
-  },
-});
 
 
 interface Props {
@@ -45,33 +16,35 @@ interface Props {
 }
 
 export const CopyViewItemComponent: FC<Props> = memo(({ selectedId, type, activatedId, onToggle }) => {
-  const sx = useStyles(useTheme());
   const isAll = type === 'copyItemsAll';
 
   return (
-    <Box sx={sx.root}>
+    <Box sx={{ position: 'relative' }}>
       {
         selectedId && selectedId === activatedId
-          ? <Box sx={sx.helperText}>
+          ? <Box
+              sx={(theme) => ({
+                position  : 'absolute',
+                top       : '100%',
+                right     : 0,
+                width     : pxToRem(400),
+                maxWidth  : pxToRem(400),
+                fontSize  : '0.8rem',
+                color     : theme.palette.error.dark,
+              })}
+            >
             Кликните на тот элемент, в который хотите его поместить скопированный.
             Для отмены - повторно нажмите на кнопку копирования.
           </Box>
           : null
       }
-      <Tooltip
-        title={`Копировать этот элемент в другой (${isAll ? 'со всеми вложенными элементами' : 'без вложений'})`}
-      >
-        <MDButton
-          variant   = 'outlined'
-          color     = 'dark'
-          onClick   = {onToggle}
-        >
-          <CopyIcon sx={sx.icon} />
-          <Box sx={sx.prefix}>
-            {isAll ? 'All' : '1'}
-          </Box>
-        </MDButton>
-      </Tooltip>
+      <AddBtn
+        title     = {isAll ? 'All' : '1'}
+        toolTitle = {`Копировать этот элемент в другой (${isAll ? 'со всеми вложенными элементами' : 'без вложений'})`}
+        color     = {blueGrey[700]}
+        startIcon = {CopyIcon}
+        onClick   = {onToggle}
+      />
     </Box>
   )
 });

@@ -8,7 +8,7 @@ import { capitalize } from '../capitalize'
  * v.2025-01-03
  */
 export const capitalizeFirst = (str: string): string => {
-  if (isNotStr(str)) return str
+  if (isNotStr(str)) return ''
 
   return capitalize(str, { first: true });
 }

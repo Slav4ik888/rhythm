@@ -9,7 +9,7 @@ import { useCompany } from 'entities/company';
 
 interface Props {
   parentId  : ViewItemId
-  component : FC<{ onClick: (type: ViewItemType) => void }> // Btn
+  component : FC<{ onClick: (type: ViewItemType | undefined) => void }> // Btn
 }
 
 /** Feature for add new ViewItem */
@@ -22,7 +22,7 @@ export const AddNewViewItem: FC<Props> = memo(({ component: Component, parentId 
   const { paramsCompanyId } = useCompany();
 
 
-  const handleAdd = useCallback((type: ViewItemType) => {
+  const handleAdd = useCallback((type: ViewItemType | undefined) => {
     const availableBunchId = findAvailableBunchId(viewItems);
     const bunchAction = availableBunchId ? 'update' : 'create';
 
