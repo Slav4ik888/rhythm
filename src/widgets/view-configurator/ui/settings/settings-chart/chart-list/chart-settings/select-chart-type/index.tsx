@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { useDashboardViewActions, ViewItem } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle, RowWrapper, SelectValue } from 'shared/ui/configurators-components';
 import { arrChartType, ChartType, isPie } from 'entities/charts';
 
@@ -14,7 +14,7 @@ interface Props {
 export const SelectChartType: FC<Props> = memo(({ index, selectedItem }) => {
   const chartType = selectedItem?.settings?.charts?.[index]?.chartType;
 
-  const { newStoredViewItem, changeOneChartsItem } = useDashboardView();
+  const { newStoredViewItem, changeOneChartsItem } = useDashboardViewActions();
   const [selectedValue, setSelectedValue] = useState<ChartType>(chartType || 'line');
 
   useEffect(() => {

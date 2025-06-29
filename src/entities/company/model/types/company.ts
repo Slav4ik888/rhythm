@@ -1,6 +1,6 @@
 import { FixDate } from 'entities/base';
+import { BunchesUpdated } from 'shared/lib/structures/bunch';
 import { CompanyProfileMember, CompanyDashboardMember } from './access';
-import { BunchesUpdated } from './bunches-updated';
 
 
 

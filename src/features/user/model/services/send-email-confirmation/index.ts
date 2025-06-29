@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { actionsUI } from 'entities/ui';
-import { paths } from 'shared/api';
+import { API_PATHS } from 'shared/api';
 import { Errors } from 'shared/lib/validators';
 
 
@@ -26,8 +26,9 @@ export const sendEmailConfirmation = createAsyncThunk <
     const { extra, dispatch, rejectWithValue } = thunkApi;
 
     try {
-      const { data: { message } } = await extra.api
-        .get<ResSendEmailConfirmation>(`${paths.user.sendEmailConfirmation}/${email}`);
+      const { data: { message } } = await extra.api.get<ResSendEmailConfirmation>(
+        `${API_PATHS.user.sendEmailConfirmation}/${email}`
+      );
 
       dispatch(actionsUI.setSuccessMessage(message));
     }

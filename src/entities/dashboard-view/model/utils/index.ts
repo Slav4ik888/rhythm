@@ -1,5 +1,4 @@
 export * from './create-next-order'
-export { findAvailableBunchId } from './find-available-bunch-id'
 export { getBunchesTimestamps } from './get-bunches-timestamps'
 export { getBunchesToUpdate } from './get-bunches-to-update'
 export * from './get-children'

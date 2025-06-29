@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { RowWrapper, ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { useDashboardView } from 'entities/dashboard-view';
+import { useDashboardViewState } from 'entities/dashboard-view';
 import { MoveToAnotherItem, MoveItemUpdownward, CopyViewItem, MoveToNewItem } from 'features/dashboard-view';
 import { f, pxToRem } from 'shared/styles';
 import { CopyToTemplatesBtn } from 'features/dashboard-templates/ui/copy-to-template-btn';
@@ -8,7 +8,7 @@ import { CopyToTemplatesBtn } from 'features/dashboard-templates/ui/copy-to-temp
 
 
 export const MovementRow: FC = memo(() => {
-  const { selectedItem } = useDashboardView();
+  const { selectedItem } = useDashboardViewState();
 
 
   return (

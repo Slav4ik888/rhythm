@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from 'react';
 import { DeleteButton } from 'shared/ui/buttons/delete-button';
-import { useDashboardView } from 'entities/dashboard-view';
+import { useDashboardViewActions } from 'entities/dashboard-view';
 import { f } from 'shared/styles';
 import { getArrWithoutItemByIndex } from 'shared/helpers/arrays';
 
@@ -24,7 +24,7 @@ interface Props {
 /** DelChart from the charts */
 export const DelChart: FC<Props> = memo(({ index }) => {
   const sx = useStyles();
-  const { selectedItem, changeOneSettingsField } = useDashboardView();
+  const { selectedItem, changeOneSettingsField } = useDashboardViewActions();
 
 
   const handleClick = useCallback(() => {

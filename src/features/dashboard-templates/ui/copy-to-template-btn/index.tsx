@@ -1,14 +1,15 @@
 import { FC, memo, useCallback } from 'react';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { brown } from '@mui/material/colors';
-import { Template, useDashboardTemplates } from 'entities/dashboard-templates';
+import { Template, useDashboardTemplates, MAX_COUNT_BUNCH_TEMPLATES } from 'entities/dashboard-templates';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
-import { ActivatedCopiedType, useDashboardView } from 'entities/dashboard-view';
+import { ActivatedCopiedType, useDashboardViewState } from 'entities/dashboard-view';
 import { getCopyViewItem } from 'features/dashboard-view';
 import { v4 as uuidv4 } from 'uuid';
 import { Condition, creatorFixDate, updateEntities } from 'entities/base';
 import { useUser } from 'entities/user';
 import { AddBtn } from 'shared/ui/configurators-components';
+import { findAvailableBunchId } from 'shared/lib/structures/bunch';
 
 
 
@@ -18,15 +19,13 @@ interface Props {
 
 /** Кнопка копирования (предварительно - не в БД) SelectedItem в шаблоны */
 export const CopyToTemplatesBtn: FC<Props> = memo(({ type }) => {
-  console.log('CopyToTemplatesBtn');
   const isAll = type === 'copyItemsAll';
   const { userId } = useUser();
-  const { setOpened, setTemplate } = useDashboardTemplates();
-  const { selectedItem, viewItems } = useDashboardView();
+  const { templates, setOpened, setTemplate } = useDashboardTemplates();
+  const { selectedItem, viewItems } = useDashboardViewState();
 
 
   const handleClick = useCallback(() => {
-    console.log('handleClick');
     const templateId = uuidv4();
 
     const copiedViewItems = getCopyViewItem(
@@ -36,12 +35,19 @@ export const CopyToTemplatesBtn: FC<Props> = memo(({ type }) => {
       userId
     );
 
+    // Adding bunchId to copied items
+    const availableBunchId  = findAvailableBunchId(templates, MAX_COUNT_BUNCH_TEMPLATES, copiedViewItems.length);
+    const bunchId           = availableBunchId ? availableBunchId : uuidv4();
+    const copiedWithBunchId = copiedViewItems.map(item => ({ ...item, bunchId: '' }));
+
+
     const template: Template = {
       id         : templateId,
+      bunchId,
       condition  : Condition.DRAFT, // На период редактирования (до сохранения в БД)
       type       : selectedItem.type,
       order      : 1000, // TODO: в конец его типа (type)
-      viewItems  : updateEntities({}, copiedViewItems),
+      viewItems  : updateEntities({}, copiedWithBunchId),
       createdAt  : creatorFixDate(userId),
       lastChange : creatorFixDate(userId)
     };
@@ -51,7 +57,7 @@ export const CopyToTemplatesBtn: FC<Props> = memo(({ type }) => {
 
     setOpened({ opened: true, selectedId: templateId }); // Чтобы он сразу открылся в окне
   },
-    [userId, type, selectedItem, viewItems, setOpened, setTemplate]
+    [userId, type, templates, selectedItem, viewItems, setOpened, setTemplate]
   );
 
 

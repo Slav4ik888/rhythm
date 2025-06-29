@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { RowWrapper, ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { useDashboardView } from 'entities/dashboard-view';
+import { useDashboardViewState } from 'entities/dashboard-view';
 import { AddNewViewItem } from 'features/dashboard-view';
 import { f, pxToRem } from 'shared/styles';
 import { AddViewItemElementBtns } from './element-btns';
@@ -11,7 +11,7 @@ import { OpenTemplatesBtn } from 'features/dashboard-templates';
 
 /** Строки для добавления разных элементов */
 export const AddRows: FC = memo(() => {
-  const { selectedId, selectedItem: { type } } = useDashboardView();
+  const { selectedId, selectedItem: { type } } = useDashboardViewState();
 
   if (type !== 'box') return null
 

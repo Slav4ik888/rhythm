@@ -1,5 +1,5 @@
 import { FC, memo, useCallback } from 'react';
-import { useDashboardView } from 'entities/dashboard-view';
+import { useDashboardViewActions } from 'entities/dashboard-view';
 import Box from '@mui/material/Box';
 import { Tooltip } from 'shared/ui/tooltip';
 import { MDButton } from 'shared/ui/mui-design-components';
@@ -25,7 +25,7 @@ const useStyles = (theme: CustomTheme) => ({
  */
 export const SwitchToParentViewItem: FC = memo(() => {
   const sx = useStyles(useTheme());
-  const { selectedItem, setSelectedId } = useDashboardView();
+  const { selectedItem, setSelectedId } = useDashboardViewActions();
 
   const handleClick = useCallback(() => {
     setSelectedId(selectedItem.parentId);

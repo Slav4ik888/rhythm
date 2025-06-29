@@ -1,6 +1,6 @@
 export {
   Company, ColorSettingsType, CustomSettings, PartialCompany, ParamsCompany, AccessLevel, CompanyDashboardMember,
-  CompanyDashboardAccessScheme, CompanyDashboardAccess, BunchesUpdated
+  CompanyDashboardAccessScheme, CompanyDashboardAccess
  } from './model/types'
 export { StateSchemaCompany, reducer as reducerCompany, actions as actionsCompany } from './model/slice'
 export { SetCompany } from './model/slice/types'

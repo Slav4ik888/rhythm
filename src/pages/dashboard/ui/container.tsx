@@ -4,12 +4,13 @@ import { Sidebar } from 'widgets/sidebar';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 import { DashboardBody } from './body';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
-import { reducerDashboardView, useDashboardView, getBunchesToUpdate } from 'entities/dashboard-view';
+import { reducerDashboardView, getBunchesToUpdate } from 'entities/dashboard-view';
 import { useLocation } from 'react-router-dom';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { useCompany } from 'entities/company';
 import { LS } from 'shared/lib/local-storage';
 import { reducerDashboardTemplates, useDashboardTemplates } from 'entities/dashboard-templates';
+import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view';
 
 
 
@@ -23,12 +24,12 @@ const initialReducers: ReducersList = {
 export const DashboardPageContainer: FC = memo(() => {
   const { paramsCompanyId, paramsCompany, paramsBunchesUpdated } = useCompany();
   const { pathname } = useLocation();
-  const { serviceGetBunches, setDashboardBunchesFromCache } = useDashboardView();
+  const { serviceGetViewItems, setDashboardBunchesFromCache } = useDashboardViewServices();
   const { serviceGetTemplates } = useDashboardTemplates();
 
 
   useEffect(() => {
-    const bunchesForLoad = getBunchesToUpdate(paramsBunchesUpdated, LS.getDashboardBunchesUpdated(paramsCompanyId));
+    const bunchesForLoad = getBunchesToUpdate(paramsBunchesUpdated, LS.getDashboardViewBunchesUpdated(paramsCompanyId));
 
     // TODO: sheetId подставлять нужный
 
@@ -47,7 +48,7 @@ export const DashboardPageContainer: FC = memo(() => {
     if (bunchesForLoad.length) {
       __devLog('Bunches for load:', bunchesForLoad.length);
       __devLog(bunchesForLoad);
-      serviceGetBunches({
+      serviceGetViewItems({
         companyId      : paramsCompany.id,
         bunchIds       : bunchesForLoad,
         bunchesUpdated : paramsBunchesUpdated,

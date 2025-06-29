@@ -5,6 +5,7 @@ import { DialogInfo } from 'shared/ui/dialogs';
 import { UseBase } from 'shared/lib/hooks';
 import { TemplatesConfigurator } from '../configurator';
 import { TemplatesContainer } from '../templates-container';
+import { f } from 'shared/styles';
 
 
 interface Props {
@@ -13,13 +14,9 @@ interface Props {
 
 /** Открытое окно с шаблонами */
 const TemplatesDialog: FC<Props> = memo(({ hookOpen }) => {
-  console.log('TemplatesDialog (async)');
   const { setOpened } = useDashboardTemplates();
 
-
   const handleClose = useCallback(() => {
-    console.log('handleClose');
-
     hookOpen.setOpen(false);
     setOpened({ opened: false });
   }, [hookOpen, setOpened]);
@@ -31,7 +28,7 @@ const TemplatesDialog: FC<Props> = memo(({ hookOpen }) => {
       maxWidth = {false}
       hookOpen = {hookOpen}
       onClose  = {handleClose}
-      sx       = {{ content: { minHeight: 'calc(100vh - 126px)' } }}
+      sx       = {{ content: { ...f(), minHeight: 'calc(100vh - 126px)', p: 2 } }}
     >
       <TemplatesContainer />
 

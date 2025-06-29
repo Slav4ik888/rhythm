@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { useDashboardView, arrayChipLabel, chipOptions, ViewItem } from 'entities/dashboard-view';
+import { arrayChipLabel, chipOptions, useDashboardViewActions, ViewItem } from 'entities/dashboard-view';
 import { SelectValue } from 'shared/ui/configurators-components/select';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 
@@ -12,7 +12,7 @@ interface Props {
 /** Выбор ChipType */
 export const SelectChipType: FC<Props> = memo(({ selectedItem }) => {
   const chipType = selectedItem?.settings?.chipType;
-  const { changeOneSettingsField } = useDashboardView();
+  const { changeOneSettingsField } = useDashboardViewActions();
   const [selectedValue, setSelectedValue] = useState(() => chipOptions[chipType || 'condition'].label);
 
   useEffect(() => {

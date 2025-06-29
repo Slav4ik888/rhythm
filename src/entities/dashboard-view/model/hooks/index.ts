@@ -1,1 +1,2 @@
-export { useDashboardView } from './use-dashboard-view';
+export { useDashboardViewState } from './use-dashboard-view-state';
+export { useDashboardViewActions } from './use-dashboard-view-actions';

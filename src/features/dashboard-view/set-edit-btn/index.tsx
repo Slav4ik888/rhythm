@@ -1,13 +1,13 @@
 import { FC, memo, useEffect, useState, useCallback } from 'react';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
-import { useDashboardView } from 'entities/dashboard-view';
+import { useDashboardViewActions } from 'entities/dashboard-view';
 import { useCompany } from 'entities/company';
 import { NavbarIcon } from 'shared/ui/navbar';
 
 
 
 export const DashboardSetEditBtn: FC = memo(() => {
-  const { editMode, setEditMode } = useDashboardView();
+  const { editMode, setEditMode } = useDashboardViewActions();
   const { paramsCompanyId } = useCompany();
   const [text, setText] = useState<string>('');
 

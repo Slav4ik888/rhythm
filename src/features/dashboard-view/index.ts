@@ -1,8 +1,8 @@
 export {
-  MoveToAnotherItem, UpdateViewItems, updateViewItems, MoveItemUpdownward,
-  CopyViewItem, getCopyViewItem, CreateGroupViewItems, createGroupViewItems,
-  DeleteItemContainer, deleteViewItem, SwitchToParentViewItem, AddNewChart,
+  MoveToAnotherItem, MoveItemUpdownward,
+  CopyViewItem, getCopyViewItem,
+  DeleteItemContainer, SwitchToParentViewItem, AddNewChart,
   ControlChartBar, SwitchToIsGlobalKod, MoveToNewItem, AddNewViewItem, CopyStylesViewItemBtn,
-  PartialViewItemUpdate, DeleteViews
 } from './configurator'
 export { DashboardSetEditBtn } from './set-edit-btn'
+export { useDashboardViewServices } from './model/hooks'

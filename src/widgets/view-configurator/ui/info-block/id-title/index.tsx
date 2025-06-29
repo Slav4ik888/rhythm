@@ -3,7 +3,7 @@ import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-compo
 import Box from '@mui/material/Box';
 import { f, pxToRem } from 'shared/styles';
 import { Tooltip } from 'shared/ui/tooltip';
-import { useDashboardView } from 'entities/dashboard-view';
+import { useDashboardViewActions } from 'entities/dashboard-view';
 
 
 
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const IdTitle: FC<Props> = memo(({ selectedId }) => {
-  const { setBright } = useDashboardView();
+  const { setBright } = useDashboardViewActions();
 
   const handleClick = useCallback(() => {
     const element = document.getElementById(selectedId);

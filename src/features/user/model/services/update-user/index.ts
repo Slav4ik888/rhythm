@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { actionsUI } from 'entities/ui';
 import { Errors } from 'shared/lib/validators';
-import { paths } from 'shared/api';
+import { API_PATHS } from 'shared/api';
 import { User } from 'entities/user';
 
 
@@ -20,7 +20,8 @@ export const serviceUpdateUser = createAsyncThunk <
     const { extra, dispatch, rejectWithValue } = thunkApi;
 
     try {
-      await extra.api.post(paths.user.update, { userData });
+      // TODO: const { data: { userData } } =  PATCH
+      await extra.api.post(API_PATHS.user.update, { userData });
 
       dispatch(actionsUI.setSuccessMessage('Сохранено'));
 
@@ -32,4 +33,3 @@ export const serviceUpdateUser = createAsyncThunk <
     }
   }
 );
-

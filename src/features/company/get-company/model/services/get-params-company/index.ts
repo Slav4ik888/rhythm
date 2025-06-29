@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig, errorHandlers, CustomAxiosError } from 'app/providers/store';
 import { ParamsCompany } from 'entities/company';
-import { paths } from 'shared/api';
+import { API_PATHS } from 'shared/api';
 import { Errors } from 'shared/lib/validators';
 import { LS } from 'shared/lib/local-storage';
 import cfg from 'app/config';
@@ -41,8 +41,7 @@ export const getParamsCompany = createAsyncThunk<
         paramsCompany = LS.getParamsCompanyState() as ParamsCompany;
       }
       else {
-        const { data } = await extra.api
-          .get<ParamsCompany>(`${paths.paramsCompany.get}/${companyId}`);
+        const { data } = await extra.api.get<ParamsCompany>(`${API_PATHS.paramsCompany.get}/${companyId}`);
         paramsCompany = cloneObj(data);
       }
 

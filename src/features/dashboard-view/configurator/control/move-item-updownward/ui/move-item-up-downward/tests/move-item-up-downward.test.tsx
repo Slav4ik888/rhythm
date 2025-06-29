@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MoveItemUpdownward } from '..';
 import { TowardType } from 'shared/ui/configurators-components';
-import { DashboardViewEntities, useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { DashboardViewEntities, useDashboardViewActions, ViewItem } from 'entities/dashboard-view';
 import { setupRender } from 'shared/lib/tests';
 import { StateSchema, StoreProvider } from 'app/providers/store';
 import { UIConfiguratorProvider } from 'app/providers/theme';
@@ -9,7 +9,7 @@ import { cloneObj } from 'shared/helpers/objects';
 
 
 
-// Мокаем хук useDashboardView
+// Мокаем хук useDashboardViewActions
 // jest.mock('entities/dashboard-view');
 
 const mockViewItem = {
@@ -40,7 +40,7 @@ const mockedStoreBase: DeepPartial<StateSchema> = {
 
 describe('MoveItemUpdownward', () => {
   // beforeEach(() => {
-  //   (useDashboardView as jest.Mock).mockReturnValue({
+  //   (useDashboardViewActions as jest.Mock).mockReturnValue({
   //     childrenViewItems: mockChildrenViewItems,
   //     updateViewItems: jest.fn(),
   //   });
@@ -66,7 +66,7 @@ describe('MoveItemUpdownward', () => {
   });
 
   it('вызывает updateViewItems с правильным order при клике "вверх"', () => {
-    const { updateViewItems } = useDashboardView({ parentId: mockViewItem.parentId });
+    const { updateViewItems } = useDashboardViewActions({ parentId: mockViewItem.parentId });
     const mockedStore: DeepPartial<StateSchema> = {
       user: {},
       dashboardView: {
@@ -92,7 +92,7 @@ describe('MoveItemUpdownward', () => {
   });
 
   it('вызывает updateViewItems с правильным order при клике "вниз"', () => {
-    const { updateViewItems } = useDashboardView({ parentId: mockViewItem.parentId });
+    const { updateViewItems } = useDashboardViewActions({ parentId: mockViewItem.parentId });
     const mockedStore: DeepPartial<StateSchema> = {
       user: {},
       dashboardView: {
@@ -121,7 +121,7 @@ describe('MoveItemUpdownward', () => {
   //   const viewItemFirst = { ...mockViewItem, order: 1 }; // Первый элемент (нельзя вверх)
   //   const viewItemLast = { ...mockViewItem, order: 3 };  // Последний элемент (нельзя вниз)
 
-  //   const { updateViewItems } = useDashboardView({ parentId: mockViewItem.parentId });
+  //   const { updateViewItems } = useDashboardViewActions({ parentId: mockViewItem.parentId });
 
   //   const { rerender } = render(<MoveItemUpdownward viewItem={viewItemFirst} />);
   //   fireEvent.click(screen.getByRole('button', { name: /up/i }));

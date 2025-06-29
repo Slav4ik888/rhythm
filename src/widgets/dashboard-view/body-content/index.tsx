@@ -3,8 +3,8 @@ import { DashboardRender } from '../../dashboard-render';
 import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import {
-  ViewItemId, useDashboardView, NO_PARENT_ID, createNextOrder, getChildren, isClickInsideViewItem,
-  findAvailableBunchId, ViewItem
+  ViewItemId, NO_PARENT_ID, createNextOrder, getChildren, isClickInsideViewItem, ViewItem,
+  MAX_COUNT_BUNCH_VIEWITEMS
  } from 'entities/dashboard-view';
 import { useCompany } from 'entities/company';
 import { getCopyViewItem } from 'features/dashboard-view';
@@ -13,8 +13,10 @@ import { isEmpty, isNotEmpty, updateObject } from 'shared/helpers/objects';
 import { useUI } from 'entities/ui';
 import { PageLoader } from 'widgets/page-loader';
 import { __devLog } from 'shared/lib/tests/__dev-log';
-import { PartialViewItemUpdate } from 'features/dashboard-view/configurator';
 import { v4 as uuidv4 } from 'uuid';
+import { findAvailableBunchId } from 'shared/lib/structures/bunch';
+import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view';
+import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view';
 
 
 
@@ -25,7 +27,7 @@ export const DashboardBodyContent = memo(() => {
     parentsViewItems, loading, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId, selectedItem,
     activatedMovementId, viewItems, entities, activatedCopied, setNewSelectedId, setIsMounted,
     setDashboardViewItems, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
-  } = useDashboardView();
+  } = useDashboardViewServices();
   const { setPageText } = useUI();
   const [isRendering, setIsRendering] = useState(true);
 
@@ -153,7 +155,7 @@ export const DashboardBodyContent = memo(() => {
       );
 
       // Adding bunchId to copied items
-      const availableBunchId  = findAvailableBunchId(viewItems, copiedViewItems.length);
+      const availableBunchId  = findAvailableBunchId(viewItems, MAX_COUNT_BUNCH_VIEWITEMS, copiedViewItems.length);
       const bunchId           = availableBunchId ? availableBunchId : uuidv4();
       const copiedWithBunchId = copiedViewItems.map(item => ({ ...item, bunchId }));
 

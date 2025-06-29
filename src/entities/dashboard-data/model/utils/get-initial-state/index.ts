@@ -13,7 +13,7 @@ export const getInitialState = (companyId: string): StateSchemaDashboardData => 
     end   : undefined
   };
 
-  const state = LS.getDashboardState(companyId);
+  const state = LS.getDashboardDataState(companyId);
   const activePeriod = state?.activePeriod || { ...emptyPeriod };
 
   const initialState: StateSchemaDashboardData = {

@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { ViewItemStyles, ViewItemStylesField, useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { ViewItemStyles, ViewItemStylesField, ViewItem, useDashboardViewActions } from 'entities/dashboard-view';
 import { ChangeStyleItemIndents } from './change-style-indents';
 import { setFieldEmpty } from 'shared/helpers/objects';
 import { GapsRow } from './gaps';
@@ -13,7 +13,7 @@ interface Props {
 
 /** Отступы */
 export const Indents: FC<Props> = memo(({ selectedItem }) => {
-  const { setSelectedStyles } = useDashboardView();
+  const { setSelectedStyles } = useDashboardViewActions();
 
 
   const handleChange = useCallback((field: ViewItemStylesField, value: number | string) => {

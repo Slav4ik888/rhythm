@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { ViewItem, ChipContainer, stylesToSx, useDashboardView, getKod } from 'entities/dashboard-view';
+import { ViewItem, ChipContainer, stylesToSx, useDashboardViewState, getKod } from 'entities/dashboard-view';
 import { CONDITION_TYPE, DashboardConditionType, getConditionKod, getConditionType } from 'entities/condition-type';
 import { useDashboardData } from 'entities/dashboard-data';
 import { useTheme } from 'app/providers/theme';
@@ -17,7 +17,7 @@ export const ItemChip: FC<Props> = memo(({ item }) => {
   const theme = useTheme();
   const { paramsCustomSettings } = useCompany();
   const { activeEntities } = useDashboardData();
-  const { entities } = useDashboardView();
+  const { entities } = useDashboardViewState();
 
   const { label, color, background } = useMemo(() => {
     const kod  = getKod(entities, item);

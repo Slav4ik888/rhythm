@@ -1,5 +1,5 @@
 import { FC, memo, ReactElement, useMemo } from 'react';
-import { ViewItem, useDashboardView, getKod, ChipContainer as Chip } from 'entities/dashboard-view';
+import { ViewItem, useDashboardViewState, getKod, ChipContainer as Chip } from 'entities/dashboard-view';
 import { TooltipHTML } from 'shared/ui/tooltip';
 import { useDashboardData } from 'entities/dashboard-data';
 import { useCompany } from 'entities/company';
@@ -17,7 +17,7 @@ interface Props {
 export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
   const { paramsCustomSettings } = useCompany();
   const { startEntities } = useDashboardData();
-  const { entities: entitiesView } = useDashboardView();
+  const { entities: entitiesView } = useDashboardViewState();
   const { kods } = useDashboardData();
   const kod = useMemo(() => getKod(entitiesView, item), [item, entitiesView]);
 

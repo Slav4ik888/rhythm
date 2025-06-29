@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, useState, useEffect } from 'react';
-import { useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { useDashboardViewActions, ViewItem } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import Checkbox from '@mui/material/Checkbox';
 import { isPie } from 'entities/charts';
@@ -15,7 +15,7 @@ interface Props {
 export const ChartHidden: FC<Props> = memo(({ index, selectedItem }) => {
   const isHidden = Boolean(selectedItem?.settings?.charts?.[index]?.datasets?.hidden);
 
-  const { changeOneDatasetsItem } = useDashboardView();
+  const { changeOneDatasetsItem } = useDashboardViewActions();
   const [checked, setChecked] = useState(() => isHidden);
 
   useEffect(() => {

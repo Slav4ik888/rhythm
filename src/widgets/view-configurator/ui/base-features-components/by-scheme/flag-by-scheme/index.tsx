@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { useDashboardViewActions, ViewItem } from 'entities/dashboard-view';
 import { getValueByScheme } from 'shared/helpers/objects';
 import { Tooltip } from 'shared/ui/tooltip';
 import Checkbox from '@mui/material/Checkbox';
@@ -23,7 +23,7 @@ interface Props {
 export const FlagByScheme: FC<Props> = memo(({ selectedItem, scheme, title, toolTitle, sx }) => {
   const isChecked = Boolean(getValueByScheme(selectedItem, scheme));
 
-  const { updateViewItems } = useDashboardView();
+  const { updateViewItems } = useDashboardViewActions();
   const [checked, setChecked] = useState(() => isChecked);
 
   useEffect(() => {

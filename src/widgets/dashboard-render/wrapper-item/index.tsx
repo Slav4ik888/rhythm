@@ -1,6 +1,7 @@
-import { FC, memo, ReactNode, useMemo } from 'react';
+import { FC, memo, ReactNode, useCallback, useMemo } from 'react';
 import {
-  ViewItem, ViewItemId, stylesToSx, useDashboardView, DashboardViewEntities, isFirstGlobalKodInBranch, ActivatedCopied
+  ViewItem, ViewItemId, stylesToSx, useDashboardViewState, DashboardViewEntities, isFirstGlobalKodInBranch,
+  ActivatedCopied
  } from 'entities/dashboard-view';
 import Box from '@mui/material/Box';
 import { ItemWrapperTooltip } from './tooltip';
@@ -76,15 +77,18 @@ interface Props {
 
 /** Item wrapper */
 export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
-  const { editMode, selectedItem, entities, bright, activatedCopied, activatedMovementId } = useDashboardView();
+  const { editMode, selectedItem, entities, bright, activatedCopied, activatedMovementId } = useDashboardViewState();
+
   const sx = useMemo(() => getStyles(item, editMode, entities, selectedItem, activatedCopied, activatedMovementId),
     [item, editMode, entities, selectedItem, activatedCopied, activatedMovementId]
   );
 
-  const handleClick = (e: any) => {
+  const handleClick = useCallback((e: any) => {
     e.stopPropagation();
     onSelect(item.id);
-  };
+  },
+    [item.id, onSelect]
+  );
 
   const component = (<Box
     id      = {item.id}

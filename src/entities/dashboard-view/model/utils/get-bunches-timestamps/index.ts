@@ -1,5 +1,5 @@
-import { BunchesUpdated } from 'entities/company';
-import { PartialViewItemUpdate } from 'features/dashboard-view';
+import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view';
+import { BunchesUpdated } from 'shared/lib/structures/bunch';
 
 
 

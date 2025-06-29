@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig, errorHandlers, CustomAxiosError } from 'app/providers/store';
 import { actionsCompany, Company } from 'entities/company';
-import { paths } from 'shared/api';
+import { API_PATHS } from 'shared/api';
 import { Errors } from 'shared/lib/validators';
 import { User } from '../../types';
 import { SetUser } from '../../slice/types';
@@ -45,7 +45,7 @@ export const getAuth = createAsyncThunk<
         company   = LS.getCompanyState(companyId)?.company as Company;
       }
       else {
-        const { data: { userData, companyData } } = await extra.api.get<ResGetAuth>(paths.user.getAuth);
+        const { data: { userData, companyData } } = await extra.api.get<ResGetAuth>(API_PATHS.user.getAuth);
         user      = cloneObj(userData);
         company   = cloneObj(companyData);
         companyId = companyData.id;

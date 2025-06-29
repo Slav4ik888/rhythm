@@ -1,16 +1,16 @@
 import { FC, memo, useCallback } from 'react';
-import { ViewItemId, useDashboardView } from 'entities/dashboard-view';
 import Box from '@mui/material/Box';
 import { useCompany } from 'entities/company';
 import { DeleteButton } from 'shared/ui/buttons/delete-button';
 import { f } from 'shared/styles';
 import { getAllChildrenIdWithBunch } from '../model/utils/get-all-children-ids-with-bunch';
-import { PartialViewItemUpdate } from '../../update-view-item';
+import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view';
+import { useDashboardViewServices } from '../../../model/hooks';
 
 
 
 export const DeleteItemContainer: FC = memo(() => {
-  const { selectedId, viewItems, serviceDeleteViews } = useDashboardView();
+  const { selectedId, viewItems, serviceDeleteViews } = useDashboardViewServices();
   const { paramsCompanyId } = useCompany();
 
 

@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { useDashboardData } from 'entities/dashboard-data';
-import { useDashboardView } from 'entities/dashboard-view';
+import { useDashboardViewState } from 'entities/dashboard-view';
 import { IdTitle } from './id-title';
 import { Kod } from './kod';
 import { KodLabel } from './kod-label';
@@ -12,7 +12,7 @@ import { TypeRow } from './type-row';
 /** InfoBlock */
 export const InfoBlock: FC = memo(() => {
   const { startEntities } = useDashboardData();
-  const { selectedItem, fromGlobalKod: kod } = useDashboardView();
+  const { selectedItem, fromGlobalKod: kod } = useDashboardViewState();
 
   return (
     <>

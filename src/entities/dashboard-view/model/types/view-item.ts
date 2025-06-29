@@ -88,6 +88,3 @@ export interface ViewItem extends ItemBase {
 }
 
 export type PartialViewItem = Partial<ViewItem> & { id: ViewItemId }
-
-export type BunchAction = 'create' | 'update'
-export type Bunch = Record<ViewItemId, ViewItem>

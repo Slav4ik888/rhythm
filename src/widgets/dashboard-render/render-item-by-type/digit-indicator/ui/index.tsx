@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { getKod, useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { getKod, useDashboardViewState, ViewItem } from 'entities/dashboard-view';
 import { DashboardStatisticItem, Increased, useDashboardData } from 'entities/dashboard-data';
 import {
   getColorByIncreased, getComparisonValues, getIncreased, getInverted, getReversedIndicators, ValueStringAndReduction
@@ -36,7 +36,7 @@ interface Props {
 
 /** Item digitIndicator */
 export const ItemDigitIndicator: FC<Props> = memo(({ item }) => {
-  const { entities } = useDashboardView();
+  const { entities } = useDashboardViewState();
   const { activeEntities } = useDashboardData();
   const kod = useMemo(() => getKod(entities, item), [item, entities]);
 

@@ -10,7 +10,7 @@ import { UIConfiguratorProvider } from 'app/providers/theme';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 
 /* eslint-disable-next-line no-console */
-console.log(`Version: ${cfg.ASSEMBLY_DATE}`);
+console.log(`Version: ${cfg.VERSION}\nRelease: ${cfg.ASSEMBLY_DATE}`);
 __devLog('Status: ', cfg.IS_DEV ? 'OFFLINE' : 'ONLINE');
 
 
@@ -31,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "continuos TemplatesContainer" && git push -u origin main
+// git add . && git commit -m "continuos TemplatesContainer & big refated" && git push -u origin main

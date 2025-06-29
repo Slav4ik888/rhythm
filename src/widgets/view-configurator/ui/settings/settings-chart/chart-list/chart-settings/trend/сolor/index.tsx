@@ -1,5 +1,5 @@
 import { FC, memo, useCallback } from 'react';
-import { useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { useDashboardViewActions, ViewItem } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { ChartConfigTrendDatasets } from 'entities/charts';
@@ -15,7 +15,7 @@ interface Props {
 /** Цвет линии тренда */
 export const ChartTrendColor: FC<Props> = memo(({ index, selectedItem }) => {
   const trendDataSets = selectedItem?.settings?.charts?.[index]?.trendDataSets;
-  const { changeOneChartsItem } = useDashboardView();
+  const { changeOneChartsItem } = useDashboardViewActions();
 
   const handleChange = useCallback((value: string | number) => {
     const trend = cloneObj(trendDataSets) || {} as ChartConfigTrendDatasets;

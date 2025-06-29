@@ -2,7 +2,7 @@ import { FC, memo, useCallback } from 'react';
 import { Tooltip } from 'shared/ui/tooltip';
 import { MDButton } from 'shared/ui/mui-design-components';
 import AddCardIcon from '@mui/icons-material/AddCard';
-import { createNextOrder, useDashboardView } from 'entities/dashboard-view';
+import { useDashboardViewActions } from 'entities/dashboard-view';
 import { isPie } from 'entities/charts';
 
 
@@ -23,7 +23,7 @@ const useStyles = () => ({
 /** AddNewChart into the charts */
 export const AddNewChart: FC = memo(() => {
   const sx = useStyles();
-  const { selectedItem, changeOneSettingsField } = useDashboardView();
+  const { selectedItem, changeOneSettingsField } = useDashboardViewActions();
 
   const handleClick = useCallback(() => {
     const charts = selectedItem?.settings?.charts;

@@ -1,35 +1,37 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig, errorHandlers, CustomAxiosError } from 'app/providers/store';
-import { paths } from 'shared/api';
+import { API_PATHS } from 'shared/api';
+import { BunchesUpdated } from 'shared/lib/structures/bunch';
 import { Errors } from 'shared/lib/validators';
 import { Template } from '../../types';
 
 
 
-/** 2025-06-27 */
+/** 2025-06-29 */
 export interface ResGetTemplates {
-  templates: Template[]
+  bunchUpdated : BunchesUpdated
+  templates    : Template[]
 }
 
 
-export const getBunchesTemplates = createAsyncThunk<
+export const getTemplates = createAsyncThunk<
   ResGetTemplates,
   undefined,
   ThunkConfig<Errors>
 >(
-  'entities/dashboardTemplates/getBunchTemplates',
+  'entities/dashboardTemplates/getTemplates',
   async (_, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
 
     try {
-      const { data: { templates } } = await extra.api.get<ResGetTemplates>(paths.templates.bunch.get);
+      const { data } = await extra.api.get<ResGetTemplates>(API_PATHS.templates.getTemplates);
 
-      return { templates };
+      return data;
     }
     catch (e) {
       errorHandlers(e as CustomAxiosError, dispatch);
       return rejectWithValue((e as CustomAxiosError).response.data || {
-        general: 'Error in entities/dashboardTemplates/getBunchTemplates'
+        general: 'Error in entities/dashboardTemplates/getTemplates'
       });
     }
   }

@@ -1,9 +1,11 @@
 import { FC, memo, useCallback } from 'react';
 import {
-  createViewItem, createNextOrder, NO_SHEET_ID, useDashboardView, findAvailableBunchId, ViewItemType, ViewItemId
+  createViewItem, createNextOrder, NO_SHEET_ID, ViewItemType, ViewItemId, MAX_COUNT_BUNCH_VIEWITEMS,
  } from 'entities/dashboard-view';
 import { useUser } from 'entities/user';
 import { useCompany } from 'entities/company';
+import { findAvailableBunchId } from 'shared/lib/structures/bunch';
+import { useDashboardViewServices } from 'features/dashboard-view';
 
 
 
@@ -16,14 +18,14 @@ interface Props {
 export const AddNewViewItem: FC<Props> = memo(({ component: Component, parentId }) => {
   const {
     selectedId, viewItems, childrenViewItems, serviceCreateGroupViewItems, // selectedItem: { type }
-  } = useDashboardView({ parentId });
+  } = useDashboardViewServices({ parentId });
 
   const { userId } = useUser();
   const { paramsCompanyId } = useCompany();
 
 
   const handleAdd = useCallback((type: ViewItemType | undefined) => {
-    const availableBunchId = findAvailableBunchId(viewItems);
+    const availableBunchId = findAvailableBunchId(viewItems, MAX_COUNT_BUNCH_VIEWITEMS);
     const bunchAction = availableBunchId ? 'update' : 'create';
 
     const createViewItems = [createViewItem(

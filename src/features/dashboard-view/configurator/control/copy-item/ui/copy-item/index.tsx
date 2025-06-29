@@ -1,5 +1,5 @@
 import { FC, memo, useCallback } from 'react';
-import { ActivatedCopiedType, useDashboardView } from 'entities/dashboard-view';
+import { ActivatedCopiedType, useDashboardViewActions } from 'entities/dashboard-view';
 import { CopyViewItemComponent } from './component';
 
 
@@ -13,7 +13,7 @@ interface Props {
  * Для этого его активируем, а затем тыкаем на элемент в который нужно вставить
  */
 export const CopyViewItem: FC<Props> = memo(({ type }) => {
-  const { selectedId, activatedCopied, setActiveCopied, clearActivatedCopied } = useDashboardView();
+  const { selectedId, activatedCopied, setActiveCopied, clearActivatedCopied } = useDashboardViewActions();
 
   const handleToggle = useCallback(() => {
     if (activatedCopied) clearActivatedCopied()

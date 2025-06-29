@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { useDashboardView, ViewItem, getKod } from 'entities/dashboard-view';
+import { useDashboardViewState, ViewItem, getKod } from 'entities/dashboard-view';
 import { useDashboardData } from 'entities/dashboard-data';
 import { GrowthIconComponent } from './component';
 import { getIncreased, getInverted } from '../../digit-indicator';
@@ -12,7 +12,7 @@ interface Props {
 
 /** Item GrowthIcon */
 export const ItemGrowthIcon: FC<Props> = memo(({ item }) => {
-  const { entities } = useDashboardView();
+  const { entities } = useDashboardViewState();
   const { activeEntities } = useDashboardData();
   // const { display, fractionDigits, addZero, kod = '' } = item.settings || {};
 

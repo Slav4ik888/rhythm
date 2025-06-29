@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { getKod, useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { getKod, useDashboardViewState, ViewItem } from 'entities/dashboard-view';
 import { RowWrapperTitle } from 'shared/ui/configurators-components';
 import { useDashboardData } from 'entities/dashboard-data';
 import { StatisticPeriodTypeChip } from 'entities/statistic-type';
@@ -19,7 +19,7 @@ interface Props {
 /** Выбор кода */
 export const ChartSelectKod: FC<Props> = memo(({ index, selectedItem }) => {
   const { startEntities } = useDashboardData();
-  const { entities } = useDashboardView();
+  const { entities } = useDashboardViewState();
 
   const kod = useMemo(() => getKod(entities, selectedItem, selectedItem?.settings?.charts?.[index]),
     [entities, index, selectedItem]);

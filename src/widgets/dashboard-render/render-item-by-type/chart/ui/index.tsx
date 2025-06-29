@@ -1,5 +1,5 @@
 import { FC, memo, useMemo } from 'react';
-import { getKod, useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { getKod, useDashboardViewState, ViewItem } from 'entities/dashboard-view';
 import 'chart.js/auto';
 import { Chart } from 'react-chartjs-2';
 import { DashboardStatisticItem, useDashboardData } from 'entities/dashboard-data';
@@ -16,7 +16,7 @@ interface Props {
 /** Item chart */
 export const ItemChart: FC<Props> = memo(({ item }) => {
   const { activeDates, activeEntities } = useDashboardData();
-  const { entities } = useDashboardView();
+  const { entities } = useDashboardViewState();
 
   // TODO: упростить, всё засунуть в 1 useMemo, после того как заработает 'doughnut'
 

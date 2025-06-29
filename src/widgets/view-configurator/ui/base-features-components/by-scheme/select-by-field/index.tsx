@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { useDashboardViewActions, ViewItem } from 'entities/dashboard-view';
 import { SelectValue } from 'shared/ui/configurators-components/select';
 import { getValueByScheme } from 'shared/helpers/objects';
 import { updater } from '../utils';
@@ -23,7 +23,7 @@ interface Props {
 export const SelectByField: FC<Props> = memo(({
   selectedItem, scheme, array, disabled, component, searchBox, onSearch
 }) => {
-  const { updateViewItems } = useDashboardView();
+  const { updateViewItems } = useDashboardViewActions();
   const [selectedValue, setSelectedValue] = useState(getValueByScheme(selectedItem, scheme) || '');
 
   useEffect(() => {

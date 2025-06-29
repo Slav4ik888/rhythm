@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import Chip from '@mui/material/Chip';
-import { ChipType, useDashboardView } from 'entities/dashboard-view';
+import { ChipType, useDashboardViewState } from 'entities/dashboard-view';
 import { getConditionKod } from 'entities/condition-type';
 
 
@@ -12,7 +12,7 @@ interface Props {
 
 /** Код в зависимости используется ли isGlobalKod или нет */
 export const GetFromGlobalKod: FC<Props> = memo(({ type, disabled }) => {
-  const { fromGlobalKod: kod } = useDashboardView();
+  const { fromGlobalKod: kod } = useDashboardViewState();
 
   if (! kod) return null;
 

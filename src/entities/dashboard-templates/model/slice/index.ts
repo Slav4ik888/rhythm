@@ -4,10 +4,12 @@ import { getPayloadError as getError } from 'shared/lib/errors';
 import { StateSchemaDashboardTemplates } from './state-schema';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { ViewItemId } from 'entities/dashboard-view';
-import { ResGetTemplates, getBunchesTemplates } from '../services';
+import { ResGetTemplates, getTemplates } from '../services';
 import { updateEntities } from 'entities/base';
 import { SetOpened } from './types';
 import { Template } from '../types';
+import { UpdateTemplate, updateTemplate } from 'shared/api/features/dashboard-templates';
+import { LS } from 'shared/lib/local-storage';
 
 
 
@@ -59,39 +61,46 @@ export const slice = createSlice({
     // GET-BUNCHES []
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     builder
-      .addCase(getBunchesTemplates.pending, (state) => {
+      .addCase(getTemplates.pending, (state) => {
         state.loading = true;
         state.errors  = {};
       })
-      .addCase(getBunchesTemplates.fulfilled, (state, { payload }: PayloadAction<ResGetTemplates>) => {
-        const { templates } = payload;
+      .addCase(getTemplates.fulfilled, (state, { payload }: PayloadAction<ResGetTemplates>) => {
+        const { templates, bunchUpdated } = payload;
 
         state.entities = updateEntities(state.entities, templates);
         state.loading  = false;
         state.errors   = {};
+
+        LS.setDashboardTemplatesBunchUpdated(bunchUpdated);
       })
-      .addCase(getBunchesTemplates.rejected, (state, { payload }) => {
+      .addCase(getTemplates.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       })
-    // ADD-GROUP-NEW-ITEMS
+    // UPDATE TEMPLATE
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    // builder
-    //   .addCase(createGroupViewItems.pending, (state) => {
-    //     state.loading = true;
-    //     state.errors  = {};
-    //   })
-    //   .addCase(createGroupViewItems.fulfilled, (state, { payload }: PayloadAction<CreateGroupViewItems>) => {
-    //     const { viewItems, companyId, bunchUpdatedMs } = payload;
+    builder
+      .addCase(updateTemplate.pending, (state) => {
+        state.loading = true;
+        state.errors  = {};
+      })
+      .addCase(updateTemplate.fulfilled, (state, { payload }: PayloadAction<UpdateTemplate>) => {
+        const { template, bunchUpdatedMs } = payload;
 
-    //     state.entities            = updateEntities(state.entities, viewItems);
-    //     state.loading             = false;
-    //     state.errors              = {};
-    //   })
-    //   .addCase(createGroupViewItems.rejected, (state, { payload }) => {
-    //     state.errors  = getError(payload);
-    //     state.loading = false;
-    //   })
+        state.entities = updateEntities(state.entities, [template]);
+        state.loading  = false;
+        state.errors   = {};
+
+        LS.setDashboardTemplatesBunchUpdated({
+          ...LS.getDashboardTemplatesBunchUpdated(),
+          [template.bunchId || '1']: bunchUpdatedMs
+        });
+      })
+      .addCase(updateTemplate.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
+        state.loading = false;
+      })
   }
 })
 

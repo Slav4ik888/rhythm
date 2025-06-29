@@ -15,11 +15,11 @@ import { isEmpty } from 'shared/helpers/objects';
 export const ClearLsBunchesUpdated: FC = memo(() => {
   const { paramsCompanyId } = useCompany();
   const { setSuccessMessage } = useUI();
-  const [bunchesUpdated, setBunchesUpdated] = useState(LS.getDashboardBunchesUpdated(paramsCompanyId));
+  const [bunchesUpdated, setBunchesUpdated] = useState(LS.getDashboardViewBunchesUpdated(paramsCompanyId));
 
   useEffect(() => {
     const handleStorageChange = () => {
-      setBunchesUpdated(LS.getDashboardBunchesUpdated(paramsCompanyId));
+      setBunchesUpdated(LS.getDashboardViewBunchesUpdated(paramsCompanyId));
     };
 
     window.addEventListener('storage', handleStorageChange);
@@ -29,7 +29,7 @@ export const ClearLsBunchesUpdated: FC = memo(() => {
   );
 
   const handleClick = useCallback(() => {
-    LS.setDashboardBunchesUpdated(paramsCompanyId, {});
+    LS.setDashboardViewBunchesUpdated(paramsCompanyId, {});
     // setBunchesUpdated({});
     // // Вручную эмулируем событие storage
     window.dispatchEvent(new Event('storage'));

@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, MouseEvent } from 'react';
-import { ViewItemChart, useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { ViewItemChart, useDashboardViewActions, ViewItem } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { InputByScheme } from '../../../../../base-features-components';
 
@@ -15,7 +15,7 @@ interface Props {
  * for Bar only
  */
 export const ChartCategoryPercentage: FC<Props> = memo(({ index, selectedItem }) => {
-  const { changeOneDatasetsItem } = useDashboardView();
+  const { changeOneDatasetsItem } = useDashboardViewActions();
 
   const handleChange = useCallback((value: string | number) => {
     changeOneDatasetsItem({ field: 'categoryPercentage', value, index });

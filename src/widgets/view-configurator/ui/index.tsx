@@ -1,7 +1,7 @@
 import { FC, memo, useCallback, useState } from 'react';
 import DrawerStyled from './styled';
 import { ConfiguratorMainHeader as MainHeader } from 'shared/ui/configurators-components';
-import { useDashboardView } from 'entities/dashboard-view';
+import { useDashboardViewActions } from 'entities/dashboard-view';
 import Box from '@mui/material/Box';
 import { useCompany } from 'entities/company'
 import { UnsavedChanges } from './unsaved-changes';
@@ -18,7 +18,7 @@ import { ClearLsBunchesUpdated } from 'features/dashboard-view/configurator';
 export const ViewItemConfigurator: FC = memo(() => {
   const { paramsCompanyId } = useCompany();
   const { setWarningMessage } = useUI();
-  const { editMode, selectedId, selectedItem, isUnsaved, setSelectedId, setEditMode } = useDashboardView();
+  const { editMode, selectedId, selectedItem, isUnsaved, setSelectedId, setEditMode } = useDashboardViewActions();
   const [value, setValue] = useState('1');
 
 

@@ -1,6 +1,6 @@
 import { FC, memo, useCallback, MouseEvent, useMemo } from 'react';
 import { Input, InputType, SxTextfield } from 'shared/ui/containers';
-import { useDashboardView, ViewItem } from 'entities/dashboard-view';
+import { useDashboardViewActions, ViewItem } from 'entities/dashboard-view';
 import { getValueByScheme } from 'shared/helpers/objects';
 import ClearIcon from '@mui/icons-material/Clear';
 import Box from '@mui/material/Box';
@@ -43,7 +43,7 @@ export const InputByScheme: FC<Props> = memo(({
   transform, onClear, onBlur, onChange, onSubmit
 }) => {
   // const sx = getStyles(useTheme(), style, width);
-  const { updateViewItems } = useDashboardView();
+  const { updateViewItems } = useDashboardViewActions();
 
   const value = useMemo(() => {
     if (! selectedItem) return '';

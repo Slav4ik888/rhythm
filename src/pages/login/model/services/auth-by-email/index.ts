@@ -4,7 +4,7 @@ import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/stor
 import { getCookie } from './utils';
 import { actionsUser, User } from 'entities/user';
 import { Errors } from 'shared/lib/validators';
-import { paths } from 'shared/api';
+import { API_PATHS } from 'shared/api';
 import { actionsCompany, Company } from 'entities/company';
 
 
@@ -35,8 +35,10 @@ export const authByLogin = createAsyncThunk<
       csrfToken = getCookie(cfg.COOKIE_NAME);
 
     try {
-      const { data: { user, company } } = await extra.api
-        .post<ResAuthByLogin>(paths.auth.login.byEmail, { authByLogin, csrfToken });
+      const { data: { user, company } } = await extra.api.post<ResAuthByLogin>(
+        API_PATHS.auth.login.byEmail,
+        { authByLogin, csrfToken }
+      );
 
       dispatch(actionsUser.setUser({ user, companyId: user.companyId }));
       dispatch(actionsCompany.setCompany({ company }));

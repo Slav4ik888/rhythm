@@ -4,14 +4,14 @@ import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import { StatisticPeriodChipBySelectedItem } from 'entities/statistic-type';
 import { GetFromGlobalKod } from '../../base-features-components';
-import { useDashboardView } from 'entities/dashboard-view';
+import { useDashboardViewState } from 'entities/dashboard-view';
 import { CompanyChipBySelectedItem } from 'entities/company-type';
 
 
 
 /** Kod item */
 export const Kod: FC = memo(() => {
-  const { selectedItem } = useDashboardView();
+  const { selectedItem } = useDashboardViewState();
 
   return (
     <RowWrapper>

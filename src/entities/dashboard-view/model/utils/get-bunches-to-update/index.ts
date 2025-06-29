@@ -1,4 +1,5 @@
-import { BunchesUpdated } from 'entities/company';
+import { BunchesUpdated } from 'shared/lib/structures/bunch';
+
 
 /**
  * Сравнивает версии bunches и возвращает ID тех, что нужно обновить

@@ -1,5 +1,5 @@
 import { FC, memo, useCallback } from 'react';
-import { useDashboardView } from 'entities/dashboard-view';
+import { useDashboardViewActions } from 'entities/dashboard-view';
 import Box from '@mui/material/Box';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import MoveIcon from '@mui/icons-material/MoveUp';
@@ -27,7 +27,7 @@ const useStyles = (theme: CustomTheme) => ({
  */
 export const MoveToAnotherItem: FC = memo(() => {
   const sx = useStyles(useTheme());
-  const { selectedId, activatedMovementId, setActiveMovementId, clearActivatedMovementId } = useDashboardView();
+  const { selectedId, activatedMovementId, setActiveMovementId, clearActivatedMovementId } = useDashboardViewActions();
 
   const handleToggleActiveMovement = useCallback(() => {
     if (activatedMovementId) clearActivatedMovementId()

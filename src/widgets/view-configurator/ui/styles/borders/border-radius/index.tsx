@@ -1,6 +1,6 @@
 import { FC, memo, useCallback, MouseEvent } from 'react';
 import Box from '@mui/material/Box';
-import { useDashboardView, ViewItem, ViewItemStyles, ViewItemStylesField } from 'entities/dashboard-view';
+import { useDashboardViewActions, ViewItem, ViewItemStyles, ViewItemStylesField } from 'entities/dashboard-view';
 import { f } from 'shared/styles';
 import { ConfiguratorTextTitle } from 'shared/ui/configurators-components';
 import { InputByScheme } from '../../../base-features-components';
@@ -20,7 +20,7 @@ interface Props {
 
 /** border-radius */
 export const BorderRadiusRow: FC<Props> = memo(({ selectedItem }) => {
-  const { setSelectedStyles } = useDashboardView();
+  const { setSelectedStyles } = useDashboardViewActions();
 
   const handleChange = useCallback((field: ViewItemStylesField, value: number | string) => {
     if (! selectedItem) return;

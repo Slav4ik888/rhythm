@@ -24,6 +24,7 @@ describe('devCreateBunches', () => {
     expect(Object.keys(result[0]).length).toBe(50);
 
     // Проверяем что все элементы имеют одинаковый bunchId
+    // @ts-ignore
     const bunchIds = new Set(Object.values(result[0]).map(item => item.bunchId));
     expect(bunchIds.size).toBe(1);
   });
@@ -39,6 +40,7 @@ describe('devCreateBunches', () => {
 
     // Проверяем что bunchId уникальны между гроздьями
     const allBunchIds = result.flatMap(bunch =>
+    // @ts-ignore
       Object.values(bunch).map(item => item.bunchId)
     );
     const uniqueBunchIds = new Set(allBunchIds);
@@ -55,6 +57,7 @@ describe('devCreateBunches', () => {
 
     // @ts-ignore
     expect(firstBunchItems.some(i => i.data === 'special-content')).toBe(true);
+    // @ts-ignore
     expect(firstBunchItems.map(i => i.id)).toEqual(
       expect.arrayContaining(['item-0', 'item-1', 'item-2', 'item-3', 'item-4'])
     );
@@ -72,8 +75,8 @@ describe('devCreateBunches', () => {
   test('should generate valid UUIDs for bunchIds', () => {
     const items = generateTestItems(10);
     const result = devCreateBunches(items);
-    // eslint-disable-next-line prefer-destructuring
-    const bunchId = Object.values(result[0])[0].bunchId;
+    // @ts-ignore
+    const { bunchId } = Object.values(result[0])[0];
 
     expect(bunchId).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i);
   });

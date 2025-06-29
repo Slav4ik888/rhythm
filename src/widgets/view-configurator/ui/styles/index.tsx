@@ -1,5 +1,5 @@
 import { FC, memo, useCallback } from 'react';
-import { useDashboardView, ViewItemStylesField } from 'entities/dashboard-view';
+import { useDashboardViewActions, ViewItemStylesField } from 'entities/dashboard-view';
 import { Dimensions } from './dimensions';
 import { Indents } from './indents';
 import { Borders } from './borders';
@@ -12,7 +12,7 @@ import { StyleControl } from './style-control';
 
 /** Вкладка Styles */
 export const ViewItemStylesConfigurator: FC = memo(() => {
-  const { selectedItem, selectedId, entities, changeOneStyleField } = useDashboardView();
+  const { selectedItem, selectedId, entities, changeOneStyleField } = useDashboardViewActions();
 
   /** Сохраняем изменения стилей элементов в store */
   const handleChange = useCallback((field: ViewItemStylesField, value: number | string) => {

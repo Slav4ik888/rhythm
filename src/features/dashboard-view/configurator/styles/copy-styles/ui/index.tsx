@@ -1,5 +1,5 @@
 import { FC, memo, useCallback } from 'react';
-import { useDashboardView } from 'entities/dashboard-view';
+import { useDashboardViewActions } from 'entities/dashboard-view';
 import { CopyStylesViewItemComponent } from './component';
 
 
@@ -9,7 +9,7 @@ import { CopyStylesViewItemComponent } from './component';
  * Для этого его активируем, а затем тыкаем на элемент в который нужно вставить
  */
 export const CopyStylesViewItemBtn: FC = memo(() => {
-  const { selectedId, activatedCopied, setActiveCopied, clearActivatedCopied } = useDashboardView();
+  const { selectedId, activatedCopied, setActiveCopied, clearActivatedCopied } = useDashboardViewActions();
 
   const handleToggle = useCallback(() => {
     if (activatedCopied) clearActivatedCopied()

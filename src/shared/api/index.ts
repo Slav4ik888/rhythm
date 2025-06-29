@@ -1,2 +1,2 @@
 export * from './api'
-export * from './paths'
+export { API_PATHS } from './api-paths'

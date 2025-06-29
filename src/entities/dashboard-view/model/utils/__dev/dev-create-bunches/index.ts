@@ -1,6 +1,6 @@
-
-import { Bunch, ViewItem } from '../../../types';
+import { ViewItem, ViewItemId } from '../../../types';
 import { v4 as uuidv4 } from 'uuid';
+import { Bunch } from 'shared/lib/structures/bunch';
 
 
 
@@ -10,8 +10,8 @@ import { v4 as uuidv4 } from 'uuid';
  * @param items - исходный массив ViewItem
  * @returns массив гроздьев (Bunch[])
  */
-export function devCreateBunches(items: ViewItem[]): Bunch[] {
-  const bunches: Bunch[] = [];
+export function devCreateBunches(items: ViewItem[]): Bunch<ViewItemId, ViewItem>[] {
+  const bunches: Bunch<ViewItemId, ViewItem>[] = [];
   const bunchSize = 100;
   const totalBunches = Math.ceil(items.length / bunchSize);
 
@@ -22,7 +22,7 @@ export function devCreateBunches(items: ViewItem[]): Bunch[] {
     const endIndex = startIndex + bunchSize;
     const bunchItems = items.slice(startIndex, endIndex);
 
-    const bunch: Bunch = {};
+    const bunch: Bunch<ViewItemId, ViewItem> = {};
     bunchItems.forEach(item => {
       bunch[item.id] = {
         ...item,

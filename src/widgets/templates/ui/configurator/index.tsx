@@ -1,17 +1,15 @@
-import { FC, memo, useCallback } from 'react';
+import { FC, memo } from 'react';
 import { useDashboardTemplates } from 'entities/dashboard-templates';
 import Box from '@mui/material/Box';
 import { f, pxToRem } from 'shared/styles';
 import { RowWrapperTitle } from 'shared/ui/configurators-components';
-import { Condition } from 'entities/base';
-import { Actions } from 'shared/ui/buttons';
+import { TemplatesConfiguratorActions as Actions } from './actions';
 
 
 
 const styleAtom = {
   borderRadius : '4px',
   border       : '1px solid #b0b0b0',
-  width        : '100%',
   my           : 1,
   p            : 1
 };
@@ -19,24 +17,21 @@ const styleAtom = {
 
 /** Конфигуратор шаблонов */
 export const TemplatesConfigurator: FC = memo(() => {
-  const { loading, selectedId, selectedTemplate } = useDashboardTemplates();
+  const { selectedId, selectedTemplate } = useDashboardTemplates();
 
   console.log('selectedId: ', selectedId);
 
 
-  const handleCancel = useCallback(() => {
-
-
-  }, []);
-
-  const handleSubmit = useCallback(() => {
-
-
-  }, []);
-
-
   return (
-    <Box sx={{ ...f('c'), minWidth: pxToRem(300) }}>
+    <Box
+      sx={{
+        ...f('c'),
+        minWidth     : pxToRem(460),
+        border       : '1px solid  #b0b0b0',
+        borderRadius : pxToRem(4),
+        p            : 2
+      }}
+    >
       <RowWrapperTitle
         boldTitle
         title     = 'Id шаблона'
@@ -54,13 +49,7 @@ export const TemplatesConfigurator: FC = memo(() => {
       </RowWrapperTitle>
 
       {/* { selectedTemplate.condition === Condition.DRAFT && ( */}
-      <Actions
-        hideIfNotChanges
-        loading   = {loading}
-        isChanges = {selectedTemplate.condition === Condition.DRAFT}
-        onCancel  = {handleCancel}
-        onSubmit  = {handleSubmit}
-      />
+      <Actions />
     </Box>
   )
 });

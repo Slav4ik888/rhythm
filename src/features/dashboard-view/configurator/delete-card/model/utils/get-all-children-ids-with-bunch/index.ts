@@ -1,5 +1,6 @@
 import { ViewItem, ViewItemId } from 'entities/dashboard-view';
-import { PartialViewItemUpdate } from '../../../../update-view-item';
+import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view';
+
 
 
 /**

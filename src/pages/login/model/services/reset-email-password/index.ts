@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { actionsUI } from 'entities/ui';
-import { paths } from 'shared/api';
+import { API_PATHS } from 'shared/api';
 import { Errors } from 'shared/lib/validators';
 
 
@@ -21,8 +21,10 @@ export const resetEmailPassword = createAsyncThunk<
     const { extra, rejectWithValue, dispatch } = thunkApi;
 
     try {
-      const { data: { message } } = await extra.api
-        .post<ResResetEmailPassword>(paths.auth.login.resetEmailPassword, { email });
+      const { data: { message } } = await extra.api.post<ResResetEmailPassword>(
+        API_PATHS.auth.login.resetEmailPassword,
+        { email }
+      );
 
       dispatch(actionsUI.setSuccessMessage(message));
     }

@@ -11,7 +11,7 @@ export const getInitialState = (companyId: string): StateSchemaDashboardView => 
     errors                : {},
     _isMounted            : true,
 
-    editMode              : LS.getDashboardViewEditMode(companyId) || false,
+    editMode              : LS.getDashboardEditMode(companyId) || false,
     newSelectedId         : '',
     selectedId            : '',
     bright                : false,

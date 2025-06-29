@@ -11,11 +11,9 @@ import { useDashboardTemplates } from 'entities/dashboard-templates';
 
 /** Кнопка открытия окна с шаблонами */
 export const OpenTemplatesBtn: FC = memo(() => {
-  console.log('OpenTemplatesBtn');
   const { opened, setOpened } = useDashboardTemplates();
 
   const handleClick = useCallback(() => {
-    console.log('handleClick');
     setOpened({ opened: ! opened });
   }, [opened, setOpened]);
 
