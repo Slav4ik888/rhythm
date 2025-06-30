@@ -27,6 +27,7 @@ export const useDashboardTemplates = () => {
   const opened           = useSelector(s.selectOpened);
   const selectedId       = useSelector(s.selectSelectedId);
   const selectedTemplate = useSelector(s.selectSelectedTemplate);
+  const selectedViewItem = useSelector(s.selectSelectedViewItem);
 
 
   const api = useMemo(() => ({
@@ -37,6 +38,7 @@ export const useDashboardTemplates = () => {
     setIsMounted             : () => dispatch(a.setIsMounted()),
     setOpened                : (data: SetOpened) => dispatch(a.setOpened(data)),
     setSelectedId            : (id: ViewItemId) => dispatch(a.setSelectedId(id)),
+    activateMainViewItem     : () => dispatch(a.activateMainViewItem()),
     serviceGetBunchesUpdated : () => dispatch(getBunchesUpdated()),
     serviceGetTemplates      : (data: ReqGetTemplates) => dispatch(getTemplates(data)),
     serviceUpdateTemplate    : (data: UpdateTemplate) => dispatch(updateTemplate(data)),
@@ -57,6 +59,7 @@ export const useDashboardTemplates = () => {
     opened,
     selectedId,
     selectedTemplate,
+    selectedViewItem,
 
     ...api
   }

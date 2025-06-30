@@ -13,6 +13,7 @@ import { LS } from 'shared/lib/local-storage';
 import { BunchesUpdated } from 'shared/lib/structures/bunch';
 import { getBunchesUpdated } from '../services/get-bunches-updated';
 import { mergeById } from 'shared/helpers/arrays';
+import { findMainViewItemById } from '../utils';
 
 
 
@@ -55,6 +56,12 @@ export const slice = createSlice({
     },
     setSelectedId: (state, { payload }: PayloadAction<ViewItemId>) => {
       state.selectedId = payload;
+    },
+    activateMainViewItem:  (state) => {
+      const mainViewItem = findMainViewItemById(state.entities, state.selectedId);
+      if (mainViewItem) {
+        state.selectedId = mainViewItem.id;
+      }
     },
   },
 

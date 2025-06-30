@@ -1,15 +1,17 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useDashboardTemplates } from 'entities/dashboard-templates';
 import Box from '@mui/material/Box';
 import { f, pxToRem } from 'shared/styles';
 import { RowWrapperTitle } from 'shared/ui/configurators-components';
 import { TemplatesConfiguratorActions as Actions } from './actions';
+import { Tooltip } from 'shared/ui/tooltip';
 
 
 
 const styleAtom = {
   borderRadius : '4px',
   border       : '1px solid #b0b0b0',
+  cursor       : 'default',
   my           : 1,
   p            : 1
 };
@@ -17,9 +19,13 @@ const styleAtom = {
 
 /** Конфигуратор шаблонов */
 export const TemplatesConfigurator: FC = memo(() => {
-  const { selectedId, selectedTemplate } = useDashboardTemplates();
+  const { selectedId, selectedTemplate, selectedViewItem, activateMainViewItem } = useDashboardTemplates();
 
   console.log('selectedId: ', selectedId);
+
+  const handleClick = useCallback(() => {
+    activateMainViewItem();
+  }, [activateMainViewItem]);
 
 
   return (
@@ -37,18 +43,26 @@ export const TemplatesConfigurator: FC = memo(() => {
         title     = 'Id шаблона'
         toolTitle = 'Id шаблона'
       >
-        <Box sx={styleAtom}>{selectedId}</Box>
+        <Tooltip
+          title = 'Нажмите, чтобы выделить корневой элемент'
+        >
+          <Box
+            onClick = {handleClick}
+            sx      = {{ ...styleAtom, cursor: 'pointer' }}
+          >
+            {selectedTemplate?.id}
+          </Box>
+        </Tooltip>
       </RowWrapperTitle>
 
       <RowWrapperTitle
         boldTitle
-        title     = 'Condition'
-        toolTitle = 'Current condition'
+        title     = 'Id элемента'
+        toolTitle = 'Id элемента'
       >
-        <Box sx={styleAtom}>{selectedTemplate.condition}</Box>
+        <Box sx={styleAtom}>{selectedId}</Box>
       </RowWrapperTitle>
 
-      {/* { selectedTemplate.condition === Condition.DRAFT && ( */}
       <Actions />
     </Box>
   )

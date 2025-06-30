@@ -31,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "continuos TemplatesContainer refacted updateTemplate" && git push -u origin main
+// git add . && git commit -m "continuos TemplatesContainer added activateMainViewItem" && git push -u origin main
