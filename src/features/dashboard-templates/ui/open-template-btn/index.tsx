@@ -15,7 +15,9 @@ export const OpenTemplatesBtn: FC = memo(() => {
 
   const handleClick = useCallback(() => {
     setOpened({ opened: ! opened });
-  }, [opened, setOpened]);
+  },
+    [opened, setOpened]
+  );
 
 
   return (

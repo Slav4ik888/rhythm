@@ -1,7 +1,7 @@
-import { ViewItemId, useDashboardViewActions } from 'entities/dashboard-view';
+import { ViewItemId, useDashboardViewActions, getViewItems, ReqGetViewItems } from 'entities/dashboard-view';
 import { useMemo } from 'react';
 import {
-  createGroupViewItems, CreateGroupViewItems, deleteViewItem, DeleteViews, getViewItems, ReqGetViewItems,
+  createGroupViewItems, CreateGroupViewItems, deleteViewItem, DeleteViews,
   UpdateViewItems, updateViewItems
 } from 'shared/api/features/dashboard-view';
 import { useAppDispatch } from 'shared/lib/hooks';

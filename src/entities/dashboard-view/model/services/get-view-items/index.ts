@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig, errorHandlers, CustomAxiosError } from 'app/providers/store';
-import { ViewItem } from '../../../../../entities/dashboard-view/model/types';
-import { API_PATHS } from '../../../api-paths';
+import { ViewItem } from '../../types';
+import { API_PATHS } from '../../../../../shared/api/api-paths';
 import { Errors } from 'shared/lib/validators';
 import { LS } from 'shared/lib/local-storage';
 import cfg from 'app/config';
-import { SetDashboardViewItems } from '../../../../../entities/dashboard-view/model/slice/types';
+import { SetDashboardViewItems } from '../../slice/types';
 import { BunchesUpdated } from 'shared/lib/structures/bunch';
 
 

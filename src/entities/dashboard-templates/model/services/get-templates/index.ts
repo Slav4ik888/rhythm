@@ -7,24 +7,29 @@ import { Template } from '../../types';
 
 
 
-/** 2025-06-29 */
-export interface ResGetTemplates {
-  bunchUpdated : BunchesUpdated
-  templates    : Template[]
+/** 2025-06-30 */
+export type ResGetTemplates = {
+  templates      : Template[]
+  bunchesUpdated : BunchesUpdated
+}
+
+
+export interface ReqGetTemplates {
+  bunchIds: string[] // То что надо загрузить
 }
 
 
 export const getTemplates = createAsyncThunk<
   ResGetTemplates,
-  undefined,
+  ReqGetTemplates,
   ThunkConfig<Errors>
 >(
   'entities/dashboardTemplates/getTemplates',
-  async (_, thunkApi) => {
+  async (bunchData, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
 
     try {
-      const { data } = await extra.api.get<ResGetTemplates>(API_PATHS.templates.getTemplates);
+      const { data } = await extra.api.post<ResGetTemplates>(API_PATHS.templates.getTemplates, bunchData);
 
       return data;
     }

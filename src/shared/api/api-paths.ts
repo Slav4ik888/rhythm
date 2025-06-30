@@ -35,8 +35,9 @@ export const API_PATHS = {
     },
   },
   templates: {
-    getTemplates : '/templates/getTemplates',
-    update       : '/templates/update',
+    getBunchesUpdated : '/templates/getBunchesUpdated',
+    getTemplates      : '/templates/getTemplates',
+    update            : '/templates/update',
   },
   docs: {
     getPolicy: '/getPolicy',

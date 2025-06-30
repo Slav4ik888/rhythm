@@ -12,7 +12,9 @@ export const DashboardTemplates = memo(() => {
 
   useEffect(() => {
     hookOpen.setOpen(opened);
-  }, [opened, hookOpen]);
+  },
+    [opened, hookOpen]
+  );
 
 
   if (! opened) return null

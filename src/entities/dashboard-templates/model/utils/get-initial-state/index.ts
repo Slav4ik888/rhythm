@@ -1,3 +1,4 @@
+import { updateEntities } from 'entities/base';
 import { LS } from 'shared/lib/local-storage';
 import { StateSchemaDashboardTemplates } from '../../slice/state-schema';
 
@@ -9,10 +10,10 @@ export const getInitialState = (): StateSchemaDashboardTemplates => {
     loading               : false,
     errors                : {},
     _isMounted            : true,
-
+    bunchesUpdated        : undefined,
     selectedId            : '',
     opened                : false,
-    entities              : LS.getDashboardTemplatesEntities(),
+    entities              : updateEntities({}, LS.getDashboardTemplates()),
   };
 
   return initialState;

@@ -15,9 +15,10 @@ import { ChartConfigDatasets } from 'entities/charts';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { mergeById } from 'shared/helpers/arrays';
 import {
-  CreateGroupViewItems, createGroupViewItems, deleteViewItem, DeleteViews, getViewItems,
+  CreateGroupViewItems, createGroupViewItems, deleteViewItem, DeleteViews,
   UpdateViewItems, updateViewItems
 } from 'shared/api/features/dashboard-view';
+import { getViewItems } from '../services';
 
 
 

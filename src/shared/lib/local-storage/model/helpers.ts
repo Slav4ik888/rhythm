@@ -1,7 +1,7 @@
 import { UIConfiguratorProviderState } from 'app/providers/theme';
 import { PartialCompany, StateSchemaCompany } from 'entities/company';
 import { StateSchemaDashboardData } from 'entities/dashboard-data';
-import { DashboardTemplatesEntities } from 'entities/dashboard-templates';
+import { Template } from 'entities/dashboard-templates';
 import { ViewItem } from 'entities/dashboard-view';
 import { StateSchemaUser } from 'entities/user';
 import { ResGetData } from 'features/dashboard-data/get-data/model/types';
@@ -17,9 +17,9 @@ export const getAcceptedCookie = (): string => getStorageData<{ isAccepted: stri
 )?.isAccepted || 'false';
 
 // User
-export const setUserState = (companyId: string, state: StateSchemaUser) => setStorageData(
+export const setUserState = (companyId: string, data: StateSchemaUser) => setStorageData(
   `UserState-${companyId}`,
-  state
+  data
 );
 export const getUserState = (companyId: string) => getStorageData<StateSchemaUser>(`UserState-${companyId}`);
 
@@ -27,19 +27,19 @@ export const getUserState = (companyId: string) => getStorageData<StateSchemaUse
 export const setLastCompanyId = (companyId: string) => setStorageData('LastCompanyId', { companyId });
 export const getLastCompanyId = () => getStorageData<{ companyId: string }>('LastCompanyId')?.companyId;
 
-export const setCompanyState = (companyId: string, state: StateSchemaCompany) => setStorageData(
+export const setCompanyState = (companyId: string, data: StateSchemaCompany) => setStorageData(
   `CompanyState-${companyId}`,
-  state
+  data
 );
 export const getCompanyState = (companyId: string) => getStorageData<StateSchemaCompany>(`CompanyState-${companyId}`);
 
-export const setParamsCompanyState = (company: PartialCompany) => setStorageData('ParamsCompany', company);
+export const setParamsCompanyState = (data: PartialCompany) => setStorageData('ParamsCompany', data);
 export const getParamsCompanyState = () => getStorageData<PartialCompany>('ParamsCompany');
 
 // Configurator
-export const setUIConfiguratorState = (state: UIConfiguratorProviderState) => setStorageData(
+export const setUIConfiguratorState = (data: UIConfiguratorProviderState) => setStorageData(
   'UIConfiguratorState',
-  state
+  data
 );
 export const getUIConfiguratorState = () => getStorageData<UIConfiguratorProviderState>('UIConfiguratorState');
 export const setDashboardEditMode = (companyId: string, editMode: boolean) => setStorageData(
@@ -51,27 +51,22 @@ export const getDashboardEditMode = (companyId: string): boolean => Boolean(
 );
 
 // Dashboard-templates
-export const setDashboardTemplatesEntities = (entities: DashboardTemplatesEntities) => setStorageData(
-  'DashboardTemplatesEntities',
-  entities
-);
-export const getDashboardTemplatesEntities = () => getStorageData<DashboardTemplatesEntities>(
-  'DashboardTemplatesEntities'
-) || {};
+export const setDashboardTemplates = (data: Template[]) => setStorageData('DashboardTemplates', data);
+export const getDashboardTemplates = () => getStorageData<Template[]>('DashboardTemplates') || [];
 
 /** Dashboard-templates - timestamp of last updated */
-export const setDashboardTemplatesBunchUpdated = (updated: BunchesUpdated) => setStorageData(
+export const setDashboardTemplatesBunchesUpdated = (data: BunchesUpdated) => setStorageData(
   'DashboardTemplatesBunchesUpdated',
-  updated
+  data
 );
-export const getDashboardTemplatesBunchUpdated = () => getStorageData<BunchesUpdated>(
+export const getDashboardTemplatesBunchesUpdated = () => getStorageData<BunchesUpdated>(
   'DashboardTemplatesBunchesUpdated'
 ) || {};
 
 // Dashboard-data
-export const setDashboardDataState = (companyId: string, state: StateSchemaDashboardData) => setStorageData(
+export const setDashboardDataState = (companyId: string, data: StateSchemaDashboardData) => setStorageData(
   `DashboardDataState-${companyId}`,
-  state
+  data
 );
 export const getDashboardDataState = (companyId: string) => getStorageData<StateSchemaDashboardData>(
   `DashboardDataState-${companyId}`

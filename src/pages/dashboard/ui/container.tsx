@@ -25,25 +25,20 @@ export const DashboardPageContainer: FC = memo(() => {
   const { paramsCompanyId, paramsCompany, paramsBunchesUpdated } = useCompany();
   const { pathname } = useLocation();
   const { serviceGetViewItems, setDashboardBunchesFromCache } = useDashboardViewServices();
-  const { serviceGetTemplates } = useDashboardTemplates();
+  const { serviceGetBunchesUpdated } = useDashboardTemplates();
 
 
   useEffect(() => {
+    // 1. TEMPLATES
+    serviceGetBunchesUpdated(); /** Get актуальное состояние bunchesUpdated from DB */
+
+    // 2. VIEW-ITEMS
     const bunchesForLoad = getBunchesToUpdate(paramsBunchesUpdated, LS.getDashboardViewBunchesUpdated(paramsCompanyId));
 
     // TODO: sheetId подставлять нужный
 
-    // Загружаем всё, что в кеше
+    // Загружаем ViewItems из кеша
     setDashboardBunchesFromCache(paramsCompany.id);
-    // TODO: setDashboardTemplatesFromCache();
-
-    if (
-      // TODO: проверка timestamp на сервере и кэше и загрузка
-      // eslint-disable-next-line no-constant-condition
-      true
-    ) {
-      serviceGetTemplates();
-    }
 
     if (bunchesForLoad.length) {
       __devLog('Bunches for load:', bunchesForLoad.length);

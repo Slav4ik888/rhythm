@@ -15,24 +15,28 @@ export const TemplatesConfiguratorActions: FC = memo(() => {
   }, []);
 
   const handleSubmit = useCallback(() => {
-    const updatedTemplate: Template = {
-      ...selectedTemplate,
-      condition: Condition.ACTIVE
-    };
 
-    serviceUpdateTemplate({
-      bunchUpdatedMs : Date.now(),
-      template       : updatedTemplate,
-      bunchAction    : selectedTemplate.condition === Condition.DRAFT ? 'create' : 'update'
-    });
-  }, [selectedTemplate, serviceUpdateTemplate]);
+  }, []);
+
+  // const handleSubmit = useCallback(() => {
+  //   const updatedTemplate: Template = {
+  //     ...selectedTemplate,
+  //     condition: Condition.ACTIVE
+  //   };
+
+  //   serviceUpdateTemplate({
+  //     bunchUpdatedMs : Date.now(),
+  //     template       : updatedTemplate,
+  //     bunchAction    : 'update'
+  //   });
+  // }, [selectedTemplate, serviceUpdateTemplate]);
 
 
   return (
     <Actions
       hideIfNotChanges
       loading   = {loading}
-      isChanges = {selectedTemplate.condition === Condition.DRAFT}
+      isChanges // {}  TODO: check if changes
       onCancel  = {handleCancel}
       onSubmit  = {handleSubmit}
     />

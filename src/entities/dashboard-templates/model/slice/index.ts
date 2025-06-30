@@ -10,6 +10,9 @@ import { SetOpened } from './types';
 import { Template } from '../types';
 import { UpdateTemplate, updateTemplate } from 'shared/api/features/dashboard-templates';
 import { LS } from 'shared/lib/local-storage';
+import { BunchesUpdated } from 'shared/lib/structures/bunch';
+import { getBunchesUpdated } from '../services/get-bunches-updated';
+import { mergeById } from 'shared/helpers/arrays';
 
 
 
@@ -17,7 +20,7 @@ const initialState: StateSchemaDashboardTemplates = {
   loading               : false,
   errors                : {},
   _isMounted            : false,
-
+  bunchesUpdated        : undefined,
   entities              : {},
   opened                : false,
   selectedId            : '',
@@ -43,6 +46,9 @@ export const slice = createSlice({
     clearErrors: (state) => {
       state.errors = {};
     },
+    setDashboardTemplatesFromCache: (state) => {
+      state.entities = updateEntities({}, LS.getDashboardTemplates());
+    },
     setOpened: (state, { payload }: PayloadAction<SetOpened>) => {
       state.opened     = payload.opened;
       state.selectedId = payload.selectedId || '';
@@ -50,36 +56,47 @@ export const slice = createSlice({
     setSelectedId: (state, { payload }: PayloadAction<ViewItemId>) => {
       state.selectedId = payload;
     },
-    setTemplate:  (state, { payload }: PayloadAction<Template>) => {
-      state.entities = updateEntities(state.entities, [payload]);
-    },
-    // TODO: setDashboardTemplatesFromCache
   },
 
 
   extraReducers: builder => {
+    // GET-BUNCHES-UPDATED []
+    builder
+      .addCase(getBunchesUpdated.pending, (state) => {
+        state.loading = true;
+        state.errors  = {};
+      })
+      .addCase(getBunchesUpdated.fulfilled, (state, { payload }: PayloadAction<BunchesUpdated>) => {
+        state.bunchesUpdated = payload;
+        state.entities       = updateEntities({}, LS.getDashboardTemplates()); // Загружаем Templates из кеша
+        state.loading        = false;
+        state.errors         = {};
+      })
+      .addCase(getBunchesUpdated.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
+        state.loading = false;
+      })
     // GET-BUNCHES []
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     builder
       .addCase(getTemplates.pending, (state) => {
         state.loading = true;
         state.errors  = {};
       })
       .addCase(getTemplates.fulfilled, (state, { payload }: PayloadAction<ResGetTemplates>) => {
-        const { templates, bunchUpdated } = payload;
+        const { templates, bunchesUpdated } = payload;
 
         state.entities = updateEntities(state.entities, templates);
         state.loading  = false;
         state.errors   = {};
 
-        LS.setDashboardTemplatesBunchUpdated(bunchUpdated);
+        LS.setDashboardTemplates(mergeById(Object.values(state.entities), templates));
+        LS.setDashboardTemplatesBunchesUpdated(bunchesUpdated); // С сервера приходит весь актуальный объект
       })
       .addCase(getTemplates.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       })
     // UPDATE TEMPLATE
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     builder
       .addCase(updateTemplate.pending, (state) => {
         state.loading = true;
@@ -92,8 +109,9 @@ export const slice = createSlice({
         state.loading  = false;
         state.errors   = {};
 
-        LS.setDashboardTemplatesBunchUpdated({
-          ...LS.getDashboardTemplatesBunchUpdated(),
+        LS.setDashboardTemplates(Object.values(state.entities));
+        LS.setDashboardTemplatesBunchesUpdated({
+          ...LS.getDashboardTemplatesBunchesUpdated(),
           [template.bunchId || '1']: bunchUpdatedMs
         });
       })
