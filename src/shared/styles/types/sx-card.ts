@@ -4,7 +4,7 @@ interface objStr {
 }
 
 /**
- * v.2025-05-28
+ * v.2025-07-01
  */
 export interface SxCard {
   root?        : objStr
@@ -18,4 +18,5 @@ export interface SxCard {
   row?         : objStr
   hiddenLabel? : objStr // For hiddenLabel
   popover?     : objStr // For ColorPicker
+  icon?        : objStr // For Icon
 }

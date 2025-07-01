@@ -42,8 +42,12 @@ export const makeSelectChildrenViewItems = (parentId?: ViewItemId) => createSele
 export const selectViewItemById = createSelector(selectEntities, selectSelectedId, (entities: DashboardViewEntities, selectedId: string) => entities[selectedId] || {});
 
 // Возвращает объект с изменившимися полями
-export const selectChangedViewItem = createSelector(selectModule, selectEntities, (state: StateSchemaDashboardView, entities: DashboardViewEntities) =>
-    getChanges(state.newStoredViewItem, entities?.[state.selectedId]));
+export const selectChangedViewItem = createSelector(
+  selectModule,
+  selectEntities,
+  (state: StateSchemaDashboardView, entities: DashboardViewEntities) =>
+    getChanges(state.newStoredViewItem, entities?.[state.selectedId])
+);
 
 export const selectFromGlobalKod = createSelector(selectEntities, selectSelectedId, (entities: DashboardViewEntities, selectedId: string) => getKod(entities, entities[selectedId]));
 

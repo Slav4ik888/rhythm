@@ -11,7 +11,7 @@ import { findTemplateBySelectedId } from '../find-template-by-selected-id';
  */
 export const findMainViewItemById = (
   entities   : DashboardTemplatesEntities,
-  selectedId : string
+  selectedId : string | undefined
 ): ViewItem | undefined => {
   if (! selectedId || ! entities) return undefined
 

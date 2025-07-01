@@ -6,11 +6,13 @@ import SourceIcon from '@mui/icons-material/Source';
 import { pxToRem } from 'shared/styles';
 import { brown } from '@mui/material/colors';
 import { useDashboardTemplates } from 'entities/dashboard-templates';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 
 
 
 /** Кнопка открытия окна с шаблонами */
 export const OpenTemplatesBtn: FC = memo(() => {
+  const theme = useTheme();
   const { opened, setOpened } = useDashboardTemplates();
 
   const handleClick = useCallback(() => {
@@ -25,9 +27,21 @@ export const OpenTemplatesBtn: FC = memo(() => {
       <MDButton
         variant   = 'outlined'
         color     = 'dark'
-        sx        = {{ root: { color: brown[600], fontSize: '0.7rem' } }}
-        startIcon = {<SourceIcon sx={{ color: brown[600], fontSize: pxToRem(20) }} />}
         onClick   = {handleClick}
+        sx        = {{
+          root: {
+            color    : theme.palette.template.color,
+            fontSize : '0.7rem'
+          }
+        }}
+        startIcon={
+          <SourceIcon
+            sx={{
+              color    : theme.palette.template.color,
+              fontSize : pxToRem(20)
+            }}
+          />
+        }
       >
         Templates
       </MDButton>

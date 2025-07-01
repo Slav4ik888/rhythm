@@ -11,10 +11,15 @@ export interface PartialTemplateUpdate extends PartialTemplate {
   bunchId: string
 }
 
+/** v.2025-07-01 */
 export interface UpdateTemplate {
   bunchUpdatedMs : number
   template       : Template | PartialTemplate // Add | Update
   bunchAction    : BunchAction
+  // 1) Если нужно перезаписать весь template (например есть удалённые поля,
+  // тогда в ДБ их надо обновлять без функции convertToDot)
+  // 2) Если надо обновить storedSelected, чтобы исчезла надпись про unsaved
+  fullSet?       : boolean
 }
 
 

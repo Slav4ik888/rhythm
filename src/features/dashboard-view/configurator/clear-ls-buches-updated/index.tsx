@@ -9,6 +9,7 @@ import { CodeStringify } from 'shared/ui/code-stringify';
 import RecyclingIcon from '@mui/icons-material/Recycling';
 import { useUI } from 'entities/ui';
 import { isEmpty } from 'shared/helpers/objects';
+import { getIconStyle } from 'shared/ui/configurators-components';
 
 
 
@@ -57,12 +58,10 @@ export const ClearLsBunchesUpdated: FC = memo(() => {
         }
       >
         <RecyclingIcon
-          sx={(theme) => ({
-            cursor : 'pointer',
-            color: isEmpty(bunchesUpdated)
-              ? (theme as CustomTheme).palette.text.light
-              : (theme as CustomTheme).palette.configurator.title.headerSubtitle
-          })}
+          sx={(theme) => getIconStyle(
+            theme as CustomTheme,
+            isEmpty(bunchesUpdated) ? 'empty' : 'default'
+          )}
         />
       </TooltipHTML>
     </IconButton>

@@ -21,5 +21,6 @@ export interface StateSchemaDashboardTemplates {
   entities       : DashboardTemplatesEntities
   opened         : boolean    // Открыто ли окошко с шаблонами
 
-  selectedId     : ViewItemId // Id выбранного элемента (при editMode === true)
+  selectedId     : ViewItemId | undefined // Id выбранного элемента (при editMode === true)
+  storedSelected : Template | undefined
 }

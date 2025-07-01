@@ -8,8 +8,9 @@ import { StateSchemaDashboardTemplates } from '../../slice/state-schema';
 import { ViewItemId } from 'entities/dashboard-view';
 import { getBunchesUpdated, getTemplates } from '../../services';
 import { SetOpened } from '../../slice/types';
-import { Template } from '../../types';
-import { updateTemplate, UpdateTemplate } from 'shared/api/features/dashboard-templates';
+import {
+  deleteTemplate, DeleteTemplate, updateTemplate, UpdateTemplate
+ } from 'shared/api/features/dashboard-templates';
 import { ReqGetTemplates } from '../../services/get-templates';
 
 
@@ -28,6 +29,9 @@ export const useDashboardTemplates = () => {
   const selectedId       = useSelector(s.selectSelectedId);
   const selectedTemplate = useSelector(s.selectSelectedTemplate);
   const selectedViewItem = useSelector(s.selectSelectedViewItem);
+  const isMainItem       = useSelector(s.selectIsMainItem);
+  const storedSelected   = useSelector(s.selectStoredSelected);
+  const isUnsaved        = useSelector(s.selectIsUnsaved);
 
 
   const api = useMemo(() => ({
@@ -39,9 +43,13 @@ export const useDashboardTemplates = () => {
     setOpened                : (data: SetOpened) => dispatch(a.setOpened(data)),
     setSelectedId            : (id: ViewItemId) => dispatch(a.setSelectedId(id)),
     activateMainViewItem     : () => dispatch(a.activateMainViewItem()),
+    deleteSelectedViewItem   : () => dispatch(a.deleteSelectedViewItem()),
+    cancelUpdateTemplate     : () => dispatch(a.cancelUpdateTemplate()),
+
     serviceGetBunchesUpdated : () => dispatch(getBunchesUpdated()),
     serviceGetTemplates      : (data: ReqGetTemplates) => dispatch(getTemplates(data)),
     serviceUpdateTemplate    : (data: UpdateTemplate) => dispatch(updateTemplate(data)),
+    serviceDeleteTemplate    : (data: DeleteTemplate) => dispatch(deleteTemplate(data)),
   }),
     [dispatch]
   );
@@ -58,8 +66,11 @@ export const useDashboardTemplates = () => {
 
     opened,
     selectedId,
+    storedSelected,
     selectedTemplate,
     selectedViewItem,
+    isMainItem,
+    isUnsaved,
 
     ...api
   }

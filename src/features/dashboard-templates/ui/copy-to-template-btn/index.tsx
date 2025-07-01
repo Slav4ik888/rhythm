@@ -1,6 +1,5 @@
 import { FC, memo, useCallback } from 'react';
 import { __devLog } from 'shared/lib/tests/__dev-log';
-import { brown } from '@mui/material/colors';
 import { Template, useDashboardTemplates, MAX_COUNT_BUNCH_TEMPLATES } from 'entities/dashboard-templates';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import { ActivatedCopiedType, useDashboardViewState } from 'entities/dashboard-view';
@@ -10,6 +9,7 @@ import { creatorFixDate, updateEntities } from 'entities/base';
 import { useUser } from 'entities/user';
 import { AddBtn } from 'shared/ui/configurators-components';
 import { findAvailableBunchId } from 'shared/lib/structures/bunch';
+import { useTheme } from 'app/providers/theme';
 
 
 
@@ -21,6 +21,7 @@ interface Props {
 export const CopyToTemplatesBtn: FC<Props> = memo(({ type }) => {
   const isAll = type === 'copyItemsAll';
   const { userId } = useUser();
+  const theme = useTheme();
   const { templates, setOpened, serviceUpdateTemplate } = useDashboardTemplates();
   const { selectedItem, viewItems } = useDashboardViewState();
 
@@ -70,7 +71,7 @@ export const CopyToTemplatesBtn: FC<Props> = memo(({ type }) => {
         `Добавить ${isAll ? '' : 'только'} этот элемент ${isAll ? '(со всеми вложенными элементами) ' : ''}в "Шаблоны"`
       }
       title     = {isAll ? 'All' : '1'}
-      color     = {brown[600]}
+      color     = {theme.palette.template.color}
       startIcon = {CollectionsBookmarkIcon}
       onClick   = {handleClick}
     />

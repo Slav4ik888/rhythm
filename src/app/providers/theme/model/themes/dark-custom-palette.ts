@@ -1,4 +1,4 @@
-import { orange } from '@mui/material/colors';
+import { brown, orange } from '@mui/material/colors';
 import { Color, PaletteMode } from '@mui/material/styles';
 import { CustomPalette } from '../types';
 
@@ -156,7 +156,16 @@ export const customPalette: CustomPalette = {
     },
     tabs: {
       notSelected: '#7f7f7f'
+    },
+    icon: {
+      default : '#7b7b7b',
+      hover   : '#7b7b7b',
+      empty   : '#4f4f4f',
     }
+  },
+
+  template: {
+    color: brown[600],
   },
 
   // Заголовок в ReportsLineChart

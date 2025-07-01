@@ -11,7 +11,7 @@ import { Template } from '../../types';
  */
 export const findTemplateBySelectedId = (
   entities   : DashboardTemplatesEntities,
-  selectedId : string
+  selectedId : string | undefined
 ): Template | undefined => {
   if (! selectedId || ! entities) return undefined
 

@@ -1,4 +1,4 @@
-import { amber, blue, deepPurple, green, grey, orange, pink, yellow } from '@mui/material/colors';
+import { amber, blue, brown, deepPurple, green, grey, orange, pink, yellow } from '@mui/material/colors';
 import { Color, PaletteMode } from '@mui/material/styles';
 
 
@@ -152,7 +152,16 @@ export const customPalette = {
     },
     tabs: {
       notSelected: '#5e5e5e'
+    },
+    icon: {
+      default : '#7b7b7b',
+      hover   : '#7b7b7b',
+      empty   : '#a6a6a6',
     }
+  },
+
+  template: {
+    color: brown[600],
   },
 
   editTopPanel: {

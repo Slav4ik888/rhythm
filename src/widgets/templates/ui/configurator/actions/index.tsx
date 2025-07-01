@@ -1,14 +1,17 @@
 import { FC, memo, useCallback } from 'react';
 import { Template, useDashboardTemplates } from 'entities/dashboard-templates';
-import { Condition } from 'entities/base';
 import { Actions } from 'shared/ui/buttons';
+import { useValue } from 'shared/lib/hooks';
+import { f } from 'shared/styles';
+import Box from '@mui/material/Box';
+import { DeleteBtn } from '../delete-btn';
 
 
 
 /** Конфигуратор шаблонов */
 export const TemplatesConfiguratorActions: FC = memo(() => {
   const { loading, selectedTemplate, serviceUpdateTemplate } = useDashboardTemplates();
-
+  const hookDelete = useValue();
 
   const handleCancel = useCallback(() => {
 
@@ -33,12 +36,14 @@ export const TemplatesConfiguratorActions: FC = memo(() => {
 
 
   return (
-    <Actions
-      hideIfNotChanges
-      loading   = {loading}
-      isChanges // {}  TODO: check if changes
-      onCancel  = {handleCancel}
-      onSubmit  = {handleSubmit}
-    />
+    <Box sx={{ ...f('c'), gap: 2, mt: 2 }}>
+      <Actions
+        hideIfNotChanges
+        loading   = {loading}
+        isChanges // {}  TODO: check if changes
+        onCancel  = {handleCancel}
+        onSubmit  = {handleSubmit}
+      />
+    </Box>
   )
 });

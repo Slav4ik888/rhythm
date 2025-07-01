@@ -41,7 +41,7 @@ export const ViewItemConfigurator: FC = memo(() => {
   return (
     // @ts-ignore
     <DrawerStyled anchor='right' variant='permanent' ownerState={{ editMode }}>
-      <Box sx={{ ...f('c'), height: '100%', color: 'text.main', overflowY: 'auto' }}>
+      <Box sx={{ ...f('c'), position: 'relative', height: '100%', color: 'text.main', overflowY: 'auto' }}>
         <MainHeader view onClose={handleClose} />
         <UnsavedChanges />
         {! selectedId && <Unselected />}

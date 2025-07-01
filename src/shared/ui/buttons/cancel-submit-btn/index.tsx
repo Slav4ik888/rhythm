@@ -21,7 +21,7 @@ export const CancelSubmitBtn: FC<Props> = memo(({ submitText, disabled, loading,
       {
         onCancel && <MDButton
           variant  = 'outlined'
-          color    = 'secondary'
+          color    = 'dark'
           disabled = {disabled || loading}
           children = 'Отмена'
           sx       = {{ root: { marginRight: pxToRem(16) } }}

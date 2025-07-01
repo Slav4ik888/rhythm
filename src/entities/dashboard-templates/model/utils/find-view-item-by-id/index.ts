@@ -11,7 +11,7 @@ import { DashboardTemplatesEntities } from '../../slice/state-schema'
  */
 export const findViewItemById = (
   entities: DashboardTemplatesEntities,
-  selectedId: string
+  selectedId: string | undefined
 ): ViewItem | undefined => {
   if (! selectedId || ! entities) return undefined
 

@@ -5,6 +5,7 @@ import { BoxGrow } from '../../containers';
 import { CancelSubmitBtn } from '../cancel-submit-btn';
 // import { DeleteButton } from '../delete-button';
 import { f } from 'shared/styles';
+import { DeleteButton } from '../delete-button';
 
 
 

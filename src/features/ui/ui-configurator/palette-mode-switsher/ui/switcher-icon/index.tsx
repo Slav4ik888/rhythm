@@ -6,13 +6,9 @@ import { CustomTheme, setMode, setSidebarColor, UIDispatch } from 'app/providers
 import { Tooltip } from 'shared/ui/tooltip';
 import { f } from 'shared/styles';
 import { PaletteMode } from '@mui/material/styles';
+import { getIconStyle } from 'shared/ui/configurators-components';
 
 
-
-const getIconStyle = (theme: CustomTheme) => ({
-  color  : theme.palette.configurator.title.headerSubtitle,
-  cursor : 'pointer'
-});
 
 interface Props {
   mode     : PaletteMode

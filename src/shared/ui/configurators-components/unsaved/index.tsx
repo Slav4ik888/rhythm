@@ -2,13 +2,13 @@ import { FC, memo } from 'react';
 import { ViewItem } from 'entities/dashboard-view';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { Tooltip, TooltipHTML } from 'shared/ui/tooltip';
+import { Tooltip, TooltipHTML } from '../../tooltip';
 import { isNotEmpty } from 'shared/helpers/objects';
-import { f, pxToRem } from 'shared/styles';
+import { f, pxToRem, SxCard } from 'shared/styles';
 import { Company } from 'entities/company';
-import { CircularProgress } from 'shared/ui/circular-progress';
+import { CircularProgress } from '../../circular-progress';
 import { __devLog } from 'shared/lib/tests/__dev-log';
-import { CodeStringify } from 'shared/ui/code-stringify';
+import { CodeStringify } from '../../code-stringify';
 
 
 
@@ -30,41 +30,48 @@ const sxText = {
 
 
 interface Props {
-  loading         : boolean
-  changedCompany  : Partial<Company>
-  changedViewItem : Partial<ViewItem>
-  onClick         : () => void;
-  onConsole       : () => void;
-  onCancel        : () => void;
+  loading          : boolean
+  changedCompany?  : Partial<Company>
+  changedViewItem? : Partial<ViewItem>
+  sx?              : SxCard
+  onClick          : () => void
+  onConsole?       : () => void
+  onCancel         : () => void
 }
 
-export const UnsavedChangesComponent: FC<Props> = memo(({ loading, changedCompany, changedViewItem,
-  onCancel, onConsole, onClick }) => (
+export const UnsavedChangesComponent: FC<Props> = memo(({
+  loading, changedCompany, changedViewItem, sx, onCancel, onConsole, onClick
+}) => (
   <Box
     sx={{
       ...f('-c'),
-      position     : 'absolute',
-      top          : pxToRem(64),
-      right        : pxToRem(24),
-      height       : pxToRem(20),
-      zIndex       : 100,
-      opacity      : loading ? 0.5 : 1
+      position : 'absolute',
+      top      : pxToRem(42),
+      right    : pxToRem(0),
+      height   : pxToRem(20),
+      zIndex   : 100,
+      opacity  : loading ? 0.5 : 1,
+      ...sx?.root
     }}
   >
-    <Box sx={sxBtn} onClick={onConsole}>
-      <TooltipHTML title={<>
-          {isNotEmpty(changedCompany) && <>
-            <p>changedCompany:</p>
-            <CodeStringify obj={changedCompany} />
-          </>}
-          {isNotEmpty(changedViewItem) && <>
-            <p>changedViewItem:</p>
-            <CodeStringify obj={changedViewItem} />
-          </>}
-        </>}>
-        <Typography sx={sxText}>k</Typography>
-      </TooltipHTML>
-    </Box>
+    {
+      onConsole && (
+        <Box sx={sxBtn} onClick={onConsole}>
+          <TooltipHTML title={<>
+              {isNotEmpty(changedCompany) && <>
+                <p>changedCompany:</p>
+                <CodeStringify obj={changedCompany} />
+              </>}
+              {isNotEmpty(changedViewItem) && <>
+                <p>changedViewItem:</p>
+                <CodeStringify obj={changedViewItem} />
+              </>}
+            </>}>
+            <Typography sx={sxText}>k</Typography>
+          </TooltipHTML>
+        </Box>
+      )
+    }
 
     <Box sx={sxBtn} onClick={onCancel}>
       <Tooltip title='Отменить внесённые изменения'>

@@ -3,28 +3,32 @@ import { Errors } from 'shared/lib/validators';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { StateSchemaDashboardTemplates } from './state-schema';
 import { __devLog } from 'shared/lib/tests/__dev-log';
-import { ViewItemId } from 'entities/dashboard-view';
+import { ViewItem, ViewItemId } from 'entities/dashboard-view';
 import { ResGetTemplates, getTemplates } from '../services';
 import { updateEntities } from 'entities/base';
 import { SetOpened } from './types';
-import { Template } from '../types';
-import { UpdateTemplate, updateTemplate } from 'shared/api/features/dashboard-templates';
+import {
+  deleteTemplate, DeleteTemplate, UpdateTemplate, updateTemplate
+} from 'shared/api/features/dashboard-templates';
 import { LS } from 'shared/lib/local-storage';
 import { BunchesUpdated } from 'shared/lib/structures/bunch';
 import { getBunchesUpdated } from '../services/get-bunches-updated';
-import { mergeById } from 'shared/helpers/arrays';
-import { findMainViewItemById } from '../utils';
+import { getArrWithoutArr, mergeById } from 'shared/helpers/arrays';
+import { findMainViewItemById, findTemplateBySelectedId } from '../utils';
+import { getAllChildren } from 'shared/lib/structures/view-items';
+import { Template } from '../types';
 
 
 
 const initialState: StateSchemaDashboardTemplates = {
-  loading               : false,
-  errors                : {},
-  _isMounted            : false,
-  bunchesUpdated        : undefined,
-  entities              : {},
-  opened                : false,
-  selectedId            : '',
+  loading        : false,
+  errors         : {},
+  _isMounted     : false,
+  bunchesUpdated : undefined,
+  entities       : {},
+  opened         : false,
+  selectedId     : undefined,
+  storedSelected : undefined,
 };
 
 
@@ -55,14 +59,39 @@ export const slice = createSlice({
       state.selectedId = payload.selectedId || '';
     },
     setSelectedId: (state, { payload }: PayloadAction<ViewItemId>) => {
-      state.selectedId = payload;
+      state.selectedId     = payload;
+      state.storedSelected = findTemplateBySelectedId(state.entities, payload)
     },
     activateMainViewItem:  (state) => {
-      const mainViewItem = findMainViewItemById(state.entities, state.selectedId);
-      if (mainViewItem) {
-        state.selectedId = mainViewItem.id;
+      state.selectedId = findMainViewItemById(state.entities, state.selectedId)?.id;
+    },
+    deleteSelectedViewItem: (state) => {
+      const { selectedId } = state;
+      const mainViewItem = findMainViewItemById(state.entities, selectedId);
+      const templateId = mainViewItem?.parentId;
+
+      if (templateId) {
+        const viewItems = Object.values(state.entities[templateId].viewItems);
+        const children = getAllChildren(viewItems, selectedId);
+
+        state.selectedId = findMainViewItemById(state.entities, selectedId)?.id;
+
+        state.entities[templateId] = {
+          ...state.entities[templateId],
+          viewItems: getArrWithoutArr(viewItems, children).reduce((acc, item) => {
+            acc[item.id] = item;
+            return acc;
+          }, {} as Record<string, ViewItem>),
+        };
       }
     },
+    cancelUpdateTemplate: (state) => {
+      if (state.storedSelected?.id) {
+        state.entities[state.storedSelected.id] = {
+          ...state.storedSelected
+        };
+      }
+    }
   },
 
 
@@ -110,7 +139,11 @@ export const slice = createSlice({
         state.errors  = {};
       })
       .addCase(updateTemplate.fulfilled, (state, { payload }: PayloadAction<UpdateTemplate>) => {
-        const { template, bunchUpdatedMs } = payload;
+        const { template, bunchUpdatedMs, fullSet } = payload;
+
+        if (fullSet) {
+          state.storedSelected = template as Template;
+        }
 
         state.entities = updateEntities(state.entities, [template]);
         state.loading  = false;
@@ -123,6 +156,30 @@ export const slice = createSlice({
         });
       })
       .addCase(updateTemplate.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
+        state.loading = false;
+      })
+    // DELETE TEMPLATE
+    builder
+      .addCase(deleteTemplate.pending, (state) => {
+        state.loading = true;
+        state.errors  = {};
+      })
+      .addCase(deleteTemplate.fulfilled, (state, { payload }: PayloadAction<DeleteTemplate>) => {
+        const { templateId, bunchUpdatedMs, bunchId } = payload;
+
+        delete state.entities[templateId];
+
+        state.loading  = false;
+        state.errors   = {};
+
+        LS.setDashboardTemplates(Object.values(state.entities));
+        LS.setDashboardTemplatesBunchesUpdated({
+          ...LS.getDashboardTemplatesBunchesUpdated(),
+          [bunchId]: bunchUpdatedMs
+        });
+      })
+      .addCase(deleteTemplate.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       })

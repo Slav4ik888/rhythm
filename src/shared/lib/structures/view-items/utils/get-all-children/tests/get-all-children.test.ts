@@ -1,10 +1,9 @@
 import { ViewItem } from 'entities/dashboard-view';
-import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view';
-import { getAllChildrenIdWithBunch } from '..';
+import { getAllChildren } from '..';
 
 
 
-describe('getAllChildrenIdWithBunch', () => {
+describe('getAllChildren', () => {
   test('Data is valid', () => {
     const items = [
       { id: '1',         bunchId: 'bunch1', parentId: 'no-parentId' },
@@ -29,20 +28,19 @@ describe('getAllChildrenIdWithBunch', () => {
       { id: '2-2-3',     bunchId: 'bunch1', parentId: '' },
      ] as ViewItem[];
 
-    const resultArray: PartialViewItemUpdate[] = [];
-    getAllChildrenIdWithBunch(items, '1-2', resultArray);
+    const resultArray = getAllChildren(items, '1-2');
 
     expect(resultArray).toEqual([
-      { id: '1-2', bunchId: 'bunch1' },
-      { id: '1-2-1', bunchId: 'bunch1' },
-      { id: '1-2-1-1', bunchId: 'bunch1' },
-      { id: '1-2-1-2', bunchId: 'bunch222' },
-      { id: '1-2-1-3', bunchId: 'bunch1' },
-      { id: '1-2-1-3-1', bunchId: 'bunch1' },
-      { id: '1-2-1-3-2', bunchId: 'bunch333' },
-      { id: '1-2-1-3-3', bunchId: 'bunch1' },
-      { id: '1-2-2', bunchId: 'bunch1' },
-      { id: '1-2-3', bunchId: 'bunch1' },
+      { id: '1-2', bunchId: 'bunch1', parentId: '1' },
+      { id: '1-2-1', bunchId: 'bunch1', parentId: '1-2' },
+      { id: '1-2-1-1', bunchId: 'bunch1', parentId: '1-2-1' },
+      { id: '1-2-1-2', bunchId: 'bunch222', parentId: '1-2-1' },
+      { id: '1-2-1-3', bunchId: 'bunch1', parentId: '1-2-1' },
+      { id: '1-2-1-3-1', bunchId: 'bunch1', parentId: '1-2-1-3' },
+      { id: '1-2-1-3-2', bunchId: 'bunch333', parentId: '1-2-1-3' },
+      { id: '1-2-1-3-3', bunchId: 'bunch1', parentId: '1-2-1-3' },
+      { id: '1-2-2', bunchId: 'bunch1', parentId: '1-2' },
+      { id: '1-2-3', bunchId: 'bunch1', parentId: '1-2' },
     ]);
   });
 
@@ -56,33 +54,30 @@ describe('getAllChildrenIdWithBunch', () => {
   ] as ViewItem[];
 
   it('должна возвращать текущий элемент и всех его детей с bunchId', () => {
-    const result: PartialViewItemUpdate[] = [];
-    getAllChildrenIdWithBunch(mockItems, '1', result);
+    const result = getAllChildren(mockItems, '1');
 
     expect(result).toEqual([
-      { id: '1', bunchId: 'bunchA' },
-      { id: '2', bunchId: 'bunchA' },
-      { id: '4', bunchId: 'bunchA' },
-      { id: '3', bunchId: 'bunchB' },
-      { id: '5', bunchId: 'bunchB' },
+      { id: '1', bunchId: 'bunchA', parentId: null },
+      { id: '2', bunchId: 'bunchA', parentId: '1' },
+      { id: '4', bunchId: 'bunchA', parentId: '2' },
+      { id: '3', bunchId: 'bunchB', parentId: '1' },
+      { id: '5', bunchId: 'bunchB', parentId: '3' },
     ]);
   });
 
   it('должна возвращать только сам элемент, если у него нет детей', () => {
-    const result: PartialViewItemUpdate[] = [];
-    getAllChildrenIdWithBunch(mockItems, '6', result);
+    const result = getAllChildren(mockItems, '6');
 
     expect(result).toEqual([
-      { id: '6', bunchId: 'bunchC' },
+      { id: '6', bunchId: 'bunchC', parentId: null },
     ]);
   });
 
   it('должна возвращать пустой массив, если элемент не найден', () => {
-    const result: PartialViewItemUpdate[] = [];
-    getAllChildrenIdWithBunch(mockItems, 'non-existent', result);
+    const result = getAllChildren(mockItems, 'non-existent');
 
     expect(result).toEqual([]);
   });
 });
 
-// npm run test:unit get-all-children-ids-with-bunch.test.ts
+// npm run test:unit get-all-children.test.ts

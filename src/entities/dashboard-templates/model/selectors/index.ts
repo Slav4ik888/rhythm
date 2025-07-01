@@ -3,6 +3,9 @@ import { StateSchema } from 'app/providers/store';
 import { DashboardTemplatesEntities, StateSchemaDashboardTemplates } from '../slice/state-schema';
 import { createSelector } from '@reduxjs/toolkit';
 import { findTemplateBySelectedId, findViewItemById } from '../utils';
+import { Template } from '../types';
+import { ViewItem } from 'entities/dashboard-view';
+import { getChanges, isChanges, isNotEmpty } from 'shared/helpers/objects';
 
 
 
@@ -19,17 +22,51 @@ export const selectTemplates        = createSelector(selectEntities, (entities: 
 
 export const selectOpened           = createSelector(selectModule, (state: StateSchemaDashboardTemplates) => state.opened);
 export const selectSelectedId       = createSelector(selectModule, (state: StateSchemaDashboardTemplates) => state.selectedId);
+export const selectStoredSelected   = createSelector(selectModule, (state: StateSchemaDashboardTemplates) => state.storedSelected);
+
 export const selectSelectedViewItem = createSelector(
   selectEntities,
   selectSelectedId,
-  (entities: DashboardTemplatesEntities, selectedId: string) => findViewItemById(entities, selectedId)
+  (entities: DashboardTemplatesEntities, selectedId: string | undefined) => findViewItemById(
+    entities, selectedId
+  )
 );
 
 export const selectSelectedTemplate = createSelector(
-    selectEntities,
-    selectSelectedId,
-    (entities: DashboardTemplatesEntities, selectedId: string) => findTemplateBySelectedId(entities, selectedId)
+  selectEntities,
+  selectSelectedId,
+  (entities: DashboardTemplatesEntities, selectedId: string | undefined) => findTemplateBySelectedId(
+    entities, selectedId
+  )
 );
 
-export const selectViewItems        = createSelector(selectEntities,
-  (entities: DashboardTemplatesEntities) => Object.values(entities));
+
+export const selectIsMainItem = createSelector(
+  selectSelectedTemplate as unknown as (state: unknown) => Template | undefined,
+  selectSelectedViewItem as unknown as (state: unknown) => ViewItem | undefined,
+  (template: Template | undefined, selected: ViewItem | undefined): boolean => {
+    if (! template || ! selected) return false;
+    return selected.parentId === template.id;
+  }
+);
+
+export const selectViewItems = createSelector(
+  selectEntities,
+  (entities: DashboardTemplatesEntities) => Object.values(entities)
+);
+
+// export const selectChangedTemplate = createSelector(
+//   selectEntities,
+//   selectStoredSelected,
+//   (entities: DashboardTemplatesEntities, storedSelected: Template | undefined) => {
+//     return getChanges(storedSelected, entities[storedSelected?.id || ''])
+//   }
+// );
+
+export const selectIsUnsaved = createSelector(
+  selectEntities,
+  selectStoredSelected,
+  (entities: DashboardTemplatesEntities, storedSelected: Template | undefined) => {
+    return isChanges(storedSelected, entities[storedSelected?.id || ''])
+  },
+);

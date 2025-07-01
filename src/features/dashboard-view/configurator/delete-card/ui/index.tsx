@@ -3,8 +3,7 @@ import Box from '@mui/material/Box';
 import { useCompany } from 'entities/company';
 import { DeleteButton } from 'shared/ui/buttons/delete-button';
 import { f } from 'shared/styles';
-import { getAllChildrenIdWithBunch } from '../model/utils/get-all-children-ids-with-bunch';
-import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view';
+import { getAllChildren } from 'shared/lib/structures/view-items';
 import { useDashboardViewServices } from '../../../model/hooks';
 
 
@@ -15,13 +14,10 @@ export const DeleteItemContainer: FC = memo(() => {
 
 
   const handleDel = useCallback(() => {
-    const deleteItems: PartialViewItemUpdate[] = []; // Ids всех вложенных элементов
-    getAllChildrenIdWithBunch(viewItems, selectedId, deleteItems);
-
     serviceDeleteViews({
       companyId      : paramsCompanyId,
       bunchUpdatedMs : Date.now(),
-      viewItems      : deleteItems
+      viewItems      : getAllChildren(viewItems, selectedId)
     });
   },
     [selectedId, viewItems, paramsCompanyId, serviceDeleteViews]
