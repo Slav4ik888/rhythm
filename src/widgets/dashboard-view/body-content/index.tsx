@@ -142,7 +142,6 @@ export const DashboardBodyContent = memo(() => {
     // Если активирован выбранный элемент для КОПИРОВАНИЯ то его вставляем в выбранный элемент
     // НЕ активируя selectedId
     else if (activatedCopied?.type === 'copyItemsAll' || activatedCopied?.type === 'copyItemFirstOnly') {
-    // (v1) if (selectedId === id) return // Нажали на этот же элемент
       if (selectedId === id && activatedCopied?.type === 'copyItemsAll') return // Копировать всё в этот же элемент нельзя
       if (entities[id]?.type !== 'box' && id !== NO_PARENT_ID) return // Перемещать можно только в Box или корневой элемент
 

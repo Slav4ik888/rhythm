@@ -8,7 +8,7 @@ import { BunchesUpdated } from 'shared/lib/structures/bunch';
 export const getBunchesTimestamps = (items: PartialViewItemUpdate[], bunchUpdatedMs: number): BunchesUpdated => {
   const bunchMap: BunchesUpdated = {};
 
-  items.forEach(item => {
+  items?.forEach(item => {
     const { bunchId } = item;
     if (! bunchMap[bunchId]) {
       bunchMap[bunchId] = bunchUpdatedMs;

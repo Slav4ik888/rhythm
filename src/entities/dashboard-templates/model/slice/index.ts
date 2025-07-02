@@ -6,7 +6,6 @@ import { __devLog } from 'shared/lib/tests/__dev-log';
 import { ViewItem, ViewItemId } from 'entities/dashboard-view';
 import { ResGetTemplates, getTemplates } from '../services';
 import { updateEntities } from 'entities/base';
-import { SetOpened } from './types';
 import {
   deleteTemplate, DeleteTemplate, UpdateTemplate, updateTemplate
 } from 'shared/api/features/dashboard-templates';
@@ -54,8 +53,8 @@ export const slice = createSlice({
     setDashboardTemplatesFromCache: (state) => {
       state.entities = updateEntities({}, LS.getDashboardTemplates());
     },
-    setOpened: (state, { payload }: PayloadAction<SetOpened>) => {
-      state.opened = payload.opened;
+    setOpened: (state, { payload }: PayloadAction<boolean>) => {
+      state.opened = payload;
     },
     setSelectedId: (state, { payload }: PayloadAction<ViewItemId>) => {
       const isThisTemplate = isThisTemplateFunc(state.entities, state.selectedId, payload);

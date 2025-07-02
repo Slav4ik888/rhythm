@@ -77,6 +77,7 @@ interface Props {
 
 /** Item wrapper */
 export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
+  // console.log('___ItemWrapper');
   const { editMode, selectedItem, entities, bright, activatedCopied, activatedMovementId } = useDashboardViewState();
 
   const sx = useMemo(() => getStyles(item, editMode, entities, selectedItem, activatedCopied, activatedMovementId),

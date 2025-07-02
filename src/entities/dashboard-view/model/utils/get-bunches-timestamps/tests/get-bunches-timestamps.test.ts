@@ -6,6 +6,12 @@ import { getBunchesTimestamps } from '..';
 describe('getBunchesTimestamps', () => {
   const mockTimestamp = 1234567890;
 
+  it('должна возвращать пустой объект, если items undefined', () => {
+    // @ts-ignore
+    const result = getBunchesTimestamps(undefined, mockTimestamp);
+    expect(result).toEqual({});
+  });
+
   it('должна возвращать пустой объект, если items пуст', () => {
     const result = getBunchesTimestamps([], mockTimestamp);
     expect(result).toEqual({});

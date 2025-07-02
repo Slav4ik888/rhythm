@@ -1,1 +1,0 @@
-export { DashboardTemplates } from './ui'

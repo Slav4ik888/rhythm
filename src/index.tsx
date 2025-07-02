@@ -31,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "continuos TemplatesContainer added isThisTemplateFunc" && git push -u origin main
+// git add . && git commit -m "continuos TemplatesContainer added addToTemplate" && git push -u origin main

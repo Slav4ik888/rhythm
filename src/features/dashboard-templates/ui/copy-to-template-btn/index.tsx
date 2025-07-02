@@ -2,7 +2,7 @@ import { FC, memo, useCallback } from 'react';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { Template, useDashboardTemplates, MAX_COUNT_BUNCH_TEMPLATES } from 'entities/dashboard-templates';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
-import { ActivatedCopiedType, useDashboardViewState } from 'entities/dashboard-view';
+import { ActivatedCopiedType, createNextOrder, useDashboardViewState } from 'entities/dashboard-view';
 import { getCopyViewItem } from 'features/dashboard-view';
 import { v4 as uuidv4 } from 'uuid';
 import { creatorFixDate, updateEntities } from 'entities/base';
@@ -46,7 +46,7 @@ export const CopyToTemplatesBtn: FC<Props> = memo(({ type }) => {
       id         : templateId,
       bunchId,
       type       : selectedItem.type,
-      order      : 1000, // TODO: в конец его типа (type)
+      order      : createNextOrder(templates),
       viewItems  : updateEntities({}, copiedWithBunchId),
       createdAt  : creatorFixDate(userId),
       lastChange : creatorFixDate(userId)
@@ -58,8 +58,7 @@ export const CopyToTemplatesBtn: FC<Props> = memo(({ type }) => {
       template
     });
 
-
-    setOpened({ opened: true, selectedId: templateId }); // Чтобы он сразу открылся в окне
+    setOpened(true);
   },
     [userId, type, templates, selectedItem, viewItems, setOpened, serviceUpdateTemplate]
   );

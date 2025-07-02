@@ -15,6 +15,7 @@ interface Props {
 }
 
 export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
+  // console.log('___ItemWrapperTooltip');
   const { paramsCustomSettings } = useCompany();
   const { startEntities } = useDashboardData();
   const { entities: entitiesView } = useDashboardViewState();

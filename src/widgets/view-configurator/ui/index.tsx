@@ -11,7 +11,7 @@ import { Unselected } from './unselected';
 import { useUI } from 'entities/ui';
 import { f } from 'shared/styles';
 import { ViewItemConfiguratorTabs } from './tabs';
-import { ClearLsBunchesUpdated } from 'features/dashboard-view/configurator';
+import { ClearLsBunchesUpdated } from 'features/dashboard-view/ui/configurator';
 
 
 

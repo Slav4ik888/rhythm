@@ -7,7 +7,6 @@ import { Errors } from 'shared/lib/validators';
 import { StateSchemaDashboardTemplates } from '../../slice/state-schema';
 import { ViewItemId } from 'entities/dashboard-view';
 import { getBunchesUpdated, getTemplates } from '../../services';
-import { SetOpened } from '../../slice/types';
 import {
   deleteTemplate, DeleteTemplate, updateTemplate, UpdateTemplate
  } from 'shared/api/features/dashboard-templates';
@@ -40,7 +39,7 @@ export const useDashboardTemplates = () => {
 
     setInitial               : (state: StateSchemaDashboardTemplates) => dispatch(a.setInitial(state)),
     setIsMounted             : () => dispatch(a.setIsMounted()),
-    setOpened                : (data: SetOpened) => dispatch(a.setOpened(data)),
+    setOpened                : (flag: boolean) => dispatch(a.setOpened(flag)),
     setSelectedId            : (id: ViewItemId) => dispatch(a.setSelectedId(id)),
     activateMainViewItem     : () => dispatch(a.activateMainViewItem()),
     deleteSelectedViewItem   : () => dispatch(a.deleteSelectedViewItem()),

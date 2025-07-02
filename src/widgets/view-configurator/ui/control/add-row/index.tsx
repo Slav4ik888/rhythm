@@ -5,7 +5,7 @@ import { AddNewViewItem } from 'features/dashboard-view';
 import { f, pxToRem } from 'shared/styles';
 import { AddViewItemElementBtns } from './element-btns';
 import { AddViewItemIndicatorsBtns } from './indicators-btns';
-import { OpenTemplatesBtn } from 'features/dashboard-templates';
+import { OpenTemplatesBtn } from 'widgets/dashboard-templates';
 
 
 
