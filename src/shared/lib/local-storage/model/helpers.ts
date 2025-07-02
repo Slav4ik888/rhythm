@@ -55,10 +55,11 @@ export const setDashboardTemplates = (data: Template[]) => setStorageData('Dashb
 export const getDashboardTemplates = () => getStorageData<Template[]>('DashboardTemplates') || [];
 
 /** Dashboard-templates - timestamp of last updated */
-export const setDashboardTemplatesBunchesUpdated = (data: BunchesUpdated) => setStorageData(
-  'DashboardTemplatesBunchesUpdated',
-  data
-);
+export const setDashboardTemplatesBunchesUpdated = (data: BunchesUpdated) => {
+  setStorageData('DashboardTemplatesBunchesUpdated', data);
+  // Триггерим событие для других вкладок
+  window.dispatchEvent(new Event('storage'));
+}
 export const getDashboardTemplatesBunchesUpdated = () => getStorageData<BunchesUpdated>(
   'DashboardTemplatesBunchesUpdated'
 ) || {};

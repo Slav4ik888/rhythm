@@ -14,7 +14,12 @@ interface Props {
 
 export const RowWrapperTitle: FC<Props> = memo(({ children, title, toolTitle, sx, boldTitle = true }) => (
   <RowWrapper sx={sx}>
-    <ConfiguratorTextTitle bold={boldTitle} title={title} toolTitle={toolTitle} />
+    <ConfiguratorTextTitle
+      bold      = {boldTitle}
+      title     = {title}
+      toolTitle = {toolTitle}
+      sx        = {sx}
+    />
     {children}
   </RowWrapper>
 ));

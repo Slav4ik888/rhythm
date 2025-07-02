@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, FC, memo } from 'react';
 import { UseGroup, useValue } from 'shared/lib/hooks';
 import { ConfirmType, DialogConfirm } from '../../dialogs';
 import { MDButton } from '../../mui-design-components';
@@ -13,33 +13,48 @@ import IconButton from '@mui/material/IconButton';
 
 
 type Props = {
-  sx?        : SxCard
-  toolTitle? : string
-  icon?      : boolean
-  disabled?  : boolean | undefined
-  hookOpen?  : UseGroup<unknown>
-  onDel?     : () => void
-  onClose?   : () => void
+  sx?                : SxCard
+  toolTitle?         : string
+  toolTitleDisabled? : string
+  icon?              : boolean
+  disabled?          : boolean | undefined
+  hookOpen?          : UseGroup<unknown>
+  onDel?             : () => void
+  onClose?           : () => void
 }
 
 
-/** v.2025-05-01 */
-export const DeleteButton: React.FC<Props> = ({
-  sx, disabled, toolTitle = '', icon, hookOpen, onClose, onDel
+/** v.2025-07-02 */
+export const DeleteButton: FC<Props> = memo(({
+  sx, disabled, toolTitle = '', toolTitleDisabled = '', icon, hookOpen, onClose, onDel
 }) => {
   const confirm = useValue();
 
 
-  const handlerDel = () => {
+  const handlerDel = useCallback(() => {
+    if (disabled) return
+
     confirm.setClose();
     hookOpen && hookOpen.setClose();
     onClose && onClose();
     onDel && onDel();
-  };
+  },
+    [disabled, hookOpen, confirm, onClose, onDel]
+  );
 
-  const handlerCancel = () => {
+
+  const handlerCancel = useCallback(() => {
     confirm.setClose();
-  };
+  }, [confirm]);
+
+
+  const handlerClick = useCallback(() => {
+    if (disabled) return
+
+    confirm.setOpen();
+  },
+    [confirm, disabled]
+  );
 
 
   if (! onDel) return null
@@ -47,14 +62,14 @@ export const DeleteButton: React.FC<Props> = ({
 
   return (
     <>
-      <Tooltip title={toolTitle}>
+      <Tooltip title={disabled ? toolTitleDisabled : toolTitle}>
         {
           icon
             ? (
               <IconButton
-                sx      = {{ cursor: 'pointer' }}
+                sx      = {{ cursor: disabled ? 'default' : 'pointer' }}
                 color   = 'inherit'
-                onClick = {() => confirm.setOpen()}
+                onClick = {handlerClick}
               >
                 <DeleteOutlineIcon
                   sx={(theme) => ({
@@ -72,7 +87,7 @@ export const DeleteButton: React.FC<Props> = ({
                 disabled  = {disabled}
                 startIcon = {<DeleteIcon />}
                 sx        = {{ root: { color: 'red', ...sx?.root } }}
-                onClick   = {confirm.setOpen}
+                onClick   = {handlerClick}
               />
             )
         }
@@ -87,4 +102,4 @@ export const DeleteButton: React.FC<Props> = ({
       />
     </>
   );
-};
+});

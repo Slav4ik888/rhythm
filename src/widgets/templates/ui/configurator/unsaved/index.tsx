@@ -1,17 +1,14 @@
-import { FC, memo, useCallback, useMemo } from 'react';
-import { Template, useDashboardTemplates } from 'entities/dashboard-templates';
-import { DeleteButton } from 'shared/ui/buttons/delete-button';
-import { useTheme, CustomTheme } from 'app/providers/theme';
+import { FC, memo, useCallback } from 'react';
+import { useDashboardTemplates } from 'entities/dashboard-templates';
 import { UnsavedChangesComponent } from 'shared/ui/configurators-components';
 import { __devLog } from 'shared/lib/tests/__dev-log';
-import { isNotEmpty } from 'shared/helpers/objects';
 import { pxToRem } from 'shared/styles';
 
 
 
 export const UnsavedChanges: FC = memo(() => {
   const {
-    loading, selectedViewItem, selectedTemplate, isUnsaved, cancelUpdateTemplate, serviceUpdateTemplate
+    loading, selectedTemplate, isUnsaved, cancelUpdateTemplate, serviceUpdateTemplate
   } = useDashboardTemplates();
 
 
@@ -29,7 +26,9 @@ export const UnsavedChanges: FC = memo(() => {
       bunchAction    : 'update',
       fullSet        : true
     });
-  }, [selectedTemplate, serviceUpdateTemplate]);
+  },
+    [selectedTemplate, serviceUpdateTemplate]
+  );
 
 
 

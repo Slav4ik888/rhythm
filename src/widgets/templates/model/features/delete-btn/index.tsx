@@ -17,6 +17,7 @@ const useStyles = (theme: CustomTheme, type: TypeType) => {
   }
 };
 
+
 interface Props {
   type: TypeType
 }
@@ -25,16 +26,9 @@ interface Props {
 export const DeleteBtn: FC<Props> = memo(({ type }) => {
   const sx = useStyles(useTheme(), type);
   const {
-    isMainItem, selectedViewItem, selectedTemplate, deleteSelectedViewItem, serviceDeleteTemplate
+    isMainItem, selectedTemplate, deleteSelectedViewItem, serviceDeleteTemplate
   } = useDashboardTemplates();
 
-  if (type !== 'template') {
-    console.log('isMainItem: ', isMainItem);
-  }
-
-  const handleCancel = useCallback(() => {
-
-  }, []);
 
   const handleDelete = useCallback(() => {
     if (type === 'template' && selectedTemplate?.id) {
@@ -52,14 +46,14 @@ export const DeleteBtn: FC<Props> = memo(({ type }) => {
   );
 
 
-
   return (
     <DeleteButton
       icon
-      toolTitle = {`Удалить ${type === 'template' ? 'весь шаблон' : 'этот элемент'}`}
-      disabled  = {type === 'viewItem' && isMainItem}
-      sx        = {sx}
-      onDel     = {handleDelete}
+      toolTitle         = {`Удалить ${type === 'template' ? 'весь шаблон' : 'этот элемент'}`}
+      disabled          = {type === 'viewItem' && isMainItem}
+      toolTitleDisabled = 'Элемент является корневым, можно удалить только весь шаблон'
+      sx                = {sx}
+      onDel             = {handleDelete}
     />
   )
 });

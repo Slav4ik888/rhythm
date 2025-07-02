@@ -31,7 +31,7 @@ export const Actions: FC<Props> = ({ loading, hideIfNotChanges, isChanges, submi
   if (hideIfNotChanges && ! isChanges) return null;
 
   return (
-    <Box sx={{ ...f('c-fe'), mt: 4, py: 2 }}>
+    <Box sx={{ ...f('c-fe'), py: 2 }}>
       <Divider sx={{ width: '100%', mb: 4 }} />
       <Box sx={{ ...f('--sb'), width: '100%' }}>
 

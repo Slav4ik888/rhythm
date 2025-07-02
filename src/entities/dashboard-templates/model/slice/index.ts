@@ -55,12 +55,18 @@ export const slice = createSlice({
       state.entities = updateEntities({}, LS.getDashboardTemplates());
     },
     setOpened: (state, { payload }: PayloadAction<SetOpened>) => {
-      state.opened     = payload.opened;
-      state.selectedId = payload.selectedId || '';
+      state.opened = payload.opened;
     },
     setSelectedId: (state, { payload }: PayloadAction<ViewItemId>) => {
-      state.selectedId     = payload;
-      state.storedSelected = findTemplateBySelectedId(state.entities, payload)
+      const currentTemplateId = findTemplateBySelectedId(state.entities, state.selectedId)?.id;
+      const newTemplateId     = findTemplateBySelectedId(state.entities, payload)?.id;
+
+      state.selectedId = payload;
+
+      // Обновляем storedSelected только если изменился Template
+      if (currentTemplateId !== newTemplateId) {
+        state.storedSelected = findTemplateBySelectedId(state.entities, payload)
+      }
     },
     activateMainViewItem:  (state) => {
       state.selectedId = findMainViewItemById(state.entities, state.selectedId)?.id;
@@ -170,8 +176,10 @@ export const slice = createSlice({
 
         delete state.entities[templateId];
 
-        state.loading  = false;
-        state.errors   = {};
+        state.selectedId     = undefined;
+        state.storedSelected = undefined;
+        state.loading        = false;
+        state.errors         = {};
 
         LS.setDashboardTemplates(Object.values(state.entities));
         LS.setDashboardTemplatesBunchesUpdated({

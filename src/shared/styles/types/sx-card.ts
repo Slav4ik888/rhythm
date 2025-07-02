@@ -4,10 +4,11 @@ interface objStr {
 }
 
 /**
- * v.2025-07-01
+ * v.2025-07-02
  */
 export interface SxCard {
   root?        : objStr
+  title?       : objStr // For Title
   label?       : objStr // For Label
   children?    : objStr
   content?     : objStr

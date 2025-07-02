@@ -5,7 +5,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import { findTemplateBySelectedId, findViewItemById } from '../utils';
 import { Template } from '../types';
 import { ViewItem } from 'entities/dashboard-view';
-import { getChanges, isChanges, isNotEmpty } from 'shared/helpers/objects';
+import { isChanges } from 'shared/helpers/objects';
 
 
 
