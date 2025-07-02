@@ -1,20 +1,25 @@
 import { FC, memo, useCallback } from 'react';
-import { useDashboardTemplates } from 'entities/dashboard-templates';
+import { useDashboardTemplates, isThisTemplate as isThisTemplateFunc } from 'entities/dashboard-templates';
 import Box from '@mui/material/Box';
 import { TemplateItemContainer } from './template-item';
 import { f } from 'shared/styles';
 import { CustomTheme } from 'app/providers/theme';
+import { useUI } from 'entities/ui';
 
 
 
 /** Контейнер с шаблонами */
 export const TemplatesContainer: FC = memo(() => {
-  const { templates, setSelectedId } = useDashboardTemplates();
+  const { setWarningMessage } = useUI();
+  const { templates, entities, isUnsaved, selectedId, setSelectedId } = useDashboardTemplates();
 
 
   const handleClick = useCallback((id: string) => {
+    if (isUnsaved && !isThisTemplateFunc(entities, selectedId, id)) {
+      return setWarningMessage('Для выбора другого элемента, сохраните или отмените изменения');
+    }
     setSelectedId(id);
-  }, [setSelectedId]);
+  }, [isUnsaved, entities, selectedId, setSelectedId, setWarningMessage]);
 
 
   return (

@@ -14,7 +14,7 @@ import { LS } from 'shared/lib/local-storage';
 import { BunchesUpdated } from 'shared/lib/structures/bunch';
 import { getBunchesUpdated } from '../services/get-bunches-updated';
 import { getArrWithoutArr, mergeById } from 'shared/helpers/arrays';
-import { findMainViewItemById, findTemplateBySelectedId } from '../utils';
+import { findMainViewItemById, findTemplateBySelectedId, isThisTemplate as isThisTemplateFunc } from '../utils';
 import { getAllChildren } from 'shared/lib/structures/view-items';
 import { Template } from '../types';
 
@@ -58,13 +58,11 @@ export const slice = createSlice({
       state.opened = payload.opened;
     },
     setSelectedId: (state, { payload }: PayloadAction<ViewItemId>) => {
-      const currentTemplateId = findTemplateBySelectedId(state.entities, state.selectedId)?.id;
-      const newTemplateId     = findTemplateBySelectedId(state.entities, payload)?.id;
-
+      const isThisTemplate = isThisTemplateFunc(state.entities, state.selectedId, payload);
       state.selectedId = payload;
 
       // Обновляем storedSelected только если изменился Template
-      if (currentTemplateId !== newTemplateId) {
+      if (! isThisTemplate) {
         state.storedSelected = findTemplateBySelectedId(state.entities, payload)
       }
     },
