@@ -10,22 +10,50 @@ import { ItemDigitIndicator } from './digit-indicator';
 
 
 interface Props {
-  parents  : ParentsViewItems
-  item     : ViewItem
-  onSelect : (id: ViewItemId) => void
+  parents     : ParentsViewItems
+  item        : ViewItem
+  isTemplate? : boolean // если рендерится шаблон
+  onSelect    : (id: ViewItemId) => void
 }
 
 
 /** One View item */
-export const RenderViewItemByType: FC<Props> = memo(({ item, parents, onSelect }) => {
+export const RenderViewItemByType: FC<Props> = memo(({ item, parents, isTemplate, onSelect }) => {
   switch (item.type) {
-    case 'text':           return <>{item.label}</>;
-    case 'box':            return <ItemBox            item={item} onSelect={onSelect} parents={parents} />;
-    case 'chart':          return <ItemChart          item={item} />;
-    case 'chip':           return <ItemChip           item={item} />;
-    case 'growthIcon':     return <ItemGrowthIcon     item={item} />;
-    case 'digitIndicator': return <ItemDigitIndicator item={item} />;
-    case 'divider':        return <ItemDivider />;
+    case 'text': return <>{item.label}</>;
+    case 'box': return (
+      <ItemBox
+        item       = {item}
+        isTemplate = {isTemplate}
+        parents    = {parents}
+        onSelect   = {onSelect}
+      />
+    );
+    case 'chart': return (
+      <ItemChart
+        item       = {item}
+        isTemplate = {isTemplate}
+      />
+    );
+    case 'chip': return (
+      <ItemChip
+        item       = {item}
+        isTemplate = {isTemplate}
+      />
+    );
+    case 'growthIcon': return (
+      <ItemGrowthIcon
+        item       = {item}
+        isTemplate = {isTemplate}
+      />
+    );
+    case 'digitIndicator': return (
+      <ItemDigitIndicator
+        item       = {item}
+        isTemplate = {isTemplate}
+      />
+    );
+    case 'divider': return <ItemDivider />;
 
     default: return <></>;
   }

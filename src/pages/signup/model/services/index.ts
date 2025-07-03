@@ -1,1 +1,1 @@
-export { signupByEmail } from './signup-by-email'
+export { signupByEmail } from './signup-by-email-start'

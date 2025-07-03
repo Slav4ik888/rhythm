@@ -31,38 +31,48 @@ const useStyles = (theme: CustomTheme, item: ViewItem, increased: Increased) => 
 
 
 interface Props {
-  item: ViewItem
+  item        : ViewItem
+  isTemplate? : boolean // если рендерится шаблон
 }
 
 /** Item digitIndicator */
-export const ItemDigitIndicator: FC<Props> = memo(({ item }) => {
+export const ItemDigitIndicator: FC<Props> = memo(({ item, isTemplate }) => {
   const { entities } = useDashboardViewState();
   const { activeEntities } = useDashboardData();
   const kod = useMemo(() => getKod(entities, item), [item, entities]);
 
-  const increased = useMemo(() => getIncreased(getInverted(item, entities), activeEntities, kod),
-    [item, entities, activeEntities, kod]
+  const increased = useMemo(() => {
+    if (isTemplate) return 1
+    else return getIncreased(getInverted(item, entities), activeEntities, kod)
+  },
+    [item, isTemplate, entities, activeEntities, kod]
   );
+
   const color = useStyles(useTheme(), item, increased);
 
   const statisticItem = useMemo(() => activeEntities[kod] as DashboardStatisticItem<number>, [activeEntities, kod]);
   const indicators = getReversedIndicators(statisticItem?.data, item?.settings?.valueNumber);
-  const [lastValue, prevValue] = indicators;
+  const [lastValue, prevValue] = isTemplate ? [152350, 121500] : indicators;
 
   const fractionDigits = item?.settings?.fractionDigits;   // Количество знаков после запятой
   const addZero        = item?.settings?.addZero;          // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
   const count          = item?.settings?.valueNumber || 1; // Номер значения статистики, в обратном порядке (1 - последнее, 2 - предпоследнее). По умолчанию показываем последнее значение
 
-  const values = useMemo(() => getComparisonValues(
-    getReversedIndicators(statisticItem?.data, count), // 0 - lastValue, 1 - prevValue, 2 - nextValue
-    count,
-    {
-      reduce  : item?.settings?.reduce,  // Убрать разряды: 12 500 700 => 12.5 млн
-      noSpace : item?.settings?.noSpace, // Не добавлять пробел между разрядами
-      fractionDigits,
-      addZero,
-    }
-  ), [item, count, fractionDigits, statisticItem?.data, addZero]);
+  const values = useMemo(() => {
+    if (isTemplate) return [{ value: 35, reduction: '' }, { value: 27, reduction: '' }]
+    else return getComparisonValues(
+      getReversedIndicators(statisticItem?.data, count), // 0 - lastValue, 1 - prevValue, 2 - nextValue
+      count,
+      {
+        reduce: item?.settings?.reduce,  // Убрать разряды: 12 500 700 => 12.5 млн
+        noSpace: item?.settings?.noSpace, // Не добавлять пробел между разрядами
+        fractionDigits,
+        addZero,
+      }
+    )
+  },
+    [item, isTemplate, count, fractionDigits, statisticItem?.data, addZero]
+  );
 
 
   // Значение для вывода на экран

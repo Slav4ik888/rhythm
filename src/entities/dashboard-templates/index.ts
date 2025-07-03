@@ -7,4 +7,4 @@ export {
 } from './model/slice/state-schema'
 export { useDashboardTemplates } from './model/hooks'
 export { getInitialState, isThisTemplate } from './model/utils'
-export { MAX_COUNT_BUNCH_TEMPLATES } from './model/consts'
+export { MAX_COUNT_BUNCH_TEMPLATES, TEMPLATES_MOCK_DATA } from './model/consts'

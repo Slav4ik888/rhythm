@@ -1,26 +1,22 @@
 import { ChartConfig, ChartConfigDatasets, fixPointRadius } from 'entities/charts';
-import { checkInvertData, DashboardDataDates, DashboardStatisticItem } from 'entities/dashboard-data';
-import { DashboardViewEntities, ViewItem } from 'entities/dashboard-view';
+import { checkInvertData, DashboardStatisticItem } from 'entities/dashboard-data';
+import { TEMPLATES_MOCK_DATA } from 'entities/dashboard-templates';
+import { ViewItem } from 'entities/dashboard-view';
 import { formatDate, SUB } from 'shared/helpers/dates';
 import { setValue } from 'shared/helpers/objects';
 import { isArr, isStr } from 'shared/lib/validators';
 import { calcTrend2 } from '../calc-trend-2';
-import { prepareDatesForGreatestPeriod, prepareDataForChart, getChartInverted } from './utils';
+import { prepareDatesForGreatestPeriod, prepareDataForChart } from '../get-data/utils';
 
 
 
 /**
- * Наполняет подписи оси X (даты)
- * и наполняет datasets всеми вложенными в item графиками
+ * For Templates
+ * Наполняет datasets всеми вложенными в item графиками
  */
-export const getData = (
-  allActiveDates : DashboardDataDates,
-  itemsData      : DashboardStatisticItem<number>[],
-  viewItem       : ViewItem,
-  entities       : DashboardViewEntities,
-): ChartConfig => {
-  // TODO: надо учесть приход 5 графиков и у них 3 тренда
-  //  - order графиков должен быть на 1 меньше его тренда
+export const getTemplateData = (viewItem: ViewItem): ChartConfig => {
+  const allActiveDates = TEMPLATES_MOCK_DATA.activeDates;
+  const itemsData = [TEMPLATES_MOCK_DATA.activeEntities['1-0-1'] as DashboardStatisticItem<number>];
 
   const { dates, greatestPeriodType } = prepareDatesForGreatestPeriod(allActiveDates, itemsData);
   const formattedDates = dates?.map(date => formatDate(date, 'DD mon YY', SUB.RU_ABBR_DEC));
@@ -31,7 +27,7 @@ export const getData = (
       ...itemsData.map((itemData, idx) => {
         const datasets            = viewItem?.settings?.charts?.[idx].datasets || {} as ChartConfigDatasets;
         const preparedData        = prepareDataForChart(itemData, datasets, allActiveDates, greatestPeriodType);
-        const inverted            = getChartInverted(viewItem, idx, entities);
+        const inverted            = false; // getChartInverted(viewItem, idx, entities);
         const checkedInvertedData = checkInvertData(inverted, preparedData);
 
         const result: ChartConfigDatasets = {

@@ -5,7 +5,8 @@ export const API_PATHS = {
       resetEmailPassword : '/auth/login/resetEmailPassword',
     },
     signup: {
-      byEmail: '/auth/signup/byEmail',
+      byEmailStart : '/auth/signup/byEmailStart',
+      byEmailEnd   : '/auth/signup/byEmailEnd',
     },
   },
   user: {

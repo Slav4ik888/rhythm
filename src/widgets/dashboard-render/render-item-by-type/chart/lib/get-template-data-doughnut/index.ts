@@ -1,15 +1,14 @@
 import { ChartConfig } from 'entities/charts';
-import { DashboardStatisticItem } from 'entities/dashboard-data';
 import { ViewItem } from 'entities/dashboard-view';
-import { getBackgroundColors } from './utils';
+import { getBackgroundColors } from '../get-data-doughnut/utils';
 
 
 
 /**
+ * For Templates
  * Наполняет datasets всеми необходимыми даннными для Doughnut
  */
-export const getDataDoughnut = (
-  itemsData : DashboardStatisticItem<number>[],
+export const getTemplateDataDoughnut = (
   viewItem  : ViewItem
 ): ChartConfig => {
   const config: ChartConfig = {
@@ -20,21 +19,13 @@ export const getDataDoughnut = (
     datasets: [
       {
         label: '', // Chart name is added to each value by hover
-        data: [...itemsData.map(itemData =>
-          // последние значения соответствующие концу выбранного промежутка
-          // eslint-disable-next-line no-unsafe-optional-chaining
-          itemData?.data?.[itemData?.data?.length - 1] || 0
-        )],
+        data: [10, 20, 15, 75, 3, 13],
         backgroundColor: getBackgroundColors(viewItem),
         borderWidth: 0,
         hoverOffset: 8
       },
     ],
   };
-
-  if (viewItem?.settings?.charts?.[0]?.datasets?.cutout) {
-    config.datasets[0].cutout = viewItem.settings.charts[0].datasets.cutout
-  }
 
   return config
 }

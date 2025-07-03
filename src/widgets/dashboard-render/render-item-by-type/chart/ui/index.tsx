@@ -3,32 +3,40 @@ import { getKod, useDashboardViewState, ViewItem } from 'entities/dashboard-view
 import 'chart.js/auto';
 import { Chart } from 'react-chartjs-2';
 import { DashboardStatisticItem, useDashboardData } from 'entities/dashboard-data';
-// import { formatDate, SUB } from 'shared/helpers/dates';
-import { getData, getDataDoughnut, getOptions } from '../lib';
+import { getData, getDataDoughnut, getOptions, getTemplateData, getTemplateDataDoughnut } from '../lib';
 import { isNotPie } from 'entities/charts';
 
 
 
 interface Props {
-  item: ViewItem
+  isTemplate? : boolean // если рендерится шаблон
+  item        : ViewItem
 }
 
 /** Item chart */
-export const ItemChart: FC<Props> = memo(({ item }) => {
+export const ItemChart: FC<Props> = memo(({ item, isTemplate }) => {
   const { activeDates, activeEntities } = useDashboardData();
   const { entities } = useDashboardViewState();
 
-  // TODO: упростить, всё засунуть в 1 useMemo, после того как заработает 'doughnut'
+  const data = useMemo(() => {
+    if (isTemplate) {
+      return isNotPie(item)
+        ? getTemplateData(item)
+        : getTemplateDataDoughnut(item)
+    }
+    else {
+      const itemsData = item.settings?.charts?.map(chart => {
+        const kod = getKod(entities, item, chart);
 
-  const itemsData = useMemo(() => item.settings?.charts?.map(chart =>
-    activeEntities[getKod(entities, item, chart)] as DashboardStatisticItem<number>) || [],
-    [activeEntities, entities, item]
-  );
+        return activeEntities[kod] as DashboardStatisticItem<number>
+      }) || [];
 
-  const data = useMemo(() => isNotPie(item)
-    ? getData(activeDates, itemsData, item, entities)
-    : getDataDoughnut(itemsData, item),
-    [activeDates, itemsData, item, entities]
+      return isNotPie(item)
+        ? getData(activeDates, itemsData, item, entities)
+        : getDataDoughnut(itemsData, item)
+    }
+  },
+    [activeDates, activeEntities, item, entities, isTemplate]
   );
 
   const type = item.settings?.charts?.[0]?.chartType || 'line';
@@ -37,6 +45,7 @@ export const ItemChart: FC<Props> = memo(({ item }) => {
     <Chart
       type    = {type}
       data    = {data}
+      // data    = {! isTemplate ? data : templateData}
       options = {getOptions(type, item.settings?.chartOptions || {})}
     />
   )

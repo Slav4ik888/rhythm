@@ -29,7 +29,7 @@ const LoginPage: FC = memo(() => {
     if (loading) return;
 
     const userData: AuthByLogin = {
-      email    : getRefValue(emailRef),
+      email    : getRefValue(emailRef).toLocaleLowerCase(),
       password : getRefValue(passwordRef)
     };
 

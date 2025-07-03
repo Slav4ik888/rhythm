@@ -11,24 +11,24 @@ import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 
-interface ResSignup {
+interface ResSignupStart {
   newUserData    : User
   newCompanyData : Company
   message        : string
 }
 
-export const signupByEmail = createAsyncThunk<
+export const signupByEmailStart = createAsyncThunk<
   undefined,
   SignupData,
   ThunkConfig<Errors>
 >(
-  'pages/signup/signupByEmail',
+  'pages/signup/signupByEmailStart',
   // eslint-disable-next-line consistent-return
   async (signupData, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
 
     try {
-      const { data: { newUserData, newCompanyData, message } } = await extra.api.post<ResSignup>(
+      const { data: { newUserData, newCompanyData, message } } = await extra.api.post<ResSignupStart>(
         API_PATHS.auth.signup.byEmail,
         { signupData }
       );
@@ -46,7 +46,7 @@ export const signupByEmail = createAsyncThunk<
       errorHandlers(e as CustomAxiosError, dispatch);
       // eslint-disable-next-line consistent-return
       return rejectWithValue((e as CustomAxiosError)?.response?.data || {
-        general: 'Error in pages/signup/signupByEmail'
+        general: 'Error in pages/signup/signupByEmailStart'
       });
     }
   }

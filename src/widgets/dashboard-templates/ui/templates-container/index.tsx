@@ -1,5 +1,5 @@
 import { FC, memo, useCallback } from 'react';
-import { useDashboardTemplates, isThisTemplate as isThisTemplateFunc } from 'entities/dashboard-templates';
+import { useDashboardTemplates, isThisTemplate } from 'entities/dashboard-templates';
 import Box from '@mui/material/Box';
 import { TemplateItemContainer } from './template-item';
 import { f } from 'shared/styles';
@@ -15,7 +15,7 @@ export const TemplatesContainer: FC = memo(() => {
 
 
   const handleClick = useCallback((id: string) => {
-    if (isUnsaved && !isThisTemplateFunc(entities, selectedId, id)) {
+    if (isUnsaved && ! isThisTemplate(entities, selectedId, id)) {
       return setWarningMessage('Для выбора другого элемента, сохраните или отмените изменения');
     }
     setSelectedId(id);

@@ -46,7 +46,7 @@ export const useDashboardViewActions = (config: Config = {}) => {
     setBright                    : (status: boolean) => dispatch(actions.setBright(status)),
 
     setIsUnsaved                 : (status: boolean) => dispatch(actions.setIsUnsaved(status)),
-      // Styles
+    // Styles
     changeOneStyleField          : (data: ChangeSelectedStyle) => dispatch(actions.changeOneStyleField(data)),
     setSelectedStyles            : (data: ViewItemStyles) => dispatch(actions.setSelectedStyles(data)),
 

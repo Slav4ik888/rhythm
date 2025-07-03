@@ -5,16 +5,18 @@ import { DashboardRender } from '../..';
 
 
 interface Props {
-  parents  : ParentsViewItems
-  item     : ViewItem
-  onSelect : (id: ViewItemId) => void
+  parents     : ParentsViewItems
+  item        : ViewItem
+  isTemplate? : boolean    // если рендерится шаблон
+  onSelect    : (id: ViewItemId) => void
 }
 
 /** Item box */
-export const ItemBox: FC<Props> = memo(({ parents, item, onSelect }) => (
+export const ItemBox: FC<Props> = memo(({ parents, item, isTemplate, onSelect }) => (
   <DashboardRender
-    parents  = {parents}
-    parentId = {item.id}
-    onSelect = {onSelect}
+    parents    = {parents}
+    parentId   = {item.id}
+    isTemplate = {isTemplate}
+    onSelect   = {onSelect}
   />
 ));

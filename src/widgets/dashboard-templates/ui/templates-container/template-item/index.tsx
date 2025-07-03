@@ -29,6 +29,7 @@ export const TemplateItemContainer: FC<Props> = memo(({ template, onClick }) => 
       }}
     >
       <DashboardRender
+        isTemplate
         parents  = {parents}
         parentId = {template.id}
         onSelect = {onClick}

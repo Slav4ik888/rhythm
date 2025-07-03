@@ -7,21 +7,14 @@ import { getIncreased, getInverted } from '../../digit-indicator';
 
 
 interface Props {
-  item: ViewItem
+  item        : ViewItem
+  isTemplate? : boolean // если рендерится шаблон
 }
 
 /** Item GrowthIcon */
-export const ItemGrowthIcon: FC<Props> = memo(({ item }) => {
+export const ItemGrowthIcon: FC<Props> = memo(({ item, isTemplate }) => {
   const { entities } = useDashboardViewState();
   const { activeEntities } = useDashboardData();
-  // const { display, fractionDigits, addZero, kod = '' } = item.settings || {};
-
-  // const [lastValue, prevValue] = useMemo(() => {
-  //   const data = activeEntities[item.settings?.kod || '']?.data as number[] || [];
-  //   return getReversedIndicators(data)
-  // }, [activeEntities]);
-
-  // const increased: Increased = calcIncreased(lastValue, prevValue, item.settings?.inverted);
 
   const increased = useMemo(() => getIncreased(getInverted(item, entities), activeEntities, getKod(entities, item)),
     [activeEntities, entities, item]
@@ -29,7 +22,7 @@ export const ItemGrowthIcon: FC<Props> = memo(({ item }) => {
 
   return (
     <GrowthIconComponent
-      increased      = {increased}
+      increased      = {isTemplate ? 1 : increased}
       unchangedBlack = {item.settings?.unchangedBlack}
       isLeft         = {item.settings?.isLeft}
       scale          = {item.settings?.scale}
