@@ -13,7 +13,7 @@ export const ProfileContentWrapper: FC<Props> = memo(({ children }) => (
   <Box
     sx={{
       ...f('c'),
-      gap      : 4,
+      gap      : 3,
       width    : { xs: '100%', md: '50%' },
       maxWidth : pxToRem(300)
     }}

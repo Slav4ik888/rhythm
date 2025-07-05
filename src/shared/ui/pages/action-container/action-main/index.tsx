@@ -9,21 +9,20 @@ interface Props {
   loading   : boolean
   errors    : Errors
   type      : LayoutInnerPageType
+  textBtn?  : string
   disabled? : boolean
   onSubmit  : () => void
 }
 
 /** Кнопка "Зарегистрироваться" | "Войти" */
-export const ActionMain: FC<Props> = memo(({ type, loading, errors, disabled = false, onSubmit }) => {
-  const textBtn = type === 'login' ? 'Войти' : 'Регистрация';
-
-  return (
-    <ActionMainComponent
-      textBtn  = {textBtn}
-      errors   = {errors}
-      loading  = {loading}
-      disabled = {disabled}
-      onSubmit = {onSubmit}
-    />
-  )
-});
+export const ActionMain: FC<Props> = memo(({
+  type, textBtn: label, loading, errors, disabled = false, onSubmit
+}) => (
+  <ActionMainComponent
+    textBtn  = {label || (type === 'login' ? 'Войти' : 'Регистрация')}
+    errors   = {errors}
+    loading  = {loading}
+    disabled = {disabled}
+    onSubmit = {onSubmit}
+  />
+));

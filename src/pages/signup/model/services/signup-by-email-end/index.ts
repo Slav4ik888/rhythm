@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { actionsUser, User } from 'entities/user';
 import { actionsCompany, Company } from 'entities/company';
-import { SignupData } from '../../types';
+import { SignupDataEnd } from '../../types';
 import { actionsUI } from 'entities/ui';
 import { Errors } from 'shared/lib/validators';
 import { API_PATHS } from 'shared/api';
@@ -19,18 +19,18 @@ interface ResSignup {
 
 export const signupByEmailEnd = createAsyncThunk<
   undefined,
-  SignupData,
+  SignupDataEnd,
   ThunkConfig<Errors>
 >(
   'pages/signup/signupByEmailEnd',
   // eslint-disable-next-line consistent-return
-  async (signupData, thunkApi) => {
+  async (signupDataEnd, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
 
     try {
       const { data: { newUserData, newCompanyData, message } } = await extra.api.post<ResSignup>(
-        API_PATHS.auth.signup.byEmail,
-        { signupData }
+        API_PATHS.auth.signup.byEmailEnd,
+        { signupDataEnd }
       );
 
       __devLog('data: ', newUserData, newCompanyData, message);

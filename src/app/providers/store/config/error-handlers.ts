@@ -42,9 +42,10 @@ export const errorHandlers = (
   }
   if (errors.general) {
     if (errors.general !== 'auth/user-not-found') return dispatch(actionsUI.setWarningMessage(errors.general));
+    return dispatch(actionsUI.setErrorMessage(errors.general));
   }
 
-  if (errors.message) return dispatch(actionsUI.setWarningMessage(errors.message));
+  // if (errors.message) return dispatch(actionsUI.setWarningMessage(errors.message));
 
   if (status === 204) { // No Content
     return dispatch(actionsUI.setWarningMessage('По вашему запросу отсутствуют данные.'));
@@ -65,7 +66,7 @@ export const errorHandlers = (
     // dispatch(actionsUI.setErrorStatus(504));
     return dispatch(actionsUI.setWarningMessage('Извините, сервер временно не доступен...'));
   }
-  else if (e.stack) {
-    return dispatch(actionsUI.setErrorMessage(e.stack));
-  }
+  // else if (e.stack) {
+  //   return dispatch(actionsUI.setErrorMessage(e.stack));
+  // }
 }

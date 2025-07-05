@@ -105,7 +105,7 @@ export const customPalette: CustomPalette = {
     light: '#313131',
     main: '#7f7f7f',
     dark: '#505050',
-    focus: '#232323',
+    focus: '#a2a2a2',
     contrastText: '#ffffff',
   },
 

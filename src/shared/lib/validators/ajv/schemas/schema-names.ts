@@ -23,5 +23,6 @@ export enum SCHEMA_NAME {
   RECOVERY_PASSWORD = 'recovery-password',
 
   // SIGNUP_PAGE
-  SIGNUP_DATA       = 'signup-data'
+  SIGNUP_DATA       = 'signup-data',
+  SIGNUP_DATA_END   = 'signup-data-end',
 }

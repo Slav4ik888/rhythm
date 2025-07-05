@@ -1,4 +1,4 @@
-// v.2025-06-11
+// v.2025-07-05
 export * from './arr-from-obj-with-key';
 export * from './is-changes';
 export * from './filter-ents-by-field';
@@ -14,7 +14,10 @@ export * from './get-object-without-field';
 export * from './get-value-by-scheme';
 export * from './is-changes';
 export * from './is-field';                // v.2024-11-09
+export type { Option } from './modify-nested-property'
+export { modifyNestedProperty } from './modify-nested-property' // v.2025-07-05
 export * from './object-fields-to-string';
+export { removePropertyIfDefined } from './remove-property-if-defined' // v.2025-07-05
 export * from './set-field-empty';         // v.2025-05-21
 export { setIfNotUndefined } from './set-if-not-undefined' // v.2025-02-25
 export { setValue } from './set-value' // v.2025-06-11

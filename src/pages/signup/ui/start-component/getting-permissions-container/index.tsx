@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { useSignup } from '../../model';
+import { useSignup } from '../../../model';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import { PolicyDescription } from './policy-description';

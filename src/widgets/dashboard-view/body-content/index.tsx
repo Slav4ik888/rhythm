@@ -14,7 +14,7 @@ import { useUI } from 'entities/ui';
 import { PageLoader } from 'widgets/page-loader';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { v4 as uuidv4 } from 'uuid';
-import { findAvailableBunchId } from 'shared/lib/structures/bunch';
+import { calcItemsInBunches, findAvailableBunchId } from 'shared/lib/structures/bunch';
 import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view';
 import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view';
 
@@ -30,6 +30,12 @@ export const DashboardBodyContent = memo(() => {
   } = useDashboardViewServices();
   const { setPageText } = useUI();
   const [isRendering, setIsRendering] = useState(true);
+
+
+  useEffect(() => {
+    __devLog(calcItemsInBunches(viewItems));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [viewItems.length]);
 
 
   useLayoutEffect(() => {

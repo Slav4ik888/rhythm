@@ -129,6 +129,35 @@ describe('setValueByScheme', () => {
     // @ts-ignore
     expect(CLONE_MOCK.user.hobbies[2].families[0].family[1]).toEqual('Lizzy');
   });
+
+  it('должен работать с форматом array[0]', () => {
+    const obj = {};
+    const result = setValueByScheme(obj, 'items[0].name', 'John');
+    expect(result).toBe(true);
+    // @ts-ignore
+    expect(obj.items[0].name).toBe('John');
+  });
+
+  it('должен работать с форматом array.[0]', () => {
+    const obj = {};
+    const result = setValueByScheme(obj, 'items.[0].name', 'John');
+    expect(result).toBe(true);
+    // @ts-ignore
+    expect(obj.items[0].name).toBe('John');
+  });
+
+  it('должен работать со смешанными форматами', () => {
+    const obj = {};
+    const result1 = setValueByScheme(obj, 'data[0].users.[0].name', 'Alice');
+    const result2 = setValueByScheme(obj, 'data.[1].users[0].name', 'Bob');
+
+    expect(result1).toBe(true);
+    expect(result2).toBe(true);
+    // @ts-ignore
+    expect(obj.data[0].users[0].name).toBe('Alice');
+    // @ts-ignore
+    expect(obj.data[1].users[0].name).toBe('Bob');
+  });
 });
 
 // npm run test:unit set-value-by-scheme.test.ts

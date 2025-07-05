@@ -6,7 +6,7 @@ import { validateAuthByLogin } from '../model/validators';
 import { LoginPageComponent } from './component';
 import { useUI } from 'entities/ui';
 import { AppRoutes, RoutePath } from 'app/providers/routes';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useUser } from 'entities/user';
 
 
@@ -17,6 +17,14 @@ const LoginPage: FC = memo(() => {
   const { loading, errors, setErrors, serviceAuthByLogin } = useLogin();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    if (auth) {
+      navigate(RoutePath[AppRoutes.ROOT]);
+    }
+  }, [auth, navigate]);
 
 
   useEffect(() => {

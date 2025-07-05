@@ -1,14 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { Errors } from 'shared/lib/validators';
-import { signupByEmail } from '../services';
-import { StateSchemaSignupPage } from '../types';
+import { signupByEmailEnd, signupByEmailStart, signupSendCodeAgain } from '../services';
+import { SignupData } from '../types';
+import { StateSchemaSignupPage } from './state-schema';
 
 
 
 const initialState: StateSchemaSignupPage = {
   loading         : false,
-  errors          : {}
+  errors          : {},
+  signupData      : {} as SignupData,
+  codeSended      : false,
 };
 
 
@@ -22,15 +25,47 @@ export const slice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(signupByEmail.pending, (state) => {
+      .addCase(signupByEmailStart.pending, (state) => {
         state.errors  = {};
         state.loading = true;
       })
-      .addCase(signupByEmail.fulfilled, (state, { payload }) => {
-        state.errors  = {};
+      .addCase(signupByEmailStart.fulfilled, (state, { payload }: PayloadAction<SignupData>) => {
+        state.signupData = payload;
+        state.codeSended = true;
+        state.errors     = {};
+        state.loading    = false;
+      })
+      .addCase(signupByEmailStart.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
         state.loading = false;
       })
-      .addCase(signupByEmail.rejected, (state, { payload }) => {
+
+    builder
+      .addCase(signupSendCodeAgain.pending, (state) => {
+        state.errors  = {};
+        state.loading = true;
+      })
+      .addCase(signupSendCodeAgain.fulfilled, (state) => {
+        state.codeSended = true;
+        state.errors     = {};
+        state.loading    = false;
+      })
+      .addCase(signupSendCodeAgain.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
+        state.loading = false;
+      })
+
+    builder
+      .addCase(signupByEmailEnd.pending, (state) => {
+        state.errors  = {};
+        state.loading = true;
+      })
+      .addCase(signupByEmailEnd.fulfilled, (state) => {
+        state.codeSended = false;
+        state.errors     = {};
+        state.loading    = false;
+      })
+      .addCase(signupByEmailEnd.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       })

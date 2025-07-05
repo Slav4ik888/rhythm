@@ -6,7 +6,7 @@ import {
   defsFIO, defsPhone, defsUser, schemaPerson, schemaPhoneNumber, schemaPosition
  } from 'entities/user/model/validators/schemas';
 import { schemaAuthByLogin } from 'pages/login/model/validators/schemas';
-import { schemaSignupData } from 'pages/signup/model/validators/schemas';
+import { schemaSignupData, schemaSignupDataEnd } from 'pages/signup/model/validators/schemas';
 // eslint-disable-next-line max-len
 import { schemaRecoveryData } from 'pages/login/ui/recovery-password/model/validators/schemas';
 
@@ -25,6 +25,7 @@ export const addSchemas = (ajv: Ajv) => {
       schemaAuthByLogin,
       schemaRecoveryData,
       schemaSignupData,
+      schemaSignupDataEnd,
 
       // User
       defsFIO,

@@ -1,6 +1,6 @@
 import { memo, FC, MutableRefObject } from 'react';
 import { TextFieldItem } from 'shared/ui/mui-components';
-import { useSignup } from '../../model/hooks';
+import { useSignup } from '../../../model/hooks';
 
 
 
@@ -52,10 +52,10 @@ export const SignupContent: FC<Props> = memo(({
       />
       <TextFieldItem
         label    = 'Повторите пароль'
-        name     = 'confirm'
+        name     = 'confirmPassword'
         type     = 'password'
         ref      = {confirmRef}
-        scheme   = 'confirm'
+        scheme   = 'confirmPassword'
         errors   = {errors}
       />
     </>

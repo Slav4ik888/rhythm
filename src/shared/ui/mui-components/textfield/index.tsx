@@ -1,4 +1,4 @@
-import { FC, ChangeEvent, forwardRef, MutableRefObject } from 'react';
+import { FC, ChangeEvent, forwardRef, MutableRefObject, useCallback } from 'react';
 import { Errors } from 'shared/lib/validators';
 import StyledTextField from './styled'
 import { getErrorFieldByScheme } from '../../containers';
@@ -41,6 +41,24 @@ const TextFieldItem = forwardRef<null, TextFieldItemProps>((props, ref) => {
     ...rest
   } = props;
 
+
+  const handleChange = useCallback((e: any) => {
+    onChange && onChange(e, scheme);
+    if (e.keyCode === 13) {
+      onSubmit && onSubmit();
+      // @ts-ignore
+      // ref?.current && ref?.current?.blur();
+    }
+    else if (e.keyCode === 27) {
+      onCancel && onCancel();
+      // @ts-ignore
+      // ref.current && ref.current.blur();
+    }
+  },
+    [scheme, onChange, onCancel, onSubmit]
+  );
+
+
   return (
     // @ts-ignore
     <StyledTextField
@@ -55,13 +73,13 @@ const TextFieldItem = forwardRef<null, TextFieldItemProps>((props, ref) => {
         if (e.key === 'Enter') {
           // Prevent's default 'Enter' behavior.
           e.defaultMuiPrevented = true;
-          onChange && onChange(e, scheme);
+          handleChange(e);
         }
       }}
       // onClick         = {onClick}
       // onBlur          = {handlerBlur}
       slotProps       = {{ inputLabel: { shrink: true } }}
-      onChange   = {(e: any) => onChange && onChange(e, scheme)}
+      onChange   = {handleChange}
       error      = {errors?.[getErrorFieldByScheme(scheme)] ? true : false}
       helperText = {errors?.[getErrorFieldByScheme(scheme)]}
     />

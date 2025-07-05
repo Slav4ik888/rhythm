@@ -1,4 +1,3 @@
-import { isUndefined } from 'shared/lib/validators';
 
 type Obj = {
   [key: string]: any
@@ -14,37 +13,49 @@ type Obj = {
  *  - Поддержка всех случаев:
  *  - Обычные поля объектов (obj.field)
  *  - Элементы массивов (obj.array.[0])
+ *  - Поддерживает оба формата записи массивов: 'array[0]' и 'array.[0]'
  *  - Комбинации (obj.field.array.[0].subfield)
- * v.2025-05-28
+ * v.2025-07-05
  */
 export function setValueByScheme(obj: Obj | undefined, scheme: string, value: any) {
-  if (!obj || !scheme) return false;
+  if (! obj || ! scheme) return false;
 
-  const fields = scheme.split('.');
+  // Улучшенное разбиение пути, обрабатывающее оба формата
+  const fields = scheme.split(/(?<!\\)\.|\[|\]/).filter(part => part !== '');
   let current = obj;
 
   for (let i = 0; i < fields.length - 1; i++) {
     const field = fields[i];
+    let isArrayIndex = false;
+    let index = 0;
 
-    if (field.startsWith('[') && field.endsWith(']')) {
+    // Проверяем, является ли следующий элемент индексом массива
+    if (i + 1 < fields.length && fields[i + 1] === '') {
+      // Формат array.[0] - текущий field это имя массива, следующий это индекс
+      isArrayIndex = true;
+      index = parseInt(fields[i + 2], 10);
+      i += 2; // Пропускаем следующие два элемента (пустую строку и индекс)
+    } else if (/^\d+$/.test(field)) {
+      // Формат array[0] - текущий field это индекс
+      isArrayIndex = true;
+      index = parseInt(field, 10);
+    }
+
+    if (isArrayIndex) {
       // Обработка массива
-      const index = parseInt(field.slice(1, -1), 10);
       if (!Array.isArray(current)) return false;
-
-      // Разрешаем добавлять новые элементы если индекс равен длине массива
       if (index < 0 || index > current.length) return false;
 
-      // Если элемент не существует - создаем объект (для следующего уровня)
       if (index === current.length) {
-        current.push({});
+        const nextField = fields[i + 1];
+        current.push(/^\d+$/.test(nextField) ? [] : {});
       }
       current = current[index];
     } else {
       // Обработка объекта
       if (current[field] === undefined) {
-        // Создаем новый объект или массив в зависимости от следующего поля
         const nextField = fields[i + 1];
-        current[field] = nextField.startsWith('[') ? [] : {};
+        current[field] = (nextField === '' || /^\d+$/.test(nextField)) ? [] : {};
       }
       current = current[field];
     }
@@ -52,16 +63,14 @@ export function setValueByScheme(obj: Obj | undefined, scheme: string, value: an
 
   // Устанавливаем значение в последнее поле
   const lastField = fields[fields.length - 1];
+  const isLastArray = /^\d+$/.test(lastField);
 
-  if (lastField.startsWith('[') && lastField.endsWith(']')) {
+  if (isLastArray) {
     // Установка значения в массив
-    const index = parseInt(lastField.slice(1, -1), 10);
+    const index = parseInt(lastField, 10);
     if (!Array.isArray(current)) return false;
-
-    // Разрешаем добавлять новые элементы если индекс равен длине массива
     if (index < 0 || index > current.length) return false;
 
-    // Устанавливаем значение
     if (index === current.length) {
       current.push(value);
     } else {
@@ -74,130 +83,3 @@ export function setValueByScheme(obj: Obj | undefined, scheme: string, value: an
 
   return true;
 }
-
-
-/**
- * DEPRECATED 2025-05-28
- * Set into Obj value in object by scheme
- * max вложенность = 8
- * v.2023-05-15
- */
-// export function setValueBySchemeOld(obj: Obj | undefined, scheme: string, value: any) {
-//   if (! obj || ! scheme) return undefined;
-
-//   const
-//     fields = scheme.split('.');
-
-//   const check2Field = (obj: object, fields: string[]) => {
-//   // @ts-ignore
-//     if (isUndefined(obj[fields[0]])) {
-//   // @ts-ignore
-//       obj[fields[0]] = {};
-//     }
-//   };
-
-//   const check3Field = (obj: object, fields: string[]) => {
-//     check2Field(obj, fields);
-//   // @ts-ignore
-//     if (isUndefined(obj[fields[0]][fields[1]])) {
-//   // @ts-ignore
-//       obj[fields[0]][fields[1]] = {};
-//     }
-//   };
-
-//   const check4Field = (obj: object, fields: string[]) => {
-//     check3Field(obj, fields);
-//   // @ts-ignore
-//     if (isUndefined(obj[fields[0]][fields[1]][fields[2]])) {
-//   // @ts-ignore
-//       obj[fields[0]][fields[1]][fields[2]] = {};
-//     }
-//   };
-
-//   const check5Field = (obj: object, fields: string[]) => {
-//     check4Field(obj, fields);
-//   // @ts-ignore
-//     if (isUndefined(obj[fields[0]][fields[1]][fields[2]][fields[3]])) {
-//   // @ts-ignore
-//       obj[fields[0]][fields[1]][fields[2]][fields[3]] = {};
-//     }
-//   };
-
-//   const check6Field = (obj: object, fields: string[]) => {
-//     check5Field(obj, fields);
-//   // @ts-ignore
-//     if (isUndefined(obj[fields[0]][fields[1]][fields[2]][fields[3]][fields[4]])) {
-//   // @ts-ignore
-//       obj[fields[0]][fields[1]][fields[2]][fields[3]][fields[4]] = {};
-//     }
-//   };
-
-//   const check7Field = (obj: object, fields: string[]) => {
-//     check6Field(obj, fields);
-//   // @ts-ignore
-//     if (isUndefined(obj[fields[0]][fields[1]][fields[2]][fields[3]][fields[4]][fields[5]])) {
-//   // @ts-ignore
-//       obj[fields[0]][fields[1]][fields[2]][fields[3]][fields[4]][fields[5]] = {};
-//     }
-//   };
-
-//   const check8Field = (obj: object, fields: string[]) => {
-//     check7Field(obj, fields);
-//   // @ts-ignore
-//     if (isUndefined(obj[fields[0]][fields[1]][fields[2]][fields[3]][fields[4]][fields[5]][fields[6]])) {
-//   // @ts-ignore
-//       obj[fields[0]][fields[1]][fields[2]][fields[3]][fields[4]][fields[5]][fields[6]] = {};
-//     }
-//   };
-
-
-
-//   switch (fields.length) {
-//     case 8:
-//       check8Field(obj, fields);
-//   // @ts-ignore
-//       obj[fields[0]][fields[1]][fields[2]][fields[3]][fields[4]][fields[5]][fields[6]][fields[7]] = value
-//       break;
-
-//     case 7:
-//       check7Field(obj, fields);
-//   // @ts-ignore
-//       obj[fields[0]][fields[1]][fields[2]][fields[3]][fields[4]][fields[5]][fields[6]] = value
-//       break;
-
-//     case 6:
-//       check6Field(obj, fields);
-//   // @ts-ignore
-//       obj[fields[0]][fields[1]][fields[2]][fields[3]][fields[4]][fields[5]] = value
-//       break;
-
-//     case 5:
-//       check5Field(obj, fields);
-//   // @ts-ignore
-//       obj[fields[0]][fields[1]][fields[2]][fields[3]][fields[4]] = value
-//       break;
-
-//     case 4:
-//       check4Field(obj, fields);
-//   // @ts-ignore
-//       obj[fields[0]][fields[1]][fields[2]][fields[3]] = value
-//       break;
-
-//     case 3:
-//       check3Field(obj, fields);
-//   // @ts-ignore
-//       obj[fields[0]][fields[1]][fields[2]] = value
-//       break;
-
-//     case 2:
-//       check2Field(obj, fields);
-//   // @ts-ignore
-//       obj[fields[0]][fields[1]] = value;
-//       break;
-
-//     case 1:
-//   // @ts-ignore
-//       obj[fields[0]] = value;
-//       break;
-//   }
-// }
