@@ -12,16 +12,18 @@ import { serviceLogout as logout } from 'features/user';
 export const useUser = () => {
   const dispatch = useAppDispatch();
 
-  const loading    = useSelector(s.selectLoading);
-  const errors     = useSelector(s.selectErrors);
+  const loading      = useSelector(s.selectLoading);
+  const errors       = useSelector(s.selectErrors);
 
-  const auth       = useSelector(s.selectAuth);
-  const user       = useSelector(s.selectUser);
-  const userId     = useSelector(s.selectUserId);
-  const isVerified = useSelector(s.selectIsEmailVerified);
-  const email      = useSelector(s.selectUserEmail);
-  const role       = useSelector(s.selectUserRole);
-  const companyId  = useSelector(s.selectCompanyId);
+  const auth         = useSelector(s.selectAuth);
+  const user         = useSelector(s.selectUser);
+  const userId       = useSelector(s.selectUserId);
+  const isVerified   = useSelector(s.selectIsEmailVerified);
+  const email        = useSelector(s.selectUserEmail);
+  const role         = useSelector(s.selectUserRole);
+  const companyId    = useSelector(s.selectCompanyId);
+  const isEditAccess = useSelector(s.selectIsEditAccess);
+
 
   const api = useMemo(() => ({
     setErrors      : (err: Errors) => dispatch(actions.setErrors(err)),
@@ -44,6 +46,7 @@ export const useUser = () => {
     email,
     role,
     companyId,
+    isEditAccess,
 
     ...api
   }

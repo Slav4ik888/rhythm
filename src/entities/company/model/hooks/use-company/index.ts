@@ -4,7 +4,7 @@ import { actions as a } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
-import { CustomSettings, ParamsCompany, PartialCompany } from '../../types';
+import { CustomSettings, ParamsCompany, PartialCompany } from '../../../types';
 import { getParamsCompany, updateCompany } from 'features/company';
 
 

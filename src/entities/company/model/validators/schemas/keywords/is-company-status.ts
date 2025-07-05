@@ -1,5 +1,5 @@
 import { SchemaObjCxt } from 'ajv';
-import { CompanyStatus } from '../../../types';
+import { CompanyStatus } from '../../../../types';
 import { isOneOfSeveral, SCHEMA_NAME } from 'shared/lib/validators';
 
 

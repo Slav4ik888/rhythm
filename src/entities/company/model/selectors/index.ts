@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/store';
 import { getChanges } from 'shared/helpers/objects';
 import { StateSchemaCompany as SSC } from '../slice/state-schema';
-import { ParamsCompany } from '../types';
+import { ParamsCompany } from '../../types';
 
 
 export const selectModule = createSelector([(state: StateSchema) => state.company || {} as SSC], (state: SSC) => state);

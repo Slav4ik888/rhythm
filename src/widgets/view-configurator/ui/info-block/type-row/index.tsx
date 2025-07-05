@@ -8,12 +8,12 @@ interface Props {
 }
 
 export const TypeRow: FC<Props> = memo(({ type }) => (
-    <RowWrapper>
-      <ConfiguratorTextTitle
-        bold
-        title     = 'Type'
-        toolTitle = 'Item type'
-      />
-      {type}
-    </RowWrapper>
-  ));
+  <RowWrapper>
+    <ConfiguratorTextTitle
+      bold
+      title     = 'Type'
+      toolTitle = 'Item type'
+    />
+    {type}
+  </RowWrapper>
+));

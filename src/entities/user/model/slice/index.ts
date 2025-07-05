@@ -5,9 +5,9 @@ import { updateObject } from 'shared/helpers/objects';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
-import { creatorUser } from '../creators';
+import { creatorUser } from '../../lib/creators';
 import { getAuth } from '../services';
-import { User } from '../types';
+import { User } from '../../types';
 import { StateSchemaUser } from './state-schema';
 import { SetUser } from './types';
 

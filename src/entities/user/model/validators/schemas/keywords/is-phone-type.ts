@@ -1,6 +1,6 @@
 import { SchemaObjCxt } from 'ajv';
 import { SCHEMA_NAME, isOneOfSeveral } from 'shared/lib/validators';
-import { PhoneType } from '../../../types';
+import { PhoneType } from '../../../../types';
 
 
 const conditions = Object.values(PhoneType);

@@ -1,6 +1,6 @@
 import { SchemaObjCxt } from 'ajv';
 import { SCHEMA_NAME, isOneOfSeveral } from 'shared/lib/validators';
-import { CountryCode } from '../../../types';
+import { CountryCode } from '../../../../types';
 
 
 const conditions = Object.values(CountryCode);

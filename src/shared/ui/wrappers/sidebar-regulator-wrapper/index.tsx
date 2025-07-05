@@ -14,12 +14,10 @@ Coded by www.creative-tim.com
 */
 
 import { FC, ReactNode } from 'react';
-// import { useLocation } from 'react-router-dom';
 import { useUIConfiguratorController, CustomTheme } from 'app/providers/theme';
 import MDBox from '../../mui-design-components/md-box';
 import { pxToRem } from 'shared/styles';
-import { useLocation } from 'react-router-dom';
-import { isDashboardPage } from 'pages/dashboard';
+import { usePages } from 'shared/lib/hooks';
 
 
 
@@ -34,8 +32,7 @@ interface Props {
 export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
   const [configuratorState] = useUIConfiguratorController();
   const { isSidebar, sidebarMini, sidebarWidth } = configuratorState;
-  const location = useLocation();
-  const isNotDashboard = ! isDashboardPage(location);
+  const { isDashboardPage } = usePages();
 
   const isBody   = body;
   const isNavbar = ! isBody;
@@ -55,7 +52,7 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
           ? 'calc(100vh - 200px)'
           : 0,
 
-        marginLeft: isNotDashboard
+        marginLeft: ! isDashboardPage
           ? 0
           : isSidebar
             ? sidebarMini
@@ -69,7 +66,7 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
           : '',
 
         [breakpoints.down('sm')]: {
-          marginLeft: isNotDashboard
+          marginLeft: ! isDashboardPage
             ? 0
             : isSidebar
               ? sidebarMini ? 0 : pxToRem(sidebarWidth)

@@ -8,7 +8,7 @@ import { SelectedEmailContainer } from './selected-email';
 import Popover from '@mui/material/Popover';
 import { Actions } from './actions';
 import { Title } from './title';
-import { isOwner } from 'entities/company/model/utils';
+import { isOwner } from 'entities/company/model/hooks/use-access/utils';
 
 
 

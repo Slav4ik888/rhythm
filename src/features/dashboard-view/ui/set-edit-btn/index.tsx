@@ -1,29 +1,16 @@
-import { FC, memo, useEffect, useState, useCallback } from 'react';
-import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
-import { useDashboardViewActions } from 'entities/dashboard-view';
-import { useCompany } from 'entities/company';
-import { NavbarIcon } from 'shared/ui/navbar';
+import { FC, memo } from 'react';
+import { useUser } from 'entities/user';
+import { DashboardSetEditBtnContainer } from './ui';
 
 
 
 export const DashboardSetEditBtn: FC = memo(() => {
-  const { editMode, setEditMode } = useDashboardViewActions();
-  const { paramsCompanyId } = useCompany();
-  const [text, setText] = useState<string>('');
+  const { isEditAccess } = useUser();
 
-  useEffect(() => {
-    setText(editMode ? 'Выключить режим редактирования' : 'Включить режим редактирования');
-  }, [editMode]);
 
-  const handleToggle = useCallback(() => setEditMode({ editMode: ! editMode, companyId: paramsCompanyId }),
-    [editMode, paramsCompanyId, setEditMode]);
-
+  if (! isEditAccess) return null;
 
   return (
-    <NavbarIcon
-      toolTitle = {text}
-      icon      = {AutoFixHighIcon}
-      onClick   = {handleToggle}
-    />
+    <DashboardSetEditBtnContainer />
   )
 });

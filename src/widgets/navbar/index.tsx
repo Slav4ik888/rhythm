@@ -21,10 +21,8 @@ import { CustomTheme, isSystemDarkMode, useUIConfiguratorController } from 'app/
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { NavbarControlBox } from './control-box';
 import { NavbarSetupBox } from './setup-box';
-import { useLocation } from 'react-router-dom';
-import { RoutePath } from 'app/providers/routes';
-import { isDashboardPage } from 'pages/dashboard';
 import { NavbarLinksBox } from './links-box';
+import { usePages } from 'shared/lib/hooks';
 
 
 
@@ -40,8 +38,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
   const [configuratorState, dispatch] = useUIConfiguratorController();
   const { navbarTransparent, navbarFixed, mode } = configuratorState;
   const darkMode = mode === 'dark' || (mode === 'system' && isSystemDarkMode());
-  const location = useLocation();
-  const isDashboard = isDashboardPage(location);
+  const { isDashboardPage, isLoginPage, isSignupPage } = usePages();
 
   useEffect(() => {
     // Setting the navbar type
@@ -70,7 +67,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
   }, [dispatch, navbarFixed]);
 
 
-  if (location.pathname === RoutePath.SIGNUP || location.pathname === RoutePath.LOGIN) return null
+  if (isLoginPage || isSignupPage) return null
 
 
   return (
@@ -82,7 +79,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
       >
         <Toolbar sx={(theme) => sxNavbarContainer(theme as CustomTheme)}>
           {
-            isDashboard
+            isDashboardPage
               ? <NavbarControlBox isMini={isMini} />
               : <NavbarLinksBox isMini={isMini} />
           }

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Errors } from 'shared/lib/validators';
-import { Company, CustomSettings, ParamsCompany } from '../types';
+import { Company, CustomSettings, ParamsCompany } from '../../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { StateSchemaCompany } from './state-schema';
 import { updateCompany, SetParamsCompany, getParamsCompany } from 'features/company';

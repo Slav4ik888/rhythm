@@ -6,6 +6,7 @@ import { Kod } from './kod';
 import { KodLabel } from './kod-label';
 import { ItemOrder } from './order';
 import { TypeRow } from './type-row';
+import { BunchIdRow } from './bunch-id';
 
 
 
@@ -16,8 +17,9 @@ export const InfoBlock: FC = memo(() => {
 
   return (
     <>
-      <IdTitle selectedId={selectedItem?.id} />
-      <TypeRow type={selectedItem?.type} />
+      <IdTitle    selectedId = {selectedItem?.id} />
+      <BunchIdRow bunchId    = {selectedItem?.bunchId} />
+      <TypeRow    type       = {selectedItem?.type} />
       {
         kod && <>
           <Kod />

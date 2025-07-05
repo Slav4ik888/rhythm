@@ -1,4 +1,4 @@
-export { User } from './model/types'
+export { User } from './types'
 export { useUser } from './model/hooks'
 
 export {
@@ -10,4 +10,4 @@ export { ReqGetAuth, getAuth } from './model/services'
 
 export { selectUserId } from './model/selectors'
 export { schemas } from './model/validators'
-export { creatorUser } from './model/creators'
+export { creatorUser } from './lib/creators'

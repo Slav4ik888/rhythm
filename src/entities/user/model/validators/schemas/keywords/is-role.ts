@@ -1,6 +1,6 @@
 import { SchemaObjCxt } from 'ajv';
 import { SCHEMA_NAME, isOneOfSeveral } from 'shared/lib/validators';
-import { Role } from '../../../types';
+import { Role } from '../../../../types';
 
 
 const conditions = Object.values(Role);
