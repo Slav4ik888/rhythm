@@ -1,10 +1,10 @@
 import { AccessLevel } from './base';
 
 
-/** Права к дашборду компании  */
+/** Перечень возможных прав доступа к Дашборду компании  */
 export interface CompanyDashboardAccess {
-  f: AccessLevel // full
-  // aU: boolean     // addUsers
+  f: AccessLevel // full - ко всему в Дашборде
+  // aU: boolean  // addUsers - приглашать пользователей
   // anyFields: AccessLevel
 }
 
@@ -17,7 +17,7 @@ export interface CompanyDashboardMember {
 
 
 export enum CompanyDashboardAccessScheme {
-  AF = 'a.f'
+  AF = 'a.f' // [доступ][full]
 }
 
 

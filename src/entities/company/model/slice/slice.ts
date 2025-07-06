@@ -3,10 +3,10 @@ import { Errors } from 'shared/lib/validators';
 import { Company, CustomSettings, ParamsCompany } from '../../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { StateSchemaCompany } from './state-schema';
-import { updateCompany, SetParamsCompany, getParamsCompany } from 'features/company';
 import { updateObject } from 'shared/helpers/objects';
 import { LS } from 'shared/lib/local-storage';
 import { SetCompany } from './types';
+import { SetParamsCompany, getParamsCompany, updateCompany } from 'shared/api/features/company';
 
 
 
@@ -74,8 +74,9 @@ const slice = createSlice({
         }
       })
       .addCase(getParamsCompany.rejected, (state, { payload }) => {
-        state.errors  = getError(payload);
-        state.loading = false;
+        state._isParamsCompanyIdLoaded = true; // Чтобы не попасть в беск цикл запросов
+        state.errors                   = getError(payload);
+        state.loading                  = false;
       })
     // COMPANY-UPDATE
     builder

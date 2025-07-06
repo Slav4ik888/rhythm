@@ -8,6 +8,7 @@ export const DashboardSetEditBtn: FC = memo(() => {
   const { isEditAccess } = useUser();
 
 
+  // Временный запрет для всех на доступ к Конструктору
   if (! isEditAccess) return null;
 
   return (

@@ -35,37 +35,40 @@ export interface CustomSettings {
 }
 
 /**
- * v.2025-06-23
+ * v.2025-07-06
  * Профиль компании
  */
 export interface Company {
-  id                : string
-  companyName       : string
-  ownerId           : string
-  owner             : string // email
+  id                     : string
+  companyName            : string
+  ownerId                : string
+  owner                  : string // email
 
-  logoUrl          : string // https://firebasestorage.googleapis.com/v0/b/osnova-course.appspot.com/o/no-img-company.svg?alt=media
-  status           : CompanyStatus
+  logoUrl                : string // https://firebasestorage.googleapis.com/v0/b/osnova-course.appspot.com/o/no-img-company.svg?alt=media
+  status                 : CompanyStatus
 
-  googleData       : GoogleData
-  // dashboardData  : CompanyDashboardData
-  customSettings   : CustomSettings
+  googleData             : GoogleData
+  // dashboardData        : CompanyDashboardData
+  customSettings         : CustomSettings
 
-  bunchesUpdated   : BunchesUpdated
+  bunchesUpdated         : BunchesUpdated
 
-  dashboardMembers : CompanyDashboardMember[]
-  companyMembers   : CompanyProfileMember[]
-  createdAt        : FixDate
-  lastChange       : FixDate
+  dashboardMembers       : CompanyDashboardMember[]
+  dashboardPublicAccess? : Record<string, boolean> // <dashboardPageId, boolean> main - по умолчанию
+
+  companyMembers         : CompanyProfileMember[]
+  createdAt              : FixDate
+  lastChange             : FixDate
 }
 
 export type PartialCompany = Partial<Company> & { id: string }
 
 /** Обязательные поля для чужого пользователя прошедшего по ссылке */
 export type ParamsCompany = PartialCompany & {
-  customSettings   : CustomSettings
-  googleData       : GoogleData
-  bunchesUpdated   : BunchesUpdated
-  dashboardMembers : CompanyDashboardMember[]
-  companyMembers   : CompanyProfileMember[]
+  customSettings         : CustomSettings
+  googleData             : GoogleData
+  bunchesUpdated         : BunchesUpdated
+  dashboardMembers       : CompanyDashboardMember[]
+  dashboardPublicAccess? : Record<string, boolean>
+  companyMembers         : CompanyProfileMember[]
 }

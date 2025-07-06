@@ -11,10 +11,11 @@ import { BunchesUpdated } from 'shared/lib/structures/bunch';
 
 
 export interface ReqGetViewItems {
-  companyId      : string
-  bunchIds       : string[]
-  pathname       : string // For errorHandlers
-  bunchesUpdated : BunchesUpdated
+  companyId       : string
+  bunchIds        : string[]
+  pathname        : string // For errorHandlers
+  bunchesUpdated  : BunchesUpdated
+  dashboardPageId : string | undefined // Для проверки наличия публичного доступа (на сервере)
   // sheetId?  : string
 }
 

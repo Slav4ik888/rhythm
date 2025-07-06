@@ -1,6 +1,6 @@
 import { FC, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { f, pxToRem } from 'shared/styles';
-import { AccessLevel, useCompany } from 'entities/company';
+import { AccessLevel, useCompany, isOwner } from 'entities/company';
 import Box from '@mui/material/Box';
 import { Errors, isNotEmail } from 'shared/lib/validators';
 import { UsersWithAccessContainer } from './users-with-acces';
@@ -8,7 +8,9 @@ import { SelectedEmailContainer } from './selected-email';
 import Popover from '@mui/material/Popover';
 import { Actions } from './actions';
 import { Title } from './title';
-import { isOwner } from 'entities/company/model/hooks/use-access/utils';
+import { MDDivider } from 'shared/ui/mui-design-components';
+import { PublicAccess } from './public-access';
+import { CopyLinkBtn } from './copy-link-btn';
 
 
 
@@ -71,6 +73,7 @@ export const AddUserContainer: FC<Props> = memo(({ open, anchorEl, onClose }) =>
     >
       <Box sx={{ ...f('c'), gap: 2, width: pxToRem(400), m:2, mx: 4 }}>
         <Title label='Настройка доступа' variant='h6' />
+        <MDDivider />
         <SelectedEmailContainer
           // @ts-ignore
           ref                 = {selectedEmailRef}
@@ -81,13 +84,17 @@ export const AddUserContainer: FC<Props> = memo(({ open, anchorEl, onClose }) =>
           onSetAccessLevel    = {setAccessLevel}
           onChange            = {handleChange}
         />
-        <UsersWithAccessContainer onEmailClick={handleEmailClick} />
         <Actions
           selectedEmail       = {selectedEmail}
           existingEmail       = {existingEmail}
           selectedAccessLevel = {selectedAccessLevel}
-          onClose             = {onClose}
+          // @ts-ignore
+          ref                 = {selectedEmailRef}
+          setSelectedEmail    = {setSelectedEmail}
         />
+        <UsersWithAccessContainer onEmailClick={handleEmailClick} />
+        <PublicAccess />
+        <CopyLinkBtn />
       </Box>
     </Popover>
   )

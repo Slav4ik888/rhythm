@@ -10,8 +10,11 @@ export const usePages = () => {
   const isLoginPage     = location.pathname === RoutePath.LOGIN;
   const isSignupPage    = location.pathname === RoutePath.SIGNUP;
 
+  const dashboardPageId = isDashboardPage
+    ? location.pathname.split('/')[3] || 'main' // '/{companyId}/dashboard/{pageId}'
+    : undefined;
 
   return {
-    isDashboardPage, isLoginPage, isSignupPage
+    isDashboardPage, isLoginPage, isSignupPage, dashboardPageId
   }
 }

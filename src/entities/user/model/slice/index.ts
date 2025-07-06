@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { serviceUpdateUser, serviceLogout } from 'features/user';
 import { updateObject } from 'shared/helpers/objects';
-// import { updateObject } from 'shared/helpers/objects';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
@@ -13,7 +12,7 @@ import { SetUser } from './types';
 
 
 const initialState: StateSchemaUser = {
-  // _isLoaded : false,
+  _isLoaded : false,
   loading   : false,
   errors    : {},
   auth      : false,
@@ -53,15 +52,16 @@ export const slice = createSlice({
       })
       .addCase(getAuth.fulfilled, (state, { payload }) => {
         state.auth      = true;
-        // state._isLoaded = true;
+        state._isLoaded = true;
         state.user      = payload.user;
         state.errors    = {};
         state.loading   = false;
         LS.setUserState(payload.companyId, state);
       })
       .addCase(getAuth.rejected, (state, { payload }) => {
-        state.errors  = payload || {};
-        state.loading = false;
+        state._isLoaded = true; // Вернулся ответ от сервера, чтобы не загружать повторно (в бесконечном цикле)
+        state.errors    = payload || {};
+        state.loading   = false;
       })
 
     // UPDATE-USER

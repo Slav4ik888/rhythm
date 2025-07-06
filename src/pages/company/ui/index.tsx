@@ -1,35 +1,58 @@
 import { FC, memo, useEffect } from 'react';
 import { useUser } from 'entities/user';
-import { Outlet, useParams } from 'react-router-dom';
+import { Navigate, Outlet, useParams } from 'react-router-dom';
 import { useCompany } from 'entities/company';
 import { useUI } from 'entities/ui';
 import { __devLog } from 'shared/lib/tests/__dev-log';
+import { usePages } from 'shared/lib/hooks';
+import { RoutePath } from 'app/providers/routes';
 
 
 
 const CompanyPage: FC = memo((): JSX.Element | null => {
   const { companyId: paramsCompanyId } = useParams();
-  const { auth } = useUser();
+  const { _isLoaded, loading: loadingUser, auth } = useUser();
   const { pageText, setPageText } = useUI();
-  const { companyId, _isParamsCompanyIdLoaded, serviceGetParamsCompany, setIsParamsCompanyIdLoaded } = useCompany();
+  const { dashboardPageId } = usePages();
+  const {
+    loading: loadingCompany, companyId, dashboardPublicAccess, _isParamsCompanyIdLoaded,
+    serviceGetParamsCompany, setIsParamsCompanyIdLoaded
+  } = useCompany({ dashboardPageId });
 
 
   useEffect(() => {
-    if (! auth && ! pageText) setPageText({ name: 'CompanyPage', text: 'Авторизация...' });
+    if (! auth && ! _isLoaded) setPageText({ name: 'CompanyPage', text: 'Авторизация...' });
     // Если по ссылке вошли в чужую компанию
-    if (auth && ! _isParamsCompanyIdLoaded && paramsCompanyId && paramsCompanyId !== companyId) {
+    else if (
+      // auth && // должна быть возможность входить неавторизованным пользователям
+      _isLoaded && ! loadingUser && ! loadingCompany && ! _isParamsCompanyIdLoaded
+      && paramsCompanyId && paramsCompanyId !== companyId
+    ) {
       setPageText({ name: 'CompanyPage', text: 'Загрузка данных по компании...' });
-      serviceGetParamsCompany(paramsCompanyId);
+      serviceGetParamsCompany({ companyId: paramsCompanyId, dashboardPageId });
     }
     // Если по ссылке вошли в свою компанию
     else if (auth && ! _isParamsCompanyIdLoaded && paramsCompanyId === companyId) setIsParamsCompanyIdLoaded(true);
+  },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [
+      loadingUser, _isLoaded, loadingCompany, auth, dashboardPageId, dashboardPublicAccess, pageText,
+      _isParamsCompanyIdLoaded, paramsCompanyId, companyId
+    ]
+  );
 
-    // if (auth && _isParamsCompanyIdLoaded) setPageText({ name: 'CompanyPage', text: '' });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth, pageText, _isParamsCompanyIdLoaded, paramsCompanyId, companyId]);
+
+  if (! auth
+    && _isLoaded
+    && _isParamsCompanyIdLoaded
+    && ! dashboardPublicAccess
+  ) return <Navigate to={RoutePath.NOT_ACCESS} />
 
 
-  if (! auth || ! _isParamsCompanyIdLoaded) return null;
+  if (
+    (! auth && ! dashboardPublicAccess) // должна быть возможность входить неавторизованным пользователям
+    || ! _isParamsCompanyIdLoaded
+  ) return null;
 
   return (
     <Outlet />

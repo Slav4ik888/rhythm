@@ -3,7 +3,6 @@ import { useUser } from 'entities/user';
 import { CompanyProfilePageComponent } from './component';
 import { useUI } from 'entities/ui';
 import { PartialCompany, useCompany, Company } from 'entities/company';
-import { useFeaturesCompany } from 'features/company/update-company/model/hooks/use-features-company';
 import { cloneObj, getChanges, isEmpty, setValueByScheme } from 'shared/helpers/objects';
 import { creatorFixDate } from 'entities/base';
 import { __devLog } from 'shared/lib/tests/__dev-log';
@@ -14,9 +13,8 @@ import { useNavigate } from 'react-router-dom';
 
 const CompanyProfilePage: FC = memo(() => {
   const { auth, userId } = useUser();
-  const { loading, errors, paramsCompany: storedCompany } = useCompany();
+  const { loading, errors, paramsCompany: storedCompany, serviceUpdateCompany } = useCompany();
   const [formData, setFormData] = useState<Partial<Company>>(storedCompany);
-  const { serviceUpdateCompany } = useFeaturesCompany();
   const { setErrorStatus, setReplacePath } = useUI();
   const navigate = useNavigate();
 

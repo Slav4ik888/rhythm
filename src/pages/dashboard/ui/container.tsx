@@ -11,6 +11,7 @@ import { useCompany } from 'entities/company';
 import { LS } from 'shared/lib/local-storage';
 import { reducerDashboardTemplates, useDashboardTemplates } from 'entities/dashboard-templates';
 import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view';
+import { usePages } from 'shared/lib/hooks';
 
 
 
@@ -26,7 +27,7 @@ export const DashboardPageContainer: FC = memo(() => {
   const { pathname } = useLocation();
   const { serviceGetViewItems, setDashboardBunchesFromCache } = useDashboardViewServices();
   const { serviceGetBunchesUpdated } = useDashboardTemplates();
-
+  const { dashboardPageId } = usePages();
 
   useEffect(() => {
     // 1. TEMPLATES
@@ -47,6 +48,7 @@ export const DashboardPageContainer: FC = memo(() => {
         companyId      : paramsCompany.id,
         bunchIds       : bunchesForLoad,
         bunchesUpdated : paramsBunchesUpdated,
+        dashboardPageId,
         pathname
       });
     }

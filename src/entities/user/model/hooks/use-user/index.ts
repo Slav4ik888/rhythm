@@ -12,6 +12,7 @@ import { serviceLogout as logout } from 'features/user';
 export const useUser = () => {
   const dispatch = useAppDispatch();
 
+  const _isLoaded    = useSelector(s.selectIsLoaded);
   const loading      = useSelector(s.selectLoading);
   const errors       = useSelector(s.selectErrors);
 
@@ -36,6 +37,7 @@ export const useUser = () => {
 
 
   return {
+    _isLoaded,
     loading,
     errors,
 

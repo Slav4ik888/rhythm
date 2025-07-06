@@ -7,6 +7,8 @@ import { User } from '../../types';
 export const selectModule = createSelector([(state: StateSchema) => state.user || {} as StateSchemaUser],
   (state: StateSchemaUser) => state);
 
+
+export const selectIsLoaded         = createSelector(selectModule, (state: StateSchemaUser) => state._isLoaded);
 export const selectLoading          = createSelector(selectModule, (state: StateSchemaUser) => state.loading);
 export const selectErrors           = createSelector(selectModule, (state: StateSchemaUser) => state.errors);
 // export const selectIsLoaded         = createSelector(selectModule, (state: StateSchemaUser) => state._isLoaded);

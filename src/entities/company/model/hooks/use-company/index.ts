@@ -5,11 +5,15 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
 import { CustomSettings, ParamsCompany, PartialCompany } from '../../../types';
-import { getParamsCompany, updateCompany } from 'features/company';
+import { ReqGetCompany, getParamsCompany, updateCompany } from 'shared/api/features/company';
 
 
+interface Config {
+  dashboardPageId?: string
+}
 
-export const useCompany = () => {
+export const useCompany = (config: Config = {}) => {
+  const { dashboardPageId = 'main' } = config;
   const dispatch = useAppDispatch();
 
   const loading                  = useSelector(s.selectLoading);
@@ -21,6 +25,7 @@ export const useCompany = () => {
   const paramsCustomSettings     = useSelector(s.selectParamsCustomSettings);
   const paramsChangedCompany     = useSelector(s.selectParamsChangedCompany); // Объект с изменившимися полями
   const usersAccessDashboard     = paramsCompany?.dashboardMembers || [];
+  const dashboardPublicAccess    = paramsCompany?.dashboardPublicAccess?.[dashboardPageId];
   // const usersAccessDashboard     = useSelector(s.selectUsersAccessDashboard); // Списо пользователей имеющих доступ ('v' | 'e') к /dashboard
   const company                  = useSelector(s.selectCompany);
   const companyId                = company?.id;
@@ -34,7 +39,7 @@ export const useCompany = () => {
     cancelParamsCustomSettings : () => dispatch(a.cancelParamsCustomSettings()),
     updateParamsCompany        : (data: Partial<ParamsCompany>) => dispatch(a.updateParamsCompany(data)),
 
-    serviceGetParamsCompany    : (companyId: string) => dispatch(getParamsCompany({ companyId })),
+    serviceGetParamsCompany    : (data: ReqGetCompany) => dispatch(getParamsCompany(data)),
     serviceUpdateCompany       : (company: PartialCompany) => dispatch(updateCompany(company)),
   }), [dispatch]);
 
@@ -49,6 +54,7 @@ export const useCompany = () => {
     paramsCustomSettings,
     paramsChangedCompany,
     usersAccessDashboard,
+    dashboardPublicAccess,
 
     company,
     companyId,
