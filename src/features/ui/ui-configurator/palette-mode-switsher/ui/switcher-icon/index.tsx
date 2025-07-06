@@ -5,8 +5,8 @@ import Day from '@mui/icons-material/Brightness7';
 import { CustomTheme, setMode, setSidebarColor, UIDispatch } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
 import { f } from 'shared/styles';
-import { PaletteMode } from '@mui/material/styles';
 import { getIconStyle } from 'shared/ui/configurators-components';
+import { PaletteMode } from 'app/providers/theme/model/types';
 
 
 

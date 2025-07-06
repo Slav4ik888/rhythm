@@ -1,5 +1,6 @@
 import { NavbarColorName } from '../themes/light-navbar';
 import { SidebarColorName } from '../themes/light-sidebar';
+import { PaletteMode } from './base';
 
 
 /**
@@ -7,7 +8,7 @@ import { SidebarColorName } from '../themes/light-sidebar';
  */
 export interface UIConfiguratorProviderState {
   // ОБЩИЕ
-  mode                  : 'light' | 'dark' | 'system'
+  mode                  : PaletteMode
   isOpenConfigurator    : boolean         // Open / close Configurator
 
   // HEADER

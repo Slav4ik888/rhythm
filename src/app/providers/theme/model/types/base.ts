@@ -7,6 +7,7 @@ import { SidebarTheme } from '../themes/light-sidebar';
 import { Gradients } from './gradients';
 
 
+export type PaletteMode = 'light' | 'dark' | 'system';
 
 // export interface ThemeColorItem {
 //   light?        : string

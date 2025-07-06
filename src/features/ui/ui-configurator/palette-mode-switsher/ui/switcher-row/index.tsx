@@ -5,8 +5,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { setMode, UIDispatch, setSidebarColor, isSystemDarkMode } from 'app/providers/theme';
-import { PaletteMode } from '@mui/material/styles';
 import { f } from 'shared/styles';
+import { PaletteMode } from 'app/providers/theme/model/types';
 
 
 

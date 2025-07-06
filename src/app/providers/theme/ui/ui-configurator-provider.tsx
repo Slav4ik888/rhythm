@@ -1,8 +1,8 @@
 import { FC, ReactNode, useEffect, useMemo, useReducer } from 'react';
 import {
-  ThemeProvider as MuiThemeProvider, createTheme, useTheme as useMUITheme, PaletteMode
+  ThemeProvider as MuiThemeProvider, createTheme, useTheme as useMUITheme
  } from '@mui/material/styles';
-import { UIConfiguratorProviderState } from '../model/types';
+import { PaletteMode, UIConfiguratorProviderState } from '../model/types';
 import { reducer, setMode, setSidebarColor } from '../model/lib/reducer';
 import { getThemeByName } from '../model/utils';
 import { UIConfiguratorContext, UIConfiguratorContextType } from '../model/lib/ui-configurator-context';
