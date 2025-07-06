@@ -1,1 +1,1 @@
-export { getData, ResGetGoogleData } from './get-data'
+export { getData } from './get-data'

@@ -6,8 +6,9 @@ import { getPayloadError as getError } from 'shared/lib/errors';
 import { DashboardPeriodType } from '../config';
 import { getEntitiesByPeriod } from '../utils';
 import { StateSchemaDashboardData } from './state-schema';
-import { ResGetGoogleData, calculateStartDate, getData } from 'features/dashboard-data';
+import { calculateStartDate, getData } from 'features/dashboard-data';
 import { SetActivePeriod, SetSelectedPeriod } from './types';
+import { ResGetGoogleData } from 'shared/types';
 
 
 

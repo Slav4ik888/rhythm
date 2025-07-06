@@ -4,7 +4,7 @@ import { StateSchemaDashboardData } from 'entities/dashboard-data';
 import { Template } from 'entities/dashboard-templates';
 import { ViewItem } from 'entities/dashboard-view';
 import { StateSchemaUser } from 'entities/user';
-import { ResGetData } from 'features/dashboard-data/get-data/model/types';
+import { ResGetData } from 'shared/types';
 import { BunchesUpdated } from '../../structures/bunch';
 import { setStorageData, getStorageData, removeStorageData } from './main';
 

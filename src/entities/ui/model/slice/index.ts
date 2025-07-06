@@ -1,25 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import cfg from 'app/config';
 import { LS } from 'shared/lib/local-storage';
-import { isNotUndefined, Errors } from 'shared/lib/validators';
-import { Message, MessageType } from '../types';
+import { Errors } from 'shared/lib/validators';
+import { Message, MessageType } from '../../types';
 import { getScreenFormats, getScreenSize, isAcceptCookie } from '../utils';
-import { StateSchemaUI } from './state-schema';
-import { SetPageText } from './types';
+import { PageLoading, PageLoadingType, StateSchemaUI } from './state-schema';
 
 
 
 const initialState: StateSchemaUI = {
   loading        : false,
-  pageLoading    : false,
-  pageText       : '',
+  pageLoading    : {},
   errors         : {},
   errorStatus    : 0,
   message        : {} as Message,   // Current message for display
   screenFormats  : getScreenFormats(getScreenSize()), // Сurrent screen format
   screenSize     : getScreenSize(), // Сurrent screen length
   replacePath    : '',              // For replace after login or signup
-  acceptedCookie : isAcceptCookie() // Разрешение user use cookie
+  acceptedCookie : isAcceptCookie(), // Разрешение user use cookie
 };
 
 
@@ -30,41 +28,39 @@ export const slice = createSlice({
     // UI
     setErrors: (state, { payload }: PayloadAction<Errors>) => {
       state.errors      = payload;
-      state.pageText    = '';
-      state.pageLoading = false;
+      state.pageLoading = {};
     },
     setErrorStatus: (state,
       { payload: { status, pathname } }: PayloadAction<{ status: number, pathname?: string }>) => {
       state.errorStatus = status;
       if (pathname) state.replacePath = pathname;
 
-      state.pageText    = '';
-      state.pageLoading = false;
+      state.pageLoading = {};
     },
 
     // PAGE LOADER
-    setPageLoading: (state, { payload }: PayloadAction<boolean | undefined>) => {
-      const loading = isNotUndefined(payload) ? payload as boolean : true;
-      state.pageLoading = loading;
-    },
-    setPageText: (state, { payload }: PayloadAction<SetPageText>) => {
-      const text = isNotUndefined(payload.text) ? payload.text as string : '';
-      // console.log('___ [', payload.name, ']', payload.text);
+    setPageLoading: (state, { payload }: PayloadAction<PageLoading>) => {
+      Object.entries(payload).forEach(([key, value]) => {
+        if (! value.text) {
+          // console.log(`Remove key: ${key}`); console.log('name: ', value.name);
 
-      state.pageText = text;
-      state.pageLoading = Boolean(text);
+          if (state.pageLoading?.[key as PageLoadingType]) {
+            delete state.pageLoading[key as PageLoadingType];
+          }
+        }
+        else {
+          // console.log(`Add key: ${key}`); console.log('name: ', value.name);
+          state.pageLoading[key as PageLoadingType] = value;
+        }
+      });
     },
 
     // MESSAGES
     setMessage: (state, { payload }: { payload: Message }) => {
       state.message     = payload;
-      state.pageText    = '';
-      state.pageLoading = false;
     },
 
     setInfoMessage: (state, { payload }: { payload: string }) => {
-      state.pageText    = '';
-      state.pageLoading = false;
       state.message     = {
         type    : MessageType.INFO,
         message : payload,
@@ -72,8 +68,6 @@ export const slice = createSlice({
       };
     },
     setSuccessMessage: (state, { payload }: { payload: string }) => {
-      state.pageText    = '';
-      state.pageLoading = false;
       state.message     = {
         type    : MessageType.SUCCESS,
         message : payload,
@@ -81,8 +75,6 @@ export const slice = createSlice({
       };
     },
     setWarningMessage: (state, { payload }: { payload: string }) => {
-      state.pageText    = '';
-      state.pageLoading = false;
       state.message     = {
         type    : MessageType.WARNING,
         message : payload,
@@ -90,8 +82,6 @@ export const slice = createSlice({
       };
     },
     setErrorMessage: (state, { payload }: { payload: string }) => {
-      state.pageText    = '';
-      state.pageLoading = false;
       state.message     = {
         type    : MessageType.ERROR,
         message : payload,
@@ -99,9 +89,7 @@ export const slice = createSlice({
       };
     },
     clearMessage: (state) => {
-      state.message     = {} as Message;
-      state.pageText    = '';
-      state.pageLoading = false;
+      state.message = {} as Message;
     },
 
     // SCREENS
@@ -116,13 +104,9 @@ export const slice = createSlice({
     // SETTINGS
     setReplacePath: (state, { payload }: PayloadAction<string>) => {
       state.replacePath = payload;
-      state.pageText    = '';
-      state.pageLoading = false;
     },
     clearReplacePath: (state) => {
       state.replacePath = '';
-      state.pageText    = '';
-      state.pageLoading = false;
     },
 
     setAcceptedCookie: (state, { payload }: PayloadAction<boolean>) => {

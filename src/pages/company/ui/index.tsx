@@ -12,7 +12,7 @@ import { RoutePath } from 'app/providers/routes';
 const CompanyPage: FC = memo((): JSX.Element | null => {
   const { companyId: paramsCompanyId } = useParams();
   const { _isLoaded, loading: loadingUser, auth } = useUser();
-  const { pageText, setPageText } = useUI();
+  const { setPageLoading } = useUI();
   const { dashboardPageId } = usePages();
   const {
     loading: loadingCompany, companyId, dashboardPublicAccess, _isParamsCompanyIdLoaded,
@@ -21,14 +21,17 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
 
 
   useEffect(() => {
-    if (! auth && ! _isLoaded) setPageText({ name: 'CompanyPage', text: 'Авторизация...' });
+    if (! auth && ! _isLoaded && ! loadingUser) setPageLoading({
+      'get-auth': { text: 'Авторизация...', name: 'CompanyPage' }
+    });
+
     // Если по ссылке вошли в чужую компанию
     else if (
       // auth && // должна быть возможность входить неавторизованным пользователям
       _isLoaded && ! loadingUser && ! loadingCompany && ! _isParamsCompanyIdLoaded
       && paramsCompanyId && paramsCompanyId !== companyId
     ) {
-      setPageText({ name: 'CompanyPage', text: 'Загрузка данных по компании...' });
+      setPageLoading({ 'get-params-company': { text: 'Загрузка данных по компании...', name: 'CompanyPage' } });
       serviceGetParamsCompany({ companyId: paramsCompanyId, dashboardPageId });
     }
     // Если по ссылке вошли в свою компанию
@@ -36,7 +39,7 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
   },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
-      loadingUser, _isLoaded, loadingCompany, auth, dashboardPageId, dashboardPublicAccess, pageText,
+      loadingUser, _isLoaded, loadingCompany, auth, dashboardPageId, dashboardPublicAccess,
       _isParamsCompanyIdLoaded, paramsCompanyId, companyId
     ]
   );

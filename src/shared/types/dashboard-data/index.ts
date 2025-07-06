@@ -12,6 +12,12 @@ export interface StartEntitiesData {
   startDates    : DashboardDataDates
 }
 
-// export interface PayloadGetData {
-//   data: StartEntitiesData
-// }
+export interface ResGetGoogleData {
+  companyId : string
+  data      : StartEntitiesData
+}
+
+export interface ReqGetGoogleData {
+  companyId       : string
+  dashboardPageId : string
+}

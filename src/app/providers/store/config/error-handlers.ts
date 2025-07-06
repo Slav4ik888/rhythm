@@ -35,7 +35,7 @@ export const errorHandlers = (
 
   __devLog('pathname: ', pathname);
 
-  dispatch(actionsUI.setPageText({ name: 'errorHandlers', text: '' })); // Снять крутилку, если авторизация провалилась...
+  dispatch(actionsUI.setPageLoading({ 'error-handlers': { name: 'errorHandlers', text: '' } })); // Снять крутилку, если авторизация провалилась...
 
   if (e.code === 'ECONNABORTED') {
     return dispatch(actionsUI.setWarningMessage('Отсутствует интернет-соединение. Попробуйте позже.'))

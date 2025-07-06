@@ -2,7 +2,7 @@ import {
   DashboardDataEntities, DashboardDataDates, DashboardItemData, DashboardStatisticItem
  } from 'entities/dashboard-data';
 import { StatisticPeriodType } from 'entities/statistic-type';
-import { GoogleSheetData, ResGetData, StartEntitiesData } from '../../../../types';
+import { GoogleSheetData, ResGetData, StartEntitiesData } from 'shared/types/dashboard-data';
 
 
 

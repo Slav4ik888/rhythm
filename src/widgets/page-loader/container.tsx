@@ -1,9 +1,8 @@
 import { FC, memo, useEffect } from 'react';
 import { useUI } from 'entities/ui';
-import Circular from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
-import Typography from '@mui/material/Typography';
+import { PageLoaderRow } from './row';
 
 
 
@@ -12,10 +11,9 @@ type Props = {
   text?   : string
 }
 
-/** v.2025-06-15 */
+/** v.2025-07-06 */
 export const PageLoaderContainer: FC<Props> = memo(({ loading, text }) => {
-  const { pageText } = useUI();
-  const showText = pageText || text;
+  const { pageLoading } = useUI();
 
 
   // При block - блокируем прокрутку и фокус
@@ -56,19 +54,14 @@ export const PageLoaderContainer: FC<Props> = memo(({ loading, text }) => {
         ...f('-c-c'),
       })}
     >
-      {
-        showText && (
-          <Typography sx={{ color: 'text.dark', mr: 1 }}>{showText}</Typography>
-        )
-      }
-      <Circular
-        size = {showText ? 20 : 60}
-        sx   = {{
-          '&.MuiCircularProgress-root': {
-            color: 'text.dark'
-          },
-        }}
-      />
+      <Box sx={{ ...f('c-fs-fe'), minWidth: '30%', gap: 1 }}>
+        {
+          Object.entries(pageLoading).map(([key, value]) => (
+            <PageLoaderRow key={key} text={value.text} />
+          ))
+        }
+        {text && <PageLoaderRow text={text} />}
+      </Box>
     </Box>
   )
 });

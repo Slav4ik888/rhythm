@@ -10,7 +10,7 @@ export const getInitialState = (companyId: string): StateSchemaDashboardData => 
   const emptyPeriod: DashboardPeriod = {
     type  : DashboardPeriodType.NINE_MONTHS,
     start : undefined,
-    end   : undefined
+    end   : Date.now()
   };
 
   const state = LS.getDashboardDataState(companyId);

@@ -10,7 +10,6 @@ export const selectLoading = createSelector(selectModule, (state: StateSchemaUI)
 export const selectErrors  = createSelector(selectModule, (state: StateSchemaUI) => state.errors);
 
 export const selectPageLoading = createSelector(selectModule, (state: StateSchemaUI) => state.pageLoading);
-export const selectPageText = createSelector(selectModule, (state: StateSchemaUI) => state.pageText);
 
 export const selectErrorStatus = createSelector(selectModule, (state: StateSchemaUI) => state.errorStatus);
 

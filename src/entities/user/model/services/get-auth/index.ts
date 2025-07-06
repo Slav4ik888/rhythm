@@ -8,6 +8,7 @@ import { SetUser } from '../../slice/types';
 import { LS } from 'shared/lib/local-storage';
 import cfg from 'app/config';
 import { cloneObj } from 'shared/helpers/objects';
+import { actionsUI } from 'entities/ui';
 
 
 
@@ -54,6 +55,8 @@ export const getAuth = createAsyncThunk<
       if (company) { // Чтобы при отсутствии данных, не затёрлись имеющиеся в LS
         dispatch(actionsCompany.setCompany({ company }));
       }
+
+      dispatch(actionsUI.setPageLoading({ 'get-auth': { text: '', name: 'getAuth' } }));
 
       return { companyId, user };
     }

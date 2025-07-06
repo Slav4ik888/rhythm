@@ -5,7 +5,6 @@ import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
 import { StateSchemaDashboardData } from '../../slice/state-schema';
 import { SetActivePeriod, SetSelectedPeriod } from '../../slice/types';
-import { getData } from 'features/dashboard-data';
 import { useMemo } from 'react';
 
 
@@ -50,7 +49,6 @@ export const useDashboardData = (config: Config = {}) => {
     setInitial        : (state: StateSchemaDashboardData) => dispatch(a.setInitial(state)),
     setActivePeriod   : (data: SetActivePeriod) => dispatch(a.setActivePeriod(data)),
     setSelectedPeriod : (data: SetSelectedPeriod) => dispatch(a.setSelectedPeriod(data)),
-    serviceGetData    : (companyId: string) => dispatch(getData(companyId)),
   }),
     [dispatch]
   );

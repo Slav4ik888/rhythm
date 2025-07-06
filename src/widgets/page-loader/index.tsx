@@ -2,6 +2,7 @@ import { FC, memo } from 'react';
 import { useUI } from 'entities/ui';
 import { PageLoaderContainer } from './container';
 import { __devLog } from 'shared/lib/tests/__dev-log';
+import { isEmpty, isNotEmpty } from 'shared/helpers/objects';
 
 
 
@@ -11,17 +12,17 @@ type Props = {
 }
 
 /**
- * v.2025-06-16
+ * v.2025-07-06
  * Center block loader with text message
  */
 export const PageLoader: FC<Props> = memo(({ loading, text }) => {
-  const { pageText } = useUI();
+  const { pageLoading } = useUI();
 
-  if (! pageText && ! loading) return null;
+  if (isEmpty(pageLoading) && ! loading) return null;
 
   return (
     <PageLoaderContainer
-      loading = {Boolean(pageText)}
+      loading = {isNotEmpty(pageLoading)}
       text    = {text}
     />
   )

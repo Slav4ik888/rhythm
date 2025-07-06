@@ -19,10 +19,6 @@ export interface SetParamsCompany {
   paramsCompany: ParamsCompany
 }
 
-/** 2025-06-13 */
-interface ResGetCompany {
-  paramsCompanyData : ParamsCompany
-}
 
 /** Возвращает данные компании. */
 export const getParamsCompany = createAsyncThunk<
@@ -50,7 +46,7 @@ export const getParamsCompany = createAsyncThunk<
         paramsCompany = cloneObj(data);
       }
 
-      dispatch(actionsUI.setPageText({ text: '', name: 'getParamsCompany' }));
+      dispatch(actionsUI.setPageLoading({ 'get-params-company': { text: '', name: 'getParamsCompany' } }));
 
       return { paramsCompany };
     }

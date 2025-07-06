@@ -4,6 +4,7 @@ import { RoutePath } from 'app/providers/routes';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { MDBox, MDButton } from 'shared/ui/mui-design-components';
 import { NavbarIcon } from 'shared/ui/navbar';
+import { OpenUIConfiguratorBtn } from 'features/ui';
 
 
 
@@ -23,5 +24,7 @@ export const AnyAuthBtns: FC = memo(() => (
     <Link to={RoutePath.LOGIN}>
       <NavbarIcon toolTitle='Войти' icon={AccountCircle} />
     </Link>
+
+    <OpenUIConfiguratorBtn />
   </MDBox>
 ));

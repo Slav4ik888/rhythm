@@ -12,6 +12,8 @@ import { LS } from 'shared/lib/local-storage';
 import { reducerDashboardTemplates, useDashboardTemplates } from 'entities/dashboard-templates';
 import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view';
 import { usePages } from 'shared/lib/hooks';
+import { useDashboardGetData } from 'features/dashboard-data';
+import { useUI } from 'entities/ui';
 
 
 
@@ -27,14 +29,31 @@ export const DashboardPageContainer: FC = memo(() => {
   const { pathname } = useLocation();
   const { serviceGetViewItems, setDashboardBunchesFromCache } = useDashboardViewServices();
   const { serviceGetBunchesUpdated } = useDashboardTemplates();
-  const { dashboardPageId } = usePages();
+  const { dashboardPageId = 'main' } = usePages();
+  const { serviceGetData } = useDashboardGetData();
+  const { setPageLoading } = useUI();
+
 
   useEffect(() => {
     // 1. TEMPLATES
     serviceGetBunchesUpdated(); /** Get актуальное состояние bunchesUpdated from DB */
 
-    // 2. VIEW-ITEMS
-    const bunchesForLoad = getBunchesToUpdate(paramsBunchesUpdated, LS.getDashboardViewBunchesUpdated(paramsCompanyId));
+    // 2. GOOGLE-DATA - если нет данных, то загружаем
+    if (! LS.getDashboardDataState(paramsCompanyId)) {
+      setPageLoading({
+        'get-g-data': {
+          text: 'Загрузка данных c google-таблицы...',
+          name: 'DashboardPageContainer'
+        }
+      });
+      serviceGetData({ companyId: paramsCompanyId, dashboardPageId });
+    }
+
+    // 3. VIEW-ITEMS
+    const bunchesForLoad = getBunchesToUpdate(
+      paramsBunchesUpdated,
+      LS.getDashboardViewBunchesUpdated(paramsCompanyId)
+    );
 
     // TODO: sheetId подставлять нужный
 

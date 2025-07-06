@@ -10,7 +10,6 @@ import { useCompany } from 'entities/company';
 import { getCopyViewItem } from 'features/dashboard-view';
 import { useUser } from 'entities/user';
 import { isEmpty, isNotEmpty, updateObject } from 'shared/helpers/objects';
-import { useUI } from 'entities/ui';
 import { PageLoader } from 'widgets/page-loader';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { v4 as uuidv4 } from 'uuid';
@@ -28,7 +27,6 @@ export const DashboardBodyContent = memo(() => {
     activatedMovementId, viewItems, entities, activatedCopied, setNewSelectedId, setIsMounted,
     setDashboardViewItems, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
   } = useDashboardViewServices();
-  const { setPageText } = useUI();
   const [isRendering, setIsRendering] = useState(true);
 
 
@@ -43,7 +41,6 @@ export const DashboardBodyContent = memo(() => {
     const checkRenderComplete = () => {
       requestAnimationFrame(() => {
         setIsRendering(false);
-        setPageText({ name: 'DashboardBodyContent', text: '' });
         setIsMounted();
       });
     };

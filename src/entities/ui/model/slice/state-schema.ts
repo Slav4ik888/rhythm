@@ -1,6 +1,21 @@
 import { Errors } from 'shared/lib/validators';
-import { Message } from '../types/messages';
-import { ScreenFormats } from '../types/screen-formats';
+import { Message } from '../../types/messages';
+import { ScreenFormats } from '../../types/screen-formats';
+
+
+
+export type PageLoadingType = 'get-auth'
+  | 'get-g-data'
+  | 'get-params-company'
+  | 'error-handlers'
+
+
+export interface PageLoadingValue {
+  name: string
+  text: string
+}
+
+export type PageLoading = OptionalRecord<PageLoadingType, PageLoadingValue>
 
 
 export interface StateSchemaUI {
@@ -11,8 +26,7 @@ export interface StateSchemaUI {
   errorStatus    : number
 
   // Page Loader
-  pageLoading    : boolean
-  pageText       : string
+  pageLoading    : PageLoading
 
   // Messages
   message        : Message

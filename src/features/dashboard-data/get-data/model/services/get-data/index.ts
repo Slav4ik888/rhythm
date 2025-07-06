@@ -3,30 +3,24 @@ import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/stor
 import { actionsUI } from 'entities/ui';
 import { Errors } from 'shared/lib/validators';
 import { getEntities } from './utils';
-import { StartEntitiesData } from '../../types';
 import { LS } from 'shared/lib/local-storage';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { API_PATHS } from 'shared/api';
+import { ResGetGoogleData, ReqGetGoogleData } from 'shared/types';
 
-
-
-export interface ResGetGoogleData {
-  companyId : string
-  data      : StartEntitiesData
-}
 
 
 export const getData = createAsyncThunk<
   ResGetGoogleData,
-  string,
+  ReqGetGoogleData,
   ThunkConfig<Errors>
 >(
   'features/dashboard/getData',
-  async (companyId, thunkApi) => {
+  async ({ companyId, dashboardPageId }, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
 
     try {
-      const { data } = await extra.api.post(API_PATHS.google.getData, { companyId });
+      const { data } = await extra.api.post(API_PATHS.google.getData, { companyId, dashboardPageId });
 
       // **
       // For development - сохраняем входящие данные в localStorage
@@ -36,6 +30,7 @@ export const getData = createAsyncThunk<
       const gsData = getEntities(data);
       __devLog('gsData: ', gsData);
       dispatch(actionsUI.setSuccessMessage('Данные с гугл-таблицы загружены'));
+      dispatch(actionsUI.setPageLoading({ 'get-g-data': { text: '', name: 'getData' } }));
 
       return {
         companyId,
