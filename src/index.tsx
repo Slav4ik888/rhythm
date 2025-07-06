@@ -31,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "fix palletemode2" && git push -u origin main
+// git add . && git commit -m "fix isEditAccess" && git push -u origin main

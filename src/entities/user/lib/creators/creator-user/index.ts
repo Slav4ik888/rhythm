@@ -22,6 +22,7 @@ export const creatorUser = (cfg: Partial<User> = {}): User => {
     status        : cfg.status        || UserStatus.NEW,
     order         : cfg.order         || 100,
 
+    isEditAccess  : cfg.isEditAccess  || false,
     createdAt     : cfg.createdAt     || creatorFixDate(cfg.id),
     lastChange    : cfg.lastChange    || creatorFixDate(cfg.id)
   };
