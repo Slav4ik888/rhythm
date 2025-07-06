@@ -1,7 +1,6 @@
 import { SidebarColorName } from '../themes/light-sidebar';
-import { UIConfiguratorProviderState } from '../types';
+import { PaletteMode, UIConfiguratorProviderState } from '../types';
 import { LS } from 'shared/lib/local-storage';
-import { PaletteMode } from '@mui/material/styles';
 
 
 
