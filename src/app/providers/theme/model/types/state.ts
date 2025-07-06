@@ -1,4 +1,3 @@
-import { PaletteMode } from '@mui/material/styles';
 import { NavbarColorName } from '../themes/light-navbar';
 import { SidebarColorName } from '../themes/light-sidebar';
 
@@ -8,7 +7,7 @@ import { SidebarColorName } from '../themes/light-sidebar';
  */
 export interface UIConfiguratorProviderState {
   // ОБЩИЕ
-  mode                  : PaletteMode
+  mode                  : 'light' | 'dark' | 'system'
   isOpenConfigurator    : boolean         // Open / close Configurator
 
   // HEADER
