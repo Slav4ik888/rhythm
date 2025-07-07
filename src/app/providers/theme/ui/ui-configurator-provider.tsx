@@ -2,10 +2,12 @@ import { FC, ReactNode, useEffect, useMemo, useReducer } from 'react';
 import {
   ThemeProvider as MuiThemeProvider, createTheme, useTheme as useMUITheme
  } from '@mui/material/styles';
-import { PaletteMode, UIConfiguratorProviderState } from '../model/types';
-import { reducer, setMode, setSidebarColor } from '../model/lib/reducer';
-import { getThemeByName } from '../model/utils';
-import { UIConfiguratorContext, UIConfiguratorContextType } from '../model/lib/ui-configurator-context';
+import { PaletteMode, UIConfiguratorProviderState } from '../types';
+import { reducer, setMode, setSidebarColor } from '../model/ui-configurator-reducer/reducer';
+import { calcLeftOffsetScrollButton, getThemeByName } from '../utils';
+import {
+  UIConfiguratorContext, UIConfiguratorContextType
+} from '../model/ui-configurator-reducer/ui-configurator-context';
 import { LS } from 'shared/lib/local-storage';
 import { isNotUndefined } from 'shared/lib/validators';
 
@@ -13,17 +15,20 @@ import { isNotUndefined } from 'shared/lib/validators';
 
 const fromLS = LS.getUIConfiguratorState();
 
+const isSidebar   = isNotUndefined(fromLS?.isSidebar) ? Boolean(fromLS?.isSidebar) : true;
+const sidebarMini = fromLS?.sidebarMini || false;
 
 const initialState: UIConfiguratorProviderState = {
-  mode               : fromLS?.mode               || 'system',
-  isOpenConfigurator : fromLS?.isOpenConfigurator || false,
-  navbarFixed        : fromLS?.navbarFixed        || true,
-  navbarTransparent  : fromLS?.navbarTransparent  || false,
-  navbarColor        : fromLS?.navbarColor        || 'navbar_white',
-  isSidebar          : isNotUndefined(fromLS?.isSidebar) ? Boolean(fromLS?.isSidebar) : true,
-  sidebarWidth       : fromLS?.sidebarWidth       || 250,
-  sidebarMini        : fromLS?.sidebarMini        || false,
-  sidebarColor       : fromLS?.sidebarColor       || 'sidebar_black',
+  mode                   : fromLS?.mode                   || 'system',
+  isOpenConfigurator     : fromLS?.isOpenConfigurator     || false,
+  navbarFixed            : fromLS?.navbarFixed            || true,
+  navbarTransparent      : fromLS?.navbarTransparent      || false,
+  navbarColor            : fromLS?.navbarColor            || 'navbar_white',
+  isSidebar,
+  sidebarWidth           : fromLS?.sidebarWidth           || 250,
+  sidebarMini,
+  sidebarColor           : fromLS?.sidebarColor           || 'sidebar_black',
+  leftOffsetScrollButton : calcLeftOffsetScrollButton(isSidebar, sidebarMini), // При монтировании ScrollableWorkspace рассчитается
 };
 
 

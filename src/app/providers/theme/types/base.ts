@@ -1,9 +1,9 @@
 import { Theme } from '@mui/material/styles';
-import { borders } from '../themes/base/borders';
-import { breakpoints } from '../themes/base/breakpoints';
-import { customPalette } from '../themes/light-custom-palette';
-import { NavbarTheme } from '../themes/light-navbar';
-import { SidebarTheme } from '../themes/light-sidebar';
+import { borders } from '../model/themes/base/borders';
+import { breakpoints } from '../model/themes/base/breakpoints';
+import { customPalette } from '../model/themes/light-custom-palette';
+import { NavbarTheme } from '../model/themes/light-navbar';
+import { SidebarTheme } from '../model/themes/light-sidebar';
 import { Gradients } from './gradients';
 
 

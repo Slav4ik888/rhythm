@@ -1,8 +1,9 @@
 import Box from '@mui/material/Box';
-import { ReactNode, useRef, useState, useEffect, useCallback } from 'react';
+import { FC, ReactNode, useRef, useState, useEffect, useCallback } from 'react';
 import { styles } from './styles';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import { useUIConfiguratorController } from 'app/providers/theme';
 
 
 
@@ -15,10 +16,13 @@ interface Props {
  * Адаптивные кнопки - появляются при наведении и скрываются когда скролл невозможен
  * Кнопки активируются только когда есть куда скроллить
  */
-export const ScrollableWorkspace: React.FC<Props> = ({ children }) => {
+export const ScrollableWorkspace: FC<Props> = ({ children }) => {
+  const [controller] = useUIConfiguratorController();
+  const { leftOffsetScrollButton } = controller;
   const containerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const parentRef = useRef<HTMLDivElement>(null); // Для организации отступа слева
 
 
   // Проверяем, можно ли скроллить влево/вправо
@@ -70,10 +74,14 @@ export const ScrollableWorkspace: React.FC<Props> = ({ children }) => {
 
 
   return (
-    <Box id='scrollable' sx={styles.container}>
+    <Box
+      id  = 'scrollable'
+      ref = {parentRef}
+      sx  = {styles.container}
+    >
       {canScrollLeft && (
         <Box
-          sx           = {{ ...styles.arrow, ...styles.leftArrow }}
+          sx           = {{ ...styles.arrow, ...styles.leftArrow, left: `${leftOffsetScrollButton}px` }}
           onMouseEnter = {() => scroll('left')}
           onClick      = {() => scroll('left')}
         >
@@ -81,7 +89,11 @@ export const ScrollableWorkspace: React.FC<Props> = ({ children }) => {
         </Box>
       )}
 
-      <Box id='containerRef' sx={styles.workspace} ref={containerRef}>
+      <Box
+        id  = 'containerRef'
+        ref = {containerRef}
+        sx  = {styles.workspace}
+      >
         {
           children
         }

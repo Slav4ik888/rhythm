@@ -35,7 +35,7 @@ export const styles = {
     height: '120px',  /* Высота (вдвое больше ширины) */
     background: '#dadada88',
     boxShadow: '-2px 0 10px rgba(0, 0, 0, 0.3)', /* Тень для объёма */
-    zIndex: 9999,  /* Поверх всех элементов */
+    zIndex: 10,  /* Поверх всех элементов */
     cursor: 'pointer', /* Указатель при наведении */
     '&:hover': {
       backgroundColor: '#dadada66',

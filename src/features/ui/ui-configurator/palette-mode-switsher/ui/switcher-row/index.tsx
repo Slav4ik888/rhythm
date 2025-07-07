@@ -6,7 +6,7 @@ import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { setMode, UIDispatch, setSidebarColor, isSystemDarkMode } from 'app/providers/theme';
 import { f } from 'shared/styles';
-import { PaletteMode } from 'app/providers/theme/model/types';
+import { PaletteMode } from 'app/providers/theme/types';
 
 
 

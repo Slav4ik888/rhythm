@@ -1,14 +1,14 @@
-import { customPalette as customPaletteLight } from '../../themes/light-custom-palette';
-import { customPalette as customPaletteDark } from '../../themes/dark-custom-palette';
+import { customPalette as customPaletteLight } from '../../model/themes/light-custom-palette';
+import { customPalette as customPaletteDark } from '../../model/themes/dark-custom-palette';
 import { UIConfiguratorProviderState, CustomTheme } from '../../types';
-import { gradients as gradientsLight } from '../../themes/light-gradients';
-import { gradients as gradientsDark } from '../../themes/dark-gradients';
-import { navbarThemes as navbarThemesLight } from '../../themes/light-navbar';
-import { navbarThemes as navbarThemesDark } from '../../themes/dark-navbar';
-import { sidebarThemes as sidebarThemesLight } from '../../themes/light-sidebar';
-import { sidebarThemes as sidebarThemesDark } from '../../themes/dark-sidebar';
-import { borders } from '../../themes/base/borders';
-import { breakpoints } from '../../themes/base/breakpoints';
+import { gradients as gradientsLight } from '../../model/themes/light-gradients';
+import { gradients as gradientsDark } from '../../model/themes/dark-gradients';
+import { navbarThemes as navbarThemesLight } from '../../model/themes/light-navbar';
+import { navbarThemes as navbarThemesDark } from '../../model/themes/dark-navbar';
+import { sidebarThemes as sidebarThemesLight } from '../../model/themes/light-sidebar';
+import { sidebarThemes as sidebarThemesDark } from '../../model/themes/dark-sidebar';
+import { borders } from '../../model/themes/base/borders';
+import { breakpoints } from '../../model/themes/base/breakpoints';
 import { Theme } from '@mui/material/styles';
 
 

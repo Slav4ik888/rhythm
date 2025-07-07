@@ -1,8 +1,11 @@
 import { FC, memo, useCallback } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import { useTheme, useUIConfiguratorController, CustomTheme, setSidebarMini, setIsSidebar } from 'app/providers/theme';
+import {
+  useTheme, useUIConfiguratorController, CustomTheme, setSidebarMini, setIsSidebar, setLeftOffsetScrollButton
+} from 'app/providers/theme';
 import { NavbarIcon } from 'shared/ui/navbar';
+import { calcLeftOffsetScrollButton } from 'app/providers/theme/utils';
 
 
 
@@ -27,6 +30,7 @@ export const MiniSidebarToggleBtn: FC = memo(() => {
   const handleMiniSidebar = useCallback(() => {
     setSidebarMini(dispatch, ! sidebarMini);
     if (! isSidebar) setIsSidebar(dispatch, true);
+    setLeftOffsetScrollButton(dispatch, calcLeftOffsetScrollButton(true, ! sidebarMini));
   }, [sidebarMini, isSidebar, dispatch]);
 
 

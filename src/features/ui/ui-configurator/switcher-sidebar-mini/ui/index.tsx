@@ -1,6 +1,9 @@
 import { memo, useEffect, useState } from 'react';
-import { setSidebarMini, useUIConfiguratorController } from 'app/providers/theme';
+import {
+  setIsSidebar, setLeftOffsetScrollButton, setSidebarMini, useUIConfiguratorController
+ } from 'app/providers/theme';
 import { SwitcherItem } from '../../components/switcher-item';
+import { calcLeftOffsetScrollButton } from 'app/providers/theme/utils';
 
 
 
@@ -13,7 +16,11 @@ export const SwitcherSidebarMini = memo(() => {
     setChecked(sidebarMini);
   }, [sidebarMini]);
 
-  const toggle = () => setSidebarMini(dispatch, ! sidebarMini);
+  const toggle = () => {
+    setIsSidebar(dispatch, true);
+    setSidebarMini(dispatch, ! sidebarMini);
+    setLeftOffsetScrollButton(dispatch, calcLeftOffsetScrollButton(true, ! sidebarMini));
+  };
 
 
   return (

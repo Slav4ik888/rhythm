@@ -6,7 +6,7 @@ import { CustomTheme, setMode, setSidebarColor, UIDispatch } from 'app/providers
 import { Tooltip } from 'shared/ui/tooltip';
 import { f } from 'shared/styles';
 import { getIconStyle } from 'shared/ui/configurators-components';
-import { PaletteMode } from 'app/providers/theme/model/types';
+import { PaletteMode } from 'app/providers/theme/types';
 
 
 

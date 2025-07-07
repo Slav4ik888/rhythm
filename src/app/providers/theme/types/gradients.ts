@@ -1,4 +1,4 @@
-import { gradients } from '../themes/light-gradients';
+import { gradients } from '../model/themes/light-gradients';
 
 
 export type Gradients = typeof gradients;
