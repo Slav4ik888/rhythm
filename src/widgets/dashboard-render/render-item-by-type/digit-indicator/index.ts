@@ -1,2 +1,2 @@
-export { getReversedIndicators, getIncreased, getInverted } from './model/utils'
+export { getReversedIndicators, getIncreased, getInverted } from './utils'
 export { ItemDigitIndicator } from './ui'

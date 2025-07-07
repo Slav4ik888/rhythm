@@ -4,37 +4,9 @@ import GrowIcon from './assets/triangle-growth.svg';
 import FallIcon from './assets/triangle-fall.svg';
 import UnchangedLeftIcon from './assets/triangle-unchanged-left.svg';
 import UnchangedRightIcon from './assets/triangle-unchanged-right.svg';
-import { CustomTheme, useTheme } from 'app/providers/theme';
 import { f, SxCard } from 'shared/styles';
 import { Increased } from 'entities/dashboard-data';
-import { getColorByIncreased } from '../../digit-indicator/model/utils';
-
-
-
-const useStyles = (
-  theme           : CustomTheme,
-  increased       : Increased,
-  unchangedBlack? : boolean,
-  scaleValue?     : number,
-  sx?             : SxCard
-) => {
-  const color = getColorByIncreased(theme, increased, unchangedBlack);
-  const scale = `scale(${scaleValue || 1.5})`;
-
-
-  return {
-    root: {
-      ...f('-c-c'),
-      ...sx?.root
-    },
-    svg: {
-      transform       : scale,
-      WebkitTransform : scale,
-      MozTransform    : scale,
-    },
-    fill: color,
-  };
-};
+import { getStyles } from './styles';
 
 
 
@@ -49,9 +21,8 @@ interface Props {
 
 /** Иконка вверх вниз на месте, показывает положительные или отрицательные изменения */
 export const GrowthIconComponent: FC<Props> = memo(({ increased, unchangedBlack, isLeft, scale, sx: style }) => {
-  const sx = useStyles(useTheme(), increased, unchangedBlack, scale, style);
-
   const icon = useMemo(() => {
+    const sx = getStyles(increased, unchangedBlack, scale);
     switch (increased) {
       case 1: return <GrowIcon fill={sx.fill} style={sx.svg} />
       case -1: return <FallIcon fill={sx.fill} style={sx.svg} />
@@ -64,11 +35,16 @@ export const GrowthIconComponent: FC<Props> = memo(({ increased, unchangedBlack,
         }
         return <FallIcon fill={sx.fill} style={sx.svg} />
     }
-  }, [increased, unchangedBlack, isLeft, sx.fill, sx.svg]);
+  }, [increased, unchangedBlack, isLeft, scale]);
 
 
   return (
-    <Box sx={sx.root}>
+    <Box
+      sx={{
+        ...f('-c-c'),
+        ...style?.root
+      }}
+    >
       {icon}
     </Box>
   );

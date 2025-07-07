@@ -185,20 +185,6 @@ export const customPalette = {
     focus: '#8a8a8a',
   },
 
-  // Рост | Падение | Без изменений - результатов
-  growth: {
-    main: '#02bf02',
-    focus: '#02bf02',
-  },
-  fall: {
-    main: '#cc0000',
-    focus: '#cc0000',
-  },
-  unchanged: {
-    main: '#434343',
-    focus: '#434343',
-  },
-
   // Цвета с фоном для: Рост | Падение | Без изменений - результатов
   increasedBG: {
     growth: {

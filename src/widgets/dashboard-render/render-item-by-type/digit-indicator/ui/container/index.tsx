@@ -1,33 +1,15 @@
 import { FC, memo, useMemo } from 'react';
 import { getKod, useDashboardViewState, ViewItem } from 'entities/dashboard-view';
-import { DashboardStatisticItem, Increased, useDashboardData } from 'entities/dashboard-data';
+import { DashboardStatisticItem, useDashboardData } from 'entities/dashboard-data';
 import {
-  getColorByIncreased, getComparisonValues, getIncreased, getInverted, getReversedIndicators, ValueStringAndReduction
-} from '../model/utils';
-import { CustomTheme, useTheme } from 'app/providers/theme';
-import { ItemDigitIndicatorValue } from './value';
-import { ItemDigitIndicatorEnding } from './ending';
-import { ItemDigitIndicatorPlusMinus } from './plus-minus';
+  getComparisonValues, getIncreased, getInverted, getReversedIndicators, ValueStringAndReduction
+} from '../../utils';
 import { getFixedFraction, getReducedWithReduction } from 'shared/helpers/numbers';
-import { calcGrowthChange } from '../../growth-icon/model/utils';
+import { calcGrowthChange } from '../../../growth-icon/utils';
 import { isNotUndefined } from 'shared/lib/validators';
-import { ItemDigitIndicatorReduction } from './reduction';
+import { getStyles } from './styles';
+import { ItemDigitIndicatorComponent } from './component';
 
-
-
-const useStyles = (theme: CustomTheme, item: ViewItem, increased: Increased) => {
-  let color = '';
-
-  // Если указано что цвет по росту/падению
-  if (item?.settings?.growthColor) {
-    color = getColorByIncreased(theme, increased, item?.settings?.unchangedBlack);
-  }
-  else if (item?.styles?.color) {
-    color = item?.styles?.color;
-  }
-
-  return color
-};
 
 
 interface Props {
@@ -48,7 +30,7 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, isTemplate }) => {
     [item, isTemplate, entities, activeEntities, kod]
   );
 
-  const color = useStyles(useTheme(), item, increased);
+  const color = useMemo(() => getStyles(item, increased), [item, increased]);
 
   const statisticItem = useMemo(() => activeEntities[kod] as DashboardStatisticItem<number>, [activeEntities, kod]);
   const indicators = getReversedIndicators(statisticItem?.data, item?.settings?.valueNumber);
@@ -92,7 +74,7 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, isTemplate }) => {
       reduction = p;
     }
     else if (isNotUndefined(values[count - 1]?.value)) {
-        value = values[count - 1]?.value;
+        value = values[count - 1]?.value || '-'; // Если значение отсутствует`
         reduction = values[count - 1]?.reduction;
       }
 
@@ -105,25 +87,14 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, isTemplate }) => {
   }, [lastValue, prevValue, values, count, item, fractionDigits, addZero]);
 
 
-  // const emptyEndingDiffType = item?.settings?.endingDiffType !== '% соотношение' && item?.settings?.endingDiffType !== 'Разница';
 
   return (
-    <>
-      {/* +/- */}
-      {item?.settings?.plusMinus && (
-        <ItemDigitIndicatorPlusMinus item={item} increased={increased} color={color} />
-      )}
-      {/* Число */}
-      <ItemDigitIndicatorValue item={item} value={calcedValue.value} color={color} />
-
-      {/* Сокращение - (тыс млн) */}
-      {calcedValue.reduction && (
-        <ItemDigitIndicatorReduction item={item} reduction={calcedValue.reduction} color={color} />
-      )}
-      {/* Ед изменения */}
-      {item?.settings?.endingType && item?.settings?.endingType !== '-' && (
-        <ItemDigitIndicatorEnding item={item} color={color} />
-      )}
-    </>
+    <ItemDigitIndicatorComponent
+      item      = {item}
+      increased = {increased}
+      color     = {color}
+      value     = {calcedValue.value}
+      reduction = {calcedValue.reduction}
+    />
   )
 });
