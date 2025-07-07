@@ -16,6 +16,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { calcItemsInBunches, findAvailableBunchId } from 'shared/lib/structures/bunch';
 import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view';
 import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view';
+import { ScrollableWorkspace } from 'shared/ui/wrappers';
 
 
 
@@ -222,15 +223,17 @@ export const DashboardBodyContent = memo(() => {
       }}
       onClick = {() => handleSelectViewItem(NO_PARENT_ID)}
     >
-      {
-        isRendering
-          ? <PageLoader loading={isRendering} text='Отрисовка графиков...' />
-          : <DashboardRender
-              parents  = {parentsViewItems}
-              parentId = 'no_parentId'
-              onSelect = {handleSelectViewItem}
-            />
-      }
+      <ScrollableWorkspace>
+        {
+          isRendering
+            ? <PageLoader loading={isRendering} text='Отрисовка графиков...' />
+            : <DashboardRender
+                parents  = {parentsViewItems}
+                parentId = 'no_parentId'
+                onSelect = {handleSelectViewItem}
+              />
+        }
+      </ScrollableWorkspace>
     </Box>
   )
 });
