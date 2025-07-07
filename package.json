@@ -18,12 +18,12 @@
   "author": "slav4ik888",
   "license": "ISC",
   "dependencies": {
-    "@emotion/react": "11.13.3",
-    "@emotion/styled": "11.13.0",
-    "@mui/icons-material": "6.3.1",
-    "@mui/lab": "6.0.0-beta.22",
-    "@mui/material": "6.3.1",
-    "@mui/styled-engine": "5.16.6",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.1",
+    "@mui/icons-material": "7.2.0",
+    "@mui/lab": "7.0.0-beta.14",
+    "@mui/material": "7.2.0",
+    "@mui/styled-engine": "7.2.0",
     "@reduxjs/toolkit": "2.2.7",
     "axios": "^1.9.0",
     "chart.js": "^4.4.8",
@@ -87,6 +87,6 @@
     "typescript": "5.5.4",
     "webpack": "5.94.0",
     "webpack-cli": "5.1.4",
-    "webpack-dev-server": "5.0.4"
+    "webpack-dev-server": "^5.2.2"
   }
 }
