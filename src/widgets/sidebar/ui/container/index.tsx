@@ -13,16 +13,18 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { FC, useEffect, useMemo } from 'react';
+import { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import List from '@mui/material/List';
 import SidebarRoot from './styled';
-import { useUIConfiguratorController, ColorName, setSidebarMini, useTheme } from 'app/providers/theme';
+import {
+  useUIConfiguratorController, setSidebarMini, useTheme, setLeftOffsetScrollButton
+} from 'app/providers/theme';
 // import { SidebarDivider } from 'shared/ui/sidebar-divider';
 import { SidebarLogoLabel } from '../logo-label';
 import { SidebarUpgradeButton } from '../upgrade-button';
-import { renderRoutes } from '../render-routes';
-import { routesListCss1d3r8 } from 'entities/dashboard-data';
+import { calcLeftOffsetScrollButton } from 'app/providers/theme/utils';
+import { SidebarList } from '../list';
+import { SidebarMainSheet } from '../main-sheet';
 
 
 
@@ -34,27 +36,18 @@ interface Props {
 
 export const SidebarContainer: FC<Props> = ({ ...rest }) => {
   const [configuratorState, dispatch] = useUIConfiguratorController();
-  const { sidebarMini, sidebarWidth, mode, isSidebar } = configuratorState;
-  const darkMode = mode === 'dark';
+  const { sidebarMini, sidebarWidth, isSidebar } = configuratorState;
   const theme = useTheme();
   const { breakpoints: { values: { xl, sm } } } = theme;
   const location = useLocation();
-  const activeName = location.pathname.replace('/', ''); // dashboard/css_1d3r8
-
-  const textColor: ColorName = useMemo(() => {
-    if (! darkMode) return 'dark';
-    if (darkMode) return 'inherit';
-    return 'white' as ColorName
-  }, [darkMode]);
-
-  // TODO: вставлять routesList в функцию по companyId
-  const routes = useMemo(() => renderRoutes(routesListCss1d3r8, activeName, textColor), [activeName, textColor]);
 
 
   useEffect(() => {
     // A function that sets the mini state of the sidebar.
     function handleSidebarChanges() {
-      setSidebarMini(dispatch, window.innerWidth < xl || sidebarMini); // Если изначально мини, то нужно его оставить если экран > 1200
+      const calcSidebarMini = window.innerWidth < xl || sidebarMini;
+      setSidebarMini(dispatch, calcSidebarMini); // Если изначально мини, то нужно его оставить если экран > 1200
+      setLeftOffsetScrollButton(dispatch, calcLeftOffsetScrollButton(isSidebar, calcSidebarMini));
       // setIsSidebar(dispatch, window.innerWidth > sm || isSidebar);
     }
 
@@ -65,7 +58,9 @@ export const SidebarContainer: FC<Props> = ({ ...rest }) => {
     handleSidebarChanges();
 
     return () => window.removeEventListener('resize', handleSidebarChanges);
-  }, [dispatch, location, isSidebar, sidebarMini, sm, xl]);
+  },
+    [dispatch, location, isSidebar, sidebarMini, sm, xl]
+  );
 
 
   return (
@@ -76,17 +71,8 @@ export const SidebarContainer: FC<Props> = ({ ...rest }) => {
       ownerState={{ sidebarMini, sidebarWidth, isSidebar }}
     >
       <SidebarLogoLabel />
-      <List>
-        {/* <MDBox display='flex flex-col' alignItems='center'>
-          <MDTypography color={textColor} variant='body2' fontWeight='medium' pl='1.5rem' mb='1rem'>
-            { sidebarMini ? 'Exam' : 'Examples' }
-          </MDTypography>
-          {exampleRoutes}
-        </MDBox> */}
-
-        {routes}
-      </List>
-
+      <SidebarMainSheet />
+      <SidebarList />
       <SidebarUpgradeButton />
     </SidebarRoot>
   );

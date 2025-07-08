@@ -32,7 +32,7 @@ import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
 interface Props {
   icon        : ReactNode | string
   title       : string
-  active      : boolean
+  active      : boolean // является ли активным
   noCollapse? : boolean
 }
 

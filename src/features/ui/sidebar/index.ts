@@ -1,1 +1,1 @@
-export { ArrowBackBtn } from './arrow-back-btn'
+export { AddNewSheetBtn } from './add-new-sheet-btn'

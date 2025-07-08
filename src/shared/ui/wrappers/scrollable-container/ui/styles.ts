@@ -20,19 +20,19 @@ export const styles = {
   },
   leftArrow: {
     left: 0,
-    borderRadius: '0 120px 120px 0', /* Скругление слева */
+    borderRadius: '0 50px 50px 0', /* Скругление слева */
   },
   rightArrow: {
     right: 0, /* Прижат к правому краю */
-    borderRadius: '120px 0 0 120px', /* Скругление справа */
+    borderRadius: '50px 0 0 50px', /* Скругление справа */
   },
   arrow: {
     ...f('-c-c'),
     position: 'fixed', /* Фиксированное позиционирование */
     top: '50%',       /* Посередине по вертикали */
     transform: 'translateY(-50%)', /* Точное центрирование */
-    width: '60px',    /* Ширина полукруга */
-    height: '120px',  /* Высота (вдвое больше ширины) */
+    width: '30px',    /* Ширина полукруга */
+    height: '100px',  /* Высота (вдвое больше ширины) */
     background: '#dadada88',
     boxShadow: '-2px 0 10px rgba(0, 0, 0, 0.3)', /* Тень для объёма */
     zIndex: 10,  /* Поверх всех элементов */
@@ -45,11 +45,11 @@ export const styles = {
   iconLeft: {
     fontSize : '3rem',
     color    : '#b4b4b4',
-    ml       : -1,
+    // ml       : -1,
   },
   iconRight: {
     fontSize : '3rem',
     color    : '#b4b4b4',
-    ml       : 1,
+    // ml       : 1,
   }
 };
