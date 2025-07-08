@@ -1,6 +1,7 @@
 import { FC, memo, useState, useCallback } from 'react';
-import { setSidebarMini, useUIConfiguratorController } from 'app/providers/theme';
+import { setLeftOffsetScrollButton, setSidebarMini, useUIConfiguratorController } from 'app/providers/theme';
 import { SidebarContainer } from './container';
+import { calcLeftOffsetScrollButton } from 'app/providers/theme/utils';
 
 
 
@@ -15,6 +16,7 @@ export const Sidebar: FC = memo(() => {
   const handleOnMouseEnter = useCallback(() => {
     if (sidebarMini && ! onMouseEnter) {
       setSidebarMini(dispatch, false);
+      setLeftOffsetScrollButton(dispatch, calcLeftOffsetScrollButton(true, false));
       setOnMouseEnter(true);
     }
   }, [onMouseEnter, sidebarMini, dispatch, setOnMouseEnter]);
@@ -24,6 +26,7 @@ export const Sidebar: FC = memo(() => {
   const handleOnMouseLeave = useCallback(() => {
     if (onMouseEnter) {
       setSidebarMini(dispatch, true);
+      setLeftOffsetScrollButton(dispatch, calcLeftOffsetScrollButton(true, true));
       setOnMouseEnter(false);
     }
   }, [onMouseEnter, dispatch, setOnMouseEnter]);

@@ -8,7 +8,7 @@ import {
   ChangeOneChartsItem, SetEditMode
 } from './types';
 import { updateEntities } from 'entities/base';
-import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem } from '../types';
+import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem } from '../../types';
 import { cloneObj, updateObject } from 'shared/helpers/objects';
 import { getBunchesTimestamps, updateChartsItem } from '../utils';
 import { ChartConfigDatasets } from 'entities/charts';

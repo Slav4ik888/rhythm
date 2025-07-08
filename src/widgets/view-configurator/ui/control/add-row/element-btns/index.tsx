@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { ViewItemType } from 'entities/dashboard-view/model/types';
+import { ViewItemType } from 'entities/dashboard-view/types';
 import { AddBtn } from 'shared/ui/configurators-components';
 
 

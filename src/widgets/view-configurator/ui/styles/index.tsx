@@ -18,12 +18,17 @@ export const ViewItemStylesConfigurator: FC = memo(() => {
   const handleChange = useCallback((field: ViewItemStylesField, value: number | string) => {
     if (entities[selectedId]?.styles?.[field] !== value && selectedId)
       changeOneStyleField({ selectedId, field, value });
-  }, [selectedId, entities, changeOneStyleField]);
+  },
+    [selectedId, entities, changeOneStyleField]
+  );
 
 
   return (
     <>
-      <CardLabel  selectedItem={selectedItem} onChange={handleChange} />
+      {
+        (selectedItem?.type === 'text' || selectedItem?.type === 'digitIndicator')
+          && <CardLabel  selectedItem={selectedItem} onChange={handleChange} />
+      }
       <Background selectedItem={selectedItem} onChange={handleChange} />
       <Alignment  selectedItem={selectedItem} onChange={handleChange} />
       <Dimensions selectedItem={selectedItem} onChange={handleChange} />

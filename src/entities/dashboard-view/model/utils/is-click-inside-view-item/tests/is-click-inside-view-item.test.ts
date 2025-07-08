@@ -1,7 +1,7 @@
 /* eslint-disable quote-props */
-import { ViewItem } from '../../../types';
+import { ViewItem } from '../../../../types';
 import { isClickInsideViewItem } from '..';
-import { NO_PARENT_ID } from '../../../consts';
+import { NO_PARENT_ID } from '../../../../consts';
 import { DashboardViewEntities } from '../../../slice/state-schema';
 
 

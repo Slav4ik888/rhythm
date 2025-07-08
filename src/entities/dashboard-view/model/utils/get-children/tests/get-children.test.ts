@@ -1,6 +1,6 @@
-import { ViewItem } from '../../../types';
+import { ViewItem } from '../../../../types';
 import { getChildren } from '..';
-import { NO_PARENT_ID } from '../../../consts';
+import { NO_PARENT_ID } from '../../../../consts';
 
 
 

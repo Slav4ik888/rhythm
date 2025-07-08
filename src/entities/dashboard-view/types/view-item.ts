@@ -8,7 +8,6 @@ import { ViewItemStyles } from './item-styles'
 export type ViewItemType = 'box' | 'text' | 'divider' | 'chart' | 'chip' | 'growthIcon' | 'digitIndicator'
 
 
-
 /** v.2025-05-05 */
 export interface ViewItemChart {
   kod?           : string
@@ -24,15 +23,6 @@ export type ViewItemChartField = keyof ViewItemChart
 
 export type ChipType = 'condition' | 'period' | 'company' | 'product' | 'custom'
 export type BaseChipType = 'periodType' | 'companyType' | 'productType'
-
-export const chipOptions: Record<ChipType, { label: string; value: ChipType }> = {
-  condition : { label: 'Состояние',     value: 'condition' },
-  period    : { label: 'Периодичность', value: 'period' },
-  company   : { label: 'Компания',      value: 'company' },
-  product   : { label: 'Продукт',       value: 'product' },
-  custom    : { label: 'Без привязки',  value: 'custom' },
-};
-export const arrayChipLabel = Object.values(chipOptions).map(item => item.label);
 
 
 /** v.2025-06-26 */

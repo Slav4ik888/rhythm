@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig, errorHandlers, CustomAxiosError } from 'app/providers/store';
-import { ViewItem } from '../../types';
+import { ViewItem } from '../../../types';
 import { API_PATHS } from '../../../../../shared/api/api-paths';
 import { Errors } from 'shared/lib/validators';
 import { LS } from 'shared/lib/local-storage';

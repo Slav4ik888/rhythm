@@ -1,9 +1,7 @@
 
-export type EndingType                     =  '-' | '%' | 'шт' | 'руб';
-export const arrayEndingType: EndingType[] = ['-',  '%',  'шт',  'руб'];
 
-export type EndingDiffType                         =  '-' | '% соотношение' | 'Разница'
-export const arrayEndingDiffType: EndingDiffType[] = ['-',  '% соотношение',  'Разница'];
+export type EndingType     =  '-' | '%' | 'шт' | 'руб';
+export type EndingDiffType =  '-' | '% соотношение' | 'Разница'
 
 /**
  * DigitalIndicators settings

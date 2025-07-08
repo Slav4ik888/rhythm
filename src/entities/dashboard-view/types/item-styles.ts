@@ -1,19 +1,15 @@
 /* eslint-disable */
-// v.2025-02-22
+// v.2025-07-08
 export type BorderStyleType    =  'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'ridge' | 'inset' | 'outset' | 'none';
-export const arrayBorderStyles = ['solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset', 'none'];
-
 export type FlexDirectionType  = 'row' | 'column' | 'row-reverse' | 'column-reverse'
 export type FlexWrapType       = 'wrap' | 'nowrap' | 'wrap-reverse'
 export type AlignItemsType     = 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch'
 export type JustifyContentType = 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'space-between' | 'space-around' | 'space-evenly' | 'stretch'
 
-export type RgbaString        = string // rgba(255, 255, 255, 1)
-export type FontStyleType                          =  'normal' | 'italic'
-export type FontWeightType    =  'lighter' | 'normal' | 'bold' | 'bolder' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
-
-export const arrayFontStyles: Array<FontStyleType> = ['normal', 'italic'];
-export const arrayFontWeights = ['lighter', 'normal', 'bold', 'bolder', '100', '200', '300', '400', '500', '600', '700', '800', '900'];
+export type RgbaString         = string // rgba(255, 255, 255, 1)
+export type FontStyleType      =  'normal' | 'italic'
+export type FontWeightType     =  'lighter' | 'normal' | 'bold' | 'bolder' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
+export type TextWrapType       =  'balance' | 'auto' | 'inherit'
 
 export type TextAlignType = 'left' | 'right' | 'center';
 
@@ -67,23 +63,23 @@ export interface ViewItemStyles {
   borderBottomLeftRadius?  : number | string
   borderBottomRightRadius? : number | string
 
-  borderColor?  : string
+  borderColor?   : string
 
   // shadow      offset-x | offset-y | blur-radius | spread-radius | color
-  boxShadow?    : string // 1px 1px 3px 0px rgb(184 184 184);
+  boxShadow?     : string // 1px 1px 3px 0px rgb(184 184 184);
 
   // background
-  background?   : RgbaString // rgba(255, 255, 255, 1)
+  background?    : RgbaString // rgba(255, 255, 255, 1)
 
   // color
-  color?        : RgbaString // rgba(255, 255, 255, 1)
+  color?         : RgbaString // rgba(255, 255, 255, 1)
 
   // font
-  fontSize?     : number // In rem
-  fontWeight?   : number
-  fontStyle?    : FontStyleType
-  fontFamily?   : string
-  lineHeight?   : number
+  fontSize?      : number // In rem
+  fontWeight?    : number
+  fontStyle?     : FontStyleType
+  fontFamily?    : string
+  lineHeight?    : number
 
   // digitIndicators
   //  - font
@@ -93,7 +89,8 @@ export interface ViewItemStyles {
   //    - ending
 
 
-  textAlign?    : TextAlignType
+  textAlign?     : TextAlignType
+  textWrap?      : TextWrapType
   // textDecoration?: string
   // textTransform?: string
   // textShadow?: string

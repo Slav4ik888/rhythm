@@ -6,7 +6,7 @@ import {
 import { useMemo } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
-import { PartialViewItem, ViewItemId, ViewItemStyles } from '../../types';
+import { PartialViewItem, ViewItemId, ViewItemStyles } from '../../../types';
 import { useDashboardViewState } from '../use-dashboard-view-state';
 import { actions } from '../../slice';
 

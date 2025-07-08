@@ -1,25 +1,32 @@
-export {
-  ViewItemId, ViewItem, BorderStyleType, arrayBorderStyles, FlexDirectionType, FlexWrapType,
+export type {
+  ViewItemId, ViewItem, BorderStyleType, FlexDirectionType, FlexWrapType,
   AlignItemsType, JustifyContentType, ViewItemStyles, ViewItemStylesField, PartialViewItem, RgbaString,
-  FontStyleType, arrayFontStyles, FontWeightType, arrayFontWeights, ViewItemSettings, ViewItemSettingsField,
-  ViewItemChart, ViewItemChartField, ChipType, arrayChipLabel, chipOptions, BaseChipType, IndicatorsConfig,
-  arrayEndingType, arrayEndingDiffType, EndingType, EndingDiffType, ViewItemType, TextAlignType,
-} from './model/types'
-export { actions as actionsDashboardView, reducer as reducerDashboardView } from './model/slice'
+  FontStyleType, FontWeightType, ViewItemSettings, ViewItemSettingsField,
+  ViewItemChart, ViewItemChartField, ChipType, BaseChipType, IndicatorsConfig, EndingType, EndingDiffType,
+  ViewItemType, TextAlignType, TextWrapType
+} from './types'
 export {
+  arrayBorderStyles, arrayFontStyles, arrayFontWeights, arrayTextWrap, arrayChipLabel, chipOptions,
+  arrayEndingType, arrayEndingDiffType
+ } from './consts'
+export { actions as actionsDashboardView, reducer as reducerDashboardView } from './model/slice'
+export type {
   DashboardViewEntities, StateSchemaDashboardView, ActivatedCopiedType, ActivatedCopied
 } from './model/slice/state-schema'
-export {
+export type {
   SetDashboardViewItems, SetEditMode,
   ChangeOneChartsItem, ChangeOneDatasetsItem, ChangeOneSettingsField, ChangeSelectedStyle
 } from './model/slice/types'
 export {
-  getInitialState, ParentsViewItems, stylesToSx, createNextOrder, getKod, isFirstGlobalKodInBranch,
+  getInitialState, stylesToSx, createNextOrder, getKod, isFirstGlobalKodInBranch,
   getChildren, isClickInsideViewItem, getBunchesToUpdate, getParents,
   getFirstItemInBranchWithGlobalKod
- } from './model/utils'
+} from './model/utils'
+export type { ParentsViewItems } from './model/utils'
 export { useDashboardViewState, useDashboardViewActions } from './model/hooks'
-export { createViewItem } from './model/creators'
-export { NO_SHEET_ID, NO_PARENT_ID, ORDER_STEP, MAX_COUNT_BUNCH_VIEWITEMS } from './model/consts'
-export { ChipContainer, SxChipContainer } from './ui'
-export { getViewItems, ReqGetViewItems } from './model/services'
+export { createViewItem } from './creators'
+export { NO_SHEET_ID, NO_PARENT_ID, ORDER_STEP, MAX_COUNT_BUNCH_VIEWITEMS } from './consts'
+export { ChipContainer } from './ui'
+export type { SxChipContainer } from './ui'
+export { getViewItems } from './model/services'
+export type { ReqGetViewItems } from './model/services'

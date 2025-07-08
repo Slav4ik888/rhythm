@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { StateSchema } from 'app/providers/store';
-import { ViewItem, ViewItemId } from '../types';
+import { ViewItem, ViewItemId } from '../../types';
 import { DashboardViewEntities, StateSchemaDashboardView } from '../slice/state-schema';
 import { getChildren, getKod, getParents, getFirstItemInBranchWithGlobalKod } from '../utils';
 import { createSelector } from '@reduxjs/toolkit';

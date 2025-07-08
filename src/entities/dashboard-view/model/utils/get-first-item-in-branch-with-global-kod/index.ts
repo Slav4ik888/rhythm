@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { DashboardViewEntities } from '../../slice/state-schema';
-import { ViewItem, ViewItemId } from '../../types';
+import { ViewItem, ViewItemId } from '../../../types';
 import { getParentBranch } from '../get-parent-branch';
 
 

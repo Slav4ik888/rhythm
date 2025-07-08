@@ -1,6 +1,6 @@
 import { ChartConfigDatasetsField } from 'entities/charts';
 import { BunchesUpdated } from 'shared/lib/structures/bunch';
-import { ViewItemId, ViewItemStylesField, ViewItemSettingsField, ViewItemChartField, ViewItem } from '../types';
+import { ViewItemId, ViewItemStylesField, ViewItemSettingsField, ViewItemChartField, ViewItem } from '../../types';
 
 
 

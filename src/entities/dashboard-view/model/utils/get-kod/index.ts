@@ -1,5 +1,5 @@
 import { DashboardViewEntities } from '../../slice/state-schema';
-import { ViewItem, ViewItemChart } from '../../types';
+import { ViewItem, ViewItemChart } from '../../../types';
 import { getFirstItemInBranchWithGlobalKod } from '../get-first-item-in-branch-with-global-kod';
 
 
