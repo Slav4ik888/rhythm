@@ -5,7 +5,7 @@ import { f, pxToRem, SxCard } from 'shared/styles';
 import { useClickOutside } from '../../hooks';
 import { HexColorInput, RgbaColorPicker, RgbaColor  } from 'react-colorful';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-import s from './index.module.scss';
+// import s from './index.module.scss';
 import { hexToRgba, isValidRGBA, rgba, rgbaToHexWithAlpha } from '../utils';
 import { Tooltip } from 'shared/ui/tooltip';
 import PasteIcon from '@mui/icons-material/ContentPaste';
@@ -14,7 +14,7 @@ import TransparentIcon from '@mui/icons-material/BlurOn';
 import { copyToClipboard, getClipboardText } from '../../clipboard';
 import { __devLog } from '../../tests/__dev-log';
 
-__devLog('MODULE STYLE: ', s);
+// __devLog('MODULE STYLE: ', s);
 
 
 
@@ -100,7 +100,7 @@ export const PopoverColorsPicker: FC<Props> = memo(({ sx: style, color, onChange
         <Box sx={sx.popover} ref={popoverRef}>
           <RgbaColorPicker
             color     = {color}
-            className = {s?.resposive}
+            // className = {s?.resposive}
             onChange  = {handleChange}
           />
           <Box sx={sx.control}>

@@ -29,7 +29,7 @@ export const DashboardPageContainer: FC = memo(() => {
   const { pathname } = useLocation();
   const { serviceGetViewItems, setDashboardBunchesFromCache } = useDashboardViewServices();
   const { serviceGetBunchesUpdated } = useDashboardTemplates();
-  const { dashboardPageId = 'main' } = usePages();
+  const { dashboardSheetId = 'main' } = usePages();
   const { serviceGetData } = useDashboardGetData();
   const { setPageLoading } = useUI();
 
@@ -46,7 +46,7 @@ export const DashboardPageContainer: FC = memo(() => {
           name: 'DashboardPageContainer'
         }
       });
-      serviceGetData({ companyId: paramsCompanyId, dashboardPageId });
+      serviceGetData({ companyId: paramsCompanyId, dashboardSheetId });
     }
 
     // 3. VIEW-ITEMS
@@ -67,7 +67,7 @@ export const DashboardPageContainer: FC = memo(() => {
         companyId      : paramsCompany.id,
         bunchIds       : bunchesForLoad,
         bunchesUpdated : paramsBunchesUpdated,
-        dashboardPageId,
+        dashboardSheetId,
         pathname
       });
     }

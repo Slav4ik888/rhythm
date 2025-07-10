@@ -1,6 +1,6 @@
 import { MOCK_USER_ID } from '../../user/lib/mocks';
-import { creatorFixDate } from '../model/creators';
-import { FixDate } from '../model/types';
+import { creatorFixDate } from '../creators';
+import { FixDate } from '../types';
 
 
 

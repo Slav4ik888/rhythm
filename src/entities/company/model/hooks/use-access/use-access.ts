@@ -10,25 +10,25 @@ import { checkDashboardAccess } from './utils';
 export const useAccess = () => {
   const { paramsCompany } = useCompany();
   const { email } = useUser();
-  const { dashboardPageId } = usePages();
+  const { dashboardSheetId } = usePages();
 
 
   /**
    * Имеет ли доступ к Просмотру Дашборда
    */
   const isDashboardAccessView = useMemo(() => checkDashboardAccess(
-    paramsCompany, email, CompanyDashboardAccessScheme.AF, 'v', dashboardPageId
+    paramsCompany, email, CompanyDashboardAccessScheme.AF, 'v', dashboardSheetId
   ),
-    [email, paramsCompany, dashboardPageId]
+    [email, paramsCompany, dashboardSheetId]
   );
 
   /**
    * Имеет ли доступ к Редактированию Дашборда
    */
   const isDashboardAccessEdit = useMemo(() => checkDashboardAccess(
-    paramsCompany, email, CompanyDashboardAccessScheme.AF, 'e', dashboardPageId
+    paramsCompany, email, CompanyDashboardAccessScheme.AF, 'e', dashboardSheetId
   ),
-    [email, paramsCompany, dashboardPageId]
+    [email, paramsCompany, dashboardSheetId]
   );
 
 

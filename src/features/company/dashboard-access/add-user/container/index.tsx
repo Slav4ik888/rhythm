@@ -22,7 +22,7 @@ interface Props {
 
 
 export const AddUserContainer: FC<Props> = memo(({ open, anchorEl, onClose }) => {
-  const { paramsCompany, usersAccessDashboard, clearErrors } = useCompany();
+  const { paramsCompany, usersAccessDashboard, setErrors: setErrorsCompany } = useCompany();
   const selectedEmailRef = useRef<HTMLInputElement | null>(null);
   const [errors, setErrors] = useState<Errors | undefined>(undefined);
   const [selectedEmail, setSelectedEmail] = useState('');
@@ -34,11 +34,11 @@ export const AddUserContainer: FC<Props> = memo(({ open, anchorEl, onClose }) =>
 
   useEffect(() => {
     setSelectedEmail('');
-    clearErrors(); // In Company
+    setErrorsCompany(); // In Company
     setErrors(undefined);
     setAccessLevel('v');
     if (selectedEmailRef && selectedEmailRef.current && open) selectedEmailRef.current.value = '';
-  }, [open, clearErrors]);
+  }, [open, setErrorsCompany]);
 
 
   const handleChange = useCallback((e: any) => {

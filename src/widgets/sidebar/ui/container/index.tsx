@@ -24,7 +24,6 @@ import { SidebarLogoLabel } from '../logo-label';
 import { SidebarUpgradeButton } from '../upgrade-button';
 import { calcLeftOffsetScrollButton } from 'app/providers/theme/utils';
 import { SidebarList } from '../list';
-import { SidebarMainSheet } from '../main-sheet';
 
 
 
@@ -71,7 +70,6 @@ export const SidebarContainer: FC<Props> = ({ ...rest }) => {
       ownerState={{ sidebarMini, sidebarWidth, isSidebar }}
     >
       <SidebarLogoLabel />
-      <SidebarMainSheet />
       <SidebarList />
       <SidebarUpgradeButton />
     </SidebarRoot>

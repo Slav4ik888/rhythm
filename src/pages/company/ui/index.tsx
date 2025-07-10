@@ -13,11 +13,11 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
   const { companyId: paramsCompanyId } = useParams();
   const { _isLoaded, loading: loadingUser, auth } = useUser();
   const { setPageLoading } = useUI();
-  const { dashboardPageId } = usePages();
+  const { dashboardSheetId } = usePages();
   const {
     loading: loadingCompany, companyId, dashboardPublicAccess, _isParamsCompanyIdLoaded,
     serviceGetParamsCompany, setIsParamsCompanyIdLoaded
-  } = useCompany({ dashboardPageId });
+  } = useCompany({ dashboardSheetId });
 
 
   useEffect(() => {
@@ -32,14 +32,14 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
       && paramsCompanyId && paramsCompanyId !== companyId
     ) {
       setPageLoading({ 'get-params-company': { text: 'Загрузка данных по компании...', name: 'CompanyPage' } });
-      serviceGetParamsCompany({ companyId: paramsCompanyId, dashboardPageId });
+      serviceGetParamsCompany({ companyId: paramsCompanyId, dashboardSheetId });
     }
     // Если по ссылке вошли в свою компанию
     else if (auth && ! _isParamsCompanyIdLoaded && paramsCompanyId === companyId) setIsParamsCompanyIdLoaded(true);
   },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
-      loadingUser, _isLoaded, loadingCompany, auth, dashboardPageId, dashboardPublicAccess,
+      loadingUser, _isLoaded, loadingCompany, auth, dashboardSheetId, dashboardPublicAccess,
       _isParamsCompanyIdLoaded, paramsCompanyId, companyId
     ]
   );

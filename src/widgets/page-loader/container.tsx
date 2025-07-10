@@ -1,8 +1,9 @@
 import { FC, memo, useEffect } from 'react';
-import { useUI } from 'entities/ui';
+import { useUI, PageLoadingValue } from 'entities/ui';
 import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import { PageLoaderRow } from './row';
+import {  } from 'entities/ui/model/slice/state-schema';
 
 
 
@@ -57,7 +58,7 @@ export const PageLoaderContainer: FC<Props> = memo(({ loading, text }) => {
       <Box sx={{ ...f('c-fs-fe'), minWidth: '30%', gap: 1 }}>
         {
           Object.entries(pageLoading).map(([key, value]) => (
-            <PageLoaderRow key={key} text={value.text} />
+            <PageLoaderRow key={key} text={(value as PageLoadingValue).text} />
           ))
         }
         {text && <PageLoaderRow text={text} />}

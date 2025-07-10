@@ -10,6 +10,7 @@ export enum AppRoutes {
   SLUG            = 'SLUG',
   COMPANY_PROFILE = 'COMPANY_PROFILE',
   DASHBOARD       = 'DASHBOARD',
+  DASHBOARD_SHEET = 'DASHBOARD_SHEET',
   // Docs
   POLICY          = 'POLICY',
 
@@ -47,6 +48,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.SLUG]            : ':companyId',
   [AppRoutes.COMPANY_PROFILE] : 'company-profile',
   [AppRoutes.DASHBOARD]       : 'dashboard',
+  [AppRoutes.DASHBOARD_SHEET] : 'dashboard/:sheetId',
   // Docs
   [AppRoutes.POLICY]          : '/policy',
 

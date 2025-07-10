@@ -18,6 +18,6 @@ export interface ResGetGoogleData {
 }
 
 export interface ReqGetGoogleData {
-  companyId       : string
-  dashboardPageId : string
+  companyId        : string
+  dashboardSheetId : string
 }

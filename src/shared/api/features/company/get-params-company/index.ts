@@ -11,8 +11,8 @@ import { actionsUI } from 'entities/ui';
 
 
 export interface ReqGetCompany {
-  companyId       : string
-  dashboardPageId : string | undefined // к какой странице запрашивается доступ
+  companyId        : string
+  dashboardSheetId : string | undefined // к какой странице запрашивается доступ
 }
 
 export interface SetParamsCompany {

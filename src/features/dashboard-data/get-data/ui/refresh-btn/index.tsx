@@ -12,14 +12,14 @@ export const DashboardRefreshButton: FC = memo(() => {
   const { serviceGetData } = useDashboardGetData();
   const { setPageLoading } = useUI();
   const { paramsCompanyId } = useCompany();
-  const { dashboardPageId = 'main' } = usePages();
+  const { dashboardSheetId = 'main' } = usePages();
 
 
   const handleRefresh = useCallback(() => {
-    serviceGetData({ companyId: paramsCompanyId, dashboardPageId });
+    serviceGetData({ companyId: paramsCompanyId, dashboardSheetId });
     setPageLoading({ 'get-g-data': { name: 'RefreshButton', text: 'Загрузка данных c google-таблицы...' } });
   },
-    [paramsCompanyId, dashboardPageId, serviceGetData, setPageLoading]
+    [paramsCompanyId, dashboardSheetId, serviceGetData, setPageLoading]
   );
 
 

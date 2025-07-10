@@ -1,18 +1,18 @@
 import { FC, memo } from 'react';
 import Link from '@mui/material/Link';
-import SidebarCollapse from '../sidebar-collapse';
+import { SidebarCollapse } from '../sidebar-collapse';
 
 
 
 interface Props {
   href        : string
   title       : string
-  activeName  : string // as title
-  icon        : React.ReactNode | string
+  active      : boolean // текущий активный sheetId
+  icon        : MuiIcon | string
   noCollapse? : boolean
 }
 
-export const SidebarLink: FC<Props> = memo(({ href, activeName, noCollapse, icon, title }) => (
+export const SidebarLink: FC<Props> = memo(({ href, active, noCollapse, icon, title }) => (
   <Link
     href   = {href}
     target = '_blank'
@@ -22,9 +22,8 @@ export const SidebarLink: FC<Props> = memo(({ href, activeName, noCollapse, icon
     <SidebarCollapse
       title      = {title}
       icon       = {icon}
-      active     = {title === activeName}
+      active     = {active}
       noCollapse = {noCollapse}
     />
   </Link>
 ));
-

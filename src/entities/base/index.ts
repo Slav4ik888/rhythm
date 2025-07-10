@@ -1,11 +1,11 @@
-export {
+export type {
   Condition,
   FixDate,
   Change,
   ItemBase,
   ReqDocFields
-} from './model/types'
+} from './types'
 
-export { creatorFixDate } from './model/creators'
-export { defsItemBase, schemaFixDate } from './model/validators/schemas'
-export { updateEntities } from './model/utils'
+export { creatorFixDate } from './creators'
+export { defsItemBase, schemaFixDate } from './validators/schemas'
+export { updateEntities } from './utils'

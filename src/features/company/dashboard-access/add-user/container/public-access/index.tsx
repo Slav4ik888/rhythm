@@ -8,30 +8,30 @@ import { pxToRem } from 'shared/styles';
 
 
 
-/** Управление публичным доступом к текущей dashboardPageId */
+/** Управление публичным доступом к текущей dashboardSheetId */
 export const PublicAccess: FC = () => {
   const { paramsCompany, serviceUpdateCompany } = useCompany();
-  const { dashboardPageId = '' } = usePages();
+  const { dashboardSheetId = '' } = usePages();
 
-  const [checked, setChecked] = useState<boolean>(Boolean(paramsCompany?.dashboardPublicAccess?.[dashboardPageId]));
+  const [checked, setChecked] = useState<boolean>(Boolean(paramsCompany?.dashboardPublicAccess?.[dashboardSheetId]));
 
   useEffect(() => {
-    setChecked(Boolean(paramsCompany?.dashboardPublicAccess?.[dashboardPageId]));
-  }, [dashboardPageId, paramsCompany]);
+    setChecked(Boolean(paramsCompany?.dashboardPublicAccess?.[dashboardSheetId]));
+  }, [dashboardSheetId, paramsCompany]);
 
 
   const handleToggle = useCallback(() => {
     // TODO: checkAccess к данной операции
 
-    if (! dashboardPageId) return
+    if (! dashboardSheetId) return
 
     serviceUpdateCompany({
       id                    : paramsCompany.id,
       dashboardPublicAccess : {
-        [dashboardPageId]: ! paramsCompany?.dashboardPublicAccess?.[dashboardPageId]
+        [dashboardSheetId]: ! paramsCompany?.dashboardPublicAccess?.[dashboardSheetId]
       }
     })
-  }, [paramsCompany, dashboardPageId, serviceUpdateCompany]);
+  }, [paramsCompany, dashboardSheetId, serviceUpdateCompany]);
 
 
   return (

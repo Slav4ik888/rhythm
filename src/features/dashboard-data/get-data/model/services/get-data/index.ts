@@ -16,11 +16,11 @@ export const getData = createAsyncThunk<
   ThunkConfig<Errors>
 >(
   'features/dashboard/getData',
-  async ({ companyId, dashboardPageId }, thunkApi) => {
+  async ({ companyId, dashboardSheetId }, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
 
     try {
-      const { data } = await extra.api.post(API_PATHS.google.getData, { companyId, dashboardPageId });
+      const { data } = await extra.api.post(API_PATHS.google.getData, { companyId, dashboardSheetId });
 
       // **
       // For development - сохраняем входящие данные в localStorage

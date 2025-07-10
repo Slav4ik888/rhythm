@@ -1,4 +1,4 @@
-import { MOCK_EMAIL, MOCK_PASSWORD } from 'entities/base/model/mocks';
+import { MOCK_EMAIL, MOCK_PASSWORD } from 'entities/base/mocks';
 import { AuthByLogin } from '../services';
 
 

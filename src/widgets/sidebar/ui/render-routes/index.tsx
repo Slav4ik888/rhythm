@@ -1,50 +1,30 @@
 import { ColorName } from 'app/providers/theme';
-import { SidebarRouteListItem } from 'entities/dashboard-data';
+import { FC, memo } from 'react';
 import { Fragment } from 'react/jsx-runtime';
-import { MDDivider } from 'shared/ui/mui-design-components';
-import { SidebarLink } from '../sidebar-items/sidebar-link';
-import { SidebarNavLink } from '../sidebar-items/sidebar-navlink';
-import { SidebarTitle } from '../sidebar-items/sidebar-title';
+import { SidebarListItem } from 'shared/types/sidebar';
+import { RenderRoute } from './render-route';
 
 
 
-// Render all the routes from the routes.js (All the visible items on the Sidebar)
-export const renderRoutes = (
-  routesList : SidebarRouteListItem[],
-  activeName : string,
-  textColor  : ColorName
-) => routesList.map(({ type, title, icon, noCollapse, key, href, route }) => {
-  let returnValue;
+interface Props {
+  routesList    : SidebarListItem[],
+  activeSheetId : string, // текущий активный sheetId
+  textColor     : ColorName
+}
 
-  if (type === 'collapse') {
-    returnValue = href ? (
-      <SidebarLink
-        href       = {href}
-        title      = {title as string}
-        icon       = {icon}
-        activeName = {activeName}
-        noCollapse = {noCollapse}
-      />
-    ) : (
-      <SidebarNavLink
-        route      = {route as string}
-        title      = {title as string}
-        icon       = {icon}
-        activeName = {activeName}
-      />
-    );
-  }
-  else if (type === 'title') {
-    returnValue = (
-      <SidebarTitle
-        textColor = {textColor}
-        title     = {title as string}
-      />
-    );
-  }
-  else if (type === 'divider') {
-    returnValue = <MDDivider />;
-  }
-
-  return <Fragment key={key}>{returnValue}</Fragment>;
-});
+/** Render all the routes (All the visible items on the Sidebar) */
+export const RenderRoutes: FC<Props> = memo(({ routesList, activeSheetId, textColor }) => (
+  <>
+    {
+      routesList.map(item => (
+        <Fragment key={item.id}>
+          <RenderRoute
+            item          = {item}
+            activeSheetId = {activeSheetId}
+            textColor     = {textColor}
+          />
+        </Fragment>
+      ))
+    }
+  </>
+));

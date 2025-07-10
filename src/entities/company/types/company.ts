@@ -1,6 +1,7 @@
-import { FixDate, ItemBase } from 'entities/base';
+import { FixDate } from 'entities/base';
 import { BunchesUpdated } from 'shared/lib/structures/bunch';
 import { CompanyProfileMember, CompanyDashboardMember } from '../model/hooks/use-access/types';
+import { DashboardSheets } from './sheets';
 
 
 
@@ -34,8 +35,6 @@ export interface CustomSettings {
   productType? : Record<string, ColorSettings>
 }
 
-export type DashboardSheet  = ItemBase
-export type DashboardSheets = Record<string, DashboardSheet> // { [sheetId: string]: DashboardSheet }
 
 /**
  * v.2025-07-08

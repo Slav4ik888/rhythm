@@ -62,6 +62,7 @@ export const AppRouter = memo(() => {
 
           {/* <Route index element={<CompanyPage />} /> */}
           <Route path={RoutePath[AppRoutes.DASHBOARD]} element={withFallback(<DashboardPage />)} />
+          <Route path={RoutePath[AppRoutes.DASHBOARD_SHEET]} element={withFallback(<DashboardPage />)} />
 
         </Route>
         {/* Перехват неправильных путей */}

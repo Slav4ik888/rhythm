@@ -1,7 +1,7 @@
 import Ajv from 'ajv';
 import { defsCompany, schemaCompany } from 'entities/company/model/validators/schemas';
 import { defsBase } from '../../schemas';
-import { defsItemBase, schemaFixDate } from 'entities/base/model/validators/schemas';
+import { defsItemBase, schemaFixDate } from 'entities/base/validators/schemas';
 import {
   defsFIO, defsPhone, defsUser, schemaPerson, schemaPhoneNumber, schemaPosition
  } from 'entities/user/model/validators/schemas';

@@ -1,21 +1,35 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/store';
 import { getChanges } from 'shared/helpers/objects';
-import { StateSchemaCompany as SSC } from '../slice/state-schema';
+import { StateSchemaCompany } from '../slice/state-schema';
 import { ParamsCompany } from '../../types';
 
 
-export const selectModule = createSelector([(state: StateSchema) => state.company || {} as SSC], (state: SSC) => state);
-export const selectLoading = createSelector(selectModule, (state: SSC) => state.loading);
-export const selectErrors  = createSelector(selectModule, (state: SSC) => state.errors);
-export const selectIsParamsCompanyIdLoaded = createSelector(selectModule, (state: SSC) =>
-  state._isParamsCompanyIdLoaded);
+export const selectModule = createSelector(
+  [(state: StateSchema) => state.company || {} as StateSchemaCompany],
+  (state: StateSchemaCompany) => state
+);
+export const selectLoading = createSelector(selectModule, (state: StateSchemaCompany) => state.loading);
+export const selectErrors  = createSelector(selectModule, (state: StateSchemaCompany) => state.errors);
 
-export const selectCompany       = createSelector(selectModule, (state: SSC) => state.company || {});
-export const selectStoredCompany = createSelector(selectModule, (state: SSC) => state.storedCompany);
-export const selectParamsCompany = createSelector(selectModule, (state: SSC) => state.paramsCompany);
-export const selectParamsCustomSettings = createSelector(selectParamsCompany, (paramsCompany: ParamsCompany) =>
-  paramsCompany?.customSettings || {});
+export const selectIsParamsCompanyIdLoaded = createSelector(
+  selectModule,
+  (state: StateSchemaCompany) => state._isParamsCompanyIdLoaded
+);
+
+export const selectCompany       = createSelector(selectModule, (state: StateSchemaCompany) => state.company || {});
+export const selectStoredCompany = createSelector(selectModule, (state: StateSchemaCompany) => state.storedCompany);
+export const selectParamsCompany = createSelector(selectModule, (state: StateSchemaCompany) => state.paramsCompany);
+
+export const selectParamsCustomSettings = createSelector(
+  selectParamsCompany,
+  (paramsCompany: ParamsCompany) => paramsCompany?.customSettings || {}
+);
+
+export const selectParamsSheets = createSelector(
+  selectParamsCompany,
+  (company: ParamsCompany) => company?.sheets || {}
+);
 
 /** Списо пользователей имеющих доступ ('v' | 'e') к /dashboard  */
 // export const selectUsersAccessDashboard = createSelector(selectParamsCompany, (paramsCompany: ParamsCompany) => {
@@ -28,7 +42,9 @@ export const selectParamsCustomSettings = createSelector(selectParamsCompany, (p
 // export const selectCustomSettings = createSelector(selectCompany, (company: Company) => company?.customSettings || {});
 
 // Возвращает объект с изменившимися полями
-export const selectParamsChangedCompany = createSelector(selectModule, (state: SSC) =>
-  getChanges(state.storedCompany, state.paramsCompany));
-// export const selectChangedCompany = createSelector(selectModule, (state: SSC) =>
+export const selectParamsChangedCompany = createSelector(
+  selectModule,
+  (state: StateSchemaCompany) => getChanges(state.storedCompany, state.paramsCompany)
+);
+// export const selectChangedCompany = createSelector(selectModule, (state: StateSchemaCompany) =>
 //   getChanges(state.storedCompany, state.company));

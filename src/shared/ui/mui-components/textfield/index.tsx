@@ -1,4 +1,4 @@
-import { FC, ChangeEvent, forwardRef, MutableRefObject, useCallback } from 'react';
+import { ChangeEvent, forwardRef, MutableRefObject, useCallback } from 'react';
 import { Errors } from 'shared/lib/validators';
 import StyledTextField from './styled'
 import { getErrorFieldByScheme } from '../../containers';

@@ -26,43 +26,63 @@ import {
   collapseText,
 } from './styles';
 import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
+import { Tooltip } from 'shared/ui/tooltip';
+import { useDashboardViewState } from 'entities/dashboard-view';
+import { useHover } from 'shared/lib/hooks';
+import { EditSheetBtn } from 'features/ui/sidebar';
 
 
 
 interface Props {
-  icon        : ReactNode | string
+  icon        : MuiIcon | string | ReactNode
   title       : string
   active      : boolean // является ли активным
   noCollapse? : boolean
 }
 
 
-export const SidebarCollapse: FC<Props> = ({ icon, title, active, ...rest }) => {
+export const SidebarCollapse: FC<Props> = ({ icon: IconComponent, title, active, ...rest }) => {
   const [configuratorState] = useUIConfiguratorController();
-  const { sidebarMini, mode } = configuratorState;
+  const { sidebarMini } = configuratorState;
+  const { editMode } = useDashboardViewState();
+  const { isHover, isEdit, hoverBind, onSetEdit } = useHover();
+
 
   return (
-    <ListItem component='li'>
+    <ListItem
+      {...hoverBind}
+      component='li'
+      sx={{ position: 'relative' }}
+    >
       <MDBox
         {...rest}
         sx={(theme: CustomTheme) => collapseItem(theme, { active })}
       >
         <ListItemIcon sx={(theme) => collapseIconBox(theme as CustomTheme, { active })}>
-          {typeof icon === 'string' ? (
-            <Icon sx={(theme) => collapseIcon(theme as CustomTheme, { active })}>{icon}</Icon>
-          ) : (
-            icon
-          )}
+          {
+            typeof IconComponent === 'string'
+              ? <Icon sx={(theme) => collapseIcon(theme as CustomTheme, { active })}>{IconComponent}</Icon>
+              // @ts-ignore
+              : <IconComponent />
+          }
         </ListItemIcon>
 
-        <ListItemText
-          primary={title}
-          sx={(theme) => collapseText(theme as CustomTheme, { active, sidebarMini })}
-        />
+        <Tooltip title={title}>
+          <ListItemText
+            primary={title}
+            sx={(theme) => collapseText(theme as CustomTheme, { active, sidebarMini })}
+          />
+        </Tooltip>
       </MDBox>
+      {
+        ((editMode && isHover) || (editMode && isEdit)) && (
+          <EditSheetBtn
+            isHover   = {isHover}
+            isEdit    = {isEdit}
+            onSetEdit = {onSetEdit}
+          />
+        )
+      }
     </ListItem>
   );
 }
-
-
-export default SidebarCollapse;

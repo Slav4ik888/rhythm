@@ -24,11 +24,8 @@ const slice = createSlice({
   name: 'entities/company',
   initialState,
   reducers: {
-    setErrors: (state, { payload }: PayloadAction<Errors>) => {
+    setErrors: (state, { payload }: PayloadAction<Errors | undefined>) => {
       state.errors = getError(payload);
-    },
-    clearErrors: (state) => {
-      state.errors = {};
     },
     setCompany: (state, { payload }: PayloadAction<SetCompany>) => {
       state.company       = payload.company;

@@ -1,4 +1,4 @@
-import { DashboardPeriod } from '../types';
+import { DashboardPeriod } from '../../types';
 
 
 

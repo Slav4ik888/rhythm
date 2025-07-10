@@ -51,10 +51,10 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     path    : RoutePath.DASHBOARD,
     element : <DashboardPage />
   },
-  // [AppRoutes.DASHBOARD_ID]: {
-  //   path    : RoutePath.DASHBOARD_ID,
-  //   element : <DashboardPage />
-  // },
+  [AppRoutes.DASHBOARD_SHEET]: {
+    path    : RoutePath.DASHBOARD_SHEET,
+    element : <DashboardPage />
+  },
 
   [AppRoutes.POLICY]: {
     path    : RoutePath.POLICY,

@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
-import { DashboardPeriod } from '../types';
+import { DashboardPeriod } from '../../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
-import { DashboardPeriodType } from '../config';
-import { getEntitiesByPeriod } from '../utils';
+import { DashboardPeriodType } from '../../constants';
+import { getEntitiesByPeriod } from '../../utils';
 import { StateSchemaDashboardData } from './state-schema';
 import { calculateStartDate, getData } from 'features/dashboard-data';
 import { SetActivePeriod, SetSelectedPeriod } from './types';

@@ -16,7 +16,9 @@ export const selectStartEntities = createSelector(selectModule, (state: SSDD) =>
 export const selectStartDates = createSelector(selectModule, (state: SSDD) => state.startDates || {});
 
 /** Returns sorted list of all kods */
-export const selectKods = createSelector(selectStartEntities, (startEntities: DashboardDataEntities) => sortingArr(
+export const selectKods = createSelector(
+  selectStartEntities,
+  (startEntities: DashboardDataEntities) => sortingArr(
     Object.values(startEntities).map(entity => ({
       value   : entity.kod, // value тк в SelectValue используется value
       title   : entity.title,
@@ -24,8 +26,9 @@ export const selectKods = createSelector(selectStartEntities, (startEntities: Da
       product : entity.productType,
       period  : entity.periodType,
     })),
-    'kod'
-  ));
+    'value'
+  )
+);
 
 /** Returns StatisticItem by kod */
 export const makeSelectItemByKod = (kod: string | undefined) => createSelector(

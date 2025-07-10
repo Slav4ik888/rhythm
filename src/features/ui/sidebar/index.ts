@@ -1,1 +1,2 @@
-export { AddNewSheetBtn } from './add-new-sheet-btn'
+export { AddSheetBtn } from './add-sheet-btn'
+export { EditSheetBtn } from './edit-sheet-btn'

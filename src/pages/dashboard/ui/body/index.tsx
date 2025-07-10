@@ -58,7 +58,7 @@ export const DashboardBody = memo(() => {
 
 
   // dev
-  if (cfg.IS_DEV && cfg.DASHBOARD_DISABLE) return null
+  if (cfg.DASHBOARD_DISABLE) return null
 
   return (
     <DashboardBodyWrapper>

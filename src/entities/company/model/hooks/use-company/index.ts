@@ -9,11 +9,11 @@ import { ReqGetCompany, getParamsCompany, updateCompany } from 'shared/api/featu
 
 
 interface Config {
-  dashboardPageId?: string
+  dashboardSheetId?: string
 }
 
 export const useCompany = (config: Config = {}) => {
-  const { dashboardPageId = 'main' } = config;
+  const { dashboardSheetId = 'main' } = config;
   const dispatch = useAppDispatch();
 
   const loading                  = useSelector(s.selectLoading);
@@ -24,16 +24,16 @@ export const useCompany = (config: Config = {}) => {
   const paramsBunchesUpdated     = paramsCompany?.bunchesUpdated;
   const paramsCustomSettings     = useSelector(s.selectParamsCustomSettings);
   const paramsChangedCompany     = useSelector(s.selectParamsChangedCompany); // Объект с изменившимися полями
+  const paramsSheets             = useSelector(s.selectParamsSheets);
   const usersAccessDashboard     = paramsCompany?.dashboardMembers || [];
-  const dashboardPublicAccess    = paramsCompany?.dashboardPublicAccess?.[dashboardPageId];
+  const dashboardPublicAccess    = paramsCompany?.dashboardPublicAccess?.[dashboardSheetId];
   // const usersAccessDashboard     = useSelector(s.selectUsersAccessDashboard); // Списо пользователей имеющих доступ ('v' | 'e') к /dashboard
   const company                  = useSelector(s.selectCompany);
   const companyId                = company?.id;
   const storedCompany            = useSelector(s.selectStoredCompany);
 
   const api = useMemo(() => ({
-    setErrors                  : (errors: Errors) => dispatch(a.setErrors(errors)),
-    clearErrors                : () => dispatch(a.setErrors({})),
+    setErrors                  : (errors?: Errors) => dispatch(a.setErrors(errors)),
     setIsParamsCompanyIdLoaded : (status: boolean) => dispatch(a.setIsParamsCompanyIdLoaded(status)),
     updateParamsCustomSettings : (data: Partial<CustomSettings>) => dispatch(a.updateParamsCustomSettings(data)),
     cancelParamsCustomSettings : () => dispatch(a.cancelParamsCustomSettings()),
@@ -53,6 +53,7 @@ export const useCompany = (config: Config = {}) => {
     paramsBunchesUpdated,
     paramsCustomSettings,
     paramsChangedCompany,
+    paramsSheets,
     usersAccessDashboard,
     dashboardPublicAccess,
 

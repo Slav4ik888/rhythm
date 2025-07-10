@@ -11,6 +11,8 @@ export type SidebarTheme = {
     logo         : string
   } & {
     gradients: GradientsItem
+  } & {
+    gradientsActiveBtn: GradientsItem
   }
 }
 
@@ -27,6 +29,10 @@ export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
         main  : 'rgba(34, 34, 34, 1)',
         state : 'rgba(25, 25, 25, 1)',
       },
+      gradientsActiveBtn: {
+        main  : 'rgba(76, 76, 76, 1)',
+        state : 'rgba(44, 44, 44, 1)',
+      },
     }
   },
   sidebar_blue: {
@@ -38,6 +44,10 @@ export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
       gradients: {
         main  : 'rgba(31, 63, 94, 1)',
         state : 'rgba(4, 20, 34, 1)',
+      },
+      gradientsActiveBtn: {
+        main  : 'rgba(24, 50, 77, 1)',
+        state : 'rgba(13, 13, 52, 1)',
       },
     }
   },
@@ -51,6 +61,10 @@ export const sidebarThemes: Record<SidebarColorName, SidebarTheme> = {
       gradients: {
         main  : 'rgb(72 72 72)',
         state : 'rgb(41 41 41)',
+      },
+      gradientsActiveBtn: {
+        main  : 'rgba(76, 76, 76, 1)',
+        state : 'rgba(44, 44, 44, 1)',
       },
     }
   },

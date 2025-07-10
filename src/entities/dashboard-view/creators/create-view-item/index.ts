@@ -1,4 +1,4 @@
-import { creatorFixDate } from 'entities/base/model/creators';
+import { creatorFixDate } from 'entities/base/creators';
 import { cloneObj } from 'shared/helpers/objects';
 import { ViewItem, ViewItemStyles } from '../../types';
 import { v4 as uuidv4 } from 'uuid';

@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 import { CustomTheme,  } from 'app/providers/theme';
-import { getBoxShadows, getTypography, linearGradient, pxToRem, rgbaFromHex } from 'shared/styles';
+import { f, getBoxShadows, getTypography, linearGradient, pxToRem, rgbaFromHex } from 'shared/styles';
 
 
 
@@ -33,21 +33,19 @@ const collapseItem = (theme: CustomTheme, ownerState: OwnerStateItem) => {
   const { borderRadius } = borders;
 
   return {
-    display        : 'flex',
-    alignItems     : 'center',
-    justifyContent : 'center',
-    width          : '100%',
-    margin         : `${pxToRem(1.5)}`,
-    padding        : `${pxToRem(8)}`,
-    borderRadius   : borderRadius.md,
-    cursor         : 'pointer',
-    userSelect     : 'none',
-    whiteSpace     : 'nowrap',
-    boxShadow      : active && ! darkMode ? md : 'none',
+    ...f('-c-fs'),
+    width        : '100%',
+    margin       : `${pxToRem(1.5)}`,
+    padding      : `${pxToRem(8)}`,
+    borderRadius : borderRadius.md,
+    cursor       : 'pointer',
+    userSelect   : 'none',
+    whiteSpace   : 'nowrap',
+    boxShadow    : active && ! darkMode ? md : 'none',
 
-    color          : white.main,
-    background     : active
-      ? linearGradient(sidebar.gradients.main, sidebar.gradients.state)
+    color        : white.main,
+    background   : active
+      ? linearGradient(sidebar.gradientsActiveBtn.main, sidebar.gradientsActiveBtn.state, 184)
       : transparent.main,
 
     [breakpoints.up('xl')]: {
@@ -143,9 +141,13 @@ function collapseText(theme: CustomTheme, ownerState: OwnerStateText) {
     },
 
     '& span': {
-      fontWeight: active ? fontWeightRegular : fontWeightLight,
-      fontSize: size.sm,
-      lineHeight: 0,
+      fontWeight   : active ? fontWeightRegular : fontWeightLight,
+      fontSize     : size.sm,
+      lineHeight   : 1,
+      textOverflow : 'ellipsis',
+      whiteSpace   : 'nowrap',
+      overflow     : 'hidden',
+      width        : pxToRem(162),
     },
   };
 }

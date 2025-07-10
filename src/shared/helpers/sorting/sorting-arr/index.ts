@@ -1,11 +1,9 @@
 import { cloneObj } from '../../objects';
 
-type A = {
-  [k: string]: unknown
-}
+
 
 /**
- * v.2023-06-30
+ * v.2025-07-09
  * Сортируем по arr по полю fieldName
  * @param {array} arr
  * @param {string} fieldName
@@ -13,9 +11,9 @@ type A = {
  * @return {array} - result
  */
 export function sortingArr<T>(
-  arr: Array<T>,
-  fieldName: string,
-  decrease?: boolean
+  arr       : Array<T>,
+  fieldName : keyof T,
+  decrease? : boolean
 ): Array<T> {
   if (! arr?.length || arr.length === 1) return arr;
 
@@ -25,11 +23,9 @@ export function sortingArr<T>(
   const G = decrease ? -1 : 1;
 
   return result.sort((a, b) => {
-    // @ts-ignore
     if (a[fieldName] < b[fieldName]) {
       return L;
     }
-    // @ts-ignore
     if (a[fieldName] > b[fieldName]) {
       return G;
     }
