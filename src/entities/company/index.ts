@@ -8,3 +8,5 @@ export { reducer as reducerCompany, actions as actionsCompany } from './model/sl
 export type { SetCompany } from './model/slice/types'
 export { creatorCompany, creatorSheet } from './lib/creators'
 export { ACCESS_TYPE, ACCESS_LABELS, ACCESS_LABEL_TYPE } from './model/hooks/use-access/consts'
+export { getSheetById } from './utils'
+export { validateDashboardSheetFields } from './model/validators/validate-sheet'

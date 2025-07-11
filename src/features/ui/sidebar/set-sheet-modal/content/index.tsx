@@ -1,4 +1,4 @@
-import { forwardRef, MutableRefObject } from 'react';
+import { forwardRef, MouseEvent } from 'react';
 import DialogContent from '@mui/material/DialogContent';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -7,6 +7,7 @@ import { f } from 'shared/styles';
 import Box from '@mui/material/Box';
 import { DefaultIconId } from 'shared/assets';
 import { SelectIconContainer } from '../select-icon-container';
+import { Input } from 'shared/ui/containers';
 
 
 
@@ -22,15 +23,20 @@ const textStyle = {
 
 
 interface Props {
-  ref            : MutableRefObject<unknown>
+  // ref            : MutableRefObject<unknown>
+  sheetTitle     : string
   selectedIconId : DefaultIconId | null
   onSelectIcon   : (iconId: DefaultIconId) => void
+  onChangeTitle  : (e: MouseEvent, v: string | number) => void
+
 }
 
 // Define props without 'ref' for forwardRef compatibility
 type RefProps = Omit<Props, 'ref'>;
 
-export const SetSheetContent = forwardRef<null, RefProps>(({ selectedIconId, onSelectIcon }, ref) => {
+export const SetSheetContent = forwardRef<null, RefProps>(({
+  sheetTitle, selectedIconId, onSelectIcon, onChangeTitle
+}, ref) => {
   const { errors } = useCompany();
 
   return (
@@ -44,7 +50,13 @@ export const SetSheetContent = forwardRef<null, RefProps>(({ selectedIconId, onS
           selectedIconId = {selectedIconId}
           onSelectIcon   = {onSelectIcon}
         />
-        <TextField
+        <Input
+          defaultValue = {sheetTitle}
+          errorField   = 'sheetTitle'
+          errors       = {errors}
+          onChange     = {onChangeTitle}
+        />
+        {/* <TextField
           fullWidth
           name       = 'sheetTitle'
           type       = 'sheetTitle'
@@ -53,7 +65,7 @@ export const SetSheetContent = forwardRef<null, RefProps>(({ selectedIconId, onS
           helperText = {errors?.sheetTitle}
           error      = {errors?.sheetTitle ? true : false}
           sx         = {textStyle}
-        />
+        /> */}
       </Box>
     </DialogContent>
   )

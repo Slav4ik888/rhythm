@@ -1,111 +1,46 @@
-import { isArrsEqual } from '../../arrays';
-import { isArr, isObj, isUndefined, isNotObj } from '../../../lib/validators';
-import { cloneObj } from '../objects';
-import { setValueByScheme } from '../set-value-by-scheme';
-
-
-
 /**
- * Check updObj of new field, that absent in prevObj
- * Add new field to newObj
- */
-const addNewField = (
-  newObj     : object | undefined,
-  prevObj    : object | undefined,
-  updObj     : object | undefined,
-  prevScheme : string = ''
-): void => {
-  if (isNotObj(updObj)) return
-
-  // eslint-disable-next-line
-  for (const key in updObj) {
-    const scheme = prevScheme ? `${prevScheme}.${key}` : key;
-
-    if (Object.prototype.hasOwnProperty.call(updObj, key)) {
-      // @ts-ignore
-      const updValue = updObj[key];
-
-      // @ts-ignore
-      if (isUndefined(prevObj[key])) { // New field
-        setValueByScheme(newObj, scheme, updValue);
-        // eslint-disable-next-line
-        continue;
-      }
-
-      // @ts-ignore
-      addNewField(newObj, prevObj[key], updValue, scheme);
-    }
-  }
-};
-
-
-/** Check is Array or any type and save */
-const addChanges = (newObj: object | undefined, prevValue: unknown, updValue: unknown, scheme: string) => {
-  if (isArr(prevValue as unknown as object[])) {
-    if (! isArrsEqual(prevValue as unknown as object[], updValue as unknown as object[])) {
-      setValueByScheme(newObj, scheme, updValue);
-    }
-  }
-  else if (prevValue !== updValue) {
-    setValueByScheme(newObj, scheme, updValue);
-  }
-};
-
-
-/** Add changes */
-const checkAndAddChanges = (
-  newObj     : object | undefined,
-  prevObj    : object | undefined,
-  updObj     : object | undefined,
-  prevScheme: string = ''
-): void => {
-  // eslint-disable-next-line
-  for (const key in prevObj) {
-    const scheme = prevScheme ? `${prevScheme}.${key}` : key;
-
-    if (Object.prototype.hasOwnProperty.call(prevObj, key)) {
-      const
-        // @ts-ignore
-        value    = prevObj[key],
-        // @ts-ignore
-        updValue = updObj[key];
-
-      // eslint-disable-next-line
-      if (isUndefined(updValue)) continue; // В этом элементе не было изменений
-
-      if (isObj(value)) {
-        checkAndAddChanges(newObj, value, updValue, scheme);
-      }
-      else {
-        addChanges(newObj, value, updValue, scheme);
-      }
-    }
-  }
-};
-
-
-/**
- * v.2023-05-19
+ * v.2025-07-11
  * Возвращает новый объект prevObj с обновлёнными полями из updFields
  * (который может содержать и другие поля, которых нет в prevObj)
  * Обновляет атомарно
  * Not deleted fields
  */
 export function updateObject<T extends object | undefined, O extends Partial<T & any>>(
-  prevObj   : T,
-  updFields : O | undefined
+  original: T,
+  updates: O | undefined
 ): T & O | T {
-  if (! prevObj && ! updFields) return {} as T;
-  if (prevObj && ! updFields) return prevObj;
-  if (! prevObj &&   updFields) return updFields as unknown as T;
+  if (! original && ! updates) return {} as T;
+  if (original && ! updates) return original;
+  if (! original && updates) return updates as unknown as T;
 
-  const newObj = cloneObj(prevObj);
+  // Если updates не объект или null, возвращаем updates (заменяем полностью)
+  if (typeof updates !== 'object' || updates === null) {
+    return original;
+  }
 
-  // CHECK prevObj
-  checkAndAddChanges(newObj, prevObj, updFields);
+  // Create a shallow copy of original (to avoid mutation)
+  const result = Array.isArray(original) ? [...original] : { ...original };
 
-  // CHECK new field in updFields
-  addNewField(newObj, prevObj, updFields);
+  // Iterate over updates using Object.entries() (avoids prototype chain issues)
+  Object.entries(updates).forEach(([key, value]) => {
+    // If both original[key] and updates[key] are objects (and not arrays), recurse
+    if (
+      // @ts-ignore
+      typeof original?.[key] === 'object'
+      // @ts-ignore
+      && original?.[key] !== null
+      && typeof value === 'object'
+      && value !== null
+      && ! Array.isArray(value) // Arrays are replaced entirely (modify if needed)
+    ) {
+      // @ts-ignore
+      result?.[key] = updateObject(original?.[key], value);
+    } else {
+      // Otherwise, assign the new value
+      // @ts-ignore
+      result?.[key] = value;
+    }
+  });
 
-  return newObj;
+  return result as T & O;
 }

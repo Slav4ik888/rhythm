@@ -3,7 +3,7 @@ import MuiTextField from '@mui/material/TextField';
 import { GridWrap, GridStyle } from '../../grid-wrap';
 import { BoxWrap } from '../../box-wrap';
 import { Tooltip } from '../../../tooltip';
-import { Errors } from 'shared/lib/validators';
+import { Errors, isNotUndefined } from 'shared/lib/validators';
 import { getStrNumber, toNumber } from 'shared/helpers/numbers';
 
 
@@ -65,7 +65,7 @@ export const Input: FC<Props> = memo((props) => {
     fullWidth, helperText,
     type         = 'text',
     defaultValue = '',
-    changesValue = '',
+    changesValue,
     errorField   = '',
     sx,
     onPrepeare, onClick, onBlur, onCallback, onSubmit, onChange, onTransform
@@ -74,7 +74,7 @@ export const Input: FC<Props> = memo((props) => {
   const focusRef = useRef(null);
   const Wrap = grid ? GridWrap : BoxWrap;
   const typeNum = type === 'number';
-  const [value, setValue] = useState(prepareValue(typeNum, defaultValue));
+  const [value, setValue] = useState(() => prepareValue(typeNum, defaultValue));
 
 
   useEffect(() => {
@@ -89,9 +89,9 @@ export const Input: FC<Props> = memo((props) => {
 
 
   useEffect(() => {
-    // if (isNotUndefined(changesValue) && ! onTransform) {
-    setValue(prepareValue(typeNum, changesValue));
-    // }
+    if (isNotUndefined(changesValue)) { // && ! onTransform) {
+      setValue(prepareValue(typeNum, changesValue as string | number));
+    }
   }, [typeNum, changesValue]);
 
 

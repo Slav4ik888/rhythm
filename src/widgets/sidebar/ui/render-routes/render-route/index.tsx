@@ -34,6 +34,7 @@ export const RenderRoute: FC<Props> = memo(({
           )
           : (
             <SidebarNavLink
+              id     = {id}
               route  = {route as string}
               title  = {title as string}
               icon   = {getIconById(iconId)}

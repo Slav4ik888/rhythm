@@ -1,4 +1,4 @@
-import { forwardRef, MutableRefObject } from 'react';
+import { FC, memo } from 'react';
 import DialogActions from '@mui/material/DialogActions';
 import { ErrorBox } from 'shared/ui/containers';
 import { UseValue } from 'shared/lib/hooks';
@@ -6,20 +6,20 @@ import { SetSheetSubmitBtn as SubmitBtn } from './submit-btn';
 import { f } from 'shared/styles';
 import { useCompany } from 'entities/company';
 import { DefaultIconId } from 'shared/assets';
+import { DeleteSheetBtn } from './delete-sheet-btn';
+import Box from '@mui/material/Box';
 
 
 
 interface Props {
-  editId         : string  // sheetId if edit
-  ref            : MutableRefObject<null>
+  editId         : string | undefined  // sheetId if edit
   selectedIconId : DefaultIconId | null
-  hookOpen       : UseValue<any>
+  sheetTitle     : string
+  onClose        : () => void
 }
 
-// Define props without 'ref' for forwardRef compatibility
-type RefProps = Omit<Props, 'ref'>;
 
-export const SetSheetActions = forwardRef<null, RefProps>(({ editId, hookOpen: O, selectedIconId }, ref) => {
+export const SetSheetActions: FC<Props> = memo(({ editId, selectedIconId, sheetTitle, onClose }) => {
   const { errors } = useCompany();
 
   return (
@@ -33,12 +33,23 @@ export const SetSheetActions = forwardRef<null, RefProps>(({ editId, hookOpen: O
           }
         }}
       />
-      <SubmitBtn
-        editId         = {editId}
-        ref            = {ref}
-        hookOpen       = {O}
-        selectedIconId = {selectedIconId}
-      />
+
+      <Box sx={{ ...f('-c-fe') }}>
+        {
+          editId && (
+            <DeleteSheetBtn
+              editId  = {editId}
+              onClose = {onClose}
+            />
+          )
+        }
+        <SubmitBtn
+          editId         = {editId}
+          sheetTitle     = {sheetTitle}
+          selectedIconId = {selectedIconId}
+          onClose        = {onClose}
+        />
+      </Box>
     </DialogActions>
   )
 });

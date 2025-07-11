@@ -19,7 +19,6 @@ export const AddSheetBtn: FC = memo(() => {
       <AddSheetBtnComponent onClick={handleAdd} />
       {
         hookOpen.open && <SetSheetdModal
-          type     = 'add'
           hookOpen = {hookOpen}
         />
       }

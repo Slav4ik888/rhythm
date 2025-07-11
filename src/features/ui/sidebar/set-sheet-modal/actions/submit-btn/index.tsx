@@ -1,75 +1,123 @@
-import { forwardRef, MutableRefObject, useCallback } from 'react';
-import { UseValue } from 'shared/lib/hooks';
+import { memo, FC, useCallback, useMemo } from 'react';
 import { Button } from 'shared/ui/buttons';
-import { getRefValue } from 'shared/lib/refs';
-import { creatorSheet, useCompany } from 'entities/company';
-import { isNotStr } from 'shared/lib/validators';
+import { creatorSheet, getSheetById, useCompany, validateDashboardSheetFields } from 'entities/company';
 import { getSlug, russianToEnglish } from 'shared/helpers/strings';
 import { useUser } from 'entities/user';
 import { createNextOrder } from 'entities/dashboard-view';
 import { DefaultIconId } from 'shared/assets';
+import { SidebarListItem } from 'shared/types';
+import { creatorFixDate } from 'entities/base';
+import { isChanges } from 'shared/helpers/objects';
 
 
 
 interface Props {
-  editId         : string  // sheetId if edit
-  ref            : MutableRefObject<null>
+  editId         : string | undefined // sheetId if edit
+  sheetTitle     : string
   selectedIconId : DefaultIconId | null
-  hookOpen       : UseValue<any>
+  onClose        : () => void
 }
 
-// Define props without 'ref' for forwardRef compatibility
-type RefProps = Omit<Props, 'ref'>;
 
-export const SetSheetSubmitBtn = forwardRef<null, RefProps>(({ editId, hookOpen: O, selectedIconId }, ref) => {
+export const SetSheetSubmitBtn: FC<Props> = memo(({ editId, selectedIconId, sheetTitle, onClose }) => {
   const { loading, paramsCompanyId, paramsSheets, serviceUpdateCompany, setErrors } = useCompany();
   const { userId } = useUser();
 
 
+  const disabled = useMemo(() => {
+    if (loading) return true;
+
+    if (editId) {
+      const sheetById = getSheetById(paramsSheets, editId);
+      console.log('sheetById: ', sheetById);
+      console.log(' isChanges: ', sheetTitle === sheetById?.title && selectedIconId === sheetById.iconId);
+
+      if (sheetById) return sheetTitle === sheetById.title && selectedIconId === sheetById.iconId
+      else return true
+    }
+    else {
+      const { valid } = validateDashboardSheetFields({ title: sheetTitle }, paramsSheets);
+      console.log('valid: ', valid);
+      return ! valid
+    }
+  },
+    [editId, selectedIconId, sheetTitle, loading, paramsSheets]
+  );
+
+  console.log('disabled: ', disabled);
+
   const handlerSubmit = useCallback(() => {
-    const sheetTitle = getRefValue(ref as MutableRefObject<null>);
+    const { errors, valid } = validateDashboardSheetFields({ title: sheetTitle }, paramsSheets);
+    console.log('valid Submit: ', valid);
+    if (! valid) return setErrors(errors);
 
-    // TODO: if (editId)
-
-    if (! sheetTitle || isNotStr(sheetTitle)) return setErrors({
-      sheetTitle: 'Должно быть заполнено'
-    });
+    // if (! sheetTitle || isNotStr(sheetTitle)) return setErrors({
+    //   sheetTitle: 'Должно быть заполнено'
+    // });
+    //
+    // if (sheetTitle.length > 30) return setErrors({
+    //   sheetTitle: 'Должно быть не более 30 символов'
+    // });
 
     const sheets = Object.values(paramsSheets);
-    if (sheets.find(sheet => sheet.title === sheetTitle)) return setErrors({
-      sheetTitle: 'Такое название уже существует'
-    });
+    // if (sheets.find(sheet => sheet.title === sheetTitle)) return setErrors({
+    //   sheetTitle: 'Такое название уже существует'
+    // });
 
-    const id = getSlug(russianToEnglish(sheetTitle));
+    let sheet = {} as SidebarListItem;
 
-    const sheet = creatorSheet({
-      userId,
-      id,
-      route  : id,
-      title  : sheetTitle,
-      iconId : selectedIconId || null,
-      order  : createNextOrder(sheets),
-    });
+    if (editId && ! disabled) {
+      const sheetById = getSheetById(paramsSheets, editId);
+
+      if (! sheetById) return setErrors({ sheetTitle: 'Не найден лист для редактирования' });
+
+      sheet.id = sheetById.id;
+      if (sheetTitle !== sheetById.title) {
+        sheet.title = sheetTitle;
+      }
+      if (selectedIconId !== sheetById.iconId) {
+        sheet.iconId = selectedIconId;
+      }
+      sheet.lastChange = creatorFixDate(userId);
+    }
+    else {
+      const id = getSlug(russianToEnglish(sheetTitle));
+
+      sheet = {
+        ...creatorSheet({
+          userId,
+          id,
+          route  : id,
+          title  : sheetTitle,
+          iconId : selectedIconId || null,
+          order  : createNextOrder(sheets),
+        })
+      }
+    }
 
     serviceUpdateCompany({
       id: paramsCompanyId,
       sheets: {
-        [id]: sheet
+        [sheet.id]: sheet
       }
     });
 
-    O.setClose();
+    onClose();
   },
-    [editId, userId, paramsCompanyId, paramsSheets, selectedIconId, ref, O, serviceUpdateCompany, setErrors]
+    [
+      editId, userId, paramsCompanyId, paramsSheets, selectedIconId, sheetTitle,
+      disabled, onClose, serviceUpdateCompany, setErrors
+    ]
   );
 
 
   return (
     <Button
-      loading = {loading}
-      variant = 'outlined'
-      text    = 'Отправить'
-      onClick = {handlerSubmit}
+      loading  = {loading}
+      disabled = {disabled}
+      variant  = 'outlined'
+      text     = 'Отправить'
+      onClick  = {handlerSubmit}
     />
   )
 });

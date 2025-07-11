@@ -6,7 +6,9 @@ import { StateSchemaCompany } from './state-schema';
 import { updateObject } from 'shared/helpers/objects';
 import { LS } from 'shared/lib/local-storage';
 import { SetCompany } from './types';
-import { SetParamsCompany, getParamsCompany, updateCompany } from 'shared/api/features/company';
+import {
+  SetParamsCompany, getParamsCompany, updateCompany, deleteSheet, DeleteSheet
+} from 'shared/api/features/company';
 
 
 
@@ -88,6 +90,25 @@ const slice = createSlice({
         state.errors        = {};
       })
       .addCase(updateCompany.rejected, (state, { payload }) => {
+        state.errors  = getError(payload);
+        state.loading = false;
+      })
+
+    // DELETE-SHEET
+    builder
+      .addCase(deleteSheet.pending, (state) => {
+        state.loading = true;
+        state.errors = {};
+      })
+      .addCase(deleteSheet.fulfilled, (state, { payload }: PayloadAction<DeleteSheet>) => {
+        const { sheetId } = payload;
+        if (state.paramsCompany?.sheets?.[sheetId]) delete state.paramsCompany.sheets[sheetId];
+        if (state.storedCompany?.sheets?.[sheetId]) delete state.storedCompany.sheets[sheetId];
+
+        state.loading = false;
+        state.errors  = {};
+      })
+      .addCase(deleteSheet.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       })

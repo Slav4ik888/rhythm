@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { f } from 'shared/styles';
+import { f, pxToRem } from 'shared/styles';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import { Tooltip } from 'shared/ui/tooltip';
@@ -25,7 +25,9 @@ export const EditSheetBtnComponent: FC<Props> = memo(({ isHover, onClick }) => {
     <Tooltip title='Изменить'>
       <IconButton
         sx={(theme) => ({
-          ...f('-c-c'),
+          position   : 'absolute',
+          top        : pxToRem(10),
+          right      : pxToRem(0),
           cursor     : 'pointer',
           transition : theme.transitions.create(['color'], {
             easing: theme.transitions.easing.sharp,
@@ -44,7 +46,7 @@ export const EditSheetBtnComponent: FC<Props> = memo(({ isHover, onClick }) => {
       >
         <EditIcon
           sx={{
-            fontSize : '0.7rem',
+            fontSize : '1rem',
             color    : 'text.light',
           }}
         />

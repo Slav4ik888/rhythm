@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { Errors } from 'shared/lib/validators';
 import { CustomSettings, ParamsCompany, PartialCompany } from '../../../types';
-import { ReqGetCompany, getParamsCompany, updateCompany } from 'shared/api/features/company';
+import { ReqGetCompany, getParamsCompany, updateCompany, DeleteSheet, deleteSheet } from 'shared/api/features/company';
 
 
 interface Config {
@@ -41,6 +41,7 @@ export const useCompany = (config: Config = {}) => {
 
     serviceGetParamsCompany    : (data: ReqGetCompany) => dispatch(getParamsCompany(data)),
     serviceUpdateCompany       : (company: PartialCompany) => dispatch(updateCompany(company)),
+    serviceDeleteSheet         : (data: DeleteSheet) => dispatch(deleteSheet(data)),
   }), [dispatch]);
 
 

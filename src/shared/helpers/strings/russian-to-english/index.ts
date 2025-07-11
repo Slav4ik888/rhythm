@@ -1,4 +1,5 @@
 
+/** Русские переводит в английские а иные оставляет как есть */
 export function russianToEnglish(str: string = '') {
   const charMap = {
     '-': '-',
@@ -85,7 +86,7 @@ export function russianToEnglish(str: string = '') {
 
   return str
     .split('')
-    .map(char => charMap[char as keyof typeof charMap])
+    .map(char => charMap[char as keyof typeof charMap] || char)
     .join('');
 }
 

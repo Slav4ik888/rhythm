@@ -34,6 +34,7 @@ import { EditSheetBtn } from 'features/ui/sidebar';
 
 
 interface Props {
+  id?         : string
   icon        : MuiIcon | string | ReactNode
   title       : string
   active      : boolean // является ли активным
@@ -41,7 +42,7 @@ interface Props {
 }
 
 
-export const SidebarCollapse: FC<Props> = ({ icon: IconComponent, title, active, ...rest }) => {
+export const SidebarCollapse: FC<Props> = ({ id, icon: IconComponent, title, active, ...rest }) => {
   const [configuratorState] = useUIConfiguratorController();
   const { sidebarMini } = configuratorState;
   const { editMode } = useDashboardViewState();
@@ -75,8 +76,9 @@ export const SidebarCollapse: FC<Props> = ({ icon: IconComponent, title, active,
         </Tooltip>
       </MDBox>
       {
-        ((editMode && isHover) || (editMode && isEdit)) && (
+        ((editMode && isHover) || (editMode && isEdit)) && id && (
           <EditSheetBtn
+            editId    = {id}
             isHover   = {isHover}
             isEdit    = {isEdit}
             onSetEdit = {onSetEdit}

@@ -19,7 +19,8 @@ export const API_PATHS = {
   },
   company: {
     // get    : '/company/get',
-    update : '/company/update',
+    update      : '/company/update',
+    deleteSheet : '/company/deleteSheet',
     // deleteCompany : '/deleteCompany/:companyId',
   },
   paramsCompany: {
