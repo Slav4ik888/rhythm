@@ -7,7 +7,7 @@ import { Tooltip } from '../../tooltip';
 import { SxCard } from '../../../styles';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { getIconStyle } from '../../configurators-components';
-import { CustomTheme } from 'app/providers/theme';
+import { CustomTheme, useTheme } from 'app/providers/theme';
 import IconButton from '@mui/material/IconButton';
 
 
@@ -16,7 +16,8 @@ type Props = {
   sx?                : SxCard
   toolTitle?         : string
   toolTitleDisabled? : string
-  icon?              : boolean
+  icon?              : boolean // Кнопка в виде иконки
+  iconInBtn?         : boolean // Иконка в кнопке
   disabled?          : boolean | undefined
   hookOpen?          : UseGroup<unknown>
   onDel?             : () => void
@@ -24,11 +25,15 @@ type Props = {
 }
 
 
-/** v.2025-07-02 */
+/** v.2025-07-12 */
 export const DeleteButton: FC<Props> = memo(({
-  sx, disabled, toolTitle = '', toolTitleDisabled = '', icon, hookOpen, onClose, onDel
+  sx, disabled, iconInBtn, icon, hookOpen,
+  toolTitle         = '',
+  toolTitleDisabled = '',
+  onClose, onDel
 }) => {
   const confirm = useValue();
+  const theme = useTheme();
 
 
   const handlerDel = useCallback(() => {
@@ -81,12 +86,17 @@ export const DeleteButton: FC<Props> = memo(({
             )
             : (
               <MDButton
-                color     = 'primary'
+                color     = 'error'
                 children  = 'Удалить'
                 variant   = 'outlined'
                 disabled  = {disabled}
-                startIcon = {<DeleteIcon />}
-                sx        = {{ root: { color: 'red', ...sx?.root } }}
+                startIcon = {iconInBtn && <DeleteIcon />}
+                sx={{
+                  root: {
+                    color: theme.palette.error.main,
+                    ...sx?.root
+                  }
+                }}
                 onClick   = {handlerClick}
               />
             )

@@ -18,7 +18,6 @@ export const EditSheetBtn: FC<Props> = memo(({ editId, isHover, onSetEdit }) => 
   const handleEdit = useCallback(() => {
     onSetEdit(true);
     hookOpen.setOpen();
-    console.log('click edit sheet');
   }, [hookOpen, onSetEdit]);
 
   const handleClose = useCallback(() => {

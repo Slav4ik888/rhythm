@@ -1,5 +1,4 @@
-import { useAppDispatch, usePages } from 'shared/lib/hooks';
-// import { Errors } from 'shared/lib/validators';
+import { usePages } from 'shared/lib/hooks';
 import { useMemo } from 'react';
 import { ColorName, useUIConfiguratorController } from 'app/providers/theme';
 import { useCompany } from 'entities/company';
@@ -9,7 +8,6 @@ import { getPathBySheetId } from '../../../lib';
 
 
 export const useSidebar = () => {
-  const dispatch = useAppDispatch();
   const [configuratorState] = useUIConfiguratorController();
   const { mode } = configuratorState;
   const darkMode = mode === 'dark';
@@ -33,20 +31,9 @@ export const useSidebar = () => {
     [paramsSheets, paramsCompanyId]
   );
 
-
-  // const api = useMemo(() => ({
-  //   setErrors         : (errors: Errors) => dispatch(actions.setErrors(errors)),
-  //   setErrorStatus    : (status: number) => dispatch(actions.setErrorStatus({ status })),
-  // }),
-  //   [dispatch]
-  // );
-
-
   return {
     sidebarRoutes,
     activeSheetId,
     textColor,
-
-    // ...api
   }
 };

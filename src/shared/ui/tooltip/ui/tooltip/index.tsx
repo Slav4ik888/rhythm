@@ -70,9 +70,9 @@ export const Tooltip: FC<Props> = memo(({
       placement      = {placement}
       enterDelay     = {enterDelay}
       enterNextDelay = {enterNextDelay}
-      sx             = {{ ...sxRoot, fontSize: '1rem', cursor: 'default' }}
+      sx             = {{ fontSize: '1rem', cursor: 'default', ...sxRoot }}
     >
-      <span style={{ ...sxSpan, cursor: 'default' }}>
+      <span style={{ cursor: 'default', ...sxSpan }}>
         {children}
       </span>
     </MuiTooltip>

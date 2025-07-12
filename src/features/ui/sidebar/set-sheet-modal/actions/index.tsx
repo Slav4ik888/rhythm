@@ -34,7 +34,12 @@ export const SetSheetActions: FC<Props> = memo(({ editId, selectedIconId, sheetT
         }}
       />
 
-      <Box sx={{ ...f('-c-fe') }}>
+      <Box
+        sx={{
+          ...(editId ? f('-c-sb') : f('-c-fe')),
+          width: '100%'
+        }}
+      >
         {
           editId && (
             <DeleteSheetBtn

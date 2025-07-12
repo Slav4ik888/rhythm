@@ -16,11 +16,9 @@ interface Props {
 }
 
 export const SelectIcon: FC<Props> = memo(({ sx, selectedIconId, onSelect }) => {
-  const handleChange = useCallback((e: SelectChangeEvent<unknown>) => {
+  const handleChange = useCallback((e: SelectChangeEvent<DefaultIconId>) => {
     const { value } = e.target;
-    if (typeof value === 'string') {
-      onSelect(value as DefaultIconId);
-    }
+    onSelect(value as DefaultIconId);
   }, [onSelect]);
 
 
@@ -36,8 +34,10 @@ export const SelectIcon: FC<Props> = memo(({ sx, selectedIconId, onSelect }) => 
     >
       <Select
         variant     = 'outlined'
-        value       = {selectedIconId}
+        value       = {selectedIconId || ''} // Используем пустую строку вместо null
         renderValue = {(value) => {
+          if (! value) return null; // Добавляем проверку на пустое значение
+
           const IconComponent = defaultIcons[value as keyof typeof defaultIcons];
           return (
             <IconComponent

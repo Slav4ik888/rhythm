@@ -149,6 +149,15 @@ export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProvid
           },
         },
       },
+      MuiIconButton: {
+        styleOverrides: {
+          root: {
+            '&:hover': {
+              backgroundColor: 'rgba(0, 0, 0, 0.1)',
+            }
+          },
+        },
+      },
     }
   }
 

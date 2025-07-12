@@ -57,14 +57,11 @@ export const DashboardBody = memo(() => {
   if (! isMountedData) return  null
 
 
-  // dev
-  if (cfg.DASHBOARD_DISABLE) return null
-
   return (
     <DashboardBodyWrapper>
       {editMode && <DashboardBodyPanel />}
       <ViewItemConfigurator />
-      <DashboardBodyContent />
+      {! cfg.DASHBOARD_DISABLE && <DashboardBodyContent />}
       <DashboardTemplates />
     </DashboardBodyWrapper>
   )

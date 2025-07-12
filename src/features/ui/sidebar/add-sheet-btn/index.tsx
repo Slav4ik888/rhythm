@@ -10,7 +10,6 @@ export const AddSheetBtn: FC = memo(() => {
 
   const handleAdd = useCallback(() => {
     hookOpen.setOpen();
-    console.log('add new sheet');
   }, [hookOpen]);
 
 

@@ -9,6 +9,7 @@ import { useStyles } from './use-styles';
 
 
 interface Props {
+  id?        : string
   text       : string
   type?      : ButtonType
   toolTitle? : string
@@ -23,8 +24,9 @@ interface Props {
 }
 
 
-/** 2023-11-04 */
+/** 2025-07-12 */
 export const Button: FC<Props> = memo(({
+  id,
   text,
   toolTitle = '',
   type      = ButtonType.PRIMARY,
@@ -43,6 +45,7 @@ export const Button: FC<Props> = memo(({
   return (
     <Tooltip title={toolTitle}>
       <MuiButton
+        id        = {id}
         variant   = {variant}
         // color    = {type === ButtonType.SECONDARY ? 'secondary' : 'primary'}
         disabled  = {disabled || loading}

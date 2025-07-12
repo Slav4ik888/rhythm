@@ -6,6 +6,7 @@ import { useUser } from 'entities/user';
 import { useCompany } from 'entities/company';
 import { findAvailableBunchId } from 'shared/lib/structures/bunch';
 import { useDashboardViewServices } from '../../../../model/hooks';
+import { usePages } from 'shared/lib/hooks';
 
 
 
@@ -17,9 +18,9 @@ interface Props {
 /** Feature for add new ViewItem */
 export const AddNewViewItem: FC<Props> = memo(({ component: Component, parentId }) => {
   const {
-    selectedId, viewItems, childrenViewItems, serviceCreateGroupViewItems, // selectedItem: { type }
+    selectedId, viewItems, childrenViewItems, serviceCreateGroupViewItems,
   } = useDashboardViewServices({ parentId });
-
+  const { dashboardSheetId } = usePages();
   const { userId } = useUser();
   const { paramsCompanyId } = useCompany();
 
@@ -31,7 +32,7 @@ export const AddNewViewItem: FC<Props> = memo(({ component: Component, parentId 
     const createViewItems = [createViewItem(
       userId,
       {
-        sheetId  : NO_SHEET_ID,
+        sheetId  : dashboardSheetId || NO_SHEET_ID, // Тот sheet в котором находится пользователь
         bunchId  : availableBunchId,
         parentId : parentId || selectedId, // Если нажали из панели то создастся на 1м уровне
         order    : createNextOrder(childrenViewItems),
@@ -45,7 +46,11 @@ export const AddNewViewItem: FC<Props> = memo(({ component: Component, parentId 
       viewItems      : createViewItems,
       bunchAction,
     });
-  }, [selectedId, parentId, viewItems, paramsCompanyId, userId, childrenViewItems, serviceCreateGroupViewItems]);
+  }, [
+      selectedId, dashboardSheetId, parentId, viewItems, paramsCompanyId, userId, childrenViewItems,
+      serviceCreateGroupViewItems
+    ]
+  );
 
 
   return (

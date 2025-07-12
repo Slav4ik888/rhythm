@@ -137,7 +137,7 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
       borderColor: borderColorValue,
 
       '&:hover': {
-        background: transparent.main,
+        background: rgbaFromHex(white.main, 0.02), // transparent.main,
         borderColor: colorValue,
       },
 

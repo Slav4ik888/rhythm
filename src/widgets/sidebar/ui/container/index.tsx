@@ -19,7 +19,6 @@ import SidebarRoot from './styled';
 import {
   useUIConfiguratorController, setSidebarMini, useTheme, setLeftOffsetScrollButton
 } from 'app/providers/theme';
-// import { SidebarDivider } from 'shared/ui/sidebar-divider';
 import { SidebarLogoLabel } from '../logo-label';
 import { SidebarUpgradeButton } from '../upgrade-button';
 import { calcLeftOffsetScrollButton } from 'app/providers/theme/utils';

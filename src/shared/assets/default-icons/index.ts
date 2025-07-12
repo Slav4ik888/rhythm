@@ -6,7 +6,7 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import FolderSpecialIcon from '@mui/icons-material/FolderSpecial';
-
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 
 
 export const defaultIcons = {
@@ -18,6 +18,7 @@ export const defaultIcons = {
   'calculate'               : CalculateIcon,
   'precision-manufacturing' : PrecisionManufacturingIcon,
   'folder-special'          : FolderSpecialIcon,
+  'support-agent'           : SupportAgentIcon,
 };
 
 export type DefaultIconId = keyof typeof defaultIcons

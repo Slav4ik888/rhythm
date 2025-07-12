@@ -1,7 +1,6 @@
-import { forwardRef, MouseEvent } from 'react';
+import { FC, memo, MouseEvent, useCallback } from 'react';
 import DialogContent from '@mui/material/DialogContent';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
 import { useCompany } from 'entities/company';
 import { f } from 'shared/styles';
 import Box from '@mui/material/Box';
@@ -23,7 +22,6 @@ const textStyle = {
 
 
 interface Props {
-  // ref            : MutableRefObject<unknown>
   sheetTitle     : string
   selectedIconId : DefaultIconId | null
   onSelectIcon   : (iconId: DefaultIconId) => void
@@ -31,18 +29,18 @@ interface Props {
 
 }
 
-// Define props without 'ref' for forwardRef compatibility
-type RefProps = Omit<Props, 'ref'>;
-
-export const SetSheetContent = forwardRef<null, RefProps>(({
-  sheetTitle, selectedIconId, onSelectIcon, onChangeTitle
-}, ref) => {
+export const SetSheetContent: FC<Props> = memo(({ sheetTitle, selectedIconId, onSelectIcon, onChangeTitle }) => {
   const { errors } = useCompany();
+
+  const handleSubmit = useCallback(() => {
+    document.getElementById('save-sheet-btn')?.click();
+  }, []);
+
 
   return (
     <DialogContent sx={{ '&.MuiDialogContent-root': { p: 0 } }}>
       <Typography sx={textStyle}>
-        Укажите название листа и выберите подходящую иконку
+        Выберите иконку и напишите название листа
       </Typography>
 
       <Box sx={{ ...f(), gap: 2 }}>
@@ -55,17 +53,13 @@ export const SetSheetContent = forwardRef<null, RefProps>(({
           errorField   = 'sheetTitle'
           errors       = {errors}
           onChange     = {onChangeTitle}
+          onSubmit     = {handleSubmit}
+          sx           = {{
+            root: {
+              width: '100%'
+            }
+          }}
         />
-        {/* <TextField
-          fullWidth
-          name       = 'sheetTitle'
-          type       = 'sheetTitle'
-          label      = 'Введите sheetTitle'
-          inputRef   = {ref}
-          helperText = {errors?.sheetTitle}
-          error      = {errors?.sheetTitle ? true : false}
-          sx         = {textStyle}
-        /> */}
       </Box>
     </DialogContent>
   )

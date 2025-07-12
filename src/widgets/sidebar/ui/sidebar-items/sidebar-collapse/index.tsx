@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -35,7 +35,7 @@ import { EditSheetBtn } from 'features/ui/sidebar';
 
 interface Props {
   id?         : string
-  icon        : MuiIcon | string | ReactNode
+  icon        : MuiIcon | string
   title       : string
   active      : boolean // является ли активным
   noCollapse? : boolean
@@ -52,8 +52,8 @@ export const SidebarCollapse: FC<Props> = ({ id, icon: IconComponent, title, act
   return (
     <ListItem
       {...hoverBind}
-      component='li'
-      sx={{ position: 'relative' }}
+      component = 'li'
+      sx        = {{ position: 'relative' }}
     >
       <MDBox
         {...rest}
@@ -63,12 +63,14 @@ export const SidebarCollapse: FC<Props> = ({ id, icon: IconComponent, title, act
           {
             typeof IconComponent === 'string'
               ? <Icon sx={(theme) => collapseIcon(theme as CustomTheme, { active })}>{IconComponent}</Icon>
-              // @ts-ignore
               : <IconComponent />
           }
         </ListItemIcon>
 
-        <Tooltip title={title}>
+        <Tooltip
+          title  = {title}
+          sxSpan = {{ cursor: 'pointer' }}
+        >
           <ListItemText
             primary={title}
             sx={(theme) => collapseText(theme as CustomTheme, { active, sidebarMini })}
@@ -76,7 +78,7 @@ export const SidebarCollapse: FC<Props> = ({ id, icon: IconComponent, title, act
         </Tooltip>
       </MDBox>
       {
-        ((editMode && isHover) || (editMode && isEdit)) && id && (
+        ((editMode && isHover) || (editMode && isEdit)) && id && id !== 'main' && (
           <EditSheetBtn
             editId    = {id}
             isHover   = {isHover}

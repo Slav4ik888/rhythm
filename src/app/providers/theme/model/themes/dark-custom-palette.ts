@@ -30,8 +30,8 @@ export const customPalette: CustomPalette = {
   },
 
   transparent: {
-    main: 'rgba(255, 255, 255, 0)',
-    focus: 'rgba(255, 255, 255, 0)',
+    main: '#ffffff00',
+    focus: '#ffffff00',
   },
 
   white: {

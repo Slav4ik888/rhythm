@@ -9,8 +9,8 @@ interface Props {
 }
 
 /**
- * Копирование текущего элемента.
- * Для этого его активируем, а затем тыкаем на элемент в который нужно вставить
+ * Активация текущего элемента для копирования.
+ * Затем нужно тыкнуть на элемент в который этот будет скопирован
  */
 export const CopyViewItem: FC<Props> = memo(({ type }) => {
   const { selectedId, activatedCopied, setActiveCopied, clearActivatedCopied } = useDashboardViewActions();

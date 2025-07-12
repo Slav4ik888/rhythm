@@ -28,6 +28,7 @@ export const DeleteSheetBtn: FC<Props> = memo(({ editId, onClose }) => {
 
   return (
     <DeleteButton
+      icon
       toolTitle = 'Удалить этот лист'
       onDel     = {handleDel}
     />

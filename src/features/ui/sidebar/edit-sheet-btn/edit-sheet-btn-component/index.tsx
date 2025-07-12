@@ -1,9 +1,9 @@
 import { FC, memo } from 'react';
-import { f, pxToRem } from 'shared/styles';
+import { pxToRem } from 'shared/styles';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import { Tooltip } from 'shared/ui/tooltip';
-import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
+import { CustomTheme } from 'app/providers/theme';
 // eslint-disable-next-line no-restricted-imports
 import { alpha } from '@mui/material';
 
@@ -16,9 +16,6 @@ interface Props {
 
 
 export const EditSheetBtnComponent: FC<Props> = memo(({ isHover, onClick }) => {
-  // const [configuratorState] = useUIConfiguratorController();
-  // const { sidebarMini } = configuratorState;
-
   if (! isHover) return null;
 
   return (
