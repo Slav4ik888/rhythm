@@ -35,42 +35,83 @@ export const ScrollableWorkspace: FC<Props> = ({ children }) => {
       scrollLeft,   // Текущий горизонтальный скролл
     } = containerRef.current;
 
-    setCanScrollLeft(scrollLeft > 0);
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth);
-  }, []);
+    console.log('111 : ', scrollWidth, clientWidth, scrollLeft);
+
+    // Округляем, чтобы избежать субпиксельных расхождений
+    const roundedScrollLeft = Math.floor(scrollLeft);
+    const roundedMaxScroll = Math.floor(scrollWidth - clientWidth);
+
+    setCanScrollLeft(roundedScrollLeft > 0);
+    setCanScrollRight(roundedScrollLeft < roundedMaxScroll);
+  },
+    []
+  );
 
 
   // Вешаем обработчики мыши
-  useEffect(() => {
-    if (! containerRef.current) return;
+  // useEffect(() => {
+  //   if (! containerRef.current) return;
 
-    window.addEventListener('mousemove', updateScrollState);
+  //   window.addEventListener('mousemove', updateScrollState);
 
-    return () => {
-      window.removeEventListener('mousemove', updateScrollState);
-    };
-  }, [updateScrollState]);
+  //   return () => {
+  //     window.removeEventListener('mousemove', updateScrollState);
+  //   };
+  // }, [updateScrollState]);
 
 
   // Плавный скролл по кнопкам
   const scroll = useCallback((direction: 'left' | 'right') => {
-    if (containerRef.current) {
-      containerRef.current.scrollBy({
-        left: direction === 'left' ? -400 : 400,
-        behavior: 'smooth',
-      });
-    }
-  }, []);
+    if (!containerRef.current) return;
+
+    const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
+    const scrollAmount = 400;
+    const maxScroll = scrollWidth - clientWidth;
+
+    const targetScroll = direction === 'left'
+      ? Math.max(0, scrollLeft - scrollAmount)
+      : Math.min(maxScroll, scrollLeft + scrollAmount);
+
+    containerRef.current.scrollTo({
+      left: targetScroll,
+      behavior: 'smooth',
+    });
+  },
+    []
+  );
 
 
-  // Обработчик скролла (колесико или полоса прокрутки)
+  // Вешаем только scroll + scrollend
   useEffect(() => {
     const container = containerRef.current;
-    if (container) {
-      container.addEventListener('scroll', updateScrollState);
-      return () => container.removeEventListener('scroll', updateScrollState);
-    }
+    if (!container) return;
+
+    const handleScrollEnd = () => updateScrollState();
+    let scrollTimeout: NodeJS.Timeout;
+
+    const handleScroll = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(handleScrollEnd, 100);
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    container.addEventListener('scrollend', handleScrollEnd);
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      container.removeEventListener('scrollend', handleScrollEnd);
+      clearTimeout(scrollTimeout);
+    };
   }, [updateScrollState]);
+
+  // Обработчик скролла (колесико или полоса прокрутки)
+  // useEffect(() => {
+  //   const container = containerRef.current;
+  //   if (container) {
+  //     container.addEventListener('scroll', updateScrollState);
+  //     return () => container.removeEventListener('scroll', updateScrollState);
+  //   }
+  // }, [updateScrollState]);
 
 
   return (

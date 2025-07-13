@@ -8,6 +8,7 @@ import { useCompany } from 'entities/company';
 import { DefaultIconId } from 'shared/assets';
 import { DeleteSheetBtn } from './delete-sheet-btn';
 import Box from '@mui/material/Box';
+import { MoveSheetUpdownward } from '../../move-sheet-up-downward';
 
 
 
@@ -48,6 +49,9 @@ export const SetSheetActions: FC<Props> = memo(({ editId, selectedIconId, sheetT
             />
           )
         }
+
+        <MoveSheetUpdownward editId={editId} />
+
         <SubmitBtn
           editId         = {editId}
           sheetTitle     = {sheetTitle}

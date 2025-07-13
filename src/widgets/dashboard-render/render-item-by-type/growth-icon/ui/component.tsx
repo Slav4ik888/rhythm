@@ -1,9 +1,7 @@
 import { FC, memo, useMemo } from 'react';
 import Box from '@mui/material/Box';
-import GrowIcon from './assets/triangle-growth.svg';
+import TriangleIcon from './assets/triangle-growth.svg';
 import FallIcon from './assets/triangle-fall.svg';
-import UnchangedLeftIcon from './assets/triangle-unchanged-left.svg';
-import UnchangedRightIcon from './assets/triangle-unchanged-right.svg';
 import { f, SxCard } from 'shared/styles';
 import { Increased } from 'entities/dashboard-data';
 import { getStyles } from './styles';
@@ -22,18 +20,19 @@ interface Props {
 /** Иконка вверх вниз на месте, показывает положительные или отрицательные изменения */
 export const GrowthIconComponent: FC<Props> = memo(({ increased, unchangedBlack, isLeft, scale, sx: style }) => {
   const icon = useMemo(() => {
-    const sx = getStyles(increased, unchangedBlack, scale);
+    const sx = getStyles(increased, unchangedBlack, scale, isLeft);
+
     switch (increased) {
-      case 1: return <GrowIcon fill={sx.fill} style={sx.svg} />
-      case -1: return <FallIcon fill={sx.fill} style={sx.svg} />
+      case 1: return <TriangleIcon fill={sx.fill} style={sx.svg} />
+      case -1: return <TriangleIcon fill={sx.fill} style={sx.svg} />
 
       default:
         if (unchangedBlack) {
           return isLeft
-            ? <UnchangedLeftIcon fill={sx.fill} style={sx.svg} />
-            : <UnchangedRightIcon fill={sx.fill} style={sx.svg} />
+            ? <TriangleIcon fill={sx.fill} style={sx.svg} />
+            : <TriangleIcon fill={sx.fill} style={sx.svg} />
         }
-        return <FallIcon fill={sx.fill} style={sx.svg} />
+        return <TriangleIcon fill={sx.fill} style={sx.svg} />
     }
   }, [increased, unchangedBlack, isLeft, scale]);
 

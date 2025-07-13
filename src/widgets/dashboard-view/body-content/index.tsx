@@ -17,7 +17,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { calcItemsInBunches, findAvailableBunchId } from 'shared/lib/structures/bunch';
 import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view';
 import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view';
-import { ScrollableWorkspace } from 'shared/ui/wrappers';
+// import { ScrollableWorkspace } from 'shared/ui/wrappers';
 import { usePages } from 'shared/lib/hooks';
 
 
@@ -246,12 +246,15 @@ export const DashboardBodyContent = memo(() => {
       sx={{
         ...f('-fs-fs-w'),
         width     : editMode ? 'calc(100% + 500px)' : '100%',
-        minHeight : 'calc(100vh - 250px)',
+        minHeight : '100vh',
+        overflowX : 'auto',
+        mr        : 3,
+        mb        : 3,
         pt        : 3
       }}
       onClick = {() => handleSelectViewItem(NO_PARENT_ID)}
     >
-      <ScrollableWorkspace>
+      {/* <ScrollableWorkspace> */}
         {
           isRendering
             ? <PageLoader loading={isRendering} text='Отрисовка графиков...' />
@@ -262,7 +265,7 @@ export const DashboardBodyContent = memo(() => {
                 onSelect = {handleSelectViewItem}
               />
         }
-      </ScrollableWorkspace>
+      {/* </ScrollableWorkspace> */}
     </Box>
   )
 });
