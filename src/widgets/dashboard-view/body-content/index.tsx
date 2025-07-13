@@ -4,7 +4,8 @@ import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import {
   ViewItemId, NO_PARENT_ID, createNextOrder, getChildren, isClickInsideViewItem, ViewItem,
-  MAX_COUNT_BUNCH_VIEWITEMS
+  MAX_COUNT_BUNCH_VIEWITEMS,
+  NO_SHEET_ID
  } from 'entities/dashboard-view';
 import { useCompany } from 'entities/company';
 import { getCopyViewItem } from 'features/dashboard-view';
@@ -17,6 +18,7 @@ import { calcItemsInBunches, findAvailableBunchId } from 'shared/lib/structures/
 import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view';
 import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view';
 import { ScrollableWorkspace } from 'shared/ui/wrappers';
+import { usePages } from 'shared/lib/hooks';
 
 
 
@@ -29,6 +31,7 @@ export const DashboardBodyContent = memo(() => {
     setDashboardViewItems, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
   } = useDashboardViewServices();
   const [isRendering, setIsRendering] = useState(true);
+  const { dashboardSheetId } = usePages();
 
 
   useEffect(() => {
@@ -64,14 +67,19 @@ export const DashboardBodyContent = memo(() => {
 
   const handleSelectViewItem = useCallback((id: ViewItemId) => {
     if (! editMode) return
-    if (! activatedCopied && id === NO_PARENT_ID) return // Активировать NO_PARENT_ID можно только для копирования
+    // Обрабатывать нажатие на NO_PARENT_ID можно только для копирования или перемещения
+    if (id === NO_PARENT_ID && ! activatedCopied && ! activatedMovementId) return
 
     // Если активирован выбранный элемент для ПЕРЕМЕЩЕНИЯ то его перемещаем в новый родительский элемент
-    // НЕ активируя selectedId
+    // НЕ меняя selectedId (чтобы не активировать NO_PARENT_ID)
     if (activatedMovementId) {
       if (selectedId === id) return // Нажали на этот же элемент
       if (activatedMovementId === selectedItem.parentId) return // Нажали на родительский элемент (по сути не оставляем в том же месте)
-      if (entities[id]?.type !== 'box') return // Перемещать можно только в Box
+      if (
+        entities[id]?.type !== 'box'                                   // Перемещать можно только в Box или
+        && id !== NO_PARENT_ID                                         // в корневой элемент
+        && entities[activatedMovementId]?.sheetId !== dashboardSheetId // и другой лист
+      ) return
 
       // У activatedMovementId изменяем parentId на выбранный id
       const updatedViewItems = [];
@@ -81,6 +89,11 @@ export const DashboardBodyContent = memo(() => {
         parentId : id,                                         // New parent`s id
         order    : createNextOrder(getChildren(viewItems, id)) // Next order in new parent
       };
+
+      // Если перемещаем в корень, то указываем sheetId в которую перемещаем
+      if (id === NO_PARENT_ID) {
+        movementItem.sheetId = dashboardSheetId || NO_SHEET_ID;
+      }
 
       updatedViewItems.push(movementItem);
 
@@ -111,6 +124,7 @@ export const DashboardBodyContent = memo(() => {
         newStoredViewItem
       });
     }
+
 
     else if (activatedCopied?.type === 'copyStyles') {
       if (selectedId === id) return // Нажали на этот же элемент
@@ -143,11 +157,16 @@ export const DashboardBodyContent = memo(() => {
       });
     }
 
+
     // Если активирован выбранный элемент для КОПИРОВАНИЯ то его вставляем в выбранный элемент
-    // НЕ активируя selectedId
+    // НЕ меняя selectedId (чтобы не активировать NO_PARENT_ID)
     else if (activatedCopied?.type === 'copyItemsAll' || activatedCopied?.type === 'copyItemFirstOnly') {
       if (selectedId === id && activatedCopied?.type === 'copyItemsAll') return // Копировать всё в этот же элемент нельзя
-      if (entities[id]?.type !== 'box' && id !== NO_PARENT_ID) return // Перемещать можно только в Box или корневой элемент
+      if (
+        entities[id]?.type !== 'box'                                  // Копировать можно только в Box или
+        && id !== NO_PARENT_ID                                        // в корневой элемент
+        && entities[activatedCopied.id]?.sheetId !== dashboardSheetId // и другой лист
+      ) return
 
       // Copying
       const copiedViewItems = getCopyViewItem(
@@ -160,7 +179,15 @@ export const DashboardBodyContent = memo(() => {
       // Adding bunchId to copied items
       const availableBunchId  = findAvailableBunchId(viewItems, MAX_COUNT_BUNCH_VIEWITEMS, copiedViewItems.length);
       const bunchId           = availableBunchId ? availableBunchId : uuidv4();
-      const copiedWithBunchId = copiedViewItems.map(item => ({ ...item, bunchId }));
+      const copiedWithBunchId = copiedViewItems.map(item => {
+        const newItem = { ...item, bunchId };
+
+        // Если перемещаем в корень, то указываем sheetId в которую перемещаем
+        if (id === NO_PARENT_ID) {
+          newItem.sheetId = dashboardSheetId || NO_SHEET_ID;
+        }
+        return newItem;
+      });
 
       // Чтобы на экране изменение отобразилось максимально быстро, не дожидаясь обновления на сервере
       setDashboardViewItems({
@@ -208,7 +235,7 @@ export const DashboardBodyContent = memo(() => {
   },
     [
       editMode, selectedId, activatedMovementId, activatedCopied, viewItems, entities, userId, isUnsaved,
-      paramsChangedCompany, changedViewItem, paramsCompanyId, selectedItem, serviceUpdateCompany,
+      dashboardSheetId, paramsChangedCompany, changedViewItem, paramsCompanyId, selectedItem, serviceUpdateCompany,
       serviceUpdateViewItems, setNewSelectedId, setDashboardViewItems, serviceCreateGroupViewItems
     ]
   );
@@ -218,8 +245,9 @@ export const DashboardBodyContent = memo(() => {
     <Box
       sx={{
         ...f('-fs-fs-w'),
-        width : editMode ? 'calc(100% + 500px)' : '100%',
-        pt    : 3
+        width     : editMode ? 'calc(100% + 500px)' : '100%',
+        minHeight : 'calc(100vh - 250px)',
+        pt        : 3
       }}
       onClick = {() => handleSelectViewItem(NO_PARENT_ID)}
     >
@@ -229,6 +257,7 @@ export const DashboardBodyContent = memo(() => {
             ? <PageLoader loading={isRendering} text='Отрисовка графиков...' />
             : <DashboardRender
                 parents  = {parentsViewItems}
+                sheetId  = {dashboardSheetId || NO_SHEET_ID}
                 parentId = 'no_parentId'
                 onSelect = {handleSelectViewItem}
               />

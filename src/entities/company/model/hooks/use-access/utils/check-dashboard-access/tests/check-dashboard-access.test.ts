@@ -1,6 +1,7 @@
 import { ParamsCompany } from '../../../../../../types';
 import { CompanyDashboardAccessScheme } from '../../../types';
 import { checkDashboardAccess } from '..'
+import { NO_SHEET_ID } from 'entities/dashboard-view';
 
 
 describe('checkDashboardAccess', () => {
@@ -8,7 +9,7 @@ describe('checkDashboardAccess', () => {
     owner: 'owner@example.com',
     dashboardPublicAccess: {
       'public-page': true,
-      'main': false
+      NO_SHEET_ID: false
     },
     dashboardMembers: [
       {
@@ -113,7 +114,7 @@ describe('checkDashboardAccess', () => {
         'admin@example.com',
         CompanyDashboardAccessScheme.AF,
         'e',
-        'main'
+        NO_SHEET_ID
       )).toBe(true);
     });
 
@@ -123,7 +124,7 @@ describe('checkDashboardAccess', () => {
         'view.access.user@example.com',
         CompanyDashboardAccessScheme.AF,
         'v',
-        'main'
+        NO_SHEET_ID
       )).toBe(true);
 
       expect(checkDashboardAccess(
@@ -131,7 +132,7 @@ describe('checkDashboardAccess', () => {
         'view.access.user@example.com',
         CompanyDashboardAccessScheme.AF,
         'e',
-        'main'
+        NO_SHEET_ID
       )).toBe(false);
     });
 
@@ -141,7 +142,7 @@ describe('checkDashboardAccess', () => {
         'none.access.user@example.com',
         CompanyDashboardAccessScheme.AF,
         'v',
-        'main'
+        NO_SHEET_ID
       )).toBe(false);
     });
   });
@@ -154,7 +155,7 @@ describe('checkDashboardAccess', () => {
         'unknown@example.com',
         CompanyDashboardAccessScheme.AF,
         'v',
-        'main'
+        NO_SHEET_ID
       )).toBe(false);
     });
 
@@ -164,7 +165,7 @@ describe('checkDashboardAccess', () => {
         undefined,
         CompanyDashboardAccessScheme.AF,
         'v',
-        'main'
+        NO_SHEET_ID
       )).toBe(false);
     });
   });
@@ -178,7 +179,7 @@ describe('checkDashboardAccess', () => {
         'admin@example.com',
         'a.x.y' as CompanyDashboardAccessScheme,
         'v',
-        'main'
+        NO_SHEET_ID
       )).toBe(true);
 
       // Для пользователя view.access.user схема a.y должна возвращать 'n'
@@ -187,7 +188,7 @@ describe('checkDashboardAccess', () => {
         'view.access.user@example.com',
         'a.y' as CompanyDashboardAccessScheme,
         'v',
-        'main'
+        NO_SHEET_ID
       )).toBe(false);
     });
   });
@@ -200,7 +201,7 @@ describe('checkDashboardAccess', () => {
         'admin@example.com',
         CompanyDashboardAccessScheme.AF,
         'v',
-        'main'
+        NO_SHEET_ID
       )).toBe(false);
     });
 
@@ -212,7 +213,7 @@ describe('checkDashboardAccess', () => {
         'admin@example.com',
         CompanyDashboardAccessScheme.AF,
         'v',
-        'main'
+        NO_SHEET_ID
       )).toBe(false);
     });
   });

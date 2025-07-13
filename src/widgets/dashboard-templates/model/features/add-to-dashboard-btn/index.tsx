@@ -2,13 +2,14 @@ import { FC, memo, useCallback } from 'react';
 import { Tooltip } from 'shared/ui/tooltip';
 import { MDButton } from 'shared/ui/mui-design-components';
 import { useDashboardTemplates } from 'entities/dashboard-templates';
-import { MAX_COUNT_BUNCH_VIEWITEMS } from 'entities/dashboard-view';
+import { MAX_COUNT_BUNCH_VIEWITEMS, NO_PARENT_ID, NO_SHEET_ID } from 'entities/dashboard-view';
 import { getCopyViewItem, useDashboardViewServices } from 'features/dashboard-view';
 import { useUser } from 'entities/user';
 import { useUI } from 'entities/ui';
 import { findAvailableBunchId } from 'shared/lib/structures/bunch';
 import { v4 as uuidv4 } from 'uuid';
 import { useCompany } from 'entities/company';
+import { usePages } from 'shared/lib/hooks';
 
 
 
@@ -19,6 +20,7 @@ export const AddToDashboardBtn: FC = memo(() => {
   const { setWarningMessage } = useUI();
   const { selectedId, selectedTemplate, setOpened } = useDashboardTemplates();
   const { selectedItem, viewItems, serviceCreateGroupViewItems } = useDashboardViewServices();
+  const { dashboardSheetId } = usePages();
 
 
   const handleClick = useCallback(() => {
@@ -27,7 +29,7 @@ export const AddToDashboardBtn: FC = memo(() => {
     // Copying
     const copiedViewItems = getCopyViewItem(
       { type: 'copyItemsAll', id: selectedId },
-      selectedItem?.id || 'no_parentId', // Если нажали из корня
+      selectedItem?.id || NO_PARENT_ID, // Если нажали из корня
       Object.values(selectedTemplate.viewItems),
       userId
     );
@@ -36,7 +38,15 @@ export const AddToDashboardBtn: FC = memo(() => {
     const availableBunchId  = findAvailableBunchId(viewItems, MAX_COUNT_BUNCH_VIEWITEMS, copiedViewItems.length);
     const bunchId           = availableBunchId ? availableBunchId : uuidv4();
     const bunchAction       = availableBunchId ? 'update' : 'create';
-    const copiedWithBunchId = copiedViewItems.map(item => ({ ...item, bunchId }));
+    const copiedWithBunchId = copiedViewItems.map(item => {
+      const newItem = { ...item, bunchId };
+
+      if (! selectedItem?.id) { // Если шаблон добавляют в корень, то помещаем в dashboardSheetId
+        newItem.sheetId = dashboardSheetId || NO_SHEET_ID;
+      }
+      return newItem;
+    });
+
 
     serviceCreateGroupViewItems({
       companyId      : paramsCompanyId,
@@ -48,7 +58,7 @@ export const AddToDashboardBtn: FC = memo(() => {
     setOpened(false);
   },
     [
-      selectedItem, paramsCompanyId, viewItems, userId, selectedTemplate, selectedId,
+      selectedItem, paramsCompanyId, viewItems, userId, selectedTemplate, selectedId, dashboardSheetId,
       setOpened, setWarningMessage, serviceCreateGroupViewItems
     ]
   );

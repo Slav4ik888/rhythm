@@ -4,7 +4,7 @@ import { Sidebar } from 'widgets/sidebar';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 import { DashboardBody } from './body';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
-import { reducerDashboardView, getBunchesToUpdate } from 'entities/dashboard-view';
+import { reducerDashboardView, getBunchesToUpdate, NO_SHEET_ID } from 'entities/dashboard-view';
 import { useLocation } from 'react-router-dom';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { useCompany } from 'entities/company';
@@ -29,7 +29,7 @@ export const DashboardPageContainer: FC = memo(() => {
   const { pathname } = useLocation();
   const { serviceGetViewItems, setDashboardBunchesFromCache } = useDashboardViewServices();
   const { serviceGetBunchesUpdated } = useDashboardTemplates();
-  const { dashboardSheetId = 'main' } = usePages();
+  const { dashboardSheetId = NO_SHEET_ID } = usePages();
   const { serviceGetData } = useDashboardGetData();
   const { setPageLoading } = useUI();
 

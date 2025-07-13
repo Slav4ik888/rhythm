@@ -1,8 +1,8 @@
 import { hour } from 'shared/helpers/dates'
 
 const cfg = {
-  VERSION                 : '1.0.10',
-  ASSEMBLY_DATE           : '2025-07-12',
+  VERSION                 : '1.0.12',
+  ASSEMBLY_DATE           : '2025-07-13',
 
   COOKIE_NAME             : 'Rhythm',
   DEFAULT_MESSAGE_TIMEOUT : hour(2),
@@ -15,9 +15,9 @@ const cfg = {
   // DEV
   /** If checks should been disabled */
   IS_EXPERIMENTAL   : false,
-  // TODO: set IS_DEV = false before PRODUCTION
+  // set IS_DEV = false before PRODUCTION
   IS_DEV            : false, // true, // Если загрузить данные надо не с сервера а из LS, например, когда нет интернета
-  DASHBOARD_DISABLE : true, // Don`t render dashboard
+  DASHBOARD_DISABLE : false, // true, // Don`t render dashboard
 }
 
 export default cfg

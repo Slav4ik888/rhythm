@@ -5,6 +5,7 @@ import { NavbarIcon } from 'shared/ui/navbar';
 import { useUI } from 'entities/ui';
 import { useDashboardGetData } from '../../model/hooks';
 import { usePages } from 'shared/lib/hooks';
+import { NO_SHEET_ID } from 'entities/dashboard-view';
 
 
 
@@ -12,11 +13,14 @@ export const DashboardRefreshButton: FC = memo(() => {
   const { serviceGetData } = useDashboardGetData();
   const { setPageLoading } = useUI();
   const { paramsCompanyId } = useCompany();
-  const { dashboardSheetId = 'main' } = usePages();
+  const { dashboardSheetId = NO_SHEET_ID } = usePages();
 
 
   const handleRefresh = useCallback(() => {
-    serviceGetData({ companyId: paramsCompanyId, dashboardSheetId });
+    serviceGetData({
+      dashboardSheetId, // For check доступ (для неавторизованных)
+      companyId: paramsCompanyId
+    });
     setPageLoading({ 'get-g-data': { name: 'RefreshButton', text: 'Загрузка данных c google-таблицы...' } });
   },
     [paramsCompanyId, dashboardSheetId, serviceGetData, setPageLoading]

@@ -4,6 +4,7 @@ import { ColorName, useUIConfiguratorController } from 'app/providers/theme';
 import { useCompany } from 'entities/company';
 import { getDefaultSidebarRoutes } from './get-default-items';
 import { getPathBySheetId } from '../../../lib';
+import { NO_SHEET_ID } from 'entities/dashboard-view';
 
 
 
@@ -11,7 +12,7 @@ export const useSidebar = () => {
   const [configuratorState] = useUIConfiguratorController();
   const { mode } = configuratorState;
   const darkMode = mode === 'dark';
-  const { dashboardSheetId: activeSheetId = 'main' } = usePages();
+  const { dashboardSheetId: activeSheetId = NO_SHEET_ID } = usePages();
   const { paramsSheets, paramsCompanyId } = useCompany();
 
   const textColor: ColorName = useMemo(() => {

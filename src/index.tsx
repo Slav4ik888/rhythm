@@ -31,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "ended Sidebar & started copy to any sheets" && git push -u origin main
+// git add . && git commit -m "ended copy to any sheets & ended isNotEmptySheet" && git push -u origin main

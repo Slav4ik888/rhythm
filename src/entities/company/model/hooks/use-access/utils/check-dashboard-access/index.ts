@@ -6,6 +6,7 @@ import { canAccess } from '../can-access';
 import { isOwner } from '../is-owner';
 import { AccessLevel, CompanyDashboardAccessScheme } from '../../types';
 import { ACCESS_PRIORITY } from '../../consts';
+import { NO_SHEET_ID } from 'entities/dashboard-view';
 
 
 
@@ -19,7 +20,7 @@ export const checkDashboardAccess = (
   requiredAccess  : AccessLevel,
   // для корневой страницы dashboardPageId = undefined
   // window.location.pathname.split('/')[3]
-  dashboardPageId : string = 'main'
+  dashboardPageId : string = NO_SHEET_ID
 ) => {
   // Если пользователь - владелец
   if (isOwner(company, userEmail)) return true;

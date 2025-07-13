@@ -27,7 +27,7 @@ import {
 } from './styles';
 import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
 import { Tooltip } from 'shared/ui/tooltip';
-import { useDashboardViewState } from 'entities/dashboard-view';
+import { NO_SHEET_ID, useDashboardViewState } from 'entities/dashboard-view';
 import { useHover } from 'shared/lib/hooks';
 import { EditSheetBtn } from 'features/ui/sidebar';
 
@@ -78,7 +78,7 @@ export const SidebarCollapse: FC<Props> = ({ id, icon: IconComponent, title, act
         </Tooltip>
       </MDBox>
       {
-        ((editMode && isHover) || (editMode && isEdit)) && id && id !== 'main' && (
+        ((editMode && isHover) || (editMode && isEdit)) && id && id !== NO_SHEET_ID && (
           <EditSheetBtn
             editId    = {id}
             isHover   = {isHover}

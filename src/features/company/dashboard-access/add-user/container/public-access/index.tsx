@@ -5,13 +5,14 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { useCompany } from 'entities/company';
 import { usePages } from 'shared/lib/hooks';
 import { pxToRem } from 'shared/styles';
+import { NO_SHEET_ID } from 'entities/dashboard-view';
 
 
 
 /** Управление публичным доступом к текущей dashboardSheetId */
 export const PublicAccess: FC = () => {
   const { paramsCompany, serviceUpdateCompany } = useCompany();
-  const { dashboardSheetId = '' } = usePages();
+  const { dashboardSheetId = NO_SHEET_ID } = usePages();
 
   const [checked, setChecked] = useState<boolean>(Boolean(paramsCompany?.dashboardPublicAccess?.[dashboardSheetId]));
 

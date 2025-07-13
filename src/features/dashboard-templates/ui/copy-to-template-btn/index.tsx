@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from 'react';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
-import { ActivatedCopiedType, useDashboardViewState } from 'entities/dashboard-view';
+import { ActivatedCopiedType } from 'entities/dashboard-view';
 import { AddBtn } from 'shared/ui/configurators-components';
 import { useTheme } from 'app/providers/theme';
 import { useTemplateActions } from '../../model/hooks/use-template-actions';
@@ -14,16 +14,15 @@ interface Props {
 /** Кнопка копирования выбранного SelectedItem в шаблоны */
 export const CopyToTemplatesBtn: FC<Props> = memo(({ type }) => {
   const { createTemplate } = useTemplateActions();
-  const { selectedItem, viewItems } = useDashboardViewState();
 
   const theme = useTheme();
   const isAll = type === 'copyItemsAll';
 
 
   const handleCreateTemplate = useCallback(() => {
-    createTemplate(type, selectedItem, viewItems);
+    createTemplate(type);
   },
-    [type, selectedItem, viewItems, createTemplate]
+    [type, createTemplate]
   );
 
 

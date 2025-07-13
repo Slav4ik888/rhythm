@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { Template, useDashboardTemplates, MAX_COUNT_BUNCH_TEMPLATES } from 'entities/dashboard-templates';
-import { ActivatedCopiedType, createNextOrder, ViewItem } from 'entities/dashboard-view';
+import { ActivatedCopiedType, createNextOrder, NO_SHEET_ID, useDashboardViewState } from 'entities/dashboard-view';
 import { getCopyViewItem } from 'features/dashboard-view';
 import { v4 as uuidv4 } from 'uuid';
 import { creatorFixDate, updateEntities } from 'entities/base';
@@ -14,13 +14,10 @@ import { chartOptionsToRemove } from './consts';
 export const useTemplateActions = () => {
   const { userId } = useUser();
   const { templates, setOpened, serviceUpdateTemplate } = useDashboardTemplates();
+  const { selectedItem, viewItems } = useDashboardViewState();
 
 
-  const createTemplate = useCallback((
-    type         : ActivatedCopiedType,
-    selectedItem : ViewItem,
-    viewItems    : ViewItem[]
-  ) => {
+  const createTemplate = useCallback((type: ActivatedCopiedType) => {
     const templateId = uuidv4();
 
     const copiedViewItems = getCopyViewItem(
@@ -34,7 +31,10 @@ export const useTemplateActions = () => {
     const availableBunchId  = findAvailableBunchId(templates, MAX_COUNT_BUNCH_TEMPLATES);
     const bunchId           = availableBunchId ? availableBunchId : uuidv4();
     const copiedWithBunchId = copiedViewItems.map(item => {
-      const preparedItem = { ...item, bunchId: '' }; // Очищаем bunchId
+      const preparedItem = {
+        ...item,
+        bunchId: '', // Очищаем bunchId
+      };
 
       // Если chart удаляем возможные ограничения
       if (item.type === 'chart') {
@@ -64,7 +64,7 @@ export const useTemplateActions = () => {
     // Открываем Templates
     setOpened(true);
   },
-    [userId, templates, setOpened, serviceUpdateTemplate]
+    [userId, templates, selectedItem, viewItems, setOpened, serviceUpdateTemplate]
   );
 
 

@@ -19,5 +19,5 @@ export interface ResGetGoogleData {
 
 export interface ReqGetGoogleData {
   companyId        : string
-  dashboardSheetId : string
+  dashboardSheetId : string // For check доступ (для неавторизованных)
 }
