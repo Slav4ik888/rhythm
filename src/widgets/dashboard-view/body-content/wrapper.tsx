@@ -2,6 +2,7 @@ import { FC, ReactNode, useState, useEffect, useRef } from 'react';
 import Box from '@mui/material/Box';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { useUIConfiguratorController } from 'app/providers/theme';
+import { useDashboardViewState } from 'entities/dashboard-view';
 
 
 
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export const DashboardBodyContentWrapper: FC<Props> = ({ children, onClick }) => {
+  const { editMode } = useDashboardViewState();
   const [configuratorState] = useUIConfiguratorController();
   const { leftOffsetScrollButton } = configuratorState;
 
@@ -100,7 +102,9 @@ export const DashboardBodyContentWrapper: FC<Props> = ({ children, onClick }) =>
     <Box
       sx={{
         position : 'relative',
+        minWidth : '300px',
         height   : '100%',
+        mr       : editMode ? '470px' : 0,
         mt       : 3,
         pb       : 5, /* Место для скроллбара */
       }}
