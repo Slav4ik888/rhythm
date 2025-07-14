@@ -1,7 +1,6 @@
 import { FC, memo, useMemo } from 'react';
 import Box from '@mui/material/Box';
 import TriangleIcon from './assets/triangle-growth.svg';
-import FallIcon from './assets/triangle-fall.svg';
 import { f, SxCard } from 'shared/styles';
 import { Increased } from 'entities/dashboard-data';
 import { getStyles } from './styles';

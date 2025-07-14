@@ -1,7 +1,5 @@
 import { memo, useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { DashboardRender } from '../../dashboard-render';
-import Box from '@mui/material/Box';
-import { f } from 'shared/styles';
 import {
   ViewItemId, NO_PARENT_ID, createNextOrder, getChildren, isClickInsideViewItem, ViewItem,
   MAX_COUNT_BUNCH_VIEWITEMS,
@@ -17,8 +15,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { calcItemsInBunches, findAvailableBunchId } from 'shared/lib/structures/bunch';
 import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view';
 import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view';
-// import { ScrollableWorkspace } from 'shared/ui/wrappers';
 import { usePages } from 'shared/lib/hooks';
+import { DashboardBodyContentWrapper as Wrapper } from './wrapper';
 
 
 
@@ -242,30 +240,17 @@ export const DashboardBodyContent = memo(() => {
 
 
   return (
-    <Box
-      sx={{
-        ...f('-fs-fs-w'),
-        width     : editMode ? 'calc(100% + 500px)' : '100%',
-        minHeight : '100vh',
-        overflowX : 'auto',
-        mr        : 3,
-        mb        : 3,
-        pt        : 3
-      }}
-      onClick = {() => handleSelectViewItem(NO_PARENT_ID)}
-    >
-      {/* <ScrollableWorkspace> */}
-        {
-          isRendering
-            ? <PageLoader loading={isRendering} text='Отрисовка графиков...' />
-            : <DashboardRender
-                parents  = {parentsViewItems}
-                sheetId  = {dashboardSheetId || NO_SHEET_ID}
-                parentId = 'no_parentId'
-                onSelect = {handleSelectViewItem}
-              />
-        }
-      {/* </ScrollableWorkspace> */}
-    </Box>
+    <Wrapper onClick = {() => handleSelectViewItem(NO_PARENT_ID)}>
+      {
+        isRendering
+          ? <PageLoader loading={isRendering} text='Отрисовка графиков...' />
+          : <DashboardRender
+              parents  = {parentsViewItems}
+              sheetId  = {dashboardSheetId || NO_SHEET_ID}
+              parentId = 'no_parentId'
+              onSelect = {handleSelectViewItem}
+            />
+      }
+    </Wrapper>
   )
 });

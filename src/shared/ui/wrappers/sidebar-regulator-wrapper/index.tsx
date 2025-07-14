@@ -56,11 +56,11 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
           ? 0
           : isSidebar
             ? sidebarMini
-              ? pxToRem(104)
-              : pxToRem(sidebarWidth + 8)
+              ? pxToRem(112)
+              : pxToRem(sidebarWidth + 16)
             : 0,
 
-        px: 3,
+        px: 2,
         pt: isNavbar
           ? 'calc(1rem + 2px)'
           : '',

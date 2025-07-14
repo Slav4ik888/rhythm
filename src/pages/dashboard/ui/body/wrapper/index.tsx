@@ -14,10 +14,10 @@ export const DashboardBodyWrapper: FC<Props> = memo(({ children }) => (
     sx={{
       ...f('c'),
       position  : 'relative',
-      width     : 'max-content',
+      // width     : 'max-content',
       minWidth  : '100%',
-      minHeight : 'calc(100vh - 300px)',
-      height    : '100%',
+      // minHeight : 'calc(100vh - 300px)',
+      minHeight    : '100%',
     }}
   >
     {children}
