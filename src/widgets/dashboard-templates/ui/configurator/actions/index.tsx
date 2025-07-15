@@ -14,7 +14,8 @@ export const TemplatesConfiguratorActions: FC = memo(() => (
     </Box>
 
     <Box sx={{ ...f('--fe'), gap: 2, mb: 1 }}>
-      <AddToDashboardBtn />
+      <AddToDashboardBtn type='copyItemFirstOnly' />
+      <AddToDashboardBtn type='copyItemsAll' />
     </Box>
   </Box>
 ));

@@ -1,7 +1,6 @@
 import { FC, memo } from 'react';
 import DialogActions from '@mui/material/DialogActions';
 import { ErrorBox } from 'shared/ui/containers';
-import { UseValue } from 'shared/lib/hooks';
 import { SetSheetSubmitBtn as SubmitBtn } from './submit-btn';
 import { f } from 'shared/styles';
 import { useCompany } from 'entities/company';
@@ -41,23 +40,28 @@ export const SetSheetActions: FC<Props> = memo(({ editId, selectedIconId, sheetT
           width: '100%'
         }}
       >
-        {
-          editId && (
-            <DeleteSheetBtn
-              editId  = {editId}
-              onClose = {onClose}
-            />
-          )
-        }
+        {editId && (
+          <DeleteSheetBtn
+            editId  = {editId}
+            onClose = {onClose}
+          />
+        )}
 
-        <MoveSheetUpdownward editId={editId} />
+        <Box
+          sx={{
+            ...f(),
+            gap: 1
+          }}
+        >
+          {editId && (<MoveSheetUpdownward editId={editId} />)}
 
-        <SubmitBtn
-          editId         = {editId}
-          sheetTitle     = {sheetTitle}
-          selectedIconId = {selectedIconId}
-          onClose        = {onClose}
-        />
+          <SubmitBtn
+            editId         = {editId}
+            sheetTitle     = {sheetTitle}
+            selectedIconId = {selectedIconId}
+            onClose        = {onClose}
+          />
+        </Box>
       </Box>
     </DialogActions>
   )

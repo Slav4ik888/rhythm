@@ -18,8 +18,9 @@ import Link from '@mui/material/Link';
 import { MDBox, MDTypography } from 'shared/ui/mui-design-components';
 import { useTheme, CustomTheme } from 'app/providers/theme';
 import { LinkType } from 'app/providers/routes';
-import { pxToRem, getTypography } from 'shared/styles';
+import { pxToRem, getTypography, f } from 'shared/styles';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
+import { VersionWidjet } from 'widgets/version';
 
 
 
@@ -81,10 +82,7 @@ export const Footer: FC<Props> = ({
         <MDBox
           component='ul'
           sx={({ breakpoints }: CustomTheme) => ({
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'center',
+            ...f('-c-c-w'),
             listStyle: 'none',
             mt: 3,
             mb: 0,
@@ -97,6 +95,8 @@ export const Footer: FC<Props> = ({
         >
           {/* {renderLinks()} */}
         </MDBox>
+
+        <VersionWidjet />
       </MDBox>
     </SidebarRegulatorWrapper>
   );

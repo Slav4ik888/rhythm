@@ -1,8 +1,7 @@
 import { FC, memo, useCallback } from 'react';
-import { Tooltip } from 'shared/ui/tooltip';
-import { MDButton } from 'shared/ui/mui-design-components';
-import { useDashboardTemplates } from 'entities/dashboard-templates';
-import { MAX_COUNT_BUNCH_VIEWITEMS, NO_PARENT_ID, NO_SHEET_ID } from 'entities/dashboard-view';
+import MoveIcon from '@mui/icons-material/MoveUp';
+import { useCanTemplateToDashboard, useDashboardTemplates } from 'entities/dashboard-templates';
+import { ActivatedCopiedType, MAX_COUNT_BUNCH_VIEWITEMS, NO_PARENT_ID, NO_SHEET_ID } from 'entities/dashboard-view';
 import { getCopyViewItem, useDashboardViewServices } from 'features/dashboard-view';
 import { useUser } from 'entities/user';
 import { useUI } from 'entities/ui';
@@ -10,25 +9,38 @@ import { findAvailableBunchId } from 'shared/lib/structures/bunch';
 import { v4 as uuidv4 } from 'uuid';
 import { useCompany } from 'entities/company';
 import { usePages } from 'shared/lib/hooks';
+import { AddBtn } from 'shared/ui/configurators-components';
+import { useTheme } from 'app/providers/theme';
 
 
 
-/** Кнопка добавления активного элемента шаблона в дашборд */
-export const AddToDashboardBtn: FC = memo(() => {
+interface Props {
+  type: ActivatedCopiedType
+}
+
+/**
+ * Кнопка добавления активного элемента шаблона в дашборд
+ * либо целиком либо только 1
+ */
+export const AddToDashboardBtn: FC<Props> = memo(({ type }) => {
   const { userId } = useUser();
   const { paramsCompanyId } = useCompany();
   const { setWarningMessage } = useUI();
   const { selectedId, selectedTemplate, setOpened } = useDashboardTemplates();
   const { selectedItem, viewItems, serviceCreateGroupViewItems } = useDashboardViewServices();
   const { dashboardSheetId } = usePages();
+  const { canAddFromTemplate } = useCanTemplateToDashboard();
+  const theme = useTheme();
+  const isAll = type === 'copyItemsAll';
 
 
   const handleClick = useCallback(() => {
     if (! selectedId || ! selectedTemplate) return setWarningMessage('Не выбран элемент для добавления');
+    if (! canAddFromTemplate) return setWarningMessage('В выбранный в дашборде элемент нельзя добавлять элементы');
 
     // Copying
     const copiedViewItems = getCopyViewItem(
-      { type: 'copyItemsAll', id: selectedId },
+      { type, id: selectedId },
       selectedItem?.id || NO_PARENT_ID, // Если нажали из корня
       Object.values(selectedTemplate.viewItems),
       userId
@@ -58,8 +70,8 @@ export const AddToDashboardBtn: FC = memo(() => {
     setOpened(false);
   },
     [
-      selectedItem, paramsCompanyId, viewItems, userId, selectedTemplate, selectedId, dashboardSheetId,
-      setOpened, setWarningMessage, serviceCreateGroupViewItems
+      selectedItem, paramsCompanyId, viewItems, userId, selectedTemplate, selectedId, dashboardSheetId, type,
+      canAddFromTemplate, setOpened, setWarningMessage, serviceCreateGroupViewItems
     ]
   );
 
@@ -67,14 +79,12 @@ export const AddToDashboardBtn: FC = memo(() => {
   if (! selectedId) return null;
 
   return (
-    <Tooltip title='Добавить этот элемент в дашборд'>
-      <MDButton
-        variant = 'outlined'
-        color   = 'primary'
-        onClick = {handleClick}
-      >
-        Добавить в Дашборд
-      </MDButton>
-    </Tooltip>
+    <AddBtn
+      title     = {isAll ? 'All' : '1'}
+      toolTitle = {`Добавить этот элемент в дашборд (${isAll ? 'со всеми вложенными элементами' : 'без вложений'})`}
+      color     = {isAll ? theme.palette.primary.main : ''}
+      startIcon = {MoveIcon}
+      onClick   = {handleClick}
+    />
   )
 });

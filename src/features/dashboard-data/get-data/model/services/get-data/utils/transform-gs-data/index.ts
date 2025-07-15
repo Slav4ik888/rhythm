@@ -8,7 +8,7 @@ import { GoogleSheetData, ResGetData, StartEntitiesData } from 'shared/types/das
 
 /** Вернуть индексы якорей */
 function getIdxAnchors(allSheetData: DashboardItemData<string | number>[]) {
-  const getIdxByKod = (label: string): number => allSheetData[0].findIndex(value => value === label);
+  const getIdxByKod = (label: string): number => allSheetData?.[0].findIndex(value => value === label);
 
   return {
     kodIdx         : getIdxByKod('#kod'),
@@ -78,18 +78,18 @@ export const getEntities = (data: ResGetData): StartEntitiesData => {
   for (const key in data) {
     if (Object.prototype.hasOwnProperty.call(data, key)) {
       // Трансформируем в столбцы
-      const allSheetData = transformGSData(data[key]);
+      const allSheetData = transformGSData(data?.[key]);
 
       // Определяем индексы констант по 1й колонке
       const { kodIdx, periodTypeIdx, companyTypeIdx, productTypeIdx, titleIdx } = getIdxAnchors(allSheetData);
-      const sheetStatisticType = allSheetData[1][0] as string; // В ячейке B1 находится #sheet_type - тип статистики вкладки: мес | нед | мес (кален)
-      const dataRow = allSheetData[1][1] as number; // В ячейке B2 находится № строки с которой начинаются данные
+      const sheetStatisticType = allSheetData?.[1]?.[0] as string; // В ячейке B1 находится #sheet_type - тип статистики вкладки: мес | нед | мес (кален)
+      const dataRow = allSheetData?.[1]?.[1] as number; // В ячейке B2 находится № строки с которой начинаются данные
 
 
       // Добавляем в entities
       allSheetData.forEach((columnData: DashboardItemData<string | number>, idx) => {
-        const kod = columnData[kodIdx] as string;
-        const currentPeriodType = columnData[periodTypeIdx] as StatisticPeriodType;
+        const kod = columnData?.[kodIdx] as string;
+        const currentPeriodType = columnData?.[periodTypeIdx] as StatisticPeriodType;
         const validPeriodType = currentPeriodType === sheetStatisticType;
 
         // Проверить есть ли код, соответствует ли statisticType данной вкладке и idx !== 0 (это колонка с датой)
@@ -97,15 +97,15 @@ export const getEntities = (data: ResGetData): StartEntitiesData => {
           startEntities[kod]             = {} as DashboardStatisticItem;
           startEntities[kod].kod         = kod;
           startEntities[kod].periodType  = currentPeriodType;
-          startEntities[kod].companyType = columnData[companyTypeIdx] as string;
-          startEntities[kod].productType = columnData[productTypeIdx] as string;
-          startEntities[kod].title       = columnData[titleIdx] as string;
-          startEntities[kod].data        = columnData.slice(dataRow - 1);
+          startEntities[kod].companyType = columnData?.[companyTypeIdx] as string;
+          startEntities[kod].productType = columnData?.[productTypeIdx] as string;
+          startEntities[kod].title       = columnData?.[titleIdx] as string;
+          startEntities[kod].data        = columnData?.slice(dataRow - 1);
         }
       });
 
       // Добавляем в dates
-      startDates[sheetStatisticType] = allSheetData[0]
+      startDates[sheetStatisticType] = allSheetData?.[0]
         .slice(dataRow - 1)
         .map((date: string | number) => new Date(date).getTime());
     }

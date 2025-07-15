@@ -14,3 +14,36 @@ Content-Type: application/json
 
 GET http://localhost:7575/api/hello HTTP/1.1
 Content-Type: application/json
+
+###
+
+POST http://localhost:7575/api/devCreateDemoCompany HTTP/1.1
+Content-Type: application/json
+
+{
+  "id"               : "demoPecarColor_JlY5D",
+  "companyName"      : "",
+  "ownerId"          : "pT5sk0UDkzgVGXtCRLjk72h4jwV2",
+  "owner"            : "korzan.va@mail.ru",
+
+  "logoUrl"          : "",
+  "status"           : "",
+
+  "googleData"       : {
+    "url": ""
+  },
+  "customSettings"   : {},
+  "dashboardMembers" : [],
+  "companyMembers"   : [],
+
+  "bunchesUpdated"   : {},
+  "sheets"           : {},
+  "createdAt"        : {
+    "userId" : "pT5sk0UDkzgVGXtCRLjk72h4jwV2",
+    "date"   : "1752493878374"
+  },
+  "lastChange"       : {
+    "userId" : "pT5sk0UDkzgVGXtCRLjk72h4jwV2",
+    "date"   : "1752493878374"
+  }
+}

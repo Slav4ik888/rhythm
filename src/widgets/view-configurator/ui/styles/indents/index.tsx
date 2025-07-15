@@ -76,7 +76,7 @@ export const Indents: FC<Props> = memo(({ selectedItem }) => {
         selectedItem = {selectedItem}
         onChange     = {handleChange}
       />
-      <GapsRow selectedItem={selectedItem} />
+      {selectedItem?.type === 'box' && <GapsRow selectedItem={selectedItem} />}
     </SubHeader>
   )
 });
