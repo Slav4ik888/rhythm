@@ -1,10 +1,14 @@
+import cfg from 'app/config';
 import axios from 'axios';
 
 
 export const api = axios.create({
   baseURL         : '/api',
   timeout         : 1000 * 30,
-  withCredentials : true // Если с куки
+  withCredentials : true, // Если с куки,
+  headers: {
+    'X-Client-Version': cfg.VERSION,
+  }
 });
 
 

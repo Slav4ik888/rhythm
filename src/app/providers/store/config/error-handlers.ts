@@ -4,6 +4,7 @@ import { StateSchema, ThunkExtraArg } from './state';
 import { Errors } from 'shared/lib/validators';
 import { actionsUser } from 'entities/user';
 import { __devLog } from 'shared/lib/tests/__dev-log';
+import { LS } from 'shared/lib/local-storage';
 
 
 
@@ -35,8 +36,12 @@ export const errorHandlers = (
 
   __devLog('pathname: ', pathname);
 
-  dispatch(actionsUI.setPageLoading({ 'error-handlers': { name: 'errorHandlers', text: '' } })); // Снять крутилку, если авторизация провалилась...
+  dispatch(actionsUI.setPageLoading()); // Снять крутилку
 
+  if (errors.updateRequired) {
+    LS.clearStorage();
+    return dispatch(actionsUI.setInfoMessage('Приложение обновилось. Необходимо обновить страницу.'));
+  }
   if (e.code === 'ECONNABORTED') {
     return dispatch(actionsUI.setWarningMessage('Отсутствует интернет-соединение. Попробуйте позже.'))
   }

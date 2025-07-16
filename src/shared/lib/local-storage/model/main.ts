@@ -1,7 +1,7 @@
 // v.2025-06-08
 import { __devLog } from '../../tests/__dev-log';
 
-const PREFIX = 'Rhythm-';
+export const PREFIX = 'Rhythm-';
 
 /** Вывод ошибки в консоль */
 const showError = (text: string, fieldName: string) => __devLog(`${text}: ${fieldName}`);
@@ -40,7 +40,6 @@ export function getStorageData<A>(storageName: string): A | undefined {
 
   const data = localStorage.getItem(PREFIX + storageName);
   if (data) return JSON.parse(data);
-  return;
 }
 
 /** Clear item by storageName */

@@ -7,7 +7,7 @@ import { ScreenFormats } from '../../types/screen-formats';
 export type PageLoadingType = 'get-auth'
   | 'get-g-data'
   | 'get-params-company'
-  | 'error-handlers'
+  // | 'error-handlers'
 
 
 export interface PageLoadingValue {

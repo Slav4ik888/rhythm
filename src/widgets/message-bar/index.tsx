@@ -46,6 +46,13 @@ export const MessageBar: FC = memo(() => {
       autoHideDuration = {message.timeout || cfg.DEFAULT_MESSAGE_TIMEOUT}
       onClose          = {handleCloseMessageBar}
       sx               = {{
+        '& .MuiAlert-filledInfo': {
+          color: '#fff',
+          backgroundColor: '#0d7fc7', // '#75c563',
+          // '&:hover': {
+          //   backgroundColor: fade('#75c563', 0.85),
+          // },
+        },
         '& .MuiAlert-filledSuccess': {
           color: '#146900',
           backgroundColor: '#a9e09d', // '#75c563',

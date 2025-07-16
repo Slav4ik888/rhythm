@@ -39,7 +39,12 @@ export const slice = createSlice({
     },
 
     // PAGE LOADER
-    setPageLoading: (state, { payload }: PayloadAction<PageLoading>) => {
+    setPageLoading: (state, { payload }: PayloadAction<PageLoading | undefined>) => {
+      if (! payload) {
+        state.pageLoading = {};
+        return;
+      }
+
       Object.entries(payload).forEach(([key, value]) => {
         if (! value.text) {
           // console.log(`Remove key: ${key}`); console.log('name: ', value.name);
