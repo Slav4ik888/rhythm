@@ -31,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "added ClearCacheBtn" && git push -u origin main
+// git add . && git commit -m "refacted ClearCacheBtn" && git push -u origin main

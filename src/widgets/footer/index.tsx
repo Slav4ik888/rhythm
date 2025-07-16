@@ -22,6 +22,7 @@ import { pxToRem, getTypography, f } from 'shared/styles';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { VersionWidjet } from 'widgets/version';
 import { ClearCacheBtn } from 'features/ui';
+import Box from '@mui/material/Box';
 
 
 
@@ -59,7 +60,7 @@ export const Footer: FC<Props> = ({
         display='flex'
         flexDirection={{ xs: 'column', lg: 'row' }}
         justifyContent='space-between'
-        alignItems='center'
+        alignItems='flex-start'
         width='100%'
         height={pxToRem(85)}
         px={1.5}
@@ -96,8 +97,11 @@ export const Footer: FC<Props> = ({
         >
           {/* {renderLinks()} */}
         </MDBox>
-        <ClearCacheBtn />
-        <VersionWidjet />
+
+        <Box sx={{ ...f('c'), gap: 1 }}>
+          <VersionWidjet />
+          <ClearCacheBtn />
+        </Box>
       </MDBox>
     </SidebarRegulatorWrapper>
   );
