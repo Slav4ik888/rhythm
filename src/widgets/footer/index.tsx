@@ -21,6 +21,7 @@ import { LinkType } from 'app/providers/routes';
 import { pxToRem, getTypography, f } from 'shared/styles';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { VersionWidjet } from 'widgets/version';
+import { ClearCacheBtn } from 'features/ui';
 
 
 
@@ -95,7 +96,7 @@ export const Footer: FC<Props> = ({
         >
           {/* {renderLinks()} */}
         </MDBox>
-
+        <ClearCacheBtn />
         <VersionWidjet />
       </MDBox>
     </SidebarRegulatorWrapper>
