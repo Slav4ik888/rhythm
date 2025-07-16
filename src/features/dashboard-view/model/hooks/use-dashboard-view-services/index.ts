@@ -1,4 +1,4 @@
-import { ViewItemId, useDashboardViewActions, getViewItems, ReqGetViewItems } from 'entities/dashboard-view';
+import { ViewItemId, useDashboardViewActions, getBunches, ReqGetBunches } from 'entities/dashboard-view';
 import { useMemo } from 'react';
 import {
   createGroupViewItems, CreateGroupViewItems, deleteViewItem, DeleteViews,
@@ -20,7 +20,8 @@ export const useDashboardViewServices = (config: Config = {}) => {
 
   const api = useMemo(() => ({
     // Сервисные методы (features)
-    serviceGetViewItems         : (data: ReqGetViewItems) => dispatch(getViewItems(data)),
+    // serviceGetViewItems         : (data: ReqGetViewItems) => dispatch(getViewItems(data)),
+    serviceGetBunches           : (data: ReqGetBunches) => dispatch(getBunches(data)),
     serviceCreateGroupViewItems : (data: CreateGroupViewItems) => dispatch(createGroupViewItems(data)),
     serviceUpdateViewItems      : (data: UpdateViewItems) => dispatch(updateViewItems(data)),
     serviceDeleteViews          : (data: DeleteViews) => dispatch(deleteViewItem(data)),

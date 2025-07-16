@@ -1,6 +1,8 @@
 import { ChartConfigDatasetsField } from 'entities/charts';
 import { BunchesUpdated } from 'shared/lib/structures/bunch';
-import { ViewItemId, ViewItemStylesField, ViewItemSettingsField, ViewItemChartField, ViewItem } from '../../types';
+import {
+  ViewItemId, ViewItemStylesField, ViewItemSettingsField, ViewItemChartField, ViewItem, BunchesViewItem
+ } from '../../types';
 
 
 
@@ -12,6 +14,12 @@ export interface SetEditMode {
 export interface SetDashboardViewItems {
   companyId      : string
   viewItems      : ViewItem[]
+  bunchesUpdated : BunchesUpdated
+}
+
+export interface SetDashboardBunches {
+  companyId      : string
+  bunches        : BunchesViewItem
   bunchesUpdated : BunchesUpdated
 }
 
@@ -36,4 +44,9 @@ export interface ChangeOneDatasetsItem {
   field      : ChartConfigDatasetsField
   index      : number // № графика
   value      : any
+}
+
+export interface SetDashboardBunchesFromCache {
+  changedBunches : string[] // Bunches в которых были изменения и их не нужно показывать
+  companyId      : string
 }

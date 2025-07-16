@@ -1,5 +1,7 @@
 import { ItemBase } from 'entities/base'
 import { ChartConfigDatasets, ChartConfigOptions, ChartType, ChartConfigTrendDatasets } from 'entities/charts'
+import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view'
+import { Bunch, BunchId } from 'shared/lib/structures'
 import { IndicatorsConfig } from './config'
 import { ViewItemStyles } from './item-styles'
 
@@ -63,7 +65,6 @@ export type ViewItemSettingsField = keyof ViewItemSettings;
 // ------------------------------------- //
 
 export type ViewItemId = string
-export type BunchId = string
 
 export interface ViewItem extends ItemBase {
   id           : ViewItemId
@@ -78,3 +79,7 @@ export interface ViewItem extends ItemBase {
 }
 
 export type PartialViewItem = Partial<ViewItem> & { id: ViewItemId }
+
+export type BunchesViewItem        = Bunch<string, Bunch<string, ViewItem>>
+// Для обновления изменения в элементах
+export type PartialBunchesViewItem = Bunch<string, Bunch<string, PartialViewItemUpdate>>

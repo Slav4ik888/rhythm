@@ -13,7 +13,7 @@ import { PageLoader } from 'widgets/page-loader';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { v4 as uuidv4 } from 'uuid';
 import { calcItemsInBunches, findAvailableBunchId } from 'shared/lib/structures/bunch';
-import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view';
+import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view-services';
 import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view';
 import { usePages } from 'shared/lib/hooks';
 import { DashboardBodyContentWrapper as Wrapper } from './wrapper';

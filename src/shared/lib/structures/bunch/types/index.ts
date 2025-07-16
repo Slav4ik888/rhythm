@@ -1,4 +1,6 @@
 
+export type BunchId = string
+
 export type BunchAction = 'create' | 'update'
 export type Bunch<IdType extends string, T> = Record<IdType, T>
 

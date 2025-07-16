@@ -1,5 +1,6 @@
 import { updateEntities } from 'entities/base';
 import { LS } from 'shared/lib/local-storage';
+import { getViewitemsFromBunches } from '../get-viewitems-from-bunches';
 import { StateSchemaDashboardView } from '../../slice/state-schema';
 
 
@@ -17,9 +18,7 @@ export const getInitialState = (companyId: string): StateSchemaDashboardView => 
     bright                : false,
     isUnsaved             : false, // Наличие не сохраненных изменений (в тч customSettings in Company)
 
-    entities              : updateEntities({}, LS.getDashboardViewItems(companyId) || []),
-    // entities              : organizeViewItemsIntoEntities(LS.getDashboardViewItems(companyId) || []),
-    // viewItems             : LS.getDashboardViewItems(companyId) || [],
+    entities              : updateEntities({}, getViewitemsFromBunches(LS.getDashboardBunches(companyId)) || []),
 
     newStoredViewItem     : undefined, // Начальные значения выбранного элемента
     prevStoredViewItem    : undefined, // Начальные значения предыдущего выбранного элемента

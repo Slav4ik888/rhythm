@@ -3,9 +3,10 @@ import { PartialCompany, StateSchemaCompany } from 'entities/company';
 import { StateSchemaDashboardData } from 'entities/dashboard-data';
 import { Template } from 'entities/dashboard-templates';
 import { ViewItem } from 'entities/dashboard-view';
+import { BunchesViewItem } from 'entities/dashboard-view/types';
 import { StateSchemaUser } from 'entities/user';
 import { ResGetData } from 'shared/types';
-import { BunchesUpdated } from '../../structures/bunch';
+import { Bunch, BunchesUpdated } from '../../structures/bunch';
 import { setStorageData, getStorageData, removeStorageData } from './main';
 
 
@@ -74,13 +75,20 @@ export const getDashboardDataState = (companyId: string) => getStorageData<State
 );
 
 // Dashboard-view
-export const setDashboardViewItems = (companyId: string, items: ViewItem[]) => setStorageData(
-  `DashboardViewItems-${companyId}`,
-  items
+// export const setDashboardViewItems = (companyId: string, items: ViewItem[]) => setStorageData(
+//   `DashboardViewItems-${companyId}`,
+//   items
+// );
+// export const getDashboardViewItems = (companyId: string) => getStorageData<ViewItem[]>(
+//   `DashboardViewItems-${companyId}`
+// ) || [];
+export const setDashboardBunches = (companyId: string, bunches: BunchesViewItem) => setStorageData(
+  `DashboardBunches-${companyId}`,
+  bunches
 );
-export const getDashboardViewItems = (companyId: string) => getStorageData<ViewItem[]>(
-  `DashboardViewItems-${companyId}`
-) || [];
+export const getDashboardBunches = (companyId: string) => getStorageData<BunchesViewItem>(
+  `DashboardBunches-${companyId}`
+) || {};
 
 /** Dashboard-view - timestamp of last updated */
 export const setDashboardViewBunchesUpdated = (companyId: string, data: BunchesUpdated) => {

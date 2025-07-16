@@ -3,7 +3,9 @@ import Box from '@mui/material/Box';
 import { f, pxToRem } from 'shared/styles';
 import { TemplatesConfiguratorActions as Actions } from './actions';
 import { UnsavedChanges } from '../../model/features/unsaved';
-import { ViewItemTypeContainer, TemplateIdContainer,  ViewItemIdContainer } from './components';
+import {
+  ViewItemTypeContainer, TemplateIdContainer, ViewItemIdContainer, SwitchToParentContainer
+ } from './components';
 
 
 
@@ -26,6 +28,7 @@ export const TemplatesConfigurator: FC = memo(() => (
       <TemplateIdContainer />
       <ViewItemIdContainer />
       <ViewItemTypeContainer />
+      <SwitchToParentContainer />
     </Box>
 
     <Actions />

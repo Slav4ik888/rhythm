@@ -10,7 +10,7 @@ import { __devLog } from 'shared/lib/tests/__dev-log';
 import { useCompany } from 'entities/company';
 import { LS } from 'shared/lib/local-storage';
 import { reducerDashboardTemplates, useDashboardTemplates } from 'entities/dashboard-templates';
-import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view';
+import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view-services';
 import { usePages } from 'shared/lib/hooks';
 import { useDashboardGetData } from 'features/dashboard-data';
 import { useUI } from 'entities/ui';
@@ -27,7 +27,7 @@ const initialReducers: ReducersList = {
 export const DashboardPageContainer: FC = memo(() => {
   const { paramsCompanyId, paramsCompany, paramsBunchesUpdated } = useCompany();
   const { pathname } = useLocation();
-  const { serviceGetViewItems, setDashboardBunchesFromCache } = useDashboardViewServices();
+  const { serviceGetBunches, setDashboardBunchesFromCache } = useDashboardViewServices();
   const { serviceGetBunchesUpdated } = useDashboardTemplates();
   const { dashboardSheetId = NO_SHEET_ID } = usePages();
   const { serviceGetData } = useDashboardGetData();
@@ -57,13 +57,16 @@ export const DashboardPageContainer: FC = memo(() => {
 
     // TODO: sheetId подставлять нужный
 
-    // Загружаем ViewItems из кеша
-    setDashboardBunchesFromCache(paramsCompany.id);
+    // Загружаем из кеша bunches в которых нет изменений
+    setDashboardBunchesFromCache({
+      companyId      : paramsCompany.id,
+      changedBunches : bunchesForLoad
+    });
 
     if (bunchesForLoad.length) {
       __devLog('Bunches for load:', bunchesForLoad.length);
       __devLog(bunchesForLoad);
-      serviceGetViewItems({
+      serviceGetBunches({
         companyId      : paramsCompany.id,
         bunchIds       : bunchesForLoad,
         bunchesUpdated : paramsBunchesUpdated,

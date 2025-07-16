@@ -1,1 +1,1 @@
-export { useDashboardViewServices } from './use-dashboard-view';
+export { useDashboardViewServices } from './use-dashboard-view-services';

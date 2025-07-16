@@ -5,20 +5,22 @@ import { getPayloadError as getError } from 'shared/lib/errors';
 import { ActivatedCopied, StateSchemaDashboardView } from './state-schema';
 import {
   SetDashboardViewItems, ChangeSelectedStyle, ChangeOneSettingsField, ChangeOneDatasetsItem,
-  ChangeOneChartsItem, SetEditMode
+  ChangeOneChartsItem, SetEditMode, SetDashboardBunchesFromCache, SetDashboardBunches
 } from './types';
 import { updateEntities } from 'entities/base';
-import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem } from '../../types';
+import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem, ViewItem } from '../../types';
 import { cloneObj, updateObject } from 'shared/helpers/objects';
-import { getBunchesTimestamps, updateChartsItem } from '../utils';
+import {
+  getBunchesFromViewItems, getBunchesTimestamps, getBunchesWithoutChanges, getViewitemsFromBunches,
+  updateBunches, updateChartsItem
+} from '../utils';
 import { ChartConfigDatasets } from 'entities/charts';
 import { __devLog } from 'shared/lib/tests/__dev-log';
-import { mergeById } from 'shared/helpers/arrays';
 import {
   CreateGroupViewItems, createGroupViewItems, deleteViewItem, DeleteViews,
   UpdateViewItems, updateViewItems
 } from 'shared/api/features/dashboard-view';
-import { getViewItems } from '../services';
+import { getBunches } from '../services';
 
 
 
@@ -77,11 +79,17 @@ export const slice = createSlice({
     },
 
     // Берём закэшированную версию
-    setDashboardBunchesFromCache: (state, { payload }: PayloadAction<string>) => {
-      state.entities            = updateEntities({}, LS.getDashboardViewItems(payload));
+    setDashboardBunchesFromCache: (state, { payload }: PayloadAction<SetDashboardBunchesFromCache>) => {
+      const { companyId, changedBunches } = payload;
+      const bunches = getBunchesWithoutChanges(changedBunches, LS.getDashboardBunches(companyId));
+
+      state.entities            = updateEntities({}, getViewitemsFromBunches(bunches));
       state.activatedMovementId = '';
       state.activatedCopied     = undefined;
       state.bright              = false;
+
+      // Обновляем в LS так как возможно изменились bunches
+      LS.setDashboardBunches(companyId, { ...bunches });
     },
 
     setEditMode: (state, { payload }: PayloadAction<SetEditMode>) => {
@@ -225,18 +233,17 @@ export const slice = createSlice({
 
 
   extraReducers: builder => {
-    // GET-VIEW-ITEMS []
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    // GET-BUNCHES
     builder
-      .addCase(getViewItems.pending, (state) => {
+      .addCase(getBunches.pending, (state) => {
         state.loading = true;
         state.errors  = {};
       })
-      .addCase(getViewItems.fulfilled, (state, { payload }: PayloadAction<SetDashboardViewItems>) => {
-        const { companyId, viewItems, bunchesUpdated } = payload;
+      .addCase(getBunches.fulfilled, (state, { payload }: PayloadAction<SetDashboardBunches>) => {
+        const { companyId, bunches, bunchesUpdated } = payload;
 
         // Нужно чтобы возможные данные из LS НЕ перезатёрлись новыми
-        state.entities            = updateEntities(state.entities, viewItems);
+        state.entities            = updateEntities(state.entities, getViewitemsFromBunches(bunches));
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
         state.bright              = false;
@@ -244,16 +251,49 @@ export const slice = createSlice({
         state.loading             = false;
         state.errors              = {};
 
-        LS.setDashboardViewItems(companyId, mergeById(Object.values(state.entities), viewItems));
+        LS.setDashboardBunches(companyId, {
+          ...LS.getDashboardBunches(companyId),
+          ...bunches
+        });
         LS.setDashboardViewBunchesUpdated(companyId, {
           ...LS.getDashboardViewBunchesUpdated(companyId),
           ...bunchesUpdated
         });
       })
-      .addCase(getViewItems.rejected, (state, { payload }) => {
+      .addCase(getBunches.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       })
+
+    // GET-VIEW-ITEMS []
+    // builder
+    //   .addCase(getViewItems.pending, (state) => {
+    //     state.loading = true;
+    //     state.errors  = {};
+    //   })
+    //   .addCase(getViewItems.fulfilled, (state, { payload }: PayloadAction<SetDashboardViewItems>) => {
+    //     const { companyId, viewItems, bunchesUpdated } = payload;
+
+    //     // Нужно чтобы возможные данные из LS НЕ перезатёрлись новыми
+    //     state.entities            = updateEntities(state.entities, viewItems);
+    //     state.activatedMovementId = '';
+    //     state.activatedCopied     = undefined;
+    //     state.bright              = false;
+    //     state.isUnsaved           = false;
+    //     state.loading             = false;
+    //     state.errors              = {};
+
+    //     LS.setDashboardViewItems(companyId, mergeById(Object.values(state.entities), viewItems));
+    //     LS.setDashboardViewBunchesUpdated(companyId, {
+    //       ...LS.getDashboardViewBunchesUpdated(companyId),
+    //       ...bunchesUpdated
+    //     });
+    //   })
+    //   .addCase(getViewItems.rejected, (state, { payload }) => {
+    //     state.errors  = getError(payload);
+    //     state.loading = false;
+    //   })
+
     // ADD-GROUP-NEW-ITEMS
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     builder
@@ -271,7 +311,9 @@ export const slice = createSlice({
         state.loading             = false;
         state.errors              = {};
 
-        LS.setDashboardViewItems(companyId, mergeById(Object.values(state.entities), viewItems));
+        LS.setDashboardBunches(companyId, updateBunches(
+          LS.getDashboardBunches(companyId), getBunchesFromViewItems(viewItems)
+        ));
         LS.setDashboardViewBunchesUpdated(companyId, {
           ...LS.getDashboardViewBunchesUpdated(companyId),
           ...getBunchesTimestamps(viewItems, bunchUpdatedMs)
@@ -305,7 +347,9 @@ export const slice = createSlice({
         state.errors              = {};
 
         // Save to LS
-        LS.setDashboardViewItems(companyId, Object.values(state.entities));
+        LS.setDashboardBunches(companyId, updateBunches(
+          LS.getDashboardBunches(companyId), getBunchesFromViewItems(viewItems as ViewItem[])
+        ));
         LS.setDashboardViewBunchesUpdated(companyId, {
           ...LS.getDashboardViewBunchesUpdated(companyId),
           ...getBunchesTimestamps(viewItems, bunchUpdatedMs)
@@ -340,7 +384,7 @@ export const slice = createSlice({
         state.errors              = {};
 
         // Save to LS
-        LS.setDashboardViewItems(companyId, Object.values(state.entities));
+        LS.setDashboardBunches(companyId, getBunchesFromViewItems(Object.values(state.entities)));
         LS.setDashboardViewBunchesUpdated(companyId, {
           ...LS.getDashboardViewBunchesUpdated(companyId),
           ...getBunchesTimestamps(viewItems, bunchUpdatedMs)

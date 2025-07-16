@@ -4,7 +4,7 @@ import { useCompany } from 'entities/company';
 import { isChangedViewItem } from '../model/utils';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { UnsavedChangesComponent } from 'shared/ui/configurators-components';
-import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view';
+import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view-services';
 
 
 

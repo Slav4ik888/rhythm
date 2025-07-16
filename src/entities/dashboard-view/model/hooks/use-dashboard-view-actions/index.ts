@@ -1,7 +1,7 @@
 import { ActivatedCopied, StateSchemaDashboardView } from '../../slice/state-schema';
 import {
   SetDashboardViewItems, SetEditMode,
-  ChangeOneChartsItem, ChangeOneDatasetsItem, ChangeOneSettingsField, ChangeSelectedStyle
+  ChangeOneChartsItem, ChangeOneDatasetsItem, ChangeOneSettingsField, ChangeSelectedStyle, SetDashboardBunchesFromCache
 } from '../../slice/types';
 import { useMemo } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks';
@@ -56,7 +56,9 @@ export const useDashboardViewActions = (config: Config = {}) => {
     // Изменение 1 field в settings.charts[index].datasets
     changeOneDatasetsItem        : (data: ChangeOneDatasetsItem)  => dispatch(actions.changeOneDatasetsItem(data)),
 
-    setDashboardBunchesFromCache : (companyId: string) => dispatch(actions.setDashboardBunchesFromCache(companyId)),
+    setDashboardBunchesFromCache: (data: SetDashboardBunchesFromCache) => dispatch(
+      actions.setDashboardBunchesFromCache(data)
+    ),
   }),
     [dispatch]
   );
