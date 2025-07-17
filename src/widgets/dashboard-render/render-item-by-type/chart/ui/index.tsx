@@ -41,6 +41,7 @@ export const ItemChart: FC<Props> = memo(({ item, isTemplate }) => {
 
   const type = item.settings?.charts?.[0]?.chartType || 'line';
 
+
   return (
     <Chart
       type    = {type}

@@ -3,6 +3,7 @@ import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-comp
 import { ViewItemChartScaleTicks as Ticks } from '../ticks';
 import { ViewItemChartScaleGrid as Grid } from '../grid';
 import { ViewItemChartScaleYMinMax as MinMax } from './min-max';
+import { ViewItemChartScaleBorders as Borders } from '../borders';
 import { ViewItem } from 'entities/dashboard-view';
 
 
@@ -20,6 +21,10 @@ export const ViewItemChartScaleYSettings: FC<Props> = memo(({ selectedItem }) =>
       selectedItem = {selectedItem}
     />
     <Ticks
+      scale        = 'y'
+      selectedItem = {selectedItem}
+    />
+    <Borders
       scale        = 'y'
       selectedItem = {selectedItem}
     />

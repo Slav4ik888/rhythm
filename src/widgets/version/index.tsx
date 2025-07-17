@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { useTheme, CustomTheme } from 'app/providers/theme';
-import { pxToRem, getTypography, f } from 'shared/styles';
+import { useTheme } from 'app/providers/theme';
+import { pxToRem, getTypography } from 'shared/styles';
 import cfg from 'app/config';
 import { Tooltip } from 'shared/ui/tooltip';
 import Box from '@mui/material/Box';
@@ -22,6 +22,7 @@ export const VersionWidjet: FC = () => {
           fontSize        : size.xs,
           backgroundColor : theme.palette.background.paper,
           color           : 'text.light',
+          textAlign       : 'center',
           px              : pxToRem(12),
           py              : pxToRem(3),
         }}

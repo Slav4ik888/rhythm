@@ -96,6 +96,11 @@ export interface ChartConfigOptions {
       suggestedMax?: number | undefined
       min?: number | undefined
       max?: number | undefined
+      // Borders
+      border?: {
+        display?: boolean
+        color?: string
+      }
     }
     x?: {
       display?: boolean
@@ -120,6 +125,11 @@ export interface ChartConfigOptions {
           style?: FontStyle
           lineHeight?: number
         }
+      }
+      // Borders
+      border?: {
+        display?: boolean
+        color?: string
       }
     }
   }
