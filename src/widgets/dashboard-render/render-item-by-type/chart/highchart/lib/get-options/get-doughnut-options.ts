@@ -1,21 +1,44 @@
-import { updateObject, setValue } from 'shared/helpers/objects';
+import { DashboardStatisticItem } from 'entities/dashboard-data';
+import { ViewItem } from 'entities/dashboard-view';
+import { getBackgroundColors } from '../../../chartjs/lib';
 
 
-// const b = document.querySelectorAll('.highcharts-credits');
-// b.forEach(item => item.remove());
 
-export const getDoughnutOptions = (options = {} as Highcharts.Options): Highcharts.Options => {
-  const { accessibility } = options;
+export const getDoughnutOptions = (
+  itemsData  : DashboardStatisticItem<number>[],
+  viewItem   : ViewItem,
+): Highcharts.Options => {
+  const type = 'pie'; // viewItem.settings?.charts?.[0]?.chartType ||
 
-  return updateObject({
+  // Get "data"
+  const data = [...itemsData.map((itemData, index) => {
+    const length = itemData.data?.length;
+
+    // Последние значения соответствующие концу выбранного промежутка
+    const value = (Array.isArray(itemData?.data) && length > 0)
+      ? itemData.data[length - 1]
+      : 0;
+
+    const label = viewItem.settings?.charts?.[index]?.datasets?.label || '';
+
+    return [label, value] // ['Norway', 16]
+  })];
+
+  // Get "innerSize"
+  const cutout = viewItem?.settings?.charts?.[0]?.datasets?.cutout;
+  const innerSize = cutout || 0;
+
+
+  return {
     chart: {
-      type: 'pie',
+      type,
       options3d: {
         enabled: true,
         alpha: 45
       },
       backgroundColor: 'transparent',
     },
+    colors: getBackgroundColors(viewItem),
     title: {
       text: ''
     },
@@ -24,24 +47,17 @@ export const getDoughnutOptions = (options = {} as Highcharts.Options): Highchar
     },
     plotOptions: {
       pie: {
-        innerSize: 50,
+        innerSize,
         depth: 25
       }
     },
     series: [{
-      type: 'pie',
+      type,
       name: '', // Название, показывается при наведении на "кусок" пирога
       dataLabels: {
         enabled: false // отключает подписи значений
       },
-      data: [
-        ['Norway', 16],
-        ['Germany', 12],
-        ['Austria', 7],
-        ['Canada', 4],
-        ['Japan', 3]
-      ]
+      data
     }]
-        // display: setValue(options.plugins?.legend?.display, false),
-  }, options);
+  }
 }

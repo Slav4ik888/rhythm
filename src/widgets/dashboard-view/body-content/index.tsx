@@ -37,6 +37,26 @@ export const DashboardBodyContent = memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [viewItems.length]);
 
+  useEffect(() => {
+    const observer = new MutationObserver((mutations) => {
+    const hc = document.querySelectorAll('.highcharts-credits');
+      if (hc.length > 0) {
+        __devLog('highcharts: ', hc);
+        hc.forEach(item => item.remove());
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    return () => observer.disconnect();
+  },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   useLayoutEffect(() => {
     // Проверяем завершение рендера в RAF (после paint)

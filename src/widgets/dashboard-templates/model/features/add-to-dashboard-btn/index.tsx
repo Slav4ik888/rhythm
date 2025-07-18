@@ -59,7 +59,6 @@ export const AddToDashboardBtn: FC<Props> = memo(({ type }) => {
       return newItem;
     });
 
-
     serviceCreateGroupViewItems({
       companyId      : paramsCompanyId,
       bunchUpdatedMs : Date.now(),
