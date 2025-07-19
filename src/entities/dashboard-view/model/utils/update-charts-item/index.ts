@@ -1,4 +1,5 @@
-import { ViewItem, ViewItemChart, ViewItemChartField } from '../../../types';
+import { ViewItemChartField, ViewItemChart } from 'entities/charts';
+import { ViewItem } from '../../../types';
 
 
 export const updateChartsItem = (

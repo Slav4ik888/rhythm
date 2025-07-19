@@ -2,7 +2,7 @@ export type {
   ViewItemId, ViewItem, BorderStyleType, FlexDirectionType, FlexWrapType,
   AlignItemsType, JustifyContentType, ViewItemStyles, ViewItemStylesField, PartialViewItem, RgbaString,
   FontStyleType, FontWeightType, ViewItemSettings, ViewItemSettingsField,
-  ViewItemChart, ViewItemChartField, ChipType, BaseChipType, IndicatorsConfig, EndingType, EndingDiffType,
+  ChipType, BaseChipType, IndicatorsConfig, EndingType, EndingDiffType,
   ViewItemType, TextAlignType, TextWrapType
 } from './types'
 export {

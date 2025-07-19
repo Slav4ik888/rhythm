@@ -1,8 +1,8 @@
 import { FC, memo, useCallback, MouseEvent } from 'react';
-import { ViewItemChart, useDashboardViewActions, ViewItem } from 'entities/dashboard-view';
+import { useDashboardViewActions, ViewItem } from 'entities/dashboard-view';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { InputByScheme } from '../../../base-features-components';
-import { isNotPie } from 'entities/charts';
+import { isNotPie, ViewItemChart } from 'entities/charts';
 import { getDigit } from 'shared/helpers/numbers';
 import Box from '@mui/material/Box';
 import { f } from 'shared/styles';

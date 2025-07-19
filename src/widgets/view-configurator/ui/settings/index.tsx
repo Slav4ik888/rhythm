@@ -5,6 +5,7 @@ import { ViewItemChipSettingsConfigurator as ChipSettings } from './settings-chi
 import { ViewItemGrowthIconSettingsConfigurator as GrowthIconSettings } from './settings-growth-icon';
 import { ViewItemDigitIndicatorSettingsConfigurator as DigitIndicatorSettings } from './settings-digit-indicator';
 import { ViewItemBoxSettingsConfigurator as BoxSettings } from './settings-box';
+import { ViewItemGaugeColumnSettingsConfigurator as GaugeColumnSettings } from './settings-gauge-column';
 
 
 
@@ -18,6 +19,7 @@ export const ViewItemConfiguratorSettings: FC<Props> = memo(({ selectedItem: ite
   if (item?.type === 'chip')           return <ChipSettings           selectedItem={item} />
   if (item?.type === 'growthIcon')     return <GrowthIconSettings     selectedItem={item} />
   if (item?.type === 'digitIndicator') return <DigitIndicatorSettings selectedItem={item} />
+  if (item?.type === 'gaugeColumn')    return <GaugeColumnSettings    selectedItem={item} />
 
   return (<></>)
 });

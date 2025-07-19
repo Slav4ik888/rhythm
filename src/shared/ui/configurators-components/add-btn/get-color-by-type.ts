@@ -1,5 +1,5 @@
 import { ViewItemType } from 'entities/dashboard-view';
-import { grey, deepOrange, teal, pink, lime, brown, blueGrey, green, purple } from '@mui/material/colors';
+import { grey, deepOrange, teal, pink, lime, blue, blueGrey, green, purple } from '@mui/material/colors';
 import { CustomTheme } from 'app/providers/theme';
 
 
@@ -11,7 +11,8 @@ export const getColorByType = (theme: CustomTheme, type?: ViewItemType) => {
     case 'chart':          return teal[800];
     case 'chip':           return lime[900];
     case 'growthIcon':     return green[700];
-    case 'digitIndicator': return purple[800];
+    case 'digitIndicator': return blue[800];
+    case 'gaugeColumn':    return purple[800];
 
     default:
       return theme.palette.dark.main;

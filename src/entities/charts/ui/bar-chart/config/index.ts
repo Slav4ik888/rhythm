@@ -1,4 +1,4 @@
-import { ChartConfig, ChartConfigDatasets, ChartConfigOptions } from '../../../model/types';
+import { ChartConfig, ChartConfigDatasets, ChartConfigOptions } from '../../../types';
 // @ts-ignore
 import { ChartData } from 'node_modules/chart.js/dist/types/index.d.ts';
 import { updateObject } from 'shared/helpers/objects';

@@ -1,5 +1,4 @@
 
-
 export type EndingType     =  '-' | '%' | 'шт' | 'руб';
 export type EndingDiffType =  '-' | '% соотношение' | 'Разница'
 

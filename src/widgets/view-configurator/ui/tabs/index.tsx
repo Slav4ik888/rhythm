@@ -1,5 +1,5 @@
 import { FC, memo, useEffect, SyntheticEvent, useMemo, useCallback } from 'react';
-import { ViewItem } from 'entities/dashboard-view';
+import { ViewItem, ViewItemType } from 'entities/dashboard-view';
 import Tab from '@mui/material/Tab';
 import { ViewItemStylesConfigurator } from '../styles';
 import TabContext from '@mui/lab/TabContext';
@@ -17,7 +17,7 @@ const sxTabPanel = {
 };
 
 // Типы у которых есть вкладка settings
-const settingTypes = ['box', 'chart', 'chip', 'growthIcon', 'digitIndicator'];
+const settingTypes: ViewItemType[] = ['box', 'chart', 'chip', 'growthIcon', 'digitIndicator', 'gaugeColumn'];
 
 
 interface Props {

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Chart } from 'react-chartjs-2';
 import 'chart.js/auto';
-import { ChartConfig } from '../../model/types';
+import { ChartConfig } from '../../types';
 import { doughnutConfig } from './config';
 
 

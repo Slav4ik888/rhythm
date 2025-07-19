@@ -12,7 +12,7 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-import { ChartConfig, ChartConfigOptions, FontStyle } from '../../../model/types';
+import { ChartConfig, ChartConfigOptions, ChartFontStyle } from '../../../types';
 // @ts-ignore
 import { InteractionMode } from 'node_modules/chart.js/dist/types/index.d.ts';
 import { updateObject, setValue } from 'shared/helpers/objects';
@@ -77,7 +77,7 @@ export function lineConfig(chartConfig: ChartConfig) {
               size       : setValue(scales?.y?.ticks?.font?.size, 10),
               weight     : 300,
               family     : 'Arial', // 'Roboto',
-              style      : 'normal' as FontStyle,
+              style      : 'normal' as ChartFontStyle,
               lineHeight : 2,
             },
           },
@@ -104,7 +104,7 @@ export function lineConfig(chartConfig: ChartConfig) {
               size       : setValue(scales?.x?.ticks?.font?.size, 10),
               weight     : 300,
               family     : 'Arial', // 'Roboto',
-              style      : 'normal' as FontStyle,
+              style      : 'normal' as ChartFontStyle,
               lineHeight : 2,
             },
           },

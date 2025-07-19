@@ -1,5 +1,5 @@
 import { updateObject, setValue } from 'shared/helpers/objects';
-import { ChartConfig, ChartConfigOptions } from '../../../model/types';
+import { ChartConfig, ChartConfigOptions } from '../../../types';
 
 
 /** Doughnut config */

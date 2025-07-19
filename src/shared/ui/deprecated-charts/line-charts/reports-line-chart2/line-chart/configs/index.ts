@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 import { setValue } from 'shared/helpers/objects';
-import { ChartConfigDatasets, ChartConfigOptions } from '../../../../../../../entities/charts/model/types';
+import { ChartConfigDatasets, ChartConfigOptions } from '../../../../../../../entities/charts/types';
 
 
 export function configs(

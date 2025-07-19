@@ -2,7 +2,7 @@ import { FC } from 'react';
 import 'chart.js/auto';
 import { Chart } from 'react-chartjs-2';
 import { lineConfig } from './config';
-import { ChartConfig } from '../../model/types';
+import { ChartConfig } from '../../types';
 
 
 

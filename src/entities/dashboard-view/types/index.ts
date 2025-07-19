@@ -1,3 +1,4 @@
 export * from './view-item'
-export * from './config'
+export * from './view-item-settings'
+export * from './indicators-config'
 export * from './item-styles'

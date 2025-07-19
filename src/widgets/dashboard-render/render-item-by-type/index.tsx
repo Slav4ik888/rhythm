@@ -6,6 +6,7 @@ import { ItemChart } from './chart';
 import { ItemChip } from './chip';
 import { ItemGrowthIcon } from './growth-icon';
 import { ItemDigitIndicator } from './digit-indicator';
+import { ItemGaugeColumn } from './gauge-column';
 
 
 
@@ -49,6 +50,12 @@ export const RenderViewItemByType: FC<Props> = memo(({ item, parents, isTemplate
     );
     case 'digitIndicator': return (
       <ItemDigitIndicator
+        item       = {item}
+        isTemplate = {isTemplate}
+      />
+    );
+    case 'gaugeColumn': return (
+      <ItemGaugeColumn
         item       = {item}
         isTemplate = {isTemplate}
       />

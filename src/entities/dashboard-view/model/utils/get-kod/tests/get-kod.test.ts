@@ -1,5 +1,6 @@
 import { DashboardViewEntities } from '../../../slice/state-schema';
-import { ViewItem, ViewItemChart, ViewItemType } from '../../../../types';
+import { ViewItem, ViewItemType } from '../../../../types';
+import { ViewItemChart } from 'entities/charts';
 import { getKod } from '..';
 
 

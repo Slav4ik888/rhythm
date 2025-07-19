@@ -1,11 +1,7 @@
 // @ts-ignore
 import { InteractionMode } from 'node_modules/chart.js/dist/types/index.d.ts';
+import { ChartFontStyle, ChartType, LegendPosition } from './chart-types';
 
-
-export type ChartType = 'line' | 'bar' | 'pie' | 'doughnut'
-export const arrChartType: ChartType[] = ['line', 'bar', 'pie', 'doughnut'];
-export type LegendPosition = 'left' | 'top' | 'right' | 'bottom' | 'center';
-export const arrLegendPosition: LegendPosition[] = ['left', 'top', 'right', 'bottom', 'center'];
 
 
 export interface ChartConfigDatasets {
@@ -46,8 +42,6 @@ export interface ChartConfigTrendDatasets {
 export type ChartConfigDatasetsField = keyof ChartConfigDatasets;
 
 
-export type FontStyle = 'normal' | 'italic' | 'oblique' | 'initial' | 'inherit'
-
 export interface ChartConfigOptions {
   responsive?          : boolean
 
@@ -71,65 +65,65 @@ export interface ChartConfigOptions {
       display?: boolean
       // Вертикальные линии на оси
       grid?: {
-        drawBorder?: boolean
-        display?: boolean
-        drawOnChartArea?: boolean
-        drawTicks?: boolean
-        borderDash?: [number, number]
-        color?: string
+        drawBorder?      : boolean
+        display?         : boolean
+        drawOnChartArea? : boolean
+        drawTicks?       : boolean
+        borderDash?      : [number, number]
+        color?           : string
       }
       // Подпись оси
       ticks?: {
-        display?: boolean
-        color?: string
-        padding?: number
-        font?: {
-          size?: number
-          weight?: number
-          family?: 'Roboto' | 'Arial'
-          style?: FontStyle
-          lineHeight?: number
+        display? : boolean
+        color?   : string
+        padding? : number
+        font?    : {
+          size?       : number
+          weight?     : number
+          family?     : 'Roboto' | 'Arial'
+          style?      : ChartFontStyle
+          lineHeight? : number
         }
       }
-      beginAtZero?: boolean // y axis starts at 0
-      suggestedMin?: number | undefined
-      suggestedMax?: number | undefined
-      min?: number | undefined
-      max?: number | undefined
+      beginAtZero?  : boolean // y axis starts at 0
+      suggestedMin? : number | undefined
+      suggestedMax? : number | undefined
+      min?          : number | undefined
+      max?          : number | undefined
       // Borders
       border?: {
-        display?: boolean
-        color?: string
+        display? : boolean
+        color?   : string
       }
     }
     x?: {
       display?: boolean
       // Горизонтальные линии на оси
       grid?: {
-        drawBorder?: boolean
-        display?: boolean
-        drawOnChartArea?: boolean
-        drawTicks?: boolean
-        borderDash?: [number, number]
-        color?: string
+        drawBorder?      : boolean
+        display?         : boolean
+        drawOnChartArea? : boolean
+        drawTicks?       : boolean
+        borderDash?      : [number, number]
+        color?           : string
       }
       // Подпись оси
       ticks?: {
-        display?: boolean
-        color?: string
-        padding?: number
-        font?: {
-          size?: number
-          weight?: number
-          family?: 'Roboto' | 'Arial'
-          style?: FontStyle
-          lineHeight?: number
+        display? : boolean
+        color?   : string
+        padding? : number
+        font?    : {
+          size?       : number
+          weight?     : number
+          family?     : 'Roboto' | 'Arial'
+          style?      : ChartFontStyle
+          lineHeight? : number
         }
       }
       // Borders
       border?: {
-        display?: boolean
-        color?: string
+        display? : boolean
+        color?   : string
       }
     }
   }

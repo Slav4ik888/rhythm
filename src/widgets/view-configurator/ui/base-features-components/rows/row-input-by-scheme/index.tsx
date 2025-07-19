@@ -14,7 +14,7 @@ interface Props {
   title        : string
   toolTitle    : string
   width?       : string
-  clear?       : any
+  clear?       : any    // Если нужно, чтобы при очистке значения, была не пустая строка '', а что-то другое
   sx?          : SxCard
   onChange?    : (e: MouseEvent, v: string | number) => void // Если нужна не стандартная обработка
 }
