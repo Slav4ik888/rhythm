@@ -31,10 +31,13 @@ export const SetBackground: FC<Props> = memo(({ selectedItem, onChange }) => {
 
   useEffect(() => {
     setChecked(gradients.length === 3);
-  }, [selectedItem, gradients.length, setChecked]);
+  },
+    [selectedItem, gradients.length, setChecked]
+  );
 
   const handleBackground = useCallback((value: string) => onChange('background', value as unknown as string),
-     [onChange]);
+    [onChange]
+  );
 
 
   return (

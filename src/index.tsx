@@ -31,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "started ItemGaugeColumn" && git push -u origin main
+// git add . && git commit -m "ended GaugeColumnSettingsConfigurator & started ItemGaugeColumn" && git push -u origin main

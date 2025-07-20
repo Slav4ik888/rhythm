@@ -1,7 +1,8 @@
-// v.2025-07-01
+// v.2025-07-20
 export * from './add-order-to-arr-by-idx';                // v.2024-03-08
 export * from './change-sequence';                        // v.2024-03-02
 export { createArr } from './create-arr'                  // v.2023-07-31
+export { getArrByToward } from './get-arr-by-toward'      // v.2025-07-20
 export * from './get-arr-contain-value-by-field';
 export * from './get-arr-from-arrs-by-field-and-value';
 export { getArrWithoutArr } from './get-arr-without-arr'  // v.2025-07-01

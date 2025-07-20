@@ -25,7 +25,7 @@ type Props = {
 }
 
 
-/** v.2025-07-12 */
+/** v.2025-07-20 */
 export const DeleteButton: FC<Props> = memo(({
   sx, disabled, iconInBtn, icon, hookOpen,
   toolTitle         = '',
@@ -72,9 +72,12 @@ export const DeleteButton: FC<Props> = memo(({
           icon
             ? (
               <IconButton
-                sx      = {{ cursor: disabled ? 'default' : 'pointer' }}
                 color   = 'inherit'
                 onClick = {handlerClick}
+                sx      = {{
+                  cursor: disabled ? 'default' : 'pointer',
+                  ...sx?.root
+                }}
               >
                 <DeleteOutlineIcon
                   sx={(theme) => ({

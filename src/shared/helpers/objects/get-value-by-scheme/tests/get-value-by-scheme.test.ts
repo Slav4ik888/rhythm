@@ -127,6 +127,7 @@ describe('getValueByScheme', () => {
   test('scheme with arrays', () => {
     expect(getValueByScheme(data, 'field1.child1.[0].child3')).toEqual('value1');
     expect(getValueByScheme(data, 'field1.child1.[1].child3')).toEqual('value2');
+    expect(getValueByScheme(data, 'field1.child1[1].child3')).toEqual('value2');
     expect(getValueByScheme(data, 'field1.child2')).toEqual('simple value');
     expect(getValueByScheme(data, 'field1.nonexistent.[0]')).toEqual(undefined);
   });

@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { ViewItem } from 'entities/dashboard-view';
 import { SelectKodRow } from '../base-components';
-import { GaugeColumnParametrs } from './parametrs';
+import { GaugeColumnParameters } from './parameters';
 
 
 
@@ -18,7 +18,7 @@ export const ViewItemGaugeColumnSettingsConfigurator: FC<Props> = memo(({ select
     </SubHeader>
 
     <SubHeader title='Особые настройки'>
-      <GaugeColumnParametrs selectedItem = {selectedItem} />
+      <GaugeColumnParameters selectedItem = {selectedItem} />
     </SubHeader>
   </>
 ));

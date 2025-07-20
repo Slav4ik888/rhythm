@@ -6,7 +6,7 @@ import { TowardType } from 'shared/ui/configurators-components';
  * Расчёт нового ордер при перемещении chart между собой.
  * Для line & bar
  */
-export function getSortedChartsByToward<T>(
+export function getArrByToward<T>(
   type       : TowardType,
   data       : T[] | undefined,
   currentIdx : number,
@@ -30,7 +30,7 @@ export function getSortedChartsByToward<T>(
         ...data.slice(currentIdx + 1),
       ]
   }
-   // type === 'down'
+    // type === 'down'
     if (currentIdx === lastIdx) { // Если последний снизу => делаем первым
       return [data[currentIdx], ...data.slice(0, currentIdx)]
     }
@@ -41,7 +41,7 @@ export function getSortedChartsByToward<T>(
         data[currentIdx]
       ]
     }
-     // Если третий или выше снизу => ставим между двумя нижестоящими
+      // Если третий или выше снизу => ставим между двумя нижестоящими
       return [
         ...data.slice(0, currentIdx),
         data[currentIdx + 1],

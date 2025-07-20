@@ -1,20 +1,8 @@
 import { FC, memo, useCallback } from 'react';
 import { DeleteButton } from 'shared/ui/buttons/delete-button';
 import { useDashboardViewActions } from 'entities/dashboard-view';
-import { f } from 'shared/styles';
 import { getArrWithoutItemByIndex } from 'shared/helpers/arrays';
 
-
-
-const useStyles = () => ({
-  button: {
-    root: {
-      color    : '#000000',
-      fontSize : '0.7rem',
-      mr       : 2,
-    }
-  }
-});
 
 
 interface Props {
@@ -23,7 +11,6 @@ interface Props {
 
 /** DelChart from the charts */
 export const DelChart: FC<Props> = memo(({ index }) => {
-  const sx = useStyles();
   const { selectedItem, changeOneSettingsField } = useDashboardViewActions();
 
 
@@ -37,7 +24,13 @@ export const DelChart: FC<Props> = memo(({ index }) => {
   return (
     <DeleteButton
       toolTitle = 'Удалить график'
-      sx        = {sx.button}
+      sx        = {{
+        root: {
+          color    : '#000000',
+          fontSize : '0.7rem',
+          mr       : 2,
+        }
+      }}
       onDel     = {handleClick}
     />
   )

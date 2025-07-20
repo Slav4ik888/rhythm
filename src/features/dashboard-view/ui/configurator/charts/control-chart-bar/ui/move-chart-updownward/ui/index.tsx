@@ -1,7 +1,7 @@
 import { FC, memo, useCallback } from 'react';
 import { useDashboardViewActions } from 'entities/dashboard-view';
 import { Toward, TowardType } from 'shared/ui/configurators-components/toward';
-import { getSortedChartsByToward } from '../model/utils/get-sorted-charts-by-toward';
+import { getArrByToward } from 'shared/helpers/arrays';
 
 
 
@@ -18,7 +18,7 @@ export const MoveChartUpdownward: FC<Props> = memo(({ index }) => {
   const handleClick = useCallback((type: TowardType) => {
     changeOneSettingsField({
       field: 'charts',
-      value: getSortedChartsByToward(type, selectedItem.settings?.charts, index)
+      value: getArrByToward(type, selectedItem.settings?.charts, index)
     });
   },
     [index, selectedItem.settings?.charts, changeOneSettingsField]

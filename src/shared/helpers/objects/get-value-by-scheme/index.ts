@@ -5,39 +5,31 @@ type Obj = {
 
 
 /**
- * v.2025-05-28
+ * v.2025-07-20
  * Object value by scheme
- * Поддерживает схемы с вложенными arrays 'field1.child1.[1].child4.[2].child8'
+ * Поддерживает схемы с вложенными массивами в двух форматах:
+ * 'field1.child1.[1].child3' (старый)
+ * 'field1.child1[1].child3' (новый, без точки перед индексом)
  */
-export function getValueByScheme(obj: Obj | undefined, scheme: string): any  {
+export function getValueByScheme(obj: any, scheme: string): any {
   if (!obj || !scheme) return undefined;
 
-  const fields = scheme.split('.');
+  // Нормализуем схему: 'field[1]' -> 'field.[1]' для единообразия
+  const normalizedScheme = scheme.replace(/(\w+)\[(\d+)\]/g, '$1.[$2]');
+  const fields = normalizedScheme.split('.').filter(Boolean);
 
-  if (fields.length === 0) return obj;
-  if (fields.length === 1) {
-    const field = fields[0];
-    // Обработка случая с массивом [index]
+  return fields.reduce((current, field) => {
+    if (current === undefined || current === null) return undefined;
+
     if (field.startsWith('[') && field.endsWith(']')) {
+      // Обработка массива
       const index = parseInt(field.slice(1, -1), 10);
-      return Array.isArray(obj) ? obj[index] : undefined;
+      return Array.isArray(current) ? current[index] : undefined;
     }
-    return obj?.[field];
-  }
 
-  const currentField = fields[0];
-  let nextObj;
-
-  // Обработка текущего поля - может быть массивом или объектом
-  if (currentField.startsWith('[') && currentField.endsWith(']')) {
-    const index = parseInt(currentField.slice(1, -1), 10);
-    nextObj = Array.isArray(obj) ? obj[index] : undefined;
-  } else {
-    nextObj = obj?.[currentField];
-  }
-
-  const newSchema = fields.slice(1).join('.');
-  return getValueByScheme(nextObj, newSchema);
+    // Обработка объекта
+    return current[field];
+  }, obj);
 }
 
 

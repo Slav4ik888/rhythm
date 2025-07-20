@@ -3,7 +3,7 @@ export type {
   AlignItemsType, JustifyContentType, ViewItemStyles, ViewItemStylesField, PartialViewItem, RgbaString,
   FontStyleType, FontWeightType, ViewItemSettings, ViewItemSettingsField,
   ChipType, BaseChipType, IndicatorsConfig, EndingType, EndingDiffType,
-  ViewItemType, TextAlignType, TextWrapType
+  ViewItemType, TextAlignType, TextWrapType, GaugeColumnItem
 } from './types'
 export {
   arrayBorderStyles, arrayFontStyles, arrayFontWeights, arrayTextWrap, arrayChipLabel, chipOptions,

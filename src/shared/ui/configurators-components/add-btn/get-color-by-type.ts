@@ -12,7 +12,7 @@ export const getColorByType = (theme: CustomTheme, type?: ViewItemType) => {
     case 'chip':           return lime[900];
     case 'growthIcon':     return green[700];
     case 'digitIndicator': return blue[800];
-    case 'gaugeColumn':    return purple[800];
+    case 'gaugeColumn':    return purple[600];
 
     default:
       return theme.palette.dark.main;

@@ -1,3 +1,4 @@
+export * from './gauge-column-item'
 export * from './view-item'
 export * from './view-item-settings'
 export * from './indicators-config'
