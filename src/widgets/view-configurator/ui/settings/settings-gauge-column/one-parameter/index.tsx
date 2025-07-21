@@ -7,6 +7,7 @@ import { ColorPicker } from 'shared/lib/colors-picker';
 import { getValueByScheme } from 'shared/helpers/objects';
 import Box from '@mui/material/Box';
 import { DeleteButton } from 'shared/ui/buttons/delete-button';
+import Typography from '@mui/material/Typography';
 
 
 
@@ -26,7 +27,6 @@ interface Props {
 
 export const GaugeColumnOneParameter: FC<Props> = memo(({ selectedItem, index, onChangeColor, onToward, onDel }) => (
   <RowWrapperTitle
-    key       = {index}
     title     = {`Параметр - ${index + 1}`}
     toolTitle = 'Название, значения и цвет параметра'
     sx        = {{
@@ -58,23 +58,34 @@ export const GaugeColumnOneParameter: FC<Props> = memo(({ selectedItem, index, o
         />
       </Box>
 
-      <Box sx={{ ...f('-c-fe'), gap: 2 }}>
-        <InputByScheme
-          type         = 'number'
-          toolTitle    = 'Значение для условия "<"'
-          scheme       = {`settings.gaugeColumnItems[${index}].valueLess`}
-          width        = {pxToRem(100)}
-          selectedItem = {selectedItem}
-          onChange     = {(e: MouseEvent, v: string | number) => {}}
-        />
-        <InputByScheme
-          type         = 'number'
-          toolTitle    = 'Значение для условия ">="'
-          scheme       = {`settings.gaugeColumnItems[${index}].valueMore`}
-          width        = {pxToRem(100)}
-          selectedItem = {selectedItem}
-          onChange     = {(e: MouseEvent, v: string | number) => {}}
-        />
+      <Box sx={{ ...f('-c-fe'), gap: 3 }}>
+        <Box sx={{ ...f(), gap: 0.5 }}>
+          <Typography component='span'>
+            {'>='}
+          </Typography>
+          <InputByScheme
+            type         = 'number'
+            toolTitle    = 'Значение для условия ">="'
+            scheme       = {`settings.gaugeColumnItems[${index}].valueMore`}
+            width        = {pxToRem(85)}
+            selectedItem = {selectedItem}
+            onChange     = {(e: MouseEvent, v: string | number) => {}}
+          />
+        </Box>
+        <Box sx={{ ...f(), gap: 0.5 }}>
+          <Typography component='span'>
+            {'<'}
+          </Typography>
+          <InputByScheme
+            type         = 'number'
+            toolTitle    = 'Значение для условия "<"'
+            scheme       = {`settings.gaugeColumnItems[${index}].valueLess`}
+            width        = {pxToRem(85)}
+            selectedItem = {selectedItem}
+            onChange     = {(e: MouseEvent, v: string | number) => {}}
+          />
+        </Box>
+
         <Toward
           type    = 'down'
           size    = 'small'

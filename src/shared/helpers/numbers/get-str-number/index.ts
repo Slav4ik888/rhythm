@@ -10,7 +10,8 @@ import { addSpaceBetweenNumbers } from '../add-space-between-numbers';
  */
 export function getStrNumber(value: string): string {
   let str = '';
-  if (! value) return '';
+  // @ts-ignore
+  if (! value && value !== 0) return '';
 
   const valInStr = value.toString();
   const isNegative = valInStr[0] === '-'; // Save value '-' if present

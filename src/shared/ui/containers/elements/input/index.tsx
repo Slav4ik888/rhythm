@@ -123,6 +123,7 @@ export const Input: FC<Props> = memo((props) => {
   }, [typeNum, value, onCallback, onBlur]);
 
 
+
   return (
     <Wrap {...props}>
       <Tooltip title={toolTitle || ''}>

@@ -3,7 +3,7 @@ import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-comp
 import { ViewItem } from 'entities/dashboard-view';
 import { SelectKodRow } from '../base-components';
 import { GaugeColumnParameters } from './parameters';
-
+import { SelectDirectionRow } from './select-direction-row';
 
 
 interface Props {
@@ -14,10 +14,11 @@ interface Props {
 export const ViewItemGaugeColumnSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => (
   <>
     <SubHeader title='Базовые настройки'>
-      <SelectKodRow   selectedItem={selectedItem} />
+      <SelectKodRow       selectedItem={selectedItem} />
+      <SelectDirectionRow selectedItem={selectedItem} />
     </SubHeader>
 
-    <SubHeader title='Особые настройки'>
+    <SubHeader title='Настройки параметров'>
       <GaugeColumnParameters selectedItem = {selectedItem} />
     </SubHeader>
   </>

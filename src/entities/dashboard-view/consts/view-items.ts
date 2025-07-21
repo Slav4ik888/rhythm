@@ -1,4 +1,4 @@
-import { ChipType, EndingType, EndingDiffType } from '../types';
+import { ChipType, EndingType, EndingDiffType, SettingsDirection } from '../types';
 
 
 export const chipOptions: Record<ChipType, { label: string; value: ChipType }> = {
@@ -11,5 +11,6 @@ export const chipOptions: Record<ChipType, { label: string; value: ChipType }> =
 
 export const arrayChipLabel = Object.values(chipOptions).map(item => item.label);
 
-export const arrayEndingType: EndingType[] = ['-',  '%',  'шт',  'руб'];
-export const arrayEndingDiffType: EndingDiffType[] = ['-',  '% соотношение',  'Разница'];
+export const arrayEndingType: EndingType[]               = ['-',  '%',  'шт',  'руб'];
+export const arrayEndingDiffType: EndingDiffType[]       = ['-',  '% соотношение',  'Разница'];
+export const arraySettingsDirection: SettingsDirection[] = ['horizontal', 'vertical'];

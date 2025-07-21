@@ -1,1 +1,1 @@
-export { findGaugeColumnItem } from './find-gauge-column-item'
+export { getSuitableGaugeColumnItem } from './get-suitable-gauge-column-item'

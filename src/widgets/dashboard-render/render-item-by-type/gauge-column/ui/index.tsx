@@ -3,8 +3,9 @@ import { useDashboardViewState, ViewItem, getKod } from 'entities/dashboard-view
 import { useDashboardData } from 'entities/dashboard-data';
 import { ItemGaugeColumnComponent } from './component';
 import { getLastItem } from 'shared/helpers/arrays';
-import { findGaugeColumnItem } from '../utils';
+import { getSuitableGaugeColumnItem } from '../utils';
 import { toNumber } from 'shared/helpers/numbers';
+import { isNum } from 'shared/lib/validators';
 
 
 
@@ -18,24 +19,50 @@ export const ItemGaugeColumn: FC<Props> = memo(({ item, isTemplate }) => {
   const { entities } = useDashboardViewState();
   const { activeEntities } = useDashboardData();
 
-  const suitableParameter = useMemo(() => {
+  // Последнее значение в выбранном периоде
+  const lastItem = useMemo(() => {
     const kod = getKod(entities, item);
-    console.log('kod: ', kod);
-
-    const lastItem = toNumber((getLastItem(activeEntities[kod]?.data)));
-    console.log('lastItem: ', lastItem);
-
-    return findGaugeColumnItem(lastItem, item?.settings?.gaugeColumnItems)
+    return toNumber((getLastItem(activeEntities[kod]?.data)));
   },
     [activeEntities, entities, item]
   );
-  console.log('Gauge: ', item?.settings?.gaugeColumnItems);
+
+  // Параметр с удовлетворяющим условием
+  const suitableParameter = useMemo(() => getSuitableGaugeColumnItem(lastItem, item?.settings?.gaugeColumnItems),
+    [lastItem, item]
+  );
+
+  // Направление
+  const isVertical = useMemo(() => item?.settings?.direction === 'vertical', [item]);
+
+  // Высота
+  const gaugeHeight = useMemo(() => {
+    const maxHeight = isNum(item?.styles?.height) && item?.styles?.height
+      ? item?.styles?.height as number
+      : (isVertical ? 100 : 30);
+
+    return `${(isVertical ?  lastItem * maxHeight : maxHeight) - 2}px`; // -2px for border
+  },
+    [item, isVertical, lastItem]
+  );
+
+  // Ширина
+  const gaugeWidth = useMemo(() => {
+    const maxWidth = isNum(item?.styles?.width) && item?.styles?.width
+      ? item?.styles?.width as number
+      : (isVertical ? 30 : 100);
+
+    return `${(isVertical ? maxWidth : lastItem * maxWidth) - 2}px`;
+  },
+    [item, isVertical, lastItem]
+  );
 
 
   return (
     <ItemGaugeColumnComponent
-      bgcolor = {item?.settings?.gaugeColumnItems?.[0]?.color}
-      sx      = {{}}
+      height  = {gaugeHeight} // Высота колонки
+      width   = {gaugeWidth}  // Ширина колонки
+      bgColor = {suitableParameter?.color ?? 'transparent'}
     />
   )
 });

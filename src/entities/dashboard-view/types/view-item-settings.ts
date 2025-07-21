@@ -4,8 +4,9 @@ import { IndicatorsConfig } from './indicators-config'
 
 
 
-export type ChipType     = 'condition' | 'period' | 'company' | 'product' | 'custom'
-export type BaseChipType = 'periodType' | 'companyType' | 'productType'
+export type ChipType          = 'condition' | 'period' | 'company' | 'product' | 'custom'
+export type BaseChipType      = 'periodType' | 'companyType' | 'productType'
+export type SettingsDirection = 'horizontal' | 'vertical'
 
 
 /** v.2025-06-26 */
@@ -38,6 +39,8 @@ export type ViewItemSettings = IndicatorsConfig & {
 
   // GaugeColumn
   gaugeColumnItems? : GaugeColumnItem[]
+  direction?        : SettingsDirection // Default 'horizontal'
+  // width?            : number // in px Ширина элемента
 }
 
 export type ViewItemSettingsField = keyof ViewItemSettings

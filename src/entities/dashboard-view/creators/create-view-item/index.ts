@@ -80,5 +80,17 @@ export const createViewItem = (
     };
   }
 
+  if (cfg.type === 'gaugeColumn') {
+    viewItem.styles = {
+      ...viewItem.styles,
+      ...f('r-fe-fs'),
+      background    : 'rgba(255, 255, 255, 0)', // Прозрачный фон
+      width         : 100,
+      height        : 30, // Толщина полосы
+      minHeight     : 30,
+      p             : 0,
+    };
+  }
+
   return viewItem;
 }

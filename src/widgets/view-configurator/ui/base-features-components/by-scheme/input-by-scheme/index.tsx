@@ -48,7 +48,9 @@ export const InputByScheme: FC<Props> = memo(({
   const value = useMemo(() => {
     if (! selectedItem) return '';
 
-    const v = getValueByScheme(selectedItem, scheme) || ''; // '' - чтобы сработал changesValue
+    // '' - чтобы сработал changesValue
+    // ?? - чтобы если 0 то он был показан, а не заменён на ''
+    const v = getValueByScheme(selectedItem, scheme) ?? '';
     return transform ? transform(v) : v
   }, [selectedItem, scheme, transform]);
 

@@ -1,29 +1,23 @@
 import { FC, memo } from 'react';
 import Box from '@mui/material/Box';
-import { f, SxCard } from 'shared/styles';
-import { Increased } from 'entities/dashboard-data';
-// import { getStyles } from './styles';
+import { f } from 'shared/styles';
 
 
 
 interface Props {
-  bgcolor : string | undefined
-  sx      : SxCard
+  bgColor : string
+  height  : string // Высота колонки
+  width   : string // Ширина колонки
 }
 
 
-export const ItemGaugeColumnComponent: FC<Props> = memo(({ sx: style, bgcolor }) => {
-  const icon = '';
-
-  return (
-    <Box
-      sx={{
-        ...f('-c-c'),
-        backgroundColor: bgcolor,
-        ...style?.root
-      }}
-    >
-      {icon}
-    </Box>
-  );
-});
+export const ItemGaugeColumnComponent: FC<Props> = memo(({ bgColor, width, height }) => (
+  <Box
+    sx={{
+      ...f('-c-c'),
+      backgroundColor: bgColor,
+      width,
+      height,
+    }}
+  />
+));
