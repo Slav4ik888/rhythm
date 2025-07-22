@@ -4,9 +4,9 @@ import { DashboardStatisticItem, useDashboardData } from 'entities/dashboard-dat
 import {
   getComparisonValues, getIncreased, getInverted, getReversedIndicators, ValueStringAndReduction
 } from '../../utils';
-import { getFixedFraction, getReducedWithReduction } from 'shared/helpers/numbers';
+import { getFixedFraction, getReducedWithReduction, toNumber } from 'shared/helpers/numbers';
 import { calcGrowthChange } from '../../../growth-icon/utils';
-import { isNotUndefined } from 'shared/lib/validators';
+import { isNotUndefined, isNum } from 'shared/lib/validators';
 import { getStyles } from './styles';
 import { ItemDigitIndicatorComponent } from './component';
 
@@ -30,15 +30,29 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, isTemplate }) => {
     [item, isTemplate, entities, activeEntities, kod]
   );
 
-  const color = useMemo(() => getStyles(item, increased), [item, increased]);
+  const color = useMemo(() => getStyles(item, increased),
+    [item, increased]
+  );
 
   const statisticItem = useMemo(() => activeEntities[kod] as DashboardStatisticItem<number>, [activeEntities, kod]);
-  const indicators = getReversedIndicators(statisticItem?.data, item?.settings?.valueNumber);
-  const [lastValue, prevValue] = isTemplate ? [152350, 121500] : indicators;
 
-  const fractionDigits = item?.settings?.fractionDigits;   // Количество знаков после запятой
-  const addZero        = item?.settings?.addZero;          // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
-  const count          = item?.settings?.valueNumber || 1; // Номер значения статистики, в обратном порядке (1 - последнее, 2 - предпоследнее). По умолчанию показываем последнее значение
+  const {
+    fractionDigits, // Количество знаков после запятой
+    addZero,        // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
+    valueNumber,    // Номер значения статистики, в обратном порядке (1 - последнее, 2 - предпоследнее). По умолчанию показываем последнее значение
+    kfValue = 1,
+    reduce,
+    noSpace,
+    endingDiffType,
+    plusMinus
+  } = useMemo(() => item.settings || {}, [item.settings]);
+
+  const count = valueNumber || 1;
+
+  const [lastValue, prevValue] = isTemplate
+    ? [152350, 121500]
+    : getReversedIndicators(statisticItem?.data, count);
+
 
   const values = useMemo(() => {
     if (isTemplate) return [{ value: 35, reduction: '' }, { value: 27, reduction: '' }]
@@ -46,14 +60,14 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, isTemplate }) => {
       getReversedIndicators(statisticItem?.data, count), // 0 - lastValue, 1 - prevValue, 2 - nextValue
       count,
       {
-        reduce: item?.settings?.reduce,  // Убрать разряды: 12 500 700 => 12.5 млн
-        noSpace: item?.settings?.noSpace, // Не добавлять пробел между разрядами
+        reduce,  // Убрать разряды: 12 500 700 => 12.5 млн
+        noSpace, // Не добавлять пробел между разрядами
         fractionDigits,
         addZero,
       }
     )
   },
-    [item, isTemplate, count, fractionDigits, statisticItem?.data, addZero]
+    [isTemplate, count, fractionDigits, statisticItem?.data, addZero, noSpace, reduce]
   );
 
 
@@ -62,30 +76,36 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, isTemplate }) => {
     let value: any = '-';
     let reduction: string = '';
 
-    if (item?.settings?.endingDiffType === '% соотношение') {
+    if (endingDiffType === '% соотношение') {
       value = getFixedFraction(
         calcGrowthChange(lastValue, prevValue),
         { fractionDigits, addZero }
       );
     }
-    else if (item?.settings?.endingDiffType === 'Разница') {
+    else if (endingDiffType === 'Разница') {
       const { value: v, reduction: p = '' } = getReducedWithReduction(lastValue - prevValue);
       value = getFixedFraction(v, { fractionDigits, addZero });
       reduction = p;
     }
     else if (isNotUndefined(values[count - 1]?.value)) {
-        value = values[count - 1]?.value || '-'; // Если значение отсутствует`
-        reduction = values[count - 1]?.reduction;
+      if (isNum(toNumber(values[count - 1].value))) {
+        value = toNumber(values[count - 1].value) * kfValue;
       }
+      else {
+        value = values[count - 1].value || '-'; // Если значение отсутствует`
+      }
+      reduction = values[count - 1].reduction;
+    }
 
     return {
       reduction,
-      value: item?.settings?.plusMinus
+      value: plusMinus
         ? String(value).replace('-', '').replace('.', ',') // Удаляем знак минус, если выбрано plusMinus, чтобы не дублировался тк будет выведен в ItemDigitIndicatorPlusMinus
         : String(value).replace('.', ','),
     }
-  }, [lastValue, prevValue, values, count, item, fractionDigits, addZero]);
-
+  },
+    [lastValue, prevValue, values, count, fractionDigits, addZero, kfValue, endingDiffType, plusMinus]
+  );
 
 
   return (

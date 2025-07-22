@@ -36,6 +36,7 @@ export const RowSelectKodChildren: FC<Props> = memo(({ selectedItem, disabled })
     {
       (selectedItem?.type === 'chip'
         || selectedItem?.type === 'digitIndicator'
+        || selectedItem?.type === 'gaugeColumn'
         || selectedItem?.type === 'growthIcon') && (<Box sx={{ ...f('-c'), gap: 2, my: 2 }}>
         <FlagFromGlobalKod
           scheme       = 'settings.fromGlobalKod'

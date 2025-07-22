@@ -26,6 +26,15 @@ export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ sel
         selectedItem = {selectedItem}
         title        = 'valueNumber'
         toolTitle    = 'Номер значения статистики, в обратном порядке (1 - последнее, 2 - предпоследнее)'
+        onChange     = {() => {}}
+      />
+      <RowInputByScheme
+        scheme       = 'settings.kfValue'
+        type         = 'number'
+        selectedItem = {selectedItem}
+        title        = 'kfValue'
+        toolTitle    = 'Поправое значение КФ, на которое будет умножено значение'
+        onChange     = {() => {}}
       />
       <RowFlagByScheme
         scheme       = 'settings.plusMinus'
@@ -60,6 +69,7 @@ export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ sel
         title        = 'fractionDigits'
         toolTitle    = 'Количество знаков после запятой'
         selectedItem = {selectedItem}
+        onChange     = {() => {}}
       />
       <RowFlagByScheme
         scheme       = 'settings.addZero'
