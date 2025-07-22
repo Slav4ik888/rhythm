@@ -3,9 +3,8 @@ import { useDashboardViewState, ViewItem, getKod } from 'entities/dashboard-view
 import { useDashboardData } from 'entities/dashboard-data';
 import { ItemGaugeColumnComponent } from './component';
 import { getLastItem } from 'shared/helpers/arrays';
-import { getSuitableGaugeColumnItem } from '../utils';
+import { getHeight, getSuitableGaugeColumnItem, getWidth } from '../utils';
 import { toNumber } from 'shared/helpers/numbers';
-import { isNum } from 'shared/lib/validators';
 
 
 
@@ -37,22 +36,18 @@ export const ItemGaugeColumn: FC<Props> = memo(({ item, isTemplate }) => {
 
   // Высота
   const gaugeHeight = useMemo(() => {
-    const maxHeight = isNum(item?.styles?.height) && item?.styles?.height
-      ? item?.styles?.height as number
-      : (isVertical ? 100 : 30);
+    const height = getHeight(item, isVertical ? 100 : 30);
 
-    return `${(isVertical ?  lastItem * maxHeight : maxHeight) - 2}px`; // -2px for border
+    return `${(isVertical ?  lastItem * height : height) - 2}px`; // -2px for border
   },
     [item, isVertical, lastItem]
   );
 
   // Ширина
   const gaugeWidth = useMemo(() => {
-    const maxWidth = isNum(item?.styles?.width) && item?.styles?.width
-      ? item?.styles?.width as number
-      : (isVertical ? 30 : 100);
+    const width = getWidth(item, isVertical ? 30 : 100);
 
-    return `${(isVertical ? maxWidth : lastItem * maxWidth) - 2}px`;
+    return `${(isVertical ? width : lastItem * width) - 2}px`;
   },
     [item, isVertical, lastItem]
   );
@@ -60,9 +55,11 @@ export const ItemGaugeColumn: FC<Props> = memo(({ item, isTemplate }) => {
 
   return (
     <ItemGaugeColumnComponent
-      height  = {gaugeHeight} // Высота колонки
-      width   = {gaugeWidth}  // Ширина колонки
-      bgColor = {suitableParameter?.color ?? 'transparent'}
+      height     = {gaugeHeight} // Высота колонки
+      width      = {gaugeWidth}  // Ширина колонки
+      bgColor    = {suitableParameter?.color ?? 'transparent'}
+      item       = {item}
+      isVertical = {isVertical}
     />
   )
 });

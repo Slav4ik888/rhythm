@@ -12,35 +12,37 @@ export type SettingsDirection = 'horizontal' | 'vertical'
 /** v.2025-06-26 */
 export type ViewItemSettings = IndicatorsConfig & {
   // Global settings
-  display?          : boolean // Показывать ли элемент
+  display?              : boolean // Показывать ли элемент
 
   // Kod settings
-  kod?              : string  // Код для одиночного элемента Box | Chip | GrowthItem | Indicator
+  kod?                  : string  // Код для одиночного элемента Box | Chip | GrowthItem | Indicator
   /** Если true, то это kod, будет автоматически подтягиваться всем children где стоит галка (fromGlobalKod) */
-  isGlobalKod?      : boolean
+  isGlobalKod?          : boolean
   /** Если true, то это Глобальны kod, будет автоматически подтягиваться в этот элемент */
-  fromGlobalKod?    : boolean
+  fromGlobalKod?        : boolean
   /** Если true, то всем children, у которых где стоит галка (fromGlobalInverted), примениться inverted = true */
-  globalInverted?   : boolean
+  globalInverted?       : boolean
 
-  inverted?         : boolean // Значения переворачиваются в противоположное, пример - если задолженность уменьшается то это рост
-  unchangedBlack?   : boolean // При отсутствии изменений в результатах красить чёрным цветом
+  inverted?             : boolean // Значения переворачиваются в противоположное, пример - если задолженность уменьшается то это рост
+  unchangedBlack?       : boolean // При отсутствии изменений в результатах красить чёрным цветом
 
   // Chart settings
-  charts?           : ViewItemChart[]
-  chartOptions?     : ChartConfigOptions
+  charts?               : ViewItemChart[]
+  chartOptions?         : ChartConfigOptions
 
   // Chips settings
-  chipType?         : ChipType
+  chipType?             : ChipType
 
   // GrowthItem settings
-  scale?            : number  // Изменение размера треуголька
-  isLeft?           : boolean // При отсутствии изменений чёрный треугольник повернуть влево
+  scale?                : number  // Изменение размера треуголька
+  isLeft?               : boolean // При отсутствии изменений чёрный треугольник повернуть влево
 
   // GaugeColumn
-  gaugeColumnItems? : GaugeColumnItem[]
-  direction?        : SettingsDirection // Default 'horizontal'
-  // width?            : number // in px Ширина элемента
+  gaugeColumnItems?     : GaugeColumnItem[]
+  direction?            : SettingsDirection // Default 'horizontal'
+  displayParameters?    : boolean // Показтать метки с выбранными параметрами на gaugeColumn
+  parametersLabelColor? : string  // Цвет меток параметров на gaugeColumn
+  displayResult?        : boolean // Показать результат на gaugeColumn
 }
 
 export type ViewItemSettingsField = keyof ViewItemSettings

@@ -4,7 +4,6 @@ import {
 } from 'entities/dashboard-view';
 import { SelectValue } from 'shared/ui/configurators-components/select';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import {  } from 'entities/dashboard-view/types';
 
 
 
