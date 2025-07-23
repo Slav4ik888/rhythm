@@ -43,6 +43,15 @@ describe('getFixedFraction', () => {
     getFixedFraction(12, { fractionDigits: 3, addZero: true })
   ).toEqual('12.000'));
 
+  test('1.036 f3 withZero => 12,000', () => expect(
+    getFixedFraction(1.03623, { fractionDigits: 3, addZero: true })
+  ).toEqual('1.036'));
+
+  test('1.036 f3 withZero => 12,000', () => expect(
+    getFixedFraction(1.03623, { fractionDigits: 2, addZero: true })
+  ).toEqual('1.04'));
+
+
   test('-10431951.3 f3 withZero => 12,000', () => expect(
     getFixedFraction(-10431951.3, { fractionDigits: 3, addZero: true })
   ).toEqual('-10431951.300'));

@@ -40,12 +40,13 @@ export const DashboardBodyContent = memo(() => {
   useEffect(() => {
     const observer = new MutationObserver((mutations) => {
     const hc = document.querySelectorAll('.highcharts-credits');
-      if (hc.length > 0) {
+    if (hc.length > 0) {
         __devLog('highcharts: ', hc);
         hc.forEach(item => item.remove());
         observer.disconnect();
       }
     });
+    // document.querySelectorAll('.highcharts-credits').forEach(item => item.remove())
 
     observer.observe(document.body, {
       childList: true,

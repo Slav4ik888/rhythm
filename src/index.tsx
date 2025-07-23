@@ -31,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "refacted stylesToSx" && git push -u origin main
+// git add . && git commit -m "fixed getFixedFraction" && git push -u origin main
