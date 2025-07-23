@@ -1,11 +1,13 @@
-import { isNotUndefined as is, isNum } from 'shared/lib/validators';
+import { isNum } from 'shared/lib/validators';
 import { ViewItemStyles } from '../../../types';
+import { is } from './is';
 
 
 
 const getDimensions = (dim: any) => isNum(dim) ? `${dim}px` : dim;
 const getIndents = (v: any) => v ? v / 8 : v;
 
+const isEmptyStr = (v: any) => v === '';
 
 /**
  * Base format styles transform to sx
@@ -43,22 +45,48 @@ export const stylesToSx = (style?: ViewItemStyles): any => {
   if (is(maxHeight)) sx.maxHeight = getDimensions(maxHeight);
 
   // paddings
-  if (is(p))  sx.p  = getIndents(p);
-  if (is(py)) sx.py = getIndents(py);
-  if (is(px)) sx.px = getIndents(px);
-  if (is(pt)) sx.pt = getIndents(pt);
-  if (is(pr)) sx.pr = getIndents(pr);
-  if (is(pb)) sx.pb = getIndents(pb);
-  if (is(pl)) sx.pl = getIndents(pl);
+  if (is(p))          sx.p  = getIndents(p);
+  if (isEmptyStr(p))  sx.p  = null;
+
+  if (is(py))         sx.py = getIndents(py);
+  if (isEmptyStr(py)) sx.py = null;
+
+  if (is(px))         sx.px = getIndents(px);
+  if (isEmptyStr(px)) sx.px = null;
+
+  if (is(pt))         sx.pt = getIndents(pt);
+  if (isEmptyStr(pt)) sx.pt = null;
+
+  if (is(pr))         sx.pr = getIndents(pr);
+  if (isEmptyStr(pr)) sx.pr = null;
+
+  if (is(pb))         sx.pb = getIndents(pb);
+  if (isEmptyStr(pb)) sx.pb = null;
+
+  if (is(pl))         sx.pl = getIndents(pl);
+  if (isEmptyStr(pl)) sx.pl = null;
 
   // margins
-  if (is(m))  sx.m  = getIndents(m);
-  if (is(my)) sx.my = getIndents(my);
-  if (is(mx)) sx.mx = getIndents(mx);
-  if (is(mt)) sx.mt = getIndents(mt);
-  if (is(mr)) sx.mr = getIndents(mr);
-  if (is(mb)) sx.mb = getIndents(mb);
-  if (is(ml)) sx.ml = getIndents(ml);
+  if (is(m))          sx.m  = getIndents(m);
+  if (isEmptyStr(m))  sx.m  = null;
+
+  if (is(my))         sx.my = getIndents(my);
+  if (isEmptyStr(my)) sx.my = null;
+
+  if (is(mx))         sx.mx = getIndents(mx);
+  if (isEmptyStr(mx)) sx.mx = null;
+
+  if (is(mt))         sx.mt = getIndents(mt);
+  if (isEmptyStr(mt)) sx.mt = null;
+
+  if (is(mr))         sx.mr = getIndents(mr);
+  if (isEmptyStr(mr)) sx.mr = null;
+
+  if (is(mb))         sx.mb = getIndents(mb);
+  if (isEmptyStr(mb)) sx.mb = null;
+
+  if (is(ml))         sx.ml = getIndents(ml);
+  if (isEmptyStr(ml)) sx.ml = null;
 
   // borders
   if (is(borderWidth))  sx.borderWidth  = `${borderWidth}px`;
