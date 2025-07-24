@@ -3,11 +3,11 @@ export type {
   AlignItemsType, JustifyContentType, ViewItemStyles, ViewItemStylesField, PartialViewItem, RgbaString,
   FontStyleType, FontWeightType, ViewItemSettings, ViewItemSettingsField,
   ChipType, BaseChipType, IndicatorsConfig, EndingType, EndingDiffType,
-  ViewItemType, TextAlignType, TextWrapType, GaugeColumnItem, SettingsDirection
+  ViewItemType, TextAlignType, TextWrapType, GaugeColumnItem, SettingsDirection, GaugeValueType
 } from './types'
 export {
   arrayBorderStyles, arrayFontStyles, arrayFontWeights, arrayTextWrap, arrayChipLabel, chipOptions,
-  arrayEndingType, arrayEndingDiffType, arraySettingsDirection
+  arrayEndingType, arrayEndingDiffType, arraySettingsDirection, arrayGaugeValueType
  } from './consts'
 export { actions as actionsDashboardView, reducer as reducerDashboardView } from './model/slice'
 export type {

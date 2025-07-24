@@ -4,12 +4,13 @@ import { IndicatorsConfig } from './indicators-config'
 
 
 
-export type ChipType          = 'condition' | 'period' | 'company' | 'product' | 'custom'
+export type ChipType          = 'condition'  | 'period'      | 'company'     | 'product' | 'custom'
 export type BaseChipType      = 'periodType' | 'companyType' | 'productType'
 export type SettingsDirection = 'horizontal' | 'vertical'
+export type GaugeValueType    = 'integer'    | 'fractional'
 
 
-/** v.2025-06-26 */
+/** v.2025-07-24 */
 export type ViewItemSettings = IndicatorsConfig & {
   // Global settings
   display?              : boolean // Показывать ли элемент
@@ -38,11 +39,12 @@ export type ViewItemSettings = IndicatorsConfig & {
   isLeft?               : boolean // При отсутствии изменений чёрный треугольник повернуть влево
 
   // GaugeColumn
+  gaugeValueType?       : GaugeValueType    // Целые или дробные значения, по умолчанию fractional
   gaugeColumnItems?     : GaugeColumnItem[]
   direction?            : SettingsDirection // Default 'horizontal'
-  displayParameters?    : boolean // Показтать метки с выбранными параметрами на gaugeColumn
-  parametersLabelColor? : string  // Цвет меток параметров на gaugeColumn
-  displayResult?        : boolean // Показать результат на gaugeColumn
+  displayParameters?    : boolean           // Показтать метки с выбранными параметрами на gaugeColumn
+  parametersLabelColor? : string            // Цвет меток параметров на gaugeColumn
+  displayResult?        : boolean           // Показать результат на gaugeColumn
 }
 
 export type ViewItemSettingsField = keyof ViewItemSettings

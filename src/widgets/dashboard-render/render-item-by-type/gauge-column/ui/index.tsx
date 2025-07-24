@@ -20,8 +20,11 @@ export const ItemGaugeColumn: FC<Props> = memo(({ item, isTemplate }) => {
 
   // Последнее значение в выбранном периоде
   const lastItem = useMemo(() => {
-    const kod = getKod(entities, item);
-    return toNumber((getLastItem(activeEntities[kod]?.data)));
+    const kod       = getKod(entities, item);
+    const isInteger = item.settings?.gaugeValueType === 'integer'; // По умолчанию (при отсутствии) это fractional
+    const kfCorrect = isInteger ? 0.01 : 1; // Целые значения делим на 100, чтобы привести к дробному значению
+
+    return toNumber((getLastItem(activeEntities[kod]?.data))) * kfCorrect;
   },
     [activeEntities, entities, item]
   );
@@ -38,7 +41,7 @@ export const ItemGaugeColumn: FC<Props> = memo(({ item, isTemplate }) => {
   const gaugeHeight = useMemo(() => {
     const height = getHeight(item, isVertical ? 100 : 30);
 
-    return `${(isVertical ?  lastItem * height : height) - 1}px`; // -1px for border
+    return `${(isVertical ?  lastItem * height : height) - 2}px`; // -1px for border
   },
     [item, isVertical, lastItem]
   );
@@ -47,7 +50,7 @@ export const ItemGaugeColumn: FC<Props> = memo(({ item, isTemplate }) => {
   const gaugeWidth = useMemo(() => {
     const width = getWidth(item, isVertical ? 30 : 100);
 
-    return `${(isVertical ? width : lastItem * width) - 1}px`;
+    return `${(isVertical ? width : lastItem * width) - 2}px`;
   },
     [item, isVertical, lastItem]
   );
