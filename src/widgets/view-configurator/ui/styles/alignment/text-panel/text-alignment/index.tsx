@@ -29,7 +29,7 @@ export const TextAlignment: FC<Props> = memo(({ value, onChange }) => {
       onChange   = {handleChange}
     >
       <Tooltip title='По левому краю'>
-        <ToggleButton value='flex-start'>
+        <ToggleButton value='left'>
           <FormatAlignLeftIcon />
         </ToggleButton>
       </Tooltip>
@@ -41,7 +41,7 @@ export const TextAlignment: FC<Props> = memo(({ value, onChange }) => {
       </Tooltip>
 
       <Tooltip title='По правому краю'>
-        <ToggleButton value='flex-end'>
+        <ToggleButton value='right'>
           <FormatAlignRightIcon />
         </ToggleButton>
       </Tooltip>

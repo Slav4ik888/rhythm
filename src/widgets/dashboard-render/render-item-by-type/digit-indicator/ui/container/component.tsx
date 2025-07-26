@@ -22,6 +22,7 @@ export const ItemDigitIndicatorComponent: FC<Props> = memo(({ item, increased, c
     {/* +/- */}
     {item?.settings?.plusMinus && (
       <PlusMinus
+        item       = {item}
         fontSize   = {item?.styles?.fontSize}
         lineHeight = {item?.styles?.lineHeight}
         increased  = {increased}
