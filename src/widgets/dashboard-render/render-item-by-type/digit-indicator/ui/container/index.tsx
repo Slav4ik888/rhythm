@@ -89,7 +89,8 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, isTemplate }) => {
     }
     else if (isNotUndefined(values[count - 1]?.value)) {
       if (isNum(toNumber(values[count - 1].value))) {
-        value = toNumber(values[count - 1].value) * (kfValue ? kfValue : 1);
+        const v = toNumber(values[count - 1].value) * (kfValue ? kfValue : 1);
+        value = getFixedFraction(v, { fractionDigits, addZero });
       }
       else {
         value = values[count - 1].value || '-'; // Если значение отсутствует`

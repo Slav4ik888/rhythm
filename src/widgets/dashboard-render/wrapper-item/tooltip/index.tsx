@@ -5,7 +5,8 @@ import { useDashboardData } from 'entities/dashboard-data';
 import { useCompany } from 'entities/company';
 import { pxToRem } from 'shared/styles';
 import Box from '@mui/material/Box';
-import { setValue } from 'shared/helpers/objects';
+import { gelStatisticPeriodColor, gelStatisticPeriodLabel } from 'entities/statistic-type';
+import { useTheme } from 'app/providers/theme';
 
 
 
@@ -16,6 +17,7 @@ interface Props {
 
 export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
   // console.log('___ItemWrapperTooltip');
+  const theme = useTheme();
   const { paramsCustomSettings } = useCompany();
   const { startEntities } = useDashboardData();
   const { entities: entitiesView } = useDashboardViewState();
@@ -69,10 +71,10 @@ export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
       ? ''
       : <span>
           <Chip
-            label = {setValue(paramsCustomSettings?.periodType?.[periodType]?.title, periodType) as string}
+            label = {gelStatisticPeriodLabel(periodType, paramsCustomSettings)}
             sx    = {{
-              color      : paramsCustomSettings?.periodType?.[periodType]?.color      || 'black',
-              background : paramsCustomSettings?.periodType?.[periodType]?.background || 'rgb(111, 111, 111)',
+              color      : gelStatisticPeriodColor('color',      periodType, theme, paramsCustomSettings),
+              background : gelStatisticPeriodColor('background', periodType, theme, paramsCustomSettings),
               width  : pxToRem(70),
               height : pxToRem(16),
             }}
@@ -83,8 +85,9 @@ export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
     return <>
       {companyText}{productText}{periodText}
     </>
-  }, [paramsCustomSettings?.companyType, paramsCustomSettings?.periodType, paramsCustomSettings?.productType,
-    kod, startEntities]);
+  },
+    [paramsCustomSettings, kod, startEntities, theme]
+  );
 
 
   return (
