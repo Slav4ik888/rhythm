@@ -15,6 +15,7 @@ export type ViewItemType =
   | 'growthIcon'
   | 'digitIndicator'
   | 'gaugeColumn'
+  | 'list'
 
 
 

@@ -26,7 +26,10 @@ export const ViewItemStylesConfigurator: FC = memo(() => {
   return (
     <>
       {
-        (selectedItem?.type === 'text' || selectedItem?.type === 'digitIndicator')
+        (selectedItem?.type === 'text'
+          || selectedItem?.type === 'digitIndicator'
+          || selectedItem?.type === 'list'
+        )
           && <CardLabel  selectedItem={selectedItem} onChange={handleChange} />
       }
       <Background selectedItem={selectedItem} onChange={handleChange} />

@@ -40,7 +40,7 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, isTemplate }) => {
     fractionDigits, // Количество знаков после запятой
     addZero,        // Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков
     valueNumber,    // Номер значения статистики, в обратном порядке (1 - последнее, 2 - предпоследнее). По умолчанию показываем последнее значение
-    kfValue = 1,
+    kfValue,
     reduce,
     noSpace,
     endingDiffType,
@@ -89,7 +89,7 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, isTemplate }) => {
     }
     else if (isNotUndefined(values[count - 1]?.value)) {
       if (isNum(toNumber(values[count - 1].value))) {
-        value = toNumber(values[count - 1].value) * kfValue;
+        value = toNumber(values[count - 1].value) * (kfValue ? kfValue : 1);
       }
       else {
         value = values[count - 1].value || '-'; // Если значение отсутствует`

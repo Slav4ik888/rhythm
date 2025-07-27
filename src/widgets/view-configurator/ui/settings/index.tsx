@@ -6,6 +6,7 @@ import { ViewItemGrowthIconSettingsConfigurator as GrowthIconSettings } from './
 import { ViewItemDigitIndicatorSettingsConfigurator as DigitIndicatorSettings } from './settings-digit-indicator';
 import { ViewItemBoxSettingsConfigurator as BoxSettings } from './settings-box';
 import { ViewItemGaugeColumnSettingsConfigurator as GaugeColumnSettings } from './settings-gauge-column';
+import { ViewItemListSettingsConfigurator as ListSettings } from './settings-list';
 
 
 
@@ -20,6 +21,7 @@ export const ViewItemConfiguratorSettings: FC<Props> = memo(({ selectedItem: ite
   if (item?.type === 'growthIcon')     return <GrowthIconSettings     selectedItem={item} />
   if (item?.type === 'digitIndicator') return <DigitIndicatorSettings selectedItem={item} />
   if (item?.type === 'gaugeColumn')    return <GaugeColumnSettings    selectedItem={item} />
+  if (item?.type === 'list')           return <ListSettings           selectedItem={item} />
 
   return (<></>)
 });

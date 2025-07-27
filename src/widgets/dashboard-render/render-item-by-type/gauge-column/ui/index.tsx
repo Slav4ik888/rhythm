@@ -3,7 +3,7 @@ import { useDashboardViewState, ViewItem, getKod } from 'entities/dashboard-view
 import { useDashboardData } from 'entities/dashboard-data';
 import { ItemGaugeColumnComponent } from './component';
 import { getLastItem } from 'shared/helpers/arrays';
-import { getHeight, getSuitableGaugeColumnItem, getWidth } from '../utils';
+import { getHeight, getKfCorrect, getSuitableGaugeColumnItem, getWidth } from '../utils';
 import { toNumber } from 'shared/helpers/numbers';
 
 
@@ -21,10 +21,10 @@ export const ItemGaugeColumn: FC<Props> = memo(({ item, isTemplate }) => {
   // Последнее значение в выбранном периоде
   const lastItem = useMemo(() => {
     const kod       = getKod(entities, item);
-    const isInteger = item.settings?.gaugeValueType === 'integer'; // По умолчанию (при отсутствии) это fractional
-    const kfCorrect = isInteger ? 0.01 : 1; // Целые значения делим на 100, чтобы привести к дробному значению
+    // const isInteger = item.settings?.gaugeValueType === 'integer'; // По умолчанию (при отсутствии) это fractional
+    // const kfCorrect = isInteger ? 0.01 : 1; // Целые значения делим на 100, чтобы привести к дробному значению
 
-    return toNumber((getLastItem(activeEntities[kod]?.data))) * kfCorrect;
+    return toNumber((getLastItem(activeEntities[kod]?.data))) * getKfCorrect(item);
   },
     [activeEntities, entities, item]
   );

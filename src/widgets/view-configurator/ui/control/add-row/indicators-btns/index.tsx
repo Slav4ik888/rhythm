@@ -31,5 +31,9 @@ export const AddViewItemIndicatorsBtns: FC<Props> = memo(({ onClick }) => (
       type    = 'gaugeColumn'
       onClick = {onClick}
     />
+    <AddBtn
+      type    = 'list'
+      onClick = {onClick}
+    />
   </>
 ));
