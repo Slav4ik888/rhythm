@@ -54,25 +54,21 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, isTemplate }) => {
     : getReversedIndicators(statisticItem?.data, count);
 
 
-  const values = useMemo(() => {
-    if (isTemplate) return [{ value: 35, reduction: '' }, { value: 27, reduction: '' }]
-    else return getComparisonValues(
-      getReversedIndicators(statisticItem?.data, count), // 0 - lastValue, 1 - prevValue, 2 - nextValue
-      count,
-      {
-        reduce,  // Убрать разряды: 12 500 700 => 12.5 млн
-        noSpace, // Не добавлять пробел между разрядами
-        fractionDigits,
-        addZero,
-      }
-    )
-  },
-    [isTemplate, count, fractionDigits, statisticItem?.data, addZero, noSpace, reduce]
-  );
-
-
   // Значение для вывода на экран
   const calcedValue: ValueStringAndReduction = useMemo(() => {
+    const values = isTemplate
+      ? [{ value: 35, reduction: '' }, { value: 27, reduction: '' }]
+      : getComparisonValues(
+          getReversedIndicators(statisticItem?.data, count, kfValue), // 0 - lastValue, 1 - prevValue, 2 - nextValue
+          count,
+          {
+            reduce,  // Убрать разряды: 12 500 700 => 12.5 млн
+            noSpace, // Не добавлять пробел между разрядами
+            fractionDigits,
+            addZero,
+          }
+        );
+
     let value: any = '-';
     let reduction: string = '';
 
@@ -88,13 +84,7 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, isTemplate }) => {
       reduction = p;
     }
     else if (isNotUndefined(values[count - 1]?.value)) {
-      if (isNum(toNumber(values[count - 1].value))) {
-        const v = toNumber(values[count - 1].value) * (kfValue ? kfValue : 1);
-        value = getFixedFraction(v, { fractionDigits, addZero });
-      }
-      else {
-        value = values[count - 1].value || '-'; // Если значение отсутствует`
-      }
+      value = values[count - 1].value || '-'; // Если значение не число
       reduction = values[count - 1].reduction;
     }
 
@@ -105,7 +95,10 @@ export const ItemDigitIndicator: FC<Props> = memo(({ item, isTemplate }) => {
         : String(value).replace('.', ','),
     }
   },
-    [lastValue, prevValue, values, count, fractionDigits, addZero, kfValue, endingDiffType, plusMinus]
+    [
+      isTemplate, noSpace, reduce, lastValue, prevValue, count, fractionDigits,
+      addZero, kfValue, endingDiffType, plusMinus, statisticItem?.data
+    ]
   );
 
 

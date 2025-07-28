@@ -91,6 +91,12 @@ export const createViewItem = (
       p             : 0,
     };
   }
+  if (cfg.type === 'list') {
+    viewItem.styles = {
+      ...viewItem.styles,
+      overflow: 'scroll',
+    };
+  }
 
   return viewItem;
 }

@@ -30,7 +30,7 @@ export const ItemList: FC<Props> = memo(({ item, isTemplate }) => {
     <>
       {
         list.map((value, index) => (
-          <span key={index}>
+          <span key={index} style={{ marginRight: 4 }}>
             {value}
           </span>
         ))

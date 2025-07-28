@@ -33,6 +33,8 @@ export interface ViewItemStyles {
   rowGap?    : number | string
   columnGap? : number | string
 
+  overflow?  : 'hidden' | 'scroll' | 'auto'
+
   // padding - 1 === 8px
   p? : number
   px?: number
