@@ -1,11 +1,11 @@
-import { hour } from 'shared/helpers/dates'
+import { sec } from 'shared/helpers/dates'
 
 const cfg = {
-  VERSION                 : '1.20.1',
+  VERSION                 : '1.20.2',
   ASSEMBLY_DATE           : '2025-07-30',
 
   COOKIE_NAME             : 'Rhythm',
-  DEFAULT_MESSAGE_TIMEOUT : hour(2),
+  DEFAULT_MESSAGE_TIMEOUT : sec(6),
 
   UPLOAD: {
     MAX_FILE_SIZE       : 3  * 1024 * 1024, // 3Mb

@@ -12,11 +12,11 @@ export const getDoughnutOptions = (
 
   // Get "data"
   const data = [...itemsData.map((itemData, index) => {
-    const length = itemData.data?.length;
+    const length = itemData?.data?.length;
 
     // Последние значения соответствующие концу выбранного промежутка
     const value = (Array.isArray(itemData?.data) && length > 0)
-      ? itemData.data[length - 1]
+      ? itemData?.data[length - 1]
       : 0;
 
     const label = viewItem.settings?.charts?.[index]?.datasets?.label || '';

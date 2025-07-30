@@ -31,4 +31,4 @@ root.render(
 );
 
 
-// git add . && git commit -m "removed NotAccessPage" && git push -u origin main
+// git add . && git commit -m "fix chart config" && git push -u origin main
