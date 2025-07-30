@@ -1,7 +1,7 @@
 import { sec } from 'shared/helpers/dates'
 
 const cfg = {
-  VERSION                 : '1.20.2',
+  VERSION                 : '1.21.0',
   ASSEMBLY_DATE           : '2025-07-30',
 
   COOKIE_NAME             : 'Rhythm',
