@@ -3,7 +3,6 @@ import { WebpackPluginInstance, DefinePlugin, HotModuleReplacementPlugin, Progre
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BuildOptions } from './types';
-import CopyPlugin from 'copy-webpack-plugin';
 
 
 
@@ -11,7 +10,8 @@ export function buildPlugins({ paths, isDev, apiUrl, project }: BuildOptions): W
   const plugins = [
     new ProgressPlugin(),
     new HtmlWebpackPlugin({
-      template: paths.html
+      template : paths.html,
+      favicon  : paths.favicon,
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].css',
