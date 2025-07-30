@@ -55,7 +55,7 @@ export const AppRouter = memo(() => {
 
         <Route path={RoutePath[AppRoutes.USER_PROFILE]} element={withFallback(<UserProfilePage />)} />
         <Route path={RoutePath[AppRoutes.COMPANY_PROFILE]} element={withFallback(<CompanyProfilePage />)} />
-        <Route path={RoutePath[AppRoutes.NOT_ACCESS]} element={<NotAccessPage />} />
+        {/* <Route path={RoutePath[AppRoutes.NOT_ACCESS]} element={<NotAccessPage />} /> */}
 
         <Route path={RoutePath[AppRoutes.SLUG]} element={withFallback(<CompanyPage />)}>
           {/* <RequireAuth></RequireAuth> */}

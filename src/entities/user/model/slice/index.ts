@@ -11,6 +11,7 @@ import { StateSchemaUser } from './state-schema';
 import { SetUser } from './types';
 
 
+
 const initialState: StateSchemaUser = {
   _isLoaded : false,
   loading   : false,
@@ -18,7 +19,6 @@ const initialState: StateSchemaUser = {
   auth      : false,
   user      : {} as User
 };
-
 
 
 export const slice = createSlice({

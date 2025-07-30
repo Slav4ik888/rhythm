@@ -7,7 +7,7 @@ import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { reducerDashboardView, getBunchesToUpdate, NO_SHEET_ID } from 'entities/dashboard-view';
 import { useLocation } from 'react-router-dom';
 import { __devLog } from 'shared/lib/tests/__dev-log';
-import { useCompany } from 'entities/company';
+import { useAccess, useCompany } from 'entities/company';
 import { LS } from 'shared/lib/local-storage';
 import { reducerDashboardTemplates, useDashboardTemplates } from 'entities/dashboard-templates';
 import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/use-dashboard-view-services';
@@ -32,9 +32,13 @@ export const DashboardPageContainer: FC = memo(() => {
   const { dashboardSheetId = NO_SHEET_ID } = usePages();
   const { serviceGetData } = useDashboardGetData();
   const { setPageLoading } = useUI();
+  const { isDashboardAccessView } = useAccess();
 
 
   useEffect(() => {
+    // Если нет доступа то нах с мопэда
+    if (! isDashboardAccessView) return;
+
     // 1. TEMPLATES
     serviceGetBunchesUpdated(); /** Get актуальное состояние bunchesUpdated from DB */
 

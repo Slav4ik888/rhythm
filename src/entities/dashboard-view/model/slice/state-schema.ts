@@ -35,6 +35,7 @@ export interface StateSchemaDashboardView {
   newStoredViewItem   : ViewItem | undefined
   // Начальные значения предыдущего выбранного элемента, которое можно сравнивать для сохранения изменений
   // Используется при смене selectedId
+  // Также в случае ошибки, сюда сохраняется newStoredViewItem
   prevStoredViewItem  : ViewItem | undefined
 
   // Активированный Id перемещаемого элемента

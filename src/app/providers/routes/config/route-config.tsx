@@ -62,10 +62,10 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
   },
 
   // Others
-  [AppRoutes.NOT_ACCESS]: {
-    path    : RoutePath.NOT_ACCESS,
-    element : <NotAccessPage />
-  },
+  // [AppRoutes.NOT_ACCESS]: {
+  //   path    : RoutePath.NOT_ACCESS,
+  //   element : <NotAccessPage />
+  // },
   [AppRoutes.NOT_FOUND]: {
     path    : RoutePath.NOT_FOUND,
     element : <NotFoundPage />

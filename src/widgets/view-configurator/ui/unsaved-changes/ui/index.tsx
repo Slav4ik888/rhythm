@@ -21,9 +21,7 @@ export const UnsavedChanges: FC = memo(() => {
       ? setIsUnsaved(true)
       : setIsUnsaved(false);
   },
-    [
-      selectedId, paramsChangedCompany, changedViewItem, setIsUnsaved
-    ]
+    [selectedId, paramsChangedCompany, changedViewItem, setIsUnsaved]
   );
 
 
@@ -31,9 +29,7 @@ export const UnsavedChanges: FC = memo(() => {
     if (isNotEmpty(paramsChangedCompany)) cancelParamsCustomSettings(); /** Отменить изменившиеся customSettings */
     if (isNotEmpty(changedViewItem)) cancelUpdateViewItem(); /** Отменить изменившиеся поля | стили */
   },
-    [
-      paramsChangedCompany, changedViewItem, cancelParamsCustomSettings, cancelUpdateViewItem
-    ]
+    [paramsChangedCompany, changedViewItem, cancelParamsCustomSettings, cancelUpdateViewItem]
   );
 
 

@@ -1,7 +1,7 @@
 import { hour } from 'shared/helpers/dates'
 
 const cfg = {
-  VERSION                 : '1.20.0',
+  VERSION                 : '1.20.1',
   ASSEMBLY_DATE           : '2025-07-28',
 
   COOKIE_NAME             : 'Rhythm',

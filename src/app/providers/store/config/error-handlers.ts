@@ -55,9 +55,10 @@ export const errorHandlers = (
   if (status === 204) { // No Content
     return dispatch(actionsUI.setWarningMessage('По вашему запросу отсутствуют данные.'));
   }
-  // Нужно авторизоваться, будет редирект to loginPage
+  // Не редиректим на loginPage, тк пользователь может посетить страницу без авторизации
   else if (status === 401) {
     dispatch(actionsUser.setAuth(false));
+    dispatch(actionsUI.setWarningMessage('Необходимо авторизоваться'));
     return dispatch(actionsUI.setErrorStatus({ status: 401, pathname }));
   }
   else if (status === 403) return dispatch(actionsUI.setErrorStatus({ status: 403, pathname }));

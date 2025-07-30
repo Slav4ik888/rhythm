@@ -12,19 +12,28 @@ import { useUI } from 'entities/ui';
 import { f } from 'shared/styles';
 import { ViewItemConfiguratorTabs } from './tabs';
 import { ClearLsBunchesUpdated } from 'features/dashboard-view/ui/configurator';
+import { isNotEmpty } from 'shared/helpers/objects';
 
 
 
 export const ViewItemConfigurator: FC = memo(() => {
-  const { paramsCompanyId } = useCompany();
+  const { paramsCompanyId, paramsChangedCompany, cancelParamsCustomSettings } = useCompany();
   const { setWarningMessage } = useUI();
-  const { editMode, selectedId, selectedItem, isUnsaved, setSelectedId, setEditMode } = useDashboardViewActions();
+  const {
+    errors, editMode, selectedId, selectedItem, isUnsaved, changedViewItem,
+    setSelectedId, setEditMode, cancelUpdateViewItem
+  } = useDashboardViewActions();
   const [value, setValue] = useState('1');
 
 
   /** Закрываем конфигуратор */
   const handleClose = useCallback(() => {
-    if (isUnsaved) {
+    // Если есть ошибки значит пошло что-то не так (разлогинился например)
+    if (isUnsaved && isNotEmpty(errors)) {
+      if (isNotEmpty(paramsChangedCompany)) cancelParamsCustomSettings(); /** Отменить изменившиеся customSettings */
+      if (isNotEmpty(changedViewItem)) cancelUpdateViewItem(); /** Отменить изменившиеся поля | стили */
+    }
+    else if (isUnsaved) {
       return setWarningMessage('Cохраните изменения');
       // TODO: autoclick to saveBtn
       // const element = document.getElementById('saveBtn');
@@ -35,7 +44,12 @@ export const ViewItemConfigurator: FC = memo(() => {
     setValue('1');
     setEditMode({ editMode: false, companyId: paramsCompanyId });
     setSelectedId(''); // Убираем, чтобы prevStoredViewItem обновился и произошло сохранение
-  }, [paramsCompanyId, isUnsaved, setValue, setEditMode, setSelectedId, setWarningMessage]);
+  },
+    [
+      errors, paramsCompanyId, isUnsaved, paramsChangedCompany, changedViewItem,
+      setValue, setEditMode, setSelectedId, setWarningMessage, cancelParamsCustomSettings, cancelUpdateViewItem,
+    ]
+  );
 
 
   return (

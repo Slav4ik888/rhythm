@@ -9,7 +9,7 @@ import {
 } from './types';
 import { updateEntities } from 'entities/base';
 import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem, ViewItem } from '../../types';
-import { cloneObj, updateObject } from 'shared/helpers/objects';
+import { cloneObj, isNotEmpty, updateObject } from 'shared/helpers/objects';
 import {
   getBunchesFromViewItems, getBunchesTimestamps, getBunchesWithoutChanges, getViewitemsFromBunches,
   updateBunches, updateChartsItem
@@ -38,7 +38,7 @@ const initialState: StateSchemaDashboardView = {
   isUnsaved             : false, // Наличие не сохраненных изменений (в тч customSettings in Company)
 
   newStoredViewItem     : undefined, // Начальные значения выбранного элемента
-  prevStoredViewItem    : undefined, // Начальные значения предыдущего выбранного элемента
+  prevStoredViewItem    : undefined, // Начальные значения предыдущего выбранного элемента || в случае ошибки, сюда сохраняется newStoredViewItem
 
   activatedMovementId   : '',        // Активированный Id перемещаемого элемента
   activatedCopied       : undefined, // Активированный Id копируемого элемента
@@ -165,6 +165,11 @@ export const slice = createSlice({
       if (state.newStoredViewItem && state.newStoredViewItem.id) {
         state.entities[state.selectedId] = { ...state.newStoredViewItem };
       }
+      // Если была ошибка, то прошлое состояние сохранилось в prevStoredViewItem
+      else if (isNotEmpty(state.errors) && isNotEmpty(state.prevStoredViewItem) && state.prevStoredViewItem?.id) {
+        state.entities[state.selectedId] = { ...state.prevStoredViewItem };
+        state.newStoredViewItem = { ...state.prevStoredViewItem };
+      }
       else {
         // Optionally handle missing data, e.g., throw error or log warning
         __devLog('newStoredViewItem is undefined or invalid');
@@ -265,34 +270,6 @@ export const slice = createSlice({
         state.loading = false;
       })
 
-    // GET-VIEW-ITEMS []
-    // builder
-    //   .addCase(getViewItems.pending, (state) => {
-    //     state.loading = true;
-    //     state.errors  = {};
-    //   })
-    //   .addCase(getViewItems.fulfilled, (state, { payload }: PayloadAction<SetDashboardViewItems>) => {
-    //     const { companyId, viewItems, bunchesUpdated } = payload;
-
-    //     // Нужно чтобы возможные данные из LS НЕ перезатёрлись новыми
-    //     state.entities            = updateEntities(state.entities, viewItems);
-    //     state.activatedMovementId = '';
-    //     state.activatedCopied     = undefined;
-    //     state.bright              = false;
-    //     state.isUnsaved           = false;
-    //     state.loading             = false;
-    //     state.errors              = {};
-
-    //     LS.setDashboardViewItems(companyId, mergeById(Object.values(state.entities), viewItems));
-    //     LS.setDashboardViewBunchesUpdated(companyId, {
-    //       ...LS.getDashboardViewBunchesUpdated(companyId),
-    //       ...bunchesUpdated
-    //     });
-    //   })
-    //   .addCase(getViewItems.rejected, (state, { payload }) => {
-    //     state.errors  = getError(payload);
-    //     state.loading = false;
-    //   })
 
     // ADD-GROUP-NEW-ITEMS
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -356,6 +333,7 @@ export const slice = createSlice({
         });
       })
       .addCase(updateViewItems.rejected, (state, { payload }) => {
+        state.prevStoredViewItem = state.newStoredViewItem; // Сохраняем начальное состояние, чтобы сработала кнопка "Отменить"
         state.newStoredViewItem = undefined; // Раз обновление завершилось с ошибкой, то нельзя переключаться на новый элемент
         state.errors  = getError(payload);
         state.loading = false;
@@ -392,6 +370,7 @@ export const slice = createSlice({
       })
       .addCase(deleteViewItem.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
+        state.prevStoredViewItem = state.newStoredViewItem; // Чтобы можно было откатиться (но не проверял)
         state.loading = false;
       })
   }
