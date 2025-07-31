@@ -2,7 +2,7 @@ import { FC, memo, useCallback } from 'react';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import { useDashboardViewActions } from 'entities/dashboard-view';
 import { useCompany } from 'entities/company';
-import { NavbarIcon } from 'shared/ui/navbar';
+import { MenuIcon } from 'shared/ui/menu-icon';
 
 
 
@@ -22,7 +22,7 @@ export const DashboardSetEditBtnContainer: FC = memo(() => {
 
 
   return (
-    <NavbarIcon
+    <MenuIcon
       toolTitle = {`${editMode ? 'Выключить' : 'Включить'} режим редактирования`}
       icon      = {AutoFixHighIcon}
       onClick   = {handleToggle}

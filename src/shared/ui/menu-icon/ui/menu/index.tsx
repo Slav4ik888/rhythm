@@ -1,5 +1,5 @@
 import { FC, ReactNode, memo } from 'react';
-import Menu from '@mui/material/Menu';
+import MuiMenu from '@mui/material/Menu';
 import { CustomTheme } from 'app/providers/theme';
 
 
@@ -12,9 +12,8 @@ type Props = {
 };
 
 
-/** Меню для Navbar  */
-export const NavbarMenu: FC<Props> = memo(({ open, anchorEl, children, onClose }) => (
-  <Menu
+export const Menu: FC<Props> = memo(({ open, anchorEl, children, onClose }) => (
+  <MuiMenu
     keepMounted
     open            = {open}
     anchorEl        = {anchorEl}
@@ -32,5 +31,5 @@ export const NavbarMenu: FC<Props> = memo(({ open, anchorEl, children, onClose }
     {
       children
     }
-  </Menu>
+  </MuiMenu>
 ));

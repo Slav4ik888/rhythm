@@ -1,36 +1,17 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, memo } from 'react';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import { AddUserContainer } from './container';
-import { NavbarIcon } from 'shared/ui/navbar';
+import { MenuIconContainer } from 'shared/ui/menu-icon';
 
 
 
 /**
  * Добавление пользователя в дашборд
  */
-export const AddUserRoot: FC = () => {
-  const [anchorPro, setAnchorPro] = useState<HTMLElement | null>(null);
-
-  const handleAddUserOpen = useCallback((event: { currentTarget: HTMLElement }) => {
-    setAnchorPro(event.currentTarget);
-  }, []);
-
-  const handleAddUserClose = () => setAnchorPro(null);
-
-
-  return (
-    <>
-      <NavbarIcon
-        toolTitle = 'Добавить пользователя'
-        icon      = {PersonAddAlt1Icon}
-        onClick   = {handleAddUserOpen}
-      />
-
-      <AddUserContainer
-        open          = {Boolean(anchorPro)}
-        anchorEl      = {anchorPro}
-        onClose       = {handleAddUserClose}
-      />
-    </>
-  );
-};
+export const AddUserRoot: FC = memo(() => (
+    <MenuIconContainer
+      toolTitle = 'Добавить пользователя'
+      icon      = {PersonAddAlt1Icon}
+      popover   = {AddUserContainer}
+    />
+));

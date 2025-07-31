@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, useCallback, memo } from 'react';
 import KeyboardReturn from '@mui/icons-material/KeyboardReturn';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
@@ -7,19 +7,16 @@ import { RoutePath } from 'app/providers/routes';
 import { useNavigate } from 'react-router-dom';
 import { MDDivider } from 'shared/ui/mui-design-components';
 import { MenuItem } from 'shared/ui/items/menu-item';
-import { NavbarMenu } from 'shared/ui/navbar';
 
 
 
-type Props = {
-  open     : boolean
-  anchorEl : HTMLElement | null
-  onClose  : () => void
-};
+interface Props {
+  onClose: () => void
+}
 
 
 // Меню с профилями для Navbar
-export const ProfilesMenu: FC<Props> = ({ open, anchorEl, onClose }) => {
+export const ProfilesMenu: FC<Props> = memo(({ onClose }) => {
   const { serviceLogout } = useUser();
   const navigate = useNavigate();
 
@@ -32,7 +29,7 @@ export const ProfilesMenu: FC<Props> = ({ open, anchorEl, onClose }) => {
 
 
   return (
-    <NavbarMenu open={open} anchorEl={anchorEl} onClose={onClose}>
+    <>
       <MenuItem
         label   = 'Ваш профиль'
         route   = {RoutePath.USER_PROFILE}
@@ -53,6 +50,6 @@ export const ProfilesMenu: FC<Props> = ({ open, anchorEl, onClose }) => {
         icon    = {<KeyboardReturn fontSize='small' />}
         onClick = {handleUserLogout}
       />
-    </NavbarMenu>
+    </>
   )
-};
+});

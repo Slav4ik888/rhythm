@@ -60,10 +60,7 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
               : pxToRem(sidebarWidth + 16)
             : 0,
 
-        px: 2,
-        pt: isNavbar
-          ? 'calc(1rem + 2px)'
-          : '',
+        p: 0,
 
         [breakpoints.down('sm')]: {
           marginLeft: ! isDashboardPage
@@ -72,6 +69,12 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
               ? sidebarMini ? 0 : pxToRem(sidebarWidth)
               : 0,
         },
+        [breakpoints.up('sm')]: {
+          px: 2,
+          pt: isNavbar
+            ? 'calc(1rem + 2px)'
+            : '',
+          },
         [breakpoints.up('xl')]: {
           transition: transitions.create(['margin-left', 'margin-right'], {
             easing: transitions.easing.easeInOut,

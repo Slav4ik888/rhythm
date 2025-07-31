@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
 import MenuItem from '@mui/material/MenuItem';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-import { NavbarMenu } from 'shared/ui/navbar';
 
 
 
@@ -20,19 +19,15 @@ const useStyles = (theme: CustomTheme) => ({
 
 
 type Props = {
-  open     : boolean
-  anchorEl : HTMLElement | null
   onClose  : () => void
 }
 
 /** Кнопка Navbar для входа в авторизацию */
-export const MobileAuthBtn: FC<Props> = memo(({ open, anchorEl, onClose }) => {
+export const MobileAuthBtn: FC<Props> = memo(({ onClose }) => {
   const sx = useStyles(useTheme());
 
-  if (! open) return null;
-
   return (
-    <NavbarMenu open={open} anchorEl={anchorEl} onClose={onClose}>
+    <>
       <MenuItem sx={sx.item} onClick={onClose}>
         <Link to={RoutePath.SIGNUP}>
           Регистрация
@@ -44,6 +39,6 @@ export const MobileAuthBtn: FC<Props> = memo(({ open, anchorEl, onClose }) => {
           Войти
         </Link>
       </MenuItem>
-    </NavbarMenu>
+    </>
   );
 });

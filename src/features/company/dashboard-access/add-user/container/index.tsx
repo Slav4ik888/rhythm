@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import { Errors, isNotEmail } from 'shared/lib/validators';
 import { UsersWithAccessContainer } from './users-with-acces';
 import { SelectedEmailContainer } from './selected-email';
-import Popover from '@mui/material/Popover';
 import { Actions } from './actions';
 import { Title } from './title';
 import { MDDivider } from 'shared/ui/mui-design-components';
@@ -16,12 +15,11 @@ import { CopyLinkBtn } from './copy-link-btn';
 
 interface Props {
   open     : boolean
-  anchorEl : HTMLElement | null
-  onClose  : () => void
+  onClose? : () => void
 }
 
 
-export const AddUserContainer: FC<Props> = memo(({ open, anchorEl, onClose }) => {
+export const AddUserContainer: FC<Props> = memo(({ open }) => {
   const { paramsCompany, usersAccessDashboard, setErrors: setErrorsCompany } = useCompany();
   const selectedEmailRef = useRef<HTMLInputElement | null>(null);
   const [errors, setErrors] = useState<Errors | undefined>(undefined);
@@ -64,38 +62,30 @@ export const AddUserContainer: FC<Props> = memo(({ open, anchorEl, onClose }) =>
 
 
   return (
-    <Popover
-      open            = {open}
-      anchorEl        = {anchorEl}
-      anchorOrigin    = {{ vertical: 'bottom', horizontal: 'left' }}
-      transformOrigin = {{ vertical: 'top',    horizontal: 'right' }}
-      onClose         = {onClose}
-    >
-      <Box sx={{ ...f('c'), gap: 2, width: pxToRem(400), m:2, mx: 4 }}>
-        <Title label='Настройка доступа' variant='h6' />
-        <MDDivider />
-        <SelectedEmailContainer
-          // @ts-ignore
-          ref                 = {selectedEmailRef}
-          errors              = {errors}
-          selectedAccessLevel = {selectedAccessLevel}
-          selectedEmail       = {selectedEmail}
-          existingEmail       = {existingEmail}
-          onSetAccessLevel    = {setAccessLevel}
-          onChange            = {handleChange}
-        />
-        <Actions
-          selectedEmail       = {selectedEmail}
-          existingEmail       = {existingEmail}
-          selectedAccessLevel = {selectedAccessLevel}
-          // @ts-ignore
-          ref                 = {selectedEmailRef}
-          setSelectedEmail    = {setSelectedEmail}
-        />
-        <UsersWithAccessContainer onEmailClick={handleEmailClick} />
-        <PublicAccess />
-        <CopyLinkBtn />
-      </Box>
-    </Popover>
+    <Box sx={{ ...f('c'), gap: 2, width: pxToRem(400), m:2, mx: 4 }}>
+      <Title label='Настройка доступа' variant='h6' />
+      <MDDivider />
+      <SelectedEmailContainer
+        // @ts-ignore
+        ref                 = {selectedEmailRef}
+        errors              = {errors}
+        selectedAccessLevel = {selectedAccessLevel}
+        selectedEmail       = {selectedEmail}
+        existingEmail       = {existingEmail}
+        onSetAccessLevel    = {setAccessLevel}
+        onChange            = {handleChange}
+      />
+      <Actions
+        selectedEmail       = {selectedEmail}
+        existingEmail       = {existingEmail}
+        selectedAccessLevel = {selectedAccessLevel}
+        // @ts-ignore
+        ref                 = {selectedEmailRef}
+        setSelectedEmail    = {setSelectedEmail}
+      />
+      <UsersWithAccessContainer onEmailClick={handleEmailClick} />
+      <PublicAccess />
+      <CopyLinkBtn />
+    </Box>
   )
 });

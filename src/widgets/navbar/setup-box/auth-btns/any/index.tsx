@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { MDBox, MDButton } from 'shared/ui/mui-design-components';
-import { NavbarIcon } from 'shared/ui/navbar';
 import { OpenUIConfiguratorBtn } from 'features/ui';
+import { MenuIcon } from 'shared/ui/menu-icon';
 
 
 
@@ -22,7 +22,7 @@ export const AnyAuthBtns: FC = memo(() => (
     </Link>
 
     <Link to={RoutePath.LOGIN}>
-      <NavbarIcon toolTitle='Войти' icon={AccountCircle} />
+      <MenuIcon toolTitle='Войти' icon={AccountCircle} />
     </Link>
 
     <OpenUIConfiguratorBtn />

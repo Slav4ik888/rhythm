@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import IconButton from '@mui/material/IconButton';
-import { Tooltip } from '../../tooltip';
+import { Tooltip } from '../../../tooltip';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { SvgIconTypeMap } from '@mui/material/SvgIcon';
 import { sxNavbarIconButton, sxNavbarIconsStyle } from 'shared/lib/styles/navbar';
@@ -8,7 +8,7 @@ import { CustomTheme } from 'app/providers/theme';
 
 
 
-export interface SxNavbarIcon {
+export interface SxMenuIcon {
   button? : any
   icon?   : any
 }
@@ -18,13 +18,13 @@ interface Props {
   toolTitle?     : string
   disableRipple? : boolean
   disabled?      : boolean
-  sx?            : SxNavbarIcon
+  sx?            : SxMenuIcon
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   icon           : OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string }
   onClick?       : (event: any) => void
 }
 
-export const NavbarIcon: FC<Props> = memo(({ sx, icon: Icon, disabled, toolTitle = '', disableRipple, onClick }) => (
+export const MenuIcon: FC<Props> = memo(({ sx, icon: Icon, disabled, toolTitle = '', disableRipple, onClick }) => (
   <Tooltip title={toolTitle}>
     <IconButton
       disableRipple = {disableRipple}

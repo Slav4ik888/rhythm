@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { setIsOpenConfigurator, useUIConfiguratorController } from 'app/providers/theme';
-import { NavbarIcon } from 'shared/ui/navbar';
+import { MenuIcon } from 'shared/ui/menu-icon';
 
 
 
@@ -11,7 +11,7 @@ export const OpenUIConfiguratorBtn: FC = memo(() => {
   const handleOpenConfigurator = () => setIsOpenConfigurator(dispatch, true);
 
   return (
-    <NavbarIcon
+    <MenuIcon
       toolTitle = 'Настройки интерфейса'
       icon      = {SettingsIcon}
       onClick   = {handleOpenConfigurator}
