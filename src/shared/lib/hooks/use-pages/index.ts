@@ -6,13 +6,13 @@ import { isDashboardPage as isDashboardPageFunc } from './utils';
 
 
 export const usePages = () => {
-  const location        = useLocation();
-  const isDashboardPage = isDashboardPageFunc(location);
-  const isLoginPage     = location.pathname === RoutePath.LOGIN;
-  const isSignupPage    = location.pathname === RoutePath.SIGNUP;
+  const { pathname }    = useLocation();
+  const isDashboardPage = isDashboardPageFunc(pathname);
+  const isLoginPage     = pathname === RoutePath.LOGIN;
+  const isSignupPage    = pathname === RoutePath.SIGNUP;
 
   const dashboardSheetId = isDashboardPage
-    ? location.pathname.split('/')[3] || NO_SHEET_ID // 'main' // '/{companyId}/dashboard/{pageId}'
+    ? pathname.split('/')[3] || NO_SHEET_ID // 'main' // '/{companyId}/dashboard/{pageId}'
     : undefined;
 
   const isDashboardSheetMain = dashboardSheetId === NO_SHEET_ID; // 'main';

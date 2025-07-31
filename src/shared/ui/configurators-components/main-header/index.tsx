@@ -10,7 +10,7 @@ import { f, getTypography } from '../../../styles';
 
 
 const useStyles = (theme: CustomTheme, view?: boolean) => {
-  const {  configurator } = theme.palette;
+  const { breakpoints, palette: { configurator } } = theme;
   const { size } = getTypography(theme);
 
   return {
@@ -24,17 +24,25 @@ const useStyles = (theme: CustomTheme, view?: boolean) => {
     },
     titleBox: {
       ...f('c'),
-      alignItems  : view ? 'center' : 'left',
-      width       : '100%',
+      alignItems : view ? 'center' : 'left',
+      width      : '100%',
     },
     title: {
-      fontSize    : size['2xl'], // `${size.lg} !important`,
-      color       : configurator.title.headerColor,
-      mb          : 1
+      fontSize : size.xl, // `${size.lg} !important`,
+      color    : configurator.title.headerColor,
+      mb       : 1,
+
+      [breakpoints.up('sm')]: {
+        fontSize: size['2xl'], // `${size.lg} !important`,
+      },
     },
     subtitle: {
-      fontSize    : size.md,
-      color       : configurator.title.headerSubtitle,
+      fontSize : size.sm,
+      color    : configurator.title.headerSubtitle,
+
+      [breakpoints.up('sm')]: {
+        fontSize: size.md,
+      },
     },
     icon: {
       fontSize    : `${size.lg} !important`,

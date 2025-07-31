@@ -6,25 +6,29 @@ import { sxNavbarRow } from '../../styles';
 import { DashboardSetEditBtn } from 'features/dashboard-view';
 import { useAccess } from 'entities/company';
 import { usePages } from 'shared/lib/hooks';
+import { useUI } from 'entities/ui';
 
 
 
 interface Props {
-  light?  : boolean
-  isMini? : boolean
+  light?: boolean
 }
 
 /** Кнопки Navbar меню после авторизации */
-export const MenuBtns: FC<Props> = ({ light, isMini = false }) => {
+export const MenuBtns: FC<Props> = ({ light }) => {
+  const { isMobile } = useUI();
   const { isDashboardPage } = usePages();
   const { isDashboardAccessEdit } = useAccess();
 
 
   return (
-    <MDBox sx={(theme: CustomTheme) => sxNavbarRow(theme, isMini)}>
+    <MDBox sx={(theme: CustomTheme) => sxNavbarRow(theme)}>
       <MDBox display='flex' alignItems='center' color={light ? 'white' : 'inherit'}>
         {
-          isDashboardPage && isDashboardAccessEdit && (
+          isDashboardPage
+          && isDashboardAccessEdit
+          && ! isMobile
+          && (
             <>
               <DashboardSetEditBtn />
               <AddUserRoot />

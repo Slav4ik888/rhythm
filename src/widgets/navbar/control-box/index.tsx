@@ -7,17 +7,12 @@ import { CustomTheme } from 'app/providers/theme';
 
 
 
-interface Props {
-  isMini: boolean
-}
-
-
 /** For Dashboard page */
-export const NavbarControlBox: FC<Props> = memo(({ isMini = false }) => (
+export const NavbarControlBox: FC = memo(() => (
   <MDBox
     color = 'inherit'
     mb    = {{ xs: 1, md: 0 }}
-    sx    = {(theme: CustomTheme) => sxNavbarRow(theme, isMini)}
+    sx    = {(theme: CustomTheme) => sxNavbarRow(theme)}
   >
     <MiniSidebarToggleBtn />
     <DashboardDatebar />

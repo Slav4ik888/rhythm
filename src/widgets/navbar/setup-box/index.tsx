@@ -5,18 +5,9 @@ import { AuthBtns } from './auth-btns';
 
 
 
-interface Props {
-  isMini?: boolean
-}
-
-
 /** Кнопки Navbar авторизация и профилей */
-export const NavbarSetupBox: FC<Props> = memo(({ isMini = false }) => {
+export const NavbarSetupBox: FC = memo(() => {
   const { auth } = useUser();
-
-  // Не понимаю что это
-  // TODO: remove to useUIConfiguratorController
-  if (isMini) return null
 
   return (
     <>

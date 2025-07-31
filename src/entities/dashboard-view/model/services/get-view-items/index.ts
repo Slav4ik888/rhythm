@@ -61,7 +61,7 @@ export const getViewItems = createAsyncThunk<
       return { companyId, viewItems, bunchesUpdated };
     }
     catch (e) {
-      errorHandlers(e as CustomAxiosError, dispatch, pathname);
+      errorHandlers(e as CustomAxiosError, dispatch, { pathname });
       return rejectWithValue((e as CustomAxiosError).response.data || {
         general: 'Error in entities/dashboardView/getViewItems'
       });

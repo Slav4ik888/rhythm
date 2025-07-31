@@ -29,11 +29,10 @@ import { usePages } from 'shared/lib/hooks';
 interface Props {
   absolute? : boolean
   light?    : boolean
-  isMini?   : boolean
 }
 
 
-export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini = false }) => {
+export const Navbar: FC<Props> = memo(({ absolute = false, light = false }) => {
   const [navbarType, setNavbarType] = useState<'sticky' | 'static'>();
   const [configuratorState, dispatch] = useUIConfiguratorController();
   const { navbarTransparent, navbarFixed, mode } = configuratorState;
@@ -80,10 +79,10 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false, isMini
         <Toolbar sx={(theme) => sxNavbarContainer(theme as CustomTheme)}>
           {
             isDashboardPage
-              ? <NavbarControlBox isMini={isMini} />
-              : <NavbarLinksBox isMini={isMini} />
+              ? <NavbarControlBox />
+              : <NavbarLinksBox />
           }
-          <NavbarSetupBox isMini={isMini} />
+          <NavbarSetupBox />
         </Toolbar>
       </AppBar>
     </SidebarRegulatorWrapper>

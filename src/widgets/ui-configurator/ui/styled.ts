@@ -23,19 +23,34 @@ import { getBoxShadows, linearGradient, pxToRem } from 'shared/styles';
 
 // @ts-ignore
 export default styled(Drawer)(({ theme, ownerState }) => {
-  const { transitions, borders: { borderRadius }, palette: { configurator } } = theme as CustomTheme;
+  const { transitions, breakpoints, borders: { borderRadius }, palette: { configurator } } = theme as CustomTheme;
   const { isOpenConfigurator } = ownerState;
 
   const configuratorWidth = 400;
 
   // drawer styles when openConfigurator={true}
   const drawerOpenStyles = () => ({
-    width : configuratorWidth,
-    right : 0,
+    width        : '100%',
+    height       : '100%',
+    maxWidth     : configuratorWidth,
+    right        : 0,
+    margin       : 0,
+    padding      : pxToRem(12),
+    paddingLeft  : pxToRem(24),
+    borderRadius : 0,
     transition: transitions.create('right', {
       easing   : transitions.easing.sharp,
       duration : transitions.duration.short,
     }),
+
+    [breakpoints.up('sm')]: {
+      width        : configuratorWidth,
+      height       : 'calc(100% - 2rem)', // 'max-content', // '100vh',
+      margin       : '1rem',
+      padding      : pxToRem(24),
+      paddingLeft  : pxToRem(32),
+      borderRadius : borderRadius.xl,
+    },
   });
 
   // drawer styles when openConfigurator={false}
@@ -50,15 +65,11 @@ export default styled(Drawer)(({ theme, ownerState }) => {
 
   return {
     '& .MuiDrawer-paper': {
-      height       : '100%', // 'max-content', // '100vh',
       left         : 'initial',
       background   : linearGradient(configurator.gradients.main, configurator.gradients.state),
-      margin       : '1rem 1rem 1rem 0 !important',
-      padding      : pxToRem(24),
-      paddingLeft  : pxToRem(32),
-      borderRadius : borderRadius.xl,
       boxShadow    : getBoxShadows(theme as CustomTheme).lg,
       overflowY    : 'auto',
+
       ...(isOpenConfigurator ? drawerOpenStyles() : drawerCloseStyles()),
     },
   };

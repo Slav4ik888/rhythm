@@ -94,7 +94,8 @@ export function sxNavbar(theme: CustomTheme, ownerState: OwnerState) {
 
 export const sxNavbarContainer = ({ breakpoints }: CustomTheme) => ({
   ...f('-c-sb'),
-  p: 0.5,
+  py: 0.5,
+  px: 1,
 
   [breakpoints.up('md')]: {
     paddingTop    : '0',
@@ -103,17 +104,11 @@ export const sxNavbarContainer = ({ breakpoints }: CustomTheme) => ({
 });
 
 
-export const sxNavbarRow = ({ breakpoints }: CustomTheme, isMini: boolean) => ({
-  ...f('-c-sb'),
-  width: '100%',
+export const sxNavbarRow = ({ breakpoints }: CustomTheme) => ({
+  ...f('c-c-fs'),
+  width: 'max-content',
 
-  [breakpoints.up('md')]: {
-    justifyContent : isMini ? 'space-between' : 'stretch',
-    width          : isMini ? '100%'          : 'max-content',
-  },
-
-  [breakpoints.up('xl')]: {
-    justifyContent : 'stretch !important',
-    width          : 'max-content !important',
+  [breakpoints.up('sm')]: {
+    ...f('r-c-sb'),
   },
 });

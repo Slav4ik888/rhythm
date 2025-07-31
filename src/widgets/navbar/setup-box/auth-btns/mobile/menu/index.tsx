@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
 import MenuItem from '@mui/material/MenuItem';
 import { CustomTheme, useTheme } from 'app/providers/theme';
+import { f } from 'shared/styles';
 
 
 
 const useStyles = (theme: CustomTheme) => ({
   item: {
-    display: 'flex',
-    justifyContent: 'center',
-    mx: 2,
-    py: 1,
-    px: 3,
-    color: theme.palette.primary.contrastText
+    ...f('-c-c'),
+    mx    : 2,
+    py    : 1,
+    px    : 3,
+    color : theme.palette.text.dark
   }
 });
 
@@ -28,17 +28,17 @@ export const MobileAuthBtn: FC<Props> = memo(({ onClose }) => {
 
   return (
     <>
-      <MenuItem sx={sx.item} onClick={onClose}>
-        <Link to={RoutePath.SIGNUP}>
+      <Link to={RoutePath.SIGNUP} onClick={onClose}>
+        <MenuItem sx={sx.item}>
           Регистрация
-        </Link>
-      </MenuItem>
+        </MenuItem>
+      </Link>
 
-      <MenuItem sx={sx.item} onClick={onClose}>
-        <Link to={RoutePath.LOGIN}>
+      <Link to={RoutePath.LOGIN} onClick={onClose}>
+        <MenuItem sx={sx.item}>
           Войти
-        </Link>
-      </MenuItem>
+        </MenuItem>
+      </Link>
     </>
   );
 });

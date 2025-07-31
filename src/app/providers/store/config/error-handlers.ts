@@ -5,6 +5,8 @@ import { Errors } from 'shared/lib/validators';
 import { actionsUser } from 'entities/user';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { LS } from 'shared/lib/local-storage';
+import { isDashboardPage } from 'shared/lib/hooks/use-pages/utils';
+import { Location } from 'react-router-dom';
 
 
 
@@ -20,19 +22,24 @@ export interface CustomAxiosError {
   }
 }
 
-export const errorHandlers = (
-  e         : CustomAxiosError,
-  dispatch  : ThunkDispatch<StateSchema, ThunkExtraArg, AnyAction>,
+
+interface ErrorHandlersConfig {
   pathname? : string
+}
+
+export const errorHandlers = (
+  e        : CustomAxiosError,
+  dispatch : ThunkDispatch<StateSchema, ThunkExtraArg, AnyAction>,
+  cfg      : ErrorHandlersConfig = {}
 ) => {
   __devLog('e: ', e);
   __devLog('response: ', e.response);
   __devLog('status: ', e.response?.status);
   __devLog('stack: ', e.stack);
 
-  const
-    errors = e.response?.data || {},
-    status = e.response?.status;
+  const errors = e.response?.data || {};
+  const status = e.response?.status;
+  const { pathname } = cfg;
 
   __devLog('pathname: ', pathname);
 
@@ -58,7 +65,7 @@ export const errorHandlers = (
   // Не редиректим на loginPage, тк пользователь может посетить страницу без авторизации
   else if (status === 401) {
     dispatch(actionsUser.setAuth(false));
-    dispatch(actionsUI.setWarningMessage('Необходимо авторизоваться'));
+    if (isDashboardPage(pathname)) dispatch(actionsUI.setWarningMessage('Необходимо авторизоваться'));
     return dispatch(actionsUI.setErrorStatus({ status: 401, pathname }));
   }
   else if (status === 403) return dispatch(actionsUI.setErrorStatus({ status: 403, pathname }));

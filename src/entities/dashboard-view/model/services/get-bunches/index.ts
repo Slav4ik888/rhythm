@@ -61,7 +61,7 @@ export const getBunches = createAsyncThunk<
       return { companyId, bunches, bunchesUpdated };
     }
     catch (e) {
-      errorHandlers(e as CustomAxiosError, dispatch, pathname);
+      errorHandlers(e as CustomAxiosError, dispatch, { pathname });
       return rejectWithValue((e as CustomAxiosError).response.data || {
         general: 'Error in entities/dashboardView/getBunches'
       });

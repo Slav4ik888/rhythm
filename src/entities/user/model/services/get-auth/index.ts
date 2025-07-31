@@ -61,7 +61,7 @@ export const getAuth = createAsyncThunk<
       return { companyId, user };
     }
     catch (e) {
-      errorHandlers(e as CustomAxiosError, dispatch, pathname);
+      errorHandlers(e as CustomAxiosError, dispatch, { pathname });
       return rejectWithValue((e as CustomAxiosError).response.data || {
         general: 'Error in entities/user/getAuth'
       });
