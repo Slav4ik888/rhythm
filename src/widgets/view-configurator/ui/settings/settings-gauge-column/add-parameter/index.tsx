@@ -3,9 +3,9 @@ import { ViewItem } from 'entities/dashboard-view';
 import { InputByScheme } from '../../../base-features-components';
 import { f, pxToRem } from 'shared/styles';
 import Box from '@mui/material/Box';
-import { MDDivider } from 'shared/ui/mui-design-components';
 import Typography from '@mui/material/Typography';
 import { CustomTheme } from 'app/providers/theme';
+import { Divider } from 'shared/ui/mui-components';
 
 
 
@@ -15,7 +15,7 @@ interface Props {
 
 export const GaugeColumnAddParameter: FC<Props> = memo(({ selectedItem }) => (
   <>
-    <MDDivider />
+    <Divider />
     <Box sx={{ ...f('-c-fe'), gap: 1 }}>
       <Typography
         sx={(theme) => ({

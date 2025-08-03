@@ -1,3 +1,2 @@
-import TextFieldItem from './textfield'
-
-export { TextFieldItem }
+export { TextFieldItem } from './textfield'
+export { Divider } from './divider'

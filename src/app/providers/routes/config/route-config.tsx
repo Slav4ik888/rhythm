@@ -1,7 +1,8 @@
 import { CompanyProfilePage } from 'pages/company-profile';
 import { DashboardPage } from 'pages/dashboard';
+import DemoPage from 'pages/demo/ui';
 import { LoginPage } from 'pages/login';
-import { NotAccessPage } from 'pages/not-access';
+// import { NotAccessPage } from 'pages/not-access';
 import { NotFoundPage } from 'pages/not-found';
 import { PolicyPage } from 'pages/policy';
 import { SignupPage } from 'pages/signup';
@@ -19,6 +20,11 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
   [AppRoutes.ROOT]: {
     path    : RoutePath.ROOT,
     element : <></>
+  },
+  // Demo
+  [AppRoutes.DEMO]: {
+    path    : RoutePath.DEMO,
+    element : <DemoPage />
   },
 
   // Auth

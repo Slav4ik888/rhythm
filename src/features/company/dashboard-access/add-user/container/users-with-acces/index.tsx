@@ -9,7 +9,7 @@ import { Tooltip } from 'shared/ui/tooltip';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
 import { DeleteMemberIconContainer } from '../../../delete-member-icon-container';
-import { MDDivider } from 'shared/ui/mui-design-components';
+// import { Divider } from 'shared/ui/mui-components';
 
 
 
@@ -31,7 +31,7 @@ export const UsersWithAccessContainer: FC<Props> = memo(({ onEmailClick }) => {
   return (
     <Box sx={{ ...f('c'), gap: 2, width: '100%', minHeight: pxToRem(70) }}>
       <Title label='Пользователи, имеющие доступ' variant='body1' />
-      <MDDivider />
+      <Divider />
       <Box
         sx={(theme) => ({
           ...f('c'),

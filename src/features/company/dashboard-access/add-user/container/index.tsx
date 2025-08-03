@@ -7,9 +7,9 @@ import { UsersWithAccessContainer } from './users-with-acces';
 import { SelectedEmailContainer } from './selected-email';
 import { Actions } from './actions';
 import { Title } from './title';
-import { MDDivider } from 'shared/ui/mui-design-components';
 import { PublicAccess } from './public-access';
 import { CopyLinkBtn } from './copy-link-btn';
+import { Divider } from 'shared/ui/mui-components';
 
 
 
@@ -64,7 +64,7 @@ export const AddUserContainer: FC<Props> = memo(({ open }) => {
   return (
     <Box sx={{ ...f('c'), gap: 2, width: pxToRem(400), m:2, mx: 4 }}>
       <Title label='Настройка доступа' variant='h6' />
-      <MDDivider />
+      <Divider />
       <SelectedEmailContainer
         // @ts-ignore
         ref                 = {selectedEmailRef}

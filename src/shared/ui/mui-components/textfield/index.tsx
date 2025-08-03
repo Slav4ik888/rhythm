@@ -29,7 +29,7 @@ interface Props {
 type TextFieldItemProps = Omit<Props, 'ref'>;
 
 
-const TextFieldItem = forwardRef<null, TextFieldItemProps>((props, ref) => {
+export const TextFieldItem = forwardRef<null, TextFieldItemProps>((props, ref) => {
   const {
     disabled,
     scheme,
@@ -85,5 +85,3 @@ const TextFieldItem = forwardRef<null, TextFieldItemProps>((props, ref) => {
     />
   )
 });
-
-export default TextFieldItem;

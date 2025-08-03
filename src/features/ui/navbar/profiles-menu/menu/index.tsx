@@ -5,8 +5,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import { useUser } from 'entities/user';
 import { RoutePath } from 'app/providers/routes';
 import { useNavigate } from 'react-router-dom';
-import { MDDivider } from 'shared/ui/mui-design-components';
 import { MenuItem } from 'shared/ui/items/menu-item';
+import { Divider } from 'shared/ui/mui-components';
 
 
 
@@ -43,7 +43,7 @@ export const ProfilesMenu: FC<Props> = memo(({ onClose }) => {
         onClick = {onClose}
       />
 
-      <MDDivider />
+      <Divider />
 
       <MenuItem
         label   = 'Выйти'

@@ -31,4 +31,5 @@ root.render(
 );
 
 
-// git add . && git commit -m "refacted Navbar for mobile" && git push -u origin main
+
+// git add . && git commit -m "added DemoPage" && git push -u origin main

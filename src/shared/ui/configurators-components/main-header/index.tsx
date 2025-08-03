@@ -1,11 +1,11 @@
 import { FC, memo } from 'react';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import CloseIcon from '@mui/icons-material/Close';
-import { MDDivider } from '../../mui-design-components';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import { f, getTypography } from '../../../styles';
+import { Divider } from '../../mui-components';
 
 
 
@@ -89,7 +89,7 @@ export const ConfiguratorMainHeader: FC<Props> = memo(({ ui, view, onClose }) =>
         </IconButton>
       </Box>
 
-      <MDDivider />
+      <Divider />
     </Box>
   )
 });

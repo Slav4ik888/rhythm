@@ -7,6 +7,7 @@ import { LayoutInnerPageType } from '..';
 
 
 const title: Record<LayoutInnerPageType, string> = {
+  'demo'            : 'Демо-страницы',
   'login'           : 'Войти',
   'signup'          : 'Регистрация',
   'user-profile'    : 'Профиль пользователя',
@@ -29,8 +30,5 @@ export const PageHeaderTitle: FC<Props> = memo(({ type }) => (
     <Typography component='h1' variant='h5' color='text.dark' textAlign='center' mb={2}>
       {title[type]}
     </Typography>
-    {/* <Typography variant='h1' color='text.dark' textAlign='center' textTransform='none' mb={2}>
-      {title[type]}
-    </Typography> */}
   </>
 ));

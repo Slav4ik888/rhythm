@@ -1,9 +1,9 @@
 import { FC, memo } from 'react';
-import { MDDivider } from 'shared/ui/mui-design-components';
+import { Divider } from 'shared/ui/mui-components';
 
 
 
 /** Item divider */
 export const ItemDivider: FC = memo(() => (
-  <MDDivider />
+  <Divider />
 ));

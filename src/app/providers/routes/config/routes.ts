@@ -1,6 +1,8 @@
 
 export enum AppRoutes {
   ROOT            = 'ROOT',
+  // DEMO
+  DEMO            = 'DEMO',
   // Auth
   SIGNUP          = 'SIGNUP',
   LOGIN           = 'LOGIN',
@@ -20,6 +22,8 @@ export enum AppRoutes {
 
 export const RouteName: Record<string, string> = {
   [AppRoutes.ROOT]            : '',
+  // Demo
+  [AppRoutes.DEMO]            : 'demo',
   // Auth
   [AppRoutes.SIGNUP]          : 'signup',
   [AppRoutes.LOGIN]           : 'login',
@@ -38,6 +42,8 @@ export const RouteName: Record<string, string> = {
 
 export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.ROOT]            : '/',
+  // Demo
+  [AppRoutes.DEMO]            : '/demo',
   // Auth
   [AppRoutes.SIGNUP]          : '/signup',
   [AppRoutes.LOGIN]           : '/login',

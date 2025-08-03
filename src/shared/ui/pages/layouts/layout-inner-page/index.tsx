@@ -8,7 +8,13 @@ import { PageHeaderTitle } from './page-header-title';
 
 
 
-export type LayoutInnerPageType = 'signup' | 'login' | 'user-profile' | 'company-profile' | 'policy'
+export type LayoutInnerPageType =
+  | 'demo'
+  | 'signup'
+  | 'login'
+  | 'user-profile'
+  | 'company-profile'
+  | 'policy'
 
 
 interface Props {
@@ -35,20 +41,9 @@ export const LayoutInnerPage: FC<Props> = memo(({ type, containerType = 'sm', ch
         py: { md: 4, xs: 0 },
       }}
     >
-      {/* <Paper
-        sx={{
-          ...f('c-c'),
-          position        : 'relative',
-          backgroundColor : 'background.paper', // theme.palette.background.paper,
-          width           : '100%',
-          pt              : { md: 13, xs: 0 },
-          pb              : { md: 8, xs: 0 },
-        }}
-      > */}
-        {
-          children
-        }
-      {/* </Paper> */}
+      {
+        children
+      }
     </Container>
   </Box>
 ));

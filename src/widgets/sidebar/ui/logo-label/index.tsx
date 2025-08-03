@@ -2,10 +2,11 @@ import { memo } from 'react';
 import { CustomTheme, useUIConfiguratorController } from 'app/providers/theme';
 import { NavLink } from 'react-router-dom';
 import { styles } from './styles';
-import { MDDivider, MDBox } from 'shared/ui/mui-design-components';
+import { MDBox } from 'shared/ui/mui-design-components';
 import { f } from 'shared/styles';
 import Typography from '@mui/material/Typography';
 import brandDark from 'shared/assets/icons/logo_small.png';
+import { Divider } from 'shared/ui/mui-components';
 
 
 
@@ -43,7 +44,7 @@ export const SidebarLogoLabel = memo(() => {
         </MDBox>
       </MDBox>
 
-      <MDDivider />
+      <Divider />
     </>
   )
 });
