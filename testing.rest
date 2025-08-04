@@ -21,7 +21,7 @@ POST http://localhost:7575/api/devCreateDemoCompany HTTP/1.1
 Content-Type: application/json
 
 {
-  "id"               : "demoPecarColor_JlY5D",
+  "id"               : "demoPecarLight_sP4kL",
   "companyName"      : "",
   "ownerId"          : "pT5sk0UDkzgVGXtCRLjk72h4jwV2",
   "owner"            : "korzan.va@mail.ru",
@@ -40,10 +40,10 @@ Content-Type: application/json
   "sheets"           : {},
   "createdAt"        : {
     "userId" : "pT5sk0UDkzgVGXtCRLjk72h4jwV2",
-    "date"   : "1752493878374"
+    "date"   : "1754308380396"
   },
   "lastChange"       : {
     "userId" : "pT5sk0UDkzgVGXtCRLjk72h4jwV2",
-    "date"   : "1752493878374"
+    "date"   : "1754308380396"
   }
 }

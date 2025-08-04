@@ -27,6 +27,7 @@ export const useTemplateActions = () => {
       userId
     );
 
+    // TODO: Проверку кол-ва viewItems в bunch в template а не по templates как сейчас
     // Adding bunchId to copied items
     const availableBunchId  = findAvailableBunchId(templates, MAX_COUNT_BUNCH_TEMPLATES);
     const bunchId           = availableBunchId ? availableBunchId : uuidv4();

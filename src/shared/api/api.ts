@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const api = axios.create({
   baseURL         : '/api',
-  timeout         : 1000 * 30,
+  timeout         : 1000 * 60,  //  Увеличил до минуты чтобы с гугл успевало прогрузиться, иногда задерживается
   withCredentials : true, // Если с куки,
   headers: {
     'X-Client-Version': cfg.VERSION,
