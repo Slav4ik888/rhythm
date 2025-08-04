@@ -1,9 +1,9 @@
 import { FC, memo } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 import { CustomTheme } from 'app/providers/theme';
 import { f, pxToRem } from 'shared/styles';
-import { LayoutInnerPage } from 'shared/ui/pages';
 import { Link } from 'react-router-dom';
 import { DemoPageType } from '../../model/constants';
 import { getImgByIdAndTheme } from '../../model/utils';
@@ -16,21 +16,19 @@ interface Props {
 }
 
 export const DemoPageItem: FC<Props> = memo(({ item, darkMode }) => {
-  console.log('darkMode: ', darkMode);
   const { link, title, caption } = item;
 
   return (
     <Link to={link}>
-      <Box
+      <Paper
         sx={(theme) => ({
           ...f('c'),
           gap             : pxToRem(16),
-          border          : `1px solid ${(theme as CustomTheme).palette.text.light}`,
           borderRadius    : '5px',
           width           : pxToRem(400),
           height          : 'max-content', // pxToRem(300),
           color           : (theme as CustomTheme).palette.text.light,
-          backgroundColor : darkMode ? '#292929' : 'rgba(2c,2c,2c,0.8)',
+          backgroundColor : (theme as CustomTheme).palette.background.demoPage,
           p               : pxToRem(12),
           cursor          : 'pointer',
 
@@ -40,8 +38,7 @@ export const DemoPageItem: FC<Props> = memo(({ item, darkMode }) => {
           }),
 
           '&:hover': {
-            border          : `1px solid ${(theme as CustomTheme).palette.text.dark}`,
-            backgroundColor : darkMode ? '#313131' : 'rgba(2c,2c,2c,1)',
+            backgroundColor : (theme as CustomTheme).palette.background.demoPageHover,
           }
         })}
       >
@@ -77,7 +74,7 @@ export const DemoPageItem: FC<Props> = memo(({ item, darkMode }) => {
         >
           {caption}
         </Typography>
-      </Box>
+      </Paper>
     </Link>
   )
 });

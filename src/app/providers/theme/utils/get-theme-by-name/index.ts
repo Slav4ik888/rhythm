@@ -10,11 +10,12 @@ import { sidebarThemes as sidebarThemesDark } from '../../model/themes/dark-side
 import { borders } from '../../model/themes/base/borders';
 import { breakpoints } from '../../model/themes/base/breakpoints';
 import { Theme } from '@mui/material/styles';
+import { isSystemDarkMode } from '../is-system-dark-mode';
 
 
 export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProviderState): CustomTheme => {
   const { mode, navbarColor, sidebarColor } = controller;
-  const isSystemModeDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isSystemModeDark = isSystemDarkMode();
 
   const theme = {
     ...muiTheme,

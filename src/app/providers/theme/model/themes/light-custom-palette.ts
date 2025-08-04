@@ -7,10 +7,12 @@ export const customPalette = {
   mode: 'light' as PaletteMode,
 
   background: {
-    default    : '#f0f2f5',
-    card       : '#dbe0e8',
-    paper      : '#f0f2f5',
-    paperLight : '#efefef',
+    default       : '#f0f2f5',
+    card          : '#dbe0e8',
+    paper         : '#f0f2f5',
+    paperLight    : '#efefef',
+    demoPage      : '#f6f6f6',
+    demoPageHover : '#f1f2f5',
   },
 
   text: {

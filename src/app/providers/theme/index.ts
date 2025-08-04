@@ -9,4 +9,4 @@ export type {
   Offset, Radius, RadiusName, Shadows, ColorsConfig, Borders, MUIColors
 } from './types'
 export { useTheme } from './model/hooks/use-theme'
-export { isSystemDarkMode } from './utils'
+export { isSystemDarkMode, isDarkMode } from './utils'
