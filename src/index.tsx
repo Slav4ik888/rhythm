@@ -32,4 +32,4 @@ root.render(
 
 
 
-// git add . && git commit -m "refacted time" && git push -u origin main
+// git add . && git commit -m "refacted createViewItem & added updateStyles" && git push -u origin main

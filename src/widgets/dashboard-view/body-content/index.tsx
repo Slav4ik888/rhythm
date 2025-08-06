@@ -6,7 +6,7 @@ import {
   NO_SHEET_ID
  } from 'entities/dashboard-view';
 import { useCompany } from 'entities/company';
-import { getCopyViewItem } from 'features/dashboard-view';
+import { getCopyViewItem, updateStyles } from 'features/dashboard-view';
 import { useUser } from 'entities/user';
 import { isEmpty, isNotEmpty, updateObject } from 'shared/helpers/objects';
 import { PageLoader } from 'widgets/page-loader';
@@ -165,7 +165,7 @@ export const DashboardBodyContent = memo(() => {
       viewItems.push({
         id,
         bunchId : entities[id].bunchId,
-        styles  : { ...selectedItem.styles }
+        styles  : updateStyles(entities[id], selectedItem)
       });
 
       serviceUpdateViewItems({

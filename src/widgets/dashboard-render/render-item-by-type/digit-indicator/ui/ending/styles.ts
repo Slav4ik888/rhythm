@@ -36,6 +36,6 @@ export const getStyles = ({ dirFontSize, fontSize, dirFontWeight, fontWeight, li
     cursor: 'default',
     ...root,
     color,
-    ml: 0.5,
+    ml: 0.3,
   }
 };

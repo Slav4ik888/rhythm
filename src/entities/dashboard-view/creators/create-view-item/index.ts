@@ -24,6 +24,14 @@ const BASE_SX: ViewItemStyles = {
 };
 
 
+const deleteBorder = (viewItem: ViewItem) => {
+  delete viewItem.styles.borderStyle;
+  delete viewItem.styles.borderWidth;
+  delete viewItem.styles.borderColor;
+  delete viewItem.styles.borderRadius;
+};
+
+
 /** v.2025-06-26 */
 export const createViewItem = (
   userId  : string,
@@ -44,7 +52,13 @@ export const createViewItem = (
     lastChange  : cfg.lastChange  || creatorFixDate(userId)
   });
 
-  if (cfg.type === 'text') viewItem.label = 'Введите заголовок'
+  if (cfg.type === 'text') {
+    deleteBorder(viewItem);
+
+    viewItem.label = 'Введите заголовок';
+    viewItem.styles.minHeight = '8';
+    viewItem.styles.p         = 0;
+  }
 
   if (cfg.type === 'box' || cfg.type === 'text') {
     viewItem.styles = {
@@ -56,6 +70,12 @@ export const createViewItem = (
     };
   }
 
+  if (cfg.type === 'divider') {
+    deleteBorder(viewItem);
+    viewItem.styles.minHeight = '8';
+    viewItem.styles.p         = 0;
+  }
+
   if (cfg.type === 'chart') {
     viewItem.settings = {};
     viewItem.settings.charts = [];
@@ -63,14 +83,19 @@ export const createViewItem = (
   }
 
   if (cfg.type === 'growthIcon') {
+    deleteBorder(viewItem);
+
     viewItem.styles = {
       ...viewItem.styles,
       ...f('c-c-c'), // Чтобы треугольник выравнился по центру, а не был прилеплен сверху
-      width: 40,
+      width : 40,
+      p     : 0,
     };
   }
 
   if (cfg.type === 'digitIndicator') {
+    deleteBorder(viewItem);
+
     viewItem.styles = {
       ...viewItem.styles,
       ...f('r-c-c'),

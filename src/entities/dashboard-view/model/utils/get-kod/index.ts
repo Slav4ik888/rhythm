@@ -20,6 +20,8 @@ export const getKod = (
   const isGlobalKod = globalItem?.settings?.isGlobalKod;
   const globalKod = globalItem?.settings?.kod;
 
+
+  // If it is NOT CHART
   if (item.type !== 'chart') {
     if (item?.settings?.fromGlobalKod) {
       // Если Kod должен браться fromGlobalKod, то проверяем есть ли он in parentGlobalItem
@@ -29,18 +31,19 @@ export const getKod = (
     return item?.settings?.kod || '';
   }
 
-    if (chart) { // Если передали
-      if (chart?.fromGlobalKod) {
-        // Если Kod должен браться fromGlobalKod, то проверяем есть ли он in parentGlobalItem
-        if (isGlobalKod && globalKod) return globalKod
-      }
-      return chart.kod || '';
+  // If it is CHART
+  if (chart) { // Если передали
+    if (chart?.fromGlobalKod) {
+      // Если Kod должен браться fromGlobalKod, то проверяем есть ли он in parentGlobalItem
+      if (isGlobalKod && globalKod) return globalKod
     }
+    return chart.kod || '';
+  }
 
-      if (item?.settings?.charts?.some(it => it.fromGlobalKod)) { // У одного из charts - fromGlobalKod
-        // Если Kod должен браться fromGlobalKod, то проверяем есть ли он in parentGlobalItem
-        if (isGlobalKod && globalKod) return globalKod
-      }
-      // Если не передали chart то возвращаем Kod из первого графика
-      return item?.settings?.charts?.[0]?.kod || '';
+  if (item?.settings?.charts?.some(it => it.fromGlobalKod)) { // У одного из charts - fromGlobalKod
+    // Если Kod должен браться fromGlobalKod, то проверяем есть ли он in parentGlobalItem
+    if (isGlobalKod && globalKod) return globalKod
+  }
+  // Если не передали chart то возвращаем Kod из первого графика
+  return item?.settings?.charts?.[0]?.kod || '';
 }
