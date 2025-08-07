@@ -107,7 +107,11 @@ export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
     }
   </Box>);
 
-  if (item.type === 'box' || item.type === 'text' || item.type === 'chart') return component;
+  if (item.type === 'box'
+    || item.type === 'chart'
+    || (item.type === 'text' && !item.settings?.toolTitle) // If no toolTitle, don`t show
+  ) return component;
+
 
   return (
     <ItemWrapperTooltip item={item}>

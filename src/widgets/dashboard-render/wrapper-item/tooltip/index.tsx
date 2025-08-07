@@ -24,7 +24,6 @@ export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
   const { kods } = useDashboardData();
   const kod = useMemo(() => getKod(entitiesView, item), [item, entitiesView]);
 
-
   const toolTitle = useMemo(() => {
     if (item.type === 'box' || item.type === 'text') return ''; // Тк в 'box' это только для настройки isGlobalKod
 
@@ -93,6 +92,7 @@ export const ItemWrapperTooltip: FC<Props> = memo(({ item, children }) => {
   return (
     <TooltipHTML
       title={<>
+        {item.settings?.toolTitle && <Box>{item.settings.toolTitle}</Box>}
         {companyProductPeriod && <Box>{companyProductPeriod}</Box>}
         {toolTitle}
       </>}

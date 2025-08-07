@@ -18,7 +18,7 @@ const sxTabPanel = {
 
 // Типы у которых есть вкладка settings
 const settingTypes: ViewItemType[] = [
-  'box', 'chart', 'chip', 'growthIcon', 'digitIndicator', 'gaugeColumn', 'list'
+  'box', 'text', 'chart', 'chip', 'growthIcon', 'digitIndicator', 'gaugeColumn', 'list'
 ];
 
 

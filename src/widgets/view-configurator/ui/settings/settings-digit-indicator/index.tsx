@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { RowFlagByScheme, RowInputByScheme, RowSelectByField } from '../../base-features-components';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { arrayEndingDiffType, arrayEndingType, ViewItem } from 'entities/dashboard-view';
-import { InvertedData, UnchangedBlack, SelectKodRow } from '../base-components';
+import { InvertedData, UnchangedBlack, SelectKodRow, ToolTitleRow } from '../base-components';
 
 
 
@@ -17,6 +17,7 @@ export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ sel
       <SelectKodRow   selectedItem={selectedItem} />
       <InvertedData   selectedItem={selectedItem} />
       <UnchangedBlack selectedItem={selectedItem} />
+      <ToolTitleRow />
     </SubHeader>
 
     <SubHeader title='Особые настройки'>

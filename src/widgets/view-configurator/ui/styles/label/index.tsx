@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader, ConfiguratorTitle } from 'shared/ui/configurators-components';
 import { ViewItemStylesField, ViewItem } from 'entities/dashboard-view';
-import { LabelRow } from './label-row';
+import { LabelRow } from '../../settings/settings-text/label-row';
 import { SetColor } from './set-color';
 import { FontSizeRow } from './font-size-row';
 import { FontWeightRow } from './font-weight-row';
@@ -20,7 +20,6 @@ interface Props {
 export const CardLabel: FC<Props> = memo(({ selectedItem, onChange }) => (
   <>
     <SubHeader title='Текст'>
-      {selectedItem?.type === 'text' && <LabelRow selectedItem={selectedItem} />}
       <FontSizeRow
         scheme       = 'styles.fontSize'
         selectedItem = {selectedItem}

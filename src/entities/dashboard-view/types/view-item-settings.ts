@@ -10,10 +10,11 @@ export type SettingsDirection = 'horizontal' | 'vertical'
 export type GaugeValueType    = 'integer'    | 'fractional'
 
 
-/** v.2025-07-24 */
+/** v.2025-08-07 */
 export type ViewItemSettings = IndicatorsConfig & {
   // Global settings
   display?              : boolean // Показывать ли элемент
+  toolTitle?            : string  // Пользовательская всплывающая подсказка (описание)
 
   // Kod settings
   kod?                  : string  // Код для одиночного элемента Box | Chip | GrowthItem | Indicator

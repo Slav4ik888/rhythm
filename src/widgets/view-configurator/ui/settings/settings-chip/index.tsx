@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { InvertedData, SelectKodRow } from '../base-components';
+import { InvertedData, SelectKodRow, ToolTitleRow } from '../base-components';
 import { SelectChipType } from './select-chip';
 import { ViewItem } from 'entities/dashboard-view';
 import { SetupChipsColorsByType } from './setup-chips-colors-by-type';
@@ -18,6 +18,7 @@ export const ViewItemChipSettingsConfigurator: FC<Props> = memo(({ selectedItem 
       <InvertedData   selectedItem={selectedItem} />
       <SelectKodRow   selectedItem={selectedItem} />
       <SelectChipType selectedItem={selectedItem} />
+      <ToolTitleRow />
     </SubHeader>
 
     {

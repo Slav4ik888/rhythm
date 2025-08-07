@@ -88,8 +88,10 @@ export const createViewItem = (
     viewItem.styles = {
       ...viewItem.styles,
       ...f('c-c-c'), // Чтобы треугольник выравнился по центру, а не был прилеплен сверху
-      width : 40,
-      p     : 0,
+      width     : 20,
+      minWidth  : 20,
+      minHeight : 20,
+      p         : 0,
     };
   }
 
@@ -116,6 +118,7 @@ export const createViewItem = (
       p             : 0,
     };
   }
+
   if (cfg.type === 'list') {
     viewItem.styles = {
       ...viewItem.styles,
