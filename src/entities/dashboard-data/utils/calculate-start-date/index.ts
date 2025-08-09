@@ -1,6 +1,8 @@
 /* eslint-disable */
-import { DashboardPeriodType } from 'entities/dashboard-data'
+import { PeriodType } from 'entities/dashboard-data'
 import { __devLog } from 'shared/lib/tests/__dev-log';
+
+
 
 interface ResSplitDate {
   year  : number
@@ -41,22 +43,23 @@ const calcStartDate = (
 
 
 /** Рассчитывает стартовую дату */
-export const calculateStartDate = (endDate: number | undefined, type: DashboardPeriodType): number | undefined => {
+export const calculateStartDate = (endDate: number | undefined, type: PeriodType): number | undefined => {
   // На период монтирования будет undefined
   if (! type) return;
 
   switch (type) {
-    case DashboardPeriodType.ONE_WEEK:     return calcStartDate(endDate, 0, 0, -7);
-    case DashboardPeriodType.ONE_MONTH:    return calcStartDate(endDate, 0, -1);
-    case DashboardPeriodType.THREE_MONTHS: return calcStartDate(endDate, 0, -3);
-    case DashboardPeriodType.SIX_MONTHS:   return calcStartDate(endDate, 0, -6);
-    case DashboardPeriodType.NINE_MONTHS:  return calcStartDate(endDate, 0, -9);
-    case DashboardPeriodType.ONE_YEAR:     return calcStartDate(endDate, -1);
-    case DashboardPeriodType.TWO_YEARS:    return calcStartDate(endDate, -2);
-    case DashboardPeriodType.THREE_YEARS:  return calcStartDate(endDate, -3);
-    case DashboardPeriodType.FIVE_YEARS:   return calcStartDate(endDate, -5);
-    case DashboardPeriodType.SEVEN_YEARS:  return calcStartDate(endDate, -7);
-    case DashboardPeriodType.TEN_YEARS:    return calcStartDate(endDate, -10);
+    case PeriodType.ONE_WEEK:     return calcStartDate(endDate, 0, 0, -7);
+    case PeriodType.ONE_MONTH:    return calcStartDate(endDate, 0, -1);
+    case PeriodType.THREE_MONTHS: return calcStartDate(endDate, 0, -3);
+    case PeriodType.SIX_MONTHS:   return calcStartDate(endDate, 0, -6);
+    case PeriodType.NINE_MONTHS:  return calcStartDate(endDate, 0, -9);
+    case PeriodType.ONE_YEAR:     return calcStartDate(endDate, -1);
+    case PeriodType.TWO_YEARS:    return calcStartDate(endDate, -2);
+    case PeriodType.THREE_YEARS:  return calcStartDate(endDate, -3);
+    case PeriodType.FIVE_YEARS:   return calcStartDate(endDate, -5);
+    case PeriodType.SEVEN_YEARS:  return calcStartDate(endDate, -7);
+    case PeriodType.TEN_YEARS:    return calcStartDate(endDate, -10);
+    // TODO: PeriodType.ALL_TIME
 
     default: __devLog('Unknown period type:', type)
   }

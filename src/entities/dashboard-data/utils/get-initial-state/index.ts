@@ -1,5 +1,5 @@
 import { LS } from 'shared/lib/local-storage';
-import { DashboardPeriodType } from '../../constants';
+import { PeriodType } from '../../constants';
 import { StateSchemaDashboardData } from '../../model/slice/state-schema';
 import { DashboardPeriod } from '../../types';
 
@@ -8,7 +8,7 @@ import { DashboardPeriod } from '../../types';
 /** Returns initialState из данных сохранённых в LS by companyId */
 export const getInitialState = (companyId: string): StateSchemaDashboardData => {
   const emptyPeriod: DashboardPeriod = {
-    type  : DashboardPeriodType.NINE_MONTHS,
+    type  : PeriodType.NINE_MONTHS,
     start : undefined,
     end   : Date.now()
   };

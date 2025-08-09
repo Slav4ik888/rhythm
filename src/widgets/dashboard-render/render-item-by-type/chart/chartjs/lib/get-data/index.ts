@@ -19,10 +19,11 @@ export const getData = (
   viewItem       : ViewItem,
   entities       : DashboardViewEntities,
 ): ChartConfig => {
-  // TODO: надо учесть приход 5 графиков и у них 3 тренда
-  //  - order графиков должен быть на 1 меньше его тренда
-
   const { dates, greatestPeriodType } = prepareDatesForGreatestPeriod(allActiveDates, itemsData);
+
+  // TODO: расчёт дат по индивидуальному периоду (если выбран)
+
+
   const formattedDates = dates?.map(date => formatDate(date, 'DD mon YY', SUB.RU_ABBR_DEC));
 
   const config = {
@@ -33,6 +34,9 @@ export const getData = (
         const preparedData        = prepareDataForChart(itemData, datasets, allActiveDates, greatestPeriodType);
         const inverted            = getChartInverted(viewItem, idx, entities);
         const checkedInvertedData = checkInvertData(inverted, preparedData);
+
+        // TODO: выборка значений по индивидуальному периоду (если выбран)
+
 
         const result: ChartConfigDatasets = {
           type                 : setValue(viewItem?.settings?.charts?.[idx].chartType, 'line'),

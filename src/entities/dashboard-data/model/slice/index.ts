@@ -3,10 +3,10 @@ import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
 import { DashboardPeriod } from '../../types';
 import { getPayloadError as getError } from 'shared/lib/errors';
-import { DashboardPeriodType } from '../../constants';
-import { getEntitiesByPeriod } from '../../utils';
+import { PeriodType } from '../../constants';
+import { getEntitiesByPeriod, calculateStartDate } from '../../utils';
 import { StateSchemaDashboardData } from './state-schema';
-import { calculateStartDate, getData } from 'features/dashboard-data';
+import { getData } from 'features/dashboard-data';
 import { SetActivePeriod, SetSelectedPeriod } from './types';
 import { ResGetGoogleData } from 'shared/types';
 
@@ -15,7 +15,7 @@ import { ResGetGoogleData } from 'shared/types';
 // TODO: validate dates data (проверить даты на упорядоченность и на то, что дата, является датой)
 
 const emptyPeriod: DashboardPeriod = {
-  type  : DashboardPeriodType.NINE_MONTHS,
+  type  : PeriodType.NINE_MONTHS,
   start : undefined,
   end   : undefined, // new Date().getTime()
 };
@@ -80,7 +80,7 @@ export const slice = createSlice({
     setSelectedPeriod: (state, { payload }: PayloadAction<SetSelectedPeriod>) => {
       const calcedStartDate = calculateStartDate(
         state.selectedPeriod.end,
-        payload.period.type || state.selectedPeriod.type || DashboardPeriodType.NINE_MONTHS
+        payload.period.type || state.selectedPeriod.type || PeriodType.NINE_MONTHS
       );
 
       state.activePeriod = {

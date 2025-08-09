@@ -1,8 +1,11 @@
 export type {
-  DashboardItemData, DashboardStatisticItem, DashboardPeriod, Increased, DashboardItemType,
+  DashboardItemData, DashboardStatisticItem, DashboardPeriod, Increased, DashboardItemType
 } from './types'
-export { DASHBOARD_PERIOD_TEXT, arrayDashboardPeriodType, DashboardPeriodType } from './constants'
+export type { DashboardPeriodType } from './constants'
+export { DASHBOARD_PERIOD_TEXT, arrayDashboardPeriodType, PeriodType } from './constants'
 export { actions as actionsDashboardData, reducer as reducerDashboardData } from './model/slice'
 export type { DashboardDataEntities, DashboardDataDates, StateSchemaDashboardData } from './model/slice/state-schema'
-export { checkInvertData, getInitialState } from './utils'
+export {
+  checkInvertData, getInitialState, getEntitiesByPeriod, calculateStartDate, PayloadGetEntitiesByPeriod
+} from './utils'
 export { useDashboardData } from './model/hooks'

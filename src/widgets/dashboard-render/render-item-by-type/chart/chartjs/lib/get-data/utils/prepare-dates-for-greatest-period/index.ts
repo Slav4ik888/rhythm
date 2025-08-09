@@ -3,6 +3,7 @@ import { StatisticPeriodType } from 'entities/statistic-type';
 import { getGreatestPeriodType } from '../get-greatest-period-type';
 
 
+
 interface PrepareDatesForGreatestPeriod {
   dates: number[]
   greatestPeriodType: StatisticPeriodType

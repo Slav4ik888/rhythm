@@ -1,4 +1,5 @@
 import { ChartConfigOptions, ViewItemChart } from 'entities/charts'
+import { ViewItemId } from '.'
 import { GaugeColumnItem } from './gauge-column-item'
 import { IndicatorsConfig } from './indicators-config'
 
@@ -10,7 +11,7 @@ export type SettingsDirection = 'horizontal' | 'vertical'
 export type GaugeValueType    = 'integer'    | 'fractional'
 
 
-/** v.2025-08-07 */
+/** v.2025-08-09 */
 export type ViewItemSettings = IndicatorsConfig & {
   // Global settings
   display?              : boolean // Показывать ли элемент
@@ -18,10 +19,13 @@ export type ViewItemSettings = IndicatorsConfig & {
 
   // Kod settings
   kod?                  : string  // Код для одиночного элемента Box | Chip | GrowthItem | Indicator
+
   /** Если true, то это kod, будет автоматически подтягиваться всем children где стоит галка (fromGlobalKod) */
   isGlobalKod?          : boolean
+
   /** Если true, то это Глобальны kod, будет автоматически подтягиваться в этот элемент */
   fromGlobalKod?        : boolean
+
   /** Если true, то всем children, у которых где стоит галка (fromGlobalInverted), примениться inverted = true */
   globalInverted?       : boolean
 
@@ -31,6 +35,10 @@ export type ViewItemSettings = IndicatorsConfig & {
   // Chart settings
   charts?               : ViewItemChart[]
   chartOptions?         : ChartConfigOptions
+  periodId?             : ViewItemId // Id элемента, из которого брать данные по индивидуально выбранному периоду
+
+  // Period settings
+  selectedPeriod?       : string // Выбранный индивидуальный период (берётся из этого элемента по его Id)
 
   // Chips settings
   chipType?             : ChipType

@@ -7,15 +7,16 @@ import { ViewItemSettings } from './view-item-settings'
 
 
 export type ViewItemType =
-  | 'box'
-  | 'text'
-  | 'divider'
-  | 'chart'
-  | 'chip'
-  | 'growthIcon'
-  | 'digitIndicator'
-  | 'gaugeColumn'
-  | 'list'
+  | 'box'            // Контейнер для других элементов и их позиционирования
+  | 'text'           // Текст
+  | 'divider'        // Линия разделитель
+  | 'chart'          // График
+  | 'period'         // Коробка с массивом индивидуальных периодов, которые можно выбирать для графика
+  | 'chip'           // Текст в обводке (для отображения типов: Компании | Продукты | Состояния деятельности)
+  | 'growthIcon'     // Треугольник (рост/падение)
+  | 'digitIndicator' // Цифровой индикатор
+  | 'gaugeColumn'    // Колонка-диаграмма
+  | 'list'           // Список строк из текстовой строки с разделителем ', '
 
 
 
