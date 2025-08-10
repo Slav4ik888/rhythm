@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, memo, MutableRefObject, useCallback, useEffect, useMemo, useRef } from 'react';
 import { pxToRem } from 'shared/styles';
-import { calculateStartDate, getMsFromRef } from './utils';
-import { DashboardPeriodType, useDashboardData } from 'entities/dashboard-data';
+import { getMsFromRef } from './utils';
+import { calculateStartDate, PeriodType, useDashboardData } from 'entities/dashboard-data';
 import { formatDate } from 'shared/helpers/dates';
 import { useCompany } from 'entities/company';
 import { MDInput } from 'shared/ui/mui-design-components';
@@ -20,7 +20,7 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
   const storePeriodType = selectedPeriod?.type;
   const storeDate       = selectedPeriod?.[type];
   const dateStart       = type === 'start';
-  const periodNotCustom = storePeriodType !== DashboardPeriodType.CUSTOM;
+  const periodNotCustom = storePeriodType !== PeriodType.CUSTOM;
 
   const disabled = useMemo(() => dateStart && periodNotCustom, [dateStart, periodNotCustom]);
 

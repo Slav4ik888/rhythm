@@ -1,10 +1,8 @@
 import { FC, memo } from 'react';
-import IconButton from '@mui/material/IconButton';
-import { Tooltip } from '../../../tooltip';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { SvgIconTypeMap } from '@mui/material/SvgIcon';
-import { sxNavbarIconButton, sxNavbarIconsStyle } from 'shared/lib/styles/navbar';
-import { CustomTheme } from 'app/providers/theme';
+import { useSxNavbarIconButton, useSxNavbarIconsStyle } from 'shared/lib/styles/navbar';
+import { IconButton } from '../../../mui-components';
 
 
 
@@ -25,14 +23,19 @@ interface Props {
 }
 
 export const MenuIcon: FC<Props> = memo(({ sx, icon: Icon, disabled, toolTitle = '', disableRipple, onClick }) => (
-  <Tooltip title={toolTitle}>
-    <IconButton
-      disableRipple = {disableRipple}
-      disabled      = {disabled}
-      sx            = {(theme) => ({ ...sxNavbarIconButton(theme as CustomTheme), ...sx?.button })}
-      onClick       = {onClick}
-    >
-      <Icon sx={(theme) => ({ ...sxNavbarIconsStyle(theme as CustomTheme), ...sx?.icon })} />
-    </IconButton>
-  </Tooltip>
+  <IconButton
+    toolTitle     = {toolTitle}
+    disableRipple = {disableRipple}
+    disabled      = {disabled}
+    icon          = {Icon}
+    onClick       = {onClick}
+    sx            = {{
+      button: {
+        ...useSxNavbarIconButton(), ...sx?.button
+      },
+      icon: {
+        ...useSxNavbarIconsStyle(), ...sx?.icon
+      }
+    }}
+  />
 ));

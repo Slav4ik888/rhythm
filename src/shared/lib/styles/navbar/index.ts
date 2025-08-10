@@ -1,9 +1,10 @@
-import { CustomTheme } from 'app/providers/theme';
+import { useTheme } from 'app/providers/theme';
 import { getTypography } from 'shared/styles';
 
 
 
-export const sxNavbarIconButton = (theme: CustomTheme) => {
+export const useSxNavbarIconButton = () => {
+  const theme = useTheme();
   const { breakpoints } = theme;
 
   return {
@@ -27,11 +28,8 @@ export const sxNavbarIconButton = (theme: CustomTheme) => {
 
 
 /** Styles for the navbar icons */
-export const sxNavbarIconsStyle = (
-  theme             : CustomTheme,
-  // navbarTransparent : boolean,
-  // light             : boolean | undefined
-) => {
+export const useSxNavbarIconsStyle = () => {
+  const theme = useTheme();
   const { palette: { navbar, white, text, mode } } = theme;
   const darkMode = mode === 'dark';
 

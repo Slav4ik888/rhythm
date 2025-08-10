@@ -15,6 +15,7 @@ export const RowWrapper: FC<Props> = memo(({ children, sx }) => (
       ...f('-c-sb'),
       position : 'relative',
       width    : '100%',
+      gap      : 2,
       py       : 0.5,
       ...sx?.root
     }}

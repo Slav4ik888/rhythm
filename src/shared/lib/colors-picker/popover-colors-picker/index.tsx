@@ -1,19 +1,17 @@
 import { FC, memo, useState, useRef, useCallback } from 'react';
-import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import { f, pxToRem, SxCard } from 'shared/styles';
 import { useClickOutside } from '../../hooks';
 import { HexColorInput, RgbaColorPicker, RgbaColor  } from 'react-colorful';
 import { CustomTheme, useTheme } from 'app/providers/theme';
-// import s from './index.module.scss';
 import { hexToRgba, isValidRGBA, rgba, rgbaToHexWithAlpha } from '../utils';
-import { Tooltip } from 'shared/ui/tooltip';
 import PasteIcon from '@mui/icons-material/ContentPaste';
 import CopyIcon from '@mui/icons-material/ContentCopy';
 import TransparentIcon from '@mui/icons-material/BlurOn';
 import { copyToClipboard, getClipboardText } from '../../clipboard';
 import { __devLog } from '../../tests/__dev-log';
-
+import { IconButton } from 'shared/ui/mui-components';
+// import s from './index.module.scss';
 // __devLog('MODULE STYLE: ', s);
 
 
@@ -111,35 +109,27 @@ export const PopoverColorsPicker: FC<Props> = memo(({ sx: style, color, onChange
               style    = {{ width: 100, marginRight: 4 }}
               onChange = {handleChangeHex}
             />
-            <Tooltip title='Скопировать цвет'>
-              <IconButton  size='small' onClick={handleCopyColor}>
-                <CopyIcon sx={sx.icon} />
-              </IconButton>
-            </Tooltip>
-
-            <Tooltip title='Вставить скопированный цвет'>
-              <IconButton  size='small' onClick={handlePasteColor}>
-                <PasteIcon sx={sx.icon} />
-              </IconButton>
-            </Tooltip>
-
-            <Tooltip title='Прозрачность 100%'>
-              <IconButton  size='small' onClick={handleTransparent}>
-                <TransparentIcon sx={sx.icon} />
-              </IconButton>
-            </Tooltip>
-
-            {/* <Tooltip title='Прозрачность 100%'>
-              <MDButton
-                variant = 'outlined'
-                color   = 'dark'
-                size    = 'small'
-                sx      = {sx.transparent}
-                onClick = {handleTransparent}
-              >
-                <TransparentIcon sx={sx.icon} />
-              </MDButton>
-            </Tooltip> */}
+            <IconButton
+              toolTitle = 'Скопировать цвет'
+              size      = 'small'
+              icon      = {CopyIcon}
+              sx        = {{ icon: sx?.icon }}
+              onClick   = {handleCopyColor}
+            />
+            <IconButton
+              toolTitle = 'Вставить скопированный цвет'
+              size      = 'small'
+              icon      = {PasteIcon}
+              sx        = {{ icon: sx?.icon }}
+              onClick   = {handlePasteColor}
+            />
+            <IconButton
+              toolTitle = 'Прозрачность 100%'
+              size      = 'small'
+              icon      = {TransparentIcon}
+              sx        = {{ icon: sx?.icon }}
+              onClick   = {handleTransparent}
+            />
           </Box>
         </Box>
       )}

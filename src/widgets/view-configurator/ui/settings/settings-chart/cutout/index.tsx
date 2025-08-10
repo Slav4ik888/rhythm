@@ -23,7 +23,6 @@ export const ChartCutout: FC<Props> = memo(({ selectedItem }) => {
     changeOneDatasetsItem({ field: 'cutout', value: `${value}%`, index: 0 });
   }, [selectedItem?.settings?.charts?.length, changeOneDatasetsItem]);
 
-  if (isNotPie(selectedItem)) return null;
 
   return (
     <RowWrapper>

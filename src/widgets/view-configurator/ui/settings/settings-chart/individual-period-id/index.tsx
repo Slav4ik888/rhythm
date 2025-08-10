@@ -4,14 +4,14 @@ import { RowInputByScheme } from '../../../base-features-components';
 
 
 
-export const LabelRow: FC = memo(() => {
+export const IndividualPeriodId: FC = memo(() => {
   const { selectedItem } = useDashboardViewState();
 
   return (
     <RowInputByScheme
-      scheme       = 'label'
-      title        = 'Заголовок'
-      toolTitle    = 'Заголовок'
+      scheme       = 'settings.periodId'
+      title        = 'PeriodId'
+      toolTitle    = 'Id элемента "Период" для индивидуального вывода'
       width        = '100%'
       selectedItem = {selectedItem}
       onChange     = {() => { }} // Чтобы при вводе текста не происходило обновления
