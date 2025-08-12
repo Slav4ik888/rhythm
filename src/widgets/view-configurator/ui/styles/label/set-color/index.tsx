@@ -6,24 +6,27 @@ import { ColorPicker } from 'shared/lib/colors-picker';
 
 
 interface Props {
+  field        : ViewItemStylesField
   selectedItem : ViewItem | undefined
   onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
 /** color */
-export const SetColor: FC<Props> = memo(({ selectedItem, onChange }) => {
-  const handleColor = useCallback((value: string) => onChange('color', value), [onChange]);
+export const SetColor: FC<Props> = memo(({ field, selectedItem, onChange }) => {
+  const handleColor = useCallback((value: string) => onChange(field, value),
+    [field, onChange]
+  );
 
 
   return (
     <RowWrapper>
       <ConfiguratorTextTitle
         bold
-        title     = 'color'
+        title     = {field}
         toolTitle = 'color'
       />
       <ColorPicker
-        defaultColor = {selectedItem?.styles?.color}
+        defaultColor = {selectedItem?.styles?.[field] as string || ''}
         onChange     = {handleColor}
       />
     </RowWrapper>

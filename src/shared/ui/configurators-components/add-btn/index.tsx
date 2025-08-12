@@ -24,7 +24,7 @@ interface Props {
 
 /** Btn component */
 export const AddBtn: FC<Props> = memo(({ type, title, color: defaultColor, toolTitle, startIcon, onClick }) => {
-  const text = capitalizeFirst(type || title || '');
+  const text = capitalizeFirst(title || type || '');
   const theme = useTheme();
   const color = defaultColor || getColorByType(theme, type);
   const StartIcon = startIcon ? startIcon : AddCardIcon;

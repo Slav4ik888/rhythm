@@ -3,7 +3,8 @@ export type {
   AlignItemsType, JustifyContentType, ViewItemStyles, ViewItemStylesField, PartialViewItem, RgbaString,
   FontStyleType, FontWeightType, ViewItemSettings, ViewItemSettingsField,
   ChipType, BaseChipType, IndicatorsConfig, EndingType, EndingDiffType,
-  ViewItemType, TextAlignType, TextWrapType, GaugeColumnItem, SettingsDirection, GaugeValueType
+  ViewItemType, TextAlignType, TextWrapType, GaugeColumnItem, SettingsDirection, GaugeValueType, PeriodItem,
+  Periods
 } from './types'
 export {
   arrayBorderStyles, arrayFontStyles, arrayFontWeights, arrayTextWrap, arrayChipLabel, chipOptions,

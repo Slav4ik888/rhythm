@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { arrayFontWeights, ViewItem } from 'entities/dashboard-view';
-import { RowSelectByField } from '../../../base-features-components';
+import { RowSelectByScheme } from '../../../base-features-components';
 
 
 
@@ -11,7 +11,7 @@ interface Props {
 
 /** Set fontWeight */
 export const FontWeightRow: FC<Props> = memo(({ selectedItem, scheme }) => (
-  <RowSelectByField
+  <RowSelectByScheme
     scheme       = {scheme}
     title        = 'font-weight'
     toolTitle    = 'font-weight'

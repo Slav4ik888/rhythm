@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { ViewItem, ViewItemStylesField } from 'entities/dashboard-view';
-import { SetBackground } from './set-background';
+import { SetBackground } from '../set-background';
 
 
 
@@ -11,9 +11,13 @@ interface Props {
 }
 
 /** Фон */
-export const Background: FC<Props> = memo(({ selectedItem, onChange }) => (
-    <SubHeader title='Фон'>
-      <SetBackground selectedItem={selectedItem} onChange={onChange} />
-      {/* opacity */}
-    </SubHeader>
-  ));
+export const BackgroundBox: FC<Props> = memo(({ selectedItem, onChange }) => (
+  <SubHeader title='Фон'>
+    <SetBackground
+      field        = 'background'
+      selectedItem = {selectedItem}
+      onChange     = {onChange}
+    />
+    {/* opacity */}
+  </SubHeader>
+));

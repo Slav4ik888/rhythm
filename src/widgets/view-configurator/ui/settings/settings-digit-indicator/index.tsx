@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { RowFlagByScheme, RowInputByScheme, RowSelectByField } from '../../base-features-components';
+import { RowFlagByScheme, RowInputByScheme, RowSelectByScheme } from '../../base-features-components';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { arrayEndingDiffType, arrayEndingType, ViewItem } from 'entities/dashboard-view';
 import { InvertedData, UnchangedBlack, SelectKodRow, ToolTitleRow } from '../base-components';
@@ -81,14 +81,14 @@ export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ sel
     </SubHeader>
 
     <SubHeader title='Prefix'>
-      <RowSelectByField
+      <RowSelectByScheme
         scheme       = 'settings.endingType'
         title        = 'endingType'
         toolTitle    = ''
         array        = {arrayEndingType}
         selectedItem = {selectedItem}
       />
-      <RowSelectByField
+      <RowSelectByScheme
         scheme       = 'settings.endingDiffType'
         title        = 'endingDiffType'
         toolTitle    = ''

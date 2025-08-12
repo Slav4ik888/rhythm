@@ -3,10 +3,10 @@ import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-comp
 import { ViewItem } from 'entities/dashboard-view';
 import { SelectKodRow, ToolTitleRow } from '../base-components';
 import { GaugeColumnParameters } from './parameters';
-import { SelectDirectionRow } from './select-direction-row';
 import { DisplayParametersRow } from './display-parameters-row';
 import { ColorParametersRow } from './color-parameters-row';
 import { SelectTypeRow } from './select-type-row';
+import { SelectDirectionRow } from './select-direction-row';
 // import { DisplayResultRow } from './display-result-row';
 
 
@@ -20,7 +20,7 @@ export const ViewItemGaugeColumnSettingsConfigurator: FC<Props> = memo(({ select
   <>
     <SubHeader title='Базовые настройки'>
       <SelectKodRow         selectedItem={selectedItem} />
-      <SelectDirectionRow   selectedItem={selectedItem} />
+      <SelectDirectionRow />
       <SelectTypeRow        selectedItem={selectedItem} />
       <ToolTitleRow />
     </SubHeader>

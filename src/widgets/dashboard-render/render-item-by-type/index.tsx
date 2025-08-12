@@ -8,6 +8,7 @@ import { ItemGrowthIcon } from './growth-icon';
 import { ItemDigitIndicator } from './digit-indicator';
 import { ItemGaugeColumn } from './gauge-column';
 import { ItemList } from './list';
+import { ItemPeriod } from './period';
 
 
 
@@ -33,6 +34,12 @@ export const RenderViewItemByType: FC<Props> = memo(({ item, parents, isTemplate
     );
     case 'chart': return (
       <ItemChart
+        item       = {item}
+        isTemplate = {isTemplate}
+      />
+    );
+    case 'period': return (
+      <ItemPeriod
         item       = {item}
         isTemplate = {isTemplate}
       />

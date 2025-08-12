@@ -9,6 +9,7 @@ export const getColorByType = (theme: CustomTheme, type?: ViewItemType) => {
     case 'text':           return blueGrey[500];
     case 'divider':        return grey[800];
     case 'chart':          return teal[800];
+    case 'period':         return teal[600];
     case 'chip':           return lime[900];
     case 'growthIcon':     return green[700];
     case 'digitIndicator': return blue[800];

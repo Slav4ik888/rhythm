@@ -16,6 +16,10 @@ export const AddViewItemIndicatorsBtns: FC<Props> = memo(({ onClick }) => (
       onClick = {onClick}
     />
     <AddBtn
+      type    = 'period'
+      onClick = {onClick}
+    />
+    <AddBtn
       type    = 'chip'
       onClick = {onClick}
     />

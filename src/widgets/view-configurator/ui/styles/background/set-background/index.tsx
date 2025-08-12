@@ -18,13 +18,16 @@ const sxPopover = {
 
 
 interface Props {
+  field        : ViewItemStylesField
   selectedItem : ViewItem | undefined
   onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
 /** background */
-export const SetBackground: FC<Props> = memo(({ selectedItem, onChange }) => {
-  const gradients = useMemo(() => splitGradinetRgba(selectedItem?.styles?.background as string), [selectedItem]);
+export const SetBackground: FC<Props> = memo(({ field, selectedItem, onChange }) => {
+  const gradients = useMemo(() => splitGradinetRgba(selectedItem?.styles?.[field] as string),
+    [field, selectedItem]
+  );
 
   const [checked, setChecked] = useState(gradients.length === 3);
   const handleToggle = useCallback(() => setChecked(! checked), [checked, setChecked]);
@@ -32,11 +35,11 @@ export const SetBackground: FC<Props> = memo(({ selectedItem, onChange }) => {
   useEffect(() => {
     setChecked(gradients.length === 3);
   },
-    [selectedItem, gradients.length, setChecked]
+    [gradients.length, setChecked]
   );
 
-  const handleBackground = useCallback((value: string) => onChange('background', value as unknown as string),
-    [onChange]
+  const handleBackground = useCallback((value: string) => onChange(field, value as unknown as string),
+    [field, onChange]
   );
 
 
@@ -44,28 +47,29 @@ export const SetBackground: FC<Props> = memo(({ selectedItem, onChange }) => {
     <RowWrapper>
       <ConfiguratorTextTitle
         bold
-        title     = 'background'
+        title     = {field}
         toolTitle = 'background'
       />
       <Tooltip title = 'Настроить gradient'>
         <Checkbox
           size       = 'small'
           checked    = {checked}
-          inputProps = {{ 'aria-label': 'background' }}
+          inputProps = {{ 'aria-label': field }}
           onChange   = {handleToggle}
         />
       </Tooltip>
       {
         checked
           ? <SetLinearGradient
-              defaultValue = {selectedItem?.styles?.background as RgbaString}
+              field        = {field}
+              defaultValue = {selectedItem?.styles?.[field] as RgbaString}
               gradients    = {gradients}
               selectedItem = {selectedItem}
               sx           = {sxPopover}
               onChange     = {onChange}
             />
           : <ColorPicker
-              defaultColor = {selectedItem?.styles?.background as RgbaString}
+              defaultColor = {selectedItem?.styles?.[field] as RgbaString}
               sx           = {sxPopover}
               onChange     = {handleBackground}
             />

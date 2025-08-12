@@ -17,10 +17,10 @@ interface Props {
 }
 
 /**
- * Выбор ByField и сохраняет по схеме измененя в selectedItem
+ * Выбор ByScheme и сохраняет по схеме измененя в selectedItem
  * в том числе scheme with array
  */
-export const SelectByField: FC<Props> = memo(({
+export const SelectByScheme: FC<Props> = memo(({
   selectedItem, scheme, array, disabled, component, searchBox, onSearch
 }) => {
   const { updateViewItems } = useDashboardViewActions();

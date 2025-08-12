@@ -1,9 +1,11 @@
 import { creatorFixDate } from 'entities/base/creators';
 import { cloneObj } from 'shared/helpers/objects';
-import { ViewItem, ViewItemStyles } from '../../types';
+import { PeriodItem, Periods, ViewItem, ViewItemStyles } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
 import { f } from 'shared/styles';
 import { NO_PARENT_ID, NO_SHEET_ID, ORDER_STEP } from '../../consts';
+import { INDIVIDUAL_PERIOD } from 'entities/charts';
+import { PeriodType } from 'entities/dashboard-data';
 
 
 
@@ -55,7 +57,7 @@ export const createViewItem = (
   if (cfg.type === 'text') {
     deleteBorder(viewItem);
 
-    viewItem.label = 'Введите заголовок';
+    viewItem.label            = 'Введите заголовок';
     viewItem.styles.minHeight = '8';
     viewItem.styles.p         = 0;
   }
@@ -80,6 +82,33 @@ export const createViewItem = (
     viewItem.settings = {};
     viewItem.settings.charts = [];
     viewItem.settings.charts.push({ chartType: cfg.settings?.charts?.[0]?.chartType || 'line' });
+  }
+
+  if (cfg.type === 'period') {
+    viewItem.styles = {
+      ...viewItem.styles,
+      flexDirection      : 'row',
+      gap                : 8,
+      width              : 'max-content',
+      p                  : 8,
+      // For active item
+      activeBorderStyle  : 'solid',
+      activeBorderWidth  : 1,
+      activeBorderColor  : 'rgba(146, 146, 146, 1)',
+      activeBorderRadius : 4,
+    };
+
+    viewItem.settings = {};
+    viewItem.settings.periods = {} as Periods;
+    viewItem.settings.periods = Object.entries(INDIVIDUAL_PERIOD).reduce((acc, [key, title]) => {
+      if (! acc[key as keyof typeof acc]) acc[key as keyof typeof acc] = {} as any;
+      acc[key as keyof typeof acc] = {
+        title,
+        type: key as PeriodType,
+      };
+
+      return acc;
+    }, {} as Periods);
   }
 
   if (cfg.type === 'growthIcon') {

@@ -8,6 +8,7 @@ import { InputByScheme } from '../../../../base-features-components';
 
 
 interface Props {
+  field        : ViewItemStylesField
   selectedItem : ViewItem | undefined
   defaultValue : RgbaString
   gradients    : SplittedLinerGradient
@@ -17,7 +18,9 @@ interface Props {
 
 
 /** background linear-gradient */
-export const SetLinearGradient: FC<Props> = memo(({ selectedItem, sx, defaultValue = '', gradients, onChange }) => {
+export const SetLinearGradient: FC<Props> = memo(({
+  field, selectedItem, sx, defaultValue = '', gradients, onChange
+}) => {
   const [deg, setDeg]     = useState(gradients[0] as unknown as number || 15);
   const [main, setMain]   = useState(gradients[1] || defaultValue as string);
   const [state, setState] = useState(gradients[2] || defaultValue as string);
@@ -30,18 +33,18 @@ export const SetLinearGradient: FC<Props> = memo(({ selectedItem, sx, defaultVal
 
   const handleDeg = useCallback((e: MouseEvent, value: number | string) => {
     setDeg(value as number);
-    onChange('background', linearGradient(main, state, value as number));
-  }, [main, state, setDeg, onChange]);
+    onChange(field, linearGradient(main, state, value as number));
+  }, [field, main, state, setDeg, onChange]);
 
   const handleGrainentMain = useCallback((value: string) => {
     setMain(value);
-    onChange('background', linearGradient(value, state, deg as number));
-  }, [state, deg, setMain, onChange]);
+    onChange(field, linearGradient(value, state, deg as number));
+  }, [field, state, deg, setMain, onChange]);
 
   const handleGrainentState = useCallback((value: string) => {
     setState(value);
-    onChange('background', linearGradient(main, value, deg as number));
-  }, [main, deg, setState, onChange]);
+    onChange(field, linearGradient(main, value, deg as number));
+  }, [field, main, deg, setState, onChange]);
 
 
   return (
@@ -49,7 +52,7 @@ export const SetLinearGradient: FC<Props> = memo(({ selectedItem, sx, defaultVal
       <InputByScheme
         type         = 'number'
         selectedItem = {selectedItem}
-        scheme       = 'styles.background'
+        scheme       = {`styles.${field}`}
         width        = '4rem'
         toolTitle    = 'Угол поворота градиента'
         transform    = {(v: string | number) => splitGradinetRgba(v as string)?.[0]}

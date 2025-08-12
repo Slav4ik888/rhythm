@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, useState } from 'react';
-import { SelectByField } from '../../../../base-features-components';
+import { SelectByScheme } from '../../../../base-features-components';
 import { useDashboardData } from 'entities/dashboard-data';
 import { SelectKodItem } from '../select-kod-item';
 import { ViewItem } from 'entities/dashboard-view';
@@ -28,7 +28,7 @@ export const SelectKod: FC<Props> = memo(({ selectedItem, scheme }) => {
   if (disabled) return null;
 
   return (
-    <SelectByField
+    <SelectByScheme
       scheme       = {scheme}
       array        = {searcheďKods}
       component    = {SelectKodItem}

@@ -7,13 +7,9 @@ import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-compo
 
 
 
-interface Props {
-  selectedItem: ViewItem | undefined
-}
-
-export const SelectDirectionRow: FC<Props> = memo(({ selectedItem }) => {
+export const SelectDirectionRow: FC = memo(() => {
+  const { selectedItem, changeOneSettingsField } = useDashboardViewActions();
   const direction = selectedItem?.settings?.direction || 'horizontal';
-  const { changeOneSettingsField } = useDashboardViewActions();
   const [selectedValue, setSelectedValue] = useState(() => direction);
 
   useEffect(() => {

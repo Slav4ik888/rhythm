@@ -2,6 +2,7 @@ import { ChartConfigOptions, ViewItemChart } from 'entities/charts'
 import { ViewItemId } from '.'
 import { GaugeColumnItem } from './gauge-column-item'
 import { IndicatorsConfig } from './indicators-config'
+import { Periods, PeriodStyles } from './period'
 
 
 
@@ -39,6 +40,7 @@ export type ViewItemSettings = IndicatorsConfig & {
 
   // Period settings
   selectedPeriod?       : string // Выбранный индивидуальный период (берётся из этого элемента по его Id)
+  periods?              : Periods
 
   // Chips settings
   chipType?             : ChipType

@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import { ViewItem } from 'entities/dashboard-view';
 import { f } from 'shared/styles';
 import { RowWrapperTitle } from 'shared/ui/configurators-components';
-import { SelectByField } from '../../by-scheme/select-by-field';
+import { SelectByScheme } from '../../by-scheme/select-by-scheme';
 
 
 
@@ -20,7 +20,7 @@ interface Props {
   onSearch?    : (value: string) => void
 }
 
-export const RowSelectByField: FC<Props> = memo(({
+export const RowSelectByScheme: FC<Props> = memo(({
   selectedItem, scheme, title, toolTitle, array, component, boldTitle, disabled, searchBox, onSearch
 }) => (
   <RowWrapperTitle
@@ -30,7 +30,7 @@ export const RowSelectByField: FC<Props> = memo(({
   >
     <Box sx={f('-c')}>
       {
-        ! disabled && <SelectByField
+        ! disabled && <SelectByScheme
           scheme       = {scheme}
           array        = {array}
           component    = {component}

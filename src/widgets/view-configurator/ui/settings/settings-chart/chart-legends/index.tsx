@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { FlagByScheme, SelectByField } from '../../../base-features-components';
+import { FlagByScheme, SelectByScheme } from '../../../base-features-components';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { arrLegendPosition } from 'entities/charts';
 import { ViewItem } from 'entities/dashboard-view';
@@ -22,7 +22,7 @@ export const ChartLegends: FC<Props> = memo(({ selectedItem }) => (
       />
 
       <ConfiguratorTextTitle bold title='Position' toolTitle='Расположение меток для графика' />
-      <SelectByField
+      <SelectByScheme
         scheme       = 'settings.chartOptions.plugins.legend.position'
         array        = {arrLegendPosition}
         selectedItem = {selectedItem}

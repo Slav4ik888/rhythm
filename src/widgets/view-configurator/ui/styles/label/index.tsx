@@ -8,6 +8,7 @@ import { FontWeightRow } from './font-weight-row';
 import { FontStyleRow } from './font-style-row';
 import { LineHeightRow } from './line-height-row';
 import { TextWrapRow } from './text-wrap-row';
+import { SetBackground } from '../background';
 
 
 
@@ -39,6 +40,7 @@ export const CardLabel: FC<Props> = memo(({ selectedItem, onChange }) => (
         onChange     = {onChange}
       />
       <SetColor
+        field        = 'color'
         selectedItem = {selectedItem}
         onChange     = {onChange}
       />
@@ -56,9 +58,38 @@ export const CardLabel: FC<Props> = memo(({ selectedItem, onChange }) => (
             scheme       = 'styles.dirFontWeight'
             selectedItem = {selectedItem}
           />
-          {/* <ConfiguratorTitle title='Ед изменения (% | шт)' type='title2' /> */}
         </>
       )
     }
+
+    {
+      selectedItem?.type === 'period' && (
+        <>
+          <ConfiguratorTitle title='Активный период' type='title2' />
+          <FontWeightRow
+            scheme       = 'styles.activeFontWeight'
+            selectedItem = {selectedItem}
+          />
+          <SetColor
+            field        = 'activeColor'
+            selectedItem = {selectedItem}
+            onChange     = {onChange}
+          />
+          <SetBackground
+            field        = 'activeBackground'
+            selectedItem = {selectedItem}
+            onChange     = {onChange}
+          />
+        </>
+      )
+    }
+
+    {/*
+    activeBorderStyle?       : BorderStyleType
+    activeBorderWidth?       : number | string
+    activeBorderRadius?      : number | string
+    activeBorderColor?       : string
+
+    activeBoxShadow?         : string // 1px 1px 3px 0px rgb(184 184 184); */}
   </>
 ));

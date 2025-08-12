@@ -3,7 +3,7 @@ import { useDashboardViewActions, ViewItemStylesField } from 'entities/dashboard
 import { Dimensions } from './dimensions';
 import { Indents } from './indents';
 import { Borders } from './borders';
-import { Background } from './background';
+import { BackgroundBox as Background } from './background';
 import { Alignment } from './alignment';
 import { CardLabel } from './label';
 import { StyleControl } from './style-control';
@@ -26,11 +26,8 @@ export const ViewItemStylesConfigurator: FC = memo(() => {
   return (
     <>
       {
-        (selectedItem?.type === 'text'
-          || selectedItem?.type === 'digitIndicator'
-          || selectedItem?.type === 'list'
-        )
-          && <CardLabel  selectedItem={selectedItem} onChange={handleChange} />
+        ['text', 'period', 'digitIndicator', 'list']
+          .includes(selectedItem?.type) && <CardLabel selectedItem={selectedItem} onChange={handleChange} />
       }
       <Background selectedItem={selectedItem} onChange={handleChange} />
       <Alignment  selectedItem={selectedItem} onChange={handleChange} />

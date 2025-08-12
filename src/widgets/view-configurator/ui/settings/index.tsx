@@ -8,6 +8,8 @@ import { ViewItemBoxSettingsConfigurator as BoxSettings } from './settings-box';
 import { ViewItemGaugeColumnSettingsConfigurator as GaugeColumnSettings } from './settings-gauge-column';
 import { ViewItemListSettingsConfigurator as ListSettings } from './settings-list';
 import { ViewItemTextSettingsConfigurator as TextSettings } from './settings-text';
+import { ViewItemPeriodSettingsConfigurator as PeriodSettings } from './settings-period';
+
 
 
 interface Props {
@@ -18,6 +20,7 @@ export const ViewItemConfiguratorSettings: FC<Props> = memo(({ selectedItem: ite
   if (item?.type === 'box')            return <BoxSettings            selectedItem={item} />
   if (item?.type === 'text')           return <TextSettings />
   if (item?.type === 'chart')          return <ChartSettings          selectedItem={item} />
+  if (item?.type === 'period')         return <PeriodSettings />
   if (item?.type === 'chip')           return <ChipSettings           selectedItem={item} />
   if (item?.type === 'growthIcon')     return <GrowthIconSettings     selectedItem={item} />
   if (item?.type === 'digitIndicator') return <DigitIndicatorSettings selectedItem={item} />
