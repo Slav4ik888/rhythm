@@ -1,18 +1,19 @@
 import { FC, memo, useCallback } from 'react';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
 import { ViewItemStyles, ViewItemStylesField, ViewItem, useDashboardViewActions } from 'entities/dashboard-view';
-import { ChangeStyleItemIndents } from './change-style-indents';
+import { ChangeStyleItemIndents } from '../change-style-indents';
 import { setFieldEmpty } from 'shared/helpers/objects';
 import { GapsRow } from './gaps';
 
 
 
 interface Props {
+  active?      : boolean // For padding
   selectedItem : ViewItem | undefined
 }
 
 /** Отступы */
-export const Indents: FC<Props> = memo(({ selectedItem }) => {
+export const IndentsBox: FC<Props> = memo(({ active, selectedItem }) => {
   const { setSelectedStyles } = useDashboardViewActions();
 
 
@@ -23,7 +24,7 @@ export const Indents: FC<Props> = memo(({ selectedItem }) => {
     };
 
     // If p => clear (py, px, pt, pb, pl, pr) | if m => clear (my, mx, mt, mb, ml, mr)
-    if (field === 'p' || field === 'm') {
+    if (field === 'p' || field === 'm' || field === 'activeP') {
       setFieldEmpty(newStyles, `${field}t` as keyof ViewItemStyles);
       setFieldEmpty(newStyles, `${field}b` as keyof ViewItemStyles);
       setFieldEmpty(newStyles, `${field}r` as keyof ViewItemStyles);
@@ -60,24 +61,32 @@ export const Indents: FC<Props> = memo(({ selectedItem }) => {
 
   return (
     <SubHeader title='Отступы'>
-      <ChangeStyleItemIndents
-        bold
-        title        = 'margin'
-        toolTitle    = 'Отступ вокруг элемента'
-        baseField    = 'm'
-        selectedItem = {selectedItem}
-        onChange     = {handleChange}
-      />
+      {
+        ! active && (
+          <ChangeStyleItemIndents
+            bold
+            title        = 'margin'
+            toolTitle    = 'Отступ вокруг элемента'
+            baseField    = 'm'
+            selectedItem = {selectedItem}
+            onChange     = {handleChange}
+          />
+        )
+      }
       <ChangeStyleItemIndents
         bold
         title        = 'padding'
         toolTitle    = 'Отступ внутри элемента'
-        baseField    = 'p'
+        baseField    = {active ? 'activeP' : 'p'}
         selectedItem = {selectedItem}
         onChange     = {handleChange}
       />
       {
-        (selectedItem?.type === 'box' || selectedItem?.type === 'list')
+        (
+          selectedItem?.type === 'box'
+          || selectedItem?.type === 'period'
+          || selectedItem?.type === 'list'
+        )
           && <GapsRow selectedItem={selectedItem} />
       }
     </SubHeader>

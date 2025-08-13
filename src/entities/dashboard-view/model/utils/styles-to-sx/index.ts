@@ -24,7 +24,9 @@ export const stylesToSx = (style?: ViewItemStyles): any => {
   const {
     gap, rowGap, columnGap,
     width, minWidth, maxWidth, height, minHeight, maxHeight,
-    borderWidth, borderRadius, fontSize, dirFontSize,
+    borderWidth,
+    borderRadius, borderTopLeftRadius, borderTopRightRadius, borderBottomLeftRadius, borderBottomRightRadius,
+    fontSize, dirFontSize,
     p, px, py, pt, pb, pr, pl,
     m, mx, my, mt, mb, mr, ml,
    } = style;
@@ -89,8 +91,12 @@ export const stylesToSx = (style?: ViewItemStyles): any => {
   if (isEmptyStr(ml)) sx.ml = null;
 
   // borders
-  if (is(borderWidth))  sx.borderWidth  = `${borderWidth}px`;
-  if (is(borderRadius)) sx.borderRadius = `${borderRadius}px`;
+  if (is(borderWidth))             sx.borderWidth             = `${borderWidth}px`;
+  if (is(borderRadius))            sx.borderRadius            = `${borderRadius}px`;
+  if (is(borderTopLeftRadius))     sx.borderTopLeftRadius     = `${borderTopLeftRadius}px`;
+  if (is(borderTopRightRadius))    sx.borderTopRightRadius    = `${borderTopRightRadius}px`;
+  if (is(borderBottomLeftRadius))  sx.borderBottomLeftRadius  = `${borderBottomLeftRadius}px`;
+  if (is(borderBottomRightRadius)) sx.borderBottomRightRadius = `${borderBottomRightRadius}px`;
 
   // font-size
   if (is(fontSize))    sx.fontSize    = `${fontSize}px`;

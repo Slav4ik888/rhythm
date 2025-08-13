@@ -1,5 +1,5 @@
+import { FC, memo, MouseEvent } from 'react';
 import { ViewItem } from 'entities/dashboard-view';
-import { FC, memo } from 'react';
 import { RowInputByScheme } from '../../../base-features-components';
 
 
@@ -17,5 +17,6 @@ export const LineHeightRow: FC<Props> = memo(({ selectedItem }) => (
     toolTitle    = 'line-height'
     width        = '5rem'
     selectedItem = {selectedItem}
+    onChange     = {(e: MouseEvent, v: string | number) => {}}
   />
 ));

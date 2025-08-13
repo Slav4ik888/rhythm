@@ -20,7 +20,7 @@ interface Props {
   title        : string
   bold?        : boolean
   toolTitle    : string
-  baseField    : 'p' | 'm'
+  baseField    : 'p' | 'm' | 'activeP'
   onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 

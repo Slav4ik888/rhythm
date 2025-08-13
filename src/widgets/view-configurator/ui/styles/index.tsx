@@ -1,12 +1,13 @@
 import { FC, memo, useCallback } from 'react';
 import { useDashboardViewActions, ViewItemStylesField } from 'entities/dashboard-view';
-import { Dimensions } from './dimensions';
-import { Indents } from './indents';
-import { Borders } from './borders';
-import { BackgroundBox as Background } from './background';
-import { Alignment } from './alignment';
-import { CardLabel } from './label';
+import { DimensionsBox } from './dimensions';
+import { IndentsBox } from './indents';
+import { BordersBox } from './borders';
+import { BackgroundBox } from './background';
+import { AlignmentBox } from './alignment';
+import { TextBox } from './text';
 import { StyleControl } from './style-control';
+import { ActivePeriodBox } from './active-period-styles';
 
 
 
@@ -27,13 +28,17 @@ export const ViewItemStylesConfigurator: FC = memo(() => {
     <>
       {
         ['text', 'period', 'digitIndicator', 'list']
-          .includes(selectedItem?.type) && <CardLabel selectedItem={selectedItem} onChange={handleChange} />
+          .includes(selectedItem?.type) && <TextBox selectedItem={selectedItem} onChange={handleChange} />
       }
-      <Background selectedItem={selectedItem} onChange={handleChange} />
-      <Alignment  selectedItem={selectedItem} onChange={handleChange} />
-      <Dimensions selectedItem={selectedItem} onChange={handleChange} />
-      <Indents    selectedItem={selectedItem} />
-      <Borders    selectedItem={selectedItem} onChange={handleChange} />
+      <BackgroundBox selectedItem={selectedItem} onChange={handleChange} />
+      <AlignmentBox  selectedItem={selectedItem} onChange={handleChange} />
+      <DimensionsBox selectedItem={selectedItem} onChange={handleChange} />
+      <IndentsBox    selectedItem={selectedItem} />
+      <BordersBox    selectedItem={selectedItem} onChange={handleChange} />
+
+      {
+        selectedItem?.type === 'period' && <ActivePeriodBox selectedItem={selectedItem} onChange={handleChange} />
+      }
       <StyleControl />
     </>
   )

@@ -10,7 +10,7 @@ interface Props {
   onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
-export const Dimensions: FC<Props> = memo(({ selectedItem, onChange }) => (
+export const DimensionsBox: FC<Props> = memo(({ selectedItem, onChange }) => (
   <SubHeader title='Размеры'>
     <ChangeStyle
       bold

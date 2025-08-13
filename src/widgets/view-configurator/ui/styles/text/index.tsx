@@ -1,14 +1,14 @@
 import { FC, memo } from 'react';
-import { ConfiguratorSubHeader as SubHeader, ConfiguratorTitle } from 'shared/ui/configurators-components';
+import {
+  ConfiguratorSubHeader as SubHeader, ConfiguratorSubHeaderActive as SubHeaderActive
+} from 'shared/ui/configurators-components';
 import { ViewItemStylesField, ViewItem } from 'entities/dashboard-view';
-import { LabelRow } from '../../settings/settings-text/label-row';
 import { SetColor } from './set-color';
 import { FontSizeRow } from './font-size-row';
 import { FontWeightRow } from './font-weight-row';
 import { FontStyleRow } from './font-style-row';
 import { LineHeightRow } from './line-height-row';
 import { TextWrapRow } from './text-wrap-row';
-import { SetBackground } from '../background';
 
 
 
@@ -18,7 +18,7 @@ interface Props {
 }
 
 /** Card text label */
-export const CardLabel: FC<Props> = memo(({ selectedItem, onChange }) => (
+export const TextBox: FC<Props> = memo(({ selectedItem, onChange }) => (
   <>
     <SubHeader title='Текст'>
       <FontSizeRow
@@ -26,6 +26,7 @@ export const CardLabel: FC<Props> = memo(({ selectedItem, onChange }) => (
         selectedItem = {selectedItem}
       />
       <FontStyleRow
+        field        = 'fontStyle'
         selectedItem = {selectedItem}
         onChange     = {onChange}
       />
@@ -48,8 +49,7 @@ export const CardLabel: FC<Props> = memo(({ selectedItem, onChange }) => (
 
     {
       selectedItem?.type === 'digitIndicator' && (
-        <>
-          <ConfiguratorTitle title='Сокращение - (тыс | млн)' type='title2' />
+        <SubHeaderActive title='Сокращение - (тыс | млн)'>
           <FontSizeRow
             scheme='styles.dirFontSize'
             selectedItem={selectedItem}
@@ -58,38 +58,8 @@ export const CardLabel: FC<Props> = memo(({ selectedItem, onChange }) => (
             scheme       = 'styles.dirFontWeight'
             selectedItem = {selectedItem}
           />
-        </>
+        </SubHeaderActive>
       )
     }
-
-    {
-      selectedItem?.type === 'period' && (
-        <>
-          <ConfiguratorTitle title='Активный период' type='title2' />
-          <FontWeightRow
-            scheme       = 'styles.activeFontWeight'
-            selectedItem = {selectedItem}
-          />
-          <SetColor
-            field        = 'activeColor'
-            selectedItem = {selectedItem}
-            onChange     = {onChange}
-          />
-          <SetBackground
-            field        = 'activeBackground'
-            selectedItem = {selectedItem}
-            onChange     = {onChange}
-          />
-        </>
-      )
-    }
-
-    {/*
-    activeBorderStyle?       : BorderStyleType
-    activeBorderWidth?       : number | string
-    activeBorderRadius?      : number | string
-    activeBorderColor?       : string
-
-    activeBoxShadow?         : string // 1px 1px 3px 0px rgb(184 184 184); */}
   </>
 ));

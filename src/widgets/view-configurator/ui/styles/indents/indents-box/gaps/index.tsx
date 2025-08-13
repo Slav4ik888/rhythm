@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import { f, pxToRem } from 'shared/styles';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
 import { ViewItem } from 'entities/dashboard-view';
-import { InputByScheme } from '../../../base-features-components';
+import { InputByScheme } from '../../../../base-features-components';
 
 
 

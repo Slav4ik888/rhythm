@@ -12,7 +12,7 @@ interface Props {
 }
 
 /** Выравнивание внутреннего содержимого */
-export const Alignment: FC<Props> = memo(({ selectedItem, onChange }) => (
+export const AlignmentBox: FC<Props> = memo(({ selectedItem, onChange }) => (
     <SubHeader title='Выравнивание'>
       {
         selectedItem?.type === 'text'

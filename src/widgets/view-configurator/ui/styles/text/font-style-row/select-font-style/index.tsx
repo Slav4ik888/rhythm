@@ -5,20 +5,21 @@ import { FontStyleType, ViewItemStylesField, arrayFontStyles, ViewItem } from 'e
 
 
 interface Props {
+  field        : ViewItemStylesField
   selectedItem : ViewItem | undefined
   onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
-export const SelectFontStyle: FC<Props> = memo(({ selectedItem, onChange }) => {
+export const SelectFontStyle: FC<Props> = memo(({ field, selectedItem, onChange }) => {
   const handleSelectedStyle = useCallback((selected: FontStyleType) => {
-    onChange('fontStyle', selected);
+    onChange(field, selected);
   },
-    [onChange]
+    [field, onChange]
   );
 
   return (
     <SelectValue
-      selectedValue = {selectedItem?.styles?.fontStyle || 'default'}
+      selectedValue = {selectedItem?.styles?.[field] as string || 'default'}
       array         = {arrayFontStyles}
       sx            = {{ root: { width: '100px' } }}
       // @ts-ignore

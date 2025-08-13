@@ -4,7 +4,7 @@ import { f } from 'shared/styles';
 import { ColorPicker } from 'shared/lib/colors-picker';
 import { InputByScheme } from '../../../../base-features-components';
 import { getBoxShadowValue } from './utils';
-import { ViewItem } from 'entities/dashboard-view';
+import { ViewItem, ViewItemStylesField } from 'entities/dashboard-view';
 
 
 
@@ -23,6 +23,7 @@ const sx = {
 
 
 interface Props {
+  field        : ViewItemStylesField
   selectedItem : ViewItem | undefined
   color        : string
   onChange     : (value: string | number, index: number) => void
@@ -31,12 +32,12 @@ interface Props {
 /**
  * box-shadow component
  */
-export const BoxShadowSetupComponent: FC<Props> = memo(({ selectedItem, color, onChange }) => (
+export const BoxShadowSetupComponent: FC<Props> = memo(({ field, selectedItem, color, onChange }) => (
   <Box sx={{ ...f('-c') }}>
     <InputByScheme
       type         = 'number'
       selectedItem = {selectedItem}
-      scheme       = 'styles.boxShadow'
+      scheme       = {`styles.${field}`}
       width        = '2rem'
       toolTitle    = 'offset-x'
       clear        = {0}
@@ -49,7 +50,7 @@ export const BoxShadowSetupComponent: FC<Props> = memo(({ selectedItem, color, o
     <InputByScheme
       type         = 'number'
       selectedItem = {selectedItem}
-      scheme       = 'styles.boxShadow'
+      scheme       = {`styles.${field}`}
       width        = '2rem'
       toolTitle    = 'offset-y'
       clear        = {0}
@@ -62,7 +63,7 @@ export const BoxShadowSetupComponent: FC<Props> = memo(({ selectedItem, color, o
     <InputByScheme
       type         = 'number'
       selectedItem = {selectedItem}
-      scheme       = 'styles.boxShadow'
+      scheme       = {`styles.${field}`}
       width        = '2rem'
       toolTitle    = 'blur-radius'
       clear        = {0}
@@ -75,7 +76,7 @@ export const BoxShadowSetupComponent: FC<Props> = memo(({ selectedItem, color, o
     <InputByScheme
       type         = 'number'
       selectedItem = {selectedItem}
-      scheme       = 'styles.boxShadow'
+      scheme       = {`styles.${field}`}
       width        = '2rem'
       toolTitle    = 'spread-radius'
       clear        = {0}

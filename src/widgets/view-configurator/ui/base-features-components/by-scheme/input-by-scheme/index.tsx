@@ -118,9 +118,9 @@ export const InputByScheme: FC<Props> = memo(({
           },
           input: {
             fontSize  : `${pxToRem(18)} !important`,
-            height    : pxToRem(40),
-            textAlign : 'left',
-            padding   : '2px 4px 2px 8px',
+            height    : pxToRem(20),
+            textAlign : 'center',
+            padding   : pxToRem(4),
             ...sx?.input,
           }
         }}

@@ -16,76 +16,76 @@ export type TextAlignType = 'left' | 'right' | 'center';
 
 // v.2025-08-11
 export interface ViewItemStyles {
-  width?                   : number | string // In px | '100%' | 'auto' | 'max-content' | 'min-content'
-  minWidth?                : number | string
-  maxWidth?                : number | string
+  width?                         : number | string // In px | '100%' | 'auto' | 'max-content' | 'min-content'
+  minWidth?                      : number | string
+  maxWidth?                      : number | string
 
-  height?                  : number | string // In px | '100%' | 'auto' | 'max-content' | 'min-content'
-  minHeight?               : number | string
-  maxHeight?               : number | string
+  height?                        : number | string // In px | '100%' | 'auto' | 'max-content' | 'min-content'
+  minHeight?                     : number | string
+  maxHeight?                     : number | string
 
-  display?                 : 'flex'
-  flexDirection?           : FlexDirectionType
-  flexWrap?                : FlexWrapType
-  alignItems?              : AlignItemsType
-  justifyContent?          : JustifyContentType
+  display?                       : 'flex'
+  flexDirection?                 : FlexDirectionType
+  flexWrap?                      : FlexWrapType
+  alignItems?                    : AlignItemsType
+  justifyContent?                : JustifyContentType
 
-  gap?                     : number | string
-  rowGap?                  : number | string
-  columnGap?               : number | string
+  gap?                           : number | string
+  rowGap?                        : number | string
+  columnGap?                     : number | string
 
-  overflow?                : 'hidden' | 'scroll' | 'auto'
+  overflow?                      : 'hidden' | 'scroll' | 'auto'
 
   // padding - 1 === 8px
-  p?                       : number
-  px?                      : number
-  py?                      : number
+  p?                             : number
+  px?                            : number
+  py?                            : number
 
-  pt?                      : number
-  pr?                      : number
-  pb?                      : number
-  pl?                      : number
+  pt?                            : number
+  pr?                            : number
+  pb?                            : number
+  pl?                            : number
 
   // margin - 1 === 8px
-  m?                       : number
-  mx?                      : number
-  my?                      : number
+  m?                             : number
+  mx?                            : number
+  my?                            : number
 
-  mt?                      : number
-  mr?                      : number
-  mb?                      : number
-  ml?                      : number
+  mt?                            : number
+  mr?                            : number
+  mb?                            : number
+  ml?                            : number
 
   // border
-  borderStyle?             : BorderStyleType
-  borderWidth?             : number | string // In px
+  borderStyle?                   : BorderStyleType
+  borderWidth?                   : number | string // In px
 
-  borderRadius?            : number | string // In px
-  borderTopLeftRadius?     : number | string
-  borderTopRightRadius?    : number | string
-  borderBottomLeftRadius?  : number | string
-  borderBottomRightRadius? : number | string
+  borderRadius?                  : number | string // In px
+  borderTopLeftRadius?           : number | string
+  borderTopRightRadius?          : number | string
+  borderBottomLeftRadius?        : number | string
+  borderBottomRightRadius?       : number | string
 
-  borderColor?             : string
+  borderColor?                   : string
 
   // shadow      offset-x | offset-y | blur-radius | spread-radius | color
-  boxShadow?               : string // 1px 1px 3px 0px rgb(184 184 184);
+  boxShadow?                     : string // 1px 1px 3px 0px rgb(184 184 184);
 
   // color
-  color?                   : RgbaString // rgba(255, 255, 255, 1)
+  color?                         : RgbaString // rgba(255, 255, 255, 1)
 
   // background
-  background?              : RgbaString // rgba(255, 255, 255, 1)
+  background?                    : RgbaString // rgba(255, 255, 255, 1)
 
   // font
-  fontSize?                : number // In rem
-  fontWeight?              : number
-  fontStyle?               : FontStyleType
-  fontFamily?              : string
-  lineHeight?              : number
+  fontSize?                      : number // In rem
+  fontWeight?                    : number
+  fontStyle?                     : FontStyleType
+  fontFamily?                    : string
+  lineHeight?                    : number
 
-  textAlign?               : TextAlignType
-  textWrap?                : TextWrapType
+  textAlign?                     : TextAlignType
+  textWrap?                      : TextWrapType
   // textDecoration?: string
   // textTransform?: string
   // textShadow?: string
@@ -97,23 +97,40 @@ export interface ViewItemStyles {
   // digitIndicators
   //  - font
   //    - reduction
-  dirFontSize?             : number // In rem
-  dirFontWeight?           : number
+  dirFontSize?                   : number // In rem
+  dirFontWeight?                 : number
   //    - ending
 
 
   // In Period Active
-  activeColor?             : RgbaString
-  activeBackground?        : RgbaString
+  activeP?                       : number
+  activePx?                      : number
+  activePy?                      : number
 
-  activeFontWeight?        : number
+  activePt?                      : number
+  activePr?                      : number
+  activePb?                      : number
+  activePl?                      : number
 
-  activeBorderStyle?       : BorderStyleType
-  activeBorderWidth?       : number | string
-  activeBorderRadius?      : number | string
-  activeBorderColor?       : string
+  activeColor?                   : RgbaString
+  activeBackground?              : RgbaString
 
-  activeBoxShadow?         : string // 1px 1px 3px 0px rgb(184 184 184);
+  activeFontStyle?               : FontStyleType
+  activeFontWeight?              : number
+
+  activeBorderStyle?             : BorderStyleType
+  activeBorderWidth?             : number | string
+
+  activeBorderRadius?            : number | string
+  activeBorderTopLeftRadius?     : number | string
+  activeBorderTopRightRadius?    : number | string
+  activeBorderBottomLeftRadius?  : number | string
+  activeBorderBottomRightRadius? : number | string
+
+  activeBorderColor?             : string
+
+
+  activeBoxShadow?               : string // 1px 1px 3px 0px rgb(184 184 184);
 }
 
 export type ViewItemStylesField = keyof ViewItemStyles;

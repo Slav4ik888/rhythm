@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, MouseEvent } from 'react';
+import { FC, memo, useCallback, MouseEvent, useMemo } from 'react';
 import Box from '@mui/material/Box';
 import { useDashboardViewActions, ViewItem, ViewItemStyles, ViewItemStylesField } from 'entities/dashboard-view';
 import { f } from 'shared/styles';
@@ -15,12 +15,42 @@ const sxRow = {
 
 
 interface Props {
-  selectedItem: ViewItem | undefined
+  active?      : boolean
+  selectedItem : ViewItem | undefined
 }
 
 /** border-radius */
-export const BorderRadiusRow: FC<Props> = memo(({ selectedItem }) => {
+export const BorderRadiusRow: FC<Props> = memo(({ active, selectedItem }) => {
   const { setSelectedStyles } = useDashboardViewActions();
+
+  const {
+    borderRadius,
+    borderTopLeftRadius,
+    borderTopRightRadius,
+    borderBottomLeftRadius,
+    borderBottomRightRadius
+  } = useMemo(() => {
+    const resultFields = {
+      borderRadius            : 'borderRadius' as keyof ViewItemStyles,
+      borderTopLeftRadius     : 'borderTopLeftRadius' as keyof ViewItemStyles,
+      borderTopRightRadius    : 'borderTopRightRadius' as keyof ViewItemStyles,
+      borderBottomLeftRadius  : 'borderBottomLeftRadius' as keyof ViewItemStyles,
+      borderBottomRightRadius : 'borderBottomRightRadius' as keyof ViewItemStyles,
+    };
+
+    if (active) {
+      resultFields.borderRadius            = 'activeBorderRadius';
+      resultFields.borderTopLeftRadius     = 'activeBorderTopLeftRadius';
+      resultFields.borderTopRightRadius    = 'activeBorderTopRightRadius';
+      resultFields.borderBottomLeftRadius  = 'activeBorderBottomLeftRadius';
+      resultFields.borderBottomRightRadius = 'activeBorderBottomRightRadius';
+    }
+
+    return resultFields
+  },
+    [active]
+  );
+
 
   const handleChange = useCallback((field: ViewItemStylesField, value: number | string) => {
     if (! selectedItem) return;
@@ -30,15 +60,20 @@ export const BorderRadiusRow: FC<Props> = memo(({ selectedItem }) => {
       [field]: value,
     };
 
-    if (field === 'borderRadius') {
-      setFieldEmpty(newStyles, 'borderTopLeftRadius');
-      setFieldEmpty(newStyles, 'borderTopRightRadius');
-      setFieldEmpty(newStyles, 'borderBottomLeftRadius');
-      setFieldEmpty(newStyles, 'borderBottomRightRadius');
+    if (field === 'borderRadius' || field === 'activeBorderRadius') {
+      setFieldEmpty(newStyles, borderTopLeftRadius);
+      setFieldEmpty(newStyles, borderTopRightRadius);
+      setFieldEmpty(newStyles, borderBottomLeftRadius);
+      setFieldEmpty(newStyles, borderBottomRightRadius);
     }
 
     setSelectedStyles(newStyles);
-  }, [selectedItem, setSelectedStyles]);
+  },
+    [
+      selectedItem, borderTopLeftRadius, borderTopRightRadius, borderBottomLeftRadius, borderBottomRightRadius,
+      setSelectedStyles
+    ]
+  );
 
   const handleEmpty = (e: MouseEvent, v: string | number) => {};
 
@@ -59,43 +94,25 @@ export const BorderRadiusRow: FC<Props> = memo(({ selectedItem }) => {
         <InputByScheme
           type         = 'number'
           selectedItem = {selectedItem}
-          scheme       = 'styles.borderTopLeftRadius'
+          scheme       = {`styles.${borderTopLeftRadius}`}
           width        = '4rem'
           helperText   = 'Сверху-слева'
           onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => handleChange('borderTopLeftRadius', v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => handleChange('borderTopLeftRadius', v)}
+          onBlur       = {(e: MouseEvent, v: string | number) => handleChange(borderTopLeftRadius, v)}
+          onSubmit     = {(e: MouseEvent, v: string | number) => handleChange(borderTopLeftRadius, v)}
         />
-        {/* <InputByScheme
-          type         = 'number'
-          selectedItem = {selectedItem}
-          scheme       = 'styles.???'
-          width        = '4rem'
-          helperText   = 'Весь-верх'
-          onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => handleChange('???', v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => handleChange('???', v)}
-        /> */}
+
         <InputByScheme
           type         = 'number'
           selectedItem = {selectedItem}
-          scheme       = 'styles.borderTopRightRadius'
+          scheme       = {`styles.${borderTopRightRadius}`}
           width        = '4rem'
           helperText   = 'Сверху-справа'
           onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => handleChange('borderTopRightRadius', v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => handleChange('borderTopRightRadius', v)}
+          onBlur       = {(e: MouseEvent, v: string | number) => handleChange(borderTopRightRadius, v)}
+          onSubmit     = {(e: MouseEvent, v: string | number) => handleChange(borderTopRightRadius, v)}
         />
-        {/* <InputByScheme
-          type         = 'number'
-          selectedItem = {selectedItem}
-          scheme       = 'styles.???'
-          width        = '4rem'
-          helperText   = 'Всё-справа'
-          onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => handleChange('???', v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => handleChange('???', v)}
-        /> */}
+
       </Box>
 
       <Box sx={sxRow}>
@@ -103,53 +120,33 @@ export const BorderRadiusRow: FC<Props> = memo(({ selectedItem }) => {
         <InputByScheme
           type         = 'number'
           selectedItem = {selectedItem}
-          scheme       = 'styles.borderRadius'
+          scheme       = {`styles.${borderRadius}`}
           width        = '4rem'
           helperText   = 'Общее'
           onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => handleChange('borderRadius', v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => handleChange('borderRadius', v)}
+          onBlur       = {(e: MouseEvent, v: string | number) => handleChange(borderRadius, v)}
+          onSubmit     = {(e: MouseEvent, v: string | number) => handleChange(borderRadius, v)}
         />
         <InputByScheme
           type         = 'number'
           selectedItem = {selectedItem}
-          scheme       = 'styles.borderBottomLeftRadius'
+          scheme       = {`styles.${borderBottomLeftRadius}`}
           width        = '4rem'
           helperText   = 'Снизу-слева'
           onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => handleChange('borderBottomLeftRadius', v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => handleChange('borderBottomLeftRadius', v)}
+          onBlur       = {(e: MouseEvent, v: string | number) => handleChange(borderBottomLeftRadius, v)}
+          onSubmit     = {(e: MouseEvent, v: string | number) => handleChange(borderBottomLeftRadius, v)}
         />
-        {/* <InputByScheme
-          type         = 'number'
-          selectedItem = {selectedItem}
-          scheme       = 'styles.???'
-          width        = '4rem'
-          helperText   = 'Весь-низ'
-          onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => handleChange('???', v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => handleChange('???', v)}
-        /> */}
         <InputByScheme
           type         = 'number'
           selectedItem = {selectedItem}
-          scheme       = 'styles.borderBottomRightRadius'
+          scheme       = {`styles.${borderBottomRightRadius}`}
           width        = '4rem'
           helperText   = 'Снизу-справа'
           onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => handleChange('borderBottomRightRadius', v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => handleChange('borderBottomRightRadius', v)}
+          onBlur       = {(e: MouseEvent, v: string | number) => handleChange(borderBottomRightRadius, v)}
+          onSubmit     = {(e: MouseEvent, v: string | number) => handleChange(borderBottomRightRadius, v)}
         />
-        {/* <InputByScheme
-          type         = 'number'
-          selectedItem = {selectedItem}
-          scheme       = 'styles.???'
-          width        = '4rem'
-          helperText   = 'Всё-слева'
-          onChange     = {handleEmpty}
-          onBlur       = {(e: MouseEvent, v: string | number) => handleChange('???', v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => handleChange('???', v)}
-        /> */}
       </Box>
     </Box>
   )

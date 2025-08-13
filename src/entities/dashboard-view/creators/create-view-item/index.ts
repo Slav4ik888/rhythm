@@ -87,10 +87,11 @@ export const createViewItem = (
   if (cfg.type === 'period') {
     viewItem.styles = {
       ...viewItem.styles,
-      flexDirection      : 'row',
+      ...f('r-c'),
       gap                : 8,
       width              : 'max-content',
-      p                  : 8,
+      py                 : 4,
+      px                 : 8,
       // For active item
       activeBorderStyle  : 'solid',
       activeBorderWidth  : 1,

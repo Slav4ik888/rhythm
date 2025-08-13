@@ -8,28 +8,33 @@ import { Tooltip } from 'shared/ui/tooltip';
 
 
 interface Props {
+  field        : ViewItemStylesField
   selectedItem : ViewItem | undefined
   onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
 /** box-shadow */
-export const BoxShadowRow: FC<Props> = memo(({ selectedItem, onChange }) => {
-  const [checked, setChecked] = useState(Boolean(selectedItem?.styles?.boxShadow));
+export const BoxShadowRow: FC<Props> = memo(({ field, selectedItem, onChange }) => {
+  const [checked, setChecked] = useState(Boolean(selectedItem?.styles?.[field]));
 
   useEffect(() => {
-    setChecked(Boolean(selectedItem?.styles?.boxShadow));
-  }, [selectedItem, setChecked]);
+    setChecked(Boolean(selectedItem?.styles?.[field]));
+  },
+    [field, selectedItem, setChecked]
+  );
 
 
   const handleToggle = useCallback(() => {
-    if (selectedItem?.styles?.boxShadow) {
-      onChange('boxShadow', '');
+    if (selectedItem?.styles?.[field]) {
+      onChange(field, '');
     }
     else {
-      onChange('boxShadow', '1px 1px 3px 0px rgba(184, 184, 184, 1)');
+      onChange(field, '1px 1px 3px 0px rgba(184, 184, 184, 1)');
       setChecked(true);
     }
-  }, [selectedItem, onChange, setChecked]);
+  },
+    [field, selectedItem, onChange, setChecked]
+  );
 
 
   return (
@@ -40,17 +45,18 @@ export const BoxShadowRow: FC<Props> = memo(({ selectedItem, onChange }) => {
         toolTitle = {`1px 1px 3px 0px rgba(184, 184, 184, 1) =>
         offset-x | offset-y | blur-radius | spread-radius | color`}
       />
-      <Tooltip title='background gradient'>
+      <Tooltip title={`${checked ? 'Отключить' : 'Включить'} тень`}>
         <Checkbox
           size       = 'small'
           checked    = {checked}
-          inputProps = {{ 'aria-label': 'background' }}
+          inputProps = {{ 'aria-label': 'box-shadow' }}
           onChange   = {handleToggle}
         />
       </Tooltip>
       {
         checked
           ? <BoxShadowSetupContainer
+              field        = {field}
               selectedItem = {selectedItem}
               onChange     = {onChange}
             />

@@ -6,14 +6,19 @@ import { SelectFontStyle } from './select-font-style';
 
 
 interface Props {
+  field        : ViewItemStylesField
   selectedItem : ViewItem | undefined
   onChange     : (field: ViewItemStylesField, value: number | string) => void
 }
 
 /** Set fontStyle */
-export const FontStyleRow: FC<Props> = memo(({ selectedItem, onChange }) => (
+export const FontStyleRow: FC<Props> = memo(({ field, selectedItem, onChange }) => (
   <RowWrapper>
-    <ConfiguratorTextTitle title='font-style' toolTitle='font-style' bold />
-    <SelectFontStyle selectedItem={selectedItem} onChange={onChange} />
+    <ConfiguratorTextTitle title={field} toolTitle='font-style' bold />
+    <SelectFontStyle
+      field        = {field}
+      selectedItem = {selectedItem}
+      onChange     = {onChange}
+    />
   </RowWrapper>
 ));
