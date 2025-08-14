@@ -16,8 +16,8 @@ export const IdTitle: FC<Props> = memo(({ selectedId }) => (
     <ConfiguratorTextTitle bold title='Id' toolTitle='Item id' />
 
     <Box sx={{ ...f('-c'), gap: 1 }}>
-      <SetBrightBtn selectedId={selectedId} />
       <CopyIdTitleBtn selectedId={selectedId} />
+      <SetBrightBtn selectedId={selectedId} />
     </Box>
   </RowWrapper>
 ));

@@ -107,9 +107,8 @@ export const ItemWrapper: FC<Props> = memo(({ item, children, onSelect }) => {
     }
   </Box>);
 
-  if (item.type === 'box'
-    || item.type === 'chart'
-    || (item.type === 'text' && !item.settings?.toolTitle) // If no toolTitle, don`t show
+  if (['box', 'chart', 'period'].includes(item.type)
+    || (item.type === 'text' && ! item.settings?.toolTitle) // If no toolTitle, don`t show
   ) return component;
 
 

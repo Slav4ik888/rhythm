@@ -32,4 +32,4 @@ root.render(
 
 
 
-// git add . && git commit -m "ended IndentsBox" && git push -u origin main
+// git add . && git commit -m "refacted LS - added error handler,  ended calc individualEntites to charts" && git push -u origin main

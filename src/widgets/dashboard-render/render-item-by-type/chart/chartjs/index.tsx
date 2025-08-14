@@ -8,6 +8,7 @@ import {
 } from 'entities/dashboard-data';
 import { getData, getDataDoughnut, getOptions, getTemplateData, getTemplateDataDoughnut } from './lib';
 import { isNotPie } from 'entities/charts';
+import { formatDate } from 'shared/helpers/dates';
 
 
 
@@ -22,19 +23,21 @@ export const ItemChartjs: FC<Props> = memo(({ item, isTemplate }) => {
   const { entities } = useDashboardViewState();
 
   const data = useMemo(() => {
+    // For Templates
     if (isTemplate) {
       return isNotPie(item)
         ? getTemplateData(item)
         : getTemplateDataDoughnut(item)
     }
+    // For Dashboard
     else {
       let individualData = {} as PayloadGetEntitiesByPeriod;
       const individualPeriod = entities[item.settings?.periodId || '']?.settings?.selectedPeriod;
-      if (item.id === '') console.log('individualPeriod: ', individualPeriod);
 
+      // Prepare for Individual
       if (individualPeriod) {
         const calcedStartDate = calculateStartDate(activeDateEnd, individualPeriod as PeriodType) as number;
-        console.log('calcedStartDate: ', calcedStartDate);
+
         const individualEntites = getEntitiesByPeriod(
           startEntities,
           startDates,
@@ -43,6 +46,7 @@ export const ItemChartjs: FC<Props> = memo(({ item, isTemplate }) => {
         individualData = individualEntites;
       }
 
+      // Get result
       const itemsData = item.settings?.charts?.map(chart => {
         const kod = getKod(entities, item, chart);
 
