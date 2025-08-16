@@ -1,11 +1,11 @@
 import { FC, memo } from 'react';
 import { ColorName } from 'app/providers/theme';
-import { getIconById } from '../../../lib';
 import { SidebarListItem } from 'shared/types/sidebar';
 import { SidebarLink } from '../../sidebar-items/sidebar-link';
 import { SidebarNavLink } from '../../sidebar-items/sidebar-navlink';
 import { SidebarTitle } from '../../sidebar-items/sidebar-title';
 import { Divider } from 'shared/ui/mui-components';
+import { getIconById } from 'shared/lib/icons';
 
 
 

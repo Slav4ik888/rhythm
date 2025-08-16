@@ -3,7 +3,7 @@ import { creatorSheet, getSheetById, useCompany, validateDashboardSheetFields } 
 import { getSlug, russianToEnglish } from 'shared/helpers/strings';
 import { useUser } from 'entities/user';
 import { createNextOrder } from 'entities/dashboard-view';
-import { DefaultIconId } from 'shared/assets';
+import { DefaultIconId } from 'shared/lib/icons';
 import { SidebarListItem } from 'shared/types';
 import { creatorFixDate } from 'entities/base';
 

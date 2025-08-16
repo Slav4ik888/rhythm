@@ -20,6 +20,10 @@ export const AddViewItemElementBtns: FC<Props> = memo(({ onClick }) => (
       onClick = {onClick}
     />
     <AddBtn
+      type    = 'icon'
+      onClick = {onClick}
+    />
+    <AddBtn
       type    = 'divider'
       onClick = {onClick}
     />

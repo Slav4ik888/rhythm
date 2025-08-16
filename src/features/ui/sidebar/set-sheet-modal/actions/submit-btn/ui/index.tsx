@@ -1,7 +1,7 @@
 import { memo, FC, useCallback } from 'react';
 import { Button } from 'shared/ui/buttons';
 import { useCompany } from 'entities/company';
-import { DefaultIconId } from 'shared/assets';
+import { DefaultIconId } from 'shared/lib/icons';
 import { useSheetSubmit } from '../model/hooks';
 
 

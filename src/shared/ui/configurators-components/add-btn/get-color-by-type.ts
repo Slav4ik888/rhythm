@@ -7,6 +7,7 @@ export const getColorByType = (theme: CustomTheme, type?: ViewItemType) => {
   switch (type) {
     case 'box':            return deepOrange[800];
     case 'text':           return blueGrey[500];
+    case 'icon':           return green[500];
     case 'divider':        return grey[800];
     case 'chart':          return teal[800];
     case 'period':         return teal[600];

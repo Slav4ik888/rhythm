@@ -1,6 +1,6 @@
 import { SidebarListItem } from 'shared/types';
 import { creatorFixDate } from 'entities/base';
-import { DefaultIconId } from 'shared/assets';
+import { DefaultIconId } from 'shared/lib/icons';
 
 
 

@@ -3,7 +3,7 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { f, SxCard, pxToRem } from 'shared/styles';
-import { DefaultIconId, defaultIcons } from 'shared/assets';
+import { DefaultIconId, defaultIcons } from 'shared/lib/icons';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { CustomTheme } from 'app/providers/theme';
 

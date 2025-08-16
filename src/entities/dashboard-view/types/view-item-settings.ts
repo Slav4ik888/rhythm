@@ -1,4 +1,5 @@
 import { ChartConfigOptions, ViewItemChart } from 'entities/charts'
+import { DefaultIconId } from 'shared/lib/icons'
 import { ViewItemId } from '.'
 import { GaugeColumnItem } from './gauge-column-item'
 import { IndicatorsConfig } from './indicators-config'
@@ -32,6 +33,9 @@ export type ViewItemSettings = IndicatorsConfig & {
 
   inverted?             : boolean // Значения переворачиваются в противоположное, пример - если задолженность уменьшается то это рост
   unchangedBlack?       : boolean // При отсутствии изменений в результатах красить чёрным цветом
+
+  // Icon
+  iconId?               : DefaultIconId | null // Id иконки (которые из приложения)
 
   // Chart settings
   charts?               : ViewItemChart[]

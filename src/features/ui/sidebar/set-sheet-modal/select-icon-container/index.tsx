@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { SelectIcon } from './select-icon';
-import { DefaultIconId } from 'shared/assets';
+import { DefaultIconId } from 'shared/lib/icons';
 
 
 

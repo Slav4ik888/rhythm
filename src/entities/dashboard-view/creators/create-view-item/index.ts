@@ -78,6 +78,15 @@ export const createViewItem = (
     viewItem.styles.p         = 0;
   }
 
+  if (cfg.type === 'icon') {
+    viewItem.styles.width        = 20;
+    viewItem.styles.minWidth     = 20;
+    viewItem.styles.height       = 20;
+    viewItem.styles.minHeight    = 20;
+    viewItem.styles.borderRadius = 10;
+    viewItem.styles.p            = 4;
+  }
+
   if (cfg.type === 'chart') {
     viewItem.settings = {};
     viewItem.settings.charts = [];

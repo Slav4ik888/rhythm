@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import { useCompany } from 'entities/company';
 import { f } from 'shared/styles';
 import Box from '@mui/material/Box';
-import { DefaultIconId } from 'shared/assets';
+import { DefaultIconId } from 'shared/lib/icons';
 import { SelectIconContainer } from '../select-icon-container';
 import { Input } from 'shared/ui/containers';
 

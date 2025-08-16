@@ -1,4 +1,4 @@
-import { defaultIcons, DefaultIconId } from 'shared/assets';
+import { defaultIcons, DefaultIconId } from '../../default-icons';
 
 
 /**

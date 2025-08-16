@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import {
-  ConfiguratorSubHeader as SubHeader, ConfiguratorSubHeaderActive as SubHeaderActive, ConfiguratorTitle
+  ConfiguratorSubHeader as SubHeader, ConfiguratorSubHeaderActive as SubHeaderActive
 } from 'shared/ui/configurators-components';
 import { ViewItemStylesField, ViewItem } from 'entities/dashboard-view';
 import { SetBackground } from '../background';

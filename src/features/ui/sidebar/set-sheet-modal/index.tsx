@@ -3,7 +3,7 @@ import { DialogInfo } from 'shared/ui/dialogs';
 import { UseValue } from 'shared/lib/hooks';
 import { SetSheetActions as Actions } from './actions';
 import { SetSheetContent as Content } from './content';
-import { DefaultIconId } from 'shared/assets';
+import { DefaultIconId } from 'shared/lib/icons';
 import { getSheetById, useCompany } from 'entities/company';
 
 

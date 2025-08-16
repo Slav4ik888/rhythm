@@ -1,5 +1,5 @@
 import { ItemBase } from 'entities/base';
-import { DefaultIconId } from 'shared/assets';
+import { DefaultIconId } from 'shared/lib/icons';
 
 
 

@@ -4,7 +4,7 @@ import { ErrorBox } from 'shared/ui/containers';
 import { SetSheetSubmitBtn as SubmitBtn } from './submit-btn';
 import { f } from 'shared/styles';
 import { useCompany } from 'entities/company';
-import { DefaultIconId } from 'shared/assets';
+import { DefaultIconId } from 'shared/lib/icons';
 import { DeleteSheetBtn } from './delete-sheet-btn';
 import Box from '@mui/material/Box';
 import { MoveSheetUpdownward } from '../../move-sheet-up-downward';

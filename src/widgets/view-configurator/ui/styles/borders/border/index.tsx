@@ -26,9 +26,6 @@ export const BorderRow: FC<Props> = memo(({ fieldWidth, fieldStyle, fieldColor, 
     [fieldColor, onChange]
   );
 
-  if (selectedItem?.id === 'fbcecd72-2a07-4f93-a88d-01fe68a53da8') {
-    console.log('fieldWidth, fieldStyle, fieldColor: ', fieldWidth, ':', fieldStyle, ':', fieldColor);
-  }
 
   return (
     <RowWrapper>
