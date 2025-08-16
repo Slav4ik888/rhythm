@@ -7,7 +7,7 @@ import { ChangeStyleItemDimensions as ChangeStyle } from './change-style-dimensi
 
 interface Props {
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 export const DimensionsBox: FC<Props> = memo(({ selectedItem, onChange }) => (

@@ -8,7 +8,6 @@ import {
 } from 'entities/dashboard-data';
 import { getData, getDataDoughnut, getOptions, getTemplateData, getTemplateDataDoughnut } from './lib';
 import { isNotPie } from 'entities/charts';
-import { formatDate } from 'shared/helpers/dates';
 
 
 
@@ -75,7 +74,6 @@ export const ItemChartjs: FC<Props> = memo(({ item, isTemplate }) => {
     <Chart
       type    = {type}
       data    = {data}
-      // data    = {! isTemplate ? data : templateData}
       options = {getOptions(type, item.settings?.chartOptions || {})}
     />
   )

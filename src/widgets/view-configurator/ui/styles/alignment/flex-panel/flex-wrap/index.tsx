@@ -8,13 +8,13 @@ import { Tooltip } from 'shared/ui/tooltip';
 
 interface Props {
   value    : FlexWrapType
-  onChange : (field: ViewItemStylesField, value: number | string) => void
+  onChange : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 /** flex-wrap */
 export const FlexWrap: FC<Props> = memo(({ value, onChange }) => {
   const handleChange = useCallback((e: MouseEvent<HTMLElement>, newAlignment: FlexWrapType) => {
-    onChange('flexWrap', newAlignment);
+    onChange('flexWrap', newAlignment, 'FlexWrap');
   }, [onChange]);
 
 

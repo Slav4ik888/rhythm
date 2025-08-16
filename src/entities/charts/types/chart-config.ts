@@ -1,13 +1,13 @@
 // @ts-ignore
 import { InteractionMode } from 'node_modules/chart.js/dist/types/index.d.ts';
-import { ChartFontStyle, ChartType, LegendPosition } from './chart-types';
+import { ChartFontStyle, ChartType, LegendPosition, ScaleYPosition } from './chart-types';
 
 
 
 export interface ChartConfigDatasets {
   label?                : string
   data                  : number[] // Данные
-  tension?              : number
+  tension?              : number // Индивидуальное скругление углов, по умолчанию 0
   pointRadius?          : number // Толщика точки (круглешков)
   pointBorderColor?     : string | 'transparent'
   pointBackgroundColor? : string
@@ -48,6 +48,8 @@ export interface ChartConfigOptions {
   aspectRatio?         : number // или другое значение, которое вам подходит
   maintainAspectRatio? : boolean // важно отключить это свойство, если хотите изменить размер диаграммы
 
+  tension?             : number // Глобальное скругление углов, по умолчанию 0
+
   plugins?: {
     legend?: {
       display?  : boolean
@@ -62,7 +64,9 @@ export interface ChartConfigOptions {
 
   scales?: {
     y?: {
-      display?: boolean
+      display?  : boolean
+      position? : ScaleYPosition, // Положение оси Y слева по умолчанию
+
       // Вертикальные линии на оси
       grid?: {
         drawBorder?      : boolean
@@ -109,10 +113,14 @@ export interface ChartConfigOptions {
       }
       // Подпись оси
       ticks?: {
-        display? : boolean
-        color?   : string
-        padding? : number
-        font?    : {
+        display?       : boolean
+        color?         : string
+        padding?       : number
+        maxTicksLimit? : number // Максимальное кол-во подписей
+        minRotation?   : number // Мин угол поворота. 0 - текст строго горизонтальный
+        maxRotation?   : number // Макс угол поворота
+
+        font?: {
           size?       : number
           weight?     : number
           family?     : 'Roboto' | 'Arial'

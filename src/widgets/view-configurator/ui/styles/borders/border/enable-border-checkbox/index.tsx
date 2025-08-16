@@ -9,17 +9,17 @@ interface Props {
   fieldWidth   : ViewItemStylesField
   enabled      : boolean
   setEnabled   : (flag: boolean) => void
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 export const EnableBorderCheckbox: FC<Props> = memo(({ fieldWidth, enabled, setEnabled, onChange }) => {
   const handleToggle = useCallback(() => {
     if (enabled) {
-      onChange(fieldWidth, 0);
+      onChange(fieldWidth, 0, 'EnableBorderCheckbox');
       setEnabled(false);
     }
     else {
-      onChange(fieldWidth, 1);
+      onChange(fieldWidth, 1, 'EnableBorderCheckbox');
       setEnabled(true);
     }
   },

@@ -16,7 +16,7 @@ interface Props {
   field        : ViewItemStylesField
   value        : number | string | undefined
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 /** Размеры */
@@ -34,8 +34,8 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ selectedItem, field,
   const handleSelectedValue = useCallback((selected: string) => {
     setSelectedValue(selected);
 
-    if (selected !== 'in px') return onChange(field, selected);
-    if (selected === 'in px') return onChange(field, 0);
+    if (selected !== 'in px') return onChange(field, selected, 'ChangeStyleItemDimensions');
+    if (selected === 'in px') return onChange(field, 0, 'ChangeStyleItemDimensions');
 
     setIsValuerNumber(true);
     return undefined
@@ -56,8 +56,8 @@ export const ChangeStyleItemDimensions: FC<Props> = memo(({ selectedItem, field,
           disabled     = {! isValueNumber}
           transform    = {(v) => ((isValueNumber && v) || '') as number} // чтобы выводились только числа
           onChange     = {(e: MouseEvent, v: string | number) => {}}
-          onBlur       = {(e: MouseEvent, v: string | number) => onChange(field, v)}
-          onSubmit     = {(e: MouseEvent, v: string | number) => onChange(field, v)}
+          onBlur       = {(e: MouseEvent, v: string | number) => onChange(field, v, 'ChangeStyleItemDimensions')}
+          onSubmit     = {(e: MouseEvent, v: string | number) => onChange(field, v, 'ChangeStyleItemDimensions')}
         />
 
         {/* In text */}

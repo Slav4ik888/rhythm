@@ -1,21 +1,19 @@
 import { FC, memo } from 'react';
-import { arrayFontWeights, ViewItem } from 'entities/dashboard-view';
+import { arrayFontWeights } from 'entities/dashboard-view';
 import { RowSelectByScheme } from '../../../base-features-components';
 
 
 
 interface Props {
   scheme       : string
-  selectedItem : ViewItem | undefined
 }
 
 /** Set fontWeight */
-export const FontWeightRow: FC<Props> = memo(({ selectedItem, scheme }) => (
+export const FontWeightRow: FC<Props> = memo(({ scheme }) => (
   <RowSelectByScheme
     scheme       = {scheme}
     title        = 'font-weight'
     toolTitle    = 'font-weight'
     array        = {arrayFontWeights}
-    selectedItem = {selectedItem}
   />
 ));

@@ -1,7 +1,6 @@
 import { FC, memo, useCallback, MouseEvent } from 'react';
 import { useDashboardViewActions, ViewItem } from 'entities/dashboard-view';
-import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { InputByScheme } from '../../../../../base-features-components';
+import { RowInputByScheme } from '../../../../../base-features-components';
 import { ViewItemChart } from 'entities/charts';
 
 
@@ -17,22 +16,22 @@ export const ChartBorderWidth: FC<Props> = memo(({ index, selectedItem }) => {
 
   const handleChange = useCallback((value: string | number) => {
     changeOneDatasetsItem({ field: 'borderWidth', value, index });
-  }, [index, changeOneDatasetsItem]);
+  },
+    [index, changeOneDatasetsItem]
+  );
 
 
   return (
-    <RowWrapper>
-      <ConfiguratorTextTitle bold title='Border width' toolTitle='Выберите толщину линии графика' />
-      <InputByScheme
-        type         = 'number'
-        selectedItem = {selectedItem}
-        scheme       = 'settings.charts'
-        width        = '3rem'
-        transform    = {(v) => (v as unknown as ViewItemChart[] | undefined)?.[index]?.datasets?.borderWidth as number}
-        onChange     = {(e: MouseEvent, v: string | number) => handleChange(v)}
-        onBlur       = {(e: MouseEvent, v: string | number) => handleChange(v)}
-        onSubmit     = {(e: MouseEvent, v: string | number) => handleChange(v)}
-      />
-    </RowWrapper>
+    <RowInputByScheme
+      type         = 'number'
+      scheme       = 'settings.charts'
+      title        ='Border width'
+      toolTitle    ='Выберите толщину линии графика'
+      selectedItem = {selectedItem}
+      width        = '3rem'
+      transform    = {(v) => (v as unknown as ViewItemChart[] | undefined)?.[index]?.datasets?.borderWidth as number}
+      onChange     = {() => {}}
+      onSubmit     = {(e: MouseEvent, v: string | number) => handleChange(v)}
+    />
   )
 });

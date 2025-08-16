@@ -30,7 +30,7 @@ export const ViewItemGaugeColumnSettingsConfigurator: FC<Props> = memo(({ select
     </SubHeader>
 
     <SubHeader title='Отображение меток'>
-      <DisplayParametersRow selectedItem={selectedItem} />
+      <DisplayParametersRow />
       <ColorParametersRow   selectedItem={selectedItem} />
       {/* <DisplayResultRow     selectedItem={selectedItem} /> */}
     </SubHeader>

@@ -6,12 +6,12 @@ import { TextWrapType, ViewItemStylesField, arrayTextWrap, ViewItem } from 'enti
 
 interface Props {
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 export const SelectTextWrap: FC<Props> = memo(({ selectedItem, onChange }) => {
   const handleSelectedStyle = useCallback((selected: TextWrapType) => {
-    onChange('textWrap', selected);
+    onChange('textWrap', selected, 'SelectTextWrap');
   },
     [onChange]
   );

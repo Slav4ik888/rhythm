@@ -6,8 +6,9 @@ import { ViewItemChartScaleXSettings } from './x-settings';
 import { ChartCutout } from './cutout';
 import { ViewItem } from 'entities/dashboard-view';
 import { ConfiguratorSubHeader as SubHeader } from 'shared/ui/configurators-components';
-import { isPie } from 'entities/charts';
+import { isLine, isPie } from 'entities/charts';
 import { IndividualPeriodId } from './individual-period-id';
+import { ViewItemChartTension } from './tension';
 
 
 
@@ -21,7 +22,10 @@ export const ViewItemChartSettingsConfigurator: FC<Props> = memo(({ selectedItem
     <SubHeader title='Базовые настройки'>
       <IndividualPeriodId />
     </SubHeader>
-    <ChartLegends selectedItem={selectedItem} />
+    <ChartLegends />
+    {
+      isLine(selectedItem) && <ViewItemChartTension />
+    }
     {
       isPie(selectedItem) && <ChartCutout selectedItem={selectedItem} />
     }

@@ -1,6 +1,5 @@
 import { FC, memo } from 'react';
 import Box from '@mui/material/Box';
-import { ViewItem } from 'entities/dashboard-view';
 import { f } from 'shared/styles';
 import { RowWrapperTitle } from 'shared/ui/configurators-components';
 import { SelectByScheme } from '../../by-scheme/select-by-scheme';
@@ -8,7 +7,6 @@ import { SelectByScheme } from '../../by-scheme/select-by-scheme';
 
 
 interface Props {
-  selectedItem : ViewItem | undefined
   scheme       : string
   title        : string
   boldTitle?   : boolean
@@ -21,7 +19,7 @@ interface Props {
 }
 
 export const RowSelectByScheme: FC<Props> = memo(({
-  selectedItem, scheme, title, toolTitle, array, component, boldTitle, disabled, searchBox, onSearch
+  scheme, title, toolTitle, array, component, boldTitle, disabled, searchBox, onSearch
 }) => (
   <RowWrapperTitle
     title     = {title}
@@ -34,7 +32,6 @@ export const RowSelectByScheme: FC<Props> = memo(({
           scheme       = {scheme}
           array        = {array}
           component    = {component}
-          selectedItem = {selectedItem}
           searchBox    = {searchBox}
           onSearch     = {onSearch}
         />

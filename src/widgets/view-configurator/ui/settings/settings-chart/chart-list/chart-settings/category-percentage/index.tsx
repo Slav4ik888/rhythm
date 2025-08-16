@@ -36,7 +36,7 @@ export const ChartCategoryPercentage: FC<Props> = memo(({ index, selectedItem })
         scheme       = 'settings.charts'
         width        = '3rem'
         transform    = {(v) => (v as unknown as ViewItemChart[])?.[index]?.datasets?.categoryPercentage as number}
-        onChange     = {(e: MouseEvent, v: string | number) => handleChange(v)}
+        onChange     = {() => {}}
         onBlur       = {(e: MouseEvent, v: string | number) => handleChange(v)}
         onSubmit     = {(e: MouseEvent, v: string | number) => handleChange(v)}
       />

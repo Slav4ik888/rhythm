@@ -7,7 +7,7 @@ import { SetBackground } from '../set-background';
 
 interface Props {
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 /** Фон */

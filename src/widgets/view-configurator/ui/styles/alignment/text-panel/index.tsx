@@ -8,7 +8,7 @@ import { TextAlignment } from './text-alignment';
 
 interface Props {
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 export const TextPanelAlignment: FC<Props> = memo(({ selectedItem, onChange }) => (

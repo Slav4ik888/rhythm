@@ -8,7 +8,7 @@ import { TextPanelAlignment } from './text-panel';
 
 interface Props {
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 /** Выравнивание внутреннего содержимого */

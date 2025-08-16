@@ -29,10 +29,7 @@ export const ChartSelectKod: FC<Props> = memo(({ index, selectedItem }) => {
   return (
     <RowWrapperTitle boldTitle title='Код' toolTitle='Укажите код статистики для графика'>
       <Box sx={{ ...f('-c-c'), gap: 1 }}>
-        <FlagFromGlobalKod
-          scheme       = {`settings.charts.[${index}].fromGlobalKod`}
-          selectedItem = {selectedItem}
-        />
+        <FlagFromGlobalKod scheme={`settings.charts.[${index}].fromGlobalKod`} />
         <StatisticPeriodTypeChip type={startEntities[kod]?.periodType} />
         {
           disabled

@@ -8,6 +8,7 @@ import { AlignmentBox } from './alignment';
 import { TextBox } from './text';
 import { StyleControl } from './style-control';
 import { ActivePeriodBox } from './active-period-styles';
+import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 
@@ -16,9 +17,11 @@ export const ViewItemStylesConfigurator: FC = memo(() => {
   const { selectedItem, selectedId, entities, changeOneStyleField } = useDashboardViewActions();
 
   /** Сохраняем изменения стилей элементов в store */
-  const handleChange = useCallback((field: ViewItemStylesField, value: number | string) => {
-    if (entities[selectedId]?.styles?.[field] !== value && selectedId)
-      changeOneStyleField({ selectedId, field, value });
+  const handleChange = useCallback((field: ViewItemStylesField, value: number | string, funcName: string) => {
+    if (entities[selectedId]?.styles?.[field] !== value && selectedId) {
+      __devLog(funcName, field, value);
+      changeOneStyleField({ selectedId, field, value, funcName: 'ViewItemStylesConfigurator' });
+    }
   },
     [selectedId, entities, changeOneStyleField]
   );

@@ -14,7 +14,7 @@ import { FlexWrap } from './flex-wrap';
 
 interface Props {
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 export const FlexPanelAlignment: FC<Props> = memo(({ selectedItem, onChange }) => (

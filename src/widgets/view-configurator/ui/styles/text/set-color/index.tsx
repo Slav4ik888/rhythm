@@ -8,12 +8,12 @@ import { ColorPicker } from 'shared/lib/colors-picker';
 interface Props {
   field        : ViewItemStylesField
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 /** color */
 export const SetColor: FC<Props> = memo(({ field, selectedItem, onChange }) => {
-  const handleColor = useCallback((value: string) => onChange(field, value),
+  const handleColor = useCallback((value: string) => onChange(field, value, 'SetColor'),
     [field, onChange]
   );
 

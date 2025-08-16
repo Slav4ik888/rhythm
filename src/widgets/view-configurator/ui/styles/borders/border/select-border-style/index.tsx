@@ -7,11 +7,11 @@ import { BorderStyleType, ViewItemStylesField, arrayBorderStyles, ViewItem } fro
 interface Props {
   field        : ViewItemStylesField
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 export const SelectBorderStyle: FC<Props> = memo(({ field, selectedItem, onChange }) => {
-  const handleSelectedStyle = useCallback((selected: BorderStyleType) => onChange(field, selected),
+  const handleSelectedStyle = useCallback((selected: BorderStyleType) => onChange(field, selected, 'SelectBorderStyle'),
     [field, onChange]
   );
 

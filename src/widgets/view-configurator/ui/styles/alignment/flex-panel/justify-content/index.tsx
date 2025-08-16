@@ -14,13 +14,13 @@ import AlignHorizontalRightIcon from '@mui/icons-material/AlignHorizontalRight';
 
 interface Props {
   value    : JustifyContentType
-  onChange : (field: ViewItemStylesField, value: number | string) => void
+  onChange : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 /** justify-content */
 export const JustifyContent: FC<Props> = memo(({ value, onChange }) => {
   const handleChange = useCallback((e: MouseEvent<HTMLElement>, newAlignment: JustifyContentType) => {
-    onChange('justifyContent', newAlignment);
+    onChange('justifyContent', newAlignment, 'JustifyContent');
   }, [onChange]);
 
   return (

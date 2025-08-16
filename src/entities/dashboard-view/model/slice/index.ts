@@ -178,7 +178,8 @@ export const slice = createSlice({
 
     // Изменение 1 field в styles
     changeOneStyleField: (state, { payload }: PayloadAction<ChangeSelectedStyle>) => {
-      const { selectedId, field, value } = payload;
+      const { selectedId, field, value, funcName } = payload;
+        __devLog('slice.changeOneStyleField: [funcName]', funcName);
       // @ts-ignore
       state.entities[selectedId]?.styles?.[field] = value;
     },

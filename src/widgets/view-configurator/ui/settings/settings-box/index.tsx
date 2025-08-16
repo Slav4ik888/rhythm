@@ -13,6 +13,6 @@ interface Props {
 export const ViewItemBoxSettingsConfigurator: FC<Props> = memo(({ selectedItem }) => (
   <SubHeader title='Общие настройки'>
     <SelectKodRow selectedItem={selectedItem} />
-    <InvertedData selectedItem={selectedItem} />
+    <InvertedData type={selectedItem?.type} />
   </SubHeader>
 ));

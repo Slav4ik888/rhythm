@@ -14,7 +14,7 @@ import { IndentsBox } from '../indents';
 
 interface Props {
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 export const ActivePeriodBox: FC<Props> = memo(({ selectedItem, onChange }) => (
@@ -26,10 +26,7 @@ export const ActivePeriodBox: FC<Props> = memo(({ selectedItem, onChange }) => (
         selectedItem = {selectedItem}
         onChange     = {onChange}
       />
-      <FontWeightRow
-        scheme       = 'styles.activeFontWeight'
-        selectedItem = {selectedItem}
-      />
+      <FontWeightRow scheme='styles.activeFontWeight' />
       <SetColor
         field        = 'activeColor'
         selectedItem = {selectedItem}

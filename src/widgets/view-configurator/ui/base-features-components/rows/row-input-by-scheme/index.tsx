@@ -16,11 +16,13 @@ interface Props {
   width?       : string
   clear?       : any    // Если нужно, чтобы при очистке значения, была не пустая строка '', а что-то другое
   sx?          : SxCard
+  transform?   : (v: string | number) => string | number // Если полученное начальное значение нужно как-либо преобразовать. Например, 'boxShadow': 'rgba(184, 184, 184, 1)'
   onChange?    : (e: MouseEvent, v: string | number) => void // Если нужна не стандартная обработка
+  onSubmit?    : (e: MouseEvent, v: string | number) => void // Если нужна не стандартная обработка
 }
 
 export const RowInputByScheme: FC<Props> = memo(({
-  selectedItem, scheme, type, title, toolTitle, width, clear, sx, onChange
+  selectedItem, scheme, type, title, toolTitle, width, clear, sx, transform, onChange, onSubmit
 }) => (
   <RowWrapperTitle title={title} toolTitle={toolTitle} sx={sx}>
     <InputByScheme
@@ -30,7 +32,9 @@ export const RowInputByScheme: FC<Props> = memo(({
       clear        = {clear}
       selectedItem = {selectedItem}
       sx           = {sx}
+      transform    = {transform}
       onChange     = {onChange}
+      onSubmit     = {onSubmit}
     />
   </RowWrapperTitle>
 ));

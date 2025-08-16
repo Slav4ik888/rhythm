@@ -20,7 +20,7 @@ const sxPopover = {
 interface Props {
   field        : ViewItemStylesField
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 /** background */
@@ -38,7 +38,7 @@ export const SetBackground: FC<Props> = memo(({ field, selectedItem, onChange })
     [gradients.length, setChecked]
   );
 
-  const handleBackground = useCallback((value: string) => onChange(field, value as unknown as string),
+  const handleBackground = useCallback((value: string) => onChange(field, value as unknown as string, 'SetBackground'),
     [field, onChange]
   );
 

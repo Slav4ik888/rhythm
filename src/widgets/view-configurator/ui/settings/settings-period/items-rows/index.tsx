@@ -26,7 +26,6 @@ export const ItemsRows: FC = memo(() => {
                 scheme       = {`settings.periods.${keyValue}.disabled`}
                 title        = {keyValue}
                 toolTitle    = 'Показать/скрыть этот пункт'
-                selectedItem = {selectedItem}
               />
 
               <InputByScheme

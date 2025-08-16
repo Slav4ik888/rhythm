@@ -15,17 +15,20 @@ interface Props {
   fieldStyle   : ViewItemStylesField
   fieldColor   : ViewItemStylesField
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 /** border: width style color */
 export const BorderRow: FC<Props> = memo(({ fieldWidth, fieldStyle, fieldColor, selectedItem, onChange }) => {
   const [enabled, setEnabled] = useState(Boolean(selectedItem?.styles?.[fieldWidth]));
 
-  const handleSubmitColor = useCallback((value: string) => onChange(fieldColor, value),
+  const handleSubmitColor = useCallback((value: string) => onChange(fieldColor, value, 'BorderRow'),
     [fieldColor, onChange]
   );
 
+  if (selectedItem?.id === 'fbcecd72-2a07-4f93-a88d-01fe68a53da8') {
+    console.log('fieldWidth, fieldStyle, fieldColor: ', fieldWidth, ':', fieldStyle, ':', fieldColor);
+  }
 
   return (
     <RowWrapper>

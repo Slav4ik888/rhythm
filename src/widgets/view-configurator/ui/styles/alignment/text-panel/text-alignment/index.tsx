@@ -11,13 +11,13 @@ import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 
 interface Props {
   value    : TextAlignType | undefined
-  onChange : (field: ViewItemStylesField, value: number | string) => void
+  onChange : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 /** text-align */
 export const TextAlignment: FC<Props> = memo(({ value, onChange }) => {
   const handleChange = useCallback((e: MouseEvent<HTMLElement>, newAlignment: TextAlignType) => {
-    onChange('textAlign', newAlignment);
+    onChange('textAlign', newAlignment, 'TextAlignment');
   }, [onChange]);
 
   return (

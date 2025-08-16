@@ -36,7 +36,9 @@ export const getData = (
           type                 : setValue(viewItem?.settings?.charts?.[idx].chartType, 'line'),
           label                : setValue(datasets.label, `График ${idx + 1}`),
           data                 : checkedInvertedData.map(item => isStr(item) ? NaN : item), // Empty value changes for NaN
-          tension              : 0,
+          tension              : datasets.tension === null // Тк в БД нельзя сохранить undefined, сохраняем null а здесь трансформируем
+                                  ? undefined
+                                  : setValue(datasets.tension, undefined), // При отсутствии выводим undefined
           pointRadius          : setValue(datasets.pointRadius, fixPointRadius(dates)), // Толщика точки (круглешков)
           pointBorderColor     : 'transparent',
           pointBackgroundColor : setValue(datasets.pointBackgroundColor, 'rgb(1, 1, 1)'),
@@ -44,7 +46,6 @@ export const getData = (
           borderWidth          : setValue(datasets.borderWidth, 3), // Толщика линии
           backgroundColor      : setValue(datasets.backgroundColor, 'transparent'),
           fill                 : setValue(datasets.fill, true),
-          // maxBarThickness      : 6,
           barPercentage        : setValue(datasets.barPercentage, 0.8),
           categoryPercentage   : setValue(datasets.categoryPercentage, 0.8),
           order                : setValue(datasets.order, idx + 1),

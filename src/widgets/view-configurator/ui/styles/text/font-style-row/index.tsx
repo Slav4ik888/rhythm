@@ -8,7 +8,7 @@ import { SelectFontStyle } from './select-font-style';
 interface Props {
   field        : ViewItemStylesField
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 /** Set fontStyle */

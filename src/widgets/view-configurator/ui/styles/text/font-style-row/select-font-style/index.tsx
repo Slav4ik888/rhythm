@@ -7,12 +7,12 @@ import { FontStyleType, ViewItemStylesField, arrayFontStyles, ViewItem } from 'e
 interface Props {
   field        : ViewItemStylesField
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 export const SelectFontStyle: FC<Props> = memo(({ field, selectedItem, onChange }) => {
   const handleSelectedStyle = useCallback((selected: FontStyleType) => {
-    onChange(field, selected);
+    onChange(field, selected, 'SelectFontStyle');
   },
     [field, onChange]
   );

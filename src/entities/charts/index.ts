@@ -3,7 +3,7 @@ export type {
   ChartConfigTrendDatasets, LegendPosition, ViewItemChart, ViewItemChartField
 } from './types';
 export {
-  arrChartType, arrLegendPosition, INDIVIDUAL_PERIOD
+  arrChartType, arrLegendPosition, INDIVIDUAL_PERIOD, arrScaleYPosition
 } from './constants';
-export { fixPointRadius, isNotPie, isPie } from './model/utils';
+export { fixPointRadius, isNotPie, isPie, isNotLine, isLine } from './model/utils';
 export { ChartContainer, LineChart, DoughnutChart, BarChart } from './ui'

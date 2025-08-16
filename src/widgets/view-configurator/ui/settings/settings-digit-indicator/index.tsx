@@ -15,8 +15,8 @@ export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ sel
   <>
     <SubHeader title='Базовые настройки'>
       <SelectKodRow   selectedItem={selectedItem} />
-      <InvertedData   selectedItem={selectedItem} />
-      <UnchangedBlack selectedItem={selectedItem} />
+      <InvertedData   type={selectedItem?.type} />
+      <UnchangedBlack />
       <ToolTitleRow />
     </SubHeader>
 
@@ -41,13 +41,11 @@ export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ sel
         scheme       = 'settings.plusMinus'
         title        = 'plusMinus'
         toolTitle    = 'Показывать знаки [+/-] при росте/падении'
-        selectedItem = {selectedItem}
       />
       <RowFlagByScheme
         scheme       = 'settings.growthColor'
         title        = 'growthColor'
         toolTitle    = 'Красить зелёным при росте / красным при падении'
-        selectedItem = {selectedItem}
       />
     </SubHeader>
 
@@ -56,13 +54,11 @@ export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ sel
         scheme       = 'settings.reduce'
         title        = 'reduce'
         toolTitle    = 'Убрать разряды: 12 500 700 => 12.5 млн'
-        selectedItem = {selectedItem}
       />
       <RowFlagByScheme
         scheme       = 'settings.noSpace'
         title        = 'noSpace'
         toolTitle    = 'Убрать пробелы между разрядами: 12 500 => 12500'
-        selectedItem = {selectedItem}
       />
       <RowInputByScheme
         scheme       = 'settings.fractionDigits'
@@ -76,7 +72,6 @@ export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ sel
         scheme       = 'settings.addZero'
         title        = 'addZero'
         toolTitle    = 'Добавлять ли нули после запятой, чтобы выровнить до нужного кол-ва знаков'
-        selectedItem = {selectedItem}
       />
     </SubHeader>
 
@@ -86,14 +81,12 @@ export const ViewItemDigitIndicatorSettingsConfigurator: FC<Props> = memo(({ sel
         title        = 'endingType'
         toolTitle    = ''
         array        = {arrayEndingType}
-        selectedItem = {selectedItem}
       />
       <RowSelectByScheme
         scheme       = 'settings.endingDiffType'
         title        = 'endingDiffType'
         toolTitle    = ''
         array        = {arrayEndingDiffType}
-        selectedItem = {selectedItem}
       />
     </SubHeader>
   </>

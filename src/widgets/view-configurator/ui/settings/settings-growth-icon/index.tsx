@@ -17,15 +17,15 @@ export const ViewItemGrowthIconSettingsConfigurator: FC<Props> = memo(({ selecte
     {/* GLOBAL SETTINGS */}
     <SubHeader title='Базовые настройки'>
       <SelectKodRow selectedItem={selectedItem} />
-      <InvertedData   selectedItem={selectedItem} />
-      <UnchangedBlack selectedItem={selectedItem} />
+      <InvertedData type={selectedItem?.type} />
+      <UnchangedBlack />
       <ToolTitleRow />
     </SubHeader>
 
     {/* GROWTH ICON SETTINGS */}
     <SubHeader title='Особые настройки'>
-      <IsLeft         selectedItem={selectedItem} />
-      <ScaleValue     selectedItem={selectedItem} />
+      <IsLeft />
+      <ScaleValue selectedItem={selectedItem} />
     </SubHeader>
   </>
 ));

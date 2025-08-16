@@ -13,7 +13,7 @@ interface Props {
   defaultValue : RgbaString
   gradients    : SplittedLinerGradient
   sx?          : SxCard
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 
@@ -33,17 +33,17 @@ export const SetLinearGradient: FC<Props> = memo(({
 
   const handleDeg = useCallback((e: MouseEvent, value: number | string) => {
     setDeg(value as number);
-    onChange(field, linearGradient(main, state, value as number));
+    onChange(field, linearGradient(main, state, value as number), 'SetLinearGradient');
   }, [field, main, state, setDeg, onChange]);
 
   const handleGrainentMain = useCallback((value: string) => {
     setMain(value);
-    onChange(field, linearGradient(value, state, deg as number));
+    onChange(field, linearGradient(value, state, deg as number), 'SetLinearGradient');
   }, [field, state, deg, setMain, onChange]);
 
   const handleGrainentState = useCallback((value: string) => {
     setState(value);
-    onChange(field, linearGradient(main, value, deg as number));
+    onChange(field, linearGradient(main, value, deg as number), 'SetLinearGradient');
   }, [field, main, deg, setState, onChange]);
 
 

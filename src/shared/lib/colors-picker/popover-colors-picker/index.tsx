@@ -79,7 +79,13 @@ export const PopoverColorsPicker: FC<Props> = memo(({ sx: style, color, onChange
 
   useClickOutside(popoverRef, handleClose);
 
-  const handleChange = useCallback((newColor: RgbaColor) => onChange(newColor), [onChange]);
+  const handleChange = useCallback((newColor: RgbaColor) => {
+    console.log('newColor: ', newColor);
+    onChange(newColor);
+  },
+    [onChange]
+  );
+
   const handleChangeHex = useCallback((hex: string) => onChange(hexToRgba(hex)), [onChange]);
 
   const handleCopyColor = useCallback(() => copyToClipboard(rgbaToHexWithAlpha(rgba(color))), [color]);

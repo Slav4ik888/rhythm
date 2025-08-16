@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, useEffect, useState } from 'react';
-import { useDashboardViewActions, ViewItem } from 'entities/dashboard-view';
+import { useDashboardViewActions } from 'entities/dashboard-view';
 import { SelectValue } from 'shared/ui/configurators-components/select';
 import { getValueByScheme } from 'shared/helpers/objects';
 import { updater } from '../utils';
@@ -7,7 +7,6 @@ import { updater } from '../utils';
 
 
 interface Props {
-  selectedItem : ViewItem | undefined
   scheme       : string
   array        : string[] | any[] // any if component present
   searchBox?   : FC<any> // Если нужен не стандартный поиск in SelectValue
@@ -20,10 +19,8 @@ interface Props {
  * Выбор ByScheme и сохраняет по схеме измененя в selectedItem
  * в том числе scheme with array
  */
-export const SelectByScheme: FC<Props> = memo(({
-  selectedItem, scheme, array, disabled, component, searchBox, onSearch
-}) => {
-  const { updateViewItems } = useDashboardViewActions();
+export const SelectByScheme: FC<Props> = memo(({ scheme, array, disabled, component, searchBox, onSearch }) => {
+  const { selectedItem, updateViewItems } = useDashboardViewActions();
   const [selectedValue, setSelectedValue] = useState(getValueByScheme(selectedItem, scheme) || '');
 
   useEffect(() => {

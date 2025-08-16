@@ -14,7 +14,7 @@ import { TextWrapRow } from './text-wrap-row';
 
 interface Props {
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 /** Card text label */
@@ -30,10 +30,7 @@ export const TextBox: FC<Props> = memo(({ selectedItem, onChange }) => (
         selectedItem = {selectedItem}
         onChange     = {onChange}
       />
-      <FontWeightRow
-        scheme       = 'styles.fontWeight'
-        selectedItem = {selectedItem}
-      />
+      <FontWeightRow scheme='styles.fontWeight' />
       <LineHeightRow selectedItem={selectedItem} />
       {/* font-family */}
       <TextWrapRow
@@ -54,10 +51,7 @@ export const TextBox: FC<Props> = memo(({ selectedItem, onChange }) => (
             scheme='styles.dirFontSize'
             selectedItem={selectedItem}
           />
-          <FontWeightRow
-            scheme       = 'styles.dirFontWeight'
-            selectedItem = {selectedItem}
-          />
+          <FontWeightRow scheme='styles.dirFontWeight' />
         </SubHeaderActive>
       )
     }

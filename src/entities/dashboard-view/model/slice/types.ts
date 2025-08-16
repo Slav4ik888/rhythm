@@ -27,6 +27,7 @@ export interface ChangeSelectedStyle {
   selectedId : ViewItemId
   field      : ViewItemStylesField
   value      : number | string
+  funcName   : string // Название вызывающей ф-ии, пытаюсь победить баг с подтягиванием цвета предыдущего элемента
 }
 
 export interface ChangeOneSettingsField {

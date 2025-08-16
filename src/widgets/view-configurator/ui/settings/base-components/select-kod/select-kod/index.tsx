@@ -32,7 +32,6 @@ export const SelectKod: FC<Props> = memo(({ selectedItem, scheme }) => {
       scheme       = {scheme}
       array        = {searcheďKods}
       component    = {SelectKodItem}
-      selectedItem = {selectedItem}
       searchBox    = {SelectKodItemSearchBox}
       onSearch     = {handleSearch}
     />

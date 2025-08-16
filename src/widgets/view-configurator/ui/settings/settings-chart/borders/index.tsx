@@ -19,7 +19,6 @@ export const ViewItemChartScaleBorders: FC<Props> = memo(({ scale, selectedItem 
       scheme       = {`settings.chartOptions.scales.${scale}.border.display`}
       title        = 'display'
       toolTitle    = 'Показать/скрыть'
-      selectedItem = {selectedItem}
     />
     <ChartSetColorByScheme
       scheme       = {`settings.chartOptions.scales.${scale}.border.color`}

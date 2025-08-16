@@ -10,7 +10,7 @@ import { Tooltip } from 'shared/ui/tooltip';
 interface Props {
   field        : ViewItemStylesField
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 /** box-shadow */
@@ -26,10 +26,10 @@ export const BoxShadowRow: FC<Props> = memo(({ field, selectedItem, onChange }) 
 
   const handleToggle = useCallback(() => {
     if (selectedItem?.styles?.[field]) {
-      onChange(field, '');
+      onChange(field, '', 'BoxShadowRow');
     }
     else {
-      onChange(field, '1px 1px 3px 0px rgba(184, 184, 184, 1)');
+      onChange(field, '1px 1px 3px 0px rgba(184, 184, 184, 1)', 'BoxShadowRow');
       setChecked(true);
     }
   },

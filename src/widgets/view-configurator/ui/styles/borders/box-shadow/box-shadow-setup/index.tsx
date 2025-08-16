@@ -8,7 +8,7 @@ import { splitShadow } from './utils';
 interface Props {
   field        : ViewItemStylesField
   selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string) => void
+  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
 }
 
 /** box-shadow setup container */
@@ -20,11 +20,11 @@ export const BoxShadowSetupContainer: FC<Props> = memo(({ field, selectedItem, o
 
   const handleChange = useCallback((value: string | number, index: number) => {
     switch (index) {
-      case 0: return onChange(field, `${value}px ${oY}px ${bR}px ${sR}px ${clr}`)
-      case 1: return onChange(field, `${oX}px ${value}px ${bR}px ${sR}px ${clr}`)
-      case 2: return onChange(field, `${oX}px ${oY}px ${value}px ${sR}px ${clr}`);
-      case 3: return onChange(field, `${oX}px ${oY}px ${bR}px ${value}px ${clr}`);
-      case 4: return onChange(field, `${oX}px ${oY}px ${bR}px ${sR}px ${value}`);
+      case 0: return onChange(field, `${value}px ${oY}px ${bR}px ${sR}px ${clr}`, 'BoxShadowSetupContainer')
+      case 1: return onChange(field, `${oX}px ${value}px ${bR}px ${sR}px ${clr}`, 'BoxShadowSetupContainer')
+      case 2: return onChange(field, `${oX}px ${oY}px ${value}px ${sR}px ${clr}`, 'BoxShadowSetupContainer');
+      case 3: return onChange(field, `${oX}px ${oY}px ${bR}px ${value}px ${clr}`, 'BoxShadowSetupContainer');
+      case 4: return onChange(field, `${oX}px ${oY}px ${bR}px ${sR}px ${value}`, 'BoxShadowSetupContainer');
       default: return undefined
     }
   },
