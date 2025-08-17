@@ -14,11 +14,15 @@ export const useStyles = (
     isPrimary   = type === ButtonType.PRIMARY,
     isContained = variant === 'contained';
 
-  const color = isContained
+  let color = isContained
     ? isPrimary
       ? theme.palette.primary.contrastText : theme.palette.secondary.contrastText
     : isPrimary
       ? theme.palette.primary.main : theme.palette.secondary.main;
+
+  if (disabled) {
+    color = theme.palette.text.light;
+  }
 
   const background = disabled
     ? 'inherit'

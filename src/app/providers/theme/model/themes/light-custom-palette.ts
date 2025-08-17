@@ -16,6 +16,7 @@ export const customPalette = {
   },
 
   text: {
+    lighter: '#d2d2d2',
     light: '#a6a6a6',
     main: '#505050',
     dark: '#2e2e2e',

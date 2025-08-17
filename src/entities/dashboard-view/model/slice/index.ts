@@ -8,7 +8,9 @@ import {
   ChangeOneChartsItem, SetEditMode, SetDashboardBunchesFromCache, SetDashboardBunches
 } from './types';
 import { updateEntities } from 'entities/base';
-import { ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem, ViewItem } from '../../types';
+import {
+  ViewItemId, ViewItemSettings, ViewItemStyles, PartialViewItem, ViewItem, ViewItemStylesField
+} from '../../types';
 import { cloneObj, isNotEmpty, updateObject } from 'shared/helpers/objects';
 import {
   getBunchesFromViewItems, getBunchesTimestamps, getBunchesWithoutChanges, getViewitemsFromBunches,
@@ -178,10 +180,16 @@ export const slice = createSlice({
 
     // Изменение 1 field в styles
     changeOneStyleField: (state, { payload }: PayloadAction<ChangeSelectedStyle>) => {
-      const { selectedId, field, value, funcName } = payload;
-        __devLog('slice.changeOneStyleField: [funcName]', funcName);
-      // @ts-ignore
-      state.entities[selectedId]?.styles?.[field] = value;
+      const { field, value, funcName } = payload;
+      __devLog('slice.changeOneStyleField: [funcName]', funcName);
+
+      const selectedEntity = state.entities[state.selectedId];
+      if (selectedEntity) {
+        if (! selectedEntity.styles) {
+          selectedEntity.styles = {};
+        }
+        (selectedEntity.styles as Record<ViewItemStylesField, string | number>)[field] = value;
+      }
     },
 
     setSelectedStyles: (state, { payload }: PayloadAction<ViewItemStyles>) => {

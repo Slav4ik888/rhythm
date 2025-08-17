@@ -6,60 +6,60 @@ import { HexColorInput, RgbaColorPicker, RgbaColor  } from 'react-colorful';
 import { CustomTheme, useTheme } from 'app/providers/theme';
 import { hexToRgba, isValidRGBA, rgba, rgbaToHexWithAlpha } from '../utils';
 import PasteIcon from '@mui/icons-material/ContentPaste';
-import CopyIcon from '@mui/icons-material/ContentCopy';
 import TransparentIcon from '@mui/icons-material/BlurOn';
-import { copyToClipboard, getClipboardText } from '../../clipboard';
+import { getClipboardText } from '../../clipboard';
 import { __devLog } from '../../tests/__dev-log';
 import { IconButton } from 'shared/ui/mui-components';
+import { CopyBtn } from 'shared/ui/buttons';
 // import s from './index.module.scss';
 // __devLog('MODULE STYLE: ', s);
 
 
 
 const useStyles = (theme: CustomTheme, sx: SxCard | undefined, backgroundColor: RgbaColor | undefined) => ({
+  root: {
+    position: 'relative',
+    ...sx?.root,
+  },
+
+  swatch: {
+    width           : '50px',
+    height          : '28px',
+    borderRadius    : '8px',
+    border          : `2px solid ${theme.palette.text.light}`,
+    boxShadow       : '0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.1)',
+    cursor          : 'pointer',
+    backgroundColor : rgba(backgroundColor),
+  },
+
+  popover: {
+    position     : 'absolute',
+    bottom       : sx?.popover?.bottom ? sx?.popover?.bottom : 'calc(100% + 8px)',
+    right        : 0,
+    ...f('c'),
+    gap          : 1,
+    p            : 0.5,
+    pb           : 1,
+    borderRadius : '9px',
+    boxShadow    : '0 6px 12px rgba(0, 0, 0, 0.15)',
+    background   : theme.palette.background.paper,
+    zIndex       : 1000,
+    ...sx?.popover,
+  },
+  control: {
+    ...f('-c-sb'),
+  },
+  transparent: {
     root: {
-      position: 'relative',
-      ...sx?.root,
-    },
-
-    swatch: {
-      width           : '50px',
-      height          : '28px',
-      borderRadius    : '8px',
-      border          : `2px solid ${theme.palette.text.light}`,
-      boxShadow       : '0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.1)',
-      cursor          : 'pointer',
-      backgroundColor : rgba(backgroundColor),
-    },
-
-    popover: {
-      position     : 'absolute',
-      bottom       : sx?.popover?.bottom ? sx?.popover?.bottom : 'calc(100% + 8px)',
-      right        : 0,
-      ...f('c'),
-      gap          : 1,
-      p            : 0.5,
-      pb           : 1,
-      borderRadius : '9px',
-      boxShadow    : '0 6px 12px rgba(0, 0, 0, 0.15)',
-      background   : theme.palette.background.paper,
-      zIndex       : 1000,
-      ...sx?.popover,
-    },
-    control: {
-      ...f('-c-sb'),
-    },
-    transparent: {
-      root: {
-        fontSize : pxToRem(10),
-        // width    : '60px',
-      }
-    },
-    icon: {
-      color    : theme.palette.dark.main,
-      fontSize : '20px',
-    },
-  });
+      fontSize : pxToRem(10),
+      // width    : '60px',
+    }
+  },
+  icon: {
+    color    : theme.palette.dark.main,
+    fontSize : '20px',
+  },
+});
 
 
 interface Props {
@@ -88,7 +88,6 @@ export const PopoverColorsPicker: FC<Props> = memo(({ sx: style, color, onChange
 
   const handleChangeHex = useCallback((hex: string) => onChange(hexToRgba(hex)), [onChange]);
 
-  const handleCopyColor = useCallback(() => copyToClipboard(rgbaToHexWithAlpha(rgba(color))), [color]);
   const handlePasteColor = useCallback(async () => {
     const copied = await getClipboardText();
     if (isValidRGBA(copied)) handleChangeHex(copied);
@@ -115,25 +114,23 @@ export const PopoverColorsPicker: FC<Props> = memo(({ sx: style, color, onChange
               style    = {{ width: 100, marginRight: 4 }}
               onChange = {handleChangeHex}
             />
-            <IconButton
+            <CopyBtn
+              value     = {rgbaToHexWithAlpha(rgba(color))}
               toolTitle = 'Скопировать цвет'
-              size      = 'small'
-              icon      = {CopyIcon}
-              sx        = {{ icon: sx?.icon }}
-              onClick   = {handleCopyColor}
+              sx        = {sx.icon}
             />
             <IconButton
               toolTitle = 'Вставить скопированный цвет'
               size      = 'small'
               icon      = {PasteIcon}
-              sx        = {{ icon: sx?.icon }}
+              sx        = {{ icon: sx.icon }}
               onClick   = {handlePasteColor}
             />
             <IconButton
               toolTitle = 'Прозрачность 100%'
               size      = 'small'
               icon      = {TransparentIcon}
-              sx        = {{ icon: sx?.icon }}
+              sx        = {{ icon: sx.icon }}
               onClick   = {handleTransparent}
             />
           </Box>

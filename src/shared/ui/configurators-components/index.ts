@@ -1,4 +1,4 @@
-export { AddBtn } from './add-btn'
+export { AddBtn, getColorByType } from './add-btn'
 export { ConfiguratorTextTitle } from './text-title'
 export { ConfiguratorTextfieldItem } from './textfield-item'
 export { ConfiguratorSubHeader } from './sub-header'

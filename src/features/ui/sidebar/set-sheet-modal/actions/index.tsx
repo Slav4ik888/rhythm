@@ -49,7 +49,7 @@ export const SetSheetActions: FC<Props> = memo(({ editId, selectedIconId, sheetT
 
         <Box
           sx={{
-            ...f(),
+            ...f('-c-fe'),
             gap: 1
           }}
         >

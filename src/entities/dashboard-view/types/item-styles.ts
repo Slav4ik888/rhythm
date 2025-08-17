@@ -128,9 +128,10 @@ export interface ViewItemStyles {
   activeBorderBottomRightRadius? : number | string
 
   activeBorderColor?             : string
-
-
   activeBoxShadow?               : string // 1px 1px 3px 0px rgb(184 184 184);
+
+  // Icon
+  iconColor?                     : RgbaString
 }
 
 export type ViewItemStylesField = keyof ViewItemStyles;

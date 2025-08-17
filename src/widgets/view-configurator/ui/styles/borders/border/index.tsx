@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useState } from 'react';
+import { FC, memo, useCallback, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import { f } from 'shared/styles';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
@@ -21,6 +21,13 @@ interface Props {
 /** border: width style color */
 export const BorderRow: FC<Props> = memo(({ fieldWidth, fieldStyle, fieldColor, selectedItem, onChange }) => {
   const [enabled, setEnabled] = useState(Boolean(selectedItem?.styles?.[fieldWidth]));
+
+  useEffect(() => {
+    setEnabled(Boolean(selectedItem?.styles?.[fieldWidth]));
+  },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [selectedItem]
+  );
 
   const handleSubmitColor = useCallback((value: string) => onChange(fieldColor, value, 'BorderRow'),
     [fieldColor, onChange]

@@ -9,21 +9,22 @@ import { TextBox } from './text';
 import { StyleControl } from './style-control';
 import { ActivePeriodBox } from './active-period-styles';
 import { __devLog } from 'shared/lib/tests/__dev-log';
+import { IconStylesBox } from './icon-styles';
 
 
 
 /** Вкладка Styles */
 export const ViewItemStylesConfigurator: FC = memo(() => {
-  const { selectedItem, selectedId, entities, changeOneStyleField } = useDashboardViewActions();
+  const { selectedItem, entities, changeOneStyleField } = useDashboardViewActions();
 
   /** Сохраняем изменения стилей элементов в store */
   const handleChange = useCallback((field: ViewItemStylesField, value: number | string, funcName: string) => {
-    if (entities[selectedId]?.styles?.[field] !== value && selectedId) {
+    if (entities[selectedItem.id]?.styles?.[field] !== value && selectedItem.id) {
       __devLog(funcName, field, value);
-      changeOneStyleField({ selectedId, field, value, funcName: 'ViewItemStylesConfigurator' });
+      changeOneStyleField({ field, value, funcName: 'ViewItemStylesConfigurator' });
     }
   },
-    [selectedId, entities, changeOneStyleField]
+    [selectedItem.id, entities, changeOneStyleField]
   );
 
 
@@ -41,6 +42,9 @@ export const ViewItemStylesConfigurator: FC = memo(() => {
 
       {
         selectedItem?.type === 'period' && <ActivePeriodBox selectedItem={selectedItem} onChange={handleChange} />
+      }
+      {
+        selectedItem?.type === 'icon' && <IconStylesBox />
       }
       <StyleControl />
     </>

@@ -5,6 +5,8 @@ import { DefaultIconId, defaultIcons } from 'shared/lib/icons';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { CustomTheme } from 'app/providers/theme';
 import { useDashboardViewActions } from 'entities/dashboard-view';
+import Box from '@mui/material/Box';
+import { f } from 'shared/styles';
 
 
 
@@ -31,26 +33,43 @@ export const SelectIconsModal: FC<Props> = memo(({ hookOpen: O }) => {
       maxWidth = 'md'
       onClose  = {() => O.setClose()}
     >
-      {
-        Object
-          .entries(defaultIcons)
-          .map(([key, IconComponent]) => (
-            <ListItemIcon
-              key     = {key}
-              onClick = {() => handlerClick(key as DefaultIconId)}
-            >
-              {/* @ts-ignore */}
-              <IconComponent
-                sx={(theme) => ({
-                  '&.MuiSvgIcon-root': {
-                    color: (theme as CustomTheme).palette.text.main,
-                  }
+      <Box sx={f('-c-sb-w')}>
+        {
+          Object
+            .entries(defaultIcons)
+            .map(([key, IconComponent]) => (
+              <ListItemIcon
+                key     = {key}
+                sx      = {(theme) => ({
+                  ...f('-c-c'),
+                  gap          : 1,
+                  cursor       : 'pointer',
+                  borderRadius : '50%',
+
+                  '&.MuiListItemIcon-root': {
+                    width    : 40,
+                    minWidth : 40,
+                    height   : 40,
+                  },
+                  '&:hover': {
+                    background: (theme as CustomTheme).palette.text.light,
+                  },
                 })}
-              />
-            </ListItemIcon>
+                onClick = {() => handlerClick(key as DefaultIconId)}
+              >
+                {/* @ts-ignore */}
+                <IconComponent
+                  sx={(theme) => ({
+                    '&.MuiSvgIcon-root': {
+                      color: (theme as CustomTheme).palette.text.main,
+                    }
+                  })}
+                />
+              </ListItemIcon>
+            )
           )
-        )
-      }
+        }
+      </Box>
     </DialogInfo>
   )
 });

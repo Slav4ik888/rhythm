@@ -1,20 +1,22 @@
 import { FC, memo, useCallback } from 'react';
 import { ConfiguratorTextTitle, RowWrapper } from 'shared/ui/configurators-components';
-import { ViewItemStylesField, ViewItem } from 'entities/dashboard-view';
+import { ViewItemStylesField, useDashboardViewActions } from 'entities/dashboard-view';
 import { ColorPicker } from 'shared/lib/colors-picker';
 
 
 
 interface Props {
-  field        : ViewItemStylesField
-  selectedItem : ViewItem | undefined
-  onChange     : (field: ViewItemStylesField, value: number | string, funcName: string) => void
+  field: ViewItemStylesField
 }
 
 /** color */
-export const SetColor: FC<Props> = memo(({ field, selectedItem, onChange }) => {
-  const handleColor = useCallback((value: string) => onChange(field, value, 'SetColor'),
-    [field, onChange]
+export const SetColor: FC<Props> = memo(({ field }) => {
+  const { selectedItem, changeOneStyleField } = useDashboardViewActions();
+
+  const handleColor = useCallback((value: string) => {
+    changeOneStyleField({ field, value, funcName: 'SetColor' });
+  },
+    [field, changeOneStyleField]
   );
 
 

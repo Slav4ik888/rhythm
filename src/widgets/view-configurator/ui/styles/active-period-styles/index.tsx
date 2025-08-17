@@ -27,11 +27,7 @@ export const ActivePeriodBox: FC<Props> = memo(({ selectedItem, onChange }) => (
         onChange     = {onChange}
       />
       <FontWeightRow scheme='styles.activeFontWeight' />
-      <SetColor
-        field        = 'activeColor'
-        selectedItem = {selectedItem}
-        onChange     = {onChange}
-      />
+      <SetColor field='activeColor' />
     </SubHeader>
 
     <SubHeader title='Фон'>
@@ -42,7 +38,7 @@ export const ActivePeriodBox: FC<Props> = memo(({ selectedItem, onChange }) => (
       />
     </SubHeader>
 
-    <IndentsBox active selectedItem = {selectedItem} />
+    <IndentsBox active selectedItem={selectedItem} />
 
     <SubHeader title='Рамка'>
       <BorderRow

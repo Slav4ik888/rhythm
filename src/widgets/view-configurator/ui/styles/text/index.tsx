@@ -37,11 +37,7 @@ export const TextBox: FC<Props> = memo(({ selectedItem, onChange }) => (
         selectedItem = {selectedItem}
         onChange     = {onChange}
       />
-      <SetColor
-        field        = 'color'
-        selectedItem = {selectedItem}
-        onChange     = {onChange}
-      />
+      <SetColor field='color' />
     </SubHeader>
 
     {

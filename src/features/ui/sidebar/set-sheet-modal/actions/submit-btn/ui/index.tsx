@@ -32,7 +32,7 @@ export const SetSheetSubmitBtn: FC<Props> = memo(({ editId, selectedIconId, shee
       loading  = {loading}
       disabled = {disabled}
       variant  = 'outlined'
-      text     = {editId ? 'Сохранить изменения' : 'Создать'}
+      text     = {editId ? 'Сохранить' : 'Создать'}
       onClick  = {handlerSubmit}
     />
   )

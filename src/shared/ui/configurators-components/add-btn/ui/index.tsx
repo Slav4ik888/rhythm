@@ -1,11 +1,11 @@
 import { FC, memo } from 'react';
-import { Tooltip } from '../../tooltip';
-import { MDButton } from '../../mui-design-components';
+import { Tooltip } from '../../../tooltip';
+import { MDButton } from '../../../mui-design-components';
 import AddCardIcon from '@mui/icons-material/AddCard';
 import { ViewItemType } from 'entities/dashboard-view';
 import { capitalizeFirst } from 'shared/helpers/strings';
 import { pxToRem } from 'shared/styles';
-import { getColorByType } from './get-color-by-type';
+import { getColorByType } from '../utils/get-color-by-type';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { SvgIconTypeMap } from '@mui/material/SvgIcon';
 import { useTheme } from 'app/providers/theme';
