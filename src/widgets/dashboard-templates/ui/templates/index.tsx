@@ -1,25 +1,29 @@
 import { memo, useEffect } from 'react';
-import { useDashboardTemplates } from 'entities/dashboard-templates';
-import { useValue } from 'shared/lib/hooks';
-import { TemplatesDialogAsync as TemplatesDialog } from './dialog.async';
+import { useDashboardTemplates, reducerDashboardTemplates } from 'entities/dashboard-templates';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
+import { DashboardTemplatesContainer } from './container';
 
 
+
+const initialReducers: ReducersList = {
+  dashboardTemplates : reducerDashboardTemplates
+};
 
 /** Шаблоны */
 export const DashboardTemplates = memo(() => {
-  const { opened } = useDashboardTemplates();
-  const hookOpen = useValue();
+  const { serviceGetBunchesUpdated } = useDashboardTemplates();
 
   useEffect(() => {
-    hookOpen.setOpen(opened);
+    serviceGetBunchesUpdated(); /** Get актуальное состояние bunchesUpdated from DB */
   },
-    [opened, hookOpen]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
 
 
-  if (! opened) return null
-
   return (
-    <TemplatesDialog hookOpen={hookOpen} />
+    <DynamicModuleLoader reducers={initialReducers}>
+      <DashboardTemplatesContainer />
+    </DynamicModuleLoader>
   )
 });

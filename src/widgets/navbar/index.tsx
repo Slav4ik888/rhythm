@@ -23,6 +23,8 @@ import { NavbarControlBox } from './control-box';
 import { NavbarSetupBox } from './setup-box';
 import { NavbarLinksBox } from './links-box';
 import { usePages } from 'shared/lib/hooks';
+import { useAccess } from 'entities/company';
+import { BoxGrow } from 'shared/ui/containers';
 
 
 
@@ -38,6 +40,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false }) => {
   const { navbarTransparent, navbarFixed, mode } = configuratorState;
   const darkMode = mode === 'dark' || (mode === 'system' && isSystemDarkMode());
   const { isDashboardPage, isLoginPage, isSignupPage } = usePages();
+  const { isDashboardAccessView } = useAccess();
 
   useEffect(() => {
     // Setting the navbar type
@@ -79,9 +82,10 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false }) => {
         <Toolbar sx={(theme) => sxNavbarContainer(theme as CustomTheme)}>
           {
             isDashboardPage
-              ? <NavbarControlBox />
+              ? isDashboardAccessView && <NavbarControlBox />
               : <NavbarLinksBox />
           }
+          <BoxGrow />
           <NavbarSetupBox />
         </Toolbar>
       </AppBar>

@@ -1,7 +1,7 @@
 import { FC, memo, useEffect } from 'react';
 import { useUser } from 'entities/user';
 import { Outlet, useParams } from 'react-router-dom';
-import { useCompany } from 'entities/company';
+import { useAccess, useCompany } from 'entities/company';
 import { useUI } from 'entities/ui';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { usePages } from 'shared/lib/hooks';
@@ -17,6 +17,8 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
     loading: loadingCompany, companyId, dashboardPublicAccess, _isParamsCompanyIdLoaded,
     serviceGetParamsCompany, setIsParamsCompanyIdLoaded
   } = useCompany({ dashboardSheetId });
+  const { isDashboardAccessView } = useAccess();
+
 
   useEffect(() => {
     if (! auth
@@ -64,7 +66,8 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
   );
 
   if (
-    (! auth && ! dashboardPublicAccess) // должна быть возможность входить неавторизованным пользователям
+    // (! auth && ! dashboardPublicAccess)
+    ! isDashboardAccessView  // должна быть возможность входить неавторизованным пользователям
     || ! _isParamsCompanyIdLoaded
   ) {
     return null;

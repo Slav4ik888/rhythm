@@ -4,19 +4,19 @@ import { ConfiguratorMainHeader as MainHeader } from 'shared/ui/configurators-co
 import { useDashboardViewActions } from 'entities/dashboard-view';
 import Box from '@mui/material/Box';
 import { useCompany } from 'entities/company'
-import { UnsavedChanges } from './unsaved-changes';
-import { InfoBlock } from './info-block';
+import { UnsavedChanges } from '../unsaved-changes';
+import { InfoBlock } from '../info-block';
 import { PaletteModeSwitcher } from 'features/ui';
-import { Unselected } from './unselected';
+import { Unselected } from '../unselected';
 import { useUI } from 'entities/ui';
 import { f } from 'shared/styles';
-import { ViewItemConfiguratorTabs } from './tabs';
+import { ViewItemConfiguratorTabs } from '../tabs';
 import { ClearLsBunchesUpdated } from 'features/dashboard-view/ui/configurator';
 import { isNotEmpty } from 'shared/helpers/objects';
 
 
 
-export const ViewItemConfigurator: FC = memo(() => {
+const ViewItemConfigurator: FC = memo(() => {
   const { paramsCompanyId, paramsChangedCompany, cancelParamsCustomSettings } = useCompany();
   const { setWarningMessage } = useUI();
   const {
@@ -77,3 +77,6 @@ export const ViewItemConfigurator: FC = memo(() => {
     </DrawerStyled>
   )
 });
+
+
+export default ViewItemConfigurator;

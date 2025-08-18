@@ -18,6 +18,7 @@ import { useUIConfiguratorController, CustomTheme } from 'app/providers/theme';
 import MDBox from '../../mui-design-components/md-box';
 import { pxToRem } from 'shared/styles';
 import { usePages } from 'shared/lib/hooks';
+import { useAccess } from 'entities/company';
 
 
 
@@ -33,15 +34,10 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
   const [configuratorState] = useUIConfiguratorController();
   const { isSidebar, sidebarMini, sidebarWidth } = configuratorState;
   const { isDashboardPage } = usePages();
+  const { isDashboardAccessView } = useAccess();
 
   const isBody   = body;
   const isNavbar = ! isBody;
-  // const { pathname } = useLocation();
-
-  // useEffect(() => {
-  //   setLayout(dispatch, 'dashboard');
-  // }, [pathname]);
-
 
   return (
     <MDBox
@@ -52,7 +48,7 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
           ? 'calc(100vh - 200px)'
           : 0,
 
-        marginLeft: ! isDashboardPage
+        marginLeft: ! isDashboardPage || ! isDashboardAccessView
           ? 0
           : isSidebar
             ? sidebarMini
@@ -63,7 +59,7 @@ export const SidebarRegulatorWrapper: FC<Props> = ({ children, body }) => {
         p: 0,
 
         [breakpoints.down('sm')]: {
-          marginLeft: ! isDashboardPage
+          marginLeft: ! isDashboardPage || ! isDashboardAccessView
             ? 0
             : isSidebar
               ? sidebarMini ? 0 : pxToRem(sidebarWidth)
