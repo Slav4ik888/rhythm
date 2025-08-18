@@ -55,11 +55,19 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
       && ! dashboardPublicAccess
     ) {
       __devLog('NOT AUTHORIZED & NOT ACCESS');
-      setWarningMessage('Необходимо авторизоваться');
+      setWarningMessage('У вас нет доступа к этой странице. Возможно, необходимо авторизоваться.');
+    }
+    else if (auth
+      && _isLoaded
+      && _isParamsCompanyIdLoaded
+      && ! isDashboardAccessView
+    ) {
+      __devLog('AUTHORIZED & NOT ACCESS');
+      setWarningMessage('У вас нет доступа к этой странице.');
     }
   },
     [
-      loadingUser, _isLoaded, loadingCompany, auth, dashboardSheetId, dashboardPublicAccess,
+      loadingUser, _isLoaded, loadingCompany, auth, dashboardSheetId, dashboardPublicAccess, isDashboardAccessView,
       _isParamsCompanyIdLoaded, paramsCompanyId, companyId, setWarningMessage, serviceGetParamsCompany,
       setIsParamsCompanyIdLoaded, setPageLoading
     ]

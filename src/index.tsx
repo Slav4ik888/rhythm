@@ -32,4 +32,4 @@ root.render(
 
 
 
-// git add . && git commit -m "refacted Templates to lazyloading & refacted SidebarRegulatorWrapper disable if not access" && git push -u origin main
+// git add . && git commit -m "added NewCompanyMessage" && git push -u origin main

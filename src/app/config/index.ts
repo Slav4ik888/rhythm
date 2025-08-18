@@ -2,7 +2,7 @@ import { sec } from 'shared/helpers/dates'
 
 const cfg = {
   // TODO: на сервере обновить зависимости npm install
-  VERSION                 : '1.30.0',
+  VERSION                 : '1.31.0',
   ASSEMBLY_DATE           : '2025-08-18',
 
   COOKIE_NAME             : 'Rhythm',

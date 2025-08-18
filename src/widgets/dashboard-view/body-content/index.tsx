@@ -5,7 +5,7 @@ import {
   MAX_COUNT_BUNCH_VIEWITEMS,
   NO_SHEET_ID
  } from 'entities/dashboard-view';
-import { useCompany } from 'entities/company';
+import { useAccess, useCompany } from 'entities/company';
 import { getCopyViewItem, updateStyles } from 'features/dashboard-view';
 import { useUser } from 'entities/user';
 import { isEmpty, isNotEmpty, updateObject } from 'shared/helpers/objects';
@@ -17,6 +17,7 @@ import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/us
 import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view';
 import { usePages } from 'shared/lib/hooks';
 import { DashboardBodyContentWrapper as Wrapper } from './wrapper';
+import { NewCompanyMessage } from 'widgets/offers';
 
 
 
@@ -30,6 +31,7 @@ export const DashboardBodyContent = memo(() => {
   } = useDashboardViewServices();
   const [isRendering, setIsRendering] = useState(true);
   const { dashboardSheetId } = usePages();
+  const { isDashboardAccessView } = useAccess();
 
 
   useEffect(() => {
@@ -259,6 +261,9 @@ export const DashboardBodyContent = memo(() => {
     ]
   );
 
+
+  // Если нет дашборда, но есть доступ значит это новая компания
+  if (! viewItems.length && isDashboardAccessView) return <NewCompanyMessage />
 
   return (
     <Wrapper onClick = {() => handleSelectViewItem(NO_PARENT_ID)}>
