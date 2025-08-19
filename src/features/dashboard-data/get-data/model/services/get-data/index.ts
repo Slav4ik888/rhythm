@@ -24,11 +24,11 @@ export const getData = createAsyncThunk<
 
       // **
       // For development - сохраняем входящие данные в localStorage
-      __devLog('GS data: ', data);
+      __devLog('getData', 'GS data: ', data);
       LS.devSetGSData(companyId, data);
 
       const gsData = getEntities(data);
-      __devLog('gsData: ', gsData);
+      __devLog('getData', 'gsData: ', gsData);
       dispatch(actionsUI.setSuccessMessage('Данные с гугл-таблицы загружены'));
       dispatch(actionsUI.setPageLoading({ 'get-g-data': { text: '', name: 'getData' } }));
 

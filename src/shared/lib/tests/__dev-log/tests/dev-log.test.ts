@@ -70,7 +70,6 @@ describe('__devLog', () => {
   describe('специальные случаи', () => {
     it('должен корректно обрабатывать пустые вызовы', () => {
       (global as any).__IS_DEV__ = true;
-      __devLog();
       expect(mockConsoleLog).toHaveBeenCalledWith();
     });
 

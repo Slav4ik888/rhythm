@@ -70,7 +70,7 @@ export const SidebarContainer: FC<Props> = ({ ...rest }) => {
     >
       <SidebarLogoLabel />
       <SidebarList />
-      <SidebarUpgradeButton />
+      {/* <SidebarUpgradeButton /> */}
     </SidebarRoot>
   );
 }

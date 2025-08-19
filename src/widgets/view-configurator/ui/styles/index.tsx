@@ -20,7 +20,7 @@ export const ViewItemStylesConfigurator: FC = memo(() => {
   /** Сохраняем изменения стилей элементов в store */
   const handleChange = useCallback((field: ViewItemStylesField, value: number | string, funcName: string) => {
     if (entities[selectedItem.id]?.styles?.[field] !== value && selectedItem.id) {
-      __devLog(funcName, field, value);
+      __devLog('ViewItemStylesConfigurator', funcName, field, value);
       changeOneStyleField({ field, value, funcName: 'ViewItemStylesConfigurator' });
     }
   },

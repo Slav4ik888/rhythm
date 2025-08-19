@@ -15,7 +15,7 @@ Coded by www.creative-tim.com
 
 import { FC } from 'react';
 import Link from '@mui/material/Link';
-import { MDBox, MDTypography } from 'shared/ui/mui-design-components';
+import { MDTypography } from 'shared/ui/mui-design-components';
 import { useTheme, CustomTheme } from 'app/providers/theme';
 import { LinkType } from 'app/providers/routes';
 import { pxToRem, getTypography, f } from 'shared/styles';
@@ -23,6 +23,9 @@ import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { VersionWidjet } from 'widgets/version';
 import { ClearCacheBtn } from 'features/ui';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { ProgressiveImage } from 'shared/lib/progressiv-image';
+import osnovaLogo from 'shared/assets/logos/logo_osnova.png';
 
 
 
@@ -39,70 +42,89 @@ export const Footer: FC<Props> = ({
     { href: 'https://rhy.thm.su/', name: 'About Us' },
     { href: 'https://rhy.thm.su/', name: 'License' },
   ] }) => {
+  console.log('RENDERING FOOTER...');
+
   const { href, name } = company;
   const theme = useTheme();
   const { size } = getTypography(theme);
 
   const renderLinks = () =>
     links.map((link) => (
-      <MDBox key={link.name} component='li' px={2} lineHeight={1}>
+      <Box key={link.name} component='li' px={2} lineHeight={1}>
         <Link href={link.href} target='_blank'>
           <MDTypography variant='button' fontWeight='regular' color='text'>
             {link.name}
           </MDTypography>
         </Link>
-      </MDBox>
-    ));
+      </Box>
+    )
+  );
+
 
   return (
     <SidebarRegulatorWrapper>
-      <MDBox
-        display='flex'
-        flexDirection={{ xs: 'column', lg: 'row' }}
-        justifyContent='space-between'
-        alignItems='flex-start'
-        width='100%'
-        height={pxToRem(85)}
-        px={1.5}
-      >
-        <MDBox
-          display='flex'
-          justifyContent='center'
-          alignItems='center'
-          flexWrap='wrap'
-          color='text'
-          fontSize={size.xs}
-          px={1.5}
-        >
-          &copy;&nbsp;{new Date().getFullYear()}&nbsp;
-          <Link href={href} target='_blank' sx={{ textDecoration: 'none' }}>
-            <MDTypography variant='button'  color='text' fontSize={size.xs}>
-              {name}
-            </MDTypography>
-          </Link>
-        </MDBox>
-        <MDBox
-          component='ul'
-          sx={({ breakpoints }: CustomTheme) => ({
-            ...f('-c-c-w'),
-            listStyle: 'none',
-            mt: 3,
-            mb: 0,
-            p: 0,
+      <Box
+        sx={(theme) => {
+          const { breakpoints } = theme as CustomTheme;
 
-            [breakpoints.up('lg')]: {
-              mt: 0,
+          return {
+            ...f('r-fs-sb'),
+            width    : '100%',
+            height   : pxToRem(85),
+            color    : 'text',
+            fontSize : size.xs,
+            px       : 1.5,
+
+            [breakpoints.down('sm')]: {
+              flexDirection  : 'column',
+              justifyContent : 'flex-start',
+              height         : 'auto',
+              pb             : 4,
             },
-          })}
+          }
+        }}
+      >
+        <Box sx={{ ...f('c-fs-fs'), gap: 1 }}>
+          <ProgressiveImage
+            alt         = 'Основа лого'
+            src         = {osnovaLogo}
+            sx          = {{ root: { width: '5rem' } }}
+          />
+          <Box sx={f('-c-fs-w')}>
+            &copy;&nbsp;{new Date().getFullYear()}&nbsp;
+            {/* <Link href={href} target='_blank' sx={{ textDecoration: 'none' }}> */}
+              <Typography sx={{ fontSize: size.xs }}>
+                {name}
+              </Typography>
+            {/* </Link> */}
+          </Box>
+        </Box>
+
+        <Box
+          component='ul'
+          sx={(theme) => {
+            const { breakpoints } = theme as CustomTheme;
+            return {
+              ...f('-c-c-w'),
+              listStyle : 'none',
+              mt        : 3,
+              mb        : 0,
+              p         : 0,
+
+              [breakpoints.up('lg')]: {
+                mt: 0,
+              },
+            };
+          }}
         >
           {/* {renderLinks()} */}
-        </MDBox>
+        </Box>
 
         <Box sx={{ ...f('c'), gap: 1 }}>
           <VersionWidjet />
           <ClearCacheBtn />
         </Box>
-      </MDBox>
+      </Box>
     </SidebarRegulatorWrapper>
   );
 }

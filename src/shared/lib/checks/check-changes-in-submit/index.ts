@@ -18,7 +18,7 @@ export function isChangesInSubmit<T>(
   // hookOpen.setIsChange(false);
   hookOpen.setIsConfirm(false);
 
-  __devLog('isChanges: ', newData, '-', resultCheck);
+  __devLog('isChangesInSubmit', 'isChanges: ', newData, '-', resultCheck);
   if (! resultCheck) {
     if (exit) hookOpen.setClose();
     return false;

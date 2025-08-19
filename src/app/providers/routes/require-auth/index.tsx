@@ -16,8 +16,8 @@ export const RequireAuth: FC<Props> = ({ children }) => {
 
 
   if (errorStatus === 401) {
-    __devLog(`${401} redirect to LOGIN`);
-    __devLog('pathname: ', pathname);
+    __devLog('RequireAuth', `${401} redirect to LOGIN`);
+    __devLog('RequireAuth', 'pathname: ', pathname);
 
     return <Navigate
       to    = {RoutePath.LOGIN}
@@ -26,8 +26,8 @@ export const RequireAuth: FC<Props> = ({ children }) => {
     />
   }
   if (errorStatus === 403) {
-    __devLog(`${403} redirect to ROOT`);
-    __devLog('pathname: ', pathname);
+    __devLog('RequireAuth', `${403} redirect to ROOT`);
+    __devLog('RequireAuth', 'pathname: ', pathname);
 
     return <Navigate
       to    = {RoutePath.ROOT}

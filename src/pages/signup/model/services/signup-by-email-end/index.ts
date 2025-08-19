@@ -33,7 +33,7 @@ export const signupByEmailEnd = createAsyncThunk<
         { signupDataEnd }
       );
 
-      __devLog('data: ', newUserData, newCompanyData, message);
+      __devLog('signupByEmailEnd', 'data: ', newUserData, newCompanyData, message);
       const companyId = newCompanyData?.id || LS.getLastCompanyId();
 
       if (! companyId) return undefined

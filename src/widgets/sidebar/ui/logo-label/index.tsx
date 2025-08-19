@@ -5,8 +5,9 @@ import { styles } from './styles';
 import { MDBox } from 'shared/ui/mui-design-components';
 import { f } from 'shared/styles';
 import Typography from '@mui/material/Typography';
-import brandDark from 'shared/assets/icons/logo_small.png';
+import rhythmLogoDark from 'shared/assets/logos/logo_rhythm_small.png';
 import { Divider } from 'shared/ui/mui-components';
+import { ProgressiveImage } from 'shared/lib/progressiv-image';
 
 
 
@@ -14,7 +15,7 @@ export const SidebarLogoLabel = memo(() => {
   const [configuratorState] = useUIConfiguratorController();
   const { sidebarMini, mode } = configuratorState;
   const darkMode = mode === 'dark';
-  const brand = darkMode ? brandDark : brandDark; // brandWhite
+  const rhythmLogo = darkMode ? rhythmLogoDark : rhythmLogoDark; // brandWhite
   const brandName = 'Rhythm Dashboard';
 
 
@@ -27,7 +28,13 @@ export const SidebarLogoLabel = memo(() => {
           to = '/'
           sx = {{ ...f('-c-c'), cursor: 'pointer' }}
         >
-          {brand && <MDBox component='img' src={brand} alt='Brand' width='2rem' />}
+          {
+            rhythmLogo && <ProgressiveImage
+              alt = 'Ритм лого'
+              src = {rhythmLogo}
+              sx  = {{ root: { width: '2rem' } }}
+            />
+          }
 
           {
             ! sidebarMini && <MDBox sx={(theme: CustomTheme) => styles(theme, { sidebarMini })}>

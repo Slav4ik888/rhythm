@@ -52,7 +52,7 @@ const CompanyProfilePage: FC = memo(() => {
       lastChange : creatorFixDate(userId)
     };
 
-    __devLog('updatedData: ', updatedData);
+    __devLog('CompanyProfilePage', 'updatedData: ', updatedData);
     if (isEmpty(updatedData)) return;
 
 

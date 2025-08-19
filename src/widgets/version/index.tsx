@@ -1,34 +1,33 @@
 import { FC } from 'react';
-import { useTheme } from 'app/providers/theme';
-import { pxToRem, getTypography } from 'shared/styles';
+import { CustomTheme } from 'app/providers/theme';
+import { pxToRem } from 'shared/styles';
 import cfg from 'app/config';
 import { Tooltip } from 'shared/ui/tooltip';
 import Box from '@mui/material/Box';
 
 
 
-export const VersionWidjet: FC = () => {
-  const theme = useTheme();
-  const { size } = getTypography(theme);
+export const VersionWidjet: FC = () => (
+  <Tooltip
+    title={`Версия ${cfg.VERSION} от ${cfg.ASSEMBLY_DATE}`}
+  >
+    <Box
+      sx={(theme) => {
+        const { breakpoints } = theme as CustomTheme;
 
-
-  return (
-    <Tooltip
-      title={`Версия ${cfg.VERSION} от ${cfg.ASSEMBLY_DATE}`}
-    >
-      <Box
-        sx={{
+        return {
           borderRadius    : pxToRem(12),
-          fontSize        : size.xs,
-          backgroundColor : theme.palette.background.paper,
+          backgroundColor : (theme as CustomTheme).palette.background.paper,
           color           : 'text.light',
-          textAlign       : 'center',
-          px              : pxToRem(12),
-          py              : pxToRem(3),
-        }}
-      >
-        {cfg.VERSION}
-      </Box>
-    </Tooltip>
-  );
-}
+          textAlign       : 'right',
+
+          [breakpoints.down('sm')]: {
+            textAlign: 'left',
+          },
+        }
+      }}
+    >
+      {cfg.VERSION}
+    </Box>
+  </Tooltip>
+);

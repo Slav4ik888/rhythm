@@ -11,7 +11,7 @@ import { __devLog } from 'shared/lib/tests/__dev-log';
 
 /* eslint-disable-next-line no-console */
 console.log(`Version: ${cfg.VERSION}\nRelease: ${cfg.ASSEMBLY_DATE}`);
-__devLog('Status: ', cfg.IS_DEV ? 'OFFLINE' : 'ONLINE');
+__devLog('index', 'Status: ', cfg.IS_DEV ? 'OFFLINE' : 'ONLINE');
 
 
 
@@ -32,4 +32,4 @@ root.render(
 
 
 
-// git add . && git commit -m "refacted ItemPeriod" && git push -u origin main
+// git add . && git commit -m "refacted Footer & added ProgressiveImage" && git push -u origin main

@@ -58,12 +58,12 @@ export const UnsavedChanges: FC = memo(() => {
 
   const handleConsole = useCallback(() => {
     if (isNotEmpty(paramsChangedCompany)) {
-      __devLog('paramsChangedCompany:', '--force');
-      __devLog(JSON.stringify(paramsChangedCompany, null, 2), '--force');
+      __devLog('UnsavedChanges', 'paramsChangedCompany:', '--force');
+      __devLog('UnsavedChanges', JSON.stringify(paramsChangedCompany, null, 2), '--force');
     }
     if (isNotEmpty(changedViewItem)) {
-      __devLog('changedViewItem:', '--force');
-      __devLog(JSON.stringify(changedViewItem, null, 2), '--force');
+      __devLog('UnsavedChanges', 'changedViewItem:', '--force');
+      __devLog('UnsavedChanges', JSON.stringify(changedViewItem, null, 2), '--force');
     }
   },
     [paramsChangedCompany, changedViewItem]

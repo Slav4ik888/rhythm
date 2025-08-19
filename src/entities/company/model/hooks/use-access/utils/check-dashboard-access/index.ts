@@ -30,7 +30,7 @@ export const checkDashboardAccess = (
     company.dashboardPublicAccess?.[dashboardPageId]
     && ACCESS_PRIORITY[requiredAccess] < ACCESS_PRIORITY.e // requiredAccess < 'e' (не редактирование)
   ) {
-    __devLog(`checkAccess[public page][${dashboardPageId}]`);
+    __devLog('checkDashboardAccess', `checkAccess[public page][${dashboardPageId}]`);
     return true;
   }
 
@@ -45,7 +45,7 @@ export const checkDashboardAccess = (
 
   // Соответствуют ли права на запрошенную операцию
   const result = canAccess(userAccess, requiredAccess);
-  __devLog(`checkAccess[${requiredAccess}][${userEmail}][${scheme}]:`, result);
+  __devLog('checkDashboardAccess', `checkAccess[${requiredAccess}][${userEmail}][${scheme}]:`, result);
 
   return result
 };

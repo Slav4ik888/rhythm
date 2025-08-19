@@ -54,7 +54,7 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
       && _isParamsCompanyIdLoaded
       && ! dashboardPublicAccess
     ) {
-      __devLog('NOT AUTHORIZED & NOT ACCESS');
+      __devLog('CompanyPage', 'NOT AUTHORIZED & NOT ACCESS');
       setWarningMessage('У вас нет доступа к этой странице. Возможно, необходимо авторизоваться.');
     }
     else if (auth
@@ -62,7 +62,7 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
       && _isParamsCompanyIdLoaded
       && ! isDashboardAccessView
     ) {
-      __devLog('AUTHORIZED & NOT ACCESS');
+      __devLog('CompanyPage', 'AUTHORIZED & NOT ACCESS');
       setWarningMessage('У вас нет доступа к этой странице.');
     }
   },

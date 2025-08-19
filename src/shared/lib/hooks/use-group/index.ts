@@ -22,7 +22,7 @@ export function useGroup<O>(
   // IS_CHANGES
   const [isChanges, _setIsChanges] = useState(initIsChange || false);
   const setIsChanges = (v?: boolean) => {
-    if (devId && devId === DEV_ID) __devLog('UG setIsChanges');
+    if (devId && devId === DEV_ID) __devLog('useGroup', 'UG setIsChanges');
     _setIsChanges((prev) => isNotUndefined(v) ? v as boolean : false);
   };
 
@@ -32,22 +32,22 @@ export function useGroup<O>(
   // OPEN
   const [open, _setOpen] = useState(initOpen || false);
   const setOpen = () => {
-    if (devId && devId === DEV_ID) __devLog('UG setOpen');
+    if (devId && devId === DEV_ID) __devLog('useGroup', 'UG setOpen');
     _setOpen(true);
   };
   const setClose = (isClear?: boolean, isChanges?: boolean) => {
-    if (devId && devId === DEV_ID) __devLog('UG setClose 1');
+    if (devId && devId === DEV_ID) __devLog('useGroup', 'UG setClose 1');
     isClear && _setGroup({} as O); // Очищаем старое состояние
 
     _setOpen((prev) => {
-      if (devId && devId === DEV_ID) __devLog('UG setClose 2: ', prev);
+      if (devId && devId === DEV_ID) __devLog('useGroup', 'UG setClose 2: ', prev);
       return false
     });
     // setIsChanges(trueIfUndefined(isChanges));
     setIsChanges(isChanges);
   },
   updateOpen = (open: boolean | undefined) => {
-    if (devId && devId === DEV_ID) __devLog('UG updateOpen');
+    if (devId && devId === DEV_ID) __devLog('useGroup', 'UG updateOpen');
     if (isNotUndefined(open)) _setOpen(open as boolean);
   };
 
@@ -55,13 +55,13 @@ export function useGroup<O>(
   // IS_CONFIRM
   const [isConfirm, _setIsConfirm] = useState(false);
   const setIsConfirm = (v: boolean) => {
-    if (devId && devId === DEV_ID) __devLog('UG setIsConfirm');
+    if (devId && devId === DEV_ID) __devLog('useGroup', 'UG setIsConfirm');
     _setIsConfirm((prev) => v);
   };
 
 
   const setGroup = (group: O, cfg: UseGroupConfig) => {
-    if (devId && devId === DEV_ID) __devLog('UG setGroup');
+    if (devId && devId === DEV_ID) __devLog('useGroup', 'UG setGroup');
     _setGroup((prev) => cloneObj(group));
     _setIsChanges(trueIfUndefined(cfg?.isChanges));
     updateOpen(cfg?.open);
@@ -69,7 +69,7 @@ export function useGroup<O>(
 
   /** Update with Partial group */
   const updateGroup = (group: Partial<O>, cfg: UseGroupConfig) => {
-    if (devId && devId === DEV_ID) __devLog('UG updateGroup');
+    if (devId && devId === DEV_ID) __devLog('useGroup', 'UG updateGroup');
     _setGroup((prev) => ({
       ...prev,
       ...cloneObj(group)
@@ -79,12 +79,12 @@ export function useGroup<O>(
   };
 
   function getGroup(): Promise<O> {
-    // if (devId && devId === DEV_ID) __devLog('Start getGroupPromise');
+    // if (devId && devId === DEV_ID) __devLog('useGroup', 'Start getGroupPromise');
     return new Promise((resolve, reject) => {
-      // if (devId && devId === DEV_ID) __devLog('Start Promise');
+      // if (devId && devId === DEV_ID) __devLog('useGroup', 'Start Promise');
 
       _setGroup((prev) => {
-        // if (devId && devId === DEV_ID) __devLog('End Promise _setGroup', prev);
+        // if (devId && devId === DEV_ID) __devLog('useGroup', 'End Promise _setGroup', prev);
         resolve(cloneObj(prev));
         return prev
       });

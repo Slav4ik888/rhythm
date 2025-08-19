@@ -10,6 +10,6 @@ export async function copyToClipboard(text: string) {
     // console.log("Текст скопирован в буфер");
   }
   catch (err) {
-    __devLog('Ошибка записи в буфер:', err);
+    __devLog('copyToClipboard', 'Ошибка записи в буфер:', err);
   }
 }

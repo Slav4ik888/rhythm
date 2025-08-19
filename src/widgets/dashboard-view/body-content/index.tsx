@@ -35,7 +35,7 @@ export const DashboardBodyContent = memo(() => {
 
 
   useEffect(() => {
-    __devLog(calcItemsInBunches(viewItems));
+    __devLog('DashboardBodyContent', calcItemsInBunches(viewItems));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [viewItems.length]);
 
@@ -43,7 +43,7 @@ export const DashboardBodyContent = memo(() => {
     const observer = new MutationObserver((mutations) => {
     const hc = document.querySelectorAll('.highcharts-credits');
     if (hc.length > 0) {
-        __devLog('highcharts: ', hc);
+        __devLog('DashboardBodyContent', 'highcharts: ', hc);
         hc.forEach(item => item.remove());
         observer.disconnect();
       }

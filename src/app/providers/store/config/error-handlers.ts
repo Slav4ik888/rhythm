@@ -32,16 +32,16 @@ export const errorHandlers = (
   dispatch : ThunkDispatch<StateSchema, ThunkExtraArg, AnyAction>,
   cfg      : ErrorHandlersConfig = {}
 ) => {
-  __devLog('e: ', e);
-  __devLog('response: ', e.response);
-  __devLog('status: ', e.response?.status);
-  __devLog('stack: ', e.stack);
+  __devLog('errorHandlers', 'e: ', e);
+  __devLog('errorHandlers', 'response: ', e.response);
+  __devLog('errorHandlers', 'status: ', e.response?.status);
+  __devLog('errorHandlers', 'stack: ', e.stack);
 
   const errors = e.response?.data || {};
   const status = e.response?.status;
   const { pathname } = cfg;
 
-  __devLog('pathname: ', pathname);
+  __devLog('errorHandlers', 'pathname: ', pathname);
 
   dispatch(actionsUI.setPageLoading()); // Снять крутилку
 

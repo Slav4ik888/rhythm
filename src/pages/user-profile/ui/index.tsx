@@ -52,7 +52,7 @@ const UserProfilePage: FC = memo(() => {
     updatedData.companyId = storedUser.companyId;
     updatedData.lastChange = creatorFixDate(storedUser.id);
 
-    __devLog('updatedData: ', updatedData);
+    __devLog('UserProfilePage', 'updatedData: ', updatedData);
     if (isEmpty(updatedData)) return;
 
     // TODO: validate

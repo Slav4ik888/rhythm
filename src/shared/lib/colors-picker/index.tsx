@@ -49,7 +49,7 @@ export const ColorPicker: FC<Props> = memo(({ sx, defaultColor, onChange }) => {
           setIsChanges(true);
           onChange(rgba(color));
         }
-        else __devLog('ПОПЫТКА СОХРАНИТЬ UNDEFINED');
+        else __devLog('ColorPicker', 'ПОПЫТКА СОХРАНИТЬ UNDEFINED');
       }
   }, 20, [isChanges, prevDefaultColorRef.current, defaultColor, color, onChange]);
 

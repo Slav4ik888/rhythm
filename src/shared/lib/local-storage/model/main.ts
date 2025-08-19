@@ -5,7 +5,7 @@ import { __devLog } from '../../tests/__dev-log';
 export const PREFIX = 'Rhythm-';
 
 /** Вывод ошибки в консоль */
-const showError = (text: string, fieldName: string) => __devLog(`${text}: ${fieldName}`);
+const showError = (text: string, fieldName: string) => __devLog('LS showError', `${text}: ${fieldName}`);
 
 
 /**

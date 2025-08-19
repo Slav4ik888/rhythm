@@ -28,14 +28,14 @@ const TemplatesDialog: FC<Props> = memo(({ hookOpen }) => {
       const bunchesForLoad = getBunchesToUpdate(bunchesUpdated, LS.getDashboardTemplatesBunchesUpdated());
 
       if (bunchesForLoad.length) {
-        __devLog('Template bunches for load:', bunchesForLoad.length);
-        __devLog(bunchesForLoad);
+        __devLog('TemplatesDialog', 'Template bunches for load:', bunchesForLoad.length);
+        __devLog('TemplatesDialog', bunchesForLoad);
         serviceGetTemplates({
           bunchIds: bunchesForLoad,
         });
       }
       else {
-        __devLog('All template bunches from cache');
+        __devLog('TemplatesDialog', 'All template bunches from cache');
       }
     }
   },

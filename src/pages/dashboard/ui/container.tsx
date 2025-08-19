@@ -60,8 +60,8 @@ export const DashboardPageContainer: FC = memo(() => {
     });
 
     if (bunchesForLoad.length) {
-      __devLog('Bunches for load:', bunchesForLoad.length);
-      __devLog(bunchesForLoad);
+      __devLog('DashboardPageContainer', 'Bunches for load:', bunchesForLoad.length);
+      __devLog('DashboardPageContainer', bunchesForLoad);
       serviceGetBunches({
         companyId      : paramsCompany.id,
         bunchIds       : bunchesForLoad,
@@ -71,7 +71,7 @@ export const DashboardPageContainer: FC = memo(() => {
       });
     }
     else {
-      __devLog('All bunches from cache');
+      __devLog('DashboardPageContainer', 'All bunches from cache');
     }
   },
     // eslint-disable-next-line react-hooks/exhaustive-deps

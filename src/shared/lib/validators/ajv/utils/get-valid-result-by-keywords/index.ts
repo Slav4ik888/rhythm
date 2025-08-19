@@ -13,17 +13,17 @@ export const getValidResultByKeywords = (
   T?        : string // Titles // Translate schema  styles.document.structure.dialogTitle
 ): Validation => {
   if (! validate?.errors?.length) return getValidResult();
-  // __devLog('validate?.errors: ', JSON.stringify(validate?.errors, null, 2));
+  // __devLog('getValidResultByKeywords', 'validate?.errors: ', JSON.stringify(validate?.errors, null, 2));
 
   const errors = {} as Errors;
 
   // eslint-disable-next-line
   for (const err of validate.errors) {
-    __devLog('err: ', err);
+    __devLog('getValidResultByKeywords', 'err: ', err);
     const { keyword, params } = err;
 
     const label = getLabelByInstancePath(err);
-    __devLog('label: ', label);
+    __devLog('getValidResultByKeywords', 'label: ', label);
 
     switch (keyword) {
       case 'type':
@@ -116,7 +116,7 @@ export const getValidResultByKeywords = (
     }
   }
 
-  __devLog('errors: ', errors);
+  __devLog('getValidResultByKeywords', 'errors: ', errors);
 
   return getValidResult(errors);
 };

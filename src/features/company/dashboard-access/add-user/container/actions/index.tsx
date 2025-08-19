@@ -37,7 +37,7 @@ export const Actions: FC<Props> = forwardRef<null, ActionsProps>(({
 
 
   const handleSubmit = useCallback(() => {
-    if (disabled) return __devLog('disabled!!!!'); // По идее этой ситуации не должно быть
+    if (disabled) return __devLog('features/company/add-user/actions', 'disabled!!!!'); // По идее этой ситуации не должно быть
     if (isNotEmail(selectedEmail)) return setErrors({ email: 'Некорректный email' });
 
     // TODO: checkAccess к данной операции

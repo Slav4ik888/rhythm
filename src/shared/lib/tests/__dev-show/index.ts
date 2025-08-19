@@ -14,10 +14,10 @@ export const __devShow = (
 ) => {
   if (mark === markValue) {
     if (value !== undefined) {
-      __devLog(`[${label}]:`, value);
+      __devLog('__devShow', `[${label}]:`, value);
     }
     else {
-      __devLog(label);
+      __devLog('__devShow', label);
     }
   }
 };

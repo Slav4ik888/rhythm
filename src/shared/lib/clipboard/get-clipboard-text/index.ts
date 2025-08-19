@@ -11,7 +11,7 @@ export async function getClipboardText() {
     return text;
   }
   catch (err) {
-    __devLog('Ошибка чтения буфера:', err);
+    __devLog('getClipboardText', 'Ошибка чтения буфера:', err);
     return '';
   }
 }

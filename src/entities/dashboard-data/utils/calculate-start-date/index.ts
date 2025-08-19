@@ -61,7 +61,7 @@ export const calculateStartDate = (endDate: number | undefined, type: PeriodType
     case PeriodType.TEN_YEARS:    return calcStartDate(endDate, -10);
     // TODO: PeriodType.ALL_TIME
 
-    default: __devLog('Unknown period type:', type)
+    default: __devLog('calculateStartDate', 'Unknown period type:', type)
   }
   return;
 }

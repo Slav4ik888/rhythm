@@ -9,13 +9,13 @@ export function getArrWithoutItemByIndex<T>(
 ): T[] {
   // Проверяем, что массив существует и является массивом
   if (!Array.isArray(items)) {
-    __devLog('Первый аргумент не является массивом');
+    __devLog('getArrWithoutItemByIndex', 'Первый аргумент не является массивом');
     return items as unknown as T[]; // или можно вернуть undefined или бросить ошибку
   }
 
   // Проверяем, что индекс является числом и находится в допустимых пределах
   if (typeof index !== 'number' || !Number.isInteger(index) || index < 0 || index >= items.length) {
-    __devLog('Неверный индекс');
+    __devLog('getArrWithoutItemByIndex', 'Неверный индекс');
     return items.slice(); // Возвращаем копию исходного массива
   }
 

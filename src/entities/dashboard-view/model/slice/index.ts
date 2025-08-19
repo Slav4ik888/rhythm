@@ -174,14 +174,14 @@ export const slice = createSlice({
       }
       else {
         // Optionally handle missing data, e.g., throw error or log warning
-        __devLog('newStoredViewItem is undefined or invalid');
+        __devLog('slice.dashboardView', 'newStoredViewItem is undefined or invalid');
       }
     },
 
     // Изменение 1 field в styles
     changeOneStyleField: (state, { payload }: PayloadAction<ChangeSelectedStyle>) => {
       const { field, value, funcName } = payload;
-      __devLog('slice.changeOneStyleField: [funcName]', funcName);
+      __devLog('slice.dashboardView', 'changeOneStyleField: [funcName]', funcName);
 
       const selectedEntity = state.entities[state.selectedId];
       if (selectedEntity) {

@@ -149,7 +149,7 @@ export const ColorPicker: FC<PropsColorPicker> = memo(({ sx, defaultColor, onCha
           setIsChanges(true);
           onChange(rgba(color));
         }
-        else __devLog('ПОПЫТКА СОХРАНИТЬ UNDEFINED');
+        else __devLog('PopoverColorsPicker', 'ПОПЫТКА СОХРАНИТЬ UNDEFINED');
       }
   },
     20,
