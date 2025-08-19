@@ -14,10 +14,10 @@ export const AnyLinksBox: FC = memo(() => {
   const { companyId } = useCompany();
 
   const renderLinks = useCallback(() => getLinks(companyId)
-    .map((link) => {
-      if (! link.requireAuth || (link.requireAuth && auth)) return (
+    .map(({ name, route, requireAuth }) => {
+      if (! requireAuth || (requireAuth && auth)) return (
         <MDBox
-          key       = {link.name}
+          key       = {name}
           component = 'li'
           sx        = {{
             lineHeight : 1,
@@ -25,9 +25,9 @@ export const AnyLinksBox: FC = memo(() => {
             px         : 2,
           }}
         >
-          <Link to={link.href}>
+          <Link to={route || ''}>
             <MDTypography variant='body1' fontWeight='regular' color='text'>
-              {link.name}
+              {name}
             </MDTypography>
           </Link>
         </MDBox>

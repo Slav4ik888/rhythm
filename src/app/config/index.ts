@@ -2,8 +2,8 @@ import { sec } from 'shared/helpers/dates'
 
 const cfg = {
   // TODO: на сервере обновить зависимости npm install
-  VERSION                 : '1.31.0',
-  ASSEMBLY_DATE           : '2025-08-18',
+  VERSION                 : '1.32.0',
+  ASSEMBLY_DATE           : '2025-08-19',
 
   COOKIE_NAME             : 'Rhythm',
   DEFAULT_MESSAGE_TIMEOUT : sec(6),

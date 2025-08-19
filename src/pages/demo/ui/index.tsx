@@ -19,7 +19,7 @@ const DemoPage: FC = memo(() => {
         {
           DEMO_PAGES.map(item => (
             <DemoPageItem
-              key      = {item.link}
+              key      = {item.route}
               darkMode = {darkMode}
               item     = {item}
             />

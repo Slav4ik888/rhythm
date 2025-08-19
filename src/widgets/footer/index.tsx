@@ -15,9 +15,8 @@ Coded by www.creative-tim.com
 
 import { FC } from 'react';
 import Link from '@mui/material/Link';
-import { MDTypography } from 'shared/ui/mui-design-components';
 import { useTheme, CustomTheme } from 'app/providers/theme';
-import { LinkType } from 'app/providers/routes';
+import { AppRoutes, LinkType, RoutePath } from 'app/providers/routes';
 import { pxToRem, getTypography, f } from 'shared/styles';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { VersionWidjet } from 'widgets/version';
@@ -26,6 +25,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { ProgressiveImage } from 'shared/lib/progressiv-image';
 import osnovaLogo from 'shared/assets/logos/logo_osnova.png';
+import { NavLink, To } from 'react-router-dom';
 
 
 
@@ -38,9 +38,9 @@ interface Props {
 export const Footer: FC<Props> = ({
   company = { href: 'https://rhy.thm.su/', name: 'Учебный центр Основа' },
   links = [
-    { href: 'https://rhy.thm.su/', name: 'Creative Rhythm' },
-    { href: 'https://rhy.thm.su/', name: 'About Us' },
-    { href: 'https://rhy.thm.su/', name: 'License' },
+    { name: 'Примеры дашбордов', route: RoutePath[AppRoutes.DEMO] },
+    // { href: 'https://rhy.thm.su/', route: '', name: 'About Us' },
+    // { href: 'https://rhy.thm.su/', route: '', name: 'License' },
   ] }) => {
   console.log('RENDERING FOOTER...');
 
@@ -49,13 +49,21 @@ export const Footer: FC<Props> = ({
   const { size } = getTypography(theme);
 
   const renderLinks = () =>
-    links.map((link) => (
-      <Box key={link.name} component='li' px={2} lineHeight={1}>
-        <Link href={link.href} target='_blank'>
-          <MDTypography variant='button' fontWeight='regular' color='text'>
-            {link.name}
-          </MDTypography>
-        </Link>
+    links.map(({ route, name, href }) => (
+      <Box key={name} component='li' px={2} lineHeight={1}>
+        {
+          route
+            ? <NavLink to={route}>
+                <Typography color='text'>
+                  {name}
+                </Typography>
+              </NavLink>
+            : <Link href={href} target='_blank'>
+                <Typography color='text'>
+                  {name}
+                </Typography>
+              </Link>
+        }
       </Box>
     )
   );
@@ -101,23 +109,10 @@ export const Footer: FC<Props> = ({
         </Box>
 
         <Box
-          component='ul'
-          sx={(theme) => {
-            const { breakpoints } = theme as CustomTheme;
-            return {
-              ...f('-c-c-w'),
-              listStyle : 'none',
-              mt        : 3,
-              mb        : 0,
-              p         : 0,
-
-              [breakpoints.up('lg')]: {
-                mt: 0,
-              },
-            };
-          }}
+          component = 'ul'
+          sx        = {{ ...f('c-fs-fs'), listStyle : 'none' }}
         >
-          {/* {renderLinks()} */}
+          {renderLinks()}
         </Box>
 
         <Box sx={{ ...f('c'), gap: 1 }}>
