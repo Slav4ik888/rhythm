@@ -26,7 +26,7 @@ export const DashboardBodyContent = memo(() => {
   const { paramsCompanyId, paramsChangedCompany, serviceUpdateCompany } = useCompany();
   const {
     parentsViewItems, loading, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId, selectedItem,
-    activatedMovementId, viewItems, entities, activatedCopied, setNewSelectedId, setIsMounted,
+    isMounted, activatedMovementId, viewItems, entities, activatedCopied, setNewSelectedId, setIsMounted,
     setDashboardViewItems, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
   } = useDashboardViewServices();
   const [isRendering, setIsRendering] = useState(true);
@@ -263,7 +263,7 @@ export const DashboardBodyContent = memo(() => {
 
 
   // Если нет дашборда, но есть доступ значит это новая компания
-  if (! viewItems.length && isDashboardAccessView) return <NewCompanyMessage />
+  if (isMounted && ! viewItems.length && isDashboardAccessView) return <NewCompanyMessage />
 
   return (
     <Wrapper onClick = {() => handleSelectViewItem(NO_PARENT_ID)}>
