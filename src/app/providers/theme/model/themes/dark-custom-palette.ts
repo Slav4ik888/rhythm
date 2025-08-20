@@ -50,9 +50,9 @@ export const customPalette: CustomPalette = {
 
   primary: {
     light: '#000000',
-    main: '#3fa111',
+    main: '#7F84FF',
     dark: '#000000',
-    focus: '#3fa111',
+    focus: '#7F84FF',
     contrastText: '#000000',
   },
 

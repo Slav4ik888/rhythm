@@ -16,11 +16,18 @@ import { isSystemDarkMode } from '../is-system-dark-mode';
 export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProviderState): CustomTheme => {
   const { mode, navbarColor, sidebarColor } = controller;
   const isSystemModeDark = isSystemDarkMode();
+  const fontFamily = '"Montserrat-Regular", "Roboto", "Helvetica", "Arial", sans-serif';
 
   const theme = {
     ...muiTheme,
     borders: { ...borders },
     breakpoints: { ...breakpoints },
+    components: {
+      ...muiTheme.components,
+      MuiTypography : { styleOverrides: { root: { fontFamily } } },
+      MuiBox        : { styleOverrides: { root: { fontFamily } } },
+      MuiButton     : { styleOverrides: { root: { fontFamily } } },
+    }
   } as unknown as CustomTheme;
 
   if (mode === 'light' || ! isSystemModeDark) {

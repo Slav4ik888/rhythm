@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import Link from '@mui/material/Link';
 import { useTheme, CustomTheme } from 'app/providers/theme';
 import { AppRoutes, LinkType, RoutePath } from 'app/providers/routes';
@@ -42,31 +42,35 @@ export const Footer: FC<Props> = ({
     // { href: 'https://rhy.thm.su/', route: '', name: 'About Us' },
     // { href: 'https://rhy.thm.su/', route: '', name: 'License' },
   ] }) => {
-  console.log('RENDERING FOOTER...');
-
   const { href, name } = company;
   const theme = useTheme();
   const { size } = getTypography(theme);
 
-  const renderLinks = () =>
-    links.map(({ route, name, href }) => (
-      <Box key={name} component='li' px={2} lineHeight={1}>
-        {
-          route
-            ? <NavLink to={route}>
-                <Typography color='text'>
-                  {name}
-                </Typography>
+  const renderLinks = useCallback(() => {
+    const getName = (name: string) => (<Typography color='text'>{name}</Typography>);
+
+    return links.map(({ route, name, href }) => (
+        <Box
+          key        = {name}
+          component  = 'li'
+          lineHeight = {1}
+        >
+          {
+            route
+              ? <NavLink to={route}>
+                {getName(name)}
               </NavLink>
-            : <Link href={href} target='_blank'>
-                <Typography color='text'>
-                  {name}
-                </Typography>
+              : <Link href={href} target='_blank'>
+                {getName(name)}
               </Link>
-        }
-      </Box>
-    )
+          }
+        </Box>
+      )
+    );
+  },
+    [links]
   );
+
 
 
   return (

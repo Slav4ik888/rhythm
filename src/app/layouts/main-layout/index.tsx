@@ -1,6 +1,5 @@
 import { FC, memo } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useUI } from 'entities/ui';
 import CssBaseline from '@mui/material/CssBaseline';
 import { PageLoader } from 'widgets/page-loader';
 import { MessageBar } from 'widgets/message-bar';

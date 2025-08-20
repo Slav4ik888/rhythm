@@ -16,8 +16,8 @@ export const VersionWidjet: FC = () => (
         const { breakpoints } = theme as CustomTheme;
 
         return {
-          borderRadius    : pxToRem(12),
-          backgroundColor : (theme as CustomTheme).palette.background.paper,
+          // borderRadius    : pxToRem(12),
+          // backgroundColor : (theme as CustomTheme).palette.background.paper,
           color           : 'text.light',
           textAlign       : 'right',
 

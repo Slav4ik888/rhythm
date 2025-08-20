@@ -15,7 +15,7 @@ const DemoPage: FC = memo(() => {
 
   return (
     <LayoutInnerPage type='demo' containerType='xl'>
-      <Box sx={{ ...f('-c-c-w'), gap: pxToRem(16) }}>
+      <Box sx={{ ...f('-c-sa-w'), width: '100%' }}>
         {
           DEMO_PAGES.map(item => (
             <DemoPageItem

@@ -25,8 +25,8 @@ export const DemoPageItem: FC<Props> = memo(({ item, darkMode }) => {
         sx={{
           ...f('c'),
           width           : pxToRem(400),
-          height          : pxToRem(360),
-          gap             : pxToRem(16),
+          height          : pxToRem(440),
+          gap             : pxToRem(24),
           color           : text.light,
           backgroundColor : background.demoPage,
           borderRadius    : '5px',
@@ -45,7 +45,7 @@ export const DemoPageItem: FC<Props> = memo(({ item, darkMode }) => {
       >
         <Typography
           variant = 'h6'
-          sx      = {{ textAlign: 'center', color: text.dark }}
+          sx      = {{ textAlign: 'center', color: text.dark, pt: 1.5 }}
         >
           {title}
         </Typography>
@@ -57,6 +57,7 @@ export const DemoPageItem: FC<Props> = memo(({ item, darkMode }) => {
           sx          = {{
             root: {
               width        : '100%',
+              height       : '230px',
               maxHeight    : '230px',
               overflowY    : 'scroll',
               border       : `1px solid ${text.light}`,
@@ -65,24 +66,13 @@ export const DemoPageItem: FC<Props> = memo(({ item, darkMode }) => {
             }
           }}
         />
-        {/* <Box
-          component = 'img'
-          src       = {getImgByIdAndTheme(item.id, darkMode).src}
-          alt       = 'demo-pecar-colors'
-          sx        = {(theme) => ({
-            width        : '100%',
-            border       : `1px solid ${text.light}`,
-            borderRadius : '5px',
-            p            : 0.5,
-          })}
-        /> */}
-
         <Typography
-          variant = 'caption'
+          variant = 'body1'
           sx      = {{
             textAlign : 'left',
             textStyle : 'italic',
             color     : text.main,
+            pt        : 1,
           }}
         >
           {caption}

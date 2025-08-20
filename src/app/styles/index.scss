@@ -9,6 +9,26 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url("./fonts/montserrat/static/Montserrat-Regular.ttf") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat-SemiBold";
+  src: url("./fonts/montserrat/static/Montserrat-SemiBold.ttf") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url("./fonts/montserrat/static/Montserrat-Bold.ttf") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
 // Чтобы, при первоначальной загрузке, тем кто ночью запустит сайт, не ударило по глазам...
 // а затем заиграет установленная тема
@@ -29,6 +49,7 @@
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
+  font-family: var(--font-family-main);
 }
 
 p {
