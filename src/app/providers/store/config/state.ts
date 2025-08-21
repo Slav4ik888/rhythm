@@ -8,7 +8,6 @@ import { StateSchemaUser } from 'entities/user';
 import { StateSchemaSignupPage } from 'pages/signup';
 import { StateSchemaLoginPage } from 'pages/login';
 import { StateSchemaDocs } from 'entities/docs';
-// import { StateSchemaTransactions } from 'entities/transactions';
 import { StateSchemaDashboardView } from 'entities/dashboard-view';
 import { StateSchemaDashboardTemplates } from 'entities/dashboard-templates';
 
@@ -16,12 +15,10 @@ import { StateSchemaDashboardTemplates } from 'entities/dashboard-templates';
 
 export interface StateSchema {
   // Entities
-  ui           : StateSchemaUI
-  user         : StateSchemaUser
-  company      : StateSchemaCompany
-  // transactions : StateSchemaTransactions
-
-  // Features
+  ui                 : StateSchemaUI
+  user               : StateSchemaUser
+  company            : StateSchemaCompany
+  docs               : StateSchemaDocs
 
   // Async reducer
   signupPage?         : StateSchemaSignupPage
@@ -29,7 +26,6 @@ export interface StateSchema {
   dashboardView?      : StateSchemaDashboardView
   dashboardTemplates? : StateSchemaDashboardTemplates
   dashboardData?      : StateSchemaDashboardData
-  docs?               : StateSchemaDocs
 }
 
 

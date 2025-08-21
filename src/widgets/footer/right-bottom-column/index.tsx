@@ -6,9 +6,11 @@ import Box from '@mui/material/Box';
 
 
 
-export const FooterRightColumn: FC = memo(() => (
-  <Box sx={{ ...f('c'), gap: 1 }}>
-    <VersionWidjet />
+export const FooterBottomRightColumn: FC = memo(() => (
+  <Box
+    sx={{ ...f('-c-fe'), gap: 1 }}
+  >
     <ClearCacheBtn />
+    <VersionWidjet />
   </Box>
 ));

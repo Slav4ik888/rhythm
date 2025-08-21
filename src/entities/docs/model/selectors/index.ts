@@ -9,4 +9,4 @@ export const selectLoading = createSelector(selectModule, (state: StateSchemaDoc
 export const selectErrors  = createSelector(selectModule, (state: StateSchemaDocs) => state.errors);
 
 export const selectDocs    = createSelector(selectModule, (state: StateSchemaDocs) => state.docKeys);
-export const selectPolicy  = createSelector(selectModule, (state: StateSchemaDocs) => state.docKeys?.policy);
+export const selectPolicy  = createSelector(selectModule, (state: StateSchemaDocs) => state.docKeys?.policy || '');

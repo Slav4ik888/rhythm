@@ -24,6 +24,7 @@ export const getThemeByName = (muiTheme: Theme, controller: UIConfiguratorProvid
     breakpoints: { ...breakpoints },
     components: {
       ...muiTheme.components,
+      fontFamily,
       MuiTypography : { styleOverrides: { root: { fontFamily } } },
       MuiBox        : { styleOverrides: { root: { fontFamily } } },
       MuiButton     : { styleOverrides: { root: { fontFamily } } },

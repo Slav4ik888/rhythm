@@ -12,6 +12,7 @@ export const NavbarControlBox: FC = memo(() => (
   <MDBox
     color = 'inherit'
     mb    = {{ xs: 1, md: 0 }}
+    ml    = {{ xs: 0, md: 2 }}
     sx    = {(theme: CustomTheme) => sxNavbarRow(theme)}
   >
     <MiniSidebarToggleBtn />

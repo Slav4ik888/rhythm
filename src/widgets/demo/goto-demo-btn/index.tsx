@@ -12,7 +12,7 @@ export const GotoDemoBtn: FC = memo(() => (
       children = 'Посмотреть примеры дашбордов'
       sx       = {{
         root: {
-          height : '50px'
+          height: '50px'
         }
       }}
     />

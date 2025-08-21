@@ -32,4 +32,4 @@ root.render(
 
 
 
-// git add . && git commit -m "refacted FooterColumn" && git push -u origin main
+// git add . && git commit -m "refacted FooterRow" && git push -u origin main

@@ -296,7 +296,6 @@ export default styled(Button)(({ theme, ownerState }: { theme: CustomTheme, owne
   };
 
   return {
-    // fontFamily: 'Montserrat-Regular',
     ...(variant === 'contained' && containedStyles()),
     ...(variant === 'outlined' && outliedStyles()),
     ...(variant === 'gradient' && gradientStyles()),

@@ -11,10 +11,10 @@ import { getLinks } from './utils';
 
 export const AnyLinksBox: FC = memo(() => {
   const { auth } = useUser();
-  const { companyId } = useCompany();
+  const { paramsCompanyId } = useCompany();
 
-  const renderLinks = useCallback(() => getLinks(companyId)
-    .map(({ name, route, requireAuth }) => {
+  const renderLinks = useCallback(() => getLinks(paramsCompanyId)
+    .map(({ name, route = '', requireAuth }) => {
       if (! requireAuth || (requireAuth && auth)) return (
         <MDBox
           key       = {name}
@@ -25,8 +25,12 @@ export const AnyLinksBox: FC = memo(() => {
             px         : 2,
           }}
         >
-          <Link to={route || ''}>
-            <MDTypography variant='body1' fontWeight='regular' color='text'>
+          <Link to={route}>
+            <MDTypography
+              variant    = 'body1'
+              fontWeight = 'regular'
+              color      = 'text'
+            >
               {name}
             </MDTypography>
           </Link>
@@ -35,7 +39,7 @@ export const AnyLinksBox: FC = memo(() => {
       else return null
     }
   ),
-    [auth, companyId]
+    [auth, paramsCompanyId]
   );
 
 

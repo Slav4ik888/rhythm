@@ -1,41 +1,30 @@
 import { FC, memo } from 'react';
-import { CustomTheme } from 'app/providers/theme';
-import { pxToRem, getTypography, f } from 'shared/styles';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
-import Box from '@mui/material/Box';
-import { FooterMiddleColumn } from './middle-column';
-import { FooterLeftColumn } from './left-column';
-import { FooterRightColumn } from './right-column';
+import { FooterTopLeftColumn as LeftTopColumn } from './left-top-column';
+import { FooterLeftBottomColumn as LeftBottomColumn } from './left-bottom-column';
+import { FooterTopMiddleColumn as MiddleTopColumn } from './middle-top-column';
+import { FooterTopRightColumn as RightTopColumn } from './right-top-column';
+import { FooterBottomRightColumn as RightBottomColumn } from './right-bottom-column';
+import { FooterRow } from './row';
+import { Divider } from 'shared/ui/mui-components';
+import { FooterBottomMiddleColumn as BottomMiddleColumn } from './middle-bottom-column';
 
 
 
 export const Footer: FC = memo(() => (
   <SidebarRegulatorWrapper>
-    <Box
-      sx={(theme) => {
-        const { breakpoints } = theme as CustomTheme;
-        const { size } = getTypography(theme as CustomTheme);
+    <FooterRow height={110}>
+      <LeftTopColumn />
+      <MiddleTopColumn />
+      <RightTopColumn />
+    </FooterRow>
 
-        return {
-          ...f('r-fs-sb'),
-          width    : '100%',
-          height   : pxToRem(85),
-          color    : 'text',
-          fontSize : size.xs,
-          px       : 1.5,
+    <Divider />
 
-          [breakpoints.down('sm')]: {
-            flexDirection  : 'column',
-            justifyContent : 'flex-start',
-            height         : 'auto',
-            pb             : 4,
-          },
-        }
-      }}
-    >
-      <FooterLeftColumn />
-      <FooterMiddleColumn />
-      <FooterRightColumn />
-    </Box>
+    <FooterRow>
+      <LeftBottomColumn />
+      <BottomMiddleColumn />
+      <RightBottomColumn />
+    </FooterRow>
   </SidebarRegulatorWrapper>
 ));

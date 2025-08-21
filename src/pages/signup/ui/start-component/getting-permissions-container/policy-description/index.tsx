@@ -21,11 +21,13 @@ export const PolicyDescription: FC = memo(() => {
         Выражаю своё согласие на обработку персональных данных в соответствии с&nbsp;
         <Box
           sx={{
-            display : 'inline',
-            cursor  : 'pointer',
-            color   : 'secondary.main',
+            display        : 'inline',
+            cursor         : 'pointer',
+            color          : 'secondary.main',
+            textDecoration : 'underline',
+
             '&:hover': {
-              textDecoration: 'underline',
+              textDecoration: 'none',
             }
           }}
           onClick={() => hookOpen.setOpen()}
@@ -36,6 +38,7 @@ export const PolicyDescription: FC = memo(() => {
 
       <DialogInfo
         hookOpen = {hookOpen}
+        maxWidth = 'lg'
         title    = 'Политика конфиденциальности'
         children = {<ShowPolicyText />}
       />

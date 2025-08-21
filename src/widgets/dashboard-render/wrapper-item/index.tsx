@@ -18,8 +18,9 @@ const getStyles = (
   activatedMovementId : string,
 ) => {
   const root: any = {
-    position : 'relative',
-    cursor   : 'default',
+    position   : 'relative',
+    cursor     : 'default',
+    fontFamily : 'Montserrat-Regular',
     ...stylesToSx(item?.styles),
   };
 

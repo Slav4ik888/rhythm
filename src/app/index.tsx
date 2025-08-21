@@ -2,15 +2,15 @@ import { FC, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AppRouter } from './providers/routes';
 import { useUser } from 'entities/user';
-import { useUI } from 'entities/ui';
-import 'app/styles/index.scss';
+import { screenResizeListener, useUI } from 'entities/ui';
+import './styles/index.scss';
 import { useInitialEffect } from 'shared/lib/hooks';
 
 
 
 export const App: FC = () => {
   const { auth, serviceGetAuth } = useUser();
-  const { replacePath, setReplacePath } = useUI();
+  const { replacePath, setReplacePath, setScreenFormat } = useUI();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ export const App: FC = () => {
     serviceGetAuth({ pathname });
     // TODO: sheetId подставлять нужный
     // serviceGetStartResourseData({ pathname, sheetId: NO_SHEET_ID });
-    // screenResizeListener(setScreenFormat);
+    screenResizeListener(setScreenFormat);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   });
 

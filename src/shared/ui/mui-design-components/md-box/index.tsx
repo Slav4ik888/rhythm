@@ -32,7 +32,7 @@ interface Props {
   borderRadius?   : RadiusName
   mb?             : number | { xs?: number, md?: number }
   mr?             : number | { xs?: number, xl?: number }
-  ml?             : string | number
+  ml?             : string | number | { xs?: number, xl?: number, md?: number }
   mt?             : number | 'auto'
   mx?             : number
   my?             : number

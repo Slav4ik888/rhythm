@@ -15,7 +15,12 @@ const useStyles = (theme: CustomTheme) => {
       ...f('c-c-c'),
       fontFamily : 'Montserrat-SemiBold',
       fontSize   : size['3xl'],
-      gap        : 8
+      gap        : 8,
+
+      [theme.breakpoints.down('sm')]: {
+        fontSize : size.xl,
+        p        : 1,
+      },
     }
   }
 };
