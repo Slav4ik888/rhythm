@@ -16,30 +16,43 @@ Coded by www.creative-tim.com
 // @mui material components
 import Drawer from '@mui/material/Drawer';
 import { styled } from '@mui/material/styles';
-import { CustomTheme  } from 'app/providers/theme';
+import { CustomTheme, SIDEBAR_FULL_WIDTH, SIDEBAR_MINI_WIDTH  } from 'app/providers/theme';
 import { getBoxShadows, linearGradient, pxToRem } from 'shared/styles';
 
 
+const DISABLE_WIDTH = -(SIDEBAR_FULL_WIDTH + 70);
+
 
 interface OwnerState {
-  sidebarWidth : number
-  sidebarMini  : boolean
-  isSidebar    : boolean
+  sidebarWidth        : number
+  sidebarMini         : boolean
+  isSidebar           : boolean
+  isMobileOpenSidebar : boolean
+  isMobile            : boolean
 }
 
 // @ts-ignore
 export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, ownerState: OwnerState }) => {
   const { palette: { sidebar }, transitions, breakpoints, borders: { borderRadius } } = theme;
-  const { sidebarMini, sidebarWidth, isSidebar } = ownerState;
+  const { sidebarMini, sidebarWidth, isSidebar, isMobileOpenSidebar, isMobile } = ownerState;
   const { xxl } = getBoxShadows(theme);
 
   const backgroundValue = linearGradient(sidebar.gradients.main, sidebar.gradients.state);
 
+  const getTransform = () => {
+    if (isMobile) {
+      if (isMobileOpenSidebar) return 'translateX(0)';
+      else return `translateX(${pxToRem(DISABLE_WIDTH)})`;
+    }
+    else if (isSidebar) return 'translateX(0)';
+    else return `translateX(${pxToRem(DISABLE_WIDTH)})`;
+  };
+
   // styles for the sidebar when sidebarMini={false}
   const drawerFullwidthStyles = () => ({
     [breakpoints.up('xl')]: {
-      width: sidebarWidth,
-      transition: transitions.create(['width', 'background-color'], {
+      width      : pxToRem(isMobileOpenSidebar ? SIDEBAR_FULL_WIDTH : sidebarWidth),
+      transition : transitions.create(['width', 'background-color'], {
         easing: transitions.easing.sharp,
         duration: transitions.duration.enteringScreen,
       }),
@@ -48,10 +61,10 @@ export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, owne
 
   // styles for the sidebar when sidebarMini={true}
   const drawerMiniStyles = () => ({
-    width: pxToRem(96),
+    width: pxToRem(isMobileOpenSidebar ? SIDEBAR_FULL_WIDTH : SIDEBAR_MINI_WIDTH),
 
     [breakpoints.down('sm')]: {
-      transform: `translateX(${pxToRem(-320)})`,
+      transform: getTransform(),
     },
 
     [breakpoints.up('xl')]: {
@@ -63,6 +76,7 @@ export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, owne
     },
   });
 
+
   return {
     '& .MuiDrawer-paper': {
       border       : 'none',
@@ -71,7 +85,7 @@ export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, owne
       background   : backgroundValue,
       height       : 'calc(100vh - 2rem)',
       margin       : '1rem 0 1rem 1rem !important',
-      transform    : isSidebar ? 'translateX(0)' : `translateX(${pxToRem(-320)})`,
+      transform    : getTransform(),
 
       transition   : transitions.create('transform', {
         easing   : transitions.easing.sharp,
@@ -82,7 +96,7 @@ export default styled(Drawer)(({ theme, ownerState }: { theme: CustomTheme, owne
         boxShadow    : xxl,
         marginBottom : 'inherit',
         left         : '0',
-        transform    : isSidebar ? 'translateX(0)' : `translateX(${pxToRem(-320)})`,
+        transform    : getTransform(),
       },
 
       ...(sidebarMini && isSidebar && drawerMiniStyles()),

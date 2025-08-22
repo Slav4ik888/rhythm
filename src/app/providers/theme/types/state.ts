@@ -19,7 +19,8 @@ export interface UIConfiguratorProviderState {
 
   // SIDEBAR
   isSidebar              : boolean          // Отображён или нет
-  sidebarWidth           : number
+  isMobileOpenSidebar    : boolean          // For mobile
+  sidebarWidth           : number           // Текущая ширина (0 | 96 | 250)
   sidebarMini            : boolean
   sidebarColor           : SidebarColorName // Фиолетовый | Синий | Красный | Оранжевый | Зелёный ...
   leftOffsetScrollButton : number           // Отступ левой кнопки скролл-влево в ScrollableWorkspace

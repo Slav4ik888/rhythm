@@ -2,11 +2,12 @@ import { FC, useCallback, useState } from 'react';
 import { MenuIcon } from './icon-button';
 import { Menu } from './menu';
 import { Popover } from './popover';
+import IconDefault from '@mui/icons-material/Menu';
 
 
 
 interface Props {
-  icon       : MuiIcon
+  icon?      : MuiIcon
   toolTitle? : string
   menu?      : FC<{ onClose: () => void }> // Render меню или popover
   popover?   : FC<{ open: boolean, onClose?: () => void }>
@@ -19,15 +20,19 @@ export const MenuIconContainer: FC<Props> = ({ icon, menu: MenuComponent, toolTi
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const isOpen = Boolean(anchorEl);
 
-  const handleMenuOpen = useCallback((event: { currentTarget: HTMLElement }) => setAnchorEl(event.currentTarget), []);
+  const handleMenuOpen = useCallback((event: { currentTarget: HTMLElement }) => setAnchorEl(event.currentTarget),
+    []
+  );
 
-  const handleMenuClose = useCallback(() => setAnchorEl(null), []);
+  const handleMenuClose = useCallback(() => setAnchorEl(null),
+    []
+  );
 
 
   return (
     <>
       <MenuIcon
-        icon      = {icon}
+        icon      = {icon ? icon : IconDefault}
         toolTitle = {toolTitle}
         onClick   = {handleMenuOpen}
       />

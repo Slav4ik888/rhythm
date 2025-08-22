@@ -55,7 +55,7 @@ export const DashboardPageContainer: FC = memo(() => {
 
     // Загружаем из кеша bunches в которых нет изменений
     setDashboardBunchesFromCache({
-      companyId      : paramsCompany.id,
+      companyId      : paramsCompanyId, // paramsCompany.id,
       changedBunches : bunchesForLoad
     });
 
@@ -63,7 +63,7 @@ export const DashboardPageContainer: FC = memo(() => {
       __devLog('DashboardPageContainer', 'Bunches for load:', bunchesForLoad.length);
       __devLog('DashboardPageContainer', bunchesForLoad);
       serviceGetBunches({
-        companyId      : paramsCompany.id,
+        companyId      : paramsCompanyId, // paramsCompany.id,
         bunchIds       : bunchesForLoad,
         bunchesUpdated : paramsBunchesUpdated,
         dashboardSheetId,

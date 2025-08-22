@@ -118,20 +118,21 @@ const collapseIcon = ({ palette: { white, dark } }: CustomTheme, { active }: Ico
 
 
 interface OwnerStateText {
-  sidebarMini : boolean
-  active      : boolean
+  sidebarMini         : boolean
+  active              : boolean
+  isMobileOpenSidebar : boolean
 }
 
 function collapseText(theme: CustomTheme, ownerState: OwnerStateText) {
   const { transitions, breakpoints } = theme;
-  const { sidebarMini, active } = ownerState;
+  const { sidebarMini, active, isMobileOpenSidebar } = ownerState;
   const { size, fontWeightRegular, fontWeightLight } = getTypography(theme);
 
 
   return {
-    opacity    : sidebarMini ? 0 : 1,
-    maxWidth   : sidebarMini ? 0 : '100%',
-    marginLeft : sidebarMini ? 0 : pxToRem(10),
+    opacity    : sidebarMini && ! isMobileOpenSidebar ? 0 : 1,
+    maxWidth   : sidebarMini && ! isMobileOpenSidebar ? 0 : '100%',
+    marginLeft : sidebarMini && ! isMobileOpenSidebar ? 0 : pxToRem(10),
 
     [breakpoints.up('xl')]: {
       transition: transitions.create(['opacity', 'margin'], {

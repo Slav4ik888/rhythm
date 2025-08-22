@@ -13,31 +13,33 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { FC, useEffect } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import SidebarRoot from './styled';
 import {
-  useUIConfiguratorController, setSidebarMini, useTheme, setLeftOffsetScrollButton
+  useUIConfiguratorController, setSidebarMini, useTheme, setLeftOffsetScrollButton, setIsMobileOpenSidebar
 } from 'app/providers/theme';
 import { SidebarLogoLabel } from '../logo-label';
-import { SidebarUpgradeButton } from '../upgrade-button';
+// import { SidebarUpgradeButton } from '../upgrade-button';
 import { calcLeftOffsetScrollButton } from 'app/providers/theme/utils';
 import { SidebarList } from '../list';
+import { useUI } from 'entities/ui';
 
 
 
 interface Props {
-  onMouseEnter: () => void
-  onMouseLeave: () => void
+  onMouseEnter? : () => void
+  onMouseLeave? : () => void
 }
 
 
 export const SidebarContainer: FC<Props> = ({ ...rest }) => {
   const [configuratorState, dispatch] = useUIConfiguratorController();
-  const { sidebarMini, sidebarWidth, isSidebar } = configuratorState;
+  const { sidebarMini, sidebarWidth, isSidebar, isMobileOpenSidebar } = configuratorState;
   const theme = useTheme();
   const { breakpoints: { values: { xl, sm } } } = theme;
   const location = useLocation();
+  const { isMobile } = useUI();
 
 
   useEffect(() => {
@@ -60,13 +62,22 @@ export const SidebarContainer: FC<Props> = ({ ...rest }) => {
     [dispatch, location, isSidebar, sidebarMini, sm, xl]
   );
 
+  const handleMobileClose = useCallback(() => {
+    if (! isMobile) return;
+
+    setIsMobileOpenSidebar(dispatch, false);
+  },
+    [isMobile, dispatch]
+  );
+
 
   return (
     // @ts-ignore
     <SidebarRoot
       {...rest}
-      variant='permanent'
-      ownerState={{ sidebarMini, sidebarWidth, isSidebar }}
+      variant    = 'permanent'
+      ownerState = {{ sidebarMini, sidebarWidth, isSidebar, isMobileOpenSidebar, isMobile }}
+      onClick    = {handleMobileClose}
     >
       <SidebarLogoLabel />
       <SidebarList />

@@ -27,6 +27,8 @@ import { useAccess } from 'entities/company';
 import { BoxGrow } from 'shared/ui/containers';
 import { NavbarLogo } from './logo';
 import { useUser } from 'entities/user';
+import { useUI } from 'entities/ui';
+import { SidebarMobileIcon } from './sidebar-mobile-icon';
 
 
 
@@ -43,6 +45,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false }) => {
   const darkMode = mode === 'dark' || (mode === 'system' && isSystemDarkMode());
   const { isDashboardPage, isLoginPage, isSignupPage } = usePages();
   const { isDashboardAccessView } = useAccess();
+  const { isMobile } = useUI();
   const { auth } = useUser();
 
 
@@ -70,7 +73,9 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false }) => {
 
   //   // Remove event listener on cleanup
   //   return () => window.removeEventListener('scroll', handlenavbarTransparent);
-  }, [dispatch, navbarFixed]);
+  },
+    [dispatch, navbarFixed]
+  );
 
 
   if (isLoginPage || isSignupPage) return null
@@ -89,7 +94,10 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false }) => {
           }
           {
             isDashboardPage
-              ? isDashboardAccessView && <NavbarControlBox />
+              ? <>
+                  {isMobile && <SidebarMobileIcon />}
+                  {isDashboardAccessView && <NavbarControlBox />}
+                </>
               : auth && <NavbarLinksBox />
           }
           <BoxGrow />

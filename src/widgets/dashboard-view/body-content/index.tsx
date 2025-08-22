@@ -36,8 +36,9 @@ export const DashboardBodyContent = memo(() => {
 
   useEffect(() => {
     __devLog('DashboardBodyContent', calcItemsInBunches(viewItems));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [viewItems.length]);
+  },
+    [viewItems]
+  );
 
   useEffect(() => {
     const observer = new MutationObserver((mutations) => {

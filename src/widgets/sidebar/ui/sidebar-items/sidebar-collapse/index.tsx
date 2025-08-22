@@ -44,7 +44,7 @@ interface Props {
 
 export const SidebarCollapse: FC<Props> = ({ id, icon: IconComponent, title, active, ...rest }) => {
   const [configuratorState] = useUIConfiguratorController();
-  const { sidebarMini } = configuratorState;
+  const { sidebarMini, isMobileOpenSidebar } = configuratorState;
   const { editMode } = useDashboardViewState();
   const { isHover, isEdit, hoverBind, onSetEdit } = useHover();
 
@@ -73,7 +73,7 @@ export const SidebarCollapse: FC<Props> = ({ id, icon: IconComponent, title, act
         >
           <ListItemText
             primary={title}
-            sx={(theme) => collapseText(theme as CustomTheme, { active, sidebarMini })}
+            sx={(theme) => collapseText(theme as CustomTheme, { active, sidebarMini, isMobileOpenSidebar })}
           />
         </Tooltip>
       </MDBox>

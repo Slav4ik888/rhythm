@@ -10,6 +10,7 @@ import {
 } from '../model/ui-configurator-reducer/ui-configurator-context';
 import { LS } from 'shared/lib/local-storage';
 import { isNotUndefined } from 'shared/lib/validators';
+import { SIDEBAR_FULL_WIDTH } from '../consts';
 
 
 
@@ -25,7 +26,8 @@ const initialState: UIConfiguratorProviderState = {
   navbarTransparent      : fromLS?.navbarTransparent      || false,
   navbarColor            : fromLS?.navbarColor            || 'navbar_white',
   isSidebar,
-  sidebarWidth           : fromLS?.sidebarWidth           || 250,
+  isMobileOpenSidebar    : false,
+  sidebarWidth           : fromLS?.sidebarWidth           || SIDEBAR_FULL_WIDTH,
   sidebarMini,
   sidebarColor           : fromLS?.sidebarColor           || 'sidebar_black',
   leftOffsetScrollButton : calcLeftOffsetScrollButton(isSidebar, sidebarMini), // При монтировании ScrollableWorkspace рассчитается

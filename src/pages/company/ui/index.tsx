@@ -9,12 +9,12 @@ import { usePages } from 'shared/lib/hooks';
 
 
 const CompanyPage: FC = memo((): JSX.Element | null => {
-  const { companyId: paramsCompanyId } = useParams();
+  const { companyId: urlParamsCompanyId } = useParams();
   const { _isLoaded, loading: loadingUser, auth } = useUser();
   const { setPageLoading, setWarningMessage } = useUI();
   const { dashboardSheetId } = usePages();
   const {
-    loading: loadingCompany, companyId, dashboardPublicAccess, _isParamsCompanyIdLoaded,
+    loading: loadingCompany, paramsCompanyId, companyId, dashboardPublicAccess, _isParamsCompanyIdLoaded,
     serviceGetParamsCompany, setIsParamsCompanyIdLoaded
   } = useCompany({ dashboardSheetId });
   const { isDashboardAccessView } = useAccess();
@@ -23,7 +23,7 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
   useEffect(() => {
     if (! auth
       && ! _isLoaded
-      && !loadingUser
+      && ! loadingUser
     ) {
       setPageLoading({
         'get-auth': { text: 'Авторизация...', name: 'CompanyPage' }
@@ -32,20 +32,30 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
     // Если по ссылке вошли в чужую компанию
     else if (
       // auth && // должна быть возможность входить неавторизованным пользователям
-      _isLoaded
+         _isLoaded
       && ! loadingUser
       && ! loadingCompany
       && ! _isParamsCompanyIdLoaded
-      && paramsCompanyId
-      && paramsCompanyId !== companyId
+      && urlParamsCompanyId
+      && urlParamsCompanyId !== companyId
     ) {
       setPageLoading({ 'get-params-company': { text: 'Загрузка данных по компании...', name: 'CompanyPage' } });
-      serviceGetParamsCompany({ companyId: paramsCompanyId, dashboardSheetId });
+      serviceGetParamsCompany({ companyId: urlParamsCompanyId, dashboardSheetId });
+    }
+    else if (
+         _isLoaded
+      && ! loadingUser
+      && ! loadingCompany
+      && urlParamsCompanyId
+      && urlParamsCompanyId !== paramsCompanyId // Если переключились на другую компанию, напр. Демо-примеры
+    ) {
+      setPageLoading({ 'get-params-company': { text: 'Загрузка данных по компании...', name: 'CompanyPage' } });
+      serviceGetParamsCompany({ companyId: urlParamsCompanyId, dashboardSheetId });
     }
     // Если по ссылке вошли в свою компанию
     else if (auth
-      && !_isParamsCompanyIdLoaded
-      && paramsCompanyId === companyId
+      && ! _isParamsCompanyIdLoaded
+      && urlParamsCompanyId === companyId
     ) {
       setIsParamsCompanyIdLoaded(true);
     }
@@ -68,8 +78,8 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
   },
     [
       loadingUser, _isLoaded, loadingCompany, auth, dashboardSheetId, dashboardPublicAccess, isDashboardAccessView,
-      _isParamsCompanyIdLoaded, paramsCompanyId, companyId, setWarningMessage, serviceGetParamsCompany,
-      setIsParamsCompanyIdLoaded, setPageLoading
+      _isParamsCompanyIdLoaded, urlParamsCompanyId, companyId, paramsCompanyId,
+      setWarningMessage, serviceGetParamsCompany, setIsParamsCompanyIdLoaded, setPageLoading
     ]
   );
 

@@ -17,6 +17,7 @@ type ActionType =
     'SET_MODE'
   | 'IS_OPEN_CONFIGURATOR'
   | 'TOGGLE_SIDEBAR_MINI'
+  | 'SET_IS_MOBILE_OPEN_SIDEBAR'
   | 'TOGGLE_SIDEBAR_HIDDEN'
   | 'TOGGLE_SIDEBAR'
   | 'TOGGLE_SIDEBAR_COLOR'
@@ -34,6 +35,7 @@ export function reducer(state: UIConfiguratorProviderState, action: Action): UIC
     case 'SET_MODE':                      return setState(state, 'mode',                   action.value);
     case 'IS_OPEN_CONFIGURATOR':          return setState(state, 'isOpenConfigurator',     action.value);
     case 'TOGGLE_SIDEBAR':                return setState(state, 'isSidebar',              action.value);
+    case 'SET_IS_MOBILE_OPEN_SIDEBAR':    return setState(state, 'isMobileOpenSidebar',    action.value);
     case 'TOGGLE_SIDEBAR_MINI':           return setState(state, 'sidebarMini',            action.value);
     case 'TOGGLE_SIDEBAR_COLOR':          return setState(state, 'sidebarColor',           action.value);
     case 'SET_LEFT_OFFSET_SCROLL_BUTTON': return setState(state, 'leftOffsetScrollButton', action.value);
@@ -55,6 +57,9 @@ export const setIsSidebar = (dispatch: UIDispatch, value: boolean) => dispatch({
 });
 export const setSidebarMini = (dispatch: UIDispatch, value: boolean) => dispatch({
   type: 'TOGGLE_SIDEBAR_MINI', value
+});
+export const setIsMobileOpenSidebar = (dispatch: UIDispatch, value: boolean) => dispatch({
+  type: 'SET_IS_MOBILE_OPEN_SIDEBAR', value
 });
 export const setSidebarColor = (dispatch: UIDispatch, value: SidebarColorName) => dispatch({
   type: 'TOGGLE_SIDEBAR_COLOR', value
