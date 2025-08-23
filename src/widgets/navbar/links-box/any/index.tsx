@@ -1,29 +1,36 @@
 import { FC, memo, useCallback } from 'react';
-import { MDBox, MDTypography } from 'shared/ui/mui-design-components';
+import { MDTypography } from 'shared/ui/mui-design-components';
 import { sxNavbarRow } from '../../styles';
 import { CustomTheme } from 'app/providers/theme';
 import { Link } from 'react-router-dom';
 import { useCompany } from 'entities/company';
 import { useUser } from 'entities/user';
 import { getLinks } from './utils';
+import Box from '@mui/material/Box';
 
 
 
 export const AnyLinksBox: FC = memo(() => {
   const { auth } = useUser();
-  const { paramsCompanyId } = useCompany();
+  const { companyId } = useCompany();
 
-  const renderLinks = useCallback(() => getLinks(paramsCompanyId)
+  const renderLinks = useCallback(() => getLinks(companyId)
     .map(({ name, route = '', requireAuth }) => {
       if (! requireAuth || (requireAuth && auth)) return (
-        <MDBox
+        <Box
           key       = {name}
           component = 'li'
-          sx        = {{
+          sx        = {(theme) => ({
             lineHeight : 1,
             listStyle  : 'none',
+            ml         : 3,
             px         : 2,
-          }}
+
+            [theme.breakpoints.down('sm')]: {
+              mb: 1,
+              ml: 0,
+            }
+          })}
         >
           <Link to={route}>
             <MDTypography
@@ -34,22 +41,22 @@ export const AnyLinksBox: FC = memo(() => {
               {name}
             </MDTypography>
           </Link>
-        </MDBox>
+        </Box>
       )
       else return null
     }
   ),
-    [auth, paramsCompanyId]
+    [auth, companyId]
   );
 
 
   return (
-    <MDBox
+    <Box
       color = 'inherit'
       mb    = {{ xs: 1, md: 0 }}
-      sx    = {(theme: CustomTheme) => sxNavbarRow(theme)}
+      sx    = {(theme) => sxNavbarRow(theme as CustomTheme)}
     >
       {renderLinks()}
-    </MDBox>
+    </Box>
   );
 })

@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const DemoPageItem: FC<Props> = memo(({ item, darkMode }) => {
-  const { palette: { text, background }, transitions } = useTheme();
+  const { palette: { text, background }, transitions, breakpoints } = useTheme();
   const { route, title, caption } = item;
 
   return (
@@ -40,12 +40,22 @@ export const DemoPageItem: FC<Props> = memo(({ item, darkMode }) => {
 
           '&:hover': {
             backgroundColor : background.demoPageHover,
+          },
+
+          [breakpoints.down('sm')]: {
+            height   : 'max-content',
+            width    : '100%',
+            maxWidth : '100%',
           }
         }}
       >
         <Typography
           variant = 'h6'
-          sx      = {{ textAlign: 'center', color: text.dark, pt: 1.5 }}
+          sx      = {{
+            textAlign : 'center',
+            color     : text.dark,
+            pt        : 1.5,
+          }}
         >
           {title}
         </Typography>
@@ -63,6 +73,11 @@ export const DemoPageItem: FC<Props> = memo(({ item, darkMode }) => {
               border       : `1px solid ${text.light}`,
               borderRadius : '5px',
               p            : 0.5,
+
+              [breakpoints.down('sm')]: {
+                height    : 'max-content',
+                maxHeight : 'max-content',
+              }
             }
           }}
         />

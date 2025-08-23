@@ -18,6 +18,7 @@ import { PartialViewItemUpdate } from 'shared/api/features/dashboard-view';
 import { usePages } from 'shared/lib/hooks';
 import { DashboardBodyContentWrapper as Wrapper } from './wrapper';
 import { NewCompanyMessage } from 'widgets/offers';
+import { useDashboardData } from 'entities/dashboard-data';
 
 
 
@@ -25,10 +26,11 @@ export const DashboardBodyContent = memo(() => {
   const { userId } = useUser();
   const { paramsCompanyId, paramsChangedCompany, serviceUpdateCompany } = useCompany();
   const {
-    parentsViewItems, loading, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId, selectedItem,
-    isMounted, activatedMovementId, viewItems, entities, activatedCopied, setNewSelectedId, setIsMounted,
-    setDashboardViewItems, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
+    parentsViewItems, loading: loadingView, isLoaded, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId,
+    selectedItem, isMounted, activatedMovementId, viewItems, entities, activatedCopied, setNewSelectedId,
+    setIsMounted, setDashboardViewItems, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
   } = useDashboardViewServices();
+  const { loading: loadingData } = useDashboardData();
   const [isRendering, setIsRendering] = useState(true);
   const { dashboardSheetId } = usePages();
   const { isDashboardAccessView } = useAccess();
@@ -40,6 +42,7 @@ export const DashboardBodyContent = memo(() => {
     [viewItems]
   );
 
+  // Убираем надписи highcharts ввиду того, что они с РФ не работают, пидары
   useEffect(() => {
     const observer = new MutationObserver((mutations) => {
     const hc = document.querySelectorAll('.highcharts-credits');
@@ -49,7 +52,6 @@ export const DashboardBodyContent = memo(() => {
         observer.disconnect();
       }
     });
-    // document.querySelectorAll('.highcharts-credits').forEach(item => item.remove())
 
     observer.observe(document.body, {
       childList: true,
@@ -79,11 +81,11 @@ export const DashboardBodyContent = memo(() => {
 
 
   useEffect(() => {
-    if (newSelectedId && ! loading && newSelectedId !== selectedId && ! isUnsaved) {
+    if (newSelectedId && ! loadingView && newSelectedId !== selectedId && ! isUnsaved) {
       setSelectedId(newSelectedId);
     }
   },
-    [newSelectedId, loading, selectedId, isUnsaved, setSelectedId]
+    [newSelectedId, loadingView, selectedId, isUnsaved, setSelectedId]
   );
 
 
@@ -264,7 +266,13 @@ export const DashboardBodyContent = memo(() => {
 
 
   // Если нет дашборда, но есть доступ значит это новая компания
-  if (isMounted && ! viewItems.length && isDashboardAccessView) return <NewCompanyMessage />
+  if (! isRendering
+    && ! loadingData
+    && ! loadingView
+    && isMounted
+    && isDashboardAccessView
+    && isLoaded              // Загружены ViewItems
+    && ! viewItems.length) return <NewCompanyMessage />
 
   return (
     <Wrapper onClick = {() => handleSelectViewItem(NO_PARENT_ID)}>

@@ -18,6 +18,7 @@ export interface StateSchemaDashboardView {
   loading             : boolean
   errors              : Errors
   _isMounted          : boolean // Признак того, что Reducer mounted
+  _isLoaded           : boolean // Загружены ViewItems
 
   editMode            : boolean // Режим редактирования
   entities            : DashboardViewEntities

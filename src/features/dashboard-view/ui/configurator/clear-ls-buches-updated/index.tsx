@@ -16,11 +16,11 @@ import { getIconStyle } from 'shared/ui/configurators-components';
 export const ClearLsBunchesUpdated: FC = memo(() => {
   const { paramsCompanyId } = useCompany();
   const { setSuccessMessage } = useUI();
-  const [bunchesUpdated, setBunchesUpdated] = useState(LS.getDashboardViewBunchesUpdated(paramsCompanyId));
+  const [bunchesUpdated, setBunchesUpdated] = useState(LS.getViewBunchesUpdated(paramsCompanyId));
 
   useEffect(() => {
     const handleStorageChange = () => {
-      setBunchesUpdated(LS.getDashboardViewBunchesUpdated(paramsCompanyId));
+      setBunchesUpdated(LS.getViewBunchesUpdated(paramsCompanyId));
     };
 
     window.addEventListener('storage', handleStorageChange);
@@ -30,9 +30,9 @@ export const ClearLsBunchesUpdated: FC = memo(() => {
   );
 
   const handleClick = useCallback(() => {
-    LS.setDashboardViewBunchesUpdated(paramsCompanyId, {});
-    // setBunchesUpdated({});
-    // // Вручную эмулируем событие storage
+    LS.setViewBunchesUpdated(paramsCompanyId, {});
+
+    // Вручную эмулируем событие storage
     window.dispatchEvent(new Event('storage'));
     setSuccessMessage('BunchesUpdated в LS очищено.');
   },

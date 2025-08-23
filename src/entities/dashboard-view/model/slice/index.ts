@@ -30,6 +30,7 @@ const initialState: StateSchemaDashboardView = {
   loading               : false,
   errors                : {},
   _isMounted            : false,
+  _isLoaded             : false, // Загружены ViewItems
 
   editMode              : false,
   entities              : {},
@@ -83,7 +84,7 @@ export const slice = createSlice({
     // Берём закэшированную версию
     setDashboardBunchesFromCache: (state, { payload }: PayloadAction<SetDashboardBunchesFromCache>) => {
       const { companyId, changedBunches } = payload;
-      const bunches = getBunchesWithoutChanges(changedBunches, LS.getDashboardBunches(companyId));
+      const bunches = getBunchesWithoutChanges(changedBunches, LS.getBunches(companyId));
 
       state.entities            = updateEntities({}, getViewitemsFromBunches(bunches));
       state.activatedMovementId = '';
@@ -91,13 +92,13 @@ export const slice = createSlice({
       state.bright              = false;
 
       // Обновляем в LS так как возможно изменились bunches
-      LS.setDashboardBunches(companyId, { ...bunches });
+      LS.setBunches(companyId, { ...bunches });
     },
 
     setEditMode: (state, { payload }: PayloadAction<SetEditMode>) => {
       const { editMode, companyId } = payload;
       state.editMode = editMode;
-      LS.setDashboardEditMode(companyId, editMode);
+      LS.setEditMode(companyId, editMode);
 
       if (! editMode) {
         state.selectedId = '';
@@ -258,6 +259,7 @@ export const slice = createSlice({
 
         // Нужно чтобы возможные данные из LS НЕ перезатёрлись новыми
         state.entities            = updateEntities(state.entities, getViewitemsFromBunches(bunches));
+        state._isLoaded           = true;
         state.activatedMovementId = '';
         state.activatedCopied     = undefined;
         state.bright              = false;
@@ -265,12 +267,12 @@ export const slice = createSlice({
         state.loading             = false;
         state.errors              = {};
 
-        LS.setDashboardBunches(companyId, {
-          ...LS.getDashboardBunches(companyId),
+        LS.setBunches(companyId, {
+          ...LS.getBunches(companyId),
           ...bunches
         });
-        LS.setDashboardViewBunchesUpdated(companyId, {
-          ...LS.getDashboardViewBunchesUpdated(companyId),
+        LS.setViewBunchesUpdated(companyId, {
+          ...LS.getViewBunchesUpdated(companyId),
           ...bunchesUpdated
         });
       })
@@ -297,11 +299,11 @@ export const slice = createSlice({
         state.loading             = false;
         state.errors              = {};
 
-        LS.setDashboardBunches(companyId, updateBunches(
-          LS.getDashboardBunches(companyId), getBunchesFromViewItems(viewItems)
+        LS.setBunches(companyId, updateBunches(
+          LS.getBunches(companyId), getBunchesFromViewItems(viewItems)
         ));
-        LS.setDashboardViewBunchesUpdated(companyId, {
-          ...LS.getDashboardViewBunchesUpdated(companyId),
+        LS.setViewBunchesUpdated(companyId, {
+          ...LS.getViewBunchesUpdated(companyId),
           ...getBunchesTimestamps(viewItems, bunchUpdatedMs)
         });
       })
@@ -333,11 +335,11 @@ export const slice = createSlice({
         state.errors              = {};
 
         // Save to LS
-        LS.setDashboardBunches(companyId, updateBunches(
-          LS.getDashboardBunches(companyId), getBunchesFromViewItems(viewItems as ViewItem[])
+        LS.setBunches(companyId, updateBunches(
+          LS.getBunches(companyId), getBunchesFromViewItems(viewItems as ViewItem[])
         ));
-        LS.setDashboardViewBunchesUpdated(companyId, {
-          ...LS.getDashboardViewBunchesUpdated(companyId),
+        LS.setViewBunchesUpdated(companyId, {
+          ...LS.getViewBunchesUpdated(companyId),
           ...getBunchesTimestamps(viewItems, bunchUpdatedMs)
         });
       })
@@ -371,9 +373,9 @@ export const slice = createSlice({
         state.errors              = {};
 
         // Save to LS
-        LS.setDashboardBunches(companyId, getBunchesFromViewItems(Object.values(state.entities)));
-        LS.setDashboardViewBunchesUpdated(companyId, {
-          ...LS.getDashboardViewBunchesUpdated(companyId),
+        LS.setBunches(companyId, getBunchesFromViewItems(Object.values(state.entities)));
+        LS.setViewBunchesUpdated(companyId, {
+          ...LS.getViewBunchesUpdated(companyId),
           ...getBunchesTimestamps(viewItems, bunchUpdatedMs)
         });
       })

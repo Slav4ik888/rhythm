@@ -12,30 +12,30 @@ import { setStorageData, getStorageData, removeStorageData } from './main';
 
 
 /** Auth */
-export const setAcceptedCookie = () => setStorageData('AcceptedCookie', { isAccepted: 'true' });
+export const setAcceptedCookie = () => setStorageData('acceptedCookie', { isAccepted: 'true' });
 export const getAcceptedCookie = (): string => getStorageData<{ isAccepted: string }>(
-  'AcceptedCookie'
+  'acceptedCookie'
 )?.isAccepted || 'false';
 
 // User
 export const setUserState = (companyId: string, data: StateSchemaUser) => setStorageData(
-  `UserState-${companyId}`,
+  `userState-${companyId}`,
   data
 );
-export const getUserState = (companyId: string) => getStorageData<StateSchemaUser>(`UserState-${companyId}`);
+export const getUserState = (companyId: string) => getStorageData<StateSchemaUser>(`userState-${companyId}`);
 
 // Company
-export const setLastCompanyId = (companyId: string) => setStorageData('LastCompanyId', { companyId });
-export const getLastCompanyId = () => getStorageData<{ companyId: string }>('LastCompanyId')?.companyId;
+export const setLastCompanyId = (companyId: string) => setStorageData('lastCompanyId', { companyId });
+export const getLastCompanyId = () => getStorageData<{ companyId: string }>('lastCompanyId')?.companyId;
 
 export const setCompanyState = (companyId: string, data: StateSchemaCompany) => setStorageData(
-  `CompanyState-${companyId}`,
+  `companyState-${companyId}`,
   data
 );
-export const getCompanyState = (companyId: string) => getStorageData<StateSchemaCompany>(`CompanyState-${companyId}`);
+export const getCompanyState = (companyId: string) => getStorageData<StateSchemaCompany>(`companyState-${companyId}`);
 
-export const setParamsCompanyState = (data: PartialCompany) => setStorageData('ParamsCompany', data);
-export const getParamsCompanyState = () => getStorageData<PartialCompany>('ParamsCompany');
+export const setParamsCompanyState = (data: PartialCompany) => setStorageData('paramsCompany', data);
+export const getParamsCompanyState = () => getStorageData<PartialCompany>('paramsCompany');
 
 // Configurator
 export const setUIConfiguratorState = (data: UIConfiguratorProviderState) => setStorageData(
@@ -43,61 +43,54 @@ export const setUIConfiguratorState = (data: UIConfiguratorProviderState) => set
   data
 );
 export const getUIConfiguratorState = () => getStorageData<UIConfiguratorProviderState>('UIConfiguratorState');
-export const setDashboardEditMode = (companyId: string, editMode: boolean) => setStorageData(
-  `DashboardEditMode-${companyId}`,
+export const setEditMode = (companyId: string, editMode: boolean) => setStorageData(
+  `editMode-${companyId}`,
   { editMode }
 );
-export const getDashboardEditMode = (companyId: string): boolean => Boolean(
-  getStorageData<{ editMode?: boolean }>(`DashboardEditMode-${companyId}`)?.editMode
+export const getEditMode = (companyId: string): boolean => Boolean(
+  getStorageData<{ editMode?: boolean }>(`editMode-${companyId}`)?.editMode
 );
 
 // Dashboard-templates
-export const setDashboardTemplates = (data: Template[]) => setStorageData('DashboardTemplates', data);
-export const getDashboardTemplates = () => getStorageData<Template[]>('DashboardTemplates') || [];
+export const setTemplates = (data: Template[]) => setStorageData('templates', data);
+export const getTemplates = () => getStorageData<Template[]>('templates') || [];
 
 /** Dashboard-templates - timestamp of last updated */
-export const setDashboardTemplatesBunchesUpdated = (data: BunchesUpdated) => {
-  setStorageData('DashboardTemplatesBunchesUpdated', data);
+export const setTemplatesBunchesUpdated = (data: BunchesUpdated) => {
+  setStorageData('templatesBunchesUpdated', data);
   // Триггерим событие для других вкладок
   window.dispatchEvent(new Event('storage'));
 }
-export const getDashboardTemplatesBunchesUpdated = () => getStorageData<BunchesUpdated>(
-  'DashboardTemplatesBunchesUpdated'
+export const getTemplatesBunchesUpdated = () => getStorageData<BunchesUpdated>(
+  'templatesBunchesUpdated'
 ) || {};
 
 // Dashboard-data
-export const setDashboardDataState = (companyId: string, data: StateSchemaDashboardData) => setStorageData(
-  `DashboardDataState-${companyId}`,
+export const setDataState = (companyId: string, data: StateSchemaDashboardData) => setStorageData(
+  `dataState-${companyId}`,
   data
 );
-export const getDashboardDataState = (companyId: string) => getStorageData<StateSchemaDashboardData>(
-  `DashboardDataState-${companyId}`
+export const getDataState = (companyId: string) => getStorageData<StateSchemaDashboardData>(
+  `dataState-${companyId}`
 );
 
 // Dashboard-view
-// export const setDashboardViewItems = (companyId: string, items: ViewItem[]) => setStorageData(
-//   `DashboardViewItems-${companyId}`,
-//   items
-// );
-// export const getDashboardViewItems = (companyId: string) => getStorageData<ViewItem[]>(
-//   `DashboardViewItems-${companyId}`
-// ) || [];
-export const setDashboardBunches = (companyId: string, bunches: BunchesViewItem) => setStorageData(
-  `DashboardBunches-${companyId}`,
+export const setBunches = (companyId: string, bunches: BunchesViewItem) => setStorageData(
+  `bunches-${companyId}`,
   bunches
 );
-export const getDashboardBunches = (companyId: string) => getStorageData<BunchesViewItem>(
-  `DashboardBunches-${companyId}`
+export const getBunches = (companyId: string) => getStorageData<BunchesViewItem>(
+  `bunches-${companyId}`
 ) || {};
 
 /** Dashboard-view - timestamp of last updated */
-export const setDashboardViewBunchesUpdated = (companyId: string, data: BunchesUpdated) => {
-  setStorageData(`DashboardViewBunchesUpdated-${companyId}`, data);
+export const setViewBunchesUpdated = (companyId: string, data: BunchesUpdated) => {
+  setStorageData(`viewBunchesUpdated-${companyId}`, data);
   // Триггерим событие для других вкладок
   window.dispatchEvent(new Event('storage'));
 };
-export const getDashboardViewBunchesUpdated = (companyId: string) => getStorageData<BunchesUpdated>(
-  `DashboardViewBunchesUpdated-${companyId}`
+export const getViewBunchesUpdated = (companyId: string) => getStorageData<BunchesUpdated>(
+  `viewBunchesUpdated-${companyId}`
 ) || {};
 
 

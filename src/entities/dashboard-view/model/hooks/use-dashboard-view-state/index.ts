@@ -14,6 +14,8 @@ export const useDashboardViewState = (config: Config = {}) => {
   const loading                  = useSelector(s.selectLoading);
   const errors                   = useSelector(s.selectErrors);
   const isMounted                = useSelector(s.selectIsMounted);
+  const isLoaded                 = useSelector(s.selectIsLoaded);
+
   const editMode                 = useSelector(s.selectEditMode);
   const entities                 = useSelector(s.selectEntities);
   const viewItems                = useSelector(s.selectViewItems);
@@ -43,6 +45,7 @@ export const useDashboardViewState = (config: Config = {}) => {
     loading,
     errors,
     isMounted,
+    isLoaded,
 
     editMode,
     entities,

@@ -25,7 +25,7 @@ const TemplatesDialog: FC<Props> = memo(({ hookOpen }) => {
   useEffect(() => {
     // Templates
     if (bunchesUpdated) { // Запускаем после получения данных из DB
-      const bunchesForLoad = getBunchesToUpdate(bunchesUpdated, LS.getDashboardTemplatesBunchesUpdated());
+      const bunchesForLoad = getBunchesToUpdate(bunchesUpdated, LS.getTemplatesBunchesUpdated());
 
       if (bunchesForLoad.length) {
         __devLog('TemplatesDialog', 'Template bunches for load:', bunchesForLoad.length);

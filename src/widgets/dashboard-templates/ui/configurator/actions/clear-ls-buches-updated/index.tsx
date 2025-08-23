@@ -16,11 +16,11 @@ import { getIconStyle } from 'shared/ui/configurators-components';
 export const TemplatesClearLsBunchesUpdated: FC = memo(() => {
   const { paramsCompanyId } = useCompany();
   const { setSuccessMessage } = useUI();
-  const [bunchesUpdated, setBunchesUpdated] = useState(LS.getDashboardTemplatesBunchesUpdated());
+  const [bunchesUpdated, setBunchesUpdated] = useState(LS.getTemplatesBunchesUpdated());
 
   useEffect(() => {
     const handleStorageChange = () => {
-      setBunchesUpdated(LS.getDashboardTemplatesBunchesUpdated());
+      setBunchesUpdated(LS.getTemplatesBunchesUpdated());
     };
 
     window.addEventListener('storage', handleStorageChange);
@@ -30,8 +30,8 @@ export const TemplatesClearLsBunchesUpdated: FC = memo(() => {
   );
 
   const handleClick = useCallback(() => {
-    LS.setDashboardTemplates([]);
-    LS.setDashboardTemplatesBunchesUpdated({});
+    LS.setTemplates([]);
+    LS.setTemplatesBunchesUpdated({});
 
     // Вручную эмулируем событие storage
     window.dispatchEvent(new Event('storage'));

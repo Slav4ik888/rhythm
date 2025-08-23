@@ -12,14 +12,15 @@ export const ClearCacheBtn: FC = memo(() => {
 
   const handleClick = useCallback(() => {
     LS.clearStorage();
-    setSuccessMessage('Кэш очищен')
+    setSuccessMessage('Кэш очищен');
+    location.reload();
   },
     [setSuccessMessage]
   );
 
 
   return (
-    <Tooltip title='Нажмите, чтобы очистить кэш'>
+    <Tooltip title='Нажмите, чтобы очистить кэш и обновить страницу'>
       <Box
         sx={(theme) => {
           const { breakpoints } = theme as CustomTheme;
@@ -40,7 +41,7 @@ export const ClearCacheBtn: FC = memo(() => {
         }}
         onClick={handleClick}
       >
-        Очистить кэш
+        Очистить кэш и обновить
       </Box>
     </Tooltip>
   )

@@ -1,5 +1,6 @@
 import { DashboardStatisticItem } from 'entities/dashboard-data';
 import { ViewItem } from 'entities/dashboard-view';
+import { toNumber } from 'shared/helpers/numbers';
 import { getBackgroundColors } from '../../../chartjs/lib';
 
 
@@ -16,7 +17,7 @@ export const getDoughnutOptions = (
 
     // Последние значения соответствующие концу выбранного промежутка
     const value = (Array.isArray(itemData?.data) && length > 0)
-      ? itemData?.data[length - 1]
+      ? toNumber(itemData?.data[length - 1])
       : 0;
 
     const label = viewItem.settings?.charts?.[index]?.datasets?.label || '';

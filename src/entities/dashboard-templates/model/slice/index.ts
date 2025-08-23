@@ -51,7 +51,7 @@ export const slice = createSlice({
       state.errors = {};
     },
     setDashboardTemplatesFromCache: (state) => {
-      state.entities = updateEntities({}, LS.getDashboardTemplates());
+      state.entities = updateEntities({}, LS.getTemplates());
     },
     setOpened: (state, { payload }: PayloadAction<boolean>) => {
       state.opened = payload;
@@ -107,7 +107,7 @@ export const slice = createSlice({
       })
       .addCase(getBunchesUpdated.fulfilled, (state, { payload }: PayloadAction<BunchesUpdated>) => {
         state.bunchesUpdated = payload;
-        state.entities       = updateEntities({}, LS.getDashboardTemplates()); // Загружаем Templates из кеша
+        state.entities       = updateEntities({}, LS.getTemplates()); // Загружаем Templates из кеша
         state.loading        = false;
         state.errors         = {};
       })
@@ -128,8 +128,8 @@ export const slice = createSlice({
         state.loading  = false;
         state.errors   = {};
 
-        LS.setDashboardTemplates(mergeById(Object.values(state.entities), templates));
-        LS.setDashboardTemplatesBunchesUpdated(bunchesUpdated); // С сервера приходит весь актуальный объект
+        LS.setTemplates(mergeById(Object.values(state.entities), templates));
+        LS.setTemplatesBunchesUpdated(bunchesUpdated); // С сервера приходит весь актуальный объект
       })
       .addCase(getTemplates.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
@@ -152,9 +152,9 @@ export const slice = createSlice({
         state.loading  = false;
         state.errors   = {};
 
-        LS.setDashboardTemplates(Object.values(state.entities));
-        LS.setDashboardTemplatesBunchesUpdated({
-          ...LS.getDashboardTemplatesBunchesUpdated(),
+        LS.setTemplates(Object.values(state.entities));
+        LS.setTemplatesBunchesUpdated({
+          ...LS.getTemplatesBunchesUpdated(),
           [template.bunchId || '1']: bunchUpdatedMs
         });
       })
@@ -178,9 +178,9 @@ export const slice = createSlice({
         state.loading        = false;
         state.errors         = {};
 
-        LS.setDashboardTemplates(Object.values(state.entities));
-        LS.setDashboardTemplatesBunchesUpdated({
-          ...LS.getDashboardTemplatesBunchesUpdated(),
+        LS.setTemplates(Object.values(state.entities));
+        LS.setTemplatesBunchesUpdated({
+          ...LS.getTemplatesBunchesUpdated(),
           [bunchId]: bunchUpdatedMs
         });
       })

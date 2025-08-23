@@ -51,11 +51,11 @@ export const setStorageData = (storageName: string, data: any) => {
       const companyState = h.getCompanyState(companyId);
       const paramsCompanyState = h.getParamsCompanyState();
       const uIConfiguratorState = h.getUIConfiguratorState();
-      const dashboardTemplates = h.getDashboardTemplates();
-      const dashboardTemplatesBunchesUpdated = h.getDashboardTemplatesBunchesUpdated();
-      const dashboardDataState = h.getDashboardDataState(companyId);
-      const dashboardBunches = h.getDashboardBunches(companyId);
-      const dashboardViewBunchesUpdated = h.getDashboardViewBunchesUpdated(companyId);
+      const dashboardTemplates = h.getTemplates();
+      const dashboardTemplatesBunchesUpdated = h.getTemplatesBunchesUpdated();
+      const dashboardDataState = h.getDataState(companyId);
+      const dashboardBunches = h.getBunches(companyId);
+      const dashboardViewBunchesUpdated = h.getViewBunchesUpdated(companyId);
 
 
       localStorage.clear();
@@ -66,11 +66,11 @@ export const setStorageData = (storageName: string, data: any) => {
       if (companyState) h.setCompanyState(companyId, companyState);
       if (paramsCompanyState) h.setParamsCompanyState(paramsCompanyState);
       if (uIConfiguratorState) h.setUIConfiguratorState(uIConfiguratorState);
-      h.setDashboardTemplates(dashboardTemplates);
-      h.setDashboardTemplatesBunchesUpdated(dashboardTemplatesBunchesUpdated);
-      if (dashboardDataState) h.setDashboardDataState(companyId, dashboardDataState);
-      h.setDashboardBunches(companyId, dashboardBunches);
-      h.setDashboardViewBunchesUpdated(companyId, dashboardViewBunchesUpdated);
+      h.setTemplates(dashboardTemplates);
+      h.setTemplatesBunchesUpdated(dashboardTemplatesBunchesUpdated);
+      if (dashboardDataState) h.setDataState(companyId, dashboardDataState);
+      h.setBunches(companyId, dashboardBunches);
+      h.setViewBunchesUpdated(companyId, dashboardViewBunchesUpdated);
     }
     else {
       console.error('Ошибка LocalStorage:', e);

@@ -51,11 +51,8 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false }) => {
 
   useEffect(() => {
     // Setting the navbar type
-    if (navbarFixed) {
-      setNavbarType('sticky');
-    } else {
-      setNavbarType('static');
-    }
+    if (navbarFixed) setNavbarType('sticky');
+    else setNavbarType('static');
 
   //   // A function that sets the transparent state of the navbar.
   //   function handlenavbarTransparent() {
@@ -90,7 +87,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false }) => {
       >
         <Toolbar sx={(theme) => sxNavbarContainer(theme as CustomTheme)}>
           {
-            ! isDashboardPage && <NavbarLogo />
+            ! isDashboardPage && <NavbarLogo darkMode={darkMode} />
           }
           {
             isDashboardPage

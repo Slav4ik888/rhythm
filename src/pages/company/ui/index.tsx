@@ -42,20 +42,24 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
       setPageLoading({ 'get-params-company': { text: 'Загрузка данных по компании...', name: 'CompanyPage' } });
       serviceGetParamsCompany({ companyId: urlParamsCompanyId, dashboardSheetId });
     }
+    // Если переключились на другую компанию, напр. Демо-примеры
     else if (
          _isLoaded
       && ! loadingUser
       && ! loadingCompany
       && urlParamsCompanyId
-      && urlParamsCompanyId !== paramsCompanyId // Если переключились на другую компанию, напр. Демо-примеры
+      && urlParamsCompanyId !== paramsCompanyId
     ) {
       setPageLoading({ 'get-params-company': { text: 'Загрузка данных по компании...', name: 'CompanyPage' } });
       serviceGetParamsCompany({ companyId: urlParamsCompanyId, dashboardSheetId });
     }
     // Если по ссылке вошли в свою компанию
-    else if (auth
-      && ! _isParamsCompanyIdLoaded
+    else if (
+         _isLoaded
+      && ! loadingUser
+      && ! loadingCompany
       && urlParamsCompanyId === companyId
+      && ! _isParamsCompanyIdLoaded
     ) {
       setIsParamsCompanyIdLoaded(true);
     }
@@ -83,11 +87,9 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
     ]
   );
 
-  if (
-    // (! auth && ! dashboardPublicAccess)
-    ! isDashboardAccessView  // должна быть возможность входить неавторизованным пользователям
-    || ! _isParamsCompanyIdLoaded
-  ) {
+
+  if (! isDashboardAccessView || ! _isParamsCompanyIdLoaded) {
+      __devLog('CompanyPage', 'RETURN NULL');
     return null;
   }
 

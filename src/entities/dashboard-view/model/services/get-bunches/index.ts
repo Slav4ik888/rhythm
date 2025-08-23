@@ -43,7 +43,7 @@ export const getBunches = createAsyncThunk<
       // а также случай отсутствия интернета (для разработки)
       if (cfg.IS_DEV) {
         companyId = LS.getLastCompanyId() || '';
-        bunches = LS.getDashboardBunches(companyId);
+        bunches = LS.getBunches(companyId);
       }
       else {
         const { data: { bunches: bu } } = await extra.api.post<ResGetViewItems>(

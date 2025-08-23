@@ -11,14 +11,15 @@ export const getInitialState = (companyId: string): StateSchemaDashboardView => 
     loading               : false,
     errors                : {},
     _isMounted            : true,
+    _isLoaded             : false, // Загружены ViewItems
 
-    editMode              : LS.getDashboardEditMode(companyId) || false,
+    editMode              : LS.getEditMode(companyId) || false,
     newSelectedId         : '',
     selectedId            : '',
     bright                : false,
     isUnsaved             : false, // Наличие не сохраненных изменений (в тч customSettings in Company)
 
-    entities              : updateEntities({}, getViewitemsFromBunches(LS.getDashboardBunches(companyId)) || []),
+    entities              : updateEntities({}, getViewitemsFromBunches(LS.getBunches(companyId)) || []),
 
     newStoredViewItem     : undefined, // Начальные значения выбранного элемента
     prevStoredViewItem    : undefined, // Начальные значения предыдущего выбранного элемента

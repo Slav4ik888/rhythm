@@ -14,7 +14,7 @@ export const getInitialState = (): StateSchemaDashboardTemplates => {
     selectedId     : undefined,
     storedSelected : undefined,
     opened         : false,
-    entities       : updateEntities({}, LS.getDashboardTemplates()),
+    entities       : updateEntities({}, LS.getTemplates()),
   };
 
   return initialState;

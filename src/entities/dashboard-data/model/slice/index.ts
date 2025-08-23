@@ -75,7 +75,7 @@ export const slice = createSlice({
       state.activeEntities = activeEntities;
       state.activeDates    = activeDates;
 
-      LS.setDashboardDataState(payload.companyId, state); // Save state to local storage
+      LS.setDataState(payload.companyId, state); // Save state to local storage
     },
     setSelectedPeriod: (state, { payload }: PayloadAction<SetSelectedPeriod>) => {
       const calcedStartDate = calculateStartDate(
@@ -105,8 +105,8 @@ export const slice = createSlice({
 
       // Тк при первом запуске setSelectedPeriod вызывается автоматически, поэтому нужно НЕ затереть имеющиеся данные
       // TODO: перепроверить, возможно это уже надо убрать
-      const oldData = LS.getDashboardDataState(payload.companyId) || {} as StateSchemaDashboardData; // Save state to local storage
-      LS.setDashboardDataState(
+      const oldData = LS.getDataState(payload.companyId) || {} as StateSchemaDashboardData; // Save state to local storage
+      LS.setDataState(
         payload.companyId,
         {
           ...oldData,
@@ -138,7 +138,7 @@ export const slice = createSlice({
         state.loading     = false;
         state.errors      = {};
 
-        LS.setDashboardDataState(payload.companyId, state); // Save state to local storage
+        LS.setDataState(payload.companyId, state); // Save state to local storage
       })
       .addCase(getData.rejected, (state, { payload }) => {
         state.errors  = getError(payload);

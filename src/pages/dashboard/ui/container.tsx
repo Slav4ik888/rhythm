@@ -23,7 +23,7 @@ const initialReducers: ReducersList = {
 
 
 export const DashboardPageContainer: FC = memo(() => {
-  const { paramsCompanyId, paramsCompany, paramsBunchesUpdated } = useCompany();
+  const { paramsCompanyId, paramsBunchesUpdated } = useCompany();
   const { pathname } = useLocation();
   const { serviceGetBunches, setDashboardBunchesFromCache } = useDashboardViewServices();
   const { dashboardSheetId = NO_SHEET_ID } = usePages();
@@ -37,7 +37,7 @@ export const DashboardPageContainer: FC = memo(() => {
     if (! isDashboardAccessView) return;
 
     // 1. GOOGLE-DATA - если нет данных, то загружаем
-    if (! LS.getDashboardDataState(paramsCompanyId)) {
+    if (! LS.getDataState(paramsCompanyId)?.startEntities && paramsCompanyId) {
       setPageLoading({
         'get-g-data': {
           text: 'Загрузка данных c google-таблицы...',
@@ -50,7 +50,7 @@ export const DashboardPageContainer: FC = memo(() => {
     // 2. VIEW-ITEMS
     const bunchesForLoad = getBunchesToUpdate(
       paramsBunchesUpdated,
-      LS.getDashboardViewBunchesUpdated(paramsCompanyId)
+      LS.getViewBunchesUpdated(paramsCompanyId)
     );
 
     // Загружаем из кеша bunches в которых нет изменений
@@ -74,8 +74,9 @@ export const DashboardPageContainer: FC = memo(() => {
       __devLog('DashboardPageContainer', 'All bunches from cache');
     }
   },
+    // Повторно обновляем если переключились на другую компанию
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [paramsCompanyId, paramsBunchesUpdated, isDashboardAccessView]
   );
 
 

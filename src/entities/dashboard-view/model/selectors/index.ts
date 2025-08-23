@@ -13,6 +13,7 @@ export const selectModule       = createSelector([(state: StateSchema) => state.
 export const selectLoading      = createSelector(selectModule, (state: StateSchemaDashboardView) => state.loading);
 export const selectErrors       = createSelector(selectModule, (state: StateSchemaDashboardView) => state.errors);
 export const selectIsMounted    = createSelector(selectModule, (state: StateSchemaDashboardView) => state._isMounted);
+export const selectIsLoaded     = createSelector(selectModule, (state: StateSchemaDashboardView) => state._isLoaded);
 
 export const selectEditMode     = createSelector(selectModule, (state: StateSchemaDashboardView) => state.editMode);
 export const selectEntities     = createSelector(selectModule, (state: StateSchemaDashboardView) => state.entities || {});
