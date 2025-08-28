@@ -12,8 +12,9 @@ const useStyles = (theme: CustomTheme, sx: any) => ({
     ...sx.root
   },
   content: {
-    ...f('-c-c'),
+    ...f('c-c-c'),
     width : '100%',
+    gap   : 1,
     // fontSize : theme.error.fontSize,
     color : theme.palette.error.main,
     ...sx.content
@@ -25,14 +26,15 @@ type Props = {
   field?  : string
   sx?     : any
   errors? : Errors
+  all?    : boolean // Если надо вывести все ошибки
 }
 
 
-/** v.2024-02-08 */
-export const ErrorBox: FC<Props> = memo(({ field = '', sx: styles = {}, errors }) => {
+/** v.2025-08-28 */
+export const ErrorBox: FC<Props> = memo(({ field = '', sx: styles = {}, errors = {}, all }) => {
   const { root, content } = useStyles(useTheme() as unknown as CustomTheme, styles);
 
-  if (! errors?.[field]) return null;
+  if (! errors?.[field] && ! all) return null;
 
 
   return (
@@ -40,6 +42,11 @@ export const ErrorBox: FC<Props> = memo(({ field = '', sx: styles = {}, errors }
       <Box sx={content}>
         {
           errors?.[field]
+            ? errors?.[field]
+            : Object.entries(errors).map(([key, error]) => <Box key={key} component='span'>
+                {error}
+              </Box>
+            )
         }
       </Box>
     </Box>

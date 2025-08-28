@@ -2,7 +2,7 @@ import { FC, memo, useCallback, useEffect, useState, ChangeEvent } from 'react';
 import { useUser } from 'entities/user';
 import { CompanyProfilePageComponent } from './component';
 import { useUI } from 'entities/ui';
-import { PartialCompany, useCompany, Company } from 'entities/company';
+import { PartialCompany, useCompany, Company, validateCompanyData } from 'entities/company';
 import { cloneObj, getChanges, isEmpty, setValueByScheme } from 'shared/helpers/objects';
 import { creatorFixDate } from 'entities/base';
 import { __devLog } from 'shared/lib/tests/__dev-log';
@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 const CompanyProfilePage: FC = memo(() => {
   const { auth, userId } = useUser();
-  const { loading, errors, paramsCompany: storedCompany, serviceUpdateCompany } = useCompany();
+  const { loading, errors, paramsCompany: storedCompany, setErrors, serviceUpdateCompany } = useCompany();
   const [formData, setFormData] = useState<Partial<Company>>(storedCompany);
   const { setErrorStatus, setReplacePath } = useUI();
   const navigate = useNavigate();
@@ -34,12 +34,14 @@ const CompanyProfilePage: FC = memo(() => {
     const { value } = e.target;
 
     setFormData(prev => {
-      const obj = cloneObj(prev);
-      setValueByScheme(obj, scheme, value);
-      return obj;
+      const data = cloneObj(prev);
+      setValueByScheme(data, scheme, value);
+
+      const { valid, errors } = validateCompanyData({ id: storedCompany.id, ...data });
+      if (! valid) setErrors(errors);
+
+      return data;
     });
-    // Простая валидация на лету (можно расширить)
-    // validateField(field, value);
   };
 
 
@@ -55,12 +57,11 @@ const CompanyProfilePage: FC = memo(() => {
     __devLog('CompanyProfilePage', 'updatedData: ', updatedData);
     if (isEmpty(updatedData)) return;
 
-
-    // TODO: validate
-    // const { valid, errors } = validateCompanyData(updatedData);
-    // valid ? serviceUpdateCompany(updatedData) : setErrors(errors);
-    serviceUpdateCompany(updatedData);
-  }, [loading, userId, formData, storedCompany, serviceUpdateCompany]);
+    const { valid, errors } = validateCompanyData(updatedData);
+    valid ? serviceUpdateCompany(updatedData) : setErrors(errors);
+  },
+    [loading, userId, formData, storedCompany, setErrors, serviceUpdateCompany]
+  );
 
 
   const handleCancel = useCallback(async () => {
@@ -69,6 +70,8 @@ const CompanyProfilePage: FC = memo(() => {
 
 
   if (! auth) return null;
+
+      console.log('errors: ', errors);
 
   return (
     <CompanyProfilePageComponent

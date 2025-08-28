@@ -6,6 +6,7 @@ import { f, pxToRem } from 'shared/styles';
 import Box from '@mui/material/Box';
 import { TextFieldItem } from 'shared/ui/mui-components';
 import { LayoutInnerPage } from 'shared/ui/pages';
+import { ErrorBox } from 'shared/ui/containers';
 
 
 
@@ -60,6 +61,12 @@ export const CompanyProfilePageComponent: FC<Props> = memo(({ isChanges, formDat
         onChange     = {onChange}
       />
     </Box>
+
+    <ErrorBox
+      all
+      errors = {errors}
+      sx     = {{ root: { mt: 2 } }}
+    />
 
     <Actions
       hideIfNotChanges
