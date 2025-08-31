@@ -7,7 +7,7 @@ import { isGreaterMd as isGreaterMdFn } from '../../utils';
 import { Errors } from 'shared/lib/validators';
 import { useMemo } from 'react';
 import { PageLoading } from '../../slice/state-schema';
-import { isSystemDarkMode, useUIConfiguratorController } from 'app/providers/theme';
+import { isDarkMode, useUIConfiguratorController } from 'app/providers/theme';
 
 
 
@@ -15,7 +15,7 @@ export const useUI = () => {
   const dispatch = useAppDispatch();
   const [configuratorState, dispatchConfigurator] = useUIConfiguratorController();
   const { navbarTransparent, navbarFixed, mode, sidebarMini, isMobileOpenSidebar } = configuratorState;
-  const darkMode = mode === 'dark' || (mode === 'system' && isSystemDarkMode());
+  const darkMode = isDarkMode(mode);
 
 
   const loading = useSelector(s.selectLoading);

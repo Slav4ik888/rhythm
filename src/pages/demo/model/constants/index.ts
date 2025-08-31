@@ -18,7 +18,7 @@ export const DEMO_PAGES: DemoPageType[] = [
   {
     id       : 2,
     route    : '/demoPecarLight_sP4kL/dashboard',
-    title    : 'Светлосерый дашборд',
+    title    : 'Светлосерая панель',
     alt      : 'Демо-картинка компании "Семейный пекарь" (светлый вариант)',
     caption  : 'Присутствует график с индивидуальной настройкой периода. ',
   }

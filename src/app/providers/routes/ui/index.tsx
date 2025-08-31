@@ -1,6 +1,6 @@
 import { memo, Suspense, useCallback } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { AppRouteProps, AppRoutes, RoutePath } from '../config';
+import { AppRoutes, RoutePath } from '../config';
 import { RootPage } from 'pages/root';
 import { PageLoader } from 'widgets/page-loader';
 import { NotFoundPage } from 'pages/not-found';
@@ -8,11 +8,11 @@ import { CompanyProfilePage } from 'pages/company-profile';
 import { DashboardPage } from 'pages/dashboard';
 import { MainLayout } from '../../../layouts';
 import { CompanyPage } from 'pages/company';
-import { RequireAuth } from '../require-auth';
+// import { RequireAuth } from '../require-auth';
 import { SignupPage } from 'pages/signup';
 import { LoginPage } from 'pages/login';
 import { UserProfilePage } from 'pages/user-profile';
-import { NotAccessPage } from 'pages/not-access';
+// import { NotAccessPage } from 'pages/not-access';
 import { PolicyPage } from 'pages/policy';
 import { DemoPage } from 'pages/demo';
 

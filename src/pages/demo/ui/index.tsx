@@ -4,14 +4,12 @@ import { f } from 'shared/styles';
 import { LayoutInnerPage } from 'shared/ui/pages';
 import { DEMO_PAGES } from '../model/constants';
 import { DemoPageItem } from './demo-page';
-import { useUIConfiguratorController, isDarkMode } from 'app/providers/theme';
+import { useUI } from 'entities/ui';
 
 
 
 const DemoPage: FC = memo(() => {
-  const [configuratorState] = useUIConfiguratorController();
-  const darkMode = isDarkMode(configuratorState.mode);
-
+  const { darkMode } = useUI();
 
   return (
     <LayoutInnerPage type='demo' containerType='xl'>

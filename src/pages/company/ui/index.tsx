@@ -5,22 +5,29 @@ import { useAccess, useCompany } from 'entities/company';
 import { useUI } from 'entities/ui';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import { usePages } from 'shared/lib/hooks';
+import { isNotEmpty } from 'shared/helpers/objects';
 
 
 
 const CompanyPage: FC = memo((): JSX.Element | null => {
   const { companyId: urlParamsCompanyId } = useParams();
-  const { _isLoaded, loading: loadingUser, auth } = useUser();
+  const { _isLoaded, loading: loadingUser, auth, errors: userErrors } = useUser();
   const { setPageLoading, setWarningMessage } = useUI();
   const { dashboardSheetId } = usePages();
   const {
     loading: loadingCompany, paramsCompanyId, companyId, dashboardPublicAccess, _isParamsCompanyIdLoaded,
-    serviceGetParamsCompany, setIsParamsCompanyIdLoaded
+    errors: companyErrors, serviceGetParamsCompany, setIsParamsCompanyIdLoaded
   } = useCompany({ dashboardSheetId });
   const { isDashboardAccessView } = useAccess();
 
 
   useEffect(() => {
+    if (isNotEmpty(userErrors) || isNotEmpty(companyErrors)) {
+      console.log('companyErrors: ', companyErrors);
+      console.log('userErrors: ', userErrors);
+      return
+    }
+
     if (! auth
       && ! _isLoaded
       && ! loadingUser
@@ -82,7 +89,7 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
   },
     [
       loadingUser, _isLoaded, loadingCompany, auth, dashboardSheetId, dashboardPublicAccess, isDashboardAccessView,
-      _isParamsCompanyIdLoaded, urlParamsCompanyId, companyId, paramsCompanyId,
+      _isParamsCompanyIdLoaded, urlParamsCompanyId, companyId, paramsCompanyId, userErrors, companyErrors,
       setWarningMessage, serviceGetParamsCompany, setIsParamsCompanyIdLoaded, setPageLoading
     ]
   );

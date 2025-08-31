@@ -71,7 +71,6 @@ const CompanyProfilePage: FC = memo(() => {
 
   if (! auth) return null;
 
-      console.log('errors: ', errors);
 
   return (
     <CompanyProfilePageComponent
