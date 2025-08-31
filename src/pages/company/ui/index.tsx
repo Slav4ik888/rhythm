@@ -22,9 +22,7 @@ const CompanyPage: FC = memo((): JSX.Element | null => {
 
 
   useEffect(() => {
-    if (isNotEmpty(userErrors) || isNotEmpty(companyErrors)) {
-      console.log('companyErrors: ', companyErrors);
-      console.log('userErrors: ', userErrors);
+    if ((isNotEmpty(userErrors) && ! isDashboardAccessView) || isNotEmpty(companyErrors)) {
       return
     }
 

@@ -32,4 +32,4 @@ root.render(
 
 
 
-// git add . && git commit -m "refacted checkVersion" && git push -u origin main
+// git add . && git commit -m "fixed checkVersion" && git push -u origin main
