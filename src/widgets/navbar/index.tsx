@@ -17,7 +17,7 @@ import { useState, useEffect, FC, memo } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { sxNavbar, sxNavbarContainer } from './styles';
-import { CustomTheme, isSystemDarkMode, useUIConfiguratorController } from 'app/providers/theme';
+import { CustomTheme } from 'app/providers/theme';
 import { SidebarRegulatorWrapper } from 'shared/ui/wrappers';
 import { NavbarControlBox } from './control-box';
 import { NavbarSetupBox } from './setup-box';
@@ -25,10 +25,10 @@ import { NavbarLinksBox } from './links-box';
 import { usePages } from 'shared/lib/hooks';
 import { useAccess } from 'entities/company';
 import { BoxGrow } from 'shared/ui/containers';
-import { NavbarLogo } from './logo';
 import { useUser } from 'entities/user';
 import { useUI } from 'entities/ui';
 import { SidebarMobileIcon } from './sidebar-mobile-icon';
+import { LogoBtn } from 'widgets/logo-btn';
 
 
 
@@ -40,12 +40,9 @@ interface Props {
 
 export const Navbar: FC<Props> = memo(({ absolute = false, light = false }) => {
   const [navbarType, setNavbarType] = useState<'sticky' | 'static'>();
-  const [configuratorState, dispatch] = useUIConfiguratorController();
-  const { navbarTransparent, navbarFixed, mode } = configuratorState;
-  const darkMode = mode === 'dark' || (mode === 'system' && isSystemDarkMode());
   const { isDashboardPage, isLoginPage, isSignupPage } = usePages();
   const { isDashboardAccessView } = useAccess();
-  const { isMobile } = useUI();
+  const { isMobile, navbarTransparent, navbarFixed, darkMode } = useUI();
   const { auth } = useUser();
 
 
@@ -71,7 +68,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false }) => {
   //   // Remove event listener on cleanup
   //   return () => window.removeEventListener('scroll', handlenavbarTransparent);
   },
-    [dispatch, navbarFixed]
+    [navbarFixed]
   );
 
 
@@ -87,7 +84,7 @@ export const Navbar: FC<Props> = memo(({ absolute = false, light = false }) => {
       >
         <Toolbar sx={(theme) => sxNavbarContainer(theme as CustomTheme)}>
           {
-            ! isDashboardPage && <NavbarLogo darkMode={darkMode} />
+            ! isDashboardPage && <LogoBtn /> // <NavbarLogo darkMode={darkMode} />
           }
           {
             isDashboardPage

@@ -1,59 +1,37 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import Box from '@mui/material/Box';
 import { RoutePath } from 'app/providers/routes';
-import { f } from 'shared/styles';
+import rhythmLogo from 'shared/assets/logos/logo_rhythm3.png';
+import logoSmall from 'shared/assets/logos/logo_rhythm_small.png';
+import { ProgressiveImage } from 'shared/lib/progressiv-image';
+import { useUI } from 'entities/ui';
 
 
-export enum LogoBtnType {
-  HEADER    = 'header',
-  FOOTER    = 'footer',
-  AUTH      = 'auth'
-}
 
-
-const useStyles = (type: LogoBtnType) => {
-  const auth = type === LogoBtnType.AUTH;
-
-  return {
-    root: {
-      ...f('-c'),
-      fontWeight     : 600,
-      fontSize       : '1rem',
-      borderStyle    : 'none',
-      textDecoration : 'none',
-      // width: '130px',
-      height         : auth ? '37px' : '50px',
-      width          : '150px',
-      maxWidth       : '100%',
-      color          : '#272727',
-      background     : 'inherit',
-      border         : 0,
-      boxShadow      : 'none',
-      m              : 0,
-      p              : 0,
-      pt             : auth ? 1.5 : 0
-    }
-  }
-};
+export type LogoBtnType = 'header' | 'sidebar';
 
 
 type Props = {
-  type: LogoBtnType
+  type?: LogoBtnType
 }
 
 
 // Кнопка логотипа
-export const LogoBtn: React.FC<Props> = ({ type }) => {
-  const { root } = useStyles(type);
-
+export const LogoBtn: React.FC<Props> = ({ type = 'header' }) => {
+  const { isMobile, sidebarMini } = useUI();
+  const isSmall = (isMobile && type !== 'sidebar') || (type === 'sidebar' && sidebarMini && !isMobile);
 
   return (
     <Link to={RoutePath.ROOT}>
-      <Box sx={root}>
-        {/* <img src="./img/logo_rec.png" alt="Логотип" style={{ height: `100%` }} /> */}
-        Company Rules
-      </Box>
+      <ProgressiveImage
+        alt = 'Ритм'
+        src = {isSmall ? logoSmall : rhythmLogo}
+        sx  = {{
+          root: {
+            width: isSmall ? '1.9rem' : '7rem'
+          }
+        }}
+      />
     </Link>
-  );
+  )
 };

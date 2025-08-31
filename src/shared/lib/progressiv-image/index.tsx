@@ -45,7 +45,7 @@ export const ProgressiveImage: FC<Props> = ({ src, placeholder, alt, sx }) => {
       sx={{
         position: 'relative',
         overflow: 'hidden',
-        ...sx.root,
+        ...sx?.root,
       }}
     >
       <Box
@@ -61,7 +61,7 @@ export const ProgressiveImage: FC<Props> = ({ src, placeholder, alt, sx }) => {
           height     : 'auto',
           filter     : isLoaded ? 'none' : 'blur(10px)',
           transition : 'filter 0.5s ease-out',
-          ...sx.content,
+          ...sx?.content,
         }}
       />
     </Box>

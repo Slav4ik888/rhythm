@@ -32,4 +32,4 @@ root.render(
 
 
 
-// git add . && git commit -m "added validateCompany" && git push -u origin main
+// git add . && git commit -m "added LogoBtn" && git push -u origin main
