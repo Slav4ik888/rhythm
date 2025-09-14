@@ -1,5 +1,5 @@
 import { useUser } from 'entities/user';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { usePages } from 'shared/lib/hooks';
 import { useCompany } from '../use-company';
 import { CompanyDashboardAccessScheme } from './types';
@@ -31,9 +31,20 @@ export const useAccess = () => {
     [email, paramsCompany, dashboardSheetId]
   );
 
+  /**
+   * Имеет ли доступ к просмотру страницы по Id
+   * используется в Sidebar для блокировки вкладок которые не открыты для общего доступа
+   */
+  const isDashboardAccessViewById = useCallback((dashboardId: string) => checkDashboardAccess(
+    paramsCompany, email, CompanyDashboardAccessScheme.AF, 'v', dashboardId
+  ),
+    [paramsCompany, email]
+  );
+
 
   return {
     isDashboardAccessView,
-    isDashboardAccessEdit
+    isDashboardAccessEdit,
+    isDashboardAccessViewById
   }
 }

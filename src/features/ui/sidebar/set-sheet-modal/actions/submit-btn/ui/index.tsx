@@ -19,8 +19,8 @@ export const SetSheetSubmitBtn: FC<Props> = memo(({ editId, selectedIconId, shee
   const { loading } = useCompany();
 
   const handlerSubmit = useCallback(() => {
-    submitChanges();
-    onClose();
+    const result = submitChanges();
+    if (result) onClose();
   },
     [submitChanges, onClose]
   );

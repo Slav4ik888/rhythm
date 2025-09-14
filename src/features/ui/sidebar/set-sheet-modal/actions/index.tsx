@@ -25,7 +25,8 @@ export const SetSheetActions: FC<Props> = memo(({ editId, selectedIconId, sheetT
   return (
     <DialogActions sx={{ ...f('c'), p  : 0, mt : 2 }}>
       <ErrorBox
-        field  = 'general'
+        // field  = 'general'
+        all
         errors = {errors}
         sx     = {{
           root: {

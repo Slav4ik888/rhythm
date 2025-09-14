@@ -7,6 +7,7 @@ import { __devLog } from 'shared/lib/tests/__dev-log';
 import { LS } from 'shared/lib/local-storage';
 import { isDashboardPage } from 'shared/lib/hooks/use-pages/utils';
 import { Location } from 'react-router-dom';
+import { objectFieldsToString } from 'shared/helpers/objects';
 
 
 
@@ -61,6 +62,9 @@ export const errorHandlers = (
 
   if (status === 204) { // No Content
     return dispatch(actionsUI.setWarningMessage('По вашему запросу отсутствуют данные.'));
+  }
+  else if (status === 400) {
+    return dispatch(actionsUI.setWarningMessage(objectFieldsToString(errors)));
   }
   // Не редиректим на loginPage, тк пользователь может посетить страницу без авторизации
   else if (status === 401) {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { RoutePath } from 'app/providers/routes';
-import rhythmLogo from 'shared/assets/logos/logo_rhythm3.png';
+import rhythmLogo from 'shared/assets/logos/logo_rhythm4.png';
 import logoSmall from 'shared/assets/logos/logo_rhythm_small.png';
 import { ProgressiveImage } from 'shared/lib/progressiv-image';
 import { useUI } from 'entities/ui';

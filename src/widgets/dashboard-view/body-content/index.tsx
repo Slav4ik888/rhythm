@@ -27,13 +27,13 @@ export const DashboardBodyContent = memo(() => {
   const { paramsCompanyId, paramsChangedCompany, serviceUpdateCompany } = useCompany();
   const {
     parentsViewItems, loading: loadingView, isLoaded, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId,
-    selectedItem, isMounted, activatedMovementId, viewItems, entities, activatedCopied, setNewSelectedId,
+    selectedItem, isMounted, activatedMovementId, viewItems, entities, activatedCopied, setNewSelectedId, setEditMode,
     setIsMounted, setDashboardViewItems, setSelectedId, serviceUpdateViewItems, serviceCreateGroupViewItems
   } = useDashboardViewServices();
   const { loading: loadingData } = useDashboardData();
   const [isRendering, setIsRendering] = useState(true);
   const { dashboardSheetId } = usePages();
-  const { isDashboardAccessView } = useAccess();
+  const { isDashboardAccessView, isDashboardAccessEdit } = useAccess();
 
 
   useEffect(() => {
@@ -79,6 +79,12 @@ export const DashboardBodyContent = memo(() => {
     []
   );
 
+    // Если был включен editMode а в этой странице нет доступа к редактированию, тогда убрать editMode
+  useEffect(() => {
+    if (editMode && ! isDashboardAccessEdit) setEditMode({ editMode: false, companyId: paramsCompanyId })
+  },
+    [editMode, isDashboardAccessEdit, paramsCompanyId, setEditMode]
+  );
 
   useEffect(() => {
     if (newSelectedId && ! loadingView && newSelectedId !== selectedId && ! isUnsaved) {
