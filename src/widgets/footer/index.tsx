@@ -21,7 +21,7 @@ export const Footer: FC = memo(() => (
 
     <Divider />
 
-    <FooterRow>
+    <FooterRow height={110}>
       <LeftBottomColumn />
       <BottomMiddleColumn />
       <RightBottomColumn />
