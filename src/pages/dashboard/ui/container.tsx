@@ -13,6 +13,7 @@ import { useDashboardViewServices } from 'features/dashboard-view/model/hooks/us
 import { usePages } from 'shared/lib/hooks';
 import { useDashboardGetData } from 'features/dashboard-data';
 import { useUI } from 'entities/ui';
+import { useUser } from 'entities/user';
 
 
 
@@ -23,6 +24,7 @@ const initialReducers: ReducersList = {
 
 
 export const DashboardPageContainer: FC = memo(() => {
+  const { auth } = useUser();
   const { paramsCompanyId, paramsBunchesUpdated } = useCompany();
   const { pathname } = useLocation();
   const { serviceGetBunches, setDashboardBunchesFromCache } = useDashboardViewServices();
@@ -35,6 +37,12 @@ export const DashboardPageContainer: FC = memo(() => {
   useEffect(() => {
     // Если нет доступа то нах с мопэда
     if (! isDashboardAccessView) return;
+
+    // Если авторизован, убираем Живосайт
+    if (auth) {
+      const jivo = document.querySelector('jdiv');
+      if (jivo) jivo.remove();
+    }
 
     // 1. GOOGLE-DATA - если нет данных, то загружаем
     if (! LS.getDataState(paramsCompanyId)?.startEntities && paramsCompanyId) {
@@ -76,7 +84,7 @@ export const DashboardPageContainer: FC = memo(() => {
   },
     // Повторно обновляем если переключились на другую компанию
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [paramsCompanyId, paramsBunchesUpdated, isDashboardAccessView]
+    [auth, paramsCompanyId, paramsBunchesUpdated, isDashboardAccessView]
   );
 
 
