@@ -32,4 +32,4 @@ root.render(
 
 
 
-// git add . && git commit -m "add promo icons" && git push -u origin main
+// git add . && git commit -m "small refact" && git push -u origin main
