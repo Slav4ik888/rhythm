@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import { ProgressiveImage } from 'shared/lib/progressiv-image';
 import Link from '@mui/material/Link';
 import dzenLogo from 'shared/assets/social/dzen.png';
-import telegramLogo from 'shared/assets/social/telegram.png';
+import telegramLogo from 'shared/assets/social/telegram-2.png';
 
 
 
@@ -21,7 +21,7 @@ export const FooterTopRightColumn: FC = memo(() => (
       <ProgressiveImage
         alt       = 'Телеграм канал'
         src       = {telegramLogo}
-        toolTitle = 'Перейти в наш Телеграм-канал... и подписаться не забудьте! Нам очень нужна ваша поддержка 🙏!'
+        toolTitle = 'Перейти в наш Телеграм-канал... и пожалуйста подпишитесь! Нам очень нужна Ваша поддержка 🙏!'
         sx        = {{ root: { width: '1.5rem', cursor: 'pointer' } }}
       />
     </Link>
@@ -33,7 +33,7 @@ export const FooterTopRightColumn: FC = memo(() => (
       <ProgressiveImage
         alt       = 'Дзен канал'
         src       = {dzenLogo}
-        toolTitle = 'Перейти на наши статьи в Дзен... и подписаться не забудьте! Нам очень нужна ваша поддержка 🙏!'
+        toolTitle = 'Перейти на наши статьи в Дзен... и пожалуйста подпишитесь! Нам очень нужна Ваша поддержка 🙏!'
         sx        = {{ root: { width: '1.5rem', cursor: 'pointer' } }}
       />
     </Link>
