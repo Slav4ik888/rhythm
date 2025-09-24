@@ -3,6 +3,7 @@ export enum AppRoutes {
   ROOT            = 'ROOT',
   // DEMO
   DEMO            = 'DEMO',
+  DEMO_PROMO      = 'DEMO_PROMO', // Для подстановки ключа
   // Auth
   SIGNUP          = 'SIGNUP',
   LOGIN           = 'LOGIN',
@@ -24,6 +25,7 @@ export const RouteName: Record<string, string> = {
   [AppRoutes.ROOT]            : '',
   // Demo
   [AppRoutes.DEMO]            : 'demo',
+  [AppRoutes.DEMO_PROMO]      : 'demo/:key',
   // Auth
   [AppRoutes.SIGNUP]          : 'signup',
   [AppRoutes.LOGIN]           : 'login',
@@ -44,6 +46,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.ROOT]            : '/',
   // Demo
   [AppRoutes.DEMO]            : '/demo',
+  [AppRoutes.DEMO_PROMO]      : '/demo/:key',
   // Auth
   [AppRoutes.SIGNUP]          : '/signup',
   [AppRoutes.LOGIN]           : '/login',

@@ -50,6 +50,7 @@ export const AppRouter = memo(() => {
       <Route path={RoutePath[AppRoutes.ROOT]} element={<MainLayout />}>
         <Route index element={<RootPage />} />
         <Route path={RoutePath[AppRoutes.DEMO]} element={withFallback(<DemoPage />)} />
+        <Route path={RoutePath[AppRoutes.DEMO_PROMO]} element={withFallback(<DemoPage />)} />
 
         <Route path={RoutePath[AppRoutes.SIGNUP]} element={withFallback(<SignupPage />)} />
         <Route path={RoutePath[AppRoutes.LOGIN]} element={withFallback(<LoginPage />)} />

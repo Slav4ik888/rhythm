@@ -10,6 +10,7 @@ import { StateSchemaLoginPage } from 'pages/login';
 import { StateSchemaDocs } from 'entities/docs';
 import { StateSchemaDashboardView } from 'entities/dashboard-view';
 import { StateSchemaDashboardTemplates } from 'entities/dashboard-templates';
+import { StateSchemaHints } from 'entities/hints/model/slice';
 
 
 
@@ -26,6 +27,7 @@ export interface StateSchema {
   dashboardView?      : StateSchemaDashboardView
   dashboardTemplates? : StateSchemaDashboardTemplates
   dashboardData?      : StateSchemaDashboardData
+  hints?              : StateSchemaHints
 }
 
 

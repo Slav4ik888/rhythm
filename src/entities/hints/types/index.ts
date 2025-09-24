@@ -1,7 +1,7 @@
 
 /** Подсказка */
 export interface Hint {
-  id        : number
+  id        : string
   // pageId    : string  // Для какой страницы подсказка. Будет показана только на этой странице.
   elementId : string  // Id of the element to which the hint is attached
   order     : number

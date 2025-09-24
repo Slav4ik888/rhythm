@@ -26,6 +26,10 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     path    : RoutePath.DEMO,
     element : <DemoPage />
   },
+  [AppRoutes.DEMO_PROMO]: {
+    path    : RoutePath.DEMO,
+    element : <DemoPage />
+  },
 
   // Auth
   [AppRoutes.SIGNUP]: {
