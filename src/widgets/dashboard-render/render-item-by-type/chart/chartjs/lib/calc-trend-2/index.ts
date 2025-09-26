@@ -1,4 +1,5 @@
 import { isNum } from 'shared/lib/validators';
+import { alignArraysWithNaN } from './align-array-with-nan';
 import { calcNanValue } from './calc-nan-value';
 import { removeBorderlineEmptyValues } from './remove-borderline-empty-values';
 
@@ -61,5 +62,5 @@ export const calcTrend2 = (
   // x — момент времени
   const result = x.map(valueX => m * valueX + b);
 
-  return result
+  return alignArraysWithNaN(result, dates)
 }

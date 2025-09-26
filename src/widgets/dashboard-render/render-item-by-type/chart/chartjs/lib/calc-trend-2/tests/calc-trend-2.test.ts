@@ -9,7 +9,8 @@ describe('calcTrend2', () => {
     const res = calcTrend2(dates, y).map(item => Number(item.toFixed(3)));
 
     // @ts-ignore
-    expect(res).toEqual([1.818, 4.303, 6.788, 9.273, 11.758, 14.242, 16.727, 19.212, 21.697, 24.182]);
+    expect(res).toEqual([NaN, NaN, 1.818, 4.303, 6.788, 9.273, 11.758, 14.242, 16.727, 19.212, 21.697, 24.182]);
+    expect(res.length === dates.length).toBe(true);
   });
 
   test('invalid dates', () => {
