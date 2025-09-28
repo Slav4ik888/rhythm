@@ -20,7 +20,10 @@ export const DashboardLastUpdatedText: FC = memo(() => {
       enterDelay = {500}
       sxSpan     = {{ cursor: 'default' }}
     >
-      <MDTypography fontSize={pxToRem(10)}>
+      <MDTypography
+        id = 'last-updated-text'
+        fontSize={pxToRem(10)}
+      >
         {
           lastUpdated
             ? formatDate(lastUpdated, 'DD.MM.YY HH:MM')

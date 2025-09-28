@@ -21,6 +21,7 @@ import { TypographyOwnProps } from '@mui/material/Typography';
 
 
 interface Props extends TypographyOwnProps {
+  id?            : string
   display?       : 'block' | 'flex'
   color?         : ColorName
   textTransform? : 'none' | 'capitalize' | 'uppercase' | 'lowercase'

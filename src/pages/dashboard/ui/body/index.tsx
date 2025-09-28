@@ -8,7 +8,6 @@ import { ViewItemConfigurator } from 'widgets/view-configurator';
 import { __devLog } from 'shared/lib/tests/__dev-log';
 import cfg from 'app/config';
 import { DashboardTemplates } from 'widgets/dashboard-templates';
-import { HintsContainer as Hints } from 'widgets/hints';
 
 
 
@@ -40,13 +39,11 @@ export const DashboardBody = memo(() => {
           {editMode && <DashboardBodyPanel />}
           <ViewItemConfigurator />
           <DashboardTemplates />
-          <Hints />
         </>
       }
       {
         ! cfg.DASHBOARD_DISABLE && <DashboardBodyContent />
       }
-      <Hints />
     </DashboardBodyWrapper>
   )
 });

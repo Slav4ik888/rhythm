@@ -3,32 +3,30 @@ import * as s from '../../selectors';
 import { actions } from '../../slice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
-import { Errors } from 'shared/lib/validators';
 
 
 
 export const useHints = () => {
   const dispatch = useAppDispatch();
 
-  const loading  = useSelector(s.selectLoading);
-  const errors   = useSelector(s.selectErrors);
-  const entities = useSelector(s.selectEntities);
-  const activeId = useSelector(s.selectActiveId);
+  const hintsQueue = useSelector(s.selectHintsQueue);
+  const shownHints = useSelector(s.selectShownHints);
+  const currentHint = useSelector(s.selectСurrentHint);
+
 
   const api = useMemo(() => ({
-    setErrors      : (err: Errors) => dispatch(actions.setErrors(err)),
-    clearErrors    : () => dispatch(actions.clearErrors()),
-    setIsShown     : (id: string) => dispatch(actions.setIsShown),
+    shownNextHint    : () => dispatch(actions.shownNextHint()),
+    closeCurrentHint : () => dispatch(actions.closeCurrentHint()),
+    addHintsToQueue  : (hintIds: string[]) => dispatch(actions.addHintsToQueue(hintIds)),
   }),
     [dispatch]
   );
 
 
   return {
-    loading,
-    errors,
-    activeId,
-    entities,
+    hintsQueue,
+    shownHints,
+    currentHint,
 
     ...api
   }

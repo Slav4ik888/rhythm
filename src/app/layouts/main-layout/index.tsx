@@ -8,6 +8,7 @@ import { MainLayoutWrapper } from './wrapper';
 import { Navbar } from 'widgets/navbar';
 import { Footer } from 'widgets/footer';
 import { UIConfigurator } from 'widgets/ui-configurator';
+import { HintsContainer as Hints } from 'widgets/hints';
 
 
 
@@ -22,5 +23,6 @@ export const MainLayout: FC = memo(() => (
 
     <Outlet />
     <Footer />
+    <Hints />
   </MainLayoutWrapper>
 ));

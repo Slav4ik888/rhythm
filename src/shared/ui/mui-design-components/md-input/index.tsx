@@ -19,6 +19,7 @@ import MDInputRoot from './md-input-root';
 
 
 interface Props {
+  id?       : string
   error?    : boolean
   success?  : boolean
   disabled? : boolean

@@ -59,6 +59,7 @@ export const SetPeriodDate: FC<Props> = memo(({ type }) => {
 
   return (
     <MDInput
+      id       = {type === 'end' ? 'control-date-end' : ''}
       // @ts-ignore
       ref      = {ref}
       variant  = 'outlined'

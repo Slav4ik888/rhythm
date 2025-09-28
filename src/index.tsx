@@ -32,4 +32,4 @@ root.render(
 
 
 
-// git add . && git commit -m "refact calcTrend2 update" && git push -u origin main
+// git add . && git commit -m "setup Hints logic" && git push -u origin main

@@ -19,6 +19,7 @@ import { usePages } from 'shared/lib/hooks';
 import { DashboardBodyContentWrapper as Wrapper } from './wrapper';
 import { NewCompanyMessage } from 'widgets/offers';
 import { useDashboardData } from 'entities/dashboard-data';
+import { useHints } from 'entities/hints';
 
 
 
@@ -34,6 +35,8 @@ export const DashboardBodyContent = memo(() => {
   const [isRendering, setIsRendering] = useState(true);
   const { dashboardSheetId } = usePages();
   const { isDashboardAccessView, isDashboardAccessEdit } = useAccess();
+  const { addHintsToQueue } = useHints();
+
 
 
   useEffect(() => {
@@ -94,6 +97,14 @@ export const DashboardBodyContent = memo(() => {
     [newSelectedId, loadingView, selectedId, isUnsaved, setSelectedId]
   );
 
+  // Add Hints
+  useEffect(() => {
+    if (! isRendering) {
+      addHintsToQueue(['control-date-end', 'control-refresh-btn', 'last-updated-text'])
+    }
+  },
+    [isRendering, addHintsToQueue]
+  );
 
   const handleSelectViewItem = useCallback((id: ViewItemId) => {
     if (! editMode) return

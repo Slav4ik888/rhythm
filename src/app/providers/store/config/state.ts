@@ -16,10 +16,11 @@ import { StateSchemaHints } from 'entities/hints/model/slice';
 
 export interface StateSchema {
   // Entities
-  ui                 : StateSchemaUI
-  user               : StateSchemaUser
-  company            : StateSchemaCompany
-  docs               : StateSchemaDocs
+  ui                  : StateSchemaUI
+  user                : StateSchemaUser
+  company             : StateSchemaCompany
+  docs                : StateSchemaDocs
+  hints               : StateSchemaHints
 
   // Async reducer
   signupPage?         : StateSchemaSignupPage
@@ -27,7 +28,6 @@ export interface StateSchema {
   dashboardView?      : StateSchemaDashboardView
   dashboardTemplates? : StateSchemaDashboardTemplates
   dashboardData?      : StateSchemaDashboardData
-  hints?              : StateSchemaHints
 }
 
 

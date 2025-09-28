@@ -1,11 +1,6 @@
-import { Hint } from '../../types';
-import { Errors } from 'shared/lib/validators';
-
-
 
 export interface StateSchemaHints {
-  loading  : boolean
-  errors   : Errors
-  activeId : string | undefined
-  entities : { [key: string]: Hint}
+  hintsQueue  : string[]       // Очередь подсказок
+  shownHints  : string[]       // Уже показанные подсказки
+  currentHint : string | null, // Текущая активная подсказка
 }

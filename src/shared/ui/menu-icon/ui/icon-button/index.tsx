@@ -13,6 +13,7 @@ export interface SxMenuIcon {
 
 
 interface Props {
+  id?            : string // For Hint
   toolTitle?     : string
   disableRipple? : boolean
   disabled?      : boolean
@@ -22,8 +23,9 @@ interface Props {
   onClick?       : (event: any) => void
 }
 
-export const MenuIcon: FC<Props> = memo(({ sx, icon: Icon, disabled, toolTitle = '', disableRipple, onClick }) => (
+export const MenuIcon: FC<Props> = memo(({ id, sx, icon: Icon, disabled, toolTitle = '', disableRipple, onClick }) => (
   <IconButton
+    id            = {id}
     toolTitle     = {toolTitle}
     disableRipple = {disableRipple}
     disabled      = {disabled}

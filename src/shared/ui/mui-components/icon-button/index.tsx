@@ -14,6 +14,7 @@ export interface SxMenuIcon {
 
 
 interface Props {
+  id?            : string // For Hint
   toolTitle?     : string
   disableRipple? : boolean
   disabled?      : boolean
@@ -25,11 +26,12 @@ interface Props {
 }
 
 export const IconButton: FC<Props> = memo(({
-  sx, icon: Icon, disabled, size, disableRipple, onClick,
+  id, sx, icon: Icon, disabled, size, disableRipple, onClick,
   toolTitle = ''
 }) => (
   <Tooltip title={toolTitle}>
     <MuiIconButton
+      id            = {id}
       disableRipple = {disableRipple}
       disabled      = {disabled}
       size          = {size}

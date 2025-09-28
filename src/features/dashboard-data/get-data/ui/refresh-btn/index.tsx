@@ -29,7 +29,8 @@ export const DashboardRefreshButton: FC = memo(() => {
 
   return (
     <MenuIcon
-      toolTitle = 'Обновить данные из гугл таблицы'
+      id        = 'control-refresh-btn'
+      toolTitle = 'Обновить данные из google-таблицы'
       icon      = {RefreshIcon}
       onClick   = {handleRefresh}
     />
