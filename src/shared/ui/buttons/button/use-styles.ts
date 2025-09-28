@@ -36,6 +36,7 @@ export const useStyles = (
     root: {
       color,
       background,
+      transition: 'all 0.2s ease',
       ...sx?.root
     }
   }

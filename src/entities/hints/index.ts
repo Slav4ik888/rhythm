@@ -1,3 +1,4 @@
 export { useHints } from './model/hooks'
-export type { Hint } from './types'
+export type { Hint, Position } from './types'
 export { reducer as reducerHints } from './model/slice'
+export { HINTS, DEFAULT_POSITION } from './constants'

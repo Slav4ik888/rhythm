@@ -1,4 +1,13 @@
 
+export interface Position {
+  top            : number
+  left           : number
+  arrowPosition  : 'none' | 'top' | 'bottom' | 'left' | 'right'
+  elementVisible : boolean
+  score?         : number
+  arrowOffset?   : number // Смещение стрелки
+}
+
 /** Подсказка */
 export interface Hint {
   id         : string  // Id of the element to which the hint is attached

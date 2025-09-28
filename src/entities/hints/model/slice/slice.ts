@@ -14,15 +14,6 @@ export const slice = createSlice({
   name: 'entities/hints',
   initialState,
   reducers: {
-    // setLoading: (state, { payload }: PayloadAction<boolean>) => {
-    //   state.loading = payload;
-    // },
-    // setErrors: (state, { payload }: PayloadAction<Errors>) => {
-    //   state.errors = payload;
-    // },
-    // clearErrors: (state) => {
-    //   state.errors = {};
-    // },
     shownNextHint: (state) => {
       const [nextHint, ...remainingQueue] = state.hintsQueue;
 
@@ -37,17 +28,12 @@ export const slice = createSlice({
       state.hintsQueue = remainingQueue;
     },
     closeCurrentHint: (state) => {
-      console.log('SLICE closeCurrentHint');
       // Добавляем текущую подсказку в показанные и показываем следующую
       const newShownHints = state.currentHint
         ? [...state.shownHints, state.currentHint]
         : state.shownHints;
 
-
       const [newCurrentHint, ...newQueue] = state.hintsQueue;
-      console.log('newShownHints: ', newShownHints);
-      console.log('newCurrentHint: ', newCurrentHint);
-      console.log('newQueue: ', newQueue);
 
       state.shownHints  = newShownHints;
       state.currentHint = newCurrentHint || null;
