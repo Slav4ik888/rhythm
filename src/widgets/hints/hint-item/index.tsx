@@ -5,6 +5,7 @@ import { Button } from 'shared/ui/buttons';
 import { getArrowStyle, useStyles } from './styles';
 import { calculateOptimalPosition } from './utils';
 import { useUI } from 'entities/ui';
+import { Divider } from 'shared/ui/mui-components';
 
 
 
@@ -23,7 +24,7 @@ export const HintContainer: FC<Props> = memo(({ hint, leftHints, onDontShowAgain
   const hintRef = useRef<HTMLDivElement>(null);
   const targetElement = document.getElementById(hint.id);
 
-  // Функция обновления позиции с троттлингом
+  // Функция обновления позиции
   const updatePosition = useCallback(() => {
     if (targetElement && hintRef.current) {
       const newPosition = calculateOptimalPosition(
@@ -109,6 +110,9 @@ export const HintContainer: FC<Props> = memo(({ hint, leftHints, onDontShowAgain
           <Box sx={sx.title}>
             {hint.title}
           </Box>
+
+          <Divider />
+
           <Box sx={sx.text}>
             {hint.text}
           </Box>
@@ -124,12 +128,12 @@ export const HintContainer: FC<Props> = memo(({ hint, leftHints, onDontShowAgain
           <Box sx={sx.actions}>
             <Button
               text    = 'Больше не показывать'
-              sx      = {sx.btn}
+              variant = 'text'
+              sx      = {sx.btnDontShow}
               onClick = {onDontShowAgain}
             />
             <Button
               text    = 'Понятно'
-              sx      = {sx.btn}
               onClick = {onCloseHint}
             />
           </Box>

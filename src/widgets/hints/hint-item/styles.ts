@@ -1,5 +1,9 @@
 import { f } from 'shared/styles';
 
+
+const BACKGROUND = '#b9bcf4';
+
+
 /** Функция для стилей стрелки с учетом смещения */
 export const getArrowStyle = (
   arrowPosition : 'top' | 'bottom' | 'left' | 'right',
@@ -39,13 +43,13 @@ export const useStyles = (isMobile: boolean) => ({
   },
   container: {
     position: 'absolute',
-    background: 'white',
+    background: BACKGROUND,
     borderRadius: '8px',
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
     border: '1px solid #e1e5e9',
-    width   : isMobile ? 'auto' : '300px',
-    maxWidth: isMobile ? 'calc(100vw - 32px)' : '300px',
-    minWidth: isMobile ? 'unset' : '200px',
+    width   : isMobile ? 'auto' : '400px',
+    maxWidth: isMobile ? 'calc(100vw - 32px)' : '400px',
+    minWidth: isMobile ? 'unset' : '300px',
     pointerEvents: 'auto',
     animation: 'hint-appear 0.3s ease-out',
   },
@@ -54,10 +58,10 @@ export const useStyles = (isMobile: boolean) => ({
     display: 'none'
   },
   arrow: {
-    position: 'absolute',
-    width: 0,
-    height: 0,
-    borderStyle: 'solid',
+    position    : 'absolute',
+    width       : 0,
+    height      : 0,
+    borderStyle : 'solid',
   },
   arrow__none: {
   },
@@ -67,7 +71,7 @@ export const useStyles = (isMobile: boolean) => ({
     left: '50%',
     transform: 'translateX(-50%)',
     borderWidth: '10px 8px 0 8px',
-    borderColor:' white transparent transparent transparent',
+    borderColor: `${BACKGROUND} transparent transparent transparent`,
     filter: 'drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1))',
   },
   /* Стрелка сверху (указывает на элемент снизу) */
@@ -76,26 +80,26 @@ export const useStyles = (isMobile: boolean) => ({
     left: '50%',
     transform: 'translateX(-50%)',
     borderWidth: '0 8px 10px 8px',
-    borderColor: 'transparent transparent white transparent',
+    borderColor: `transparent transparent ${BACKGROUND} transparent`,
     filter: 'drop-shadow(0 -2px 2px rgba(0, 0, 0, 0.1))',
   },
   /* Стрелка справа (указывает на элемент слева) */
   arrow__right: {
-    right: '-10px',
     top: '50%',
+    right: '-10px',
     transform: 'translateY(-50%)',
     borderWidth: '8px 0 8px 10px',
-    borderColor: 'transparent transparent transparent white',
+    borderColor: `transparent transparent transparent ${BACKGROUND}`,
     filter: 'drop-shadow(2px 0 2px rgba(0, 0, 0, 0.1))',
   },
 
   /* Стрелка слева (указывает на элемент справа) */
   arrow__left: {
-    left: '-10px',
     top: '50%',
+    left: '-10px',
     transform: 'translateY(-50%)',
     borderWidth: '8px 10px 8px 0',
-    borderColor: 'transparent white transparent transparent',
+    borderColor: `transparent ${BACKGROUND} transparent transparent`,
     filter: 'drop-shadow(-2px 0 2px rgba(0, 0, 0, 0.1))',
   },
   content: {
@@ -108,19 +112,19 @@ export const useStyles = (isMobile: boolean) => ({
     mb: 1,
   },
   title: {
-    fontSize: '16px',
+    fontSize: '20px',
     color: '#333',
     lineHeight: 1.4,
     mb: 2,
   },
   text: {
-    fontSize: '14px',
+    fontSize: '16px',
     color: '#333',
     lineHeight: 1.4,
     mb: 2,
   },
   attention: {
-    fontSize: '14px',
+    fontSize: '16px',
     fontStyle: 'italic',
     color: '#741414ff',
     lineHeight: 1.4,
@@ -130,7 +134,10 @@ export const useStyles = (isMobile: boolean) => ({
     ...f('--fe'),
     gap: 1,
   },
-  btn: {
-
+  btnDontShow: {
+    root: {
+      textTransform: 'none',
+      color: '#1a1a1a',
+    }
   },
 });

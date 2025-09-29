@@ -1,11 +1,14 @@
 import { FC, memo, useEffect, useCallback, useMemo } from 'react'
-import { useHints, HINTS } from 'entities/hints';
+import { HINTS } from 'entities/hints';
 import { HintContainer } from './hint-item';
+import { useFeatureHints } from 'features/hints';
+import { useUser } from 'entities/user';
 
 
 
 export const HintsContainer: FC = memo(() => {
-  const { hintsQueue, currentHint, shownNextHint, closeCurrentHint } = useHints();
+  const { companyId } = useUser();
+  const { hintsQueue, currentHint, shownNextHint, closeCurrentHint, serviceDontShowAgain } = useFeatureHints();
 
   const hint = useMemo(() => HINTS.find(hint => hint.id === currentHint),
     [currentHint]
@@ -28,9 +31,10 @@ export const HintsContainer: FC = memo(() => {
   );
 
   const handleDontShowAgain = useCallback(() => {
-
+    console.log('handleDontShowAgain');
+    serviceDontShowAgain({ hintId: currentHint, companyId });
   },
-    []
+    [serviceDontShowAgain, currentHint, companyId]
   );
 
 

@@ -1,11 +1,12 @@
 import { CustomTheme } from 'app/providers/theme';
+import { SxCard } from 'shared/styles';
 import { ButtonType, Variant } from './types';
 
 
 
 export const useStyles = (
   theme    : CustomTheme,
-  sx       : any,
+  sx       : SxCard,
   type     : ButtonType,
   variant  : Variant,
   disabled : boolean | undefined

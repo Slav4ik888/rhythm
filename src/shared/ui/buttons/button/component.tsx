@@ -5,6 +5,7 @@ import { useTheme } from 'app/providers/theme';
 import { Tooltip } from '../../tooltip';
 import { ButtonType, Variant } from './types';
 import { useStyles } from './use-styles';
+import { SxCard } from 'shared/styles';
 
 
 
@@ -17,7 +18,7 @@ interface Props {
   disabled?  : boolean
   variant?   : Variant
   size?      : 'small' | 'medium' | 'large'
-  sx?        : any
+  sx?        : SxCard
   startIcon? : ReactNode
   endIcon?   : ReactNode
   onClick    : () => void
@@ -33,8 +34,8 @@ export const Button: FC<Props> = memo(({
   loading   = false,
   variant   = 'contained',
   size      = 'medium',
+  sx        = {},
   disabled,
-  sx,
   startIcon,
   endIcon,
   onClick
