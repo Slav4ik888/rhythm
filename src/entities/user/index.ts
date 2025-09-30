@@ -1,4 +1,4 @@
-export { User } from './types'
+export type { User, PartialUser } from './types'
 export { useUser } from './model/hooks'
 
 export {

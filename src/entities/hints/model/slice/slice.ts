@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { dontShowAgain } from 'features/hints';
+import { dontShowAgain } from 'shared/api/features/hints';
 import { StateSchemaHints } from './state-schema';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { Errors } from 'shared/lib/validators';

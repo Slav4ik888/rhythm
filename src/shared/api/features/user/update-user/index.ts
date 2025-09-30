@@ -2,26 +2,27 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { actionsUI } from 'entities/ui';
 import { Errors } from 'shared/lib/validators';
-import { API_PATHS } from 'shared/api';
-import { User } from 'entities/user';
+import { PartialUser } from 'entities/user';
+import { userApi } from '../api';
 
 
 
 /**
  * Owner update User data
  */
-export const serviceUpdateUser = createAsyncThunk <
-  Partial<User>,
-  Partial<User>,
+export const updateUser = createAsyncThunk <
+  PartialUser,
+  PartialUser,
   ThunkConfig<Errors>
 >(
   'features/user/update',
   async (userData, thunkApi) => {
-    const { extra, dispatch, rejectWithValue } = thunkApi;
+    const { extra: { api }, dispatch, rejectWithValue } = thunkApi;
 
     try {
       // TODO: const { data: { userData } } =  PATCH
-      await extra.api.post(API_PATHS.user.update, { userData });
+      // await extra.api.post(API_PATHS.user.update, { userData });
+      await userApi.updateUser(api, userData);
 
       dispatch(actionsUI.setSuccessMessage('Сохранено'));
 

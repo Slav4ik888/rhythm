@@ -20,11 +20,12 @@ import { DashboardBodyContentWrapper as Wrapper } from './wrapper';
 import { NewCompanyMessage } from 'widgets/offers';
 import { useDashboardData } from 'entities/dashboard-data';
 import { useHints } from 'entities/hints';
+import { removeJivoSite } from 'shared/lib/remove-jivo';
 
 
 
 export const DashboardBodyContent = memo(() => {
-  const { userId } = useUser();
+  const { userId, auth } = useUser();
   const { paramsCompanyId, paramsChangedCompany, serviceUpdateCompany } = useCompany();
   const {
     parentsViewItems, loading: loadingView, isLoaded, editMode, newSelectedId, isUnsaved, changedViewItem, selectedId,
@@ -73,6 +74,7 @@ export const DashboardBodyContent = memo(() => {
       requestAnimationFrame(() => {
         setIsRendering(false);
         setIsMounted();
+        if (auth) removeJivoSite(); // Если авторизован, убираем Живосайт
       });
     };
 

@@ -1,6 +1,6 @@
-import { User } from 'entities/user';
+import { PartialUser } from 'entities/user';
 import { useAppDispatch } from 'shared/lib/hooks';
-import { serviceUpdateUser as updateUser } from '../../services';
+import { updateUser } from 'shared/api/features/user';
 
 
 // interface Config {
@@ -11,7 +11,7 @@ export const useFeaturesUser = () => {
   // const { } = config;
   const dispatch = useAppDispatch();
 
-  const serviceUpdateUser = (user: Partial<User>) => dispatch(updateUser(user));
+  const serviceUpdateUser = (user: PartialUser) => dispatch(updateUser(user));
 
   return {
     serviceUpdateUser,

@@ -1,7 +1,7 @@
 import { ItemBase } from 'entities/base'
 import { Person } from './person'
 import { Role } from './roles'
-// import { UserSettings } from './user-settings'
+import { UserSettings } from './user-settings'
 
 
 
@@ -34,5 +34,10 @@ export interface User extends ItemBase {
   status        : UserStatus
 
   isEditAccess? : boolean // Временный запрет для всех на доступ к Конструктору
-  // settings?     : UserSettings
+  settings?     : UserSettings
+}
+
+export type PartialUser = Partial<User> & {
+  companyId : string
+  id        : string
 }

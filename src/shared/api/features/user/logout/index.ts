@@ -1,14 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { actionsCompany, Company } from 'entities/company';
-import { API_PATHS } from 'shared/api';
+import { API_PATHS } from '../../../api-paths';
 import { Errors } from 'shared/lib/validators';
 
 
 /**
  * Logout User & set initial
  */
-export const serviceLogout = createAsyncThunk <
+export const logout = createAsyncThunk <
   undefined,
   undefined,
   ThunkConfig<Errors>

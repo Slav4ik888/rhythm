@@ -7,7 +7,7 @@ import { useUser } from 'entities/user';
 
 
 export const HintsContainer: FC = memo(() => {
-  const { companyId } = useUser();
+  const { companyId, userId, hintsDontShowAgain } = useUser();
   const { hintsQueue, currentHint, shownNextHint, closeCurrentHint, serviceDontShowAgain } = useFeatureHints();
 
   const hint = useMemo(() => HINTS.find(hint => hint.id === currentHint),
@@ -32,9 +32,16 @@ export const HintsContainer: FC = memo(() => {
 
   const handleDontShowAgain = useCallback(() => {
     console.log('handleDontShowAgain');
-    serviceDontShowAgain({ hintId: currentHint, companyId });
+    if (! currentHint) return
+    serviceDontShowAgain({
+      companyId,
+      id: userId,
+      settings: {
+        hintsDontShowAgain: [...hintsDontShowAgain, currentHint]
+      }
+    });
   },
-    [serviceDontShowAgain, currentHint, companyId]
+    [serviceDontShowAgain, currentHint, companyId, userId, hintsDontShowAgain]
   );
 
 

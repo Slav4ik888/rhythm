@@ -14,6 +14,7 @@ import { usePages } from 'shared/lib/hooks';
 import { useDashboardGetData } from 'features/dashboard-data';
 import { useUI } from 'entities/ui';
 import { useUser } from 'entities/user';
+import { removeJivoSite } from 'shared/lib/remove-jivo';
 
 
 
@@ -39,10 +40,7 @@ export const DashboardPageContainer: FC = memo(() => {
     if (! isDashboardAccessView) return;
 
     // Если авторизован, убираем Живосайт
-    if (auth) {
-      const jivo = document.querySelector('jdiv');
-      if (jivo) jivo.remove();
-    }
+    if (auth) removeJivoSite();
 
     // 1. GOOGLE-DATA - если нет данных, то загружаем
     if (! LS.getDataState(paramsCompanyId)?.startEntities && paramsCompanyId) {

@@ -1,31 +1,31 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig, errorHandlers, CustomAxiosError } from 'app/providers/store';
-import { API_PATHS } from '../../../../../shared/api/api-paths';
 import { Errors } from 'shared/lib/validators';
+import { PartialUser } from 'entities/user';
+import { userApi } from '../../user';
 // import { LS } from 'shared/lib/local-storage';
 
 
 
-export interface ReqGetBunches {
-  companyId : string
-  hintId    : string | null
+export type ReqDontShowAgain = PartialUser & {
+  settings: {
+    hintsDontShowAgain: string[] // all hints ids that user dont want to see again
+  }
 }
 
 
 export const dontShowAgain = createAsyncThunk<
   undefined,
-  ReqGetBunches,
+  ReqDontShowAgain,
   ThunkConfig<Errors>
 >(
   'features/hints/dontShowAgain',
-  async (data, thunkApi) => {
-    const { extra, dispatch, rejectWithValue } = thunkApi;
-    const { hintId, companyId } = data || {};
+  async (userData, thunkApi) => {
+    const { extra: { api }, dispatch, rejectWithValue } = thunkApi;
 
     try {
       // TODO: if not auth & companyId === undefined
-      // TODO: in serverside
-      await extra.api.post(API_PATHS.user.update, { companyId, hintId });
+      await userApi.updateUser(api, userData);
 
       return undefined;
     }
