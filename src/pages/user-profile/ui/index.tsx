@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, useEffect, useState, ChangeEvent } from 'react';
-import { User, useUser, creatorUser } from 'entities/user';
+import { User, useUser, creatorUser, PartialUser } from 'entities/user';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes, RoutePath } from 'app/providers/routes';
 import { UserProfilePageComponent } from './component';
@@ -28,8 +28,10 @@ const UserProfilePage: FC = memo(() => {
     // Обнулить если была записана ошибка, например 401, 403...
     setErrorStatus(0);
     setFormData(storedUser);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth, storedUser]);
+  },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [auth, storedUser]
+  );
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>, scheme: string) => {
     const { value } = e.target;
@@ -58,13 +60,17 @@ const UserProfilePage: FC = memo(() => {
     // TODO: validate
     // const { valid, errors } = validateUserData(updatedData);
     // valid ? serviceUpdateUser(updatedData) : setErrors(errors);
-    serviceUpdateUser(updatedData);
-  }, [storedUser, formData, loading, serviceUpdateUser]);
+    serviceUpdateUser(updatedData as PartialUser);
+  },
+    [storedUser, formData, loading, serviceUpdateUser]
+  );
 
 
   const handleCancel = useCallback(async () => {
     setFormData(storedUser);
-  }, [storedUser]);
+  },
+    [storedUser]
+  );
 
 
   if (! auth) return null;

@@ -122,10 +122,21 @@ export const calculateDesktopPosition = (
     }
   ];
 
-  // Выбираем позицию с наивысшим score
-  const bestPosition = positions.reduce((best, current) =>
-    (current?.score ?? 0) > (best?.score ?? 0) ? current : best
-  );
+
+  // Выбираем позицию с положительным score и приоритетным положением
+  let bestPosition = {} as Position;
+
+  // Hint Снизу
+  const [upPosition, bottomPosition, leftPosition, rightPosition] = positions;
+  if (bottomPosition.score && bottomPosition.score > 0) bestPosition = bottomPosition;
+  // Hint Сверху
+  else if (upPosition.score && upPosition.score > 0) bestPosition = upPosition;
+  // Hint Слева
+  else if (leftPosition.score && leftPosition.score > 0) bestPosition = leftPosition;
+  // Hint Справа
+  else if (rightPosition.score && rightPosition.score > 0) bestPosition = rightPosition;
+  else bestPosition = DEFAULT_POSITION
+
 
   // Корректируем позицию, чтобы не выходить за границы viewport
   return adjustPositionToViewport(targetId, bestPosition, hintRect, viewportWidth, viewportHeight);

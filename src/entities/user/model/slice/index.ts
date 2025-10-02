@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { serviceUpdateUser, serviceLogout } from 'features/user';
+import { updateUser, logout } from 'shared/api/features/user';
 import { updateObject } from 'shared/helpers/objects';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { LS } from 'shared/lib/local-storage';
@@ -66,16 +66,16 @@ export const slice = createSlice({
 
     // UPDATE-USER
     builder
-      .addCase(serviceUpdateUser.pending, (state) => {
+      .addCase(updateUser.pending, (state) => {
         state.errors  = {};
         state.loading = true;
       })
-      .addCase(serviceUpdateUser.fulfilled, (state, { payload }) => {
+      .addCase(updateUser.fulfilled, (state, { payload }) => {
         state.user    = updateObject(state.user, payload);
         state.errors  = {};
         state.loading = false;
       })
-      .addCase(serviceUpdateUser.rejected, (state, { payload }) => {
+      .addCase(updateUser.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
         state.loading = false;
       })
@@ -97,17 +97,17 @@ export const slice = createSlice({
 
     // LOGOUT-USER
     builder
-      .addCase(serviceLogout.pending, (state) => {
+      .addCase(logout.pending, (state) => {
         state.errors  = {};
         state.loading = true;
       })
-      .addCase(serviceLogout.fulfilled, (state) => {
+      .addCase(logout.fulfilled, (state) => {
         state.auth    = false;
         state.user    = {} as User;
         state.errors  = {};
         state.loading = false;
       })
-      .addCase(serviceLogout.rejected, (state, { payload }) => {
+      .addCase(logout.rejected, (state, { payload }) => {
         state.errors  = payload || {};
         state.loading = false;
       })
