@@ -6,6 +6,7 @@ import { getArrowStyle, useStyles } from './styles';
 import { calculateOptimalPosition } from './utils';
 import { useUI } from 'entities/ui';
 import { Divider } from 'shared/ui/mui-components';
+import { useTheme } from 'app/providers/theme';
 
 
 
@@ -19,7 +20,7 @@ interface Props {
 
 export const HintContainer: FC<Props> = memo(({ hint, leftHints, onDontShowAgain, onCloseHint }) => {
   const { isMobile } = useUI();
-  const sx = useStyles(isMobile);
+  const sx = useStyles(useTheme(), isMobile);
   const [position, setPosition] = useState<Position>(DEFAULT_POSITION);
   const hintRef = useRef<HTMLDivElement>(null);
   const targetElement = document.getElementById(hint.id);
@@ -122,7 +123,7 @@ export const HintContainer: FC<Props> = memo(({ hint, leftHints, onDontShowAgain
             </Box>
           }
           {/* Прогресс (опционально) */}
-          {leftHints && <Box sx={sx.leftHints}>{`Осталось: ${leftHints}`}</Box>}
+          {/* {leftHints && <Box sx={sx.leftHints}>{`Осталось: ${leftHints}`}</Box>} */}
 
           {/* Кнопки действий */}
           <Box sx={sx.actions}>

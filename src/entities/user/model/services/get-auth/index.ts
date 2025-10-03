@@ -34,8 +34,8 @@ export const getAuth = createAsyncThunk<
     const { extra, dispatch, rejectWithValue } = thunkApi;
 
     try {
-      let user = {} as User,
-        company = {} as Company,
+      let user    = {} as User,
+        company   = {} as Company,
         companyId = '';
 
       // На время разработки, использовать данные сохраннённые в LS,

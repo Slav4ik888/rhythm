@@ -8,15 +8,35 @@ import { useUser } from 'entities/user';
 
 export const HintsContainer: FC = memo(() => {
   const { companyId, userId, hintsDontShowAgain } = useUser();
-  const { hintsQueue, currentHint, shownNextHint, closeCurrentHint, serviceDontShowAgain } = useFeatureHints();
+  const { hintsQueue, currentHintId, shownNextHint, closeCurrentHint, serviceDontShowAgain } = useFeatureHints();
 
-  const hint = useMemo(() => HINTS.find(hint => hint.id === currentHint),
-    [currentHint]
+  // Текущая подсказка
+  const hint = useMemo(() => HINTS.find(hint => hint.id === currentHintId),
+    [currentHintId]
+  );
+
+  // Указал ли пользователь не показывать эту подсказку
+  const dontShowAgain = useMemo(() => currentHintId && hintsDontShowAgain.includes(currentHintId),
+    [currentHintId, hintsDontShowAgain]
+  );
+
+  // Если пользователь указал эту подсказку не показывать, то показываем следующую
+  useEffect(() => {
+    console.log('HHH currentHintId: ', currentHintId);
+
+    if (dontShowAgain && currentHintId) {
+      console.log('HHH shownNextHint');
+      shownNextHint();
+    }
+  },
+    [currentHintId, dontShowAgain, shownNextHint]
   );
 
   // Автоматически показываем первую подсказку при монтировании
   useEffect(() => {
-    if (hintsQueue?.length > 0 && ! currentHint) {
+    console.log(123123123);
+
+    if (hintsQueue?.length > 0 && ! currentHintId) {
       shownNextHint();
     }
   },
@@ -32,29 +52,27 @@ export const HintsContainer: FC = memo(() => {
 
   const handleDontShowAgain = useCallback(() => {
     console.log('handleDontShowAgain');
-    if (! currentHint) return
+    if (! currentHintId) return
     serviceDontShowAgain({
       companyId,
       id: userId,
       settings: {
-        hintsDontShowAgain: [...hintsDontShowAgain, currentHint]
+        hintsDontShowAgain: [...hintsDontShowAgain, currentHintId]
       }
     });
   },
-    [serviceDontShowAgain, currentHint, companyId, userId, hintsDontShowAgain]
+    [serviceDontShowAgain, currentHintId, companyId, userId, hintsDontShowAgain]
   );
 
 
+  if (! currentHintId || ! hint || dontShowAgain) return null;
+
   return (
-    <>
-      {
-        currentHint && hint && <HintContainer
-          hint            = {hint}
-          leftHints       = {hintsQueue.length}
-          onCloseHint     = {handleCloseHint}
-          onDontShowAgain = {handleDontShowAgain}
-        />
-      }
-    </>
+    <HintContainer
+      hint            = {hint}
+      leftHints       = {hintsQueue.length}
+      onCloseHint     = {handleCloseHint}
+      onDontShowAgain = {handleDontShowAgain}
+    />
   )
 })

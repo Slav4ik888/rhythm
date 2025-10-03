@@ -9,9 +9,9 @@ import { useAppDispatch } from 'shared/lib/hooks';
 export const useHints = () => {
   const dispatch = useAppDispatch();
 
-  const hintsQueue = useSelector(s.selectHintsQueue);
-  const shownHints = useSelector(s.selectShownHints);
-  const currentHint = useSelector(s.selectСurrentHint);
+  const hintsQueue    = useSelector(s.selectHintsQueue);
+  const shownHints    = useSelector(s.selectShownHints);
+  const currentHintId = useSelector(s.selectСurrentHintId);
 
 
   const api = useMemo(() => ({
@@ -26,7 +26,7 @@ export const useHints = () => {
   return {
     hintsQueue,
     shownHints,
-    currentHint,
+    currentHintId,
 
     ...api
   }

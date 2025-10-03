@@ -7,11 +7,11 @@ import { Errors } from 'shared/lib/validators';
 
 
 const initialState: StateSchemaHints = {
-  loading     : false,
-  errors      : {},
-  hintsQueue  : [],
-  shownHints  : [],
-  currentHint : null,
+  loading       : false,
+  errors        : {},
+  hintsQueue    : [],
+  shownHints    : [],
+  currentHintId : null,
 };
 
 
@@ -30,39 +30,39 @@ export const slice = createSlice({
 
       // Если очередь пуста, скрываем текущую подсказку
       if (! nextHint) {
-        state.currentHint = null;
-        state.hintsQueue = [];
+        state.currentHintId = null;
+        state.hintsQueue    = [];
       }
 
       // Показываем следующую подсказку из очереди
-      state.currentHint = nextHint;
-      state.hintsQueue = remainingQueue;
+      state.currentHintId = nextHint;
+      state.hintsQueue    = remainingQueue;
     },
     closeCurrentHint: (state) => {
       // Добавляем текущую подсказку в показанные и показываем следующую
-      const newShownHints = state.currentHint
-        ? [...state.shownHints, state.currentHint]
+      const newShownHints = state.currentHintId
+        ? [...state.shownHints, state.currentHintId]
         : state.shownHints;
 
       const [newCurrentHint, ...newQueue] = state.hintsQueue;
 
-      state.shownHints  = newShownHints;
-      state.currentHint = newCurrentHint || null;
-      state.hintsQueue  = newQueue;
+      state.shownHints    = newShownHints;
+      state.currentHintId = newCurrentHint || null;
+      state.hintsQueue    = newQueue;
     },
     addHintsToQueue: (state, { payload }: PayloadAction<string[]>) => {
       const newHints = payload.filter(hintId =>
         ! state.shownHints.includes(hintId)    // Ещё не показывали
         && ! state.hintsQueue.includes(hintId) // Нет в очереди (чтобы избежать повторы)
-        && state.currentHint !== hintId        // Не текущий
+        && state.currentHintId !== hintId        // Не текущий
       );
 
       // Если сейчас нет активной подсказки, сразу показываем первую из новых
-      const shouldShowFirstHint = ! state.currentHint && newHints.length > 0;
+      const shouldShowFirstHint = ! state.currentHintId && newHints.length > 0;
       const [firstNewHint, ...otherNewHints] = newHints;
 
-      state.currentHint = shouldShowFirstHint ? firstNewHint : state.currentHint;
-      state.hintsQueue = shouldShowFirstHint
+      state.currentHintId = shouldShowFirstHint ? firstNewHint : state.currentHintId;
+      state.hintsQueue    = shouldShowFirstHint
         ? [...state.hintsQueue, ...otherNewHints]
         : [...state.hintsQueue, ...newHints];
     }, //
@@ -76,17 +76,17 @@ export const slice = createSlice({
       })
       .addCase(dontShowAgain.fulfilled, (state) => {
         // Добавляем текущую подсказку в показанные и показываем следующую
-        const newShownHints = state.currentHint
-          ? [...state.shownHints, state.currentHint]
+        const newShownHints = state.currentHintId
+          ? [...state.shownHints, state.currentHintId]
           : state.shownHints;
 
         const [newCurrentHint, ...newQueue] = state.hintsQueue;
 
-        state.shownHints  = newShownHints;
-        state.currentHint = newCurrentHint || null;
-        state.hintsQueue  = newQueue;
-        state.loading     = false;
-        state.errors      = {};
+        state.shownHints    = newShownHints;
+        state.currentHintId = newCurrentHint || null;
+        state.hintsQueue    = newQueue;
+        state.loading       = false;
+        state.errors        = {};
       })
       .addCase(dontShowAgain.rejected, (state, { payload }) => {
         state.errors  = getError(payload);
