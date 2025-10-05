@@ -41,43 +41,65 @@ export const HintContainer: FC<Props> = memo(({ hint, leftHints, onDontShowAgain
   );
 
 
-  // Слушаем события скролла и ресайза
+  // Слушаем события скролла, ресайза и изменение положения элемента targetElement
   useEffect(() => {
     if (! targetElement) return;
 
+    // Обновляем позицию сразу
     updatePosition();
 
-    // Троттлинг для производительности
-    let ticking = false;
-    const handleScroll = () => {
-      if (! ticking) {
-      requestAnimationFrame(() => {
-          updatePosition();
-          ticking = false;
-        });
-        ticking = true;
+    // 1. Отслеживаем изменения размера самого элемента
+    const resizeObserver = new ResizeObserver(updatePosition);
+    resizeObserver.observe(targetElement);
+
+    // 2. Отслеживаем изменения в DOM, которые могут повлиять на позицию
+    const mutationObserver = new MutationObserver((mutations) => {
+      // Проверяем, были ли изменения в атрибутах стиля, классе или структуре DOM
+      const relevantMutation = mutations.some(mutation =>
+        mutation.type === 'attributes'
+        && (mutation.attributeName === 'style' || mutation.attributeName === 'class')
+      );
+
+      if (relevantMutation) {
+        updatePosition();
       }
+    });
+
+    // Наблюдаем за изменениями во всем документе
+    mutationObserver.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['style', 'class'],
+      childList: true,
+      subtree: true
+    });
+
+    // 3. Отслеживаем изменения layout'а (позиции) элемента
+    const updateOnLayoutChange = () => {
+      requestAnimationFrame(updatePosition);
     };
 
-    window.addEventListener('scroll', handleScroll, true);
-    window.addEventListener('resize', updatePosition);
+    // События, которые могут изменить layout
+    window.addEventListener('scroll', updateOnLayoutChange, true);
+    window.addEventListener('resize', updateOnLayoutChange);
+
+    // Специально для случаев скрытия/показа сайдбаров и т.д.
+    window.addEventListener('transitionend', updateOnLayoutChange);
+    window.addEventListener('animationend', updateOnLayoutChange);
+
+    // 4. Периодическая проверка (fallback)
+    // const intervalId = setInterval(updatePosition, 1000); // Проверка каждую секунду
 
     return () => {
-      window.removeEventListener('scroll', handleScroll, true);
-      window.removeEventListener('resize', updatePosition);
+      resizeObserver.disconnect();
+      mutationObserver.disconnect();
+      // clearInterval(intervalId);
+      window.removeEventListener('scroll', updateOnLayoutChange, true);
+      window.removeEventListener('resize', updateOnLayoutChange);
+      window.removeEventListener('transitionend', updateOnLayoutChange);
+      window.removeEventListener('animationend', updateOnLayoutChange);
     };
   },
     [targetElement, updatePosition]
-  );
-
-
-  useEffect(() => {
-    if (targetElement && hintRef.current) {
-      updatePosition();
-    }
-  },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [targetElement]
   );
 
 

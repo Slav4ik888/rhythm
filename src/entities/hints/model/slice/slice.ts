@@ -3,6 +3,7 @@ import { dontShowAgain } from 'shared/api/features/hints';
 import { StateSchemaHints } from './state-schema';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { Errors } from 'shared/lib/validators';
+import { LS } from 'shared/lib/local-storage';
 
 
 
@@ -65,7 +66,7 @@ export const slice = createSlice({
       state.hintsQueue    = shouldShowFirstHint
         ? [...state.hintsQueue, ...otherNewHints]
         : [...state.hintsQueue, ...newHints];
-    }, //
+    },
   },
    extraReducers: builder => {
     // DONT-SHOW-AGAIN
@@ -76,8 +77,9 @@ export const slice = createSlice({
       })
       .addCase(dontShowAgain.fulfilled, (state) => {
         // Добавляем текущую подсказку в показанные и показываем следующую
-        const newShownHints = state.currentHintId
-          ? [...state.shownHints, state.currentHintId]
+        const lastCurrentHintId = state.currentHintId;
+        const newShownHints = lastCurrentHintId
+          ? [...state.shownHints, lastCurrentHintId]
           : state.shownHints;
 
         const [newCurrentHint, ...newQueue] = state.hintsQueue;
@@ -87,6 +89,8 @@ export const slice = createSlice({
         state.hintsQueue    = newQueue;
         state.loading       = false;
         state.errors        = {};
+
+        LS.setHintsDontShowAgain(lastCurrentHintId as string);
       })
       .addCase(dontShowAgain.rejected, (state, { payload }) => {
         state.errors  = getError(payload);

@@ -3,7 +3,6 @@ import { ThunkConfig, errorHandlers, CustomAxiosError } from 'app/providers/stor
 import { Errors } from 'shared/lib/validators';
 import { PartialUser } from 'entities/user';
 import { userApi } from '../../user';
-// import { LS } from 'shared/lib/local-storage';
 
 
 
@@ -24,8 +23,9 @@ export const dontShowAgain = createAsyncThunk<
     const { extra: { api }, dispatch, rejectWithValue } = thunkApi;
 
     try {
-      // TODO: if not auth & companyId === undefined
-      await userApi.updateUser(api, userData);
+      if (userData.id && userData.companyId) { // Иначе сохраниться только в LS
+        await userApi.updateUser(api, userData);
+      }
 
       return undefined;
     }

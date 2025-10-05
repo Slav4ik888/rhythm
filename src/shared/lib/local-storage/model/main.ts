@@ -1,4 +1,4 @@
-// v.2025-08-14
+// v.2025-10-05
 import * as h from './helpers';
 import { __devLog } from '../../tests/__dev-log';
 
@@ -24,11 +24,16 @@ const checkError = (data: any, fieldName: string) => {
 
 
 /** Сохраняем в LocalStorage */
-export const setStorageData = (storageName: string, data: any) => {
+export const setStorageData = (
+  storageName    : string,
+  data           : any,
+  // withoutPrefix? : boolean // Если нужно без префикса, чтобы при очистки LS эти данные остались
+) => {
   try {
     if (checkError(storageName, '"Имя хранилища"')) return;
     if (checkError(data, '"Данные для сохранения"')) return;
 
+    // const name = withoutPrefix ? storageName : PREFIX + storageName;
     localStorage.setItem(PREFIX + storageName, JSON.stringify(data));
   }
   catch (e: any) {
@@ -37,26 +42,33 @@ export const setStorageData = (storageName: string, data: any) => {
 
       const companyId = storageName.split('-')[1];
 
+      // Сохраняем важное
+      const cookie = h.getAcceptedCookie();
+      const hintsDontShowAgain = h.getHintsDontShowAgain();
+
       if (! companyId) {
         localStorage.clear();
+
+        // Восстанавливаем важное
+        if (cookie) h.setAcceptedCookie();
+        h.setHintsDontShowAgain(hintsDontShowAgain);
+
         // eslint-disable-next-line no-alert
         if (confirm('Необходимо обновить страницу')) {
           location.reload();
         }
       }
 
-      const cookie = h.getAcceptedCookie();
-      const userState = h.getUserState(companyId);
-      const lastCompanyId = h.getLastCompanyId();
-      const companyState = h.getCompanyState(companyId);
-      const paramsCompanyState = h.getParamsCompanyState();
-      const uIConfiguratorState = h.getUIConfiguratorState();
-      const dashboardTemplates = h.getTemplates();
+      const userState                        = h.getUserState(companyId);
+      const lastCompanyId                    = h.getLastCompanyId();
+      const companyState                     = h.getCompanyState(companyId);
+      const paramsCompanyState               = h.getParamsCompanyState();
+      const uIConfiguratorState              = h.getUIConfiguratorState();
+      const dashboardTemplates               = h.getTemplates();
       const dashboardTemplatesBunchesUpdated = h.getTemplatesBunchesUpdated();
-      const dashboardDataState = h.getDataState(companyId);
-      const dashboardBunches = h.getBunches(companyId);
-      const dashboardViewBunchesUpdated = h.getViewBunchesUpdated(companyId);
-
+      const dashboardDataState               = h.getDataState(companyId);
+      const dashboardBunches                 = h.getBunches(companyId);
+      const dashboardViewBunchesUpdated      = h.getViewBunchesUpdated(companyId);
 
       localStorage.clear();
 
@@ -71,6 +83,7 @@ export const setStorageData = (storageName: string, data: any) => {
       if (dashboardDataState) h.setDataState(companyId, dashboardDataState);
       h.setBunches(companyId, dashboardBunches);
       h.setViewBunchesUpdated(companyId, dashboardViewBunchesUpdated);
+      h.setHintsDontShowAgain(hintsDontShowAgain);
     }
     else {
       console.error('Ошибка LocalStorage:', e);

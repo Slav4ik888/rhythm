@@ -6,6 +6,8 @@ import { actionsUser, User } from 'entities/user';
 import { Errors } from 'shared/lib/validators';
 import { API_PATHS } from 'shared/api';
 import { actionsCompany, Company } from 'entities/company';
+import { LS } from 'shared/lib/local-storage';
+import { userApi } from 'shared/api/features/user';
 
 
 
@@ -39,6 +41,25 @@ export const authByLogin = createAsyncThunk<
         API_PATHS.auth.login.byEmail,
         { authByLogin, csrfToken }
       );
+
+      // Проверяем, есть ли подсказки от которых отказалить будучи без авторизации
+      const hints = user.settings?.hintsDontShowAgain || [];
+      const setHintsWithLS = new Set(hints);
+      LS.getHintsDontShowAgain().forEach(hint => setHintsWithLS.add(hint));
+      const hintsWithLS = Array.from(setHintsWithLS);
+
+      if (hintsWithLS.length !== hints.length) {
+        await userApi.updateUser(extra.api, {
+          id        : user.id,
+          companyId : user.companyId,
+          settings  : { hintsDontShowAgain: hintsWithLS }
+        });
+
+        if (! user.settings) user.settings = {}
+        if (! user.settings.hintsDontShowAgain) user.settings.hintsDontShowAgain = [];
+        user.settings.hintsDontShowAgain = [...hintsWithLS];
+      }
+      // End check dontShowAgain
 
       dispatch(actionsUser.setUser({ user, companyId: user.companyId }));
       dispatch(actionsCompany.setCompany({ company }));

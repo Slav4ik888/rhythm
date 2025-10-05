@@ -6,7 +6,7 @@ import { creatorPerson } from '../creator-person';
 
 
 
-/** v.2024-10-18 */
+/** v.2025-10-05 */
 export const creatorUser = (cfg: Partial<User> = {}): User => {
   const user: User = {
     id            : cfg.id            || '',
@@ -22,6 +22,7 @@ export const creatorUser = (cfg: Partial<User> = {}): User => {
     status        : cfg.status        || UserStatus.NEW,
     order         : cfg.order         || 100,
 
+    settings      : cfg.settings      || {},
     isEditAccess  : cfg.isEditAccess  || false,
     createdAt     : cfg.createdAt     || creatorFixDate(cfg.id),
     lastChange    : cfg.lastChange    || creatorFixDate(cfg.id)

@@ -2,11 +2,11 @@ import { UIConfiguratorProviderState } from 'app/providers/theme';
 import { PartialCompany, StateSchemaCompany } from 'entities/company';
 import { StateSchemaDashboardData } from 'entities/dashboard-data';
 import { Template } from 'entities/dashboard-templates';
-import { ViewItem } from 'entities/dashboard-view';
 import { BunchesViewItem } from 'entities/dashboard-view/types';
 import { StateSchemaUser } from 'entities/user';
+import { isStr } from '../../validators';
 import { ResGetData } from 'shared/types';
-import { Bunch, BunchesUpdated } from '../../structures/bunch';
+import { BunchesUpdated } from '../../structures/bunch';
 import { setStorageData, getStorageData, removeStorageData } from './main';
 
 
@@ -16,6 +16,15 @@ export const setAcceptedCookie = () => setStorageData('acceptedCookie', { isAcce
 export const getAcceptedCookie = (): string => getStorageData<{ isAccepted: string }>(
   'acceptedCookie'
 )?.isAccepted || 'false';
+
+// Hints
+export const getHintsDontShowAgain = (): string[] => getStorageData<string[]>('hintsDontShowAgain') || [];
+export const setHintsDontShowAgain = (currentHintId: string | string[]) => setStorageData(
+  'hintsDontShowAgain',
+  isStr(currentHintId)
+    ? [...getHintsDontShowAgain(), currentHintId]
+    : [...currentHintId as string[]] // Если передали массив
+);
 
 // User
 export const setUserState = (companyId: string, data: StateSchemaUser) => setStorageData(

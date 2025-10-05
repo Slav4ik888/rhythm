@@ -44,7 +44,9 @@ const LoginPage: FC = memo(() => {
     const { valid, errors } = validateAuthByLogin(userData);
     if (! valid) setErrors(errors);
     else serviceAuthByLogin(userData);
-  }, [loading, serviceAuthByLogin, setErrors]);
+  },
+    [loading, serviceAuthByLogin, setErrors]
+  );
 
 
   if (auth) return <Navigate to={RoutePath[AppRoutes.ROOT]} replace />;

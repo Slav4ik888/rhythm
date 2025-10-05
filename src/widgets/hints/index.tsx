@@ -3,6 +3,7 @@ import { HINTS } from 'entities/hints';
 import { HintContainer } from './hint-item';
 import { useFeatureHints } from 'features/hints';
 import { useUser } from 'entities/user';
+import { LS } from 'shared/lib/local-storage';
 
 
 
@@ -16,16 +17,14 @@ export const HintsContainer: FC = memo(() => {
   );
 
   // Указал ли пользователь не показывать эту подсказку
-  const dontShowAgain = useMemo(() => currentHintId && hintsDontShowAgain.includes(currentHintId),
-    [currentHintId, hintsDontShowAgain]
-  );
+  const dontShowAgain = userId
+    ? hintsDontShowAgain.includes(currentHintId || '')
+    : LS.getHintsDontShowAgain().includes(currentHintId || '');
+
 
   // Если пользователь указал эту подсказку не показывать, то показываем следующую
   useEffect(() => {
-    console.log('HHH currentHintId: ', currentHintId);
-
     if (dontShowAgain && currentHintId) {
-      console.log('HHH shownNextHint');
       shownNextHint();
     }
   },
@@ -34,8 +33,6 @@ export const HintsContainer: FC = memo(() => {
 
   // Автоматически показываем первую подсказку при монтировании
   useEffect(() => {
-    console.log(123123123);
-
     if (hintsQueue?.length > 0 && ! currentHintId) {
       shownNextHint();
     }
@@ -51,12 +48,13 @@ export const HintsContainer: FC = memo(() => {
   );
 
   const handleDontShowAgain = useCallback(() => {
-    console.log('handleDontShowAgain');
     if (! currentHintId) return
+
+    // Если пользователь не авторизован, то внутри сохраниться в LS
     serviceDontShowAgain({
       companyId,
-      id: userId,
-      settings: {
+      id       : userId,
+      settings : {
         hintsDontShowAgain: [...hintsDontShowAgain, currentHintId]
       }
     });
