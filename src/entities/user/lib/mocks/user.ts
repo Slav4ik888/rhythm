@@ -20,8 +20,8 @@ export const MOCK_USER_EMPTY: User = {
   role          : Role.EMPLOYEE,
   emailVerified : false,
   status        : UserStatus.NEW,
-  order         : 100,
 
+  order         : 100,
   createdAt     : creatorFixDate(),
   lastChange    : creatorFixDate()
 };
@@ -38,8 +38,13 @@ export const MOCK_USER_EMPLOYEE: User = {
   role          : Role.EMPLOYEE,
   emailVerified : false,
   status        : UserStatus.NEW,
-  order         : 100,
 
+  isEditAccess  : true,
+  settings: {
+    hintsDontShowAgain: ['hintId1', 'hintId2']
+  },
+
+  order         : 100,
   createdAt     : creatorFixDate(MOCK_USER_ID),
   lastChange    : creatorFixDate(MOCK_USER_ID)
 };

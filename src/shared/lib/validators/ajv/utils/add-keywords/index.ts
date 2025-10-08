@@ -1,4 +1,5 @@
 import Ajv from 'ajv';
+import { isCondition } from 'entities/base/validators/schemas';
 import { isCompanyStatus } from 'entities/company/model/validators/schemas';
 import {
   isCountryCode, isPhoneNumberScheme, isPhoneType, isRole, isUserStatus
@@ -7,6 +8,10 @@ import {
 
 export const addKeywords = (ajv: Ajv) => {
   ajv
+    // Base
+    // @ts-ignore
+    .addKeyword(isCondition)
+
     // Company
     // @ts-ignore
     .addKeyword(isCompanyStatus)

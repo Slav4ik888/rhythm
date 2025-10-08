@@ -8,7 +8,7 @@ export const schema = {
   additionalProperties : false,
 
   properties: {
-    userId : { $ref: `${SCHEMA_NAME.DEFS_USER}#/definitions/userId` },
+    userId : { $ref: `${SCHEMA_NAME.DEFS_USER}#/definitions/id` },
     date   : { $ref: `${SCHEMA_NAME.DEFS_BASE}#/definitions/date` }
   }
 };

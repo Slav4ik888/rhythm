@@ -3,7 +3,8 @@ import { defsCompany, schemaCompany } from 'entities/company/model/validators/sc
 import { defsBase } from '../../schemas';
 import { defsItemBase, schemaFixDate } from 'entities/base/validators/schemas';
 import {
-  defsFIO, defsPhone, defsUser, schemaPerson, schemaPhoneNumber, schemaPosition
+  defsFIO, defsPhone, defsUser, schemaPerson, schemaPhoneNumber, schemaPosition,
+  schemaSettings, schemaUser, defsPerson
  } from 'entities/user/model/validators/schemas';
 import { schemaAuthByLogin } from 'pages/login/model/validators/schemas';
 import { schemaSignupData, schemaSignupDataEnd } from 'pages/signup/model/validators/schemas';
@@ -31,9 +32,12 @@ export const addSchemas = (ajv: Ajv) => {
       defsFIO,
       defsPhone,
       defsUser,
+      defsPerson,
       schemaPerson,
       schemaPhoneNumber,
       schemaPosition,
+      schemaSettings,
+      schemaUser,
 
       // Company
       defsCompany,

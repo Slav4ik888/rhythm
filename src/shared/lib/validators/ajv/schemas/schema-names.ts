@@ -13,10 +13,13 @@ export enum SCHEMA_NAME {
   DEFS_USER         = 'defs-user',
   DEFS_FIO          = 'defs-fio',
   DEFS_PHONE        = 'defs-phone',
+  DEFS_PERSON       = 'defs-person',
 
   PERSON            = 'person',
   POSITION          = 'position',
   PHONE_NUMBER      = 'phone-number',
+  USER_SETTINGS     = 'user-settings',
+  USER              = 'user',
 
   // LOGIN_PAGE
   AUTH_BY_LOGIN     = 'auth-by-login',

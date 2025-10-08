@@ -19,6 +19,7 @@ interface Props {
   size?         : 'small' | 'medium'
   tabIndex?     : number
   errors?       : Errors
+  errorScheme?  : string // Если схема для ошибки отличается от scheme
   sx?           : any
   onCancel?     : () => void
   onChange?     : (e: ChangeEvent<HTMLInputElement>, scheme: string) => void
@@ -34,6 +35,7 @@ export const TextFieldItem = forwardRef<null, TextFieldItemProps>((props, ref) =
     disabled,
     scheme,
     errors,
+    errorScheme,
     fullWidth = true,
     onCancel,
     onChange,
@@ -80,8 +82,8 @@ export const TextFieldItem = forwardRef<null, TextFieldItemProps>((props, ref) =
       // onBlur          = {handlerBlur}
       slotProps       = {{ inputLabel: { shrink: true } }}
       onChange   = {handleChange}
-      error      = {errors?.[getErrorFieldByScheme(scheme)] ? true : false}
-      helperText = {errors?.[getErrorFieldByScheme(scheme)]}
+      error      = {errors?.[getErrorFieldByScheme(errorScheme || scheme)] ? true : false}
+      helperText = {errors?.[getErrorFieldByScheme(errorScheme || scheme)]}
     />
   )
 });

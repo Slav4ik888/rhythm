@@ -11,7 +11,7 @@ export const definitions = {
       type      : 'string',
       maxLength : 50
     },
-    ownerId : { $ref: `${SCHEMA_NAME.DEFS_USER}#/definitions/userId` },
+    ownerId : { $ref: `${SCHEMA_NAME.DEFS_USER}#/definitions/id` },
     owner   : { $ref: `${SCHEMA_NAME.DEFS_BASE}#/definitions/email` },
     logoUrl : {
       type      : 'string',

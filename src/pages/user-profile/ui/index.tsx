@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, useEffect, useState, ChangeEvent } from 'react';
-import { User, useUser, creatorUser, PartialUser } from 'entities/user';
+import { useUser, creatorUser, PartialUser, validateUserData } from 'entities/user';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes, RoutePath } from 'app/providers/routes';
 import { UserProfilePageComponent } from './component';
@@ -12,7 +12,7 @@ import { __devLog } from 'shared/lib/tests/__dev-log';
 
 
 const UserProfilePage: FC = memo(() => {
-  const { loading, auth, errors, user: storedUser } = useUser();
+  const { loading, auth, errors, user: storedUser, setErrors } = useUser();
   const { serviceUpdateUser } = useFeaturesUser();
   const [formData, setFormData] = useState(creatorUser(storedUser));
   const { setErrorStatus, setReplacePath } = useUI();
@@ -37,32 +37,34 @@ const UserProfilePage: FC = memo(() => {
     const { value } = e.target;
 
     setFormData(prev => {
-      const obj = cloneObj(prev);
-      setValueByScheme(obj, scheme, value);
-      return obj;
+      const data = cloneObj(prev);
+      setValueByScheme(data, scheme, value);
+
+      const { valid, errors } = validateUserData({ ...data, id: storedUser.id });
+      if (! valid) setErrors(errors);
+
+      return data;
     });
-    // Простая валидация на лету (можно расширить)
-    // validateField(field, value);
   };
 
   const handleSubmit = useCallback(async () => {
     if (loading) return;
 
-    const updatedData: Partial<User> = getChanges(storedUser, formData);
-
-    updatedData.id = storedUser.id;
-    updatedData.companyId = storedUser.companyId;
-    updatedData.lastChange = creatorFixDate(storedUser.id);
+    const updatedData: PartialUser = {
+      ...getChanges(storedUser, formData),
+      id         : storedUser.id,
+      companyId  : storedUser.companyId,
+      lastChange : creatorFixDate(storedUser.id)
+    };
 
     __devLog('UserProfilePage', 'updatedData: ', updatedData);
     if (isEmpty(updatedData)) return;
 
-    // TODO: validate
-    // const { valid, errors } = validateUserData(updatedData);
-    // valid ? serviceUpdateUser(updatedData) : setErrors(errors);
+    const { valid, errors } = validateUserData(updatedData);
+    valid ? serviceUpdateUser(updatedData) : setErrors(errors);
     serviceUpdateUser(updatedData as PartialUser);
   },
-    [storedUser, formData, loading, serviceUpdateUser]
+    [storedUser, formData, loading, serviceUpdateUser, setErrors]
   );
 
 

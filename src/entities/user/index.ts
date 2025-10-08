@@ -9,5 +9,5 @@ export { StateSchemaUser } from './model/slice/state-schema'
 export { ReqGetAuth, getAuth } from './model/services'
 
 export { selectUserId } from './model/selectors'
-export { schemas } from './model/validators'
+export { schemas, validateUserData } from './model/validators'
 export { creatorUser } from './lib/creators'

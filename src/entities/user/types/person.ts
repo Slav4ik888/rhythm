@@ -1,4 +1,4 @@
-import { PhoneNumber } from './phones';
+// import { PhoneNumber } from './phones';
 
 export interface FIO {
   firstName  : string // Имя
@@ -11,5 +11,5 @@ export interface Person {
   avatarUrl     : string
   phoneNumber   : string // '+15555550003' Номер телефона (на который производилась регистрация)
   fio           : FIO
-  phones        : PhoneNumber[]
+  // phones        : PhoneNumber[]
 }

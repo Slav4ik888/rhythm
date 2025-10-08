@@ -21,7 +21,10 @@ export type NewUserStatus = {
 }
 
 
-/** Пользователь */
+/**
+ * Пользователь
+ * v.2025-10-08
+ */
 export interface User extends ItemBase {
   companyId     : string
 

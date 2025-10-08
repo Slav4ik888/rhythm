@@ -25,6 +25,11 @@ export const definitions = {
       const: {
         $data: '1/password'
       }
+    },
+    order: {
+      type    : 'number',
+      minimum : 0,
+      maximum : 1000000
     }
   }
-}
+};

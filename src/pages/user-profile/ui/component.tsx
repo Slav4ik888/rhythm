@@ -29,6 +29,7 @@ export const UserProfilePageComponent: FC<Props> = memo(({ loading, errors, form
         name         = 'secondName'
         defaultValue = {formData.person?.fio?.secondName}
         scheme       = 'person.fio.secondName'
+        errorScheme  = 'secondName'
         errors       = {errors}
         onChange     = {onChange}
       />
@@ -38,6 +39,7 @@ export const UserProfilePageComponent: FC<Props> = memo(({ loading, errors, form
         name         = 'firstName'
         defaultValue = {formData.person?.fio?.firstName}
         scheme       = 'person.fio.firstName'
+        errorScheme  = 'firstName'
         errors       = {errors}
         onChange     = {onChange}
       />
@@ -47,6 +49,7 @@ export const UserProfilePageComponent: FC<Props> = memo(({ loading, errors, form
         name         = 'middleName'
         defaultValue = {formData.person?.fio?.middleName}
         scheme       = 'person.fio.middleName'
+        errorScheme  = 'middleName'
         errors       = {errors}
         onChange     = {onChange}
       />

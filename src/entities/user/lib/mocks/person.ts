@@ -7,7 +7,7 @@ export const MOCK_PERSON_EMPTY: Person = {
   avatarUrl   : '',
   phoneNumber : '',
   fio         : MOCK_FIO_EMPTY,
-  phones      : []
+  // phones      : []
 };
 
 export const MOCK_PERSON: Person = {
@@ -16,5 +16,5 @@ export const MOCK_PERSON: Person = {
   avatarUrl   : 'https://firebasestorage.googleapis.com/v0/b/osnova-course.appspot.com/o/no-img-user.svg?alt=media&token=b323e291-7719-446a-93bf-09b6593b9927',
   phoneNumber : '+79501197888',
   fio         : MOCK_FIO,
-  phones      : []
+  // phones      : []
 };
