@@ -1,4 +1,4 @@
-import { DashboardPeriod } from '../../types';
+import { DashboardPeriod, DashboardPeriodDateType } from '../../types';
 
 
 
@@ -9,5 +9,6 @@ export interface SetActivePeriod {
 
 export interface SetSelectedPeriod {
   companyId : string
+  dateType? : DashboardPeriodDateType
   period    : Partial<DashboardPeriod>
 }

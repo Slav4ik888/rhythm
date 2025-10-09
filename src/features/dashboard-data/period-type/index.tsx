@@ -19,7 +19,12 @@ export const PeriodType: FC = memo(() => {
 
 
   const handleChangePeriod = useCallback((e: SelectChangeEvent) => {
-    setSelectedPeriod({ companyId: paramsCompanyId, period: { type: e.target.value as DashboardPeriodType } });
+    setSelectedPeriod({
+      companyId : paramsCompanyId,
+      period    : {
+        type: e.target.value as DashboardPeriodType
+      }
+    });
     setOpenSelect(false);
   }, [paramsCompanyId, setSelectedPeriod]);
 
@@ -29,7 +34,8 @@ export const PeriodType: FC = memo(() => {
 
   return (
     <FormControl
-      sx={{
+      id = 'period-type'
+      sx = {{
         position : 'relative',
         display  : 'flex',
         width    : 120,

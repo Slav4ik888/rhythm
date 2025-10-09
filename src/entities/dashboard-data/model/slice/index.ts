@@ -78,10 +78,17 @@ export const slice = createSlice({
       LS.setDataState(payload.companyId, state); // Save state to local storage
     },
     setSelectedPeriod: (state, { payload }: PayloadAction<SetSelectedPeriod>) => {
-      const calcedStartDate = calculateStartDate(
-        state.selectedPeriod.end,
-        payload.period.type || state.selectedPeriod.type || PeriodType.NINE_MONTHS
-      );
+      const isCustomPeriod = state.selectedPeriod.type === PeriodType.CUSTOM;
+      const isStartDate = payload.dateType === 'start';
+
+      const calcedStartDate = isCustomPeriod
+        ? isStartDate
+          ? payload.period.start
+          : state.selectedPeriod.start
+        : calculateStartDate(
+            state.selectedPeriod.end,
+            payload.period.type || state.selectedPeriod.type || PeriodType.NINE_MONTHS
+          );
 
       state.activePeriod = {
         ...state.activePeriod,

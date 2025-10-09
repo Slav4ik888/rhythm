@@ -102,7 +102,9 @@ export const DashboardBodyContent = memo(() => {
   // Add Hints
   useEffect(() => {
     if (! isRendering) {
-      addHintsToQueue(['control-date-end', 'control-refresh-btn', 'last-updated-text'])
+      addHintsToQueue([
+        'control-date-end', 'control-refresh-btn', 'last-updated-text', 'period-type', 'control-date-start'
+      ])
     }
   },
     [isRendering, addHintsToQueue]

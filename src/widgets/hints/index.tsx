@@ -16,10 +16,17 @@ export const HintsContainer: FC = memo(() => {
     [currentHintId]
   );
 
-  // Указал ли пользователь не показывать эту подсказку
-  const dontShowAgain = userId
-    ? hintsDontShowAgain.includes(currentHintId || '')
-    : LS.getHintsDontShowAgain().includes(currentHintId || '');
+  // Все подсказки которые не надо показывать
+  // Берём данные из аккаунта пользователя из LS
+  const allHintsDontShowAgain = Array.from(
+    new Set([
+      ...(userId ? hintsDontShowAgain : []),
+      ...LS.getHintsDontShowAgain()
+    ])
+  );
+
+  // Указал ли пользователь не показывать ЭТУ подсказку
+  const dontShowAgain = allHintsDontShowAgain.includes(currentHintId || '');
 
 
   // Если пользователь указал эту подсказку не показывать, то показываем следующую
@@ -55,11 +62,11 @@ export const HintsContainer: FC = memo(() => {
       companyId,
       id       : userId,
       settings : {
-        hintsDontShowAgain: [...hintsDontShowAgain, currentHintId]
+        hintsDontShowAgain: [...allHintsDontShowAgain, currentHintId]
       }
     });
   },
-    [serviceDontShowAgain, currentHintId, companyId, userId, hintsDontShowAgain]
+    [serviceDontShowAgain, currentHintId, companyId, userId, allHintsDontShowAgain]
   );
 
 

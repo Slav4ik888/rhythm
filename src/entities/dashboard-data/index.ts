@@ -1,5 +1,5 @@
 export type {
-  DashboardItemData, DashboardStatisticItem, DashboardPeriod, Increased, DashboardItemType
+  DashboardItemData, DashboardStatisticItem, DashboardPeriod, Increased, DashboardItemType, DashboardPeriodDateType
 } from './types'
 export type { DashboardPeriodType } from './constants'
 export { DASHBOARD_PERIOD_TEXT, arrayDashboardPeriodType, PeriodType } from './constants'

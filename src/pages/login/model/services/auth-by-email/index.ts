@@ -44,9 +44,7 @@ export const authByLogin = createAsyncThunk<
 
       // Проверяем, есть ли подсказки от которых отказалить будучи без авторизации
       const hints = user.settings?.hintsDontShowAgain || [];
-      const setHintsWithLS = new Set(hints);
-      LS.getHintsDontShowAgain().forEach(hint => setHintsWithLS.add(hint));
-      const hintsWithLS = Array.from(setHintsWithLS);
+      const hintsWithLS = Array.from(new Set([...hints, ...LS.getHintsDontShowAgain()]));
 
       if (hintsWithLS.length !== hints.length) {
         await userApi.updateUser(extra.api, {

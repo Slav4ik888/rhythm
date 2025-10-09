@@ -2,6 +2,7 @@ import { StatisticPeriodType } from 'entities/statistic-type';
 import { DashboardPeriodType } from '../constants/period';
 
 
+export type DashboardPeriodDateType = 'start' | 'end'
 
 /** Показывает положительные отрицательные или нулевые изменения */
 export type Increased = 1 | -1 | 0
