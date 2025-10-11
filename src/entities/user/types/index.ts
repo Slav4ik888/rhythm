@@ -1,3 +1,4 @@
+export * from './partner'
 export * from './person'
 export * from './phones'
 export * from './positions'

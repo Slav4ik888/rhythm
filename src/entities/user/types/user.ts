@@ -1,4 +1,5 @@
 import { ItemBase } from 'entities/base'
+import { UserPartnerData } from './partner'
 import { Person } from './person'
 import { Role } from './roles'
 import { UserSettings } from './user-settings'
@@ -23,7 +24,7 @@ export type NewUserStatus = {
 
 /**
  * Пользователь
- * v.2025-10-08
+ * v.2025-10-11
  */
 export interface User extends ItemBase {
   companyId     : string
@@ -38,6 +39,11 @@ export interface User extends ItemBase {
 
   isEditAccess? : boolean // Временный запрет для всех на доступ к Конструктору
   settings?     : UserSettings
+
+  partner?      : UserPartnerData
+
+  // TODO:
+  // lastAction    : number // Время последнего действия
 }
 
 export type PartialUser = Partial<User> & {

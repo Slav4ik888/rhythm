@@ -1,5 +1,5 @@
 export type {
-  Company, ColorSettingsType, CustomSettings, PartialCompany, ParamsCompany, DashboardSheet
+  Company, ColorSettingsType, CustomSettings, PartialCompany, ParamsCompany, DashboardSheet, CompanyId
 } from './types'
 export type { AccessLevel, CompanyDashboardMember, CompanyDashboardAccess } from './model/hooks'
 export { checkDashboardAccess, useCompany, useAccess, isOwner, CompanyDashboardAccessScheme } from './model/hooks'

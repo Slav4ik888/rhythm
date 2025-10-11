@@ -103,6 +103,10 @@ export const getViewBunchesUpdated = (companyId: string) => getStorageData<Bunch
 ) || {};
 
 
+// Partners
+export const setPartnerId = (code: string | null) => setStorageData('partnerId', code);
+export const getPartnerId = () => getStorageData<string | undefined>('partnerId');
+
 // Dev
 export const devSetGSData = (companyId: string, data: ResGetData) => setStorageData(
   `Dashboard-GSData-${companyId}`,
