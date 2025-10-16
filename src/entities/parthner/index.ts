@@ -1,1 +1,1 @@
-export { isValidPartnerCode } from './lib/utils'
+export { usePartner } from './model/hooks'

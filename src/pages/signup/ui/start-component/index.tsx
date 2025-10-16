@@ -4,11 +4,13 @@ import { SignupData, useSignup } from '../../model';
 import { getRefValue } from 'shared/lib/refs';
 import { validateSignupData } from '../../model/validators';
 import { SignupStartPageComponent } from './component';
+import { usePartner } from 'entities/parthner';
 
 
 
 export const SignupPageStart: FC = memo(() => {
   const { loading, errors, serviceSignupStart, setErrors } = useSignup();
+  const { partnerIdParams, partnerIdLS } = usePartner();
   const { isMobile } = useUI();
   const companyNameRef = useRef(null);
   const firstNameRef   = useRef(null);

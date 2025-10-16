@@ -1,1 +1,1 @@
-export { isValidPartnerCode } from './is-valid-partner-code'
+export { isValidPartnerId } from './is-valid-partner-id'
