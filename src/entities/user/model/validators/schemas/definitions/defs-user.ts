@@ -50,6 +50,20 @@ export const definitions = {
       }
     },
 
+    partnerId: {
+      type      : 'string',
+      maxLength : 28
+    },
+
+    partner: {
+      type: 'object',
+      additionalProperties : false,
+      properties: {
+        partnerId  : { $ref: `${SCHEMA_NAME.DEFS_USER}#/definitions/partnerId` },
+        referrerId : { $ref: `${SCHEMA_NAME.DEFS_USER}#/definitions/partnerId` },
+      }
+    },
+
     order       : { $ref: `${SCHEMA_NAME.DEFS_ITEM_BASE}#/definitions/order` },
     createdAt   : { $ref: SCHEMA_NAME.FIX_DATE },
     lastChange  : { $ref: SCHEMA_NAME.FIX_DATE }

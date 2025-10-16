@@ -16,6 +16,7 @@ describe('SCHEMA_NAME.SIGNUP_DATA', () => {
       password        : '',
       confirmPassword : 'asd',
 
+      partnerId       : getMockStrLength(29),
       permissions     : false,
       isMobile        : undefined
     });
@@ -27,7 +28,8 @@ describe('SCHEMA_NAME.SIGNUP_DATA', () => {
       isMobile        : 'Отсутствует обязательное поле "isMobile".',
       password        : 'Поле "Пароль" не должно быть меньше 6 символов.',
       confirmPassword : 'Значение в поле "Повторите пароль", не совпадает с введёным паролем',
-      permissions     : 'Для регистрации, необходимо предоставить согласие на обработку персональных данных'
+      permissions     : 'Для регистрации, необходимо предоставить согласие на обработку персональных данных',
+      partnerId       : 'Поле "partnerId" не должно быть больше 28 символов.',
     });
   });
 
@@ -49,7 +51,8 @@ describe('SCHEMA_NAME.SIGNUP_DATA', () => {
 
       email           : '@',
       password        : getMockStrLength(51),
-      confirmPassword : '123'
+      confirmPassword : '123',
+      partnerId       : getMockStrLength(29),
     });
 
     expect(res.valid).toEqual(false);
@@ -58,7 +61,8 @@ describe('SCHEMA_NAME.SIGNUP_DATA', () => {
       isMobile        : 'Отсутствует обязательное поле "isMobile".',
       password        : 'Поле "Пароль" не должно быть больше 50 символов.',
       permissions     : 'Отсутствует обязательное поле "permissions".',
-      confirmPassword : 'Значение в поле "Повторите пароль", не совпадает с введёным паролем'
+      confirmPassword : 'Значение в поле "Повторите пароль", не совпадает с введёным паролем',
+      partnerId       : 'Поле "partnerId" не должно быть больше 28 символов.',
     });
   });
 });

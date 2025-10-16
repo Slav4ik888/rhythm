@@ -8,6 +8,7 @@ export const MOCK_SIGNUP_DATA_SMALL: SignupData = {
   password        : MOCK_PASSWORD,
   confirmPassword : MOCK_PASSWORD,
 
+  partnerId       : 'slava',
   permissions     : true,
   isMobile        : false
 };
@@ -26,6 +27,7 @@ export const MOCK_SIGNUP_DATA_FULL: SignupData = {
   password        : MOCK_PASSWORD,
   confirmPassword : MOCK_PASSWORD,
 
+  partnerId       : 'slava',
   permissions     : true,
   isMobile        : false
 };

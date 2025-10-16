@@ -29,6 +29,8 @@ export const schema = {
       const: true
     },
 
+    partnerId  : { $ref: `${SCHEMA_NAME.DEFS_USER}#/definitions/partnerId` },
+
     // С какого устройства вошёл
     isMobile: {
       type: 'boolean'

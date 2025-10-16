@@ -25,6 +25,9 @@ describe(`Validate scheme - ${SCHEMA_NAME.USER}`, () => {
 
   test('should validate user EMPLOYEE schema', () => {
     const userData: User = creatorUser(MOCK_USER_EMPLOYEE);
+    userData.partner = {};
+    userData.partner.partnerId = 'slava';
+    userData.partner.referrerId = 'oleg';
 
     expect(validate(SCHEMA_NAME.USER, userData)).toEqual({
       errors: {}, valid: true
@@ -51,7 +54,11 @@ describe(`Validate scheme - ${SCHEMA_NAME.USER}`, () => {
         ]
       },
       // @ts-ignore
-      additionalProperty : '123',
+      additionalProperty: '123',
+      partner: {
+        partnerId  : getMockStrLength(29),
+        referrerId : getMockStrLength(29)
+      }
     };
 
     // console.log('userData: ', userData);
@@ -65,6 +72,8 @@ describe(`Validate scheme - ${SCHEMA_NAME.USER}`, () => {
         'addFioProperty'     : 'Присутствует недопустимое поле "addFioProperty".',
         'addPersonProperty'  : 'Присутствует недопустимое поле "addPersonProperty".',
         'additionalProperty' : 'Присутствует недопустимое поле "additionalProperty".',
+        'partnerId'          : 'Поле "partnerId" не должно быть больше 28 символов.',
+        'referrerId'         : 'Поле "referrerId" не должно быть больше 28 символов.',
       }
     });
   });
