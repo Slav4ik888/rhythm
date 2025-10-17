@@ -4,7 +4,7 @@ import { SCHEMA_NAME } from 'shared/lib/validators/ajv';
 export const schema = {
   $id                  : SCHEMA_NAME.SIGNUP_DATA,
   type                 : 'object',
-  required             : ['firstName', 'email', 'password', 'confirmPassword', 'permissions', 'isMobile'],
+  required             : ['firstName', 'email', 'password', 'confirmPassword', 'permissions', 'isMobile', 'partnerId'],
   additionalProperties : false,
 
   properties: {

@@ -14,7 +14,7 @@ export interface SignupData {
   password        : string
   confirmPassword : string
 
-  partnerId?      : string
+  partnerId       : string | null
   permissions     : boolean // Разрешения на обработку персональных данных
   isMobile        : boolean // С какого устройства вошёл
 }

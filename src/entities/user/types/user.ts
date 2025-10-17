@@ -1,4 +1,4 @@
-import { ItemBase } from 'entities/base'
+import { Email, ItemBase } from 'entities/base'
 import { UserPartnerData } from './partner'
 import { Person } from './person'
 import { Role } from './roles'
@@ -24,13 +24,13 @@ export type NewUserStatus = {
 
 /**
  * Пользователь
- * v.2025-10-11
+ * v.2025-10-17
  */
 export interface User extends ItemBase {
   companyId     : string
 
   person        : Person
-  email         : string  // korzan.va@mail.ru
+  email         : Email  // korzan.va@mail.ru
   permissions   : boolean // Разрешения на обработку персональных данных
 
   role          : Role
@@ -40,7 +40,7 @@ export interface User extends ItemBase {
   isEditAccess? : boolean // Временный запрет для всех на доступ к Конструктору
   settings?     : UserSettings
 
-  partner?      : UserPartnerData
+  partner       : UserPartnerData
 
   // TODO:
   // lastAction    : number // Время последнего действия

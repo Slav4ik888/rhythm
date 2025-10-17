@@ -10,7 +10,7 @@ import { usePartner } from 'entities/parthner';
 
 export const SignupPageStart: FC = memo(() => {
   const { loading, errors, serviceSignupStart, setErrors } = useSignup();
-  const { partnerIdParams, partnerIdLS } = usePartner();
+  const { partnerIdParams: partnerId } = usePartner();
   const { isMobile } = useUI();
   const companyNameRef = useRef(null);
   const firstNameRef   = useRef(null);
@@ -35,6 +35,7 @@ export const SignupPageStart: FC = memo(() => {
       email           : getRefValue(emailRef).toLocaleLowerCase(),
       password        : getRefValue(passwordRef),
       confirmPassword : getRefValue(confirmRef),
+      partnerId,
       permissions,
       isMobile
     };
@@ -43,7 +44,7 @@ export const SignupPageStart: FC = memo(() => {
     if (valid) serviceSignupStart(signupData);
     else setErrors(errors);
   },
-    [loading, permissions, isMobile, serviceSignupStart, setErrors]
+    [loading, permissions, isMobile, partnerId, serviceSignupStart, setErrors]
   );
 
 

@@ -1,3 +1,4 @@
+import { Email } from 'entities/base';
 import { CompanyId } from 'entities/company';
 
 // http://localhost:3000/demo/?ref=5994014
@@ -5,14 +6,15 @@ import { CompanyId } from 'entities/company';
 
 /** Данные участника начавшего регистрацию */
 export interface PartnerRegisterStartedData {
-  email       : string
+  email       : Email
   companyName : string
   firstName   : string
-  createdAt   : number // Время регистрации
+  createdAt   : number // Время начала регистрации
 }
 
 /** Данные участника зарегистрированного */
 export interface PartnerRegisteredData {
+  email     : Email  // Чтобы долго не искать по companyId
   companyId : string // ID компании пользователя
   createdAt : number // Время регистрации
 }
@@ -28,7 +30,7 @@ export interface PartnerData {
 
   // Кол-во регистраций по реферальной ссылке
   registerStarted?     : number // Кол-во начавших регистрацию
-  registerStartedData? : Record<CompanyId, PartnerRegisterStartedData>
+  registerStartedData? : Record<Email, PartnerRegisterStartedData>
   registered?          : number // Кол-во завершивших регистрацию
   registeredData?      : Record<CompanyId, PartnerRegisteredData>
 

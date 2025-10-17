@@ -3,7 +3,8 @@ export type {
   FixDate,
   Change,
   ItemBase,
-  ReqDocFields
+  ReqDocFields,
+  Email
 } from './types'
 
 export { creatorFixDate } from './creators'

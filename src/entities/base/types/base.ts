@@ -10,6 +10,8 @@ export enum Condition {
 }
 
 
+export type Email = string
+
 
 /** Тип для фиксирования даты */
 export interface FixDate {

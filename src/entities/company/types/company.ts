@@ -1,4 +1,4 @@
-import { FixDate } from 'entities/base';
+import { Email, FixDate } from 'entities/base';
 import { BunchesUpdated } from 'shared/lib/structures/bunch';
 import { CompanyProfileMember, CompanyDashboardMember } from '../model/hooks/use-access/types';
 import { DashboardSheets } from './sheets';
@@ -38,14 +38,14 @@ export interface CustomSettings {
 export type CompanyId = string
 
 /**
- * v.2025-10-11
+ * v.2025-10-17
  * Профиль компании
  */
 export interface Company {
   id                     : CompanyId
   companyName            : string
   ownerId                : string
-  owner                  : string // email
+  owner                  : Email
 
   logoUrl                : string // https://firebasestorage.googleapis.com/v0/b/osnova-course.appspot.com/o/no-img-company.svg?alt=media
   status                 : CompanyStatus
