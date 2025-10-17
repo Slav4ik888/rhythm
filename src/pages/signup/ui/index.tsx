@@ -19,7 +19,9 @@ const SignupPage: FC = memo(() => {
     if (auth) {
       navigate(RoutePath[AppRoutes.ROOT]);
     }
-  }, [auth, navigate]);
+  },
+    [auth, navigate]
+  );
 
 
   if (auth) return <Navigate to={RoutePath[AppRoutes.ROOT]} replace />;

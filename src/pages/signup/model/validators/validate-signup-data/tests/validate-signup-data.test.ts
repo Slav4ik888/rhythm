@@ -12,6 +12,7 @@ describe('validateSignupData', () => {
   });
 
   it('Invalid with required data', () => {
+    // @ts-ignore
     const res = validateSignupData({
       firstName       : '',
       email           : '',
@@ -29,7 +30,8 @@ describe('validateSignupData', () => {
       isMobile        : 'Отсутствует обязательное поле "isMobile".',
       password        : 'Поле "Пароль" не должно быть меньше 6 символов.',
       confirmPassword : 'Значение в поле "Повторите пароль", не совпадает с введёным паролем',
-      permissions     : 'Для регистрации, необходимо предоставить согласие на обработку персональных данных'
+      permissions     : 'Для регистрации, необходимо предоставить согласие на обработку персональных данных',
+      partnerId       : 'Отсутствует обязательное поле "partnerId".',
     });
   });
 
@@ -60,7 +62,8 @@ describe('validateSignupData', () => {
       isMobile        : 'Отсутствует обязательное поле "isMobile".',
       password        : 'Поле "Пароль" не должно быть больше 50 символов.',
       confirmPassword : 'Значение в поле "Повторите пароль", не совпадает с введёным паролем',
-      permissions     : 'Отсутствует обязательное поле "permissions".'
+      permissions     : 'Отсутствует обязательное поле "permissions".',
+      partnerId       : 'Отсутствует обязательное поле "partnerId".',
     });
   });
 });

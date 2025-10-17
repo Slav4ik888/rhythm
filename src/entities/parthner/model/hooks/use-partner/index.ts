@@ -16,8 +16,6 @@ export const usePartner = () => {
   const partnerIdParams = searchParams.get('ref');
   const partnerIdLS = LS.getPartnerId();
 
-  console.log('partnerIdParams: ', partnerIdParams); // ref:  5973512
-
 
   // Увеличение счётчика прошедших по ссылке
   const increaseFollowers = useCallback(() => {
@@ -29,7 +27,6 @@ export const usePartner = () => {
     LS.setPartnerId(partnerIdParams);
     dispatch(increasePartnerFollower({ partnerId: partnerIdParams })); // Увеличиваем счётчик партнёра
     setHasIncreasedFollowers(true);
-    console.log('Partner followers increased:', partnerIdParams);
   },
     [partnerIdLS, partnerIdParams, hasIncreasedFollowers, dispatch]
   );

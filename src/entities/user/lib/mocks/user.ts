@@ -21,6 +21,10 @@ export const MOCK_USER_EMPTY: User = {
   emailVerified : false,
   status        : UserStatus.NEW,
 
+  partner: {
+    partnerId: '',
+    referrerId: '',
+  },
   order         : 100,
   createdAt     : creatorFixDate(),
   lastChange    : creatorFixDate()
@@ -42,6 +46,11 @@ export const MOCK_USER_EMPLOYEE: User = {
   isEditAccess  : true,
   settings: {
     hintsDontShowAgain: ['hintId1', 'hintId2']
+  },
+
+  partner: {
+    partnerId: '',
+    referrerId: '',
   },
 
   order         : 100,

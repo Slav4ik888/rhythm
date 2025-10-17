@@ -25,9 +25,11 @@ describe(`Validate scheme - ${SCHEMA_NAME.USER}`, () => {
 
   test('should validate user EMPLOYEE schema', () => {
     const userData: User = creatorUser(MOCK_USER_EMPLOYEE);
-    userData.partner = {};
-    userData.partner.partnerId = 'slava';
-    userData.partner.referrerId = 'oleg';
+    userData.partner = {
+      partnerId  : 'slava',
+      referrerId : 'oleg',
+    };
+
 
     expect(validate(SCHEMA_NAME.USER, userData)).toEqual({
       errors: {}, valid: true

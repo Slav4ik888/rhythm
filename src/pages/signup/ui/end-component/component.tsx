@@ -20,7 +20,7 @@ export const SignupEndPageComponent: FC<Props> = memo(({ codeRef, onSubmit }) =>
   return (
     <>
       <Typography sx={{ ...f('--c-w'), mb: 1, textAlign: 'center' }}>
-        Введите код подтверждения отправленный вам на почту
+        Введите код подтверждения отправленный на указанную Вами почту
       </Typography>
 
       <TextFieldItem

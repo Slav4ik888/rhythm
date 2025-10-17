@@ -3,14 +3,12 @@ import { SignupDataEnd, useSignup } from '../../model';
 import { getRefValue } from 'shared/lib/refs';
 import { validateSignupDataEnd } from '../../model/validators';
 import { SignupEndPageComponent } from './component';
-import { usePartner } from 'entities/parthner';
 
 
 
 export const SignupPageEnd: FC = memo(() => {
   const { loading, signupData: { email }, serviceSignupEnd, setErrors } = useSignup();
   const codeRef = useRef(null);
-  const { partnerIdParams, partnerIdLS } = usePartner();
 
 
   const handleSubmit = useCallback(async () => {

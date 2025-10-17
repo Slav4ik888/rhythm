@@ -32,4 +32,4 @@ root.render(
 
 
 
-// git add . && git commit -m "refacted registration by partner's link" && git push -u origin main
+// git add . && git commit -m "ended signup with partner's link" && git push -u origin main

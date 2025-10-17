@@ -10,14 +10,13 @@ import { usePartner } from 'entities/parthner';
 
 export const SignupPageStart: FC = memo(() => {
   const { loading, errors, serviceSignupStart, setErrors } = useSignup();
-  const { partnerIdParams: partnerId } = usePartner();
+  const { partnerIdLS: partnerId = '' } = usePartner();
   const { isMobile } = useUI();
   const companyNameRef = useRef(null);
   const firstNameRef   = useRef(null);
   const emailRef       = useRef(null);
   const passwordRef    = useRef(null);
   const confirmRef     = useRef(null);
-
 
   const [permissions, setPermissions] = useState(false);
 
