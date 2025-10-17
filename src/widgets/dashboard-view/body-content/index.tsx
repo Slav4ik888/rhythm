@@ -19,7 +19,7 @@ import { usePages } from 'shared/lib/hooks';
 import { DashboardBodyContentWrapper as Wrapper } from './wrapper';
 import { NewCompanyMessage } from 'widgets/offers';
 import { useDashboardData } from 'entities/dashboard-data';
-import { useHints } from 'entities/hints';
+import { HINTS_IDS, useHints } from 'entities/hints';
 import { removeJivoSite } from 'shared/lib/remove-jivo';
 
 
@@ -101,11 +101,7 @@ export const DashboardBodyContent = memo(() => {
 
   // Add Hints
   useEffect(() => {
-    if (! isRendering) {
-      addHintsToQueue([
-        'control-date-end', 'control-refresh-btn', 'last-updated-text', 'period-type', 'control-date-start'
-      ])
-    }
+    if (! isRendering) addHintsToQueue(HINTS_IDS.dashboard)
   },
     [isRendering, addHintsToQueue]
   );
