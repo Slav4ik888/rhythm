@@ -1,6 +1,6 @@
 
 /**
- * v.2024-12-07
+ * v.2025-10-18
  * @returns строку с разделением тысяч пробелом, а дроби ','
  * @param _number - число или строка (символ отделяющий дробную часть должна быть точка '.')
  */
@@ -11,11 +11,11 @@ export function addSpaceBetweenNumbers(_number: number | string): string {
   if (! number && number !== 0) return '';
 
   // Перевести в строку
-  const newNumber = String(_number);
+  const numStr = String(_number).split('.');
 
   // Разрезаем до и после знака
-  let beforeDot = newNumber.split('.')[0];
-  const afterDot = newNumber.split('.')[1] ? `,${newNumber.split('.')[1]}` : '';
+  let beforeDot = numStr[0];
+  const afterDot = numStr[1] ? `,${numStr[1]}` : '';
 
   // Добавляем пробелы
   let result = '';

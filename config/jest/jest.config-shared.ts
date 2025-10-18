@@ -3,9 +3,12 @@ import cfg from './jest.config';
 
 
 const config: Config = Object.assign(cfg, {
-  displayName: 'HELPERS',
+  displayName: {
+    name: 'SHARED',
+    color: 'blue'
+  },
   testMatch: [
-    '**/shared/helpers/**/*.test.ts'
+    '**/shared/**/*.test.ts'
   ]
 });
 

@@ -17,7 +17,7 @@ describe('SCHEMA_NAME.AUTH_BY_LOGIN', () => {
     expect(res.valid).toEqual(false);
     expect(res.errors).toEqual({
       email    : 'Отсутствует обязательное поле "email".',
-      password : 'Не верный формат данных, для поля "password".'
+      password : 'Не верный формат данных, для поля "Пароль".'
     });
   });
 

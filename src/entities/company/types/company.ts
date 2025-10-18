@@ -49,7 +49,7 @@ export interface Company {
 
   logoUrl                : string // https://firebasestorage.googleapis.com/v0/b/osnova-course.appspot.com/o/no-img-company.svg?alt=media
   status                 : CompanyStatus
-  partnerCode?           : string // Код партнера
+  // partnerCode?           : string // Код партнера
   companyMembers         : CompanyProfileMember[]
   createdAt              : FixDate
   lastChange             : FixDate

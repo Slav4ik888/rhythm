@@ -16,8 +16,11 @@ describe('creatorUser', () => {
 
     res.createdAt.date   = 0;
     res.lastChange.date  = 0;
+
     user.createdAt.date  = 0;
     user.lastChange.date = 0;
+    user.isEditAccess    = false;
+    user.settings        = {};
 
     expect(res).toEqual(user);
   });

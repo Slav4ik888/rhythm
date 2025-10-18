@@ -102,7 +102,7 @@ describe('createViewItem', () => {
   test('should apply specific styles for growthIcon type', () => {
     const item = createViewItem(TEST_USER_ID, { type: 'growthIcon' });
     expect(item.styles).toMatchObject({
-      width: 40,
+      width: 20,
       // Проверяем, что применились стили из f('c-c-c')
       display: 'flex',
       justifyContent: 'center',

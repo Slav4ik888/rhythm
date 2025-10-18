@@ -10,8 +10,10 @@
     "build:dev": "webpack --env mode=development",
     "lint:ts": "npx eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "npx eslint \"**/*.{ts,tsx}\" --fix",
-    "test:helpers": "jest --detectOpenHandles --config ./config/jest/jest.config-helpers.ts",
-    "test:validators": "jest --detectOpenHandles --config ./config/jest/jest.config-validators.ts",
+    "test:entities": "jest --detectOpenHandles --config ./config/jest/jest.config-entities.ts",
+    "test:features": "jest --detectOpenHandles --config ./config/jest/jest.config-features.ts",
+    "test:shared": "jest --detectOpenHandles --config ./config/jest/jest.config-shared.ts",
+    "test:widgets": "jest --detectOpenHandles --config ./config/jest/jest.config-widgets.ts",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "anal:dev": "webpack --env isAnal=true mode=development",
     "anal:prod": "webpack --env isAnal=true mode=production"

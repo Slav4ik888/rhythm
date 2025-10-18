@@ -6,11 +6,13 @@ import { MOCK_FIX_DATE } from '../../../../mocks';
 
 describe('SCHEMA_NAME.FIX_DATE', () => {
   test('Valid fix date', () => {
-    expect(validate(SCHEMA_NAME.FIX_DATE, MOCK_FIX_DATE).valid).toEqual(true);
+    const res = validate(SCHEMA_NAME.FIX_DATE, MOCK_FIX_DATE);
+    expect(res.valid).toEqual(true);
   });
 
   it('Valid data', () => {
-    expect(validate(SCHEMA_NAME.FIX_DATE, MOCK_FIX_DATE, '').valid).toEqual(true);
+    const res = validate(SCHEMA_NAME.FIX_DATE, MOCK_FIX_DATE, '');
+    expect(res.valid).toEqual(true);
   });
 
   it('Invalid data - UserId', () => {

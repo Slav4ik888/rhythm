@@ -11,7 +11,6 @@ const config: Config = {
   displayName: 'UNIT',
   // Automatically clear mock calls, instances, contexts and results before every test
   clearMocks: true,
-
   transform: {
     '^.+\\.tsx?$'     : 'ts-jest',
     '^.+\\.(js|jsx)$' : 'babel-jest'
@@ -70,13 +69,15 @@ const config: Config = {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    '\\.(scss|css|png|jpe?g|gif)$' : 'identity-obj-proxy',
+    '\\.(scss|css)$'               : 'identity-obj-proxy',
+    '\\.(png|jpe?g|gif|svg)$'      : path.resolve(__dirname, 'mocks', 'jest-empty-component.tsx'),
     '\\.svg'                       : path.resolve(__dirname, 'mocks', 'jest-empty-component.tsx'),
     'react-markdown'               : path.resolve(__dirname, 'mocks', 'jest-react-markdown-component.tsx'),
     'remark-gfm'                   : path.resolve(__dirname, 'mocks', 'jest-remark-gfm.ts'),
     'src/(.*)'                     : '<rootDir>/../../src/$1',
     'entities/(.*)'                : '<rootDir>/../../src/entities/$1'
   },
+  resolver: undefined,
 
   // A set of global variables that need to be available in all test environments
   globals: {

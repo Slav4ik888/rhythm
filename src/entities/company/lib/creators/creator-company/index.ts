@@ -12,7 +12,7 @@ export const creatorCompany = (cfg: Partial<Company> = {} as Company): Company =
 
   logoUrl               : cfg.logoUrl          || '', // 'TODO: save in FB Cloude', // 'https://firebasestorage.googleapis.com/v0/b/osnova-course.appspot.com/o/no-img-company.svg?alt=media'
   status                : cfg.status           || CompanyStatus.NEW,
-  partnerCode           : cfg.partnerCode      || '',
+  // partnerCode           : cfg.partnerCode      || '',
   companyMembers        : cfg.companyMembers   || [],
 
   googleData            : cfg.googleData       || { url: '' }, // TODO: add to tests

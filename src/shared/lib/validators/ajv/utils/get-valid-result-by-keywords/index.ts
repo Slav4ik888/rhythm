@@ -19,11 +19,11 @@ export const getValidResultByKeywords = (
 
   // eslint-disable-next-line
   for (const err of validate.errors) {
-    __devLog('getValidResultByKeywords', 'err: ', err);
+    // __devLog('getValidResultByKeywords', 'err: ', err);
     const { keyword, params } = err;
 
     const label = getLabelByInstancePath(err);
-    __devLog('getValidResultByKeywords', 'label: ', label);
+    // __devLog('getValidResultByKeywords', 'label: ', label);
 
     switch (keyword) {
       case 'type':
@@ -116,7 +116,7 @@ export const getValidResultByKeywords = (
     }
   }
 
-  __devLog('getValidResultByKeywords', 'errors: ', errors);
+  // __devLog('getValidResultByKeywords', 'errors: ', errors);
 
   return getValidResult(errors);
 };
