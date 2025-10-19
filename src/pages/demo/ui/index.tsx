@@ -14,7 +14,6 @@ const DemoPage: FC = memo(() => {
   const { partnerIdParams } = usePartner(); // Запускаем процесс определения и обработки партнёрской ссылки
 
 
-
   return (
     <LayoutInnerPage type='demo' containerType='xl'>
       <Box sx={(theme) => ({

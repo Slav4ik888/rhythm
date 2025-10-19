@@ -21,6 +21,7 @@ import { NewCompanyMessage } from 'widgets/offers';
 import { useDashboardData } from 'entities/dashboard-data';
 import { HINTS_IDS, useHints } from 'entities/hints';
 import { removeJivoSite } from 'shared/lib/remove-jivo';
+import { useUI } from 'entities/ui';
 
 
 
@@ -37,6 +38,7 @@ export const DashboardBodyContent = memo(() => {
   const { dashboardSheetId } = usePages();
   const { isDashboardAccessView, isDashboardAccessEdit } = useAccess();
   const { addHintsToQueue } = useHints();
+  const { isMobile } = useUI();
 
 
 
@@ -101,9 +103,9 @@ export const DashboardBodyContent = memo(() => {
 
   // Add Hints
   useEffect(() => {
-    if (! isRendering) addHintsToQueue(HINTS_IDS.dashboard)
+    if (! isRendering && ! isMobile) addHintsToQueue(HINTS_IDS.dashboard)
   },
-    [isRendering, addHintsToQueue]
+    [isRendering, isMobile, addHintsToQueue]
   );
 
   const handleSelectViewItem = useCallback((id: ViewItemId) => {

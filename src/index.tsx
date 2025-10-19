@@ -32,4 +32,4 @@ root.render(
 
 
 
-// git add . && git commit -m "checks & fixed tests" && git push -u origin main
+// git add . && git commit -m "disabled hints for mobile" && git push -u origin main
