@@ -34,4 +34,4 @@ root.render(
 
 
 
-// git add . && git commit -m "added deploy.sh" && git push -u origin main
+// git add . && git commit -m "fixed deploy.sh" && git push -u origin main
