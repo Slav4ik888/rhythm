@@ -32,4 +32,4 @@ root.render(
 
 
 
-// git add . && git commit -m "added new partners" && git push -u origin main
+// git add . && git commit -m "added site-preview" && git push -u origin main
