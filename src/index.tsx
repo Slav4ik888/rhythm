@@ -19,19 +19,19 @@ __devLog('index', 'Status: ', cfg.IS_DEV ? 'OFFLINE' : 'ONLINE');
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <BrowserRouter>
-    <StoreProvider>
-      <ErrorBoundary>
-        <UIConfiguratorProvider>
-          <HelmetProvider>
+  <HelmetProvider>
+    <BrowserRouter>
+      <StoreProvider>
+        <ErrorBoundary>
+          <UIConfiguratorProvider>
             <App />
-          </HelmetProvider>
-        </UIConfiguratorProvider>
-      </ErrorBoundary>
-    </StoreProvider>
-  </BrowserRouter>
+          </UIConfiguratorProvider>
+        </ErrorBoundary>
+      </StoreProvider>
+    </BrowserRouter>
+  </HelmetProvider>
 );
 
 
 
-// git add . && git commit -m "added Helmet" && git push -u origin main
+// git add . && git commit -m "refacted Helmet" && git push -u origin main
