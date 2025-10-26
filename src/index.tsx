@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { StoreProvider } from 'app/providers/store';
 import { ErrorBoundary } from 'app/providers/error-boundary';
 import { App } from './app';
-
+import { HelmetProvider } from 'react-helmet-async';
 import cfg from 'app/config';
 import { UIConfiguratorProvider } from 'app/providers/theme';
 import { __devLog } from 'shared/lib/tests/__dev-log';
@@ -23,7 +23,9 @@ root.render(
     <StoreProvider>
       <ErrorBoundary>
         <UIConfiguratorProvider>
-          <App />
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
         </UIConfiguratorProvider>
       </ErrorBoundary>
     </StoreProvider>
@@ -32,4 +34,4 @@ root.render(
 
 
 
-// git add . && git commit -m "added site-preview" && git push -u origin main
+// git add . && git commit -m "added Helmet" && git push -u origin main
