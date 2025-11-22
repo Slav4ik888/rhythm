@@ -34,4 +34,4 @@ root.render(
 
 
 
-// git add . && git commit -m "hidden dogovor" && git push -u origin main
+// git add . && git commit -m "refacted deploy.sh" && git push -u origin main
