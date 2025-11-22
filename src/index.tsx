@@ -34,4 +34,4 @@ root.render(
 
 
 
-// git add . && git commit -m "refacted deploy.sh" && git push -u origin main
+// git add . && git commit -m "refacted 2 deploy.sh" && git push -u origin main
