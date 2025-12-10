@@ -69,6 +69,8 @@ export const ItemChartjs: FC<Props> = memo(({ item, isTemplate }) => {
 
   const type = item.settings?.charts?.[0]?.chartType || 'line';
 
+  console.log('data: ', data);
+  console.log('datasets: ', data.datasets);
 
   return (
     <Chart

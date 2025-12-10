@@ -28,10 +28,10 @@ export const FooterTopLeftColumn: FC = memo(() => {
       <RenderFooterLinks
         links={
           [
-            // {
-            //   name: 'Договор-оферта (услуги)',
-            //   href: 'https://docs.google.com/document/d/1xNVjtf-X9G_JMFvks1gshQsUHkNum7E2AmsrH6FVKaY/edit?tab=t.0'
-            // },
+            {
+              name: 'Договор-оферта (услуги)',
+              href: 'https://docs.google.com/document/d/1xNVjtf-X9G_JMFvks1gshQsUHkNum7E2AmsrH6FVKaY/edit?tab=t.0'
+            },
             {
               name: 'Политика конфиденциальности',
               route: RoutePath[AppRoutes.POLICY]

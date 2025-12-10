@@ -16,7 +16,8 @@
     "test:widgets": "jest --detectOpenHandles --config ./config/jest/jest.config-widgets.ts",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "anal:dev": "webpack --env isAnal=true mode=development",
-    "anal:prod": "webpack --env isAnal=true mode=production"
+    "anal:prod": "webpack --env isAnal=true mode=production",
+    "log": "node ./scripts/read-log-file/index.js errors.log"
   },
   "keywords": [],
   "author": "slav4ik888",

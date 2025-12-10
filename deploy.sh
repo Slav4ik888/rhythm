@@ -123,4 +123,4 @@ main "$@"
 # Сделайте скрипт исполняемым и запустите:
 # chmod +x deploy.sh
 # ./deploy.sh
-# ./deploy.sh 
+# ./deploy.sh -frontOnly
