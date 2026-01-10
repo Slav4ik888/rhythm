@@ -11,6 +11,7 @@ import { StateSchemaDocs } from 'entities/docs';
 import { StateSchemaDashboardView } from 'entities/dashboard-view';
 import { StateSchemaDashboardTemplates } from 'entities/dashboard-templates';
 import { StateSchemaHints } from 'entities/hints/model/slice';
+import { StateSchemaUserFeatures } from 'features/user/model/slice/state-schema';
 
 
 
@@ -25,6 +26,7 @@ export interface StateSchema {
   // Async reducer
   signupPage?         : StateSchemaSignupPage
   loginPage?          : StateSchemaLoginPage
+  userFeatures?       : StateSchemaUserFeatures
   dashboardView?      : StateSchemaDashboardView
   dashboardTemplates? : StateSchemaDashboardTemplates
   dashboardData?      : StateSchemaDashboardData

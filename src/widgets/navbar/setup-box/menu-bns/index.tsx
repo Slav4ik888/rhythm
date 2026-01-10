@@ -7,7 +7,14 @@ import { DashboardSetEditBtn } from 'features/dashboard-view';
 import { useAccess } from 'entities/company';
 import { usePages } from 'shared/lib/hooks';
 import { useUI } from 'entities/ui';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
+import { reducerUserFeatures } from 'features/user';
 
+
+
+const reducers: ReducersList = {
+  userFeatures: reducerUserFeatures
+};
 
 
 interface Props {
@@ -22,23 +29,25 @@ export const MenuBtns: FC<Props> = ({ light }) => {
 
 
   return (
-    <MDBox sx={(theme: CustomTheme) => sxNavbarRow(theme)}>
-      <MDBox display='flex' alignItems='center' color={light ? 'white' : 'inherit'}>
-        {
-          isDashboardPage
-          && isDashboardAccessEdit
-          && ! isMobile
-          && (
-            <>
-              <DashboardSetEditBtn />
-              <AddUserRoot />
-            </>
-          )
-        }
-        {/* <OpenNotificationMenuBtn /> */}
-        <OpenUIConfiguratorBtn />
-        <ProfilesMenuRoot />
+    <DynamicModuleLoader reducers={reducers}>
+      <MDBox sx={(theme: CustomTheme) => sxNavbarRow(theme)}>
+        <MDBox display='flex' alignItems='center' color={light ? 'white' : 'inherit'}>
+          {
+            isDashboardPage
+            && isDashboardAccessEdit
+            && ! isMobile
+            && (
+              <>
+                <DashboardSetEditBtn />
+                <AddUserRoot />
+              </>
+            )
+          }
+          {/* <OpenNotificationMenuBtn /> */}
+          <OpenUIConfiguratorBtn />
+          <ProfilesMenuRoot />
+        </MDBox>
       </MDBox>
-    </MDBox>
+    </DynamicModuleLoader>
   );
 };

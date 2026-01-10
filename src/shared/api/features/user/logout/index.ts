@@ -1,8 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CustomAxiosError, errorHandlers, ThunkConfig } from 'app/providers/store';
 import { actionsCompany, Company } from 'entities/company';
-import { API_PATHS } from '../../../api-paths';
 import { Errors } from 'shared/lib/validators';
+import { userApi } from '../api';
+import { actionsUser } from 'entities/user';
+
 
 
 /**
@@ -15,12 +17,13 @@ export const logout = createAsyncThunk <
 >(
   'features/user/logout',
   // eslint-disable-next-line consistent-return
-  async (_, thunkApi) => {
+  (_, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
 
     try {
-      await extra.api.post(API_PATHS.user.logout);
+      userApi.logout(extra.api);
 
+      dispatch(actionsUser.clearUser());
       dispatch(actionsCompany.setCompany({ company: {} as Company }));
     }
     catch (e) {

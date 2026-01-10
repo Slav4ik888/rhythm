@@ -5,10 +5,16 @@ import { AppRoutes, RoutePath } from 'app/providers/routes';
 import { UserProfilePageComponent } from './component';
 import { useUI } from 'entities/ui';
 import { cloneObj, getChanges, isEmpty, setValueByScheme } from 'shared/helpers/objects';
-import { useFeaturesUser } from 'features/user';
+import { reducerUserFeatures, useFeaturesUser } from 'features/user';
 import { creatorFixDate } from 'entities/base';
 import { __devLog } from 'shared/lib/tests/__dev-log';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components';
 
+
+
+const reducers: ReducersList = {
+  userFeatures: reducerUserFeatures
+};
 
 
 const UserProfilePage: FC = memo(() => {
@@ -78,15 +84,17 @@ const UserProfilePage: FC = memo(() => {
   if (! auth) return null;
 
   return (
-    <UserProfilePageComponent
-      isChanges = {Boolean(Object.keys(getChanges(storedUser, formData)).length)}
-      formData  = {formData}
-      loading   = {loading}
-      errors    = {errors}
-      onCancel  = {handleCancel}
-      onChange  = {handleChange}
-      onSubmit  = {handleSubmit}
-    />
+    <DynamicModuleLoader reducers={reducers}>
+      <UserProfilePageComponent
+        isChanges = {Boolean(Object.keys(getChanges(storedUser, formData)).length)}
+        formData  = {formData}
+        loading   = {loading}
+        errors    = {errors}
+        onCancel  = {handleCancel}
+        onChange  = {handleChange}
+        onSubmit  = {handleSubmit}
+      />
+    </DynamicModuleLoader>
   );
 });
 

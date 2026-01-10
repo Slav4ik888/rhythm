@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { getAuth, ReqGetAuth } from '../../services';
 import { Errors } from 'shared/lib/validators';
-import { logout } from 'shared/api/features/user';
 
 
 
@@ -32,7 +31,6 @@ export const useUser = () => {
     setErrors      : (err: Errors) => dispatch(actions.setErrors(err)),
     clearErrors    : () => dispatch(actions.clearErrors()),
     serviceGetAuth : (data: ReqGetAuth) => dispatch(getAuth(data)),
-    serviceLogout  : () => dispatch(logout()),
   }),
     [dispatch]
   );

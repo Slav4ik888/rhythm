@@ -66,11 +66,13 @@ export const errorHandlers = (
   else if (status === 400) {
     return dispatch(actionsUI.setWarningMessage(objectFieldsToString(errors)));
   }
-  // Не редиректим на loginPage, тк пользователь может посетить страницу без авторизации
+  // Не редиректим на loginPage и не выводим сообщение о необходимости авторизации,
+  // тк пользователь может посетить страницу без необходимости авторизации
+  // а инфа об этом не приходит от сервера
   else if (status === 401) {
-    dispatch(actionsUser.setAuth(false));
-    if (isDashboardPage(pathname)) dispatch(actionsUI.setWarningMessage('Необходимо авторизоваться'));
-    return dispatch(actionsUI.setErrorStatus({ status: 401, pathname }));
+    dispatch(actionsUser.clearUser());
+    // if (isDashboardPage(pathname)) dispatch(actionsUI.setWarningMessage('Необходимо авторизоваться'));
+    // return dispatch(actionsUI.setErrorStatus({ status: 401, pathname }));
   }
   else if (status === 403) return dispatch(actionsUI.setErrorStatus({ status: 403, pathname }));
   else if (status === 404) {

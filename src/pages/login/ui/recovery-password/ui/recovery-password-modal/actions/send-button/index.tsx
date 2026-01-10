@@ -20,7 +20,9 @@ export const RecoveryPasswordSendButton: FC<Props> = memo(({ hookOpen: O, emailR
   useEffect(() => {
     if (resetEmailResult) O.setClose()
     setResetEmailResult();
-  }, [O, resetEmailResult, loading, setResetEmailResult]);
+  },
+    [O, resetEmailResult, loading, setResetEmailResult]
+  );
 
 
   const handlerSend = () => {

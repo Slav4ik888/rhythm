@@ -47,7 +47,7 @@ export const authByLogin = createAsyncThunk<
       const hintsWithLS = Array.from(new Set([...hints, ...LS.getHintsDontShowAgain()]));
 
       if (hintsWithLS.length !== hints.length) {
-        await userApi.updateUser(extra.api, {
+        await userApi.update(extra.api, {
           id        : user.id,
           companyId : user.companyId,
           settings  : { hintsDontShowAgain: hintsWithLS }
@@ -57,6 +57,9 @@ export const authByLogin = createAsyncThunk<
         if (! user.settings.hintsDontShowAgain) user.settings.hintsDontShowAgain = [];
         user.settings.hintsDontShowAgain = [...hintsWithLS];
       }
+
+      // Сохраняем в LS те хинты, что у пользователя
+      LS.setHintsDontShowAgain(hintsWithLS);
       // End check dontShowAgain
 
       dispatch(actionsUser.setUser({ user, companyId: user.companyId }));

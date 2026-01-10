@@ -2,11 +2,11 @@ import { FC, useCallback, memo } from 'react';
 import KeyboardReturn from '@mui/icons-material/KeyboardReturn';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
-import { useUser } from 'entities/user';
 import { RoutePath } from 'app/providers/routes';
 import { useNavigate } from 'react-router-dom';
 import { MenuItem } from 'shared/ui/items/menu-item';
 import { Divider } from 'shared/ui/mui-components';
+import { useFeaturesUser } from 'features/user';
 
 
 
@@ -17,7 +17,7 @@ interface Props {
 
 // Меню с профилями для Navbar
 export const ProfilesMenu: FC<Props> = memo(({ onClose }) => {
-  const { serviceLogout } = useUser();
+  const { serviceLogout } = useFeaturesUser();
   const navigate = useNavigate();
 
   // Выход из аккаунта
@@ -25,7 +25,9 @@ export const ProfilesMenu: FC<Props> = memo(({ onClose }) => {
     onClose();
     serviceLogout();
     navigate(RoutePath.ROOT);
-  }, [onClose, serviceLogout, navigate]);
+  },
+    [onClose, serviceLogout, navigate]
+  );
 
 
   return (

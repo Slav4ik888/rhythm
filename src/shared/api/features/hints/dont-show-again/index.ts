@@ -24,7 +24,7 @@ export const dontShowAgain = createAsyncThunk<
 
     try {
       if (userData.id && userData.companyId) { // Иначе сохраниться только в LS
-        await userApi.updateUser(api, userData);
+        await userApi.update(api, userData);
       }
 
       return undefined;

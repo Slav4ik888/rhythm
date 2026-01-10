@@ -1,12 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { updateUser, logout } from 'shared/api/features/user';
 import { updateObject } from 'shared/helpers/objects';
 import { getPayloadError as getError } from 'shared/lib/errors';
 import { LS } from 'shared/lib/local-storage';
 import { Errors } from 'shared/lib/validators';
 import { creatorUser } from '../../lib/creators';
 import { getAuth } from '../services';
-import { User } from '../../types';
+import { PartialUser, User } from '../../types';
 import { StateSchemaUser } from './state-schema';
 import { SetUser } from './types';
 
@@ -39,12 +38,21 @@ export const slice = createSlice({
       // state._isLoaded = true;
       state.user      = creatorUser(payload.user);
       LS.setUserState(payload.companyId, state);
-    }
+    },
+    updateUser: (state, { payload }: PayloadAction<PartialUser>) => {
+      state.user    = updateObject(state.user, payload);
+      state.errors  = {};
+      state.loading = false;
+    },
+    clearUser: (state) => {
+      state.auth   = false;
+      state.user   = {} as User;
+      state.errors = {};
+    },
   },
 
   extraReducers: builder => {
     // GET-AUTH
-    // eslint-disable-line @typescript-eslint/no-unused-expressions
     builder
       .addCase(getAuth.pending, (state) => {
         state.errors  = {};
@@ -63,69 +71,6 @@ export const slice = createSlice({
         state.errors    = payload || {};
         state.loading   = false;
       })
-
-    // UPDATE-USER
-    builder
-      .addCase(updateUser.pending, (state) => {
-        state.errors  = {};
-        state.loading = true;
-      })
-      .addCase(updateUser.fulfilled, (state, { payload }) => {
-        state.user    = updateObject(state.user, payload);
-        state.errors  = {};
-        state.loading = false;
-      })
-      .addCase(updateUser.rejected, (state, { payload }) => {
-        state.errors  = getError(payload);
-        state.loading = false;
-      })
-
-    // DELETE-USER
-    // builder
-    //   .addCase(deleteUser.pending, (state) => {
-    //     state.errors  = {};
-    //     state.loading = true;
-    //   })
-    //   .addCase(deleteUser.fulfilled, (state) => {
-    //     state.errors  = {};
-    //     state.loading = false;
-    //   })
-    //   .addCase(deleteUser.rejected, (state, { payload }) => {
-    //     state.errors  = payload;
-    //     state.loading = false;
-    //   })
-
-    // LOGOUT-USER
-    builder
-      .addCase(logout.pending, (state) => {
-        state.errors  = {};
-        state.loading = true;
-      })
-      .addCase(logout.fulfilled, (state) => {
-        state.auth    = false;
-        state.user    = {} as User;
-        state.errors  = {};
-        state.loading = false;
-      })
-      .addCase(logout.rejected, (state, { payload }) => {
-        state.errors  = payload || {};
-        state.loading = false;
-      })
-
-    // SEND-EMAIL-CONFIRMATION
-    // builder
-    //   .addCase(sendEmailConfirmation.pending, (state) => {
-    //     state.errors  = {};
-    //     state.loading = true;
-    //   })
-    //   .addCase(sendEmailConfirmation.fulfilled, (state) => {
-    //     state.errors  = {};
-    //     state.loading = false;
-    //   })
-    //   .addCase(sendEmailConfirmation.rejected, (state, { payload }) => {
-    //     state.errors  = payload;
-    //     state.loading = false;
-    //   })
   }
 })
 

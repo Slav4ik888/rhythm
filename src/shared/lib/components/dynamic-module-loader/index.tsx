@@ -16,7 +16,10 @@ interface Props {
   children            : React.ReactNode
 }
 
-export const DynamicModuleLoader: FC<Props> = ({ children, removeAfterUnmount = false, reducers }) => {
+export const DynamicModuleLoader: FC<Props> = ({
+  children, reducers,
+  removeAfterUnmount = false
+}) => {
   const
     store    = useStore() as ReduxStoreWithManager,
     dispatch = useDispatch();
