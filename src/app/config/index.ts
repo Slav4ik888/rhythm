@@ -1,8 +1,8 @@
 import { sec } from 'shared/helpers/dates'
 
 const cfg = {
-  VERSION                 : '1.52.0',
-  ASSEMBLY_DATE           : '2026-01-11',
+  VERSION                 : '1.53.0',
+  ASSEMBLY_DATE           : '2026-02-08',
 
   COOKIE_NAME             : 'Rhythm',
   DEFAULT_MESSAGE_TIMEOUT : sec(6),

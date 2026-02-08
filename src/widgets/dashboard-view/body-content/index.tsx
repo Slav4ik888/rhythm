@@ -291,7 +291,20 @@ export const DashboardBodyContent = memo(() => {
     && isMounted
     && isDashboardAccessView
     && isLoaded              // Загружены ViewItems
-    && ! viewItems.length) return <NewCompanyMessage />
+    && ! viewItems.length) {
+    // Попытка отловить ошибку - не залогиненный зашёл в демо2, всё загрузилось, затем я тыкнул "5лет Всё"
+    // и всё исчезло и сработал этот механизм. Почему не ясно - помогла очистка кэша
+    console.log('Попытка отловить ошибку - переключение на страницу с предложением из Демо страницы');
+    console.log('isRendering: ', isRendering);
+    console.log('loadingData: ', loadingData);
+    console.log('loadingView: ', loadingView);
+    console.log('isMounted: ', isMounted);
+    console.log('isDashboardAccessView: ', isDashboardAccessView);
+    console.log('isLoaded: ', isLoaded);
+    console.log('viewItems.length: ', viewItems.length);
+
+    return <NewCompanyMessage />
+  }
 
   return (
     <Wrapper onClick = {() => handleSelectViewItem(NO_PARENT_ID)}>
