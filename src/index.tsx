@@ -34,4 +34,6 @@ root.render(
 
 
 
-// git add . && git commit -m "updated 1.53.0" && git push -u origin main
+// git add . && git commit -m "updated 1.53.0 some fixed" && git push -u origin main
+// деплой весь         /var/www/vtempe/data/rhythm/deploy.sh
+// деплой только фронт /var/www/vtempe/data/rhythm/deploy.sh -frontOnly

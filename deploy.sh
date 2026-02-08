@@ -122,5 +122,5 @@ main "$@"
 
 # Сделайте скрипт исполняемым и запустите:
 # chmod +x deploy.sh
-# ./deploy.sh
-# ./deploy.sh -frontOnly
+# /var/www/vtempe/data/rhythm/deploy.sh
+# /var/www/vtempe/data/rhythm/deploy.sh -frontOnly
